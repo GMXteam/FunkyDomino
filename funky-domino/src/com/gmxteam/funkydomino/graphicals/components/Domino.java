@@ -4,11 +4,13 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.gmxteam.funkydomino.graphicals.abstracts.Component;
+
 /**
  *
  * @author Usager
  */
-public class Domino
+public class Domino extends Component
 {
     
 }
