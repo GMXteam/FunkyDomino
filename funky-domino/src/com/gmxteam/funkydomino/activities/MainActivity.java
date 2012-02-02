@@ -1,7 +1,8 @@
-package com.gmxteam.funkydomino;
+package com.gmxteam.funkydomino.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.gmxteam.funkydomino.R;
 
 
 public class MainActivity extends Activity
@@ -12,7 +13,7 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        AABB aabb = new AABB();
+       
         
     }
 }
