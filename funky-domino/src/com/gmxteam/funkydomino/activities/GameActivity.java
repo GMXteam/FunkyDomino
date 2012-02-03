@@ -4,11 +4,13 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import com.gmxteam.funkydomino.activities.abstracts.JBox2DActivity;
+
 /**
  *
  * @author Usager
  */
-public class GameActivity
+public class GameActivity extends JBox2DActivity
 {
     
 }

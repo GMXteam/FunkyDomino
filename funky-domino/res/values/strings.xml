@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Funky Domino</string>
-    
+    <string name="app_name">Funky Domino</string>    
     <string name="main_activity_name">Menu principal</string>
     <string name="game_activity_name">Jeu</string>
     <string name="help_activity_name">Aide</string>
