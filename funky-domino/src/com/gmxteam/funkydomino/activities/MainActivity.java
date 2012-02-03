@@ -17,6 +17,7 @@ public class MainActivity extends JBox2DActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
        
         
     }

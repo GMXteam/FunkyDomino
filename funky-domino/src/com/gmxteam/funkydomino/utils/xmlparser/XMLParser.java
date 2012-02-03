@@ -22,6 +22,13 @@ public class XMLParser
     // D'autres constantes seront définies en fonction de la structure XML choisie.
     public static Integer INFO_APP_NAME = 0,
             INFO_APP_DESCRIPTION = 1;
+    
+    /**
+     * Décode la ressource XML en entrée et l'interprète afin de générer le code
+     * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
+     * @param f est une ressource XML.
+     * @return une activité Android pour la partie à jouer !
+     */
     public static GameActivity obtainGameInstance(File f) {
     
     
