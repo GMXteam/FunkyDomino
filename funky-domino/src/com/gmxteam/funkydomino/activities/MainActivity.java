@@ -1,11 +1,15 @@
 package com.gmxteam.funkydomino.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import com.gmxteam.funkydomino.R;
+import com.gmxteam.funkydomino.activities.abstracts.JBox2DActivity;
 
-
-public class MainActivity extends Activity
+/**
+ * Activité principale de l'application Android.
+ * Elle sera construite avec JBox2D et permettera d'accéder aux autres activités.
+ * @author Guillaume Poirier-Morency
+ */
+public class MainActivity extends JBox2DActivity
 {
     /** Called when the activity is first created. */
     @Override
