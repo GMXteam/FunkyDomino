@@ -8,7 +8,7 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author Usager
  */
-public class highscoresActivity
+public class HighscoresActivity
 {
     
 }
