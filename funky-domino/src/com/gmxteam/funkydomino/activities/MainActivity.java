@@ -16,7 +16,6 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import com.gmxteam.funkydomino.activities.abstracts.JBox2DActivity;
 import android.os.Bundle;
 import com.gmxteam.funkydomino.R;
 

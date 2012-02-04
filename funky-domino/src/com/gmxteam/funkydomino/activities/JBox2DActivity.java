@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.activities.abstracts;
+package com.gmxteam.funkydomino.activities;
 
 import android.app.Activity;
 import android.os.Handler;

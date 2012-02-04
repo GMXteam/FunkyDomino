@@ -4,8 +4,6 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import com.gmxteam.funkydomino.activities.abstracts.JBox2DActivity;
-
 /**
  *
  * @author Usager
