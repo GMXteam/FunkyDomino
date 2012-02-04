@@ -16,9 +16,9 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import com.gmxteam.funkydomino.activities.abstracts.JBox2DActivity;
 import android.os.Bundle;
 import com.gmxteam.funkydomino.R;
-import com.gmxteam.funkydomino.activities.abstracts.JBox2DActivity;
 
 /**
  * Activité principale de l'application Android.
@@ -34,8 +34,9 @@ public class MainActivity extends JBox2DActivity
     {
         
         super.onCreate(savedInstanceState);
-        
-        setContentView(R.layout.main);
+        create();
+      
+        //setContentView(R.layout.main);
         
        
         

@@ -8,7 +8,7 @@ package com.gmxteam.funkydomino.graphicals.components;
  *
  * @author Usager
  */
-public class Water extends Component
+public abstract class Component
 {
     
 }

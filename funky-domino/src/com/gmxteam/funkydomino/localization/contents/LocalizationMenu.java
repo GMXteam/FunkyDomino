@@ -4,8 +4,6 @@
  */
 package com.gmxteam.funkydomino.localization.contents;
 
-import com.gmxteam.funkydomino.localization.interfaces.Localizable;
-
 /**
  *
  * @author Usager
