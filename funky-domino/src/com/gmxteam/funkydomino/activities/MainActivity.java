@@ -16,8 +16,8 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import com.gmxteam.funkydomino.R;
 
 /**
  * Activité principale de l'application Android.
@@ -35,9 +35,11 @@ public class MainActivity extends JBox2DActivity
         super.onCreate(savedInstanceState);
         create();
       
-        //setContentView(R.layout.main);
+        
         
        
         
     }
+    
+    
 }
