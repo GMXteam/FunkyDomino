@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.graphicals.widgets;
 
 /**
  *
- * @author guillaume
+ * @author Guillaume Poirier-Morency
  */
 public class WidgetData {
     

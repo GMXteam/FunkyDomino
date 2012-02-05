@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 /**
  *
- * @author guillaume
+ * @author Guillaume Poirier-Morency
  */
 public class ComponentData {
     

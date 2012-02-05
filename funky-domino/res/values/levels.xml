@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Les niveaux seront simplement transcrit dans ce fichier de façon encryptés -->
+    <integer name="count">6</integer>
+    <string name="level_0">aushrfegio7326rt49732gerwhfe763</string>  
+    <string name="level_1">aushrfegio7326rt49732gerwhfe763</string>  
+    <string name="level_2">aushrfegio7326rt49732gerwhfe763</string>
+    <string name="level_3">aushrfegio7326rt49732gerwhfe763</string>
+    <string name="level_4">aushrfegio7326rt49732gerwhfe763</string>
+    <string name="level_5">aushrfegio7326rt49732gerwhfe763</string>    
+</resources>

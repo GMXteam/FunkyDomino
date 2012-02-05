@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.activities;
 
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency
  */
 public class GameActivity extends JBox2DActivity{
 }

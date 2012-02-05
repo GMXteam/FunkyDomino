@@ -17,34 +17,28 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
-import org.jbox2d.collision.AABB;
+import com.gmxteam.funkydomino.utils.xmlparser.XMLParser;
 
 /**
  * Activité principale de l'application Android.
  * Elle sera construite avec JBox2D et permettera d'accéder aux autres activités.
  * @author Guillaume Poirier-Morency
  */
-public class MainActivity extends JBox2DActivity
-{
-    
+public class MainActivity extends JBox2DActivity {
+
+  
+
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);       
+            
         
         init();
-      
-        
-       
-       this.onTouchEvent(null);
-        
+     
+
+
+
     }
-    
-    
-    
-    
-    
 }

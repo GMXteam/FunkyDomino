@@ -23,7 +23,7 @@ import org.jbox2d.dynamics.World;
 
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency
  */
 public abstract class Widget extends Body
 {

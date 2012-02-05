@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.localization.contents;
 
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency
  */
 public interface Localizable
 {

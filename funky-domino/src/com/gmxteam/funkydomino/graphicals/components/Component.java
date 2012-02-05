@@ -23,27 +23,22 @@ import org.jbox2d.dynamics.World;
 
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency
  */
 public abstract class Component extends Body {
 
     private ComponentData data;
-    
+
     public Component(BodyDef bd, World w) {
-
-
         super(bd, w);
     }
 
     @Override
     public Object getUserData() {
-
-
         return data;
-
     }
 
     public abstract void draw();
-    
+
     public abstract void onClick(MotionEvent me);
 }

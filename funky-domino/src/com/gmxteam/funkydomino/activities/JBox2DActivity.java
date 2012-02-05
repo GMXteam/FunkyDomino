@@ -76,8 +76,8 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
         // On crée la surface de dessin et on ajoute son handler
         glDrawingArea = new GLSurfaceView(this);
         glDrawingArea.setRenderer(this);
-        // On configure le moteur de physique
 
+        // On configure le moteur de physique
         worldAABB = new AABB();
         worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
         worldAABB.upperBound.set(new Vec2((float) 100.0, (float) 100.0));

@@ -16,6 +16,8 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
+
+import android.content.Context;
 import com.gmxteam.funkydomino.activities.GameActivity;
 import java.io.File;
 import java.util.HashMap;
@@ -24,12 +26,7 @@ import java.util.HashMap;
  *
  * @author Guillaume Poirier-morency
  */
-public class XMLParser
-{
-    
-    private static String publicKey = "";
-    
-    
+public class XMLParser {  
     
     // D'autres constantes seront définies en fonction de la structure XML choisie.
     public static Integer INFO_APP_NAME = 0,
@@ -41,7 +38,7 @@ public class XMLParser
      * @param f est une ressource XML.
      * @return une activité Android pour la partie à jouer !
      */
-    public static GameActivity obtainGameInstance(File f) {
+    public static GameActivity obtainGameInstance(String file, String key) {
     
     
         return null;
@@ -54,7 +51,7 @@ public class XMLParser
      * @param f
      * @return 
      */
-    public static HashMap<Integer, String> obtainInformations(File f) {
+    public static HashMap<Integer, String> obtainInformations(String file, String key) {
     
         return null;
     }

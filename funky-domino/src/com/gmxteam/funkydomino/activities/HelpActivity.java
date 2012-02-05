@@ -16,11 +16,17 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.os.Bundle;
+
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency
  */
 public class HelpActivity extends JBox2DActivity
 {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        
     
+    }
 }
