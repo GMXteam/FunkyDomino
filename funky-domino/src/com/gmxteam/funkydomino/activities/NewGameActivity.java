@@ -23,5 +23,5 @@ import android.app.Activity;
  * niveau sélectionné, 
  * @author Usager
  */
-public class NewGameActivity extends Activity {
+public class NewGameActivity  {
 }

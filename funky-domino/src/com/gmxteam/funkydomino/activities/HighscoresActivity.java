@@ -20,7 +20,7 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author Usager
  */
-public class HighscoresActivity extends JBox2DActivity
+public class HighscoresActivity 
 {
     
 }

@@ -8,7 +8,7 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author Usager
  */
-public class GameActivity extends JBox2DActivity
+public class GameActivity 
 {
     
 }

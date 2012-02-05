@@ -33,6 +33,7 @@ public class MainActivity extends JBox2DActivity
     {
         
         super.onCreate(savedInstanceState);
+        
         create();
       
         
