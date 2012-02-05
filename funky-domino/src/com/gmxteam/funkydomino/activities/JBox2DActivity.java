@@ -34,6 +34,9 @@ import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.components.Component;
+import com.gmxteam.funkydomino.graphicals.widgets.Widget;
+import java.util.ArrayList;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D. 
@@ -50,8 +53,6 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     private int targetFPS = 40;
     private int timeStep = (1000 / targetFPS);
     private int iterations = 5;
-    private Body[] bodies;
-    private int count = 0;
     private AABB worldAABB;
     protected World world;
     private Handler mHandler;
@@ -78,13 +79,12 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
         worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
         worldAABB.upperBound.set(new Vec2((float) 100.0, (float) 100.0));
 
+        // On ajoute la gravité et le worldAABB dans world
         world = new World(worldAABB, new Vec2(0.0f, -9.8f), false);
 
-
-
+        // On démarre le Thread qui va gérer le moteur de physique
         mHandler = new Handler();
         mHandler.post(update);
-
 
         // On cache le menu
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -101,29 +101,14 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
      * Méthode appelée pour mettre à jour le rendu graphique et le moteur de physique.
      */
     private void update() {
-        // Update Physics World  
-
-        Log.v("funky-domino physic engine", "Updating...");
-
-
-
+        // Update Physics World
         world.step(timeStep, iterations);
-
-        //Print info of latest body  
         Body b = this.world.getBodyList();
         do {
             Vec2 position = b.getPosition();
             float angle = b.getAngle();
-
             Log.v("funky-domino physic engine", "Pos: (" + position.x + ", " + position.y + "), Angle: " + angle);
-
-
-
-
         } while ((b = b.getNext()) != null);
-
-
-
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -168,7 +153,25 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
      */
     public void onDrawFrame(GL10 unused) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
-
+        // TODO Draw the background instead of clearing the surface !
+        
+        
+        Body b = this.world.getBodyList();
+        ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
+        do {
+            // Draw the body
+            if (b instanceof Widget) {
+                drawWidgetLast.add((Widget) b);
+            } else if (b instanceof Component) {
+                Component c = (Component) b;
+                c.draw();
+            } else {
+                // Crap.
+            }
+        } while ((b = b.getNext()) != null);
+        for (Widget w : drawWidgetLast) {
+            w.draw();
+        }
     }
     ////////////////////////////////////////////////////////////////////////////
 }

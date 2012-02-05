@@ -4,11 +4,23 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.World;
+
 /**
  *
  * @author Usager
  */
-public class AddDominoWidget
+public class AddDominoWidget extends Widget
 {
+public AddDominoWidget(BodyDef bd, World w) {
+
+
+        super(bd, w);
+    }
+    @Override
+    public void draw() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
 }

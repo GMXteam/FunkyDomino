@@ -16,7 +16,6 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 
 /**
