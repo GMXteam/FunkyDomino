@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -46,6 +47,7 @@ public Widget(BodyDef bd, World w) {
 
     }
 
-    public abstract void draw();
+    public abstract void drawGL();
+    public abstract void drawCanvas(Canvas c);
     public abstract void onClick(MotionEvent me);
 }

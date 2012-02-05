@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
@@ -34,12 +35,17 @@ public class Cog extends Component
     }
     
     @Override
-    public void draw() {
+    public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void onClick(MotionEvent me) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void drawCanvas(Canvas c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

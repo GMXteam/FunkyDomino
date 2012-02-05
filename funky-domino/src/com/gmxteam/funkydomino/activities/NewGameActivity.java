@@ -21,7 +21,7 @@ package com.gmxteam.funkydomino.activities;
  * niveau sélectionné, 
  * @author Guillaume Poirier-Morency
  */
-public class NewGameActivity extends JBox2DActivity {
+public class NewGameActivity extends JBox2DOpenGLActivity {
      private String publicKey0 = getString(R.string.key_0),
             publicKey1 = getString(R.string.key_1),
             publicKey2 = getString(R.string.key_2),

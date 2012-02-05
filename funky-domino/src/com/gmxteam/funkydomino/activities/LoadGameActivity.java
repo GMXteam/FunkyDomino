@@ -20,7 +20,7 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author Guillaume Poirier-Morency
  */
-public class LoadGameActivity extends JBox2DActivity
+public class LoadGameActivity extends JBox2DOpenGLActivity
 {
      private String publicKey0 = getString(R.string.key_0),
             publicKey1 = getString(R.string.key_1),

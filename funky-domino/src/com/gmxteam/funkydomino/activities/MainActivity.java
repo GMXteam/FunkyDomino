@@ -17,14 +17,13 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.os.Bundle;
-import com.gmxteam.funkydomino.utils.xmlparser.XMLParser;
 
 /**
  * Activité principale de l'application Android.
  * Elle sera construite avec JBox2D et permettera d'accéder aux autres activités.
  * @author Guillaume Poirier-Morency
  */
-public class MainActivity extends JBox2DActivity {
+public class MainActivity extends JBox2DCanvasActivity {
 
   
 

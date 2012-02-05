@@ -19,6 +19,10 @@ package com.gmxteam.funkydomino.activities;
 // Importation de l'api d'android.
 import android.app.Activity;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,10 +38,15 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
+
+
+
+import android.opengl.GLUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import com.gmxteam.funkydomino.graphicals.components.Component;
 import com.gmxteam.funkydomino.graphicals.widgets.Widget;
+
 import java.util.ArrayList;
 import org.jbox2d.collision.Shape;
 
@@ -45,7 +54,7 @@ import org.jbox2d.collision.Shape;
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D. 
  * @author Guillaume Poirier-Morency
  */
-public abstract class JBox2DActivity extends Activity implements GLSurfaceView.Renderer {
+public abstract class JBox2DOpenGLActivity extends Activity implements GLSurfaceView.Renderer {
 
     /**
      * On dessine sur une surface OpenGL ES 2.0.
@@ -53,7 +62,7 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     private GLSurfaceView glDrawingArea;
     ////////////////////////////////////////////////////////////////////////////
     // Variables pour le moteur de collisions
-    protected World world;
+    World world;
     private int targetFPS = 40;
     private int timeStep = (1000 / targetFPS);
     private int iterations = 5;
@@ -71,7 +80,7 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     /**
      * Initialisation du rendu 2D.
      */
-    protected void init() {
+    void init() {
 
         // On crée la surface de dessin et on ajoute son handler
         glDrawingArea = new GLSurfaceView(this);
@@ -153,7 +162,8 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
      * @param config 
      */
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
-        GLES20.glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+
+       
     }
 
     /**
@@ -163,7 +173,7 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
      * @param h 
      */
     public void onSurfaceChanged(GL10 unused, int w, int h) {
-        GLES20.glViewport(0, 0, w, h);
+      
     }
 
     /**
@@ -183,14 +193,64 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
                 drawWidgetLast.add((Widget) b);
             } else if (b instanceof Component) {
                 Component c = (Component) b;
-                c.draw();
+                c.drawGL();
             } else {
                 // Crap.
             }
         } while ((b = b.getNext()) != null);
         for (Widget w : drawWidgetLast) {
-            w.draw();
+            w.drawGL();
         }
+        drawDebug();
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    // Méthode de dessinage
+
+    private void drawDebug() {
+
+        // Create an empty, mutable bitmap
+        Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
+// get a canvas to paint over the bitmap
+        Canvas canvas = new Canvas(bitmap);
+        bitmap.eraseColor(0);
+
+// get a background image from resources
+// note the image format must match the bitmap format
+        //Drawable background = getResources().getDrawable(R.drawable.background);
+        //background.setBounds(0, 0, 256, 256);
+        //background.drawGL(canvas); // drawGL the background to our bitmap
+
+// Draw the text
+        Paint textPaint = new Paint();
+        textPaint.setTextSize(32);
+        textPaint.setAntiAlias(true);
+        textPaint.setARGB(0xff, 0x00, 0x00, 0x00);
+// drawGL the text centered
+        canvas.drawText("Hello World", 16, 112, textPaint);
+
+//Generate one texture pointer...
+        //GLES20.glGenTextures(1, textures, 0);
+//...and bind it to our array
+        //GLES20.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
+
+//Create Nearest Filtered Texture
+        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER, GL10.GL_NEAREST);
+        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER, GL10.GL_LINEAR);
+
+//Different possible texture parameters, e.g. GL10.GL_CLAMP_TO_EDGE
+        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S, GL10.GL_REPEAT);
+        GLES20.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T, GL10.GL_REPEAT);
+
+//Use the Android GLUtils to specify a two-dimensional texture image from our bitmap
+        GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bitmap, 0);
+
+//Clean up
+        bitmap.recycle();
+
+
+
+
+
     }
     ////////////////////////////////////////////////////////////////////////////
 }

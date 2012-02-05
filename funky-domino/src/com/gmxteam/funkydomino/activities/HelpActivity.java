@@ -22,7 +22,7 @@ import android.os.Bundle;
  *
  * @author Guillaume Poirier-Morency
  */
-public class HelpActivity extends JBox2DActivity
+public class HelpActivity extends JBox2DOpenGLActivity
 {
     @Override
     public void onCreate(Bundle savedInstanceState) {
