@@ -17,6 +17,8 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import org.jbox2d.collision.AABB;
 
 /**
  * Activité principale de l'application Android.
@@ -33,13 +35,16 @@ public class MainActivity extends JBox2DActivity
         
         super.onCreate(savedInstanceState);
         
-        create();
+        init();
       
         
-        
        
+       this.onTouchEvent(null);
         
     }
+    
+    
+    
     
     
 }

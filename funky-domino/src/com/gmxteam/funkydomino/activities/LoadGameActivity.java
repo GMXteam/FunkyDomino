@@ -20,7 +20,7 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author Usager
  */
-public class LoadGameActivity
+public class LoadGameActivity extends JBox2DActivity
 {
     
 }

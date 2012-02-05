@@ -23,5 +23,5 @@ import android.app.Activity;
  * niveau sélectionné, 
  * @author Usager
  */
-public class NewGameActivity  {
+public class NewGameActivity extends JBox2DActivity {
 }

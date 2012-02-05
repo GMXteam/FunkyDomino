@@ -10,4 +10,5 @@ package com.gmxteam.funkydomino.graphicals.widgets;
  */
 public class WidgetData {
     
+    
 }

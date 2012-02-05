@@ -18,6 +18,7 @@ package com.gmxteam.funkydomino.activities;
 
 // Importation de l'api d'android.
 import android.app.Activity;
+
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,9 +35,11 @@ import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.util.Log;
+import android.view.MotionEvent;
 import com.gmxteam.funkydomino.graphicals.components.Component;
 import com.gmxteam.funkydomino.graphicals.widgets.Widget;
 import java.util.ArrayList;
+import org.jbox2d.collision.Shape;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D. 
@@ -50,11 +53,11 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     private GLSurfaceView glDrawingArea;
     ////////////////////////////////////////////////////////////////////////////
     // Variables pour le moteur de collisions
+    protected World world;
     private int targetFPS = 40;
     private int timeStep = (1000 / targetFPS);
     private int iterations = 5;
     private AABB worldAABB;
-    protected World world;
     private Handler mHandler;
     private Runnable update = new Runnable() {
 
@@ -68,7 +71,7 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     /**
      * Initialisation du rendu 2D.
      */
-    protected void create() {
+    protected void init() {
 
         // On crée la surface de dessin et on ajoute son handler
         glDrawingArea = new GLSurfaceView(this);
@@ -127,6 +130,22 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     }
 
     ////////////////////////////////////////////////////////////////////////////
+    // User input handling
+    @Override
+    public boolean onTouchEvent(MotionEvent me) {
+        AABB areaAABB = new AABB();
+        // TODO Mettre le MotionEvent dans le AABB.
+        for (Shape clickedShape : world.query(areaAABB, 500)) {
+            if (clickedShape.m_body instanceof Widget) {
+                ((Widget) clickedShape.m_body).onClick(me);
+            } else if (clickedShape.m_body instanceof Component) {
+                ((Component) clickedShape.m_body).onClick(me);
+            }
+        }
+        return true;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
     // Handler pour le rendu 2D (se fait automatiquement)
     /**
      * Méthode appelée quand la surface est créée.
@@ -154,8 +173,8 @@ public abstract class JBox2DActivity extends Activity implements GLSurfaceView.R
     public void onDrawFrame(GL10 unused) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         // TODO Draw the background instead of clearing the surface !
-        
-        
+
+
         Body b = this.world.getBodyList();
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
         do {

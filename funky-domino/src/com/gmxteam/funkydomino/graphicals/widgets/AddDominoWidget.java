@@ -4,6 +4,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import android.view.MotionEvent;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
 
@@ -20,6 +21,11 @@ public AddDominoWidget(BodyDef bd, World w) {
     }
     @Override
     public void draw() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void onClick(MotionEvent me) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

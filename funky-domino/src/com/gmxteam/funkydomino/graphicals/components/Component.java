@@ -4,6 +4,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import android.view.MotionEvent;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
@@ -14,8 +15,8 @@ import org.jbox2d.dynamics.World;
  */
 public abstract class Component extends Body {
 
-    protected  ComponentData data;
-
+    private ComponentData data;
+    
     public Component(BodyDef bd, World w) {
 
 
@@ -31,4 +32,6 @@ public abstract class Component extends Body {
     }
 
     public abstract void draw();
+    
+    public abstract void onClick(MotionEvent me);
 }
