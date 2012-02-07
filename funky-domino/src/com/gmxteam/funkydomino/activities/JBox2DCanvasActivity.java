@@ -40,11 +40,14 @@ import org.jbox2d.dynamics.World;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import com.gmxteam.funkydomino.graphicals.components.Ball;
 import com.gmxteam.funkydomino.graphicals.components.Component;
 import com.gmxteam.funkydomino.graphicals.widgets.Widget;
 
 import java.util.ArrayList;
+import org.jbox2d.collision.CircleDef;
 import org.jbox2d.collision.Shape;
+import org.jbox2d.dynamics.BodyDef;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D. 
@@ -118,7 +121,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private void update() {
         // Update Physics World
         world.step(timeStep, iterations);
-        
+
         Body b = this.world.getBodyList();
         do {
             Vec2 position = b.getPosition();
@@ -146,6 +149,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
     // User input handling
     @Override
     public boolean onTouchEvent(MotionEvent me) {
+       
+        
         AABB areaAABB = new AABB();
         // TODO Mettre le MotionEvent dans le AABB.
         for (Shape clickedShape : world.query(areaAABB, 500)) {
@@ -165,10 +170,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * @param gl 
      */
     public void onDrawFrame(Canvas canvas) {
-
-        // TODO Draw the background instead of clearing the surface !
-
-
+        drawBackground(canvas);
         Body b = this.world.getBodyList();
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
         do {
@@ -186,19 +188,21 @@ public abstract class JBox2DCanvasActivity extends Activity {
             w.drawCanvas(canvas);
         }
         drawDebug(canvas);
-        
-        
-        
         canvasView.postInvalidate();
     }
     ////////////////////////////////////////////////////////////////////////////
     // Méthode de dessinage
 
+    private void drawBackground(Canvas c) {
+        
+    }
+
     private void drawDebug(Canvas c) {
         Paint p = new Paint();
         c.drawColor(Color.WHITE);
-        c.drawText("Nombre de composants dessinés : ", 20.0f, 20.0f, p);
-       
+        c.drawText("Nombre de composants dessinés : " + world.getBodyCount(), 20.0f, 20.0f, p);
     }
     ////////////////////////////////////////////////////////////////////////////
+    
+    
 }
