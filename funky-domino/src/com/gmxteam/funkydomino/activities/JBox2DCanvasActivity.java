@@ -16,45 +16,59 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-// Importation de l'api d'android.
-import android.app.Activity;
-
-import android.content.pm.ActivityInfo;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.os.Handler;
-import android.view.Window;
-import android.view.WindowManager;
+// Importations locales
+import com.gmxteam.funkydomino.graphicals.components.Component;
+import com.gmxteam.funkydomino.graphicals.widgets.Widget;
 
 // Importations pour le moteur de collisions
 import org.jbox2d.collision.AABB;
+import org.jbox2d.collision.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 
 // Importations pour le moteur de rendu
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
-
-
+// Librairies standard Android
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import com.gmxteam.funkydomino.graphicals.components.Ball;
-import com.gmxteam.funkydomino.graphicals.components.Component;
-import com.gmxteam.funkydomino.graphicals.widgets.Widget;
 
+// Librairie standard Java
+import com.gmxteam.funkydomino.graphicals.UnknownGraphicalElementException;
 import java.util.ArrayList;
-import org.jbox2d.collision.CircleDef;
-import org.jbox2d.collision.Shape;
-import org.jbox2d.dynamics.BodyDef;
 
 /**
- * Classe abstraite permettant une implémentation efficace d'un interface JBox2D. 
+ * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
+ * Funky Domino sera premièrement développé en canvas afin d'obtenir rapidement
+ * des résultats. Il sera ensuite converti en OpenGL afin d'en améliorer
+ * considérablement les performances.
+ * 
+ * Le fonctionnement est simple. On redéfinit une activité android en y intégrant
+ * un moteur de physique et de rendu. On intègre aussi certaines interactions
+ * avec l'utilisateur pour minimiser le code des activités.
+ * 
+ * Les éléments d'interfaces qui seront alors utilisés pourront être ceux de la
+ * librairie standard, mais il est recommandé d'utiliser des élément de physique
+ * afin de nous donner plus de liberté. Un menu animé par la physique, c'est pas
+ * cool ça?
+ * 
  * @author Guillaume Poirier-Morency
  */
 public abstract class JBox2DCanvasActivity extends Activity {
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables d'environnement
+    private final boolean IS_DEBUG_ENABLED = true;
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * On dessine sur une surface OpenGL ES 2.0.
      */
@@ -71,6 +85,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         public void run() {
             update();
+            canvasView.postInvalidate();
             mHandler.postDelayed(update, (long) (timeStep * 1000));
         }
     };
@@ -149,8 +164,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
     // User input handling
     @Override
     public boolean onTouchEvent(MotionEvent me) {
-       
-        
+
+
         AABB areaAABB = new AABB();
         // TODO Mettre le MotionEvent dans le AABB.
         for (Shape clickedShape : world.query(areaAABB, 500)) {
@@ -169,7 +184,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * Méthode appelée quand la surface est dessinée.
      * @param gl 
      */
-    public void onDrawFrame(Canvas canvas) {
+    private void onDrawFrame(Canvas canvas) {
         drawBackground(canvas);
         Body b = this.world.getBodyList();
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
@@ -182,19 +197,20 @@ public abstract class JBox2DCanvasActivity extends Activity {
                 c.drawCanvas(canvas);
             } else {
                 // Crap.
+                throw new UnknownGraphicalElementException();
             }
         } while ((b = b.getNext()) != null);
         for (Widget w : drawWidgetLast) {
             w.drawCanvas(canvas);
         }
-        drawDebug(canvas);
-        canvasView.postInvalidate();
+        if (IS_DEBUG_ENABLED) {
+            drawDebug(canvas);
+        }
     }
     ////////////////////////////////////////////////////////////////////////////
     // Méthode de dessinage
 
     private void drawBackground(Canvas c) {
-        
     }
 
     private void drawDebug(Canvas c) {
@@ -203,6 +219,4 @@ public abstract class JBox2DCanvasActivity extends Activity {
         c.drawText("Nombre de composants dessinés : " + world.getBodyCount(), 20.0f, 20.0f, p);
     }
     ////////////////////////////////////////////////////////////////////////////
-    
-    
 }

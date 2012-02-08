@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
@@ -162,8 +161,6 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
      * @param config 
      */
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
-
-       
     }
 
     /**
@@ -173,7 +170,6 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
      * @param h 
      */
     public void onSurfaceChanged(GL10 unused, int w, int h) {
-      
     }
 
     /**
