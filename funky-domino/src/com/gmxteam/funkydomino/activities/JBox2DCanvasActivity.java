@@ -38,12 +38,10 @@ import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 // Librairie standard Java
-import com.gmxteam.funkydomino.graphicals.UnknownGraphicalElementException;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
 import java.util.ArrayList;
 
@@ -69,6 +67,9 @@ public abstract class JBox2DCanvasActivity extends Activity {
     ////////////////////////////////////////////////////////////////////////////
     // Variables d'environnement
     private final boolean IS_DEBUG_ENABLED = true;
+    private long renderingTime = 0;
+    private long drawnWidgets = 0;
+    private long drawnComponents = 0;
     ////////////////////////////////////////////////////////////////////////////
     /**
      * On dessine sur une surface OpenGL ES 2.0.
@@ -82,18 +83,18 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private int iterations = 5;
     private AABB worldAABB;
     private Handler mHandler;
-
     private Runnable update = new Runnable() {
 
         public void run() {
+            long timeBefore = System.currentTimeMillis();
             update();
-           canvasView.postInvalidate();
+
             mHandler.postDelayed(update, (long) (timeStep * 1000));
+            renderingTime = System.currentTimeMillis() - timeBefore;
         }
     };
-    
-    ////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * Initialisation du rendu 2D.
      */
@@ -103,13 +104,13 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
             @Override
             public void onDraw(Canvas c) {
-
                 onDrawFrame(c);
-
+                canvasView.invalidate();
+                drawnComponents = 0;
+                drawnWidgets = 0;
 
             }
         };
-
         // On configure le moteur de physique
         worldAABB = new AABB();
         worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
@@ -129,7 +130,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
         final Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        // On définit la surface OpenGL comme surface de dessin
+        // On définit la surface 2D comme surface de dessin
         setContentView(canvasView);
     }
 
@@ -138,7 +139,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
      */
     private void update() {
         // Update Physics World
-        world.step(timeStep, iterations);        
+        world.step(timeStep, iterations);
+
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -167,11 +169,11 @@ public abstract class JBox2DCanvasActivity extends Activity {
         for (Shape clickedShape : world.query(areaAABB, 500)) {
             if (clickedShape.getBody().getUserData() instanceof Widget) {
                 ((Widget) clickedShape.getBody().getUserData()).onClick(me);
-            }
-            else if (clickedShape.getBody().getUserData() instanceof Component) {
+            } else if (clickedShape.getBody().getUserData() instanceof Component) {
                 ((Component) clickedShape.getBody().getUserData()).onClick(me);
             }
         }
+
         return true;
     }
 
@@ -181,7 +183,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * Méthode appelée quand la surface est dessinée.
      * @param gl 
      */
-    private void onDrawFrame(Canvas canvas)  {
+    private void onDrawFrame(Canvas canvas) {
         drawBackground(canvas);
         Body b = this.world.getBodyList();
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
@@ -189,18 +191,21 @@ public abstract class JBox2DCanvasActivity extends Activity {
             // Draw the body
             if (b.getUserData() instanceof Widget) {
                 drawWidgetLast.add((Widget) b.getUserData());
-            }
-            else if (b.getUserData() instanceof Component) {
+            } else if (b.getUserData() instanceof Component) {
                 Component c = (Component) b.getUserData();
+                drawnComponents++;
                 c.drawCanvas(canvas);
-            }
-            else {
+
+            } else {
                 // Crap.
                 // throw new UnknownGraphicalElementException();
             }
         } while ((b = b.getNext()) != null);
         for (Widget w : drawWidgetLast) {
+
+            drawnWidgets++;
             w.drawCanvas(canvas);
+
         }
         if (IS_DEBUG_ENABLED) {
             drawDebug(canvas);
@@ -211,14 +216,18 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
     private void drawBackground(Canvas c) {
     }
-private int ijkl = 0;
+
     private void drawDebug(Canvas c) {
         Paint p = new Paint();
         c.drawColor(Color.WHITE);
-                float initP = 0.0f;
-        c.drawText("Nombre de composants dessinés : " + world.getBodyCount(), 20.0f, initP += 15.0f, p);
-        c.drawText("Gravité : " + world.getGravity(), 20.0f, initP += 15.0f, p);
-
+        float initP = 0.0f;
+        c.drawText("Nombre de corps dessinés : " + world.getBodyCount() + " corps", 20.0f, initP += 15.0f, p);
+        c.drawText("Widgets dessinés : " + drawnWidgets + " widgets", 20.0f, initP += 15.0f, p);
+        c.drawText("Composants dessinés : " + drawnComponents + " composants" + "", 20.0f, initP += 15.0f, p);
+        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets)+ " composants" + "", 20.0f, initP += 15.0f, p);
+        initP += 15.0f;
+        c.drawText("Gravité : " + world.getGravity() + " m/s^2", 20.0f, initP += 15.0f, p);
+        c.drawText("Temps du rendu : " + renderingTime + " ms", 20.0f, initP += 15.0f, p);
         
     }
     ////////////////////////////////////////////////////////////////////////////
