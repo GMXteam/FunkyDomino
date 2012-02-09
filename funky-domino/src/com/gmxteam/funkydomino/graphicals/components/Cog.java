@@ -31,7 +31,8 @@ public class Cog extends Component
     public Cog(BodyDef bd, World w) {
 
 
-        super(bd, w);
+         body = w.createBody(bodyDef);  
+        body.setUserData(this);  
     }
     
     @Override
@@ -41,6 +42,7 @@ public class Cog extends Component
 
     @Override
     public void onClick(MotionEvent me) {
+       
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -48,5 +50,7 @@ public class Cog extends Component
     public void drawCanvas(Canvas c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+  
     
 }

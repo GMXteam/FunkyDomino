@@ -27,10 +27,11 @@ import org.jbox2d.dynamics.World;
  */
 public class Water extends Component
 {
-public Water(BodyDef bd, World w) {
+public Water(World w) {
 
 
-        super(bd, w);
+       body = w.createBody(bodyDef);  
+        body.setUserData(this);  
     }
     @Override
     public void drawGL() {
@@ -46,5 +47,9 @@ public Water(BodyDef bd, World w) {
     public void drawCanvas(Canvas c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+   
+
+  
     
 }

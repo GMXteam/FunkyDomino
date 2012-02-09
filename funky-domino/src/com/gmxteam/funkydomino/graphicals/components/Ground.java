@@ -27,11 +27,14 @@ import org.jbox2d.dynamics.World;
  */
 public class Ground extends Component
 {
-public Ground(BodyDef bd, World w) {
+public Ground(World w) {
 
 
-        super(bd, w);
-    }
+       body = w.createBody(bodyDef);  
+        body.setUserData(this);  
+
+
+}
     @Override
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -46,5 +49,6 @@ public Ground(BodyDef bd, World w) {
     public void drawCanvas(Canvas c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
     
 }

@@ -30,7 +30,9 @@ public class AddDominoWidget extends Widget
 public AddDominoWidget(BodyDef bd, World w) {
 
 
-        super(bd, w);
+       
+       body = w.createBody(bodyDef);  
+        body.setUserData(this);  
     }
     @Override
     public void drawGL() {
@@ -47,5 +49,7 @@ public AddDominoWidget(BodyDef bd, World w) {
         
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+   
     
 }

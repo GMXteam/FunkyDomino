@@ -18,7 +18,6 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
 
 /**
@@ -27,12 +26,12 @@ import org.jbox2d.dynamics.World;
  */
 public class Ball extends Component
 {
-public Ball(BodyDef bd, World w) {
+    public Ball(World w) {
+        
 
-
-        super(bd, w);
-    }
-
+        body = w.createBody(bodyDef);  
+        body.setUserData(this);  
+}
 
     @Override
     public void drawGL() {
@@ -48,5 +47,9 @@ public Ball(BodyDef bd, World w) {
     public void drawCanvas(Canvas c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+   
+
+   
     
 }

@@ -27,10 +27,11 @@ import org.jbox2d.dynamics.World;
  */
 public class AddBallWidget extends Widget
 {
-public AddBallWidget(BodyDef bd, World w) {
+        public AddBallWidget(World w) {
 
 
-        super(bd, w);
+       body = w.createBody(bodyDef);  
+        body.setUserData(this);  
     }
     @Override
     public void drawGL() {
@@ -46,5 +47,13 @@ public AddBallWidget(BodyDef bd, World w) {
     public void drawCanvas(Canvas c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    
+
+    
+
+   
+
+   
     
 }

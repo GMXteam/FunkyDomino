@@ -144,10 +144,11 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
         AABB areaAABB = new AABB();
         // TODO Mettre le MotionEvent dans le AABB.
         for (Shape clickedShape : world.query(areaAABB, 500)) {
-            if (clickedShape.m_body instanceof Widget) {
-                ((Widget) clickedShape.m_body).onClick(me);
-            } else if (clickedShape.m_body instanceof Component) {
-                ((Component) clickedShape.m_body).onClick(me);
+           
+            if (clickedShape.getBody().getUserData() instanceof Widget) {
+                ((Widget) clickedShape.getBody().getUserData()).onClick(me);
+            } else if (clickedShape.getBody().getUserData() instanceof Component) {
+                ((Component) clickedShape.getBody().getUserData()).onClick(me);
             }
         }
         return true;
@@ -185,10 +186,10 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
         do {
             // Draw the body
-            if (b instanceof Widget) {
-                drawWidgetLast.add((Widget) b);
-            } else if (b instanceof Component) {
-                Component c = (Component) b;
+            if (b.getUserData() instanceof Widget) {
+                drawWidgetLast.add((Widget) b.getUserData());
+            } else if (b.getUserData() instanceof Component) {
+                Component c = (Component) b.getUserData();
                 c.drawGL();
             } else {
                 // Crap.

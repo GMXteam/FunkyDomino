@@ -17,21 +17,29 @@
 package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.collision.MassData;
+import org.jbox2d.collision.PolygonDef;
+
 import org.jbox2d.dynamics.World;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class Domino extends Component
-{
-public Domino(BodyDef bd, World w) {
+public class Domino extends Component {
 
-
-        super(bd, w);
+    public Domino(World w) {
+        bodyDef.massData = new MassData();
+        bodyDef.massData.mass = 95.5f; // 95.5 kg
+        body = w.createBody(bodyDef);
+        PolygonDef pd = new PolygonDef();
+        pd.setAsBox(0.0508f, 0.009525f);        
+        body.createShape(pd);
+        body.setUserData(this);
     }
+
     @Override
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -44,7 +52,9 @@ public Domino(BodyDef bd, World w) {
 
     @Override
     public void drawCanvas(Canvas c) {
+        c.drawRect(this.body.getPosition().x, this.body.getPosition().y, this.body.getPosition().x + 50, this.body.getPosition().x + 50, new Paint());
+       
+        
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }
