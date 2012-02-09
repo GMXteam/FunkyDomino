@@ -14,15 +14,21 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals;
+package com.gmxteam.funkydomino.utils.opengles;
+
+import android.opengl.GLES20;
 
 /**
- *
- * @author guillaume
+ * L'api OpenGL ES 2.0 est statique, alors les méthodes ici présentées seront 
+ * elles aussi statiques.
+ * @author Guillaume Poirier-Morency
  */
-public class UnknownGraphicalElementException extends RuntimeException {    
+public class DrawKitGLES20 {
     
-    public UnknownGraphicalElementException() {
-        super();
+    
+    public static void drawCircle(float i, float i2, float i3, float i4) {
+    
+    
+    
     }
 }
