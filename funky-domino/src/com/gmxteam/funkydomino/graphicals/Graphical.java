@@ -15,7 +15,7 @@ import org.jbox2d.dynamics.BodyDef;
  */
 public abstract class Graphical{
     
-    public BodyDef bodyDef;
+    public BodyDef bodyDef = new BodyDef();
     public Body body;
 
     

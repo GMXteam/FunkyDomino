@@ -31,30 +31,32 @@ import org.jbox2d.dynamics.World;
 public class Domino extends Component {
 
     public Domino(World w) {
-        bodyDef.massData = new MassData();
+  
         bodyDef.massData.mass = 95.5f; // 95.5 kg
         body = w.createBody(bodyDef);
+        
         PolygonDef pd = new PolygonDef();
         pd.setAsBox(0.0508f, 0.009525f);        
         body.createShape(pd);
+        body.setMassFromShapes();
         body.setUserData(this);
     }
 
     @Override
     public void drawGL() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public void onClick(MotionEvent me) {
-        throw new UnsupportedOperationException("Not supported yet.");
+ 
     }
 
     @Override
     public void drawCanvas(Canvas c) {
         c.drawRect(this.body.getPosition().x, this.body.getPosition().y, this.body.getPosition().x + 50, this.body.getPosition().x + 50, new Paint());
-       
+       c.drawText("", 100, 100, new Paint());
         
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 }

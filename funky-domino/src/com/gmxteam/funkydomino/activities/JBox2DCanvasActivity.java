@@ -82,14 +82,16 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private int iterations = 5;
     private AABB worldAABB;
     private Handler mHandler;
+
     private Runnable update = new Runnable() {
 
         public void run() {
             update();
-            canvasView.postInvalidate();
+           canvasView.postInvalidate();
             mHandler.postDelayed(update, (long) (timeStep * 1000));
         }
     };
+    
     ////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -136,14 +138,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      */
     private void update() {
         // Update Physics World
-        world.step(timeStep, iterations);
-
-        Body b = this.world.getBodyList();
-        do {
-            Vec2 position = b.getPosition();
-            float angle = b.getAngle();
-            Log.v("funky-domino physic engine", "Pos: (" + position.x + ", " + position.y + "), Angle: " + angle);
-        } while ((b = b.getNext()) != null);
+        world.step(timeStep, iterations);        
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -186,7 +181,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * Méthode appelée quand la surface est dessinée.
      * @param gl 
      */
-    private void onDrawFrame(Canvas canvas) {
+    private void onDrawFrame(Canvas canvas)  {
         drawBackground(canvas);
         Body b = this.world.getBodyList();
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
@@ -201,7 +196,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
             }
             else {
                 // Crap.
-                throw new UnknownGraphicalElementException();
+                // throw new UnknownGraphicalElementException();
             }
         } while ((b = b.getNext()) != null);
         for (Widget w : drawWidgetLast) {
@@ -216,11 +211,15 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
     private void drawBackground(Canvas c) {
     }
-
+private int ijkl = 0;
     private void drawDebug(Canvas c) {
         Paint p = new Paint();
         c.drawColor(Color.WHITE);
-        c.drawText("Nombre de composants dessinés : " + world.getBodyCount(), 20.0f, 20.0f, p);
+                float initP = 0.0f;
+        c.drawText("Nombre de composants dessinés : " + world.getBodyCount(), 20.0f, initP += 15.0f, p);
+        c.drawText("Gravité : " + world.getGravity(), 20.0f, initP += 15.0f, p);
+
+        
     }
     ////////////////////////////////////////////////////////////////////////////
 }

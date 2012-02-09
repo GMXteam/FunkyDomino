@@ -20,7 +20,7 @@ package com.gmxteam.funkydomino.graphicals;
  *
  * @author guillaume
  */
-public class UnknownGraphicalElementException extends RuntimeException {    
+public class UnknownGraphicalElementException extends Exception {    
     
     public UnknownGraphicalElementException() {
         super();
