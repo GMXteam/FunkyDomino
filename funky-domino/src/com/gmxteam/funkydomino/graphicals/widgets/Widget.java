@@ -16,25 +16,11 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
-import android.graphics.Canvas;
-import android.view.MotionEvent;
 import com.gmxteam.funkydomino.graphicals.Graphical;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.World;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Widget extends Graphical
-{
-      
-    
-    
-
-   
-     
-
-    
+public abstract class Widget extends Graphical {
 }

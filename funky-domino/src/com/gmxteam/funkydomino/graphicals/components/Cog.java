@@ -28,6 +28,11 @@ import org.jbox2d.dynamics.World;
 public class Cog extends Component
 {
 
+    /**
+     * 
+     * @param bd
+     * @param w
+     */
     public Cog(BodyDef bd, World w) {
 
 

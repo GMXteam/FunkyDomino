@@ -27,7 +27,12 @@ import org.jbox2d.dynamics.World;
  */
 public class AddDominoWidget extends Widget
 {
-public AddDominoWidget(BodyDef bd, World w) {
+    /**
+     * 
+     * @param bd
+     * @param w
+     */
+    public AddDominoWidget(BodyDef bd, World w) {
 
 
        

@@ -19,10 +19,14 @@ package com.gmxteam.funkydomino.graphicals.components;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 
 /**
- *
+ * Classe abstraite définissant les composants. Les composants sont des éléments
+ * affectés par la physique. On parle du sol, des dominos, des billes et autres
+ * objets.
  * @author Guillaume Poirier-Morency
  */
 public abstract class Component extends Graphical {
-    
+    /* Ici, on peut mettre toutes les variables définissant généralement les
+     * composants, sans toutefois définir les widgets.
+     */
     
 }

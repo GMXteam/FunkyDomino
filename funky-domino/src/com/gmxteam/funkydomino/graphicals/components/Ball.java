@@ -26,6 +26,10 @@ import org.jbox2d.dynamics.World;
  */
 public class Ball extends Component
 {
+    /**
+     * 
+     * @param w
+     */
     public Ball(World w) {
         
 

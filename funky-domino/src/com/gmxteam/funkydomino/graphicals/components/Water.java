@@ -27,7 +27,11 @@ import org.jbox2d.dynamics.World;
  */
 public class Water extends Component
 {
-public Water(World w) {
+    /**
+     * 
+     * @param w
+     */
+    public Water(World w) {
 
 
        body = w.createBody(bodyDef);  

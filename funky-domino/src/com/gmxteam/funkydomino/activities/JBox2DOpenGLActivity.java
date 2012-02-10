@@ -124,6 +124,9 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
 
     ////////////////////////////////////////////////////////////////////////////
     // Contrôleurs
+    /**
+     * 
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -131,6 +134,9 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
 
     }
 
+    /**
+     * 
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -139,6 +145,11 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
 
     ////////////////////////////////////////////////////////////////////////////
     // User input handling
+    /**
+     * 
+     * @param me
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent me) {
         AABB areaAABB = new AABB();
@@ -158,7 +169,7 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
     // Handler pour le rendu 2D (se fait automatiquement)
     /**
      * Méthode appelée quand la surface est créée.
-     * @param gl
+     * @param unused 
      * @param config 
      */
     public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -166,7 +177,7 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
 
     /**
      * Méthode appelée quand la surface change.
-     * @param gl
+     * @param unused 
      * @param w
      * @param h 
      */
@@ -175,7 +186,7 @@ public abstract class JBox2DOpenGLActivity extends Activity implements GLSurface
 
     /**
      * Méthode appelée quand la surface est dessinée.
-     * @param gl 
+     * @param unused 
      */
     public void onDrawFrame(GL10 unused) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);

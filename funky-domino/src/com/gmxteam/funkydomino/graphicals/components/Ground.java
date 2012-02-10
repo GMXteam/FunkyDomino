@@ -27,7 +27,11 @@ import org.jbox2d.dynamics.World;
  */
 public class Ground extends Component
 {
-public Ground(World w) {
+    /**
+     * 
+     * @param w
+     */
+    public Ground(World w) {
 
 
        body = w.createBody(bodyDef);  

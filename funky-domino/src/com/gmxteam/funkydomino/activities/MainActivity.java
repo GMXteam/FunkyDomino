@@ -27,7 +27,9 @@ public class MainActivity extends JBox2DCanvasActivity {
 
   
 
-    /** Called when the activity is first created. */
+    /** Called when the activity is first created.
+     * @param savedInstanceState 
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
 

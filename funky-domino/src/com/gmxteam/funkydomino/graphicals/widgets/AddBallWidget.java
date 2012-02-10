@@ -27,7 +27,11 @@ import org.jbox2d.dynamics.World;
  */
 public class AddBallWidget extends Widget
 {
-        public AddBallWidget(World w) {
+    /**
+     * 
+     * @param w
+     */
+    public AddBallWidget(World w) {
 
 
        body = w.createBody(bodyDef);  

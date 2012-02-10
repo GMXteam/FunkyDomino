@@ -22,6 +22,9 @@ package com.gmxteam.funkydomino.graphicals;
  */
 public class UnknownGraphicalElementException extends Exception {    
     
+    /**
+     * 
+     */
     public UnknownGraphicalElementException() {
         super();
     }

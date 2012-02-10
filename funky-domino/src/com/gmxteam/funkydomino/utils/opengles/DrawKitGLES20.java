@@ -26,6 +26,13 @@ import android.opengl.GLES20;
 public class DrawKitGLES20 {
     
     
+    /**
+     * 
+     * @param i
+     * @param i2
+     * @param i3
+     * @param i4
+     */
     public static void drawCircle(float i, float i2, float i3, float i4) {
     
     

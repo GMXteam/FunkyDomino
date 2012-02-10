@@ -88,7 +88,6 @@ public abstract class JBox2DCanvasActivity extends Activity {
         public void run() {
             long timeBefore = System.currentTimeMillis();
             update();
-
             mHandler.postDelayed(update, (long) (timeStep * 1000));
             renderingTime = System.currentTimeMillis() - timeBefore;
         }
@@ -108,7 +107,6 @@ public abstract class JBox2DCanvasActivity extends Activity {
                 canvasView.invalidate();
                 drawnComponents = 0;
                 drawnWidgets = 0;
-
             }
         };
         // On configure le moteur de physique
@@ -130,8 +128,30 @@ public abstract class JBox2DCanvasActivity extends Activity {
         final Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        ////////////////////////////////////////////////////////////////////////
+        // LE CODE ICI EST UTILISÉ TEMPORAIREMENT À FINS DE TESTS ! UNE FOIS LE
+        // PARSER CODÉ, IL NE SERA PLUS NÉCÉSSAIRE DE CRÉER NOUS-MÊMES NOS 
+        // OBJETS !!
+        
+        buildLevel();
+        
+        
+        
+        ////////////////////////////////////////////////////////////////////////
+        
         // On définit la surface 2D comme surface de dessin
         setContentView(canvasView);
+    }
+    
+    /**
+     * 
+     * @deprecated Ceci n'est pas une méthode standard à utiliser ! Elle est 
+     * temporaire, jusqu'à ce le parser XML soit terminé !
+     */
+    @Deprecated
+    private void buildLevel() {
+    
+    
     }
 
     /**
@@ -145,22 +165,30 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
     ////////////////////////////////////////////////////////////////////////////
     // Contrôleurs
+    /**
+     * Méthode appelé quand le programme se met en pause.
+     */
     @Override
     protected void onPause() {
         super.onPause();
-        //glDrawingArea.onPause();
-
     }
 
+    /**
+     * Méthode appelée quand le programme est en pause et qu'il se fait 
+     * réveiller.
+     */
     @Override
     protected void onResume() {
         super.onResume();
-
-
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // User input handling
+    /**
+     * 
+     * @param me
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent me) {
         new Domino(world);
@@ -173,7 +201,6 @@ public abstract class JBox2DCanvasActivity extends Activity {
                 ((Component) clickedShape.getBody().getUserData()).onClick(me);
             }
         }
-
         return true;
     }
 
@@ -215,20 +242,18 @@ public abstract class JBox2DCanvasActivity extends Activity {
     // Méthode de dessinage
 
     private void drawBackground(Canvas c) {
+        c.drawColor(Color.WHITE);
     }
 
     private void drawDebug(Canvas c) {
-        Paint p = new Paint();
-        c.drawColor(Color.WHITE);
+        Paint p = new Paint();       
         float initP = 0.0f;
         c.drawText("Nombre de corps dessinés : " + world.getBodyCount() + " corps", 20.0f, initP += 15.0f, p);
         c.drawText("Widgets dessinés : " + drawnWidgets + " widgets", 20.0f, initP += 15.0f, p);
         c.drawText("Composants dessinés : " + drawnComponents + " composants" + "", 20.0f, initP += 15.0f, p);
-        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets)+ " composants" + "", 20.0f, initP += 15.0f, p);
-        initP += 15.0f;
+        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets) + " composants" + "", 20.0f, initP += 15.0f, p);
         c.drawText("Gravité : " + world.getGravity() + " m/s^2", 20.0f, initP += 15.0f, p);
         c.drawText("Temps du rendu : " + renderingTime + " ms", 20.0f, initP += 15.0f, p);
-        
     }
     ////////////////////////////////////////////////////////////////////////////
 }

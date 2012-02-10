@@ -24,6 +24,10 @@ import android.os.Bundle;
  */
 public class HelpActivity extends JBox2DOpenGLActivity
 {
+    /**
+     * 
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         

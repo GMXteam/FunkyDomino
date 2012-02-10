@@ -17,9 +17,9 @@
 package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-import org.jbox2d.collision.MassData;
 import org.jbox2d.collision.PolygonDef;
 
 import org.jbox2d.dynamics.World;
@@ -30,13 +30,17 @@ import org.jbox2d.dynamics.World;
  */
 public class Domino extends Component {
 
+    /**
+     * 
+     * @param w
+     */
     public Domino(World w) {
-  
+        
         bodyDef.massData.mass = 95.5f; // 95.5 kg
         body = w.createBody(bodyDef);
-        
+
         PolygonDef pd = new PolygonDef();
-        pd.setAsBox(0.0508f, 0.009525f);        
+        pd.setAsBox(0.0508f, 0.009525f);
         body.createShape(pd);
         body.setMassFromShapes();
         body.setUserData(this);
@@ -44,19 +48,16 @@ public class Domino extends Component {
 
     @Override
     public void drawGL() {
-        
     }
 
     @Override
     public void onClick(MotionEvent me) {
- 
     }
 
     @Override
     public void drawCanvas(Canvas c) {
-        c.drawRect(this.body.getPosition().x, this.body.getPosition().y, this.body.getPosition().x + 50, this.body.getPosition().x + 50, new Paint());
-       c.drawText("", 100, 100, new Paint());
-        
-       
+        Paint p = new Paint();
+        p.setColor(Color.BLACK);
+        c.drawText("Ceci est un domino", 20.0f, 200.0f, p);
     }
 }
