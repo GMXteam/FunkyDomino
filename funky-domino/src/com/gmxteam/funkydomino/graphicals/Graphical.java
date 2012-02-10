@@ -28,29 +28,29 @@ import org.jbox2d.dynamics.BodyDef;
 public abstract class Graphical {
 
     /**
-     * 
+     * Définition générale du corps physique.
      */
     public BodyDef bodyDef = new BodyDef();
     
     /**
-     * 
+     * Donne une définition précise du corps physique.
      */
     public Body body;
 
     /**
-     * 
+     * Dessine l'objet graphique avec OpenGL ES 2.0.
      */
     public abstract void drawGL();
 
     /**
-     * 
-     * @param c 
+     * Dessine l'objet graphique sur un canvas.
+     * @param c est le canvas sur lequel l'objet graphique est dessiné.
      */
     public abstract void drawCanvas(Canvas c);
 
     /**
-     * 
-     * @param me 
+     * Méthode appelée lorsque l'utilisateur clique sur l'objet graphique.
+     * @param me est la description de l'événement.
      */
     public abstract void onClick(MotionEvent me);
 }
