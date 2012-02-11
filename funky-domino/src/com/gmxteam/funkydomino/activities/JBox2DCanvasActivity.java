@@ -35,6 +35,7 @@ import android.graphics.Paint;
 // Librairies standard Android
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
@@ -70,6 +71,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private long renderingTime = 0;
     private long drawnWidgets = 0;
     private long drawnComponents = 0;
+    private long redrawing = 0;
+    private long calculating = 0;
     ////////////////////////////////////////////////////////////////////////////
     /**
      * On dessine sur une surface OpenGL ES 2.0.
@@ -87,28 +90,58 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         public void run() {
             long timeBefore = System.currentTimeMillis();
-            update();
-            mHandler.postDelayed(update, (long) (timeStep * 1000));
+            world.step(timeStep, iterations);
+            calculating++;
+            canvasView.invalidate();
+            redrawing++;
             renderingTime = System.currentTimeMillis() - timeBefore;
+            mHandler.postDelayed(update, 15);
+            // TODO Corriger l'influence du temps de rendu
+            
         }
     };
-
     ////////////////////////////////////////////////////////////////////////////
+    // Outils de conversion
+
+    /**
+     * Transforme une valeur en pixels en mètres. Prend en considération les
+     * dimensions de l'écran.
+     * @param meter est une valeur en mètres.
+     * @return une valeur en pixels.
+     */
+    public static float toPixel(float meter) {
+        return 1.5f * meter;
+    }
+
+    /**
+     * Transforme une valeur en mètres en pixels. Prend en considération les
+     * dimensions de l'écran.
+     * @param pixel est une valeur en pixels.
+     * @return une valeur en pixels.
+     */
+    public static float toMeter(float pixel) {
+        return 3f * pixel;
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
     /**
      * Initialisation du rendu 2D.
      */
-    void init() {
+    private void init() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         canvasView = new View(this) {
 
             @Override
             public void onDraw(Canvas c) {
+
                 onDrawFrame(c);
-                canvasView.invalidate();
+
+
                 drawnComponents = 0;
                 drawnWidgets = 0;
             }
         };
+        
         // On configure le moteur de physique
         worldAABB = new AABB();
         worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
@@ -118,6 +151,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
         world = new World(worldAABB, new Vec2(0.0f, -9.8f), false);
 
         // On démarre le Thread qui va gérer le moteur de physique
+
         mHandler = new Handler();
         mHandler.post(update);
 
@@ -132,45 +166,41 @@ public abstract class JBox2DCanvasActivity extends Activity {
         // LE CODE ICI EST UTILISÉ TEMPORAIREMENT À FINS DE TESTS ! UNE FOIS LE
         // PARSER CODÉ, IL NE SERA PLUS NÉCÉSSAIRE DE CRÉER NOUS-MÊMES NOS 
         // OBJETS !!
-        
         buildLevel();
-        
-        
-        
         ////////////////////////////////////////////////////////////////////////
-        
         // On définit la surface 2D comme surface de dessin
         setContentView(canvasView);
     }
-    
+
     /**
-     * 
+     * Méthode utilisée pour construire un niveau.
      * @deprecated Ceci n'est pas une méthode standard à utiliser ! Elle est 
      * temporaire, jusqu'à ce le parser XML soit terminé !
      */
     @Deprecated
     private void buildLevel() {
-    
-    
-    }
-
-    /**
-     * Méthode appelée pour mettre à jour le rendu graphique et le moteur de physique.
-     */
-    private void update() {
-        // Update Physics World
-        world.step(timeStep, iterations);
-
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Contrôleurs
+    /**
+     * 
+     * @param savedInstance 
+     */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
     /**
      * Méthode appelé quand le programme se met en pause.
      */
     @Override
     protected void onPause() {
         super.onPause();
+        // On vide le handler.
+        //mHandler = new Handler();
     }
 
     /**
@@ -180,6 +210,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        // On redémarre le handler.
+        //mHandler.post(update);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -192,9 +224,12 @@ public abstract class JBox2DCanvasActivity extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent me) {
         new Domino(world);
-        AABB areaAABB = new AABB();
         // TODO Mettre le MotionEvent dans le AABB.
-        for (Shape clickedShape : world.query(areaAABB, 500)) {
+        AABB areaAABB = new AABB();
+        // On récupère la liste des shapes dans la zone touchée.
+        Shape[] shapeList = world.query(areaAABB, 500);
+        // Si la zone contient des widgets ou composants, on les avertit.
+        for (Shape clickedShape : shapeList) {
             if (clickedShape.getBody().getUserData() instanceof Widget) {
                 ((Widget) clickedShape.getBody().getUserData()).onClick(me);
             } else if (clickedShape.getBody().getUserData() instanceof Component) {
@@ -208,7 +243,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
     // Handler pour le rendu 2D (se fait automatiquement)
     /**
      * Méthode appelée quand la surface est dessinée.
-     * @param gl 
+     * @param canvas est la surface sur laquelle la surface sera dessinée.
      */
     private void onDrawFrame(Canvas canvas) {
         drawBackground(canvas);
@@ -237,23 +272,37 @@ public abstract class JBox2DCanvasActivity extends Activity {
         if (IS_DEBUG_ENABLED) {
             drawDebug(canvas);
         }
+
     }
     ////////////////////////////////////////////////////////////////////////////
     // Méthode de dessinage
 
+    /**
+     * Dessine l'arrière-plan.
+     * @param c est le canvas sur lequel l'arrière-plan sera dessiné.
+     */
     private void drawBackground(Canvas c) {
         c.drawColor(Color.WHITE);
     }
 
+    /**
+     * Dessine les variables d'environnement.
+     * @param c est le canvas sur lequel l'les variables de débogage seront
+     * dessinées.
+     */
     private void drawDebug(Canvas c) {
-        Paint p = new Paint();       
-        float initP = 0.0f;
-        c.drawText("Nombre de corps dessinés : " + world.getBodyCount() + " corps", 20.0f, initP += 15.0f, p);
-        c.drawText("Widgets dessinés : " + drawnWidgets + " widgets", 20.0f, initP += 15.0f, p);
-        c.drawText("Composants dessinés : " + drawnComponents + " composants" + "", 20.0f, initP += 15.0f, p);
-        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets) + " composants" + "", 20.0f, initP += 15.0f, p);
-        c.drawText("Gravité : " + world.getGravity() + " m/s^2", 20.0f, initP += 15.0f, p);
-        c.drawText("Temps du rendu : " + renderingTime + " ms", 20.0f, initP += 15.0f, p);
+        Paint p = new Paint();
+        float initP = 10.0f;
+        c.drawText("Nombre de corps dessinés : " + world.getBodyCount() + " corps", 15.0f, initP += 15.0f, p);
+        c.drawText("Widgets dessinés : " + drawnWidgets + " widgets", 15.0f, initP += 15.0f, p);
+        c.drawText("Composants dessinés : " + drawnComponents + " composants" + "", 15.0f, initP += 15.0f, p);
+        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets) + " composants" + "", 15.0f, initP += 15.0f, p);
+        c.drawText("Gravité : " + world.getGravity() + " m/s^2", 15.0f, initP += 15.0f, p);
+        c.drawText("Temps du rendu : " + renderingTime + " ms", 15.0f, initP += 15.0f, p);
+        c.drawText("Vecteurs pour les dimensions de l'écran : " + world.getWorldAABB().lowerBound + " et " + world.getWorldAABB().upperBound, 15.0f, initP += 15.0f, p);
+        c.drawText("Nombre de mises à jour du moteur de physique : " + calculating + " calculs", 15.0f, initP += 15.0f, p);
+        c.drawText("Nombre de mises à jour du rendu : " + redrawing + " rendus", 15.0f, initP += 15.0f, p);
+
     }
     ////////////////////////////////////////////////////////////////////////////
 }

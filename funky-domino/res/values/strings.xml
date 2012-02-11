@@ -7,4 +7,5 @@
     <string name="highscores_activity_name">Highscores</string>
     <string name="load_game_activity_name">Charger une partie</string>
     <string name="new_game_activity_name">Nouvelle partie</string>
+    <string name="preferences_activity_name">Préférences</string>
 </resources>

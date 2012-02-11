@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmxteam.funkydomino.activities"
-    android:versionCode="1"
-    android:versionName="0.0.1">
+    android:versionCode="5"
+    android:versionName="0.0.5">
     <!-- Importations pour utiliser OpenGL ES 2.0 
     <uses-feature android:glEsVersion="0x00020000" 
         android:required="true" />
@@ -31,6 +31,9 @@
         </activity>
         <activity android:name="NewGameActivity"
                   android:label="@string/new_game_activity_name">            
-        </activity>        
+        </activity>    
+        <activity android:name="PreferencesActivity"
+                  android:label="@string/preferences_activity_name">            
+        </activity> 
     </application>    
 </manifest> 
