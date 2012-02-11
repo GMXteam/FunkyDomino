@@ -61,18 +61,25 @@ import java.util.ArrayList;
  * afin de nous donner plus de liberté. Un menu animé par la physique, c'est pas
  * cool ça?
  * 
+ * Le redessinage est géré dans le thread de l'utilisateur interface. Quand on
+ * finit de redessiner une image, elle est automatiquement invalidée et quand le
+ * thread UI sera prêt à la redessiner, le processus recommencera.
+ * 
+ * La physique est gérée dans un thread à part.
  * @author Guillaume Poirier-Morency
  */
 public abstract class JBox2DCanvasActivity extends Activity {
 
     ////////////////////////////////////////////////////////////////////////////
-    // Variables d'environnement
+    // Variables d'environnement et de débogage
     private final boolean IS_DEBUG_ENABLED = true;
     private long renderingTime = 0;
     private long drawnWidgets = 0;
     private long drawnComponents = 0;
-    private long redrawing = 0;
-    private long calculating = 0;
+    private long numberOfDrawingLoopsDone = 0;
+    private long numberOfPhysicsLoopsDone = 0;
+    private double fps;
+    private boolean isPaused = false;
     ////////////////////////////////////////////////////////////////////////////
     /**
      * On dessine sur une surface OpenGL ES 2.0.
@@ -81,8 +88,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
     ////////////////////////////////////////////////////////////////////////////
     // Variables pour le moteur de collisions
     World world;
-    private int targetFPS = 40;
-    private int timeStep = (1000 / targetFPS);
+    private int sleepTime = 15;
     private int iterations = 5;
     private AABB worldAABB;
     private Handler mHandler;
@@ -90,14 +96,11 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         public void run() {
             long timeBefore = System.currentTimeMillis();
-            world.step(timeStep, iterations);
-            calculating++;
-            canvasView.invalidate();
-            redrawing++;
+            world.step((int) ((renderingTime + sleepTime) * 1000), iterations);
+            numberOfPhysicsLoopsDone++;
             renderingTime = System.currentTimeMillis() - timeBefore;
-            mHandler.postDelayed(update, 15);
+            mHandler.postDelayed(update, sleepTime);
             // TODO Corriger l'influence du temps de rendu
-            
         }
     };
     ////////////////////////////////////////////////////////////////////////////
@@ -121,6 +124,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      */
     public static float toMeter(float pixel) {
         return 3f * pixel;
+
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -133,15 +137,19 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
             @Override
             public void onDraw(Canvas c) {
+                if (!isPaused) {
+                    long timeInit = System.currentTimeMillis();
+                    onDrawFrame(c);
+                    canvasView.invalidate();
+                    numberOfDrawingLoopsDone++;
+                    drawnComponents = 0;
+                    drawnWidgets = 0;
+                    fps = (1000 / (System.currentTimeMillis() - timeInit));
+                }
 
-                onDrawFrame(c);
-
-
-                drawnComponents = 0;
-                drawnWidgets = 0;
             }
         };
-        
+
         // On configure le moteur de physique
         worldAABB = new AABB();
         worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
@@ -162,6 +170,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
         final Window window = getWindow();
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        // TODO Créer un ContentView pour l'image de chargement.
         ////////////////////////////////////////////////////////////////////////
         // LE CODE ICI EST UTILISÉ TEMPORAIREMENT À FINS DE TESTS ! UNE FOIS LE
         // PARSER CODÉ, IL NE SERA PLUS NÉCÉSSAIRE DE CRÉER NOUS-MÊMES NOS 
@@ -199,8 +208,9 @@ public abstract class JBox2DCanvasActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
+        isPaused = true;
         // On vide le handler.
-        //mHandler = new Handler();
+        mHandler = new Handler();
     }
 
     /**
@@ -210,20 +220,31 @@ public abstract class JBox2DCanvasActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        isPaused = false;
         // On redémarre le handler.
-        //mHandler.post(update);
+        mHandler.post(update);
+        // On réveille le redraw du canvas
+        canvasView.postInvalidate();
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // User input handling
     /**
-     * 
-     * @param me
-     * @return
+     * On récupère le MotionEvent et on le redirige vers tous les objets graphiques
+     * avec qui on trouve une collision.
+     * @param me est le MotionEvent qui doit être géré.
+     * @return toujours true...
      */
     @Override
     public boolean onTouchEvent(MotionEvent me) {
-        new Domino(world);
+        Body b = world.getBodyList();
+        if (me.getRawX() > 200) {
+            new Domino(world);
+        } else if (b.getUserData() instanceof Domino) {
+
+            world.destroyBody(b);
+        }
+
         // TODO Mettre le MotionEvent dans le AABB.
         AABB areaAABB = new AABB();
         // On récupère la liste des shapes dans la zone touchée.
@@ -284,6 +305,10 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private void drawBackground(Canvas c) {
         c.drawColor(Color.WHITE);
     }
+    /**
+     * 
+     */
+    private final Paint DEBUG_PAINT = new Paint();
 
     /**
      * Dessine les variables d'environnement.
@@ -291,18 +316,18 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * dessinées.
      */
     private void drawDebug(Canvas c) {
-        Paint p = new Paint();
         float initP = 10.0f;
-        c.drawText("Nombre de corps dessinés : " + world.getBodyCount() + " corps", 15.0f, initP += 15.0f, p);
-        c.drawText("Widgets dessinés : " + drawnWidgets + " widgets", 15.0f, initP += 15.0f, p);
-        c.drawText("Composants dessinés : " + drawnComponents + " composants" + "", 15.0f, initP += 15.0f, p);
-        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets) + " composants" + "", 15.0f, initP += 15.0f, p);
-        c.drawText("Gravité : " + world.getGravity() + " m/s^2", 15.0f, initP += 15.0f, p);
-        c.drawText("Temps du rendu : " + renderingTime + " ms", 15.0f, initP += 15.0f, p);
-        c.drawText("Vecteurs pour les dimensions de l'écran : " + world.getWorldAABB().lowerBound + " et " + world.getWorldAABB().upperBound, 15.0f, initP += 15.0f, p);
-        c.drawText("Nombre de mises à jour du moteur de physique : " + calculating + " calculs", 15.0f, initP += 15.0f, p);
-        c.drawText("Nombre de mises à jour du rendu : " + redrawing + " rendus", 15.0f, initP += 15.0f, p);
-
+        c.drawText("Nombre de corps dessinés : " + world.getBodyCount() + " corps", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Widgets dessinés : " + drawnWidgets + " widgets", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Composants dessinés : " + drawnComponents + " composants" + "", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Autres corps dessinés : " + (world.getBodyCount() - drawnComponents - drawnWidgets) + " composants" + "", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Gravité : " + world.getGravity() + " m/s^2", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Temps du rendu : " + renderingTime + " ms", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Vecteurs pour les dimensions de l'écran : " + world.getWorldAABB().lowerBound + " et " + world.getWorldAABB().upperBound, 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Nombre de mises à jour du moteur de physique : " + numberOfPhysicsLoopsDone + " calculs", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Nombre de mises à jour du rendu : " + numberOfDrawingLoopsDone, 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Frame per second : " + fps + " fps", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        
     }
     ////////////////////////////////////////////////////////////////////////////
 }
