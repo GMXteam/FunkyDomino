@@ -43,7 +43,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 // Librairie standard Java
-import com.gmxteam.funkydomino.graphicals.components.Domino;
 import java.util.ArrayList;
 
 /**
@@ -78,7 +77,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private long drawnComponents = 0;
     private long numberOfDrawingLoopsDone = 0;
     private long numberOfPhysicsLoopsDone = 0;
-    private double fps;
+    private long fps;
     private boolean isPaused = false;
     ////////////////////////////////////////////////////////////////////////////
     /**
@@ -96,7 +95,13 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         public void run() {
             long timeBefore = System.currentTimeMillis();
-            world.step((int) ((renderingTime + sleepTime) * 1000), iterations);
+            /* On fait avancer le temps dans le monde physique du nombre de
+             * secondes que le dernier calcul a prit. Ainsi, le monde physique
+             * évolue en temps réel. On rajoute un délai de 15 millisecondes
+             * afin de ne pas trop surcharger le programme (en particuler le 
+             * rendu).
+             */
+            world.step((float) ((renderingTime + sleepTime) / 1000.0f), iterations);
             numberOfPhysicsLoopsDone++;
             renderingTime = System.currentTimeMillis() - timeBefore;
             mHandler.postDelayed(update, sleepTime);
@@ -108,23 +113,22 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
     /**
      * Transforme une valeur en pixels en mètres. Prend en considération les
-     * dimensions de l'écran.
+     * dimensions de l'écran et le ratio hauteur par largeur.
      * @param meter est une valeur en mètres.
      * @return une valeur en pixels.
      */
-    public static float toPixel(float meter) {
-        return 1.5f * meter;
+    public static Vec2 toPixel(Vec2 meter) {
+        return new Vec2(meter.x, meter.y);
     }
 
     /**
      * Transforme une valeur en mètres en pixels. Prend en considération les
-     * dimensions de l'écran.
+     * dimensions de l'écran et le ratio hauteur par largeur.
      * @param pixel est une valeur en pixels.
      * @return une valeur en pixels.
      */
-    public static float toMeter(float pixel) {
-        return 3f * pixel;
-
+    public static Vec2 toMeter(Vec2 pixel) {
+        return new Vec2(pixel.x, pixel.y);
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -132,7 +136,16 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * Initialisation du rendu 2D.
      */
     private void init() {
+        // On met l'orientation de l'appareil en mode paysage.
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        // On cache le menu
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        // On mets l'application en plein écran
+        final Window window = getWindow();
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // TODO Créer un ContentView pour l'image de chargement.
         canvasView = new View(this) {
 
             @Override
@@ -152,49 +165,29 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         // On configure le moteur de physique
         worldAABB = new AABB();
-        worldAABB.lowerBound.set(new Vec2((float) -100.0, (float) -100.0));
-        worldAABB.upperBound.set(new Vec2((float) 100.0, (float) 100.0));
+
+        // TODO Définir les dimensions du monde en fonction du ratio de la taille de l'écran.
+        worldAABB.lowerBound.set(new Vec2(0.0f, 0.0f));
+        worldAABB.upperBound.set(new Vec2(200.0f, 200.0f * (float) ((float) canvasView.getHeight() / (float) canvasView.getWidth())));
 
         // On ajoute la gravité et le worldAABB dans world
         world = new World(worldAABB, new Vec2(0.0f, -9.8f), false);
 
         // On démarre le Thread qui va gérer le moteur de physique
-
         mHandler = new Handler();
         mHandler.post(update);
 
-        // On cache le menu
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        // On mets l'application en plein écran
-        final Window window = getWindow();
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        // TODO Créer un ContentView pour l'image de chargement.
-        ////////////////////////////////////////////////////////////////////////
-        // LE CODE ICI EST UTILISÉ TEMPORAIREMENT À FINS DE TESTS ! UNE FOIS LE
-        // PARSER CODÉ, IL NE SERA PLUS NÉCÉSSAIRE DE CRÉER NOUS-MÊMES NOS 
-        // OBJETS !!
-        buildLevel();
-        ////////////////////////////////////////////////////////////////////////
         // On définit la surface 2D comme surface de dessin
         setContentView(canvasView);
-    }
 
-    /**
-     * Méthode utilisée pour construire un niveau.
-     * @deprecated Ceci n'est pas une méthode standard à utiliser ! Elle est 
-     * temporaire, jusqu'à ce le parser XML soit terminé !
-     */
-    @Deprecated
-    private void buildLevel() {
+
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Contrôleurs
     /**
      * 
-     * @param savedInstance 
+     * @param savedInstanceState 
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -237,14 +230,6 @@ public abstract class JBox2DCanvasActivity extends Activity {
      */
     @Override
     public boolean onTouchEvent(MotionEvent me) {
-        Body b = world.getBodyList();
-        if (me.getRawX() > 200) {
-            new Domino(world);
-        } else if (b.getUserData() instanceof Domino) {
-
-            world.destroyBody(b);
-        }
-
         // TODO Mettre le MotionEvent dans le AABB.
         AABB areaAABB = new AABB();
         // On récupère la liste des shapes dans la zone touchée.
@@ -278,17 +263,14 @@ public abstract class JBox2DCanvasActivity extends Activity {
                 Component c = (Component) b.getUserData();
                 drawnComponents++;
                 c.drawCanvas(canvas);
-
             } else {
                 // Crap.
                 // throw new UnknownGraphicalElementException();
             }
         } while ((b = b.getNext()) != null);
         for (Widget w : drawWidgetLast) {
-
             drawnWidgets++;
             w.drawCanvas(canvas);
-
         }
         if (IS_DEBUG_ENABLED) {
             drawDebug(canvas);
@@ -327,7 +309,16 @@ public abstract class JBox2DCanvasActivity extends Activity {
         c.drawText("Nombre de mises à jour du moteur de physique : " + numberOfPhysicsLoopsDone + " calculs", 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Nombre de mises à jour du rendu : " + numberOfDrawingLoopsDone, 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Frame per second : " + fps + " fps", 15.0f, initP += 15.0f, DEBUG_PAINT);
-        
+        drawActivityDebug(c, initP, DEBUG_PAINT);
+
     }
     ////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 
+     * @param c
+     * @param initP
+     * @param p 
+     */
+    abstract void drawActivityDebug(Canvas c, float initP, Paint p);
 }

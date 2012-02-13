@@ -18,7 +18,6 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
 
 /**

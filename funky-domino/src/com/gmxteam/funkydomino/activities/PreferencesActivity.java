@@ -25,6 +25,10 @@ import android.os.Bundle;
  */
 public class PreferencesActivity extends Activity {
 
+    /**
+     * 
+     * @param b
+     */
     @Override
     public void onCreate(Bundle b) {
 

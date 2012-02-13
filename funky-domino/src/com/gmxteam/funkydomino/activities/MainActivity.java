@@ -16,7 +16,10 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
+import com.gmxteam.funkydomino.graphicals.components.Domino;
 
 /**
  * Activité principale de l'application Android.
@@ -24,19 +27,31 @@ import android.os.Bundle;
  * @author Guillaume Poirier-Morency
  */
 public class MainActivity extends JBox2DCanvasActivity {
-
+private Domino d;
     /** Called when the activity is first created.
      * @param savedInstanceState 
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        d = new Domino(world);
         
+    
+
+
+
+
+    }
+   
+    
+
+    @Override
+    void drawActivityDebug(Canvas c , float initP, Paint p) {
+        c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", 15.0f, initP += 15.0f, p);
+        c.drawText("Position du Domino : " + d.body.getPosition(), 15.0f, initP += 15.0f, p);
+        c.drawText("Masse du Domino : " + d.body.m_mass + " kg", 15.0f, initP += 15.0f, p);
         
-        
-
-
-
-
+        //c.drawText(" : " + fps + " fps", 15.0f, initP += 15.0f, p);
     }
 }

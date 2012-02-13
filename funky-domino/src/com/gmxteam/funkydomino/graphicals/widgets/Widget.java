@@ -24,6 +24,9 @@ import com.gmxteam.funkydomino.graphicals.Graphical;
  */
 public abstract class Widget extends Graphical {
     
+    /**
+     * 
+     */
     public boolean isEnabled;
     
     

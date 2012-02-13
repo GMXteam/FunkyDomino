@@ -21,4 +21,7 @@ package com.gmxteam.funkydomino.activities;
  * @author Guillaume Poirier-Morency
  */
 public class GameActivity extends JBox2DOpenGLActivity{
+    
+    
+    
 }
