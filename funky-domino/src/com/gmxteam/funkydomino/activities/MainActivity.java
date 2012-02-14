@@ -34,24 +34,14 @@ private Domino d;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         d = new Domino(world);
-        
-    
-
-
-
-
     }
-   
-    
 
     @Override
     void drawActivityDebug(Canvas c , float initP, Paint p) {
         c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", 15.0f, initP += 15.0f, p);
         c.drawText("Position du Domino : " + d.body.getPosition(), 15.0f, initP += 15.0f, p);
         c.drawText("Masse du Domino : " + d.body.m_mass + " kg", 15.0f, initP += 15.0f, p);
-        
         //c.drawText(" : " + fps + " fps", 15.0f, initP += 15.0f, p);
     }
 }

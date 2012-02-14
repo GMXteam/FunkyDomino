@@ -16,6 +16,8 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.os.Bundle;
+
 /**
  *
  * @author Guillaume Poirier-Morency
@@ -30,4 +32,10 @@ public class LoadGameActivity extends JBox2DOpenGLActivity
             publicKey5 = getString(R.string.key_5),
             publicKey6 = getString(R.string.key_6),
             publicKey7 = getString(R.string.key_7);
+     
+     @Override
+    public void onCreate(Bundle ressources) {
+        super.onCreate(ressources);
+               
+    }
 }

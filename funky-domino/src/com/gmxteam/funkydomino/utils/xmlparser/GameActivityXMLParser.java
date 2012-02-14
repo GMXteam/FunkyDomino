@@ -18,6 +18,9 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 
 import com.gmxteam.funkydomino.activities.GameActivity;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 
@@ -45,9 +48,10 @@ public class GameActivityXMLParser {
      * @param key 
      * @return une activité Android pour la partie à jouer !
      */
-    public static GameActivity obtainGameInstance(String file, String key) {
-        
-       
+    public static GameActivity buildGameInstance(GameActivity ga, int resourceId, String key) {              
+        InputStream is = ga.getResources().openRawResource(resourceId);
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String readLine = null;       
         return null;
     } 
     

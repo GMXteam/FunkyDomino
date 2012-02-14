@@ -16,12 +16,18 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.os.Bundle;
+import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
+
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class GameActivity extends JBox2DOpenGLActivity{
+public class GameActivity extends JBox2DOpenGLActivity {
     
-    
-    
+    @Override
+    public void onCreate(Bundle ressources) {
+        super.onCreate(ressources);
+        GameActivityXMLParser.buildGameInstance(this, ressources.getInt("LEVEL"), ressources.getString("KEY"));        
+    }
 }

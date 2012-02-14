@@ -102,7 +102,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
              * rendu).
              */
             world.step((float) ((renderingTime + sleepTime) / 1000.0f), iterations);
-            numberOfPhysicsLoopsDone++;
+            numberOfPhysicsLoopsDone++;            
+            canvasView.invalidate();
             renderingTime = System.currentTimeMillis() - timeBefore;
             mHandler.postDelayed(update, sleepTime);
             // TODO Corriger l'influence du temps de rendu
@@ -152,8 +153,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
             public void onDraw(Canvas c) {
                 if (!isPaused) {
                     long timeInit = System.currentTimeMillis();
-                    onDrawFrame(c);
-                    canvasView.invalidate();
+                    onDrawFrame(c);                    
                     numberOfDrawingLoopsDone++;
                     drawnComponents = 0;
                     drawnWidgets = 0;
