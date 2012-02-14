@@ -16,13 +16,13 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
+import com.gmxteam.funkydomino.activities.R;
+
 import android.app.Activity;
 import android.util.Log;
 import com.gmxteam.funkydomino.activities.GameActivity;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -57,21 +57,21 @@ public class GameActivityXMLParser {
      * @param key 
      * @return une activité Android pour la partie à jouer !
      */
-    public static GameActivity buildGameInstance(GameActivity ga, int resourceId, String key) {
-         try {
+    public static GameActivity buildGameInstance(GameActivity ga, int resourceId) {
+        try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             SAXParser sp = spf.newSAXParser();
             XMLReader xr = sp.getXMLReader();
             XMLHandler xh = new XMLHandler(ga);
             xr.setContentHandler(xh);
-            xr.parse(new InputSource(ga.getResources().openRawResource(resourceId)));
+            xr.parse(new InputSource(decrypt(ga, resourceId)));
             return ga;
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
             Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ioe) {
-            Log.v("", key, ioe);
+            Log.v("", "", ioe);
         }
         return null;
     }
@@ -85,25 +85,51 @@ public class GameActivityXMLParser {
      * @param key 
      * @return 
      */
-    public static GameInformation obtainGameInformations(Activity ga, int resourceId, String key) {
-        
+    public static GameInformation obtainGameInformations(Activity ga, int resourceId) {
+
         try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             SAXParser sp = spf.newSAXParser();
             XMLReader xr = sp.getXMLReader();
             XMLHandler xh = new XMLHandler();
             xr.setContentHandler(xh);
-            xr.parse(new InputSource(ga.getResources().openRawResource(resourceId)));
+            xr.parse(new InputSource(decrypt(ga, resourceId)));
             return xh.getGameInformation();
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SAXException ex) {
             Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ioe) {
-            Log.v("", key, ioe);
+            Log.v("", "", ioe);
         }
 
 
         return null;
+    }
+
+    /**
+     * 
+     * @param ga
+     * @param resourceId     
+     * @return 
+     */
+    private static InputStream decrypt(Activity ga, int resourceId) {
+        // On récupère la clé publique...
+        String publickey = ga.getString(R.string.key_0)
+                + ga.getString(R.string.key_1)
+                + ga.getString(R.string.key_2)
+                + ga.getString(R.string.key_3)
+                + ga.getString(R.string.key_4)
+                + ga.getString(R.string.key_5)
+                + ga.getString(R.string.key_6)
+                + ga.getString(R.string.key_7);
+        // On décrypte le niveau avec cette clé...
+        
+        
+        // On retourne l'inputstream du niveau décrypté
+
+        return ga.getResources().openRawResource(resourceId);
+
+
     }
 }

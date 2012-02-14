@@ -31,7 +31,7 @@ public class GameActivity extends JBox2DCanvasActivity {
     public void onCreate(Bundle ressources) {
         
         super.onCreate(ressources);
-        GameActivityXMLParser.buildGameInstance(this, ressources.getInt("LEVEL"), ressources.getString("KEY"));        
+        GameActivityXMLParser.buildGameInstance(this, ressources.getInt("LEVEL"));        
     }
 
     @Override
