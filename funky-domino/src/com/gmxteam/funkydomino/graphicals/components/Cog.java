@@ -18,8 +18,9 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
+
 import org.jbox2d.dynamics.World;
+import org.xml.sax.Attributes;
 
 /**
  *
@@ -30,10 +31,10 @@ public class Cog extends Component
 
     /**
      * 
-     * @param bd
      * @param w
+     * @param atts  
      */
-    public Cog(BodyDef bd, World w) {
+    public Cog(World w, Attributes atts) {
 
 
          body = w.createBody(bodyDef);  

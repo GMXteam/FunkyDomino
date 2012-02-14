@@ -17,8 +17,6 @@
 package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 
 import android.view.MotionEvent;
 import org.jbox2d.collision.PolygonDef;
@@ -26,6 +24,7 @@ import org.jbox2d.collision.PolygonDef;
 import org.jbox2d.collision.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
+import org.xml.sax.Attributes;
 
 /**
  *
@@ -34,6 +33,25 @@ import org.jbox2d.dynamics.World;
 public class Domino extends Component {
 
     /**
+     * 
+     * @param w
+     * @param att  
+     */
+    public Domino(World w, Attributes att) {
+
+        bodyDef.massData.mass = 95.5f; // 95.5 kg
+        bodyDef.position = new Vec2(50.0f,50.0f);
+        
+        body = w.createBody(bodyDef);
+        
+        PolygonDef pd = new PolygonDef();
+        pd.setAsBox(0.0508f, 0.009525f);
+        Shape s = body.createShape(pd);
+        
+        //body.setMassFromShapes();
+        body.setUserData(this);
+    }
+     /**
      * 
      * @param w
      */

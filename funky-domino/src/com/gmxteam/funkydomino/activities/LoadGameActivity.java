@@ -33,6 +33,10 @@ public class LoadGameActivity extends JBox2DOpenGLActivity
             publicKey6 = getString(R.string.key_6),
             publicKey7 = getString(R.string.key_7);
      
+     /**
+      * 
+      * @param ressources
+      */
      @Override
     public void onCreate(Bundle ressources) {
         super.onCreate(ressources);

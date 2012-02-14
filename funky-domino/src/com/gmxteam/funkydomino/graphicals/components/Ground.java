@@ -18,8 +18,8 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
+import org.xml.sax.Attributes;
 
 /**
  *
@@ -30,8 +30,9 @@ public class Ground extends Component
     /**
      * 
      * @param w
+     * @param att  
      */
-    public Ground(World w) {
+    public Ground(World w, Attributes att) {
 
 
        body = w.createBody(bodyDef);  

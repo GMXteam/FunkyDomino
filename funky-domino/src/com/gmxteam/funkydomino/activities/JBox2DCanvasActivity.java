@@ -86,7 +86,10 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private View canvasView;
     ////////////////////////////////////////////////////////////////////////////
     // Variables pour le moteur de collisions
-    World world;
+    /**
+     * 
+     */
+    public World world;
     private int sleepTime = 15;
     private int iterations = 5;
     private AABB worldAABB;
@@ -102,7 +105,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
              * rendu).
              */
             world.step((float) ((renderingTime + sleepTime) / 1000.0f), iterations);
-            numberOfPhysicsLoopsDone++;            
+            numberOfPhysicsLoopsDone++;
             canvasView.invalidate();
             renderingTime = System.currentTimeMillis() - timeBefore;
             mHandler.postDelayed(update, sleepTime);
@@ -153,7 +156,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
             public void onDraw(Canvas c) {
                 if (!isPaused) {
                     long timeInit = System.currentTimeMillis();
-                    onDrawFrame(c);                    
+                    onDrawFrame(c);
                     numberOfDrawingLoopsDone++;
                     drawnComponents = 0;
                     drawnWidgets = 0;

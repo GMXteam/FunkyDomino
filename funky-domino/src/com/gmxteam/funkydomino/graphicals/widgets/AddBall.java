@@ -18,20 +18,21 @@ package com.gmxteam.funkydomino.graphicals.widgets;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.World;
+import org.xml.sax.Attributes;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class AddBallWidget extends Widget
+public class AddBall extends Widget
 {
     /**
      * 
      * @param w
+     * @param att  
      */
-    public AddBallWidget(World w) {
+    public AddBall(World w, Attributes att) {
 
 
        body = w.createBody(bodyDef);  

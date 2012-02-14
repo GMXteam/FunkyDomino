@@ -16,21 +16,29 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-
+import android.app.Activity;
+import android.util.Log;
 import com.gmxteam.funkydomino.activities.GameActivity;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
 
 /**
  * Classe statique contenant les fonctions utiles pour convertir les niveaux
  * encrypté asymétriquement en Activity.
  * @author Guillaume Poirier-morency
  */
-public class GameActivityXMLParser {  
-    
+public class GameActivityXMLParser {
+
     // D'autres constantes seront définies en fonction de la structure XML choisie.
     /**
      * 
@@ -40,32 +48,62 @@ public class GameActivityXMLParser {
      */
     public static Integer INFO_APP_NAME = 0,
             INFO_APP_DESCRIPTION = 1;
-    
+
     /**
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
      * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
-     * @param file 
+     * @param ga 
+     * @param resourceId 
      * @param key 
      * @return une activité Android pour la partie à jouer !
      */
-    public static GameActivity buildGameInstance(GameActivity ga, int resourceId, String key) {              
-        InputStream is = ga.getResources().openRawResource(resourceId);
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String readLine = null;       
+    public static GameActivity buildGameInstance(GameActivity ga, int resourceId, String key) {
+         try {
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            SAXParser sp = spf.newSAXParser();
+            XMLReader xr = sp.getXMLReader();
+            XMLHandler xh = new XMLHandler(ga);
+            xr.setContentHandler(xh);
+            xr.parse(new InputSource(ga.getResources().openRawResource(resourceId)));
+            return ga;
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ioe) {
+            Log.v("", key, ioe);
+        }
         return null;
-    } 
-    
+    }
+
     /**
      * Récupère un dictionnaire contenant les informations générales du fichier
      * XML. Permet une récupération rapide sans génération de code. 
      * Des constantes sont définies afin de récupérer les bonnes informations.
-     * @param file 
+     * @param ga 
+     * @param resourceId 
      * @param key 
      * @return 
      */
-    public static HashMap<Integer, String> obtainGameInformations(String file, String key) {
-    
+    public static GameInformation obtainGameInformations(Activity ga, int resourceId, String key) {
+        
+        try {
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            SAXParser sp = spf.newSAXParser();
+            XMLReader xr = sp.getXMLReader();
+            XMLHandler xh = new XMLHandler();
+            xr.setContentHandler(xh);
+            xr.parse(new InputSource(ga.getResources().openRawResource(resourceId)));
+            return xh.getGameInformation();
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ioe) {
+            Log.v("", key, ioe);
+        }
+
+
         return null;
     }
-    
 }

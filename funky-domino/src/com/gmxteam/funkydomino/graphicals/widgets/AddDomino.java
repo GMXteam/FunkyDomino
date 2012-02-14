@@ -18,25 +18,26 @@ package com.gmxteam.funkydomino.graphicals.widgets;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
-import org.jbox2d.dynamics.BodyDef;
+
 import org.jbox2d.dynamics.World;
+import org.xml.sax.Attributes;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class AddDominoWidget extends Widget
+public class AddDomino extends Widget
 {
     /**
      * 
-     * @param bd
      * @param w
+     * @param att  
      */
-    public AddDominoWidget(BodyDef bd, World w) {
+    public AddDomino(World w, Attributes att) {
 
-
+        
        
-       body = w.createBody(bodyDef);  
+        body = w.createBody(bodyDef);  
         body.setUserData(this);  
     }
     @Override

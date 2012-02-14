@@ -16,6 +16,8 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
 
@@ -23,11 +25,17 @@ import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
  *
  * @author Guillaume Poirier-Morency
  */
-public class GameActivity extends JBox2DOpenGLActivity {
+public class GameActivity extends JBox2DCanvasActivity {
     
     @Override
     public void onCreate(Bundle ressources) {
+        
         super.onCreate(ressources);
         GameActivityXMLParser.buildGameInstance(this, ressources.getInt("LEVEL"), ressources.getString("KEY"));        
+    }
+
+    @Override
+    void drawActivityDebug(Canvas c, float initP, Paint p) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

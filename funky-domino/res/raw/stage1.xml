@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level id="stage1" previousLevel="null" nextLevel="stage2" name="Tutoriel" description="Premier niveau, pour apprendre à jouer.">
+    <component theme="">
+        <domino x="" y="" theme="" />           
+              
+        
+        <cog x="" y="" ></cog>
+        <ball x="" y=""></ball>
+        <ground x="" y="" ></ground>
+        <water x="" y=""></water>
+    </component >
+    <widget theme="">
+        <addball x="" y=""  />
+        <adddomino x="" y=""  />        
+    </widget>
+</level>
