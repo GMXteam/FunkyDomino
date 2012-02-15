@@ -71,7 +71,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
     ////////////////////////////////////////////////////////////////////////////
     // Variables d'environnement et de débogage
-    private final boolean IS_DEBUG_ENABLED = true;
+    private final boolean DEBUG_ENABLED = true;
     private long renderingTime = 0;
     private long drawnWidgets = 0;
     private long drawnComponents = 0;
@@ -79,13 +79,16 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private long numberOfPhysicsLoopsDone = 0;
     private long fps;
     private boolean isPaused = false;
+    private final Paint DEBUG_PAINT = new Paint();
     ////////////////////////////////////////////////////////////////////////////
     /**
-     * On dessine sur une surface OpenGL ES 2.0.
+     * On dessine sur une surface 2D.
      */
     private View canvasView;
     ////////////////////////////////////////////////////////////////////////////
     // Variables pour le moteur de collisions
+    private static float worldHeight = 320.0f,
+            worldWidth = 533.0f;
     /**
      * 
      */
@@ -104,6 +107,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
              * afin de ne pas trop surcharger le programme (en particuler le 
              * rendu).
              */
+
             world.step((float) ((renderingTime + sleepTime) / 1000.0f), iterations);
             numberOfPhysicsLoopsDone++;
             canvasView.invalidate();
@@ -116,15 +120,60 @@ public abstract class JBox2DCanvasActivity extends Activity {
     // Outils de conversion
 
     /**
+     * 
+     * @param metreX
+     * @return 
+     */
+    public static float toPixelX(float metreX) {
+        return metreX;
+    }
+
+    /**
+     * 
+     * @param metreY
+     * @return 
+     */
+    public static float toPixelY(float metreY) {
+        return worldHeight - metreY;
+    }
+
+    /**
+     * 
+     * @param pixelX
+     * @return 
+     */
+    public static float toMeterX(float pixelX) {
+        return pixelX;
+    }
+
+    /**
+     * 
+     * @param pixelY
+     * @return 
+     */
+    public static float toMeterY(float pixelY) {
+        return worldHeight - pixelY;
+    }
+
+    /**
      * Transforme une valeur en pixels en mètres. Prend en considération les
      * dimensions de l'écran et le ratio hauteur par largeur.
      * Il inverse aussi les valeurs en y afin de faire correspondre les différents
      * systèmes d'axes.
      * @param meter est une valeur en mètres.
      * @return une valeur en pixels.
+     * @deprecated Il faut utiliser toPixelX et toPixelY. Cette méthode n'est
+     * pas optimisée.
      */
+    @Deprecated
     public static Vec2 toPixel(Vec2 meter) {
-        return new Vec2(meter.x, meter.y);
+        Vec2 pixel = new Vec2();
+        pixel.x = meter.x;
+        pixel.y = worldHeight - meter.y;
+
+
+
+        return pixel;
     }
 
     /**
@@ -134,9 +183,15 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * systèmes d'axes.
      * @param pixel est une valeur en pixels.
      * @return une valeur en pixels.
+     * @deprecated Il faut utiliser toMeterX et toMeterY. Cette méthode n'est
+     * pas optimisée.
      */
+    @Deprecated
     public static Vec2 toMeter(Vec2 pixel) {
-        return new Vec2(pixel.x, pixel.y);
+        Vec2 meter = new Vec2();
+        meter.x = pixel.x;
+        meter.y = worldHeight - pixel.y;
+        return meter;
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -170,15 +225,17 @@ public abstract class JBox2DCanvasActivity extends Activity {
             }
         };
 
+
+
         // On configure le moteur de physique
         worldAABB = new AABB();
 
         // TODO Définir les dimensions du monde en fonction du ratio de la taille de l'écran.
         worldAABB.lowerBound.set(new Vec2(0.0f, 0.0f));
-        worldAABB.upperBound.set(new Vec2(800.0f, 480.0f ));
+        worldAABB.upperBound.set(new Vec2(worldWidth, worldHeight));
 
         // On ajoute la gravité et le worldAABB dans world
-       
+
         world = new World(worldAABB, new Vec2(0.0f, -9.8f), false);
 
         // On démarre le Thread qui va gérer le moteur de physique
@@ -187,8 +244,6 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         // On définit la surface 2D comme surface de dessin
         setContentView(canvasView);
-
-
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -271,6 +326,9 @@ public abstract class JBox2DCanvasActivity extends Activity {
                 Component c = (Component) b.getUserData();
                 drawnComponents++;
                 c.drawCanvas(canvas);
+                if (DEBUG_ENABLED) {
+                    c.drawDebug(canvas);
+                }
             } else {
                 // Crap.
                 // throw new UnknownGraphicalElementException();
@@ -279,8 +337,11 @@ public abstract class JBox2DCanvasActivity extends Activity {
         for (Widget w : drawWidgetLast) {
             drawnWidgets++;
             w.drawCanvas(canvas);
+            if (DEBUG_ENABLED) {
+                w.drawDebug(canvas);
+            }
         }
-        if (IS_DEBUG_ENABLED) {
+        if (DEBUG_ENABLED) {
             drawDebug(canvas);
         }
 
@@ -295,10 +356,6 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private void drawBackground(Canvas c) {
         c.drawColor(Color.WHITE);
     }
-    /**
-     * 
-     */
-    private final Paint DEBUG_PAINT = new Paint();
 
     /**
      * Dessine les variables d'environnement.
@@ -317,16 +374,18 @@ public abstract class JBox2DCanvasActivity extends Activity {
         c.drawText("Nombre de mises à jour du moteur de physique : " + numberOfPhysicsLoopsDone + " calculs", 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Nombre de mises à jour du rendu : " + numberOfDrawingLoopsDone, 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Frame per second : " + fps + " fps", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Dimensions du canvas : " + worldWidth + " en x par " + worldHeight + " en y pixels", 15.0f, initP += 15.0f, DEBUG_PAINT);
         drawActivityDebug(c, initP, DEBUG_PAINT);
-
     }
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * 
-     * @param c
-     * @param initP
-     * @param p 
+     * L'activité, grâce à cette méthode, peut générer un output de ses bugs et
+     * paramètres de débogages.
+     * @param c est le canvas sur lequel on dessine.
+     * @param initP est la position initiale à partir de laquelle on peut commencer
+     * à dessiner.
+     * @param p est la couleur du texte à utiliser.
      */
     abstract void drawActivityDebug(Canvas c, float initP, Paint p);
 }

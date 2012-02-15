@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.graphicals;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -28,14 +29,17 @@ import org.jbox2d.dynamics.BodyDef;
 public abstract class Graphical {
 
     /**
+     * 
+     */
+    protected Paint paint = new Paint();
+    /**
      * Définition générale du corps physique.
      */
-    public BodyDef bodyDef = new BodyDef();
-    
+    protected BodyDef bodyDef = new BodyDef();
     /**
      * Donne une définition précise du corps physique.
      */
-    public Body body;
+    protected Body body;
 
     /**
      * Dessine l'objet graphique avec OpenGL ES 2.0.
@@ -53,4 +57,15 @@ public abstract class Graphical {
      * @param me est la description de l'événement.
      */
     public abstract void onClick(MotionEvent me);
+    
+    /**
+     * 
+     * @param c
+     */
+    public abstract void drawDebug(Canvas c);
+    
+    /**
+     * 
+     */
+    public abstract void drawGLDebug();
 }

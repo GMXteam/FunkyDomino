@@ -55,5 +55,22 @@ public class Ground extends Component
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * 
+     * @param c
+     */
+    @Override
+    public void drawDebug(Canvas c) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public void drawGLDebug() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     
 }

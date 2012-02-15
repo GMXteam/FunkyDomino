@@ -19,8 +19,8 @@ package com.gmxteam.funkydomino.graphicals.components;
 import android.graphics.Canvas;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.MotionEvent;
+import com.gmxteam.funkydomino.activities.JBox2DCanvasActivity;
 import org.jbox2d.collision.PolygonDef;
 
 import org.jbox2d.collision.Shape;
@@ -42,52 +42,75 @@ public class Domino extends Component {
     public Domino(World w, Attributes att) {
 
         bodyDef.massData.mass = 95.5f; // 95.5 kg
-        bodyDef.position = new Vec2(50.0f,50.0f);
-        
+        bodyDef.position = new Vec2(50.0f, 50.0f);
+
         body = w.createBody(bodyDef);
-        
+
         PolygonDef pd = new PolygonDef();
         pd.setAsBox(0.0508f, 0.009525f);
         Shape s = body.createShape(pd);
-        
+
         //body.setMassFromShapes();
         body.setUserData(this);
     }
-     /**
+
+    /**
      * 
      * @param w
      */
-    public Domino(World w) {
-
+    public Domino(World w, Vec2 position) {
+        paint.setColor(Color.BLACK);
         bodyDef.massData.mass = 95.5f; // 95.5 kg
-        bodyDef.position = new Vec2(50.0f,50.0f);
-        
+        bodyDef.position = position;
+
         body = w.createBody(bodyDef);
-        
+
         PolygonDef pd = new PolygonDef();
         pd.setAsBox(0.0508f, 0.009525f);
         Shape s = body.createShape(pd);
-        
+
         //body.setMassFromShapes();
         body.setUserData(this);
     }
 
     @Override
     public void drawGL() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void onClick(MotionEvent me) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void drawCanvas(Canvas c) {
-        Paint p = new Paint();
-        p.setColor(Color.BLACK);
-       
-        c.drawRect(body.getPosition().x,body.getPosition().y, body.getPosition().x + 25, body.getPosition().y + 25, p);
-        //Paint p = new Paint();
-        //p.setColor(Color.BLACK);
-        //c.drawText("Ceci est un domino", 20.0f, 200.0f, p);
+        c.drawRect(JBox2DCanvasActivity.toPixelX(body.getPosition().x),
+                JBox2DCanvasActivity.toPixelY(body.getPosition().y + 25.0f),
+                JBox2DCanvasActivity.toPixelX(body.getPosition().x + 25.0f),
+                JBox2DCanvasActivity.toPixelY(body.getPosition().y),
+                paint);
+
+    }
+
+    /**
+     * 
+     * @param c
+     */
+    @Override
+    public void drawDebug(Canvas c) {
+        float initP = JBox2DCanvasActivity.toPixelY(body.getPosition().y + 25.0f) - 15.0f;
+        float positionX = JBox2DCanvasActivity.toPixelX(body.getPosition().x + 25.0f) + 5.0f;
+        //c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", positionX, initP += 15.0f, paint);
+        c.drawText("Position du Domino : " + body.getPosition(), positionX, initP += 15.0f, paint);
+        c.drawText("Masse du Domino : " + body.m_mass + " kg", positionX, initP += 15.0f, paint);
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public void drawGLDebug() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
