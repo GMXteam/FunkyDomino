@@ -23,8 +23,6 @@ import android.util.Log;
 import com.gmxteam.funkydomino.activities.GameActivity;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -54,7 +52,6 @@ public class GameActivityXMLParser {
      * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
      * @param ga 
      * @param resourceId 
-     * @param key 
      * @return une activité Android pour la partie à jouer !
      */
     public static GameActivity buildGameInstance(GameActivity ga, int resourceId) {
@@ -67,11 +64,11 @@ public class GameActivityXMLParser {
             xr.parse(new InputSource(decrypt(ga, resourceId)));
             return ga;
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+            Log.v("funky-domino", "", ex);            
         } catch (SAXException ex) {
-            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+            Log.v("funky-domino", "", ex);
         } catch (IOException ioe) {
-            Log.v("", "", ioe);
+            Log.v("funky-domino", "", ioe);
         }
         return null;
     }
@@ -82,7 +79,6 @@ public class GameActivityXMLParser {
      * Des constantes sont définies afin de récupérer les bonnes informations.
      * @param ga 
      * @param resourceId 
-     * @param key 
      * @return 
      */
     public static GameInformation obtainGameInformations(Activity ga, int resourceId) {
@@ -96,11 +92,11 @@ public class GameActivityXMLParser {
             xr.parse(new InputSource(decrypt(ga, resourceId)));
             return xh.getGameInformation();
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+            Log.v("funky-domino", "", ex);
         } catch (SAXException ex) {
-            Logger.getLogger(GameActivityXMLParser.class.getName()).log(Level.SEVERE, null, ex);
+            Log.v("funky-domino", "", ex);
         } catch (IOException ioe) {
-            Log.v("", "", ioe);
+            Log.v("funky-domino", "", ioe);
         }
 
 
@@ -124,8 +120,8 @@ public class GameActivityXMLParser {
                 + ga.getString(R.string.key_6)
                 + ga.getString(R.string.key_7);
         // On décrypte le niveau avec cette clé...
-        
-        
+
+
         // On retourne l'inputstream du niveau décrypté
 
         return ga.getResources().openRawResource(resourceId);

@@ -118,6 +118,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
     /**
      * Transforme une valeur en pixels en mètres. Prend en considération les
      * dimensions de l'écran et le ratio hauteur par largeur.
+     * Il inverse aussi les valeurs en y afin de faire correspondre les différents
+     * systèmes d'axes.
      * @param meter est une valeur en mètres.
      * @return une valeur en pixels.
      */
@@ -128,6 +130,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
     /**
      * Transforme une valeur en mètres en pixels. Prend en considération les
      * dimensions de l'écran et le ratio hauteur par largeur.
+     * Il inverse aussi les valeurs en y afin de faire correspondre les différents
+     * systèmes d'axes.
      * @param pixel est une valeur en pixels.
      * @return une valeur en pixels.
      */
@@ -171,9 +175,10 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         // TODO Définir les dimensions du monde en fonction du ratio de la taille de l'écran.
         worldAABB.lowerBound.set(new Vec2(0.0f, 0.0f));
-        worldAABB.upperBound.set(new Vec2(200.0f, 200.0f * (float) ((float) canvasView.getHeight() / (float) canvasView.getWidth())));
+        worldAABB.upperBound.set(new Vec2(800.0f, 480.0f ));
 
         // On ajoute la gravité et le worldAABB dans world
+       
         world = new World(worldAABB, new Vec2(0.0f, -9.8f), false);
 
         // On démarre le Thread qui va gérer le moteur de physique

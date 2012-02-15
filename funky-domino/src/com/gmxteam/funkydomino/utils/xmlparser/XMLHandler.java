@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
@@ -92,6 +104,7 @@ public class XMLHandler extends DefaultHandler {
      * @param atts 
      * @throws SAXException 
      */
+    @Override
     public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 
 
@@ -102,6 +115,8 @@ public class XMLHandler extends DefaultHandler {
             gameInformationData.nextLevel = atts.getValue("nextLevel");
             gameInformationData.name = atts.getValue("name");
             gameInformationData.description = atts.getValue("description");
+        } else {
+            throw new IllegalXMLNameException("Balise inconnue " + localName);
         }
 
         if (inLevel) {
@@ -111,6 +126,10 @@ public class XMLHandler extends DefaultHandler {
             } else if (localName.equals("widget")) {
                 gameInformationData.widgetTheme = atts.getValue("theme");
                 inWidget = true;
+            } else {
+
+                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans level.");
+
             }
         }
 
@@ -135,6 +154,8 @@ public class XMLHandler extends DefaultHandler {
             } else if (localName.equals("water")) {
                 new Water(gameActivity.world, atts);
                 inWater = true;
+            } else {
+                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans component.");
             }
 
 
@@ -149,6 +170,8 @@ public class XMLHandler extends DefaultHandler {
             } else if (localName.equals("adddomino")) {
                 new AddDomino(gameActivity.world, atts);
                 inCog = true;
+            } else {
+                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans widget.");
             }
         }
 
@@ -172,6 +195,9 @@ public class XMLHandler extends DefaultHandler {
         if (localName.equals("level")) {
             inLevel = false;
 
+        } else {
+            throw new IllegalXMLNameException("Balise inconnue " + localName);
+
         }
 
         if (inLevel) {
@@ -182,7 +208,7 @@ public class XMLHandler extends DefaultHandler {
 
                 inWidget = false;
             } else {
-                throw new IllegalXMLNameException("Balise inconnue dans level.");
+                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans level.");
             }
         }
 
@@ -198,7 +224,7 @@ public class XMLHandler extends DefaultHandler {
             } else if (localName.equals("water")) {
                 inWater = false;
             } else {
-                throw new IllegalXMLNameException("Balise inconnue dans les composants.");
+                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans les composants.");
             }
         } else if (inWidget) {
             if (localName.equals("adddomino")) {
@@ -206,7 +232,7 @@ public class XMLHandler extends DefaultHandler {
             } else if (localName.equals("addcog")) {
                 inAddBall = false;
             } else {
-                throw new IllegalXMLNameException("Balise inconnue dans les widgets.");
+                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans les widgets.");
             }
         }
     }
@@ -215,7 +241,7 @@ public class XMLHandler extends DefaultHandler {
      * Calling when we're within an element. Here we're checking to see if there is any content in the tags that we're interested in 
      * and populating it in the Config object. 
      * 
-     * On ne devrait pas avoir à utiliser cette section...
+     * On ne devrait pas avoir à utiliser cette section.
      * @param ch 
      * @param start 
      * @param length 
@@ -225,9 +251,5 @@ public class XMLHandler extends DefaultHandler {
         String chars = new String(ch, start, length);
         chars = chars.trim();
 
-        if (inLevel) {
-        } else if (inComponent) {
-        } else if (inWidget) {
-        }
     }
 }

@@ -18,6 +18,8 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import org.jbox2d.collision.PolygonDef;
 
@@ -80,6 +82,10 @@ public class Domino extends Component {
 
     @Override
     public void drawCanvas(Canvas c) {
+        Paint p = new Paint();
+        p.setColor(Color.BLACK);
+       
+        c.drawRect(body.getPosition().x,body.getPosition().y, body.getPosition().x + 25, body.getPosition().y + 25, p);
         //Paint p = new Paint();
         //p.setColor(Color.BLACK);
         //c.drawText("Ceci est un domino", 20.0f, 200.0f, p);
