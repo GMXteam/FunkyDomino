@@ -34,6 +34,10 @@ import org.xml.sax.Attributes;
  */
 public final class Domino extends Component {
 
+    private Shape shape;
+    private PolygonDef pd;
+    private final float WIDTH = 25.0f, HEIGHT = 25.0f;
+
     /**
      * Constructeur pour le parser XML.
      * @param w est le monde dans lequel le domino doit être construit.
@@ -57,9 +61,9 @@ public final class Domino extends Component {
 
         body = w.createBody(bodyDef);
 
-        PolygonDef pd = new PolygonDef();
+        pd = new PolygonDef();
         pd.setAsBox(0.0508f, 0.009525f);
-        Shape s = body.createShape(pd);
+        shape = body.createShape(pd);
 
         //body.setMassFromShapes();
         body.setUserData(this);
@@ -78,8 +82,8 @@ public final class Domino extends Component {
     @Override
     public void drawCanvas(Canvas c) {
         c.drawRect(JBox2DCanvasActivity.toPixelX(body.getPosition().x),
-                JBox2DCanvasActivity.toPixelY(body.getPosition().y + 25.0f),
-                JBox2DCanvasActivity.toPixelX(body.getPosition().x + 25.0f),
+                JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT),
+                JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH),
                 JBox2DCanvasActivity.toPixelY(body.getPosition().y),
                 paint);
 
@@ -91,8 +95,9 @@ public final class Domino extends Component {
      */
     @Override
     public void drawDebug(Canvas c) {
-        float initP = JBox2DCanvasActivity.toPixelY(body.getPosition().y + 25.0f) - 15.0f;
-        float positionX = JBox2DCanvasActivity.toPixelX(body.getPosition().x + 25.0f) + 5.0f;
+
+        float initP = JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT) - 15.0f;
+        float positionX = JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH) + 5.0f;
         //c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", positionX, initP += 15.0f, paint);
         c.drawText("Position du Domino : " + body.getPosition(), positionX, initP += 15.0f, paint);
         c.drawText("Masse du Domino : " + body.m_mass + " kg", positionX, initP += 15.0f, paint);

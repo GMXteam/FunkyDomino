@@ -87,6 +87,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
     private View canvasView;
     ////////////////////////////////////////////////////////////////////////////
     // Variables pour le moteur de collisions
+    private final float GRAVITY = -98.0f;
     private static float worldHeight = 320.0f,
             worldWidth = 533.0f;
     /**
@@ -134,7 +135,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * @return 
      */
     public static float toPixelY(float metreY) {
-        return worldHeight - metreY;
+        return worldHeight - (metreY);
     }
 
     /**
@@ -152,7 +153,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * @return 
      */
     public static float toMeterY(float pixelY) {
-        return worldHeight - pixelY;
+        return worldHeight - (pixelY);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -197,7 +198,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
         // On ajoute la gravité et le worldAABB dans world
 
-        world = new World(worldAABB, new Vec2(0.0f, -9.8f), false);
+        world = new World(worldAABB, new Vec2(0.0f, GRAVITY), false);
 
         // On démarre le Thread qui va gérer le moteur de physique
         mHandler = new Handler();
