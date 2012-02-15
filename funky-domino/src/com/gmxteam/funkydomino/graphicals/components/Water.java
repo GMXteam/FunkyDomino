@@ -25,7 +25,7 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Water extends Component
+public final class Water extends Component
 {
     /**
      * 

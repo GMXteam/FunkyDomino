@@ -20,34 +20,15 @@ package com.gmxteam.funkydomino.utils.xmlparser;
  *
  * @author guillaume
  */
-public final class GameInformation {
+public final class IllegalXMLAttributeValueException extends RuntimeException{
+     /**
+     * 
+     * @param message
+     */
+    public IllegalXMLAttributeValueException(String message) {
 
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    public String id,
-            previousLevel,
-            nextLevel,
-            name,
-            description,
-            componentTheme,
-            widgetTheme;
+
+        super(message);
+        
+    }
 }

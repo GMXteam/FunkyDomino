@@ -16,21 +16,26 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class HelpActivity extends JBox2DOpenGLActivity
-{
+public final class HelpActivity extends JBox2DCanvasActivity {
+
     /**
      * 
      * @param savedInstanceState
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        
-    
+    }
+
+    @Override
+    void drawActivityDebug(Canvas c, float initP, Paint p) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

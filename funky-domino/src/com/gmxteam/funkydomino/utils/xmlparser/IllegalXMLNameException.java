@@ -20,7 +20,7 @@ package com.gmxteam.funkydomino.utils.xmlparser;
  *
  * @author guillaume
  */
-public class IllegalXMLNameException extends RuntimeException {
+public final class IllegalXMLNameException extends RuntimeException {
 
     /**
      * 

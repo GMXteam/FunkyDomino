@@ -36,7 +36,7 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * @author guillaume
  */
-public class XMLHandler extends DefaultHandler {
+public final class XMLHandler extends DefaultHandler {
 
     // booleans that check whether it's in a specific tag or not 
     private boolean inComponent;

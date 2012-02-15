@@ -20,7 +20,7 @@ package com.gmxteam.funkydomino.utils.xmlparser;
  *
  * @author guillaume
  */
-public class IllegalXMLAttributeException extends RuntimeException {
+public final class IllegalXMLAttributeException extends RuntimeException {
 
     /**
      * 

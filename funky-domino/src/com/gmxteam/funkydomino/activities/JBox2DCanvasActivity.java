@@ -155,46 +155,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
         return worldHeight - pixelY;
     }
 
-    /**
-     * Transforme une valeur en pixels en mètres. Prend en considération les
-     * dimensions de l'écran et le ratio hauteur par largeur.
-     * Il inverse aussi les valeurs en y afin de faire correspondre les différents
-     * systèmes d'axes.
-     * @param meter est une valeur en mètres.
-     * @return une valeur en pixels.
-     * @deprecated Il faut utiliser toPixelX et toPixelY. Cette méthode n'est
-     * pas optimisée.
-     */
-    @Deprecated
-    public static Vec2 toPixel(Vec2 meter) {
-        Vec2 pixel = new Vec2();
-        pixel.x = meter.x;
-        pixel.y = worldHeight - meter.y;
-
-
-
-        return pixel;
-    }
-
-    /**
-     * Transforme une valeur en mètres en pixels. Prend en considération les
-     * dimensions de l'écran et le ratio hauteur par largeur.
-     * Il inverse aussi les valeurs en y afin de faire correspondre les différents
-     * systèmes d'axes.
-     * @param pixel est une valeur en pixels.
-     * @return une valeur en pixels.
-     * @deprecated Il faut utiliser toMeterX et toMeterY. Cette méthode n'est
-     * pas optimisée.
-     */
-    @Deprecated
-    public static Vec2 toMeter(Vec2 pixel) {
-        Vec2 meter = new Vec2();
-        meter.x = pixel.x;
-        meter.y = worldHeight - pixel.y;
-        return meter;
-    }
     ////////////////////////////////////////////////////////////////////////////
-
     /**
      * Initialisation du rendu 2D.
      */

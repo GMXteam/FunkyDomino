@@ -16,30 +16,28 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class LoadGameActivity extends JBox2DOpenGLActivity
-{
-     private String publicKey0 = getString(R.string.key_0),
-            publicKey1 = getString(R.string.key_1),
-            publicKey2 = getString(R.string.key_2),
-            publicKey3 = getString(R.string.key_3),
-            publicKey4 = getString(R.string.key_4),
-            publicKey5 = getString(R.string.key_5),
-            publicKey6 = getString(R.string.key_6),
-            publicKey7 = getString(R.string.key_7);
-     
-     /**
-      * 
-      * @param ressources
-      */
-     @Override
+public final class LoadGameActivity extends JBox2DCanvasActivity {
+
+    /**
+     * 
+     * @param ressources
+     */
+    @Override
     public void onCreate(Bundle ressources) {
         super.onCreate(ressources);
-               
+
+    }
+
+    @Override
+    void drawActivityDebug(Canvas c, float initP, Paint p) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

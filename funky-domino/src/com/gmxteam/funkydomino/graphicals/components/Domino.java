@@ -32,31 +32,23 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Domino extends Component {
+public final class Domino extends Component {
 
     /**
-     * 
-     * @param w
-     * @param att  
+     * Constructeur pour le parser XML.
+     * @param w est le monde dans lequel le domino doit être construit.
+     * @param att est un objet d'attributs XML propre à ce domino.
      */
     public Domino(World w, Attributes att) {
 
-        bodyDef.massData.mass = 95.5f; // 95.5 kg
-        bodyDef.position = new Vec2(50.0f, 50.0f);
+        this(w, new Vec2(Float.parseFloat(att.getValue("x")), Float.parseFloat(att.getValue("y"))));
 
-        body = w.createBody(bodyDef);
-
-        PolygonDef pd = new PolygonDef();
-        pd.setAsBox(0.0508f, 0.009525f);
-        Shape s = body.createShape(pd);
-
-        //body.setMassFromShapes();
-        body.setUserData(this);
     }
 
     /**
      * 
      * @param w
+     * @param position  
      */
     public Domino(World w, Vec2 position) {
         paint.setColor(Color.BLACK);

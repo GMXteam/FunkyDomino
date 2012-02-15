@@ -23,7 +23,7 @@ import android.os.Bundle;
  * Activité utilisée pour configurer Funky Domino.
  * @author Guillaume Poirier-Morency
  */
-public class PreferencesActivity extends Activity {
+public final class PreferencesActivity extends Activity {
 
     /**
      * 

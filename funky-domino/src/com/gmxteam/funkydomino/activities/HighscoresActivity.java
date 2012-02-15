@@ -16,11 +16,17 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class HighscoresActivity extends JBox2DOpenGLActivity
-{
-    
+public final class HighscoresActivity extends JBox2DCanvasActivity {
+
+    @Override
+    void drawActivityDebug(Canvas c, float initP, Paint p) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

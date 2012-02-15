@@ -23,7 +23,7 @@ import android.opengl.GLES20;
  * elles aussi statiques.
  * @author Guillaume Poirier-Morency
  */
-public class DrawKitGLES20 {
+public final class DrawKitGLES20 {
     
     
     /**

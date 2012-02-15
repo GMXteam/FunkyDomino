@@ -29,4 +29,6 @@ public abstract class Component extends Graphical {
      * composants, sans toutefois définir les widgets.
      */
     
+    
+    
 }

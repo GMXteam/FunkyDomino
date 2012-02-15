@@ -18,6 +18,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import android.graphics.Canvas;
 import android.view.MotionEvent;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.xml.sax.Attributes;
 
@@ -25,8 +26,8 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Ground extends Component
-{
+public final class Ground extends Component {
+
     /**
      * 
      * @param w
@@ -35,11 +36,26 @@ public class Ground extends Component
     public Ground(World w, Attributes att) {
 
 
-       body = w.createBody(bodyDef);  
-        body.setUserData(this);  
+        body = w.createBody(bodyDef);
+        body.setUserData(this);
 
 
-}
+    }
+
+    /**
+     * 
+     * @param w
+     * @param vecList 
+     */
+    public Ground(World w, Vec2[] vecList) {
+
+
+        body = w.createBody(bodyDef);
+        body.setUserData(this);
+
+
+    }
+
     @Override
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -71,6 +87,4 @@ public class Ground extends Component
     public void drawGLDebug() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    
 }

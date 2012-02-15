@@ -25,7 +25,7 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Ball extends Component
+public final class Ball extends Component
 {
     /**
      * 

@@ -27,7 +27,7 @@ import org.jbox2d.common.Vec2;
  * Elle sera construite avec JBox2D et permettera d'accéder aux autres activités.
  * @author Guillaume Poirier-Morency
  */
-public class MainActivity extends JBox2DCanvasActivity {
+public final class MainActivity extends JBox2DCanvasActivity {
 
     /** Called when the activity is first created.
      * @param savedInstanceState 

@@ -25,13 +25,13 @@ import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
  *
  * @author Guillaume Poirier-Morency
  */
-public class GameActivity extends JBox2DCanvasActivity {
-    
+public final class GameActivity extends JBox2DCanvasActivity {
+
     @Override
     public void onCreate(Bundle ressources) {
-        
+
         super.onCreate(ressources);
-        GameActivityXMLParser.buildGameInstance(this, ressources.getInt("LEVEL"));        
+        GameActivityXMLParser.buildGameInstance(this, ressources.getInt("LEVEL"));
     }
 
     @Override

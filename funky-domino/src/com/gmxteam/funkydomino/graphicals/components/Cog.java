@@ -26,7 +26,7 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Cog extends Component
+public final class Cog extends Component
 {
 
     /**

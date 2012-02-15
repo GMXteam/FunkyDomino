@@ -25,7 +25,7 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class AddBall extends Widget
+public final class AddBall extends Widget
 {
     /**
      * 

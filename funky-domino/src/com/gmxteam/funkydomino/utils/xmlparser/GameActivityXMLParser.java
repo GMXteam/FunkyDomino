@@ -35,7 +35,7 @@ import org.xml.sax.XMLReader;
  * encrypté asymétriquement en Activity.
  * @author Guillaume Poirier-morency
  */
-public class GameActivityXMLParser {
+public final class GameActivityXMLParser {
 
     // D'autres constantes seront définies en fonction de la structure XML choisie.
     /**

@@ -26,7 +26,7 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class AddDomino extends Widget
+public final class AddDomino extends Widget
 {
     /**
      * 
