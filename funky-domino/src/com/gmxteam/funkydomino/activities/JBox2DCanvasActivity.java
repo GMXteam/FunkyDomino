@@ -111,7 +111,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
             world.step((float) ((renderingTime + sleepTime) / 1000.0f), iterations);
             numberOfPhysicsLoopsDone++;
-            canvasView.invalidate();
+            canvasView.invalidate();            
             renderingTime = System.currentTimeMillis() - timeBefore;
             mHandler.postDelayed(update, sleepTime);
             // TODO Corriger l'influence du temps de rendu

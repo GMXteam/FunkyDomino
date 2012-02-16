@@ -73,14 +73,30 @@ public final class Domino extends Component {
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    private MotionEvent currentMotionEvent;
     @Override
     public void onClick(MotionEvent me) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        currentMotionEvent = me;
+        
+        if(me == currentMotionEvent && me.getPressure() > 0.0f) {
+            // le domino est retenu (suit le doigt)
+            Vec2 positionDoigt = new Vec2(me.getX(), me.getY());
+            Vec2 copyDuCentreDeMasse = positionDoigt.sub(body.getLocalCenter());
+            copyDuCentreDeMasse.normalize();
+            body.applyImpulse(copyDuCentreDeMasse.mul(20.0f), body.getLocalCenter());
+        
+        } 
+        else {
+            // le domino est relâché
+        
+        }
+        
+        
+        
     }
 
     @Override
-    public void drawCanvas(Canvas c) {
+    public void drawCanvas(Canvas c) {      
         c.drawRect(JBox2DCanvasActivity.toPixelX(body.getPosition().x),
                 JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT),
                 JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH),
