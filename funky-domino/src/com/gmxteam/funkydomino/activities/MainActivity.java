@@ -36,6 +36,7 @@ public final class MainActivity extends JBox2DCanvasActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new Domino(world, new Vec2(100.0f, 100.0f));
+        new Domino(world, new Vec2(120.0f, 150.0f));
        
     }
 

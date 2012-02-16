@@ -62,7 +62,7 @@ public final class Domino extends Component {
         body = w.createBody(bodyDef);
 
         pd = new PolygonDef();
-        pd.setAsBox(0.0508f, 0.009525f);
+        pd.setAsBox(25.0508f, 25.009525f);
         shape = body.createShape(pd);
 
         //body.setMassFromShapes();
@@ -125,7 +125,7 @@ public final class Domino extends Component {
     @Override
     public void drawDebug(Canvas c) {
 
-        float initP = JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT) + 5.0f;
+        float initP = + 250.0f;
         float positionX = JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH) + 5.0f;
         //c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", positionX, initP += 15.0f, paint);
         c.drawText("Position du Domino : " + body.getPosition(), positionX, initP += 15.0f, paint);
