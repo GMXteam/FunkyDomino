@@ -19,6 +19,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 import android.graphics.Canvas;
 
 import android.graphics.Color;
+import android.graphics.drawable.shapes.RectShape;
 import android.view.MotionEvent;
 import com.gmxteam.funkydomino.activities.JBox2DCanvasActivity;
 import org.jbox2d.collision.PolygonDef;
@@ -36,6 +37,7 @@ public final class Domino extends Component {
 
     private Shape shape;
     private PolygonDef pd;
+    private RectShape rs1;
     private final float WIDTH = 25.0f, HEIGHT = 25.0f;
 
     /**
@@ -62,8 +64,14 @@ public final class Domino extends Component {
         body = w.createBody(bodyDef);
 
         pd = new PolygonDef();
+
+        //pd.setAsBox(0.08f, 0.08f);
+
         pd.setAsBox(25.0508f, 25.009525f);
+
         shape = body.createShape(pd);
+        
+        rs1 = new RectShape();
 
         //body.setMassFromShapes();
         body.setUserData(this);
@@ -90,12 +98,15 @@ public final class Domino extends Component {
 
         currentMotionEvent = me;
         
-        if(me == currentMotionEvent && me.getPressure() > 0.0f) {
+        if(me == currentMotionEvent && isPressed) {
             // le domino est retenu (suit le doigt)
+            
             Vec2 positionDoigt = new Vec2(me.getX(), me.getY());
             Vec2 copyDuCentreDeMasse = positionDoigt.sub(body.getLocalCenter());
             copyDuCentreDeMasse.normalize();
             body.applyImpulse(copyDuCentreDeMasse.mul(20.0f), body.getLocalCenter());
+            
+   
         
         } 
         else {
