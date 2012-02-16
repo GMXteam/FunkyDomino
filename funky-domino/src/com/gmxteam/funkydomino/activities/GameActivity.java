@@ -19,6 +19,7 @@ package com.gmxteam.funkydomino.activities;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
+
 import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
 
 /**

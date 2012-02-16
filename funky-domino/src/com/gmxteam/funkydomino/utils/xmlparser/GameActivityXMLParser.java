@@ -16,11 +16,11 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-import com.gmxteam.funkydomino.activities.R;
 
 import android.app.Activity;
 import android.util.Log;
 import com.gmxteam.funkydomino.activities.GameActivity;
+import com.gmxteam.funkydomino.activities.R;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
