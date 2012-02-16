@@ -95,7 +95,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      */
     public World world;
     private int sleepTime = 15;
-    private int iterations = 5;
+    private int iterations = 10;
     private AABB worldAABB;
     private Handler mHandler;
     private Runnable update = new Runnable() {
@@ -111,7 +111,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
 
             world.step((float) ((renderingTime + sleepTime) / 1000.0f), iterations);
             numberOfPhysicsLoopsDone++;
-            canvasView.invalidate();            
+            canvasView.invalidate();
             renderingTime = System.currentTimeMillis() - timeBefore;
             mHandler.postDelayed(update, sleepTime);
             // TODO Corriger l'influence du temps de rendu
@@ -256,11 +256,14 @@ public abstract class JBox2DCanvasActivity extends Activity {
      */
     @Override
     public boolean onTouchEvent(MotionEvent me) {
-        // TODO Mettre le MotionEvent dans le AABB.
+
+        
         touchedArea.lowerBound.x = toMeterX(me.getX() - (me.getXPrecision() / 2.0f));
+        touchedArea.lowerBound.y = toMeterY(me.getY() - (me.getYPrecision() / 2.0f));
+
+
         touchedArea.upperBound.x = toMeterX(me.getX() + (me.getXPrecision() / 2.0f));
-        touchedArea.lowerBound.y = toMeterY(me.getX() - (me.getYPrecision() / 2.0f));
-        touchedArea.upperBound.y = toMeterY(me.getX() + (me.getYPrecision() / 2.0f));
+        touchedArea.upperBound.y = toMeterY(me.getY() + (me.getYPrecision() / 2.0f));
 
         // On récupère la liste des shapes dans la zone touchée.
         Shape[] shapeList = world.query(touchedArea, 500);
@@ -282,6 +285,7 @@ public abstract class JBox2DCanvasActivity extends Activity {
      * @param canvas est la surface sur laquelle la surface sera dessinée.
      */
     private void onDrawFrame(Canvas canvas) {
+
         drawBackground(canvas);
         Body b = this.world.getBodyList();
         ArrayList<Widget> drawWidgetLast = new ArrayList<Widget>();
@@ -341,8 +345,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
         c.drawText("Nombre de mises à jour du moteur de physique : " + numberOfPhysicsLoopsDone + " calculs", 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Nombre de mises à jour du rendu : " + numberOfDrawingLoopsDone, 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Frame per second : " + fps + " fps", 15.0f, initP += 15.0f, DEBUG_PAINT);
-        c.drawText("Dimensions du canvas : " + worldWidth + " en x par " + worldHeight + " en y pixels", 15.0f, initP += 15.0f, DEBUG_PAINT);
-        c.drawText("Zone touchée : " + touchedArea , 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Dimensions du canvas : " + canvasView.getWidth() + " en x par " + canvasView.getHeight() + " en y pixels", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Zone touchée : " + touchedArea, 15.0f, initP += 15.0f, DEBUG_PAINT);
 
         drawActivityDebug(c, initP, DEBUG_PAINT);
     }

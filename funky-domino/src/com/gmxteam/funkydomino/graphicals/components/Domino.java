@@ -25,6 +25,7 @@ import com.gmxteam.funkydomino.activities.JBox2DCanvasActivity;
 import org.jbox2d.collision.PolygonDef;
 
 import org.jbox2d.collision.Shape;
+import org.jbox2d.collision.ShapeType;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.World;
 import org.xml.sax.Attributes;
@@ -65,13 +66,23 @@ public final class Domino extends Component {
 
         pd = new PolygonDef();
 
+        pd.setAsBox(12.5f, 12.5f);
+        pd.type = ShapeType.POLYGON_SHAPE;
+        pd.isSensor = true;
+        pd.density = 50.0f;
+
+
         //pd.setAsBox(0.08f, 0.08f);
 
-        pd.setAsBox(25.0508f, 25.009525f);
+      
+
 
         shape = body.createShape(pd);
         
         rs1 = new RectShape();
+
+        body.setMassFromShapes();
+
 
         //body.setMassFromShapes();
         body.setUserData(this);
@@ -81,52 +92,48 @@ public final class Domino extends Component {
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
     private boolean isPressed;
-
-
     private MotionEvent currentMotionEvent;
 
     @Override
     public void onClick(MotionEvent me) {
-
-
-
-        isPressed = me.getPressure() > 0.0f;
-
-
-
+        isPressed = true;
         currentMotionEvent = me;
+
         
         if(me == currentMotionEvent && isPressed) {
+
             // le domino est retenu (suit le doigt)
             
             Vec2 positionDoigt = new Vec2(me.getX(), me.getY());
             Vec2 copyDuCentreDeMasse = positionDoigt.sub(body.getLocalCenter());
             copyDuCentreDeMasse.normalize();
             body.applyImpulse(copyDuCentreDeMasse.mul(20.0f), body.getLocalCenter());
+
+
             
    
         
         } 
         else {
+
             // le domino est relâché
-        
         }
-        
-        
-        
+
+
+
 
     }
 
     @Override
-    public void drawCanvas(Canvas c) {      
+    public void drawCanvas(Canvas c) {
+
+
         c.drawRect(JBox2DCanvasActivity.toPixelX(body.getPosition().x),
                 JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT),
                 JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH),
                 JBox2DCanvasActivity.toPixelY(body.getPosition().y),
                 paint);
-
     }
 
     /**
@@ -136,12 +143,14 @@ public final class Domino extends Component {
     @Override
     public void drawDebug(Canvas c) {
 
-        float initP = + 250.0f;
+        float initP = +250.0f;
         float positionX = JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH) + 5.0f;
         //c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", positionX, initP += 15.0f, paint);
         c.drawText("Position du Domino : " + body.getPosition(), positionX, initP += 15.0f, paint);
         c.drawText("Masse du Domino : " + body.m_mass + " kg", positionX, initP += 15.0f, paint);
         c.drawText("Est pressé : " + isPressed, positionX, initP += 15.0f, paint);
+
+
     }
 
     /**
