@@ -244,9 +244,10 @@ public abstract class JBox2DCanvasActivity extends Activity {
         // On réveille le redraw du canvas
         canvasView.postInvalidate();
     }
-
     ////////////////////////////////////////////////////////////////////////////
     // User input handling
+    private AABB touchedArea = new AABB();
+
     /**
      * On récupère le MotionEvent et on le redirige vers tous les objets graphiques
      * avec qui on trouve une collision.
@@ -256,9 +257,13 @@ public abstract class JBox2DCanvasActivity extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent me) {
         // TODO Mettre le MotionEvent dans le AABB.
-        AABB areaAABB = new AABB();
+        touchedArea.lowerBound.x = toMeterX(me.getX() - (me.getXPrecision() / 2.0f));
+        touchedArea.upperBound.x = toMeterX(me.getX() + (me.getXPrecision() / 2.0f));
+        touchedArea.lowerBound.y = toMeterY(me.getX() - (me.getYPrecision() / 2.0f));
+        touchedArea.upperBound.y = toMeterY(me.getX() + (me.getYPrecision() / 2.0f));
+
         // On récupère la liste des shapes dans la zone touchée.
-        Shape[] shapeList = world.query(areaAABB, 500);
+        Shape[] shapeList = world.query(touchedArea, 500);
         // Si la zone contient des widgets ou composants, on les avertit.
         for (Shape clickedShape : shapeList) {
             if (clickedShape.getBody().getUserData() instanceof Widget) {
@@ -337,6 +342,8 @@ public abstract class JBox2DCanvasActivity extends Activity {
         c.drawText("Nombre de mises à jour du rendu : " + numberOfDrawingLoopsDone, 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Frame per second : " + fps + " fps", 15.0f, initP += 15.0f, DEBUG_PAINT);
         c.drawText("Dimensions du canvas : " + worldWidth + " en x par " + worldHeight + " en y pixels", 15.0f, initP += 15.0f, DEBUG_PAINT);
+        c.drawText("Zone touchée : " + touchedArea , 15.0f, initP += 15.0f, DEBUG_PAINT);
+
         drawActivityDebug(c, initP, DEBUG_PAINT);
     }
     ////////////////////////////////////////////////////////////////////////////

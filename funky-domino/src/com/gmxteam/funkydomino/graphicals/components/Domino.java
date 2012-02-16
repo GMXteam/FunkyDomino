@@ -73,9 +73,21 @@ public final class Domino extends Component {
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    private boolean isPressed;
+
+
     private MotionEvent currentMotionEvent;
+
     @Override
     public void onClick(MotionEvent me) {
+
+
+
+        isPressed = me.getPressure() > 0.0f;
+
+
+
         currentMotionEvent = me;
         
         if(me == currentMotionEvent && me.getPressure() > 0.0f) {
@@ -93,6 +105,7 @@ public final class Domino extends Component {
         
         
         
+
     }
 
     @Override
@@ -112,11 +125,12 @@ public final class Domino extends Component {
     @Override
     public void drawDebug(Canvas c) {
 
-        float initP = JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT) - 15.0f;
+        float initP = JBox2DCanvasActivity.toPixelY(body.getPosition().y + HEIGHT) + 5.0f;
         float positionX = JBox2DCanvasActivity.toPixelX(body.getPosition().x + WIDTH) + 5.0f;
         //c.drawText("INFO SUR LE DOMINO QUI NOUS INTÉRESSE", positionX, initP += 15.0f, paint);
         c.drawText("Position du Domino : " + body.getPosition(), positionX, initP += 15.0f, paint);
         c.drawText("Masse du Domino : " + body.m_mass + " kg", positionX, initP += 15.0f, paint);
+        c.drawText("Est pressé : " + isPressed, positionX, initP += 15.0f, paint);
     }
 
     /**
