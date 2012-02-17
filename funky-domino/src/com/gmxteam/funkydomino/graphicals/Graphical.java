@@ -19,7 +19,6 @@ package com.gmxteam.funkydomino.graphicals;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.MotionEvent;
-import org.anddev.andengine.entity.Entity;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 
@@ -27,7 +26,7 @@ import org.jbox2d.dynamics.BodyDef;
  * Objet de base pour construire un élément graphique (widgets et composants).
  * @author Guillaume Poirier-Morency
  */
-public abstract class Graphical extends Entity {
+public abstract class Graphical {
 
     /**
      * 
