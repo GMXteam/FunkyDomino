@@ -42,6 +42,7 @@ public final class Ball extends Component
     @Override
     public void drawGL() {
         throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
