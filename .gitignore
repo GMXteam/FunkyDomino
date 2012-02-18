@@ -2,3 +2,10 @@ gen/
 bin/
 local.properties
 
+
+# Local OS files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db 
+*.swp
