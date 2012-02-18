@@ -1,0 +1,80 @@
+package org.anddev.andengine.examples.adt.messages.server;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import org.anddev.andengine.extension.multiplayer.protocol.adt.message.server.ServerMessage;
+
+/**
+ * (c) 2010 Nicolas Gramlich 
+ * (c) 2011 Zynga Inc.
+ * 
+ * @author Nicolas Gramlich
+ * @since 12:23:25 - 21.05.2011
+ */
+public class ConnectionEstablishedServerMessage extends ServerMessage implements ServerMessageFlags {
+	// ===========================================================
+	// Constants
+	// ===========================================================
+
+	// ===========================================================
+	// Fields
+	// ===========================================================
+
+	// ===========================================================
+	// Constructors
+	// ===========================================================
+
+    /**
+     * 
+     */
+    public ConnectionEstablishedServerMessage() {
+
+	}
+
+	// ===========================================================
+	// Getter & Setter
+	// ===========================================================
+
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
+
+    /**
+     * 
+     * @return
+     */
+    @Override
+	public short getFlag() {
+		return FLAG_MESSAGE_SERVER_CONNECTION_ESTABLISHED;
+	}
+
+        /**
+         * 
+         * @param pDataInputStream
+         * @throws IOException
+         */
+        @Override
+	protected void onReadTransmissionData(final DataInputStream pDataInputStream) throws IOException {
+		/* Nothing to read. */
+	}
+
+        /**
+         * 
+         * @param pDataOutputStream
+         * @throws IOException
+         */
+        @Override
+	protected void onWriteTransmissionData(final DataOutputStream pDataOutputStream) throws IOException {
+		/* Nothing to write. */
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+}
