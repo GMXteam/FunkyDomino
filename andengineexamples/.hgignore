@@ -1,0 +1,9 @@
+syntax: glob
+bin/**
+.DS_Store
+Thumbs.db
+\.orig\..*$
+\.orig$
+\.chg\..*$
+\.rej$
+\.conflict\~$
