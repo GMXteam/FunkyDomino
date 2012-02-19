@@ -17,15 +17,15 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 
+import android.R;
 import android.app.Activity;
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.examples.R;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.anddev.andengine.ui.activity.BaseGameActivity;
+import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -111,14 +111,14 @@ public final class GameActivityXMLParser {
      */
     private static InputStream decrypt(Activity ga, int resourceId) {
         // On récupère la clé publique...
-        String publickey = ga.getString(R.string.key_0)
-                + ga.getString(R.string.key_1)
-                + ga.getString(R.string.key_2)
-                + ga.getString(R.string.key_3)
-                + ga.getString(R.string.key_4)
-                + ga.getString(R.string.key_5)
-                + ga.getString(R.string.key_6)
-                + ga.getString(R.string.key_7);
+//        String publickey = ga.getString(R.string.key_0)
+//                + ga.getString(R.string.key_1)
+//                + ga.getString(R.string.key_2)
+//                + ga.getString(R.string.key_3)
+//                + ga.getString(R.string.key_4)
+//                + ga.getString(R.string.key_5)
+//                + ga.getString(R.string.key_6)
+//                + ga.getString(R.string.key_7);
         // On décrypte le niveau avec cette clé...
 
 

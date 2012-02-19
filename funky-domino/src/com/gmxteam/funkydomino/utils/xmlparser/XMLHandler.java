@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
 
-import org.anddev.andengine.ui.activity.BaseGameActivity;
+import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals;
 
-import org.anddev.andengine.entity.Entity;
+import org.andengine.entity.Entity;
 
 /**
  * Objet de base pour construire un élément graphique (widgets et composants).

@@ -30,7 +30,7 @@ package com.gmxteam.funkydomino.activities;
 // Librairies standard Android
 
 // Librairie standard Java
-import org.anddev.andengine.ui.activity.BaseGameActivity;
+import org.andengine.ui.activity.BaseGameActivity;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.

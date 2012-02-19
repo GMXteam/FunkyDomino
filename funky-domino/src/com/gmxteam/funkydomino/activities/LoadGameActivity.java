@@ -17,8 +17,9 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.os.Bundle;
-import org.anddev.andengine.engine.Engine;
-import org.anddev.andengine.entity.scene.Scene;
+import org.andengine.engine.Engine;
+import org.andengine.engine.options.EngineOptions;
+import org.andengine.entity.scene.Scene;
 
 /**
  *
@@ -65,6 +66,22 @@ public final class LoadGameActivity extends AndEngineActivity {
      * 
      */
     public void onLoadComplete() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public EngineOptions onCreateEngineOptions() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
