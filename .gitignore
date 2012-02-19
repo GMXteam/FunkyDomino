@@ -5,6 +5,7 @@ local.properties
 
 # Local OS files
 .DS_Store*
+.DS_Store
 ehthumbs.db
 Icon?
 Thumbs.db 
