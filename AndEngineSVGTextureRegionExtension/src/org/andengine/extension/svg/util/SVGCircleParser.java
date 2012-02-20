@@ -39,7 +39,13 @@ public class SVGCircleParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
+    /**
+     * 
+     * @param pSVGProperties
+     * @param pCanvas
+     * @param pSVGPaint
+     */
+    public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
 		final Float centerX = pSVGProperties.getFloatAttribute(ATTRIBUTE_CENTER_X);
 		final Float centerY = pSVGProperties.getFloatAttribute(ATTRIBUTE_CENTER_Y);
 		final Float radius = pSVGProperties.getFloatAttribute(ATTRIBUTE_RADIUS);

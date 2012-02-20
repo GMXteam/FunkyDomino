@@ -28,13 +28,21 @@ public class TransformationTest extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void setUp() throws Exception {
 		this.mMatrix = new Matrix();
 		this.mTransformation = new Transformation();
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void tearDown() throws Exception {
 
 	}
@@ -43,7 +51,10 @@ public class TransformationTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-	public void testPostRotate1() {
+        /**
+         * 
+         */
+        public void testPostRotate1() {
 		this.mMatrix.postRotate(3);
 		this.mTransformation.postRotate(3);
 
@@ -52,7 +63,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPostRotate2() {
+        /**
+         * 
+         */
+        public void testPostRotate2() {
 		this.mMatrix.postRotate(-3);
 		this.mTransformation.postRotate(-3);
 
@@ -61,7 +75,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPostRotate3() {
+        /**
+         * 
+         */
+        public void testPostRotate3() {
 		this.mMatrix.postRotate(135);
 		this.mTransformation.postRotate(135);
 
@@ -70,7 +87,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPostScale() {
+        /**
+         * 
+         */
+        public void testPostScale() {
 		this.mMatrix.postScale(3, 3);
 		this.mTransformation.postScale(3, 3);
 
@@ -79,7 +99,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPostTranslate() {
+        /**
+         * 
+         */
+        public void testPostTranslate() {
 		this.mMatrix.postTranslate(-1, 15);
 		this.mTransformation.postTranslate(-1, 15);
 
@@ -88,7 +111,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPreRotate1() {
+        /**
+         * 
+         */
+        public void testPreRotate1() {
 		this.mMatrix.preRotate(3);
 		this.mTransformation.preRotate(3);
 
@@ -97,7 +123,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPreRotate2() {
+        /**
+         * 
+         */
+        public void testPreRotate2() {
 		this.mMatrix.preRotate(-3);
 		this.mTransformation.preRotate(-3);
 
@@ -106,7 +135,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPreRotate3() {
+        /**
+         * 
+         */
+        public void testPreRotate3() {
 		this.mMatrix.preRotate(135);
 		this.mTransformation.preRotate(135);
 
@@ -115,7 +147,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPreScale() {
+        /**
+         * 
+         */
+        public void testPreScale() {
 		this.mMatrix.preScale(3, 3);
 		this.mTransformation.preScale(3, 3);
 
@@ -124,7 +159,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPreTranslate() {
+        /**
+         * 
+         */
+        public void testPreTranslate() {
 		this.mMatrix.preTranslate(-1, 15);
 		this.mTransformation.preTranslate(-1, 15);
 
@@ -133,7 +171,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPostComplex() {
+        /**
+         * 
+         */
+        public void testPostComplex() {
 		this.mMatrix.postTranslate(10, 2);
 		this.mTransformation.postTranslate(10, 2);
 
@@ -157,7 +198,10 @@ public class TransformationTest extends AndroidTestCase {
 		this.testTransformationVsMatrix(points);
 	}
 
-	public void testPreComplex() {
+        /**
+         * 
+         */
+        public void testPreComplex() {
 		this.mMatrix.preTranslate(10, 2);
 		this.mTransformation.preTranslate(10, 2);
 

@@ -33,7 +33,12 @@ public class Contact {
 	/** the world manifold **/
 	protected final WorldManifold worldManifold = new WorldManifold();
 
-	protected Contact (World world, long addr) {
+        /**
+         * 
+         * @param world
+         * @param addr
+         */
+        protected Contact (World world, long addr) {
 		this.addr = addr;
 		this.world = world;
 	}
@@ -43,7 +48,11 @@ public class Contact {
 	 */
 	private final float[] tmp = new float[6];
 
-	public WorldManifold getWorldManifold () {
+        /**
+         * 
+         * @return
+         */
+        public WorldManifold getWorldManifold () {
 		int numContactPoints = jniGetWorldManifold(addr, tmp);
 
 		worldManifold.numContactPoints = numContactPoints;
@@ -59,7 +68,11 @@ public class Contact {
 
 	private native int jniGetWorldManifold (long addr, float[] manifold);
 
-	public boolean isTouching () {
+        /**
+         * 
+         * @return
+         */
+        public boolean isTouching () {
 		return jniIsTouching(addr);
 	}
 
@@ -68,7 +81,9 @@ public class Contact {
 	/**
 	 * Enable/disable this contact. This can be used inside the pre-solve contact listener. The contact is only disabled for the
 	 * current time step (or sub-step in continuous collisions).
-	 */
+         * 
+         * @param flag 
+         */
 	public void setEnabled (boolean flag) {
 		jniSetEnabled(addr, flag);
 	}
@@ -77,7 +92,9 @@ public class Contact {
 
 	/**
 	 * Has this contact been disabled?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isEnabled () {
 		return jniIsEnabled(addr);
 	}
@@ -86,7 +103,9 @@ public class Contact {
 
 	/**
 	 * Get the first fixture in this contact.
-	 */
+         * 
+         * @return 
+         */
 	public Fixture getFixtureA () {
 		return world.fixtures.get(jniGetFixtureA(addr));
 	}
@@ -95,7 +114,9 @@ public class Contact {
 
 	/**
 	 * Get the second fixture in this contact.
-	 */
+         * 
+         * @return 
+         */
 	public Fixture getFixtureB () {
 		return world.fixtures.get(jniGetFixtureB(addr));
 	}

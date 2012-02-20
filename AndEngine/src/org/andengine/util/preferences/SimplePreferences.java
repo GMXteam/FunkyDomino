@@ -31,14 +31,24 @@ public class SimplePreferences implements Constants {
 	// Constructors
 	// ===========================================================
 
-	public static SharedPreferences getInstance(final Context pContext) {
+        /**
+         * 
+         * @param pContext
+         * @return
+         */
+        public static SharedPreferences getInstance(final Context pContext) {
 		if(SimplePreferences.INSTANCE == null) {
 			SimplePreferences.INSTANCE = PreferenceManager.getDefaultSharedPreferences(pContext);
 		}
 		return SimplePreferences.INSTANCE;
 	}
 
-	public static Editor getEditorInstance(final Context pContext) {
+        /**
+         * 
+         * @param pContext
+         * @return
+         */
+        public static Editor getEditorInstance(final Context pContext) {
 		if(SimplePreferences.EDITORINSTANCE == null) {
 			SimplePreferences.EDITORINSTANCE = SimplePreferences.getInstance(pContext).edit();
 		}
@@ -57,11 +67,24 @@ public class SimplePreferences implements Constants {
 	// Methods
 	// ===========================================================
 
-	public static int incrementAccessCount(final Context pContext, final String pKey) {
+        /**
+         * 
+         * @param pContext
+         * @param pKey
+         * @return
+         */
+        public static int incrementAccessCount(final Context pContext, final String pKey) {
 		return SimplePreferences.incrementAccessCount(pContext, pKey, 1);
 	}
 
-	public static int incrementAccessCount(final Context pContext, final String pKey, final int pIncrement) {
+        /**
+         * 
+         * @param pContext
+         * @param pKey
+         * @param pIncrement
+         * @return
+         */
+        public static int incrementAccessCount(final Context pContext, final String pKey, final int pIncrement) {
 		final SharedPreferences prefs = SimplePreferences.getInstance(pContext);
 		final int accessCount = prefs.getInt(pKey, 0);
 
@@ -71,7 +94,13 @@ public class SimplePreferences implements Constants {
 		return newAccessCount;
 	}
 
-	public static int getAccessCount(final Context pCtx, final String pKey) {
+        /**
+         * 
+         * @param pCtx
+         * @param pKey
+         * @return
+         */
+        public static int getAccessCount(final Context pCtx, final String pKey) {
 		return SimplePreferences.getInstance(pCtx).getInt(pKey, 0);
 	}
 

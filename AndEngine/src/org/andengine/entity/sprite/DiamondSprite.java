@@ -41,51 +41,157 @@ public class DiamondSprite extends Sprite {
 	// Constructors
 	// ===========================================================
 
-	public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+    /**
+     * 
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
+    public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+    /**
+     * 
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     * @param pShaderProgram
+     */
+    public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         */
+        public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, pDrawType);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         * @param pShaderProgram
+         */
+        public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTextureRegion
+         * @param pDiamondSpriteVertexBufferObject
+         */
+        public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pDiamondSpriteVertexBufferObject);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTextureRegion
+         * @param pDiamondSpriteVertexBufferObject
+         * @param pShaderProgram
+         */
+        public DiamondSprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pDiamondSpriteVertexBufferObject, pShaderProgram);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         */
+        public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pShaderProgram
+         */
+        public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         */
+        public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, new HighPerformanceDiamondSpriteVertexBufferObject(pVertexBufferObjectManager, Sprite.SPRITE_SIZE, pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
 	}
 
-	public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         * @param pShaderProgram
+         */
+        public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, new HighPerformanceDiamondSpriteVertexBufferObject(pVertexBufferObjectManager, Sprite.SPRITE_SIZE, pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT), pShaderProgram);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureRegion
+         * @param pDiamondSpriteVertexBufferObject
+         */
+        public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject) {
 		super(pX, pY, pWidth, pHeight, pTextureRegion, pDiamondSpriteVertexBufferObject);
 	}
 
-	public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureRegion
+         * @param pDiamondSpriteVertexBufferObject
+         * @param pShaderProgram
+         */
+        public DiamondSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final IDiamondSpriteVertexBufferObject pDiamondSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pWidth, pHeight, pTextureRegion, pDiamondSpriteVertexBufferObject, pShaderProgram);
 	}
 
@@ -105,7 +211,10 @@ public class DiamondSprite extends Sprite {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface IDiamondSpriteVertexBufferObject extends ISpriteVertexBufferObject {
+        /**
+         * 
+         */
+        public static interface IDiamondSpriteVertexBufferObject extends ISpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -115,7 +224,10 @@ public class DiamondSprite extends Sprite {
 		// ===========================================================
 	}
 
-	public static class HighPerformanceDiamondSpriteVertexBufferObject extends HighPerformanceSpriteVertexBufferObject implements IDiamondSpriteVertexBufferObject {
+        /**
+         * 
+         */
+        public static class HighPerformanceDiamondSpriteVertexBufferObject extends HighPerformanceSpriteVertexBufferObject implements IDiamondSpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -128,7 +240,15 @@ public class DiamondSprite extends Sprite {
 		// Constructors
 		// ===========================================================
 
-		public HighPerformanceDiamondSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public HighPerformanceDiamondSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -245,7 +365,10 @@ public class DiamondSprite extends Sprite {
 		// ===========================================================
 	}
 
-	public static class LowMemoryDiamondSpriteVertexBufferObject extends LowMemorySpriteVertexBufferObject implements IDiamondSpriteVertexBufferObject {
+        /**
+         * 
+         */
+        public static class LowMemoryDiamondSpriteVertexBufferObject extends LowMemorySpriteVertexBufferObject implements IDiamondSpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -258,7 +381,15 @@ public class DiamondSprite extends Sprite {
 		// Constructors
 		// ===========================================================
 
-		public LowMemoryDiamondSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public LowMemoryDiamondSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -270,7 +401,11 @@ public class DiamondSprite extends Sprite {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+            /**
+             * 
+             * @param pSprite
+             */
+            @Override
 		public void onUpdateVertices(final Sprite pSprite) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 

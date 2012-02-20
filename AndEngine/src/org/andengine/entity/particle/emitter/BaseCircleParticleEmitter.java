@@ -17,18 +17,37 @@ public abstract class BaseCircleParticleEmitter extends BaseParticleEmitter {
 	// Fields
 	// ===========================================================
 
-	protected float mRadiusX;
-	protected float mRadiusY;
+    /**
+     * 
+     */
+    protected float mRadiusX;
+    /**
+     * 
+     */
+    protected float mRadiusY;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BaseCircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadius) {
+        /**
+         * 
+         * @param pCenterX
+         * @param pCenterY
+         * @param pRadius
+         */
+        public BaseCircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadius) {
 		this(pCenterX, pCenterY, pRadius, pRadius);
 	}
 
-	public BaseCircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadiusX, final float pRadiusY) {
+        /**
+         * 
+         * @param pCenterX
+         * @param pCenterY
+         * @param pRadiusX
+         * @param pRadiusY
+         */
+        public BaseCircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadiusX, final float pRadiusY) {
 		super(pCenterX, pCenterY);
 		this.setRadiusX(pRadiusX);
 		this.setRadiusY(pRadiusY);
@@ -38,28 +57,53 @@ public abstract class BaseCircleParticleEmitter extends BaseParticleEmitter {
 	// Getter & Setter
 	// ===========================================================
 
-	public float getRadiusX() {
+        /**
+         * 
+         * @return
+         */
+        public float getRadiusX() {
 		return this.mRadiusX;
 	}
 
-	public void setRadiusX(final float pRadiusX) {
+        /**
+         * 
+         * @param pRadiusX
+         */
+        public void setRadiusX(final float pRadiusX) {
 		this.mRadiusX = pRadiusX;
 	}
 
-	public float getRadiusY() {
+        /**
+         * 
+         * @return
+         */
+        public float getRadiusY() {
 		return this.mRadiusY;
 	}
 
-	public void setRadiusY(final float pRadiusY) {
+        /**
+         * 
+         * @param pRadiusY
+         */
+        public void setRadiusY(final float pRadiusY) {
 		this.mRadiusY = pRadiusY;
 	}
 
-	public void setRadius(final float pRadius) {
+        /**
+         * 
+         * @param pRadius
+         */
+        public void setRadius(final float pRadius) {
 		this.mRadiusX = pRadius;
 		this.mRadiusY = pRadius;
 	}
 
-	public void setRadius(final float pRadiusX, final float pRadiusY) {
+        /**
+         * 
+         * @param pRadiusX
+         * @param pRadiusY
+         */
+        public void setRadius(final float pRadiusX, final float pRadiusY) {
 		this.mRadiusX = pRadiusX;
 		this.mRadiusY = pRadiusY;
 	}

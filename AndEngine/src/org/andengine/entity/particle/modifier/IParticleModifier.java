@@ -8,6 +8,7 @@ import org.andengine.entity.particle.initializer.IParticleInitializer;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 20:06:05 - 14.03.2010
  */
@@ -20,5 +21,9 @@ public interface IParticleModifier<T extends IEntity> extends IParticleInitializ
 	// Methods
 	// ===========================================================
 
-	public void onUpdateParticle(final Particle<T> pParticle);
+    /**
+     * 
+     * @param pParticle
+     */
+    public void onUpdateParticle(final Particle<T> pParticle);
 }

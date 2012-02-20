@@ -34,7 +34,13 @@ public class SAXHelper {
 	// Methods
 	// ===========================================================
 
-	public static String getStringAttribute(final Attributes pAttributes, final String pAttributeName) {
+    /**
+     * 
+     * @param pAttributes
+     * @param pAttributeName
+     * @return
+     */
+    public static String getStringAttribute(final Attributes pAttributes, final String pAttributeName) {
 		final int attributeCount = pAttributes.getLength();
 		for (int i = 0; i < attributeCount; i++) {
 			if (pAttributes.getLocalName(i).equals(pAttributeName)) {
@@ -44,7 +50,14 @@ public class SAXHelper {
 		return null;
 	}
 
-	public static String getStringAttribute(final Attributes pAttributes, final String pAttributeName, final String pDefaultValue) {
+    /**
+     * 
+     * @param pAttributes
+     * @param pAttributeName
+     * @param pDefaultValue
+     * @return
+     */
+    public static String getStringAttribute(final Attributes pAttributes, final String pAttributeName, final String pDefaultValue) {
 		final String s = SAXHelper.getStringAttribute(pAttributes, pAttributeName);
 		if(s == null) {
 			return pDefaultValue;
@@ -53,11 +66,24 @@ public class SAXHelper {
 		}
 	}
 
-	public static Float getFloatAttribute(final Attributes pAttributes, final String pAttributeName) {
+        /**
+         * 
+         * @param pAttributes
+         * @param pAttributeName
+         * @return
+         */
+        public static Float getFloatAttribute(final Attributes pAttributes, final String pAttributeName) {
 		return SVGParserUtils.extractFloatAttribute(SAXHelper.getStringAttribute(pAttributes, pAttributeName));
 	}
 
-	public static float getFloatAttribute(final Attributes pAttributes, final String pAttributeName, final float pDefaultValue) {
+        /**
+         * 
+         * @param pAttributes
+         * @param pAttributeName
+         * @param pDefaultValue
+         * @return
+         */
+        public static float getFloatAttribute(final Attributes pAttributes, final String pAttributeName, final float pDefaultValue) {
 		final Float f = SAXHelper.getFloatAttribute(pAttributes, pAttributeName);
 		if(f == null) {
 			return pDefaultValue;

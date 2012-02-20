@@ -23,7 +23,12 @@ import com.badlogic.gdx.physics.box2d.World;
  * approximate.
  */
 public class WeldJoint extends Joint {
-	public WeldJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public WeldJoint (World world, long addr) {
 		super(world, addr);
 	}
 }

@@ -24,7 +24,12 @@ public class BuildModelShaderSourceCriteria extends StringShaderSourceCriteria {
 	// Constructors
 	// ===========================================================
 
-	public BuildModelShaderSourceCriteria(final StringOperator pStringOperator, final String pBuildModel) {
+    /**
+     * 
+     * @param pStringOperator
+     * @param pBuildModel
+     */
+    public BuildModelShaderSourceCriteria(final StringOperator pStringOperator, final String pBuildModel) {
 		super(pStringOperator, pBuildModel);
 	}
 	
@@ -36,7 +41,12 @@ public class BuildModelShaderSourceCriteria extends StringShaderSourceCriteria {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	protected String getActualCriteria(final GLState pGLState) {
 		return Build.MODEL;
 	}

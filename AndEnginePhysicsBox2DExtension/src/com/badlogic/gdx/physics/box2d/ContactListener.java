@@ -15,14 +15,20 @@
  ******************************************************************************/
 package com.badlogic.gdx.physics.box2d;
 
+/**
+ * 
+ * @author guillaume
+ */
 public interface ContactListener {
         /**
          * Called when two fixtures begin to touch.
-         */
+     * @param contact 
+     */
         public void beginContact (Contact contact);
 
         /**
          * Called when two fixtures cease to touch.
+         * @param contact 
          */
         public void endContact (Contact contact);
         
@@ -37,6 +43,11 @@ public interface ContactListener {
                 Note: if you set the number of contact points to zero, you will not
                 get an EndContact callback. However, you may get a BeginContact callback
                 the next step. */
+        /**
+         * 
+         * @param contact
+         * @param oldManifold
+         */
         public void preSolve(Contact contact, Manifold oldManifold);
 
         /* This lets you inspect a contact after the solver is finished. This is useful
@@ -45,5 +56,10 @@ public interface ContactListener {
          arbitrarily large if the sub-step is small. Hence the impulse is provided explicitly
          in a separate data structure.
          Note: this is only called for contacts that are touching, solid, and awake. */
+        /**
+         * 
+         * @param contact
+         * @param impulse
+         */
         public void postSolve(Contact contact, ContactImpulse impulse); 
 }

@@ -34,11 +34,20 @@ public class ScrollDetector extends BaseDetector {
 	// Constructors
 	// ===========================================================
 
-	public ScrollDetector(final IScrollDetectorListener pScrollDetectorListener) {
+        /**
+         * 
+         * @param pScrollDetectorListener
+         */
+        public ScrollDetector(final IScrollDetectorListener pScrollDetectorListener) {
 		this(ScrollDetector.TRIGGER_SCROLL_MINIMUM_DISTANCE_DEFAULT, pScrollDetectorListener);
 	}
 
-	public ScrollDetector(final float pTriggerScrollMinimumDistance, final IScrollDetectorListener pScrollDetectorListener) {
+        /**
+         * 
+         * @param pTriggerScrollMinimumDistance
+         * @param pScrollDetectorListener
+         */
+        public ScrollDetector(final float pTriggerScrollMinimumDistance, final IScrollDetectorListener pScrollDetectorListener) {
 		this.mTriggerScrollMinimumDistance = pTriggerScrollMinimumDistance;
 		this.mScrollDetectorListener = pScrollDetectorListener;
 	}
@@ -47,11 +56,19 @@ public class ScrollDetector extends BaseDetector {
 	// Getter & Setter
 	// ===========================================================
 
-	public float getTriggerScrollMinimumDistance() {
+        /**
+         * 
+         * @return
+         */
+        public float getTriggerScrollMinimumDistance() {
 		return this.mTriggerScrollMinimumDistance;
 	}
 
-	public void setTriggerScrollMinimumDistance(final float pTriggerScrollMinimumDistance) {
+        /**
+         * 
+         * @param pTriggerScrollMinimumDistance
+         */
+        public void setTriggerScrollMinimumDistance(final float pTriggerScrollMinimumDistance) {
 		this.mTriggerScrollMinimumDistance = pTriggerScrollMinimumDistance;
 	}
 
@@ -71,7 +88,12 @@ public class ScrollDetector extends BaseDetector {
 		this.mPointerID = TouchEvent.INVALID_POINTER_ID;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        @Override
 	public boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent) {
 		final float touchX = this.getX(pSceneTouchEvent);
 		final float touchY = this.getY(pSceneTouchEvent);
@@ -153,11 +175,21 @@ public class ScrollDetector extends BaseDetector {
 		}
 	}
 
-	protected float getX(final TouchEvent pTouchEvent) {
+        /**
+         * 
+         * @param pTouchEvent
+         * @return
+         */
+        protected float getX(final TouchEvent pTouchEvent) {
 		return pTouchEvent.getX();
 	}
 
-	protected float getY(final TouchEvent pTouchEvent) {
+        /**
+         * 
+         * @param pTouchEvent
+         * @return
+         */
+        protected float getY(final TouchEvent pTouchEvent) {
 		return pTouchEvent.getY();
 	}
 
@@ -165,7 +197,10 @@ public class ScrollDetector extends BaseDetector {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface IScrollDetectorListener {
+        /**
+         * 
+         */
+        public static interface IScrollDetectorListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -174,8 +209,29 @@ public class ScrollDetector extends BaseDetector {
 		// Methods
 		// ===========================================================
 
-		public void onScrollStarted(final ScrollDetector pScollDetector, final int pPointerID, final float pDistanceX, final float pDistanceY);
-		public void onScroll(final ScrollDetector pScollDetector, final int pPointerID, final float pDistanceX, final float pDistanceY);
-		public void onScrollFinished(final ScrollDetector pScollDetector, final int pPointerID, final float pDistanceX, final float pDistanceY);
+            /**
+             * 
+             * @param pScollDetector
+             * @param pPointerID
+             * @param pDistanceX
+             * @param pDistanceY
+             */
+            public void onScrollStarted(final ScrollDetector pScollDetector, final int pPointerID, final float pDistanceX, final float pDistanceY);
+            /**
+             * 
+             * @param pScollDetector
+             * @param pPointerID
+             * @param pDistanceX
+             * @param pDistanceY
+             */
+            public void onScroll(final ScrollDetector pScollDetector, final int pPointerID, final float pDistanceX, final float pDistanceY);
+                /**
+                 * 
+                 * @param pScollDetector
+                 * @param pPointerID
+                 * @param pDistanceX
+                 * @param pDistanceY
+                 */
+                public void onScrollFinished(final ScrollDetector pScollDetector, final int pPointerID, final float pDistanceX, final float pDistanceY);
 	}
 }

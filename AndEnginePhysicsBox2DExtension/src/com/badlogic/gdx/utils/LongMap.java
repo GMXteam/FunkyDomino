@@ -27,6 +27,7 @@ import org.andengine.util.math.MathUtils;
  * This map performs very fast get, containsKey, and remove (typically O(1), worst case O(log(n))). Put may be a bit slower,
  * depending on hash collisions. Load factors greater than 0.91 greatly increase the chances the map will have to rehash to the
  * next higher POT size.
+ * @param <V> 
  * @author Nathan Sweet
  */
 public class LongMap<V> {
@@ -35,7 +36,10 @@ public class LongMap<V> {
 	private static final int PRIME3 = 0xced1c241;
 	private static final int EMPTY = 0;
 
-	public int size;
+        /**
+         * 
+         */
+        public int size;
 
 	long[] keyTable;
 	V[] valueTable;
@@ -63,7 +67,9 @@ public class LongMap<V> {
 	/**
 	 * Creates a new map with a load factor of 0.8. This map will hold initialCapacity * 0.8 items before growing the backing
 	 * table.
-	 */
+         * 
+         * @param initialCapacity 
+         */
 	public LongMap (int initialCapacity) {
 		this(initialCapacity, 0.8f);
 	}
@@ -71,7 +77,10 @@ public class LongMap<V> {
 	/**
 	 * Creates a new map with the specified initial capacity and load factor. This map will hold initialCapacity * loadFactor items
 	 * before growing the backing table.
-	 */
+         * 
+         * @param initialCapacity 
+         * @param loadFactor 
+         */
 	public LongMap (int initialCapacity, float loadFactor) {
 		if (initialCapacity < 0) throw new IllegalArgumentException("initialCapacity must be >= 0: " + initialCapacity);
 		if (capacity > 1 << 30) throw new IllegalArgumentException("initialCapacity is too large: " + initialCapacity);
@@ -90,7 +99,13 @@ public class LongMap<V> {
 		valueTable = (V[])new Object[keyTable.length];
 	}
 
-	public V put (long key, V value) {
+        /**
+         * 
+         * @param key
+         * @param value
+         * @return
+         */
+        public V put (long key, V value) {
 		if (key == 0) {
 			V oldValue = zeroValue;
 			zeroValue = value;
@@ -150,7 +165,11 @@ public class LongMap<V> {
 		return null;
 	}
 
-	public void putAll (LongMap<V> map) {
+        /**
+         * 
+         * @param map
+         */
+        public void putAll (LongMap<V> map) {
 		for (Entry<V> entry : map.entries())
 			put(entry.key, entry.value);
 	}
@@ -287,7 +306,12 @@ public class LongMap<V> {
 		stashSize++;
 	}
 
-	public V get (long key) {
+        /**
+         * 
+         * @param key
+         * @return
+         */
+        public V get (long key) {
 		if (key == 0) return zeroValue;
 		int index = (int)(key & mask);
 		if (keyTable[index] != key) {
@@ -307,7 +331,12 @@ public class LongMap<V> {
 		return null;
 	}
 
-	public V remove (long key) {
+        /**
+         * 
+         * @param key
+         * @return
+         */
+        public V remove (long key) {
 		if (key == 0) {
 			if (!hasZeroValue) return null;
 			V oldValue = zeroValue;
@@ -372,7 +401,10 @@ public class LongMap<V> {
 			valueTable[index] = null;
 	}
 
-	public void clear () {
+        /**
+         * 
+         */
+        public void clear () {
 		long[] keyTable = this.keyTable;
 		V[] valueTable = this.valueTable;
 		for (int i = capacity + stashSize; i-- > 0;) {
@@ -388,7 +420,11 @@ public class LongMap<V> {
 	/**
 	 * Returns true if the specified value is in the map. Note this traverses the entire map and compares every value, which may be
 	 * an expensive operation.
-	 */
+         * 
+         * @param value 
+         * @param identity 
+         * @return 
+         */
 	public boolean containsValue (Object value, boolean identity) {
 		V[] valueTable = this.valueTable;
 		if (value == null) {
@@ -408,7 +444,12 @@ public class LongMap<V> {
 		return false;
 	}
 
-	public boolean containsKey (long key) {
+        /**
+         * 
+         * @param key
+         * @return
+         */
+        public boolean containsKey (long key) {
 		if (key == 0) return hasZeroValue;
 		int index = (int)(key & mask);
 		if (keyTable[index] != key) {
@@ -431,7 +472,9 @@ public class LongMap<V> {
 	/**
 	 * Increases the size of the backing array to acommodate the specified number of additional items. Useful before adding many
 	 * items to avoid multiple backing array resizes.
-	 */
+         * 
+         * @param additionalCapacity 
+         */
 	public void ensureCapacity (int additionalCapacity) {
 		int sizeNeeded = size + additionalCapacity;
 		if (sizeNeeded >= threshold) resize(MathUtils.nextPowerOfTwo((int)(sizeNeeded / loadFactor)));
@@ -471,7 +514,11 @@ public class LongMap<V> {
 		return (int)((h ^ h >>> hashShift) & mask);
 	}
 
-	public String toString () {
+        /**
+         * 
+         * @return
+         */
+        public String toString () {
 		if (size == 0) return "[]";
 		StringBuilder buffer = new StringBuilder(32);
 		buffer.append('[');
@@ -501,7 +548,9 @@ public class LongMap<V> {
 	/**
 	 * Returns an iterator for the entries in the map. Remove is supported. Note that the same iterator instance is returned each
 	 * time this method is called. Use the {@link Entries} constructor for nested or multithreaded iteration.
-	 */
+         * 
+         * @return 
+         */
 	public Entries<V> entries () {
 		if (entries == null)
 			entries = new Entries(this);
@@ -513,7 +562,9 @@ public class LongMap<V> {
 	/**
 	 * Returns an iterator for the values in the map. Remove is supported. Note that the same iterator instance is returned each
 	 * time this method is called. Use the {@link Entries} constructor for nested or multithreaded iteration.
-	 */
+         * 
+         * @return 
+         */
 	public Values<V> values () {
 		if (values == null)
 			values = new Values(this);
@@ -525,7 +576,9 @@ public class LongMap<V> {
 	/**
 	 * Returns an iterator for the keys in the map. Remove is supported. Note that the same iterator instance is returned each time
 	 * this method is called. Use the {@link Entries} constructor for nested or multithreaded iteration.
-	 */
+         * 
+         * @return 
+         */
 	public Keys keys () {
 		if (keys == null)
 			keys = new Keys(this);
@@ -534,11 +587,25 @@ public class LongMap<V> {
 		return keys;
 	}
 
-	static public class Entry<V> {
-		public long key;
-		public V value;
+        /**
+         * 
+         * @param <V>
+         */
+        static public class Entry<V> {
+            /**
+             * 
+             */
+            public long key;
+            /**
+             * 
+             */
+            public V value;
 
-		public String toString () {
+                /**
+                 * 
+                 * @return
+                 */
+                public String toString () {
 			return key + "=" + value;
 		}
 	}
@@ -594,16 +661,26 @@ public class LongMap<V> {
 		}
 	}
 
-	static public class Entries<V> extends MapIterator<V> implements Iterable<Entry<V>>, Iterator<Entry<V>> {
+        /**
+         * 
+         * @param <V>
+         */
+        static public class Entries<V> extends MapIterator<V> implements Iterable<Entry<V>>, Iterator<Entry<V>> {
 		private Entry<V> entry = new Entry();
 
-		public Entries (LongMap map) {
+                /**
+                 * 
+                 * @param map
+                 */
+                public Entries (LongMap map) {
 			super(map);
 		}
 
 		/**
 		 * Note the same entry instance is returned each time this method is called.
-		 */
+                 * 
+                 * @return 
+                 */
 		public Entry<V> next () {
 			if (!hasNext) throw new NoSuchElementException();
 			long[] keyTable = map.keyTable;
@@ -619,25 +696,49 @@ public class LongMap<V> {
 			return entry;
 		}
 
-		public boolean hasNext () {
+                /**
+                 * 
+                 * @return
+                 */
+                public boolean hasNext () {
 			return hasNext;
 		}
 
-		public Iterator<Entry<V>> iterator () {
+                /**
+                 * 
+                 * @return
+                 */
+                public Iterator<Entry<V>> iterator () {
 			return this;
 		}
 	}
 
-	static public class Values<V> extends MapIterator<V> implements Iterable<V>, Iterator<V> {
-		public Values (LongMap<V> map) {
+        /**
+         * 
+         * @param <V>
+         */
+        static public class Values<V> extends MapIterator<V> implements Iterable<V>, Iterator<V> {
+            /**
+             * 
+             * @param map
+             */
+            public Values (LongMap<V> map) {
 			super(map);
 		}
 
-		public boolean hasNext () {
+                /**
+                 * 
+                 * @return
+                 */
+                public boolean hasNext () {
 			return hasNext;
 		}
 
-		public V next () {
+                /**
+                 * 
+                 * @return
+                 */
+                public V next () {
 			V value;
 			if (nextIndex == INDEX_ZERO)
 				value = map.zeroValue;
@@ -648,18 +749,33 @@ public class LongMap<V> {
 			return value;
 		}
 
-		public Iterator<V> iterator () {
+                /**
+                 * 
+                 * @return
+                 */
+                public Iterator<V> iterator () {
 			return this;
 		}
 
 	}
 
-	static public class Keys extends MapIterator {
-		public Keys (LongMap map) {
+        /**
+         * 
+         */
+        static public class Keys extends MapIterator {
+            /**
+             * 
+             * @param map
+             */
+            public Keys (LongMap map) {
 			super(map);
 		}
 
-		public long next () {
+            /**
+             * 
+             * @return
+             */
+            public long next () {
 			long key = nextIndex == INDEX_ZERO ? 0 : map.keyTable[nextIndex];
 			currentIndex = nextIndex;
 			findNextIndex();

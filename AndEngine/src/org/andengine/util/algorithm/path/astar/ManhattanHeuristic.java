@@ -6,6 +6,7 @@ import org.andengine.util.algorithm.path.IPathFinderMap;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 22:58:01 - 16.08.2010
  */

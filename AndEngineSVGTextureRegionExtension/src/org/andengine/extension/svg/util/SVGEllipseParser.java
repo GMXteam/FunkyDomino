@@ -40,7 +40,14 @@ public class SVGEllipseParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint, final RectF pRect) {
+    /**
+     * 
+     * @param pSVGProperties
+     * @param pCanvas
+     * @param pSVGPaint
+     * @param pRect
+     */
+    public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint, final RectF pRect) {
 		final Float centerX = pSVGProperties.getFloatAttribute(ATTRIBUTE_CENTER_X);
 		final Float centerY = pSVGProperties.getFloatAttribute(ATTRIBUTE_CENTER_Y);
 		final Float radiusX = pSVGProperties.getFloatAttribute(ATTRIBUTE_RADIUS_X);

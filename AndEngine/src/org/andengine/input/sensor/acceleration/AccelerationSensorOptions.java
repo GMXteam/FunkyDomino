@@ -24,7 +24,11 @@ public class AccelerationSensorOptions {
 	// Constructors
 	// ===========================================================
 
-	public AccelerationSensorOptions(final SensorDelay pSensorDelay) {
+        /**
+         * 
+         * @param pSensorDelay
+         */
+        public AccelerationSensorOptions(final SensorDelay pSensorDelay) {
 		this.mSensorDelay = pSensorDelay;
 	}
 
@@ -32,7 +36,11 @@ public class AccelerationSensorOptions {
 	// Getter & Setter
 	// ===========================================================
 
-	public SensorDelay getSensorDelay() {
+        /**
+         * 
+         * @return
+         */
+        public SensorDelay getSensorDelay() {
 		return this.mSensorDelay;
 	}
 

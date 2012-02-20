@@ -16,12 +16,27 @@ public interface IMenuAnimator {
 	// Constants
 	// ===========================================================
 
-	public static final IMenuAnimator DEFAULT = new AlphaMenuAnimator();
+    /**
+     * 
+     */
+    public static final IMenuAnimator DEFAULT = new AlphaMenuAnimator();
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
-	public void prepareAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight);
-	public void buildAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight);
+    /**
+     * 
+     * @param pMenuItems
+     * @param pCameraWidth
+     * @param pCameraHeight
+     */
+    public void prepareAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight);
+        /**
+         * 
+         * @param pMenuItems
+         * @param pCameraWidth
+         * @param pCameraHeight
+         */
+        public void buildAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight);
 }

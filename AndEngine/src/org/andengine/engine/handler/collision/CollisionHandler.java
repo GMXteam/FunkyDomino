@@ -30,11 +30,25 @@ public class CollisionHandler implements IUpdateHandler {
 	// Constructors
 	// ===========================================================
 
-	public CollisionHandler(final ICollisionCallback pCollisionCallback, final IShape pCheckShape, final IShape pTargetShape) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pCollisionCallback
+         * @param pCheckShape
+         * @param pTargetShape
+         * @throws IllegalArgumentException
+         */
+        public CollisionHandler(final ICollisionCallback pCollisionCallback, final IShape pCheckShape, final IShape pTargetShape) throws IllegalArgumentException {
 		this(pCollisionCallback, pCheckShape, ListUtils.toList(pTargetShape));
 	}
 
-	public CollisionHandler(final ICollisionCallback pCollisionCallback, final IShape pCheckShape, final ArrayList<? extends IShape> pTargetStaticEntities) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pCollisionCallback
+         * @param pCheckShape
+         * @param pTargetStaticEntities
+         * @throws IllegalArgumentException
+         */
+        public CollisionHandler(final ICollisionCallback pCollisionCallback, final IShape pCheckShape, final ArrayList<? extends IShape> pTargetStaticEntities) throws IllegalArgumentException {
 		if (pCollisionCallback == null) {
 			throw new IllegalArgumentException( "pCollisionCallback must not be null!");
 		}
@@ -58,7 +72,11 @@ public class CollisionHandler implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		final IShape checkShape = this.mCheckShape;
 		final ArrayList<? extends IShape> staticEntities = this.mTargetStaticEntities;
@@ -74,7 +92,10 @@ public class CollisionHandler implements IUpdateHandler {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 
 	}

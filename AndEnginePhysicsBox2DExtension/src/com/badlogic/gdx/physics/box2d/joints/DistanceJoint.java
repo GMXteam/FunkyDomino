@@ -23,13 +23,20 @@ import com.badlogic.gdx.physics.box2d.World;
  * massless, rigid rod.
  */
 public class DistanceJoint extends Joint {
-	public DistanceJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public DistanceJoint (World world, long addr) {
 		super(world, addr);
 	}
 
 	/**
 	 * Set/get the natural length. Manipulating the length can lead to non-physical behavior when the frequency is zero.
-	 */
+     * 
+     * @param length 
+     */
 	public void setLength (float length) {
 		jniSetLength(addr, length);
 	}
@@ -38,7 +45,9 @@ public class DistanceJoint extends Joint {
 
 	/**
 	 * Set/get the natural length. Manipulating the length can lead to non-physical behavior when the frequency is zero.
-	 */
+         * 
+         * @return 
+         */
 	public float getLength () {
 		return jniGetLength(addr);
 	}
@@ -47,7 +56,9 @@ public class DistanceJoint extends Joint {
 
 	/**
 	 * Set/get frequency in Hz.
-	 */
+         * 
+         * @param hz 
+         */
 	public void setFrequency (float hz) {
 		jniSetFrequency(addr, hz);
 	}
@@ -56,7 +67,9 @@ public class DistanceJoint extends Joint {
 
 	/**
 	 * Set/get frequency in Hz.
-	 */
+         * 
+         * @return 
+         */
 	public float getFrequency () {
 		return jniGetFrequency(addr);
 	}
@@ -65,7 +78,9 @@ public class DistanceJoint extends Joint {
 
 	/**
 	 * Set/get damping ratio.
-	 */
+         * 
+         * @param ratio 
+         */
 	public void setDampingRatio (float ratio) {
 		jniSetDampingRatio(addr, ratio);
 	}
@@ -74,7 +89,9 @@ public class DistanceJoint extends Joint {
 
 	/**
 	 * Set/get damping ratio.
-	 */
+         * 
+         * @return 
+         */
 	public float getDampingRatio () {
 		return jniGetDampingRatio(addr);
 	}

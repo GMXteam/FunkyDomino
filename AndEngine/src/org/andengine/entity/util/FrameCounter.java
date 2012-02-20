@@ -28,7 +28,11 @@ public class FrameCounter implements IUpdateHandler {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getFrames() {
+        /**
+         * 
+         * @return
+         */
+        public int getFrames() {
 		return this.mFrames;
 	}
 
@@ -36,12 +40,19 @@ public class FrameCounter implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		this.mFrames++;
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mFrames = 0;
 	}

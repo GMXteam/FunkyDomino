@@ -32,12 +32,20 @@ public class IntLRUCacheTest extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void setUp() throws Exception {
 		MathUtils.RANDOM.setSeed(9876543210L);
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void tearDown() throws Exception {
 
 	}
@@ -50,7 +58,11 @@ public class IntLRUCacheTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-	public void testCorrectness() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testCorrectness() throws Exception {
 		final IntLRUCache<String> intLRUCache = new IntLRUCache<String>(5);
 		final LRUCache<Integer, String> lruCache = new LRUCache<Integer, String>(5);
 		
@@ -66,7 +78,11 @@ public class IntLRUCacheTest extends AndroidTestCase {
 		}
 	}
 
-	public void testClear() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testClear() throws Exception {
 		final IntLRUCache<String> intLRUCache = new IntLRUCache<String>(5);
 		final LRUCache<Integer, String> lruCache = new LRUCache<Integer, String>(5);
 		

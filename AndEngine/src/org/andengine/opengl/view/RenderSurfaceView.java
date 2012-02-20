@@ -29,13 +29,22 @@ public class RenderSurfaceView extends GLSurfaceView {
 	// Constructors
 	// ===========================================================
 
-	public RenderSurfaceView(final Context pContext) {
+        /**
+         * 
+         * @param pContext
+         */
+        public RenderSurfaceView(final Context pContext) {
 		super(pContext);
 
 		this.setEGLContextClientVersion(2);
 	}
 
-	public RenderSurfaceView(final Context pContext, final AttributeSet pAttrs) {
+        /**
+         * 
+         * @param pContext
+         * @param pAttrs
+         */
+        public RenderSurfaceView(final Context pContext, final AttributeSet pAttrs) {
 		super(pContext, pAttrs);
 
 		this.setEGLContextClientVersion(2);
@@ -45,7 +54,12 @@ public class RenderSurfaceView extends GLSurfaceView {
 	// Getter & Setter
 	// ===========================================================
 
-	public ConfigChooser getConfigChooser() throws IllegalStateException {
+        /**
+         * 
+         * @return
+         * @throws IllegalStateException
+         */
+        public ConfigChooser getConfigChooser() throws IllegalStateException {
 		if(this.mConfigChooser == null) {
 			throw new IllegalStateException(ConfigChooser.class.getSimpleName() + " not yet set.");
 		}
@@ -57,7 +71,9 @@ public class RenderSurfaceView extends GLSurfaceView {
 	// ===========================================================
 
 	/**
-	 * @see android.view.View#measure(int, int)
+         * @param pWidthMeasureSpec 
+         * @param pHeightMeasureSpec 
+         * @see android.view.View#measure(int, int)
 	 */
 	@Override
 	protected void onMeasure(final int pWidthMeasureSpec, final int pHeightMeasureSpec) {
@@ -68,11 +84,21 @@ public class RenderSurfaceView extends GLSurfaceView {
 	// Methods
 	// ===========================================================
 
-	public void setMeasuredDimensionProxy(final int pMeasuredWidth, final int pMeasuredHeight) {
+        /**
+         * 
+         * @param pMeasuredWidth
+         * @param pMeasuredHeight
+         */
+        public void setMeasuredDimensionProxy(final int pMeasuredWidth, final int pMeasuredHeight) {
 		this.setMeasuredDimension(pMeasuredWidth, pMeasuredHeight);
 	}
 
-	public void setRenderer(final Engine pEngine, final IRendererListener pRendererListener) {
+        /**
+         * 
+         * @param pEngine
+         * @param pRendererListener
+         */
+        public void setRenderer(final Engine pEngine, final IRendererListener pRendererListener) {
 		if(this.mConfigChooser == null) {
 			final boolean multiSampling = pEngine.getEngineOptions().getRenderOptions().isMultiSampling();
 			this.mConfigChooser = new ConfigChooser(multiSampling);

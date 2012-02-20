@@ -24,23 +24,47 @@ public class FadeOutModifier extends AlphaModifier {
 	// Constructors
 	// ===========================================================
 
-	public FadeOutModifier(final float pDuration) {
+    /**
+     * 
+     * @param pDuration
+     */
+    public FadeOutModifier(final float pDuration) {
 		super(pDuration, 1.0f, 0.0f, EaseLinear.getInstance());
 	}
 
-	public FadeOutModifier(final float pDuration, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pEaseFunction
+         */
+        public FadeOutModifier(final float pDuration, final IEaseFunction pEaseFunction) {
 		super(pDuration, 1.0f, 0.0f, pEaseFunction);
 	}
 
-	public FadeOutModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pEntityModifierListener
+         */
+        public FadeOutModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, 1.0f, 0.0f, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-	public FadeOutModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public FadeOutModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, 1.0f, 0.0f, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected FadeOutModifier(final FadeOutModifier pFadeOutModifier) {
+        /**
+         * 
+         * @param pFadeOutModifier
+         */
+        protected FadeOutModifier(final FadeOutModifier pFadeOutModifier) {
 		super(pFadeOutModifier);
 	}
 

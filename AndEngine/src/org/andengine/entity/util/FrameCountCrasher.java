@@ -28,7 +28,11 @@ public class FrameCountCrasher implements IUpdateHandler, TimeConstants {
 	// Constructors
 	// ===========================================================
 
-	public FrameCountCrasher(final int pFrameCount) {
+        /**
+         * 
+         * @param pFrameCount
+         */
+        public FrameCountCrasher(final int pFrameCount) {
 		this.mFramesLeft = pFrameCount;
 		this.mFrameLengths = new float[pFrameCount];
 	}
@@ -41,7 +45,11 @@ public class FrameCountCrasher implements IUpdateHandler, TimeConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		this.mFramesLeft--;
 
@@ -57,7 +65,10 @@ public class FrameCountCrasher implements IUpdateHandler, TimeConstants {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 
 	}

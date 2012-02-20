@@ -15,12 +15,62 @@
  ******************************************************************************/
 package com.badlogic.gdx.physics.box2d;
 
+/**
+ * 
+ * @author guillaume
+ */
 public class JointDef {
-	public enum JointType {
-		Unknown(0), RevoluteJoint(1), PrismaticJoint(2), DistanceJoint(3), PulleyJoint(4), MouseJoint(5), GearJoint(6), LineJoint(7), WeldJoint(
-			8), FrictionJoint(9);
+    /**
+     * 
+     */
+    public enum JointType {
 
-		public static JointType[] valueTypes = new JointType[] {Unknown, RevoluteJoint, PrismaticJoint, DistanceJoint, PulleyJoint,
+        /**
+         * 
+         */
+        Unknown(0),
+        /**
+         * 
+         */
+        RevoluteJoint(1),
+        /**
+         * 
+         */
+        PrismaticJoint(2),
+        /**
+         * 
+         */
+        DistanceJoint(3),
+            /**
+             * 
+             */
+        PulleyJoint(4),
+        /**
+         * 
+         */
+        MouseJoint(5),
+        /**
+         * 
+         */
+        GearJoint(6),
+        /**
+         * 
+         */
+        LineJoint(7),
+        /**
+         * 
+         */
+        WeldJoint(
+        8),
+        /**
+         * 
+         */
+        FrictionJoint(9);
+
+                        /**
+                         * 
+                         */
+                        public static JointType[] valueTypes = new JointType[] {Unknown, RevoluteJoint, PrismaticJoint, DistanceJoint, PulleyJoint,
 			MouseJoint, GearJoint, LineJoint, WeldJoint, FrictionJoint};
 		private int value;
 
@@ -28,7 +78,11 @@ public class JointDef {
 			this.value = value;
 		}
 
-		public int getValue () {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getValue () {
 			return value;
 		}
 	}

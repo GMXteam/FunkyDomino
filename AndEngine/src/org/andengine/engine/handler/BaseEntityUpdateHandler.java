@@ -24,7 +24,11 @@ public abstract class BaseEntityUpdateHandler implements IUpdateHandler {
 	// Constructors
 	// ===========================================================
 
-	public BaseEntityUpdateHandler(final IEntity pEntity) {
+        /**
+         * 
+         * @param pEntity
+         */
+        public BaseEntityUpdateHandler(final IEntity pEntity) {
 		this.mEntity = pEntity;
 	}
 
@@ -32,11 +36,19 @@ public abstract class BaseEntityUpdateHandler implements IUpdateHandler {
 	// Getter & Setter
 	// ===========================================================
 
-	public IEntity getEntity() {
+        /**
+         * 
+         * @return
+         */
+        public IEntity getEntity() {
 		return this.mEntity;
 	}
 
-	public void setEntity(final IEntity pEntity) {
+        /**
+         * 
+         * @param pEntity
+         */
+        public void setEntity(final IEntity pEntity) {
 		this.mEntity = pEntity;
 	}
 
@@ -44,14 +56,26 @@ public abstract class BaseEntityUpdateHandler implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onUpdate(final float pSecondsElapsed, final IEntity pEntity);
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pEntity
+         */
+        protected abstract void onUpdate(final float pSecondsElapsed, final IEntity pEntity);
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public final void onUpdate(final float pSecondsElapsed) {
 		this.onUpdate(pSecondsElapsed, this.mEntity);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 
 	}

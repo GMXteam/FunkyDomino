@@ -193,7 +193,11 @@ public final class Vector2 {
 		return x_d * x_d + y_d * y_d;
 	}
 
-	public String toString () {
+        /**
+         * 
+         * @return
+         */
+        public String toString () {
 		return "[" + x + ":" + y + "]";
 	}
 

@@ -25,7 +25,11 @@ public class SortedListTest extends TestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	protected void setUp() throws Exception {
 		this.mIntegerSortedList = new SortedList<Integer>(new ShiftList<Integer>(1));
 		this.mUniqueIntegerSortedList = new SortedList<UniqueInteger>(new ShiftList<UniqueInteger>(1));
@@ -43,13 +47,19 @@ public class SortedListTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testSingleItem() {
+        /**
+         * 
+         */
+        public void testSingleItem() {
 		this.mIntegerSortedList.add(1);
 
 		Assert.assertEquals(1, this.mIntegerSortedList.removeFirst().intValue());
 	}
 
-	public void testTwoItemsCorrectOrder() {
+        /**
+         * 
+         */
+        public void testTwoItemsCorrectOrder() {
 		this.mIntegerSortedList.add(1);
 		this.mIntegerSortedList.add(2);
 
@@ -57,7 +67,10 @@ public class SortedListTest extends TestCase {
 		Assert.assertEquals(2, this.mIntegerSortedList.removeFirst().intValue());
 	}
 
-	public void testTwoItemsReverseOrder() {
+        /**
+         * 
+         */
+        public void testTwoItemsReverseOrder() {
 		this.mIntegerSortedList.add(2);
 		this.mIntegerSortedList.add(1);
 
@@ -65,7 +78,10 @@ public class SortedListTest extends TestCase {
 		Assert.assertEquals(2, this.mIntegerSortedList.removeFirst().intValue());
 	}
 
-	public void testDuplicateItems() {
+        /**
+         * 
+         */
+        public void testDuplicateItems() {
 		this.mIntegerSortedList.add(2);
 		this.mIntegerSortedList.add(2);
 
@@ -73,7 +89,10 @@ public class SortedListTest extends TestCase {
 		Assert.assertEquals(2, this.mIntegerSortedList.removeFirst().intValue());
 	}
 
-	public void testManyItemsWithDuplicates() {
+        /**
+         * 
+         */
+        public void testManyItemsWithDuplicates() {
 		this.mIntegerSortedList.add(1);
 		this.mIntegerSortedList.add(2);
 		this.mIntegerSortedList.add(3);
@@ -85,13 +104,19 @@ public class SortedListTest extends TestCase {
 		Assert.assertEquals(3, this.mIntegerSortedList.removeFirst().intValue());
 	}
 
-	public void testRemoveSingle() {
+        /**
+         * 
+         */
+        public void testRemoveSingle() {
 		this.mIntegerSortedList.add(1);
 
 		Assert.assertTrue(this.mIntegerSortedList.remove(new Integer(1)));
 	}
 
-	public void testRemoveMultiple() {
+        /**
+         * 
+         */
+        public void testRemoveMultiple() {
 		this.mIntegerSortedList.add(1);
 		this.mIntegerSortedList.add(2);
 		this.mIntegerSortedList.add(3);
@@ -101,7 +126,10 @@ public class SortedListTest extends TestCase {
 		Assert.assertTrue(this.mIntegerSortedList.remove(new Integer(3)));
 	}
 
-	public void testRemoveNonExistent() {
+        /**
+         * 
+         */
+        public void testRemoveNonExistent() {
 		this.mIntegerSortedList.add(1);
 		this.mIntegerSortedList.add(2);
 		this.mIntegerSortedList.add(3);
@@ -109,7 +137,10 @@ public class SortedListTest extends TestCase {
 		Assert.assertFalse(this.mIntegerSortedList.remove(new Integer(4)));
 	}
 
-	public void testUniqueRemoval_1() {
+        /**
+         * 
+         */
+        public void testUniqueRemoval_1() {
 		UniqueInteger zero = new UniqueInteger(0, "ZERO");
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
@@ -121,7 +152,10 @@ public class SortedListTest extends TestCase {
 		Assert.assertTrue(this.mUniqueIntegerSortedList.remove(one_1));
 	}
 
-	public void testUniqueRemoval_2() {
+        /**
+         * 
+         */
+        public void testUniqueRemoval_2() {
 		UniqueInteger zero = new UniqueInteger(0, "ZERO");
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
@@ -137,7 +171,10 @@ public class SortedListTest extends TestCase {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public class UniqueInteger implements Comparable<UniqueInteger> {
+        /**
+         * 
+         */
+        public class UniqueInteger implements Comparable<UniqueInteger> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -153,7 +190,12 @@ public class SortedListTest extends TestCase {
 		// Constructors
 		// ===========================================================
 
-		public UniqueInteger(final int mValue, final String pName) {
+                /**
+                 * 
+                 * @param mValue
+                 * @param pName
+                 */
+                public UniqueInteger(final int mValue, final String pName) {
 			this.mValue = mValue;
 			this.pName = pName;
 		}
@@ -166,17 +208,31 @@ public class SortedListTest extends TestCase {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pUniqueInteger
+                 * @return
+                 */
+                @Override
 		public int compareTo(final UniqueInteger pUniqueInteger) {
 			return this.mValue - pUniqueInteger.mValue;
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pObject
+                 * @return
+                 */
+                @Override
 		public boolean equals(final Object pObject) {
 			return this == pObject;
 		}
 
-		@Override
+                /**
+                 * 
+                 * @return
+                 */
+                @Override
 		public String toString() {
 			return pName;
 		}

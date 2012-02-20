@@ -18,9 +18,18 @@ public abstract class BaseHullAlgorithm implements IHullAlgorithm {
 	// Fields
 	// ===========================================================
 
-	protected Vector2[] mVertices;
-	protected int mVertexCount;
-	protected int mHullVertexCount;
+    /**
+     * 
+     */
+    protected Vector2[] mVertices;
+        /**
+         * 
+         */
+        protected int mVertexCount;
+        /**
+         * 
+         */
+        protected int mHullVertexCount;
 
 	// ===========================================================
 	// Constructors
@@ -38,7 +47,11 @@ public abstract class BaseHullAlgorithm implements IHullAlgorithm {
 	// Methods
 	// ===========================================================
 
-	protected int indexOfLowestVertex() {
+        /**
+         * 
+         * @return
+         */
+        protected int indexOfLowestVertex() {
 		final Vector2[] vertices = this.mVertices;
 		final int vertexCount = this.mVertexCount;
 
@@ -53,7 +66,12 @@ public abstract class BaseHullAlgorithm implements IHullAlgorithm {
 		return min;
 	}
 
-	protected void swap(final int pIndexA, final int pIndexB) {
+        /**
+         * 
+         * @param pIndexA
+         * @param pIndexB
+         */
+        protected void swap(final int pIndexA, final int pIndexB) {
 		final Vector2[] vertices = this.mVertices;
 		
 		final Vector2 tmp = vertices[pIndexA];

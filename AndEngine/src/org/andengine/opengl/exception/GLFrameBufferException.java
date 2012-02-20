@@ -22,11 +22,20 @@ public class GLFrameBufferException extends GLException {
 	// Constructors
 	// ===========================================================
 
-	public GLFrameBufferException(final int pError) {
+        /**
+         * 
+         * @param pError
+         */
+        public GLFrameBufferException(final int pError) {
 		super(pError);
 	}
 
-	public GLFrameBufferException(final int pError, final String pString) {
+        /**
+         * 
+         * @param pError
+         * @param pString
+         */
+        public GLFrameBufferException(final int pError, final String pString) {
 		super(pError, pString);
 	}
 

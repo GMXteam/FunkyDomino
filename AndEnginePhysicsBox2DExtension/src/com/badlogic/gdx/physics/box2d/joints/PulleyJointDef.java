@@ -26,14 +26,25 @@ import com.badlogic.gdx.physics.box2d.JointDef;
 public class PulleyJointDef extends JointDef {
 	private final static float minPulleyLength = 2.0f;
 
-	public PulleyJointDef () {
+        /**
+         * 
+         */
+        public PulleyJointDef () {
 		type = JointType.PulleyJoint;
 		collideConnected = true;
 	}
 
 	/**
 	 * Initialize the bodies, anchors, lengths, max lengths, and ratio using the world anchors.
-	 */
+         * 
+         * @param bodyA 
+         * @param groundAnchorA
+         * @param bodyB 
+         * @param groundAnchorB 
+         * @param anchorA 
+         * @param anchorB
+         * @param ratio  
+         */
 	public void initialize (Body bodyA, Body bodyB, Vector2 groundAnchorA, Vector2 groundAnchorB, Vector2 anchorA,
 		Vector2 anchorB, float ratio) {
 		this.bodyA = bodyA;

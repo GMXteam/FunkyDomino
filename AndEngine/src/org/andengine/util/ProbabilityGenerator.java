@@ -9,6 +9,7 @@ import org.andengine.util.math.MathUtils;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 16:54:24 - 07.11.2010
  */
@@ -40,12 +41,21 @@ public class ProbabilityGenerator<T> {
 	// Methods
 	// ===========================================================
 
-	public void add(final float pFactor, final T ... pElements){
+        /**
+         * 
+         * @param pFactor
+         * @param pElements
+         */
+        public void add(final float pFactor, final T ... pElements){
 		this.mProbabilitySum += pFactor;
 		this.mEntries.add(new Entry<T>(pFactor, pElements));
 	}
 
-	public T next() {
+        /**
+         * 
+         * @return
+         */
+        public T next() {
 		float random = MathUtils.random(0, this.mProbabilitySum);
 
 		final ArrayList<Entry<T>> factors = this.mEntries;
@@ -62,7 +72,10 @@ public class ProbabilityGenerator<T> {
 		return lastEntry.getReturnValue();
 	}
 
-	public void clear() {
+        /**
+         * 
+         */
+        public void clear() {
 		this.mProbabilitySum = 0;
 		this.mEntries.clear();
 	}

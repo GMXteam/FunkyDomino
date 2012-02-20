@@ -17,6 +17,10 @@ package com.badlogic.gdx.physics.box2d;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * 
+ * @author guillaume
+ */
 public class PolygonShape extends Shape {
 	/**
 	 * Constructs a new polygon
@@ -25,7 +29,11 @@ public class PolygonShape extends Shape {
 		addr = newPolygonShape();
 	}
 
-	protected PolygonShape (long addr) {
+        /**
+         * 
+         * @param addr
+         */
+        protected PolygonShape (long addr) {
 		this.addr = addr;
 	}
 
@@ -41,7 +49,9 @@ public class PolygonShape extends Shape {
 	/**
 	 * Copy vertices. This assumes the vertices define a convex polygon. It is assumed that the exterior is the the right of each
 	 * edge.
-	 */
+         * 
+         * @param vertices 
+         */
 	public void set (Vector2[] vertices) {
 		float[] verts = new float[vertices.length * 2];
 		for (int i = 0, j = 0; i < vertices.length * 2; i += 2, j++) {
@@ -79,7 +89,10 @@ public class PolygonShape extends Shape {
 
 	/**
 	 * Set this as a single edge.
-	 */
+         * 
+         * @param v1 
+         * @param v2 
+         */
 	public void setAsEdge (Vector2 v1, Vector2 v2) {
 		jniSetAsEdge(addr, v1.x, v1.y, v2.x, v2.y);
 	}

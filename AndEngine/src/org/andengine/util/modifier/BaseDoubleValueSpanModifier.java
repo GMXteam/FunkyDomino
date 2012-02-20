@@ -27,26 +27,66 @@ public abstract class BaseDoubleValueSpanModifier<T> extends BaseSingleValueSpan
 	// Constructors
 	// ===========================================================
 
-	public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         */
+        public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
 		this(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, null, EaseLinear.getInstance());
 	}
 
-	public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         * @param pEaseFunction
+         */
+        public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, null, pEaseFunction);
 	}
 
-	public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IModifierListener<T> pModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         * @param pModifierListener
+         */
+        public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IModifierListener<T> pModifierListener) {
 		this(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, pModifierListener, EaseLinear.getInstance());
 	}
 
-	public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IModifierListener<T> pModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         * @param pModifierListener
+         * @param pEaseFunction
+         */
+        public BaseDoubleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IModifierListener<T> pModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromValueA, pToValueA, pModifierListener, pEaseFunction);
 
 		this.mFromValueB = pFromValueB;
 		this.mValueSpanB = pToValueB - pFromValueB;
 	}
 
-	protected BaseDoubleValueSpanModifier(final BaseDoubleValueSpanModifier<T> pBaseDoubleValueSpanModifier) {
+        /**
+         * 
+         * @param pBaseDoubleValueSpanModifier
+         */
+        protected BaseDoubleValueSpanModifier(final BaseDoubleValueSpanModifier<T> pBaseDoubleValueSpanModifier) {
 		super(pBaseDoubleValueSpanModifier);
 
 		this.mFromValueB = pBaseDoubleValueSpanModifier.mFromValueB;
@@ -57,7 +97,12 @@ public abstract class BaseDoubleValueSpanModifier<T> extends BaseSingleValueSpan
 	// Getter & Setter
 	// ===========================================================
 
-	@Deprecated
+        /**
+         * 
+         * @return
+         * @deprecated
+         */
+        @Deprecated
 	public float getFromValue() {
 		return super.getFromValue();
 	}
@@ -67,19 +112,35 @@ public abstract class BaseDoubleValueSpanModifier<T> extends BaseSingleValueSpan
 		return super.getToValue();
 	}
 
-	public float getFromValueA() {
+        /**
+         * 
+         * @return
+         */
+        public float getFromValueA() {
 		return super.getFromValue();
 	}
 
-	public float getToValueA() {
+        /**
+         * 
+         * @return
+         */
+        public float getToValueA() {
 		return super.getToValue();
 	}
 
-	public float getFromValueB() {
+        /**
+         * 
+         * @return
+         */
+        public float getFromValueB() {
 		return this.mFromValueB;
 	}
 
-	public float getToValueB() {
+        /**
+         * 
+         * @return
+         */
+        public float getToValueB() {
 		return this.mFromValueB + this.mValueSpanB;
 	}
 
@@ -87,10 +148,28 @@ public abstract class BaseDoubleValueSpanModifier<T> extends BaseSingleValueSpan
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onSetInitialValues(final T pItem, final float pValueA, final float pValueB);
-	protected abstract void onSetValues(final T pItem, final float pPercentageDone, final float pValueA, final float pValueB);
+        /**
+         * 
+         * @param pItem
+         * @param pValueA
+         * @param pValueB
+         */
+        protected abstract void onSetInitialValues(final T pItem, final float pValueA, final float pValueB);
+        /**
+         * 
+         * @param pItem
+         * @param pPercentageDone
+         * @param pValueA
+         * @param pValueB
+         */
+        protected abstract void onSetValues(final T pItem, final float pPercentageDone, final float pValueA, final float pValueB);
 
-	@Override
+        /**
+         * 
+         * @param pItem
+         * @param pValueA
+         */
+        @Override
 	protected void onSetInitialValue(final T pItem, final float pValueA) {
 		this.onSetInitialValues(pItem, pValueA, this.mFromValueB);
 	}
@@ -100,7 +179,14 @@ public abstract class BaseDoubleValueSpanModifier<T> extends BaseSingleValueSpan
 		this.onSetValues(pItem, pPercentageDone, pValueA, this.mFromValueB + pPercentageDone * this.mValueSpanB);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         * @deprecated
+         */
+        @Override
 	@Deprecated
 	public void reset(final float pDuration, final float pFromValue, final float pToValue) {
 		super.reset(pDuration, pFromValue, pToValue);
@@ -110,7 +196,15 @@ public abstract class BaseDoubleValueSpanModifier<T> extends BaseSingleValueSpan
 	// Methods
 	// ===========================================================
 	
-	public void reset(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         */
+        public void reset(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
 		super.reset(pDuration, pFromValueA, pToValueA);
 
 		this.mFromValueB = pFromValueB;

@@ -13,7 +13,22 @@ public enum BoundsSplit {
 	// Elements
 	// ===========================================================
 
-	TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
+    /**
+     * 
+     */
+    TOP_LEFT,
+    /**
+     * 
+     */
+    TOP_RIGHT,
+    /**
+     * 
+     */
+    BOTTOM_LEFT,
+    /**
+     * 
+     */
+    BOTTOM_RIGHT;
 
 	// ===========================================================
 	// Constants
@@ -43,7 +58,10 @@ public enum BoundsSplit {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class BoundsSplitException extends AndEngineRuntimeException {
+        /**
+         * 
+         */
+        public static class BoundsSplitException extends AndEngineRuntimeException {
 		// ===========================================================
 		// Constants
 		// ===========================================================

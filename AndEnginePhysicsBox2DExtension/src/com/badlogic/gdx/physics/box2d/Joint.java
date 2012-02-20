@@ -18,6 +18,10 @@ package com.badlogic.gdx.physics.box2d;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.JointDef.JointType;
 
+/**
+ * 
+ * @author guillaume
+ */
 public abstract class Joint {
 	/** the address of the joint **/
 	protected long addr;
@@ -36,7 +40,8 @@ public abstract class Joint {
 
 	/**
 	 * Constructs a new joint
-	 * @param addr the address of the joint
+         * @param world 
+         * @param addr the address of the joint
 	 */
 	protected Joint (World world, long addr) {
 		this.world = world;
@@ -45,7 +50,9 @@ public abstract class Joint {
 
 	/**
 	 * Get the type of the concrete joint.
-	 */
+         * 
+         * @return 
+         */
 	public JointType getType () {
 		int type = jniGetType(addr);
 		if (type > 0 && type < JointType.valueTypes.length)
@@ -58,7 +65,9 @@ public abstract class Joint {
 
 	/**
 	 * Get the first body attached to this joint.
-	 */
+         * 
+         * @return 
+         */
 	public Body getBodyA () {
 		return world.bodies.get(jniGetBodyA(addr));
 	}
@@ -67,7 +76,9 @@ public abstract class Joint {
 
 	/**
 	 * Get the second body attached to this joint.
-	 */
+         * 
+         * @return 
+         */
 	public Body getBodyB () {
 		return world.bodies.get(jniGetBodyB(addr));
 	}
@@ -79,7 +90,11 @@ public abstract class Joint {
 	 */
 	private final Vector2 anchorA = new Vector2();
 
-	public Vector2 getAnchorA () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getAnchorA () {
 		jniGetAnchorA(addr, tmp);
 		anchorA.x = tmp[0];
 		anchorA.y = tmp[1];
@@ -93,7 +108,11 @@ public abstract class Joint {
 	 */
 	private final Vector2 anchorB = new Vector2();
 
-	public Vector2 getAnchorB () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getAnchorB () {
 		jniGetAnchorB(addr, tmp);
 		anchorB.x = tmp[0];
 		anchorB.y = tmp[1];
@@ -107,7 +126,12 @@ public abstract class Joint {
 	 */
 	private final Vector2 reactionForce = new Vector2();
 
-	public Vector2 getReactionForce (float inv_dt) {
+        /**
+         * 
+         * @param inv_dt
+         * @return
+         */
+        public Vector2 getReactionForce (float inv_dt) {
 		jniGetReactionForce(addr, inv_dt, tmp);
 		reactionForce.x = tmp[0];
 		reactionForce.y = tmp[1];
@@ -118,7 +142,10 @@ public abstract class Joint {
 
 	/**
 	 * Get the reaction torque on body2 in N*m.
-	 */
+         * 
+         * @param inv_dt
+         * @return  
+         */
 	public float getReactionTorque (float inv_dt) {
 		return jniGetReactionTorque(addr, inv_dt);
 	}
@@ -136,7 +163,9 @@ public abstract class Joint {
 
 	/**
 	 * Short-cut function to determine if either body is inactive.
-	 */
+         * 
+         * @return 
+         */
 	public boolean isActive () {
 		return jniIsActive(addr);
 	}

@@ -26,11 +26,23 @@ public class IntBounds implements IIntBounds {
 	// Constructors
 	// ===========================================================
 	
-	public IntBounds(final int pX, final int pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        public IntBounds(final int pX, final int pY) {
 		this.set(pX, pY);
 	}
 
-	public IntBounds(final int pXMin, final int pYMin, final int pXMax, final int pYMax) {
+        /**
+         * 
+         * @param pXMin
+         * @param pYMin
+         * @param pXMax
+         * @param pYMax
+         */
+        public IntBounds(final int pXMin, final int pYMin, final int pXMax, final int pYMax) {
 		this.set(pXMin, pYMin, pXMax, pYMax);
 	}
 
@@ -53,16 +65,32 @@ public class IntBounds implements IIntBounds {
 		return this.mXMax;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getYMax() {
 		return this.mYMax;
 	}
 
-	public void set(final int pX, final int pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        public void set(final int pX, final int pY) {
 		this.set(pX, pY, pX, pY);
 	}
 
-	public void set(final int pXMin, final int pYMin, final int pXMax, final int pYMax) {
+        /**
+         * 
+         * @param pXMin
+         * @param pYMin
+         * @param pXMax
+         * @param pYMax
+         */
+        public void set(final int pXMin, final int pYMin, final int pXMax, final int pYMax) {
 		this.mXMin = pXMin;
 		this.mYMin = pYMin;
 		this.mXMax = pXMax;
@@ -80,7 +108,13 @@ public class IntBounds implements IIntBounds {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public boolean contains(final int pX, final int pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @return
+         */
+        public boolean contains(final int pX, final int pY) {
 		return IntBoundsUtils.contains(this.mXMin, this.mYMin, this.mXMax, this.mYMax, pX, pY);
 	}
 

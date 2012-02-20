@@ -12,9 +12,18 @@ public enum MIMEType {
 	// Elements
 	// ===========================================================
 
-	JPEG("image/jpeg"),
-	GIF("image/gif"),
-	PNG("image/png");
+    /**
+     * 
+     */
+    JPEG("image/jpeg"),
+    /**
+     * 
+     */
+    GIF("image/gif"),
+        /**
+         * 
+         */
+        PNG("image/png");
 
 	// ===========================================================
 	// Constants
@@ -38,7 +47,11 @@ public enum MIMEType {
 	// Getter & Setter
 	// ===========================================================
 
-	public String getTypeString() {
+        /**
+         * 
+         * @return
+         */
+        public String getTypeString() {
 		return this.mTypeString;
 	}
 

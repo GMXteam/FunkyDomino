@@ -29,7 +29,11 @@ public class ColorPool extends GenericPool<Color> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @return
+     */
+    @Override
 	protected Color onAllocatePoolItem() {
 		return new Color(Color.WHITE);
 	}

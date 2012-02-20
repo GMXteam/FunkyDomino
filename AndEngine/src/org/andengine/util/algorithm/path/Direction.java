@@ -12,14 +12,38 @@ public enum Direction {
 	// Elements
 	// ===========================================================
 
-	UP(0, -1),
-	DOWN(0, 1),
-	LEFT(-1, 0),
-	RIGHT(1, 0),
-	UP_LEFT(-1, -1),
-	UP_RIGHT(1, -1),
-	DOWN_LEFT(-1, 1),
-	DOWN_RIGHT(1, 1);
+    /**
+     * 
+     */
+    UP(0, -1),
+        /**
+         * 
+         */
+        DOWN(0, 1),
+        /**
+         * 
+         */
+        LEFT(-1, 0),
+        /**
+         * 
+         */
+        RIGHT(1, 0),
+        /**
+         * 
+         */
+        UP_LEFT(-1, -1),
+        /**
+         * 
+         */
+        UP_RIGHT(1, -1),
+        /**
+         * 
+         */
+        DOWN_LEFT(-1, 1),
+        /**
+         * 
+         */
+        DOWN_RIGHT(1, 1);
 
 	// ===========================================================
 	// Constants
@@ -41,7 +65,13 @@ public enum Direction {
 		this.mDeltaY = pDeltaY;
 	}
 
-	public static Direction fromDelta(final int pDeltaX, final int pDeltaY) {
+        /**
+         * 
+         * @param pDeltaX
+         * @param pDeltaY
+         * @return
+         */
+        public static Direction fromDelta(final int pDeltaX, final int pDeltaY) {
 		switch(pDeltaX) {
 			case -1:
 				switch(pDeltaY) {
@@ -79,23 +109,43 @@ public enum Direction {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isHorizontal() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isHorizontal() {
 		return this.mDeltaY == 0;
 	}
 
-	public boolean isVertical() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isVertical() {
 		return this.mDeltaX == 0;
 	}
 
-	public int getDeltaX() {
+        /**
+         * 
+         * @return
+         */
+        public int getDeltaX() {
 		return this.mDeltaX;
 	}
 
-	public int getDeltaY() {
+        /**
+         * 
+         * @return
+         */
+        public int getDeltaY() {
 		return this.mDeltaY;
 	}
 
-	public Direction rotateLeft() {
+        /**
+         * 
+         * @return
+         */
+        public Direction rotateLeft() {
 		switch(this) {
 			case UP:
 				return LEFT;
@@ -117,7 +167,11 @@ public enum Direction {
 		throw new IllegalArgumentException();
 	}
 
-	public Direction rotateRight() {
+        /**
+         * 
+         * @return
+         */
+        public Direction rotateRight() {
 		switch(this) {
 			case UP:
 				return RIGHT;
@@ -139,7 +193,11 @@ public enum Direction {
 		throw new IllegalArgumentException();
 	}
 
-	public Direction opposite() {
+        /**
+         * 
+         * @return
+         */
+        public Direction opposite() {
 		switch(this) {
 			case UP:
 				return DOWN;

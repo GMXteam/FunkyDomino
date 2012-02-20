@@ -26,11 +26,19 @@ public class RenderOptions {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isMultiSampling() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isMultiSampling() {
 		return this.mMultiSampling;
 	}
 
-	public void setMultiSampling(final boolean pMultiSampling) {
+        /**
+         * 
+         * @param pMultiSampling
+         */
+        public void setMultiSampling(final boolean pMultiSampling) {
 		this.mMultiSampling = pMultiSampling;
 	}
 

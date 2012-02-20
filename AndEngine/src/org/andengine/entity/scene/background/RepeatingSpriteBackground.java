@@ -37,13 +37,25 @@ public class RepeatingSpriteBackground extends SpriteBackground {
 	 * @param pCameraWidth
 	 * @param pCameraHeight
 	 * @param pTextureManager
-	 * @param pBitmapTextureAtlasSource needs to be a power of two as otherwise the <code>repeating</code> feature doesn't work.
+         * @param pBitmapTextureAtlasSource needs to be a power of two as otherwise the <code>repeating</code> feature doesn't work.
+         * @param pVertexBufferObjectManager
+         * @throws IllegalArgumentException  
 	 */
 	public RepeatingSpriteBackground(final float pCameraWidth, final float pCameraHeight, final TextureManager pTextureManager, final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final VertexBufferObjectManager pVertexBufferObjectManager) throws IllegalArgumentException {
 		this(pCameraWidth, pCameraHeight, pTextureManager, pBitmapTextureAtlasSource, 1, pVertexBufferObjectManager);
 	}
 
-	public RepeatingSpriteBackground(final float pCameraWidth, final float pCameraHeight, final TextureManager pTextureManager, final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final float pScale, final VertexBufferObjectManager pVertexBufferObjectManager) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pCameraWidth
+         * @param pCameraHeight
+         * @param pTextureManager
+         * @param pBitmapTextureAtlasSource
+         * @param pScale
+         * @param pVertexBufferObjectManager
+         * @throws IllegalArgumentException
+         */
+        public RepeatingSpriteBackground(final float pCameraWidth, final float pCameraHeight, final TextureManager pTextureManager, final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final float pScale, final VertexBufferObjectManager pVertexBufferObjectManager) throws IllegalArgumentException {
 		super(null);
 
 		this.mScale = pScale;
@@ -54,7 +66,11 @@ public class RepeatingSpriteBackground extends SpriteBackground {
 	// Getter & Setter
 	// ===========================================================
 
-	public BitmapTextureAtlas getBitmapTextureAtlas() {
+        /**
+         * 
+         * @return
+         */
+        public BitmapTextureAtlas getBitmapTextureAtlas() {
 		return this.mBitmapTextureAtlas;
 	}
 

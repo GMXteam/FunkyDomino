@@ -9,6 +9,7 @@ import org.andengine.util.modifier.ease.IEaseFunction;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 21:21:10 - 14.03.2010
  */
@@ -25,11 +26,26 @@ public class AlphaParticleModifier<T extends IEntity> extends BaseSingleValueSpa
 	// Constructors
 	// ===========================================================
 
-	public AlphaParticleModifier(final float pFromTime, final float pToTime, final float pFromAlpha, final float pToAlpha) {
+    /**
+     * 
+     * @param pFromTime
+     * @param pToTime
+     * @param pFromAlpha
+     * @param pToAlpha
+     */
+    public AlphaParticleModifier(final float pFromTime, final float pToTime, final float pFromAlpha, final float pToAlpha) {
 		this(pFromTime, pToTime, pFromAlpha, pToAlpha, EaseLinear.getInstance());
 	}
 
-	public AlphaParticleModifier(final float pFromTime, final float pToTime, final float pFromAlpha, final float pToAlpha, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pFromTime
+         * @param pToTime
+         * @param pFromAlpha
+         * @param pToAlpha
+         * @param pEaseFunction
+         */
+        public AlphaParticleModifier(final float pFromTime, final float pToTime, final float pFromAlpha, final float pToAlpha, final IEaseFunction pEaseFunction) {
 		super(pFromTime, pToTime, pFromAlpha, pToAlpha, pEaseFunction);
 	}
 
@@ -41,12 +57,23 @@ public class AlphaParticleModifier<T extends IEntity> extends BaseSingleValueSpa
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         * @param pAlpha
+         */
+        @Override
 	protected void onSetInitialValue(final Particle<T> pParticle, final float pAlpha) {
 		pParticle.getEntity().setAlpha(pAlpha);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         * @param pPercentageDone
+         * @param pAlpha
+         */
+        @Override
 	protected void onSetValue(final Particle<T> pParticle, final float pPercentageDone, final float pAlpha) {
 		pParticle.getEntity().setAlpha(pAlpha);
 	}

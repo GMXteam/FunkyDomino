@@ -25,18 +25,42 @@ import com.badlogic.gdx.math.Vector2;
  * 
  */
 public class Transform {
-	public static final int POS_X = 0;
-	public static final int POS_Y = 1;
-	public static final int COL1_X = 2;
-	public static final int COL1_Y = 3;
-	public static final int COL2_X = 4;
-	public static final int COL2_Y = 5;
+    /**
+     * 
+     */
+    public static final int POS_X = 0;
+    /**
+     * 
+     */
+    public static final int POS_Y = 1;
+        /**
+         * 
+         */
+        public static final int COL1_X = 2;
+        /**
+         * 
+         */
+        public static final int COL1_Y = 3;
+        /**
+         * 
+         */
+        public static final int COL2_X = 4;
+        /**
+         * 
+         */
+        public static final int COL2_Y = 5;
 
-	public float[] vals = new float[6];
+        /**
+         * 
+         */
+        public float[] vals = new float[6];
 
 	private Vector2 position = new Vector2();
 
-	public Transform () {
+        /**
+         * 
+         */
+        public Transform () {
 
 	}
 
@@ -52,7 +76,8 @@ public class Transform {
 
 	/**
 	 * Transforms the given vector by this transform
-	 * @param v the vector
+         * @param v the vector
+         * @return  
 	 */
 	public Vector2 mul (Vector2 v) {
 		float x = vals[POS_X] + vals[COL1_X] * v.x + vals[COL2_X] * v.y;

@@ -41,27 +41,72 @@ public class SVGParser {
 	// Constructors
 	// ===========================================================
 
-	public static SVG parseSVGFromString(final String pString) throws SVGParseException {
+    /**
+     * 
+     * @param pString
+     * @return
+     * @throws SVGParseException
+     */
+    public static SVG parseSVGFromString(final String pString) throws SVGParseException {
 		return SVGParser.parseSVGFromString(pString, null);
 	}
 
-	public static SVG parseSVGFromString(final String pString, final ISVGColorMapper pSVGColorMapper) throws SVGParseException {
+    /**
+     * 
+     * @param pString
+     * @param pSVGColorMapper
+     * @return
+     * @throws SVGParseException
+     */
+    public static SVG parseSVGFromString(final String pString, final ISVGColorMapper pSVGColorMapper) throws SVGParseException {
 		return SVGParser.parseSVGFromInputStream(new ByteArrayInputStream(pString.getBytes()), pSVGColorMapper);
 	}
 
-	public static SVG parseSVGFromResource(final Resources pResources, final int pRawResourceID) throws SVGParseException {
+        /**
+         * 
+         * @param pResources
+         * @param pRawResourceID
+         * @return
+         * @throws SVGParseException
+         */
+        public static SVG parseSVGFromResource(final Resources pResources, final int pRawResourceID) throws SVGParseException {
 		return SVGParser.parseSVGFromResource(pResources, pRawResourceID, null);
 	}
 
-	public static SVG parseSVGFromResource(final Resources pResources, final int pRawResourceID, final ISVGColorMapper pSVGColorMapper) throws SVGParseException {
+        /**
+         * 
+         * @param pResources
+         * @param pRawResourceID
+         * @param pSVGColorMapper
+         * @return
+         * @throws SVGParseException
+         */
+        public static SVG parseSVGFromResource(final Resources pResources, final int pRawResourceID, final ISVGColorMapper pSVGColorMapper) throws SVGParseException {
 		return SVGParser.parseSVGFromInputStream(pResources.openRawResource(pRawResourceID), pSVGColorMapper);
 	}
 
-	public static SVG parseSVGFromAsset(final AssetManager pAssetManager, final String pAssetPath) throws SVGParseException, IOException {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pAssetPath
+         * @return
+         * @throws SVGParseException
+         * @throws IOException
+         */
+        public static SVG parseSVGFromAsset(final AssetManager pAssetManager, final String pAssetPath) throws SVGParseException, IOException {
 		return SVGParser.parseSVGFromAsset(pAssetManager, pAssetPath, null);
 	}
 
-	public static SVG parseSVGFromAsset(final AssetManager pAssetManager, final String pAssetPath, final ISVGColorMapper pSVGColorMapper) throws SVGParseException, IOException {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pAssetPath
+         * @param pSVGColorMapper
+         * @return
+         * @throws SVGParseException
+         * @throws IOException
+         */
+        public static SVG parseSVGFromAsset(final AssetManager pAssetManager, final String pAssetPath, final ISVGColorMapper pSVGColorMapper) throws SVGParseException, IOException {
 		final InputStream inputStream = pAssetManager.open(pAssetPath);
 		final SVG svg = SVGParser.parseSVGFromInputStream(inputStream, pSVGColorMapper);
 		inputStream.close();
@@ -80,7 +125,14 @@ public class SVGParser {
 	// Methods
 	// ===========================================================
 
-	public static SVG parseSVGFromInputStream(final InputStream pInputStream, final ISVGColorMapper pSVGColorMapper) throws SVGParseException {
+        /**
+         * 
+         * @param pInputStream
+         * @param pSVGColorMapper
+         * @return
+         * @throws SVGParseException
+         */
+        public static SVG parseSVGFromInputStream(final InputStream pInputStream, final ISVGColorMapper pSVGColorMapper) throws SVGParseException {
 		try {
 			final SAXParserFactory spf = SAXParserFactory.newInstance();
 			final SAXParser sp = spf.newSAXParser();

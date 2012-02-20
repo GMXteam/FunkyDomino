@@ -25,33 +25,80 @@ public class PhysicsConnector implements IUpdateHandler, PhysicsConstants {
 	// Fields
 	// ===========================================================
 
-	protected final IShape mShape;
-	protected final Body mBody;
+    /**
+     * 
+     */
+    protected final IShape mShape;
+        /**
+         * 
+         */
+        protected final Body mBody;
 
-	protected final float mShapeHalfBaseWidth;
-	protected final float mShapeHalfBaseHeight;
+        /**
+         * 
+         */
+        protected final float mShapeHalfBaseWidth;
+        /**
+         * 
+         */
+        protected final float mShapeHalfBaseHeight;
 
-	protected boolean mUpdatePosition;
-	protected boolean mUpdateRotation;
-	protected final float mPixelToMeterRatio;
+        /**
+         * 
+         */
+        protected boolean mUpdatePosition;
+        /**
+         * 
+         */
+        protected boolean mUpdateRotation;
+        /**
+         * 
+         */
+        protected final float mPixelToMeterRatio;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody) {
+        /**
+         * 
+         * @param pAreaShape
+         * @param pBody
+         */
+        public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody) {
 		this(pAreaShape, pBody, true, true);
 	}
 
-	public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pAreaShape
+         * @param pBody
+         * @param pPixelToMeterRatio
+         */
+        public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody, final float pPixelToMeterRatio) {
 		this(pAreaShape, pBody, true, true, pPixelToMeterRatio);
 	}
 
-	public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody, final boolean pUdatePosition, final boolean pUpdateRotation) {
+        /**
+         * 
+         * @param pAreaShape
+         * @param pBody
+         * @param pUdatePosition
+         * @param pUpdateRotation
+         */
+        public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody, final boolean pUdatePosition, final boolean pUpdateRotation) {
 		this(pAreaShape, pBody, pUdatePosition, pUpdateRotation, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody, final boolean pUdatePosition, final boolean pUpdateRotation, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pAreaShape
+         * @param pBody
+         * @param pUdatePosition
+         * @param pUpdateRotation
+         * @param pPixelToMeterRatio
+         */
+        public PhysicsConnector(final IAreaShape pAreaShape, final Body pBody, final boolean pUdatePosition, final boolean pUpdateRotation, final float pPixelToMeterRatio) {
 		this.mShape = pAreaShape;
 		this.mBody = pBody;
 
@@ -67,27 +114,51 @@ public class PhysicsConnector implements IUpdateHandler, PhysicsConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public IShape getShape() {
+        /**
+         * 
+         * @return
+         */
+        public IShape getShape() {
 		return this.mShape;
 	}
 
-	public Body getBody() {
+        /**
+         * 
+         * @return
+         */
+        public Body getBody() {
 		return this.mBody;
 	}
 
-	public boolean isUpdatePosition() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isUpdatePosition() {
 		return this.mUpdatePosition;
 	}
 
-	public boolean isUpdateRotation() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isUpdateRotation() {
 		return this.mUpdateRotation;
 	}
 
-	public void setUpdatePosition(final boolean pUpdatePosition) {
+        /**
+         * 
+         * @param pUpdatePosition
+         */
+        public void setUpdatePosition(final boolean pUpdatePosition) {
 		this.mUpdatePosition = pUpdatePosition;
 	}
 
-	public void setUpdateRotation(final boolean pUpdateRotation) {
+        /**
+         * 
+         * @param pUpdateRotation
+         */
+        public void setUpdateRotation(final boolean pUpdateRotation) {
 		this.mUpdateRotation = pUpdateRotation;
 	}
 

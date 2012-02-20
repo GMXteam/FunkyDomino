@@ -21,17 +21,37 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 	// Fields
 	// ===========================================================
 
-	protected float mBaseWidth;
-	protected float mBaseHeight;
+    /**
+     * 
+     */
+    protected float mBaseWidth;
+        /**
+         * 
+         */
+        protected float mBaseHeight;
 
-	protected float mWidth;
-	protected float mHeight;
+        /**
+         * 
+         */
+        protected float mWidth;
+        /**
+         * 
+         */
+        protected float mHeight;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public RectangularShape(final float pX, final float pY, final float pWidth, final float pHeight, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pShaderProgram
+         */
+        public RectangularShape(final float pX, final float pY, final float pWidth, final float pHeight, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pShaderProgram);
 
 		this.mBaseWidth = pWidth;
@@ -49,7 +69,11 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 	// Getter & Setter
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getWidth() {
 		return this.mWidth;
 	}
@@ -75,7 +99,11 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 		this.onUpdateVertices();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pHeight
+         */
+        @Override
 	public void setHeight(final float pHeight) {
 		this.mHeight = pHeight;
 		this.onUpdateVertices();
@@ -88,12 +116,20 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 		this.onUpdateVertices();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getWidthScaled() {
 		return this.getWidth() * this.mScaleX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getHeightScaled() {
 		return this.getHeight() * this.mScaleY;
 	}
@@ -102,7 +138,10 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public void setBaseSize() {
+        /**
+         * 
+         */
+        public void setBaseSize() {
 		if(this.mWidth != this.mBaseWidth || this.mHeight != this.mBaseHeight) {
 			this.mWidth = this.mBaseWidth;
 			this.mHeight = this.mBaseHeight;
@@ -115,7 +154,10 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 		return !RectangularShapeCollisionChecker.isVisible(pCamera, this);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		super.reset();
 		this.setBaseSize();
@@ -125,7 +167,13 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 		this.resetScaleCenter();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @return
+         */
+        @Override
 	public boolean contains(final float pX, final float pY) {
 		return RectangularShapeCollisionChecker.checkContains(this, pX, pY);
 	}
@@ -150,17 +198,26 @@ public abstract class RectangularShape extends Shape implements IAreaShape {
 	// Methods
 	// ===========================================================
 
-	public void resetRotationCenter() {
+        /**
+         * 
+         */
+        public void resetRotationCenter() {
 		this.mRotationCenterX = this.mWidth * 0.5f;
 		this.mRotationCenterY = this.mHeight * 0.5f;
 	}
 
-	public void resetScaleCenter() {
+        /**
+         * 
+         */
+        public void resetScaleCenter() {
 		this.mScaleCenterX = this.mWidth * 0.5f;
 		this.mScaleCenterY = this.mHeight * 0.5f;
 	}
 
-	public void resetSkewCenter() {
+        /**
+         * 
+         */
+        public void resetSkewCenter() {
 		this.mSkewCenterX = this.mWidth * 0.5f;
 		this.mSkewCenterY = this.mHeight * 0.5f;
 	}

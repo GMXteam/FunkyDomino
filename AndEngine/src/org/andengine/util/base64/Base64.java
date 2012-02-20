@@ -113,7 +113,8 @@ public class Base64 {
 	 * @param flags  controls certain features of the decoded output.
 	 *               Pass {@code DEFAULT} to decode standard Base64.
 	 *
-	 * @throws IllegalArgumentException if the input contains
+         * @return 
+         * @throws IllegalArgumentException if the input contains
 	 * incorrect padding
 	 */
 	public static byte[] decode(final String str, final int flags) {
@@ -131,7 +132,8 @@ public class Base64 {
 	 * @param flags  controls certain features of the decoded output.
 	 *               Pass {@code DEFAULT} to decode standard Base64.
 	 *
-	 * @throws IllegalArgumentException if the input contains
+         * @return 
+         * @throws IllegalArgumentException if the input contains
 	 * incorrect padding
 	 */
 	public static byte[] decode(final byte[] input, final int flags) {
@@ -151,7 +153,8 @@ public class Base64 {
 	 * @param flags  controls certain features of the decoded output.
 	 *               Pass {@code DEFAULT} to decode standard Base64.
 	 *
-	 * @throws IllegalArgumentException if the input contains
+         * @return 
+         * @throws IllegalArgumentException if the input contains
 	 * incorrect padding
 	 */
 	public static byte[] decode(final byte[] input, final int offset, final int len, final int flags) {
@@ -457,7 +460,8 @@ public class Base64 {
 	 * @param input  the data to encode
 	 * @param flags  controls certain features of the encoded output.
 	 *               Passing {@code DEFAULT} results in output that
-	 *               adheres to RFC 2045.
+         *               adheres to RFC 2045.
+         * @return  
 	 */
 	public static String encodeToString(final byte[] input, final int flags) {
 		try {
@@ -478,7 +482,8 @@ public class Base64 {
 	 * @param len    the number of bytes of input to encode
 	 * @param flags  controls certain features of the encoded output.
 	 *               Passing {@code DEFAULT} results in output that
-	 *               adheres to RFC 2045.
+         *               adheres to RFC 2045.
+         * @return  
 	 */
 	public static String encodeToString(final byte[] input, final int offset, final int len, final int flags) {
 		try {
@@ -496,7 +501,8 @@ public class Base64 {
 	 * @param input  the data to encode
 	 * @param flags  controls certain features of the encoded output.
 	 *               Passing {@code DEFAULT} results in output that
-	 *               adheres to RFC 2045.
+         *               adheres to RFC 2045.
+         * @return  
 	 */
 	public static byte[] encode(final byte[] input, final int flags) {
 		return Base64.encode(input, 0, input.length, flags);
@@ -512,7 +518,8 @@ public class Base64 {
 	 * @param len    the number of bytes of input to encode
 	 * @param flags  controls certain features of the encoded output.
 	 *               Passing {@code DEFAULT} results in output that
-	 *               adheres to RFC 2045.
+         *               adheres to RFC 2045.
+         * @return  
 	 */
 	public static byte[] encode(final byte[] input, final int offset, final int len, final int flags) {
 		final Encoder encoder = new Encoder(flags, null);

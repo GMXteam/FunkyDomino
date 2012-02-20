@@ -12,6 +12,7 @@ import org.andengine.opengl.texture.atlas.source.ITextureAtlasSource;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 14:22:55 - 14.07.2011
  */
@@ -24,16 +25,34 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 	// Fields
 	// ===========================================================
 
-	protected final int mWidth;
-	protected final int mHeight;
+    /**
+     * 
+     */
+    protected final int mWidth;
+        /**
+         * 
+         */
+        protected final int mHeight;
 
-	protected final ArrayList<T> mTextureAtlasSources = new ArrayList<T>();
+        /**
+         * 
+         */
+        protected final ArrayList<T> mTextureAtlasSources = new ArrayList<T>();
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public TextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final PixelFormat pPixelFormat, final TextureOptions pTextureOptions, final ITextureAtlasStateListener<T> pTextureAtlasStateListener) {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pWidth
+         * @param pHeight
+         * @param pPixelFormat
+         * @param pTextureOptions
+         * @param pTextureAtlasStateListener
+         */
+        public TextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final PixelFormat pPixelFormat, final TextureOptions pTextureOptions, final ITextureAtlasStateListener<T> pTextureAtlasStateListener) {
 		super(pTextureManager, pPixelFormat, pTextureOptions, pTextureAtlasStateListener);
 
 		this.mWidth = pWidth;
@@ -44,12 +63,20 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 	// Getter & Setter
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getWidth() {
 		return this.mWidth;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getHeight() {
 		return this.mHeight;
 	}
@@ -60,29 +87,43 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 		return super.hasTextureStateListener();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean hasTextureAtlasStateListener() {
 		return super.hasTextureStateListener();
 	}
 
 	/**
-	 * @see {@link ITextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
-	 */
+         * @return 
+         * @see {@link ITextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
+         * 
+         * @deprecated 
+         */
 	@Deprecated
 	@Override
 	public ITextureAtlasStateListener<T> getTextureStateListener() {
 		return this.getTextureAtlasStateListener();
 	}
 	
-	@SuppressWarnings("unchecked")
+        /**
+         * 
+         * @return
+         */
+        @SuppressWarnings("unchecked")
 	@Override
 	public ITextureAtlasStateListener<T> getTextureAtlasStateListener() {
 		return (ITextureAtlasStateListener<T>) super.getTextureStateListener();
 	}
 
 	/**
-	 * @see {@link ITextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
-	 */
+         * @param pTextureStateListener 
+         * @see {@link ITextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
+         * 
+         * @deprecated 
+         */
 	@SuppressWarnings("unchecked")
 	@Deprecated
 	@Override
@@ -90,7 +131,11 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 		super.setTextureStateListener((ITextureAtlasStateListener<T>)pTextureStateListener);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureAtlasStateListener
+         */
+        @Override
 	public void setTextureAtlasStateListener(final ITextureAtlasStateListener<T> pTextureAtlasStateListener) {
 		super.setTextureStateListener(pTextureAtlasStateListener);
 	}
@@ -99,7 +144,14 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pTextureAtlasSource
+         * @param pTextureX
+         * @param pTextureY
+         * @throws IllegalArgumentException
+         */
+        @Override
 	public void addTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY) throws IllegalArgumentException {
 		this.checkTextureAtlasSourcePosition(pTextureAtlasSource, pTextureX, pTextureY);
 		pTextureAtlasSource.setTextureX(pTextureX);
@@ -108,7 +160,15 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 		this.mUpdateOnHardwareNeeded = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureAtlasSource
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureAtlasSourcePadding
+         * @throws IllegalArgumentException
+         */
+        @Override
 	public void addTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY, final int pTextureAtlasSourcePadding) throws IllegalArgumentException {
 		this.addTextureAtlasSource(pTextureAtlasSource, pTextureX, pTextureY);
 
@@ -148,7 +208,10 @@ public abstract class TextureAtlas<T extends ITextureAtlasSource> extends Textur
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void clearTextureAtlasSources() {
 		this.mTextureAtlasSources.clear();
 		this.mUpdateOnHardwareNeeded = true;

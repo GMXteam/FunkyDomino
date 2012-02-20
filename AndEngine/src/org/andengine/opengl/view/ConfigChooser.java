@@ -90,7 +90,11 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 	// Constructors
 	// ===========================================================
 
-	public ConfigChooser(final boolean pMultiSamplingRequested) {
+        /**
+         * 
+         * @param pMultiSamplingRequested
+         */
+        public ConfigChooser(final boolean pMultiSamplingRequested) {
 		this.mMultiSamplingRequested = pMultiSamplingRequested;
 	}
 
@@ -98,35 +102,67 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isMultiSampling() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isMultiSampling() {
 		return this.mMultiSampling;
 	}
 
-	public boolean isCoverageMultiSampling() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isCoverageMultiSampling() {
 		return this.mCoverageMultiSampling;
 	}
 
-	public int getRedSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getRedSize() {
 		return this.mRedSize;
 	}
 
-	public int getGreenSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getGreenSize() {
 		return this.mGreenSize;
 	}
 
-	public int getBlueSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getBlueSize() {
 		return this.mBlueSize;
 	}
 
-	public int getAlphaSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getAlphaSize() {
 		return this.mAlphaSize;
 	}
 
-	public int getDepthSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getDepthSize() {
 		return this.mDepthSize;
 	}
 
-	public int getStencilSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getStencilSize() {
 		return this.mStencilSize;
 	}
 
@@ -134,7 +170,13 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pEGL
+         * @param pEGLDisplay
+         * @return
+         */
+        @Override
 	public EGLConfig chooseConfig(final EGL10 pEGL, final EGLDisplay pEGLDisplay) {
 		try {
 			return this.chooseConfig(pEGL, pEGLDisplay, ConfigChooserMatcher.STRICT);
@@ -241,12 +283,18 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public enum ConfigChooserMatcher {
+        /**
+         * 
+         */
+        public enum ConfigChooserMatcher {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-		STRICT() {
+            /**
+             * 
+             */
+            STRICT() {
 			@Override
 			public boolean matches(final int pRedSize, final int pGreenSize, final int pBlueSize, final int pAlphaSize, final int pDepthSize, final int pStencilSize) {
 				if(pDepthSize == ConfigChooser.DEPTH_SIZE && pStencilSize == ConfigChooser.STENCIL_SIZE) {
@@ -257,7 +305,10 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 				return false;
 			}
 		},
-		LOOSE_STENCIL() {
+            /**
+             * 
+             */
+            LOOSE_STENCIL() {
 			@Override
 			public boolean matches(final int pRedSize, final int pGreenSize, final int pBlueSize, final int pAlphaSize, final int pDepthSize, final int pStencilSize) {
 				if(pDepthSize == ConfigChooser.DEPTH_SIZE && pStencilSize >= ConfigChooser.STENCIL_SIZE) {
@@ -268,7 +319,10 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 				return false;
 			}
 		},
-		LOOSE_DEPTH_AND_STENCIL() {
+                /**
+                 * 
+                 */
+                LOOSE_DEPTH_AND_STENCIL() {
 			@Override
 			public boolean matches(final int pRedSize, final int pGreenSize, final int pBlueSize, final int pAlphaSize, final int pDepthSize, final int pStencilSize) {
 				if(pDepthSize >= ConfigChooser.DEPTH_SIZE && pStencilSize >= ConfigChooser.STENCIL_SIZE) {
@@ -279,7 +333,10 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 				return false;
 			}
 		},
-		ANY() {
+                /**
+                 * 
+                 */
+                ANY() {
 			@Override
 			public boolean matches(final int pRedSize, final int pGreenSize, final int pBlueSize, final int pAlphaSize, final int pDepthSize, final int pStencilSize) {
 				return true;
@@ -306,7 +363,17 @@ public class ConfigChooser implements GLSurfaceView.EGLConfigChooser {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		public abstract boolean matches(final int pRedSize, final int pGreenSize, final int pBlueSize, final int pAlphaSize, final int pDepthSize, final int pStencilSize);
+                /**
+                 * 
+                 * @param pRedSize
+                 * @param pGreenSize
+                 * @param pBlueSize
+                 * @param pAlphaSize
+                 * @param pDepthSize
+                 * @param pStencilSize
+                 * @return
+                 */
+                public abstract boolean matches(final int pRedSize, final int pGreenSize, final int pBlueSize, final int pAlphaSize, final int pDepthSize, final int pStencilSize);
 
 		// ===========================================================
 		// Methods

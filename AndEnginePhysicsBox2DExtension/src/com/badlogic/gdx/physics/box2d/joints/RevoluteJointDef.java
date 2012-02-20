@@ -27,13 +27,20 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * from a body and recompute the mass, the joints will be broken.
  */
 public class RevoluteJointDef extends JointDef {
-	public RevoluteJointDef () {
+    /**
+     * 
+     */
+    public RevoluteJointDef () {
 		type = JointType.RevoluteJoint;
 	}
 
 	/**
 	 * Initialize the bodies, anchors, and reference angle using a world anchor point.
-	 */
+         * 
+     * @param bodyA 
+     * @param bodyB
+     * @param anchor  
+         */
 	public void initialize (Body bodyA, Body bodyB, Vector2 anchor) {
 		this.bodyA = bodyA;
 		this.bodyB = bodyB;

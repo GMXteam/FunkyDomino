@@ -41,7 +41,12 @@ public class Sound extends BaseAudioEntity {
 	// Getter & Setter
 	// ===========================================================
 
-	public void setLoopCount(final int pLoopCount) throws SoundReleasedException {
+        /**
+         * 
+         * @param pLoopCount
+         * @throws SoundReleasedException
+         */
+        public void setLoopCount(final int pLoopCount) throws SoundReleasedException {
 		this.assertNotReleased();
 
 		this.mLoopCount = pLoopCount;
@@ -50,7 +55,12 @@ public class Sound extends BaseAudioEntity {
 		}
 	}
 
-	public void setRate(final float pRate) throws SoundReleasedException {
+        /**
+         * 
+         * @param pRate
+         * @throws SoundReleasedException
+         */
+        public void setRate(final float pRate) throws SoundReleasedException {
 		this.assertNotReleased();
 
 		this.mRate = pRate;

@@ -24,7 +24,11 @@ public class Path {
 	// Constructors
 	// ===========================================================
 
-	public Path(final int pLength) {
+        /**
+         * 
+         * @param pLength
+         */
+        public Path(final int pLength) {
 		this.mXs = new int[pLength];
 		this.mYs = new int[pLength];
 	}
@@ -33,31 +37,61 @@ public class Path {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getLength() {
+        /**
+         * 
+         * @return
+         */
+        public int getLength() {
 		return this.mXs.length;
 	}
 
-	public int getFromX() {
+        /**
+         * 
+         * @return
+         */
+        public int getFromX() {
 		return this.getX(0);
 	}
 
-	public int getFromY() {
+        /**
+         * 
+         * @return
+         */
+        public int getFromY() {
 		return this.getY(0);
 	}
 
-	public int getToX() {
+        /**
+         * 
+         * @return
+         */
+        public int getToX() {
 		return this.getX(this.getLength() - 1);
 	}
 
-	public int getToY() {
+        /**
+         * 
+         * @return
+         */
+        public int getToY() {
 		return this.getY(this.getLength() - 1);
 	}
 
-	public int getX(final int pIndex) {
+        /**
+         * 
+         * @param pIndex
+         * @return
+         */
+        public int getX(final int pIndex) {
 		return this.mXs[pIndex];
 	}
 
-	public int getY(final int pIndex) {
+        /**
+         * 
+         * @param pIndex
+         * @return
+         */
+        public int getY(final int pIndex) {
 		return this.mYs[pIndex];
 	}
 
@@ -69,12 +103,24 @@ public class Path {
 	// Methods
 	// ===========================================================
 
-	public void set(final int pIndex, final int pX, final int pY) {
+        /**
+         * 
+         * @param pIndex
+         * @param pX
+         * @param pY
+         */
+        public void set(final int pIndex, final int pX, final int pY) {
 		this.mXs[pIndex] = pX;
 		this.mYs[pIndex] = pY;
 	}
 
-	public boolean contains(final int pX, final int pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @return
+         */
+        public boolean contains(final int pX, final int pY) {
 		final int[] xs = this.mXs;
 		final int[] ys = this.mYs;
 		for(int i = this.getLength() - 1; i >= 0; i--) {
@@ -85,7 +131,12 @@ public class Path {
 		return false;
 	}
 
-	public Direction getDirectionToPreviousStep(final int pIndex) {
+        /**
+         * 
+         * @param pIndex
+         * @return
+         */
+        public Direction getDirectionToPreviousStep(final int pIndex) {
 		if(pIndex == 0) {
 			return null;
 		} else {
@@ -95,7 +146,12 @@ public class Path {
 		}
 	}
 
-	public Direction getDirectionToNextStep(final int pIndex) {
+        /**
+         * 
+         * @param pIndex
+         * @return
+         */
+        public Direction getDirectionToNextStep(final int pIndex) {
 		if(pIndex == this.getLength() - 1) {
 			return null;
 		} else {

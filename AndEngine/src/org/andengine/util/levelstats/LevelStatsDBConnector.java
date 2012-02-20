@@ -47,7 +47,13 @@ public class LevelStatsDBConnector {
 	// Constructors
 	// ===========================================================
 
-	public LevelStatsDBConnector(final Context pContext, final String pSecret, final String pSubmitURL) {
+        /**
+         * 
+         * @param pContext
+         * @param pSecret
+         * @param pSubmitURL
+         */
+        public LevelStatsDBConnector(final Context pContext, final String pSecret, final String pSubmitURL) {
 		this.mSecret = pSecret;
 		this.mSubmitURL = pSubmitURL;
 
@@ -69,11 +75,24 @@ public class LevelStatsDBConnector {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public void submitAsync(final int pLevelID, final boolean pSolved, final int pSecondsElapsed) {
+        /**
+         * 
+         * @param pLevelID
+         * @param pSolved
+         * @param pSecondsElapsed
+         */
+        public void submitAsync(final int pLevelID, final boolean pSolved, final int pSecondsElapsed) {
 		this.submitAsync(pLevelID, pSolved, pSecondsElapsed, null);
 	}
 
-	public void submitAsync(final int pLevelID, final boolean pSolved, final int pSecondsElapsed, final Callback<Boolean> pCallback) {
+        /**
+         * 
+         * @param pLevelID
+         * @param pSolved
+         * @param pSecondsElapsed
+         * @param pCallback
+         */
+        public void submitAsync(final int pLevelID, final boolean pSolved, final int pSecondsElapsed, final Callback<Boolean> pCallback) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

@@ -28,26 +28,66 @@ public class RotationAtModifier extends RotationModifier {
 	// Constructors
 	// ===========================================================
 
-	public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromRotation
+         * @param pToRotation
+         * @param pRotationCenterX
+         * @param pRotationCenterY
+         */
+        public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY) {
 		this(pDuration, pFromRotation, pToRotation, pRotationCenterX, pRotationCenterY, EaseLinear.getInstance());
 	}
 
-	public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromRotation
+         * @param pToRotation
+         * @param pRotationCenterX
+         * @param pRotationCenterY
+         * @param pEaseFunction
+         */
+        public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromRotation, pToRotation, pRotationCenterX, pRotationCenterY, null, pEaseFunction);
 	}
 
-	public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromRotation
+         * @param pToRotation
+         * @param pRotationCenterX
+         * @param pRotationCenterY
+         * @param pEntityModifierListener
+         */
+        public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY, final IEntityModifierListener pEntityModifierListener) {
 		this(pDuration, pFromRotation, pToRotation, pRotationCenterX, pRotationCenterY, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-	public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromRotation
+         * @param pToRotation
+         * @param pRotationCenterX
+         * @param pRotationCenterY
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public RotationAtModifier(final float pDuration, final float pFromRotation, final float pToRotation, final float pRotationCenterX, final float pRotationCenterY, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromRotation, pToRotation, pEntityModifierListener, pEaseFunction);
 
 		this.mRotationCenterX = pRotationCenterX;
 		this.mRotationCenterY = pRotationCenterY;
 	}
 
-	protected RotationAtModifier(final RotationAtModifier pRotationAtModifier) {
+        /**
+         * 
+         * @param pRotationAtModifier
+         */
+        protected RotationAtModifier(final RotationAtModifier pRotationAtModifier) {
 		super(pRotationAtModifier);
 
 		this.mRotationCenterX = pRotationAtModifier.mRotationCenterX;

@@ -31,11 +31,20 @@ public class DebugTimer {
 	// Constructors
 	// ===========================================================
 
-	public DebugTimer(final String pLabel) {
+        /**
+         * 
+         * @param pLabel
+         */
+        public DebugTimer(final String pLabel) {
 		this(DebugLevel.DEBUG, pLabel);
 	}
 
-	public DebugTimer(final DebugLevel pDebugLevel, final String pLabel) {
+        /**
+         * 
+         * @param pDebugLevel
+         * @param pLabel
+         */
+        public DebugTimer(final DebugLevel pDebugLevel, final String pLabel) {
 		this.mDebugLevel = pDebugLevel;
 		this.init(pLabel);
 	}
@@ -58,18 +67,29 @@ public class DebugTimer {
 		this.mDebugTimes.add(debugTime);
 	}
 
-	public void begin(final String pLabel) {
+        /**
+         * 
+         * @param pLabel
+         */
+        public void begin(final String pLabel) {
 		final long now = System.currentTimeMillis();
 		final DebugTime debugTime = new DebugTime(now, pLabel);
 		this.mDebugTimes.peek().begin(debugTime);
 		this.mDebugTimes.add(debugTime);
 	}
 
-	public void split(final String pLabel) {
+        /**
+         * 
+         * @param pLabel
+         */
+        public void split(final String pLabel) {
 		this.mDebugTimes.peek().split(pLabel);
 	}
 
-	public void end() {
+        /**
+         * 
+         */
+        public void end() {
 		final long now = System.currentTimeMillis();
 		if(this.mDebugTimes.size() == 1) {
 			throw new IllegalStateException("Cannot end the root of this " + this.getClass().getSimpleName());
@@ -78,11 +98,18 @@ public class DebugTimer {
 		}
 	}
 
-	public void dump() {
+        /**
+         * 
+         */
+        public void dump() {
 		this.dump(false);
 	}
 
-	public void dump(final boolean pClear) {
+        /**
+         * 
+         * @param pClear
+         */
+        public void dump(final boolean pClear) {
 		final long now = System.currentTimeMillis();
 		if(this.mDebugTimes.size() > 1) {
 			Debug.w(this.getClass().getSimpleName() + " not all ended!");
@@ -97,7 +124,10 @@ public class DebugTimer {
 		}
 	}
 
-	public void clear() {
+        /**
+         * 
+         */
+        public void clear() {
 		final DebugTime root = this.mDebugTimes.firstElement();
 		this.mDebugTimes.clear();
 		this.init(root.mLabel);
@@ -107,7 +137,10 @@ public class DebugTimer {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public class DebugTime {
+        /**
+         * 
+         */
+        public class DebugTime {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -128,11 +161,22 @@ public class DebugTimer {
 		// Constructors
 		// ===========================================================
 
-		public DebugTime(final long pStartTime, final String pLabel) {
+                /**
+                 * 
+                 * @param pStartTime
+                 * @param pLabel
+                 */
+                public DebugTime(final long pStartTime, final String pLabel) {
 			this(pStartTime, pLabel, false);
 		}
 
-		protected DebugTime(final long pStartTime, final String pLabel, final boolean pSplit) {
+                /**
+                 * 
+                 * @param pStartTime
+                 * @param pLabel
+                 * @param pSplit
+                 */
+                protected DebugTime(final long pStartTime, final String pLabel, final boolean pSplit) {
 			this.mStartTime = pStartTime;
 			this.mLabel = pLabel;
 			this.mSplit = pSplit;
@@ -150,12 +194,20 @@ public class DebugTimer {
 		// Methods
 		// ===========================================================
 
-		public void begin(final DebugTime pDebugTime) {
+                /**
+                 * 
+                 * @param pDebugTime
+                 */
+                public void begin(final DebugTime pDebugTime) {
 			this.ensureChildrenAllocated();
 			this.mChildren.add(pDebugTime);
 		}
 
-		public void split(final String pLabel) {
+                /**
+                 * 
+                 * @param pLabel
+                 */
+                public void split(final String pLabel) {
 			final long now = System.currentTimeMillis();
 
 			final DebugTime split;
@@ -172,15 +224,28 @@ public class DebugTimer {
 			this.mLastSplit = split;
 		}
 
-		public void end(final long pEndTime) {
+                /**
+                 * 
+                 * @param pEndTime
+                 */
+                public void end(final long pEndTime) {
 			this.mEndTime = pEndTime;
 		}
 
-		public void dump(final int pIndent) {
+                /**
+                 * 
+                 * @param pIndent
+                 */
+                public void dump(final int pIndent) {
 			this.dump(pIndent, "");
 		}
 
-		public void dump(final int pIndent, final String pPostfix) {
+                /**
+                 * 
+                 * @param pIndent
+                 * @param pPostfix
+                 */
+                public void dump(final int pIndent, final String pPostfix) {
 			if(this.mSplit) {
 				final char[] indent = new char[(pIndent - 1) * INDENT_SPACES];
 				Arrays.fill(indent, ' ');

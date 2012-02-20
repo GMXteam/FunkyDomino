@@ -76,7 +76,13 @@ public class SVGPathParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
+        /**
+         * 
+         * @param pSVGProperties
+         * @param pCanvas
+         * @param pSVGPaint
+         */
+        public void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
 		final Path path = this.parse(pSVGProperties);
 
 		final boolean fill = pSVGPaint.setFill(pSVGProperties);
@@ -660,7 +666,10 @@ public class SVGPathParser implements ISVGConstants {
 			}
 		}
 
-		public void skipWhitespace() {
+                /**
+                 * 
+                 */
+                public void skipWhitespace() {
 			while (SVGPathParser.this.mPosition < SVGPathParser.this.mLength) {
 				if (Character.isWhitespace(SVGPathParser.this.mString.charAt(SVGPathParser.this.mPosition))) {
 					this.advance();
@@ -670,7 +679,10 @@ public class SVGPathParser implements ISVGConstants {
 			}
 		}
 
-		public void skipNumberSeparator() {
+                /**
+                 * 
+                 */
+                public void skipNumberSeparator() {
 			while (SVGPathParser.this.mPosition < SVGPathParser.this.mLength) {
 				final char c = SVGPathParser.this.mString.charAt(SVGPathParser.this.mPosition);
 				switch (c) {
@@ -686,7 +698,10 @@ public class SVGPathParser implements ISVGConstants {
 			}
 		}
 
-		public void advance() {
+                /**
+                 * 
+                 */
+                public void advance() {
 			SVGPathParser.this.mCurrentChar = this.read();
 		}
 
@@ -865,14 +880,24 @@ public class SVGPathParser implements ISVGConstants {
 			return this.buildFloat(mantissa, exp);
 		}
 
-		public float nextFloat() {
+                /**
+                 * 
+                 * @return
+                 */
+                public float nextFloat() {
 			this.skipWhitespace();
 			final float f = this.parseFloat();
 			this.skipNumberSeparator();
 			return f;
 		}
 
-		public float buildFloat(int pMantissa, final int pExponent) {
+                /**
+                 * 
+                 * @param pMantissa
+                 * @param pExponent
+                 * @return
+                 */
+                public float buildFloat(int pMantissa, final int pExponent) {
 			if (pExponent < -125 || pMantissa == 0) {
 				return 0.0f;
 			}

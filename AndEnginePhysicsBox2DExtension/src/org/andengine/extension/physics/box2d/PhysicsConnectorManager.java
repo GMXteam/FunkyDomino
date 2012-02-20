@@ -61,7 +61,12 @@ public class PhysicsConnectorManager extends ArrayList<PhysicsConnector> impleme
 	// Methods
 	// ===========================================================
 	
-	public Body findBodyByShape(final IShape pShape) {
+        /**
+         * 
+         * @param pShape
+         * @return
+         */
+        public Body findBodyByShape(final IShape pShape) {
 		final ArrayList<PhysicsConnector> physicsConnectors = this;
 		for(int i = physicsConnectors.size() - 1; i >= 0; i--) {
 			final PhysicsConnector physicsConnector = physicsConnectors.get(i);
@@ -72,7 +77,12 @@ public class PhysicsConnectorManager extends ArrayList<PhysicsConnector> impleme
 		return null;
 	}
 	
-	public PhysicsConnector findPhysicsConnectorByShape(final IShape pShape) {
+        /**
+         * 
+         * @param pShape
+         * @return
+         */
+        public PhysicsConnector findPhysicsConnectorByShape(final IShape pShape) {
 		final ArrayList<PhysicsConnector> physicsConnectors = this;
 		for(int i = physicsConnectors.size() - 1; i >= 0; i--) {
 			final PhysicsConnector physicsConnector = physicsConnectors.get(i);

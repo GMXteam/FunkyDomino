@@ -25,7 +25,12 @@ public class FixedResolutionPolicy extends BaseResolutionPolicy {
 	// Constructors
 	// ===========================================================
 
-	public FixedResolutionPolicy(final int pWidth, final int pHeight) {
+        /**
+         * 
+         * @param pWidth
+         * @param pHeight
+         */
+        public FixedResolutionPolicy(final int pWidth, final int pHeight) {
 		this.mWidth = pWidth;
 		this.mHeight = pHeight;
 	}
@@ -38,7 +43,13 @@ public class FixedResolutionPolicy extends BaseResolutionPolicy {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pRenderSurfaceView
+         * @param pWidthMeasureSpec
+         * @param pHeightMeasureSpec
+         */
+        @Override
 	public void onMeasure(final RenderSurfaceView pRenderSurfaceView, final int pWidthMeasureSpec, final int pHeightMeasureSpec) {
 		pRenderSurfaceView.setMeasuredDimensionProxy(this.mWidth, this.mHeight);
 	}

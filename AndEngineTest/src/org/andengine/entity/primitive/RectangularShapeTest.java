@@ -41,7 +41,10 @@ public class RectangularShapeTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testContainsSimple() {
+        /**
+         * 
+         */
+        public void testContainsSimple() {
 		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
 
 		/* Center */
@@ -66,7 +69,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertFalse(shape.contains(0 - DELTA, 2 + DELTA));
 	}
 
-	public void testContainsScaled() {
+        /**
+         * 
+         */
+        public void testContainsScaled() {
 		final TestRectangularShape shape = new TestRectangularShape(0.5f, 0.5f, 1, 1);
 		shape.setScale(2);
 
@@ -92,7 +98,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertFalse(shape.contains(0 - DELTA, 2 + DELTA));
 	}
 
-	public void testContainsRotated() {
+        /**
+         * 
+         */
+        public void testContainsRotated() {
 		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
 		shape.setRotation(45);
 
@@ -112,7 +121,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertFalse(shape.contains(2, 0));
 	}
 
-	public void testContainsRotatedAndScaled() {
+        /**
+         * 
+         */
+        public void testContainsRotatedAndScaled() {
 		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
 		shape.setRotation(45);
 		shape.setScale(2 + DELTA / FloatMath.sqrt(2f));
@@ -139,19 +151,28 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertTrue(shape.contains(3, 1));
 	}
 
-	public void testCollidesWithSimple() {
+        /**
+         * 
+         */
+        public void testCollidesWithSimple() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 2, 2);
 		final TestRectangularShape shapeB = new TestRectangularShape(1, 1, 2, 2);
 		Assert.assertTrue(shapeA.collidesWith(shapeB));
 	}
 
-	public void testCollidesWithSimpleNot() {
+        /**
+         * 
+         */
+        public void testCollidesWithSimpleNot() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 2, 2);
 		final TestRectangularShape shapeB = new TestRectangularShape(3, 0, 2, 2);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
 	}
 
-	public void testCollidesWithScaled() {
+        /**
+         * 
+         */
+        public void testCollidesWithScaled() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 2, 2);
 		final TestRectangularShape shapeB = new TestRectangularShape(3, 3, 2, 2);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
@@ -167,7 +188,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertTrue(shapeA.collidesWith(shapeB));
 	}
 
-	public void testCollidesWithScaledUneven() {
+        /**
+         * 
+         */
+        public void testCollidesWithScaledUneven() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 2, 2);
 		final TestRectangularShape shapeB = new TestRectangularShape(3, 0, 2, 2);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
@@ -180,7 +204,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
 	}
 
-	public void testCollidesWithRotated() {
+        /**
+         * 
+         */
+        public void testCollidesWithRotated() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 4, 4);
 		final TestRectangularShape shapeB = new TestRectangularShape(5, 0, 4, 4);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
@@ -193,7 +220,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
 	}
 
-	public void testCollidesWithRotatedAroundCenter() {
+        /**
+         * 
+         */
+        public void testCollidesWithRotatedAroundCenter() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 2, 2);
 		final TestRectangularShape shapeB = new TestRectangularShape(3, 0, 2, 2);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
@@ -212,7 +242,10 @@ public class RectangularShapeTest extends TestCase {
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
 	}
 
-	public void testCollidesWithRotatedAndScaled() {
+        /**
+         * 
+         */
+        public void testCollidesWithRotatedAndScaled() {
 		final TestRectangularShape shapeA = new TestRectangularShape(0, 0, 2, 2);
 		final TestRectangularShape shapeB = new TestRectangularShape(3, 0, 2, 2);
 		Assert.assertFalse(shapeA.collidesWith(shapeB));
@@ -228,59 +261,89 @@ public class RectangularShapeTest extends TestCase {
 	}
 
 
-	public void testGetLocalCoordinatesSimple() {
+        /**
+         * 
+         */
+        public void testGetLocalCoordinatesSimple() {
 		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
 		AssertUtils.assertArrayEquals(new float[]{1, 1}, shape.convertSceneToLocalCoordinates(1, 1), DELTA);
 	}
 
-	public void testGetLocalCoordinatesNonOrigin() {
+        /**
+         * 
+         */
+        public void testGetLocalCoordinatesNonOrigin() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		AssertUtils.assertArrayEquals(new float[]{1, 1}, shape.convertSceneToLocalCoordinates(11, 11), DELTA);
 	}
 
-	public void testGetLocalCoordinatesNonOriginRotated() {
+        /**
+         * 
+         */
+        public void testGetLocalCoordinatesNonOriginRotated() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		shape.setRotation(90);
 		AssertUtils.assertArrayEquals(new float[]{0, 2}, shape.convertSceneToLocalCoordinates(10, 10), DELTA);
 	}
 
-	public void testGetLocalCoordinatesNonOriginScaled() {
+        /**
+         * 
+         */
+        public void testGetLocalCoordinatesNonOriginScaled() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		shape.setScale(0.5f);
 		AssertUtils.assertArrayEquals(new float[]{0, 0}, shape.convertSceneToLocalCoordinates(10.5f, 10.5f), DELTA);
 	}
 
 
-	public void testGetSceneCenterCoordinatesSimple() {
+        /**
+         * 
+         */
+        public void testGetSceneCenterCoordinatesSimple() {
 		final TestRectangularShape shape = new TestRectangularShape(0, 0, 2, 2);
 		AssertUtils.assertArrayEquals(new float[]{1, 1}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 
-	public void testGetSceneCenterCoordinatesNonOrigin() {
+        /**
+         * 
+         */
+        public void testGetSceneCenterCoordinatesNonOrigin() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		AssertUtils.assertArrayEquals(new float[]{11, 11}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 
-	public void testGetSceneCenterCoordinatesScaled() {
+        /**
+         * 
+         */
+        public void testGetSceneCenterCoordinatesScaled() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		shape.setScale(2);
 		AssertUtils.assertArrayEquals(new float[]{11, 11}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 
-	public void testGetSceneCenterCoordinatesRotated() {
+        /**
+         * 
+         */
+        public void testGetSceneCenterCoordinatesRotated() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		shape.setRotation(123);
 		AssertUtils.assertArrayEquals(new float[]{11, 11}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 
-	public void testGetSceneCenterCoordinatesScaledUneven() {
+        /**
+         * 
+         */
+        public void testGetSceneCenterCoordinatesScaledUneven() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		shape.setScale(2);
 		shape.setScaleCenter(0, 0);
 		AssertUtils.assertArrayEquals(new float[]{12, 12}, shape.getSceneCenterCoordinates(), DELTA);
 	}
 
-	public void testGetSceneCenterCoordinatesRotatedUneven() {
+        /**
+         * 
+         */
+        public void testGetSceneCenterCoordinatesRotatedUneven() {
 		final TestRectangularShape shape = new TestRectangularShape(10, 10, 2, 2);
 		shape.setRotation(90);
 		shape.setRotationCenter(0, 0);

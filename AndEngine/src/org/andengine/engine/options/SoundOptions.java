@@ -28,20 +28,38 @@ public class SoundOptions {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean needsSound() {
+        /**
+         * 
+         * @return
+         */
+        public boolean needsSound() {
 		return this.mNeedsSound;
 	}
 
-	public SoundOptions setNeedsSound(final boolean pNeedsSound) {
+        /**
+         * 
+         * @param pNeedsSound
+         * @return
+         */
+        public SoundOptions setNeedsSound(final boolean pNeedsSound) {
 		this.mNeedsSound = pNeedsSound;
 		return this;
 	}
 
-	public int getMaxSimultaneousStreams() {
+        /**
+         * 
+         * @return
+         */
+        public int getMaxSimultaneousStreams() {
 		return this.mMaxSimultaneousStreams;
 	}
 
-	public SoundOptions setMaxSimultaneousStreams(final int pMaxSimultaneousStreams) {
+        /**
+         * 
+         * @param pMaxSimultaneousStreams
+         * @return
+         */
+        public SoundOptions setMaxSimultaneousStreams(final int pMaxSimultaneousStreams) {
 		this.mMaxSimultaneousStreams = pMaxSimultaneousStreams;
 		return this;
 	}

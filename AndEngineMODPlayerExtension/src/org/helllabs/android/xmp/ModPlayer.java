@@ -5,6 +5,10 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 
 
+/**
+ * 
+ * @author guillaume
+ */
 public class ModPlayer {
 	private static ModPlayer instance = null;
 	private Xmp xmp = new Xmp();
@@ -17,14 +21,24 @@ public class ModPlayer {
 			AudioFormat.ENCODING_PCM_16BIT,
 			minSize < 4096 ? 4096 : minSize,
 			AudioTrack.MODE_STREAM);
-	protected boolean paused;
+        /**
+         * 
+         */
+        protected boolean paused;
 	private Thread playThread;
 	
-	protected ModPlayer() {
+        /**
+         * 
+         */
+        protected ModPlayer() {
 	      // empty
 	}
 	
-	public static ModPlayer getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static ModPlayer getInstance() {
 		if(instance == null) {
 			instance = new ModPlayer();
 			instance.xmp.init();
@@ -57,7 +71,10 @@ public class ModPlayer {
     }
 
 
-	protected void finalize() {
+        /**
+         * 
+         */
+        protected void finalize() {
     	xmp.stopModule();
     	paused = false;
     	try {
@@ -67,7 +84,11 @@ public class ModPlayer {
     	xmp.deinit();
     }
    
-    public void play(String file) {
+        /**
+         * 
+         * @param file
+         */
+        public void play(String file) {
    		if (xmp.loadModule(file) < 0) {
    			return;
    		}
@@ -79,40 +100,74 @@ public class ModPlayer {
    		playThread.start();
     }
     
-    public void stop() {
+        /**
+         * 
+         */
+        public void stop() {
     	xmp.stopModule();
     	paused = false;
     }
     
-    public void pause() {
+        /**
+         * 
+         */
+        public void pause() {
     	paused = !paused;
     }
     
+    /**
+     * 
+     * @return
+     */
     public int time() {
     	return xmp.time();
     }
 
-	public void seek(int seconds) {
+    /**
+     * 
+     * @param seconds
+     */
+    public void seek(int seconds) {
 		xmp.seek(seconds);
 	}
 	
-	public int getPlayTempo() {
+        /**
+         * 
+         * @return
+         */
+        public int getPlayTempo() {
 		return xmp.getPlayTempo();
 	}
 	
-	public int getPlayBpm() {
+        /**
+         * 
+         * @return
+         */
+        public int getPlayBpm() {
 		return xmp.getPlayBpm();
 	}
 	
-	public int getPlayPos() {
+        /**
+         * 
+         * @return
+         */
+        public int getPlayPos() {
 		return xmp.getPlayPos();
 	}
 	
-	public int getPlayPat() {
+        /**
+         * 
+         * @return
+         */
+        public int getPlayPat() {
 		return xmp.getPlayPat();
 	}
 	
-	public boolean isPaused() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isPaused() {
 		return this.paused;
 	}
 }

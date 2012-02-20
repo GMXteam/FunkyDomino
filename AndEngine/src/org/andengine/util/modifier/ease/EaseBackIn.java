@@ -29,7 +29,11 @@ public class EaseBackIn implements IEaseFunction {
 
 	}
 
-	public static EaseBackIn getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static EaseBackIn getInstance() {
 		if(null == INSTANCE) {
 			INSTANCE = new EaseBackIn();
 		}
@@ -44,7 +48,13 @@ public class EaseBackIn implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pDuration
+         * @return
+         */
+        @Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseBackIn.getValue(pSecondsElapsed / pDuration);
 	}
@@ -53,7 +63,12 @@ public class EaseBackIn implements IEaseFunction {
 	// Methods
 	// ===========================================================
 
-	public static float getValue(final float pPercentage) {
+        /**
+         * 
+         * @param pPercentage
+         * @return
+         */
+        public static float getValue(final float pPercentage) {
 		return pPercentage * pPercentage * ((OVERSHOOT_CONSTANT + 1) * pPercentage - OVERSHOOT_CONSTANT);
 	}
 

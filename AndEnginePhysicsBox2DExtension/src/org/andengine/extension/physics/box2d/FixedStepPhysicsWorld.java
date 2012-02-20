@@ -18,7 +18,10 @@ public class FixedStepPhysicsWorld extends PhysicsWorld {
 	// Constants
 	// ===========================================================
 
-	public static final int STEPSPERSECOND_DEFAULT = 60;
+    /**
+     * 
+     */
+    public static final int STEPSPERSECOND_DEFAULT = 60;
 
 	// ===========================================================
 	// Fields
@@ -32,21 +35,51 @@ public class FixedStepPhysicsWorld extends PhysicsWorld {
 	// Constructors
 	// ===========================================================
 
-	public FixedStepPhysicsWorld(final int pStepsPerSecond, final Vector2 pGravity, final boolean pAllowSleep) {
+        /**
+         * 
+         * @param pStepsPerSecond
+         * @param pGravity
+         * @param pAllowSleep
+         */
+        public FixedStepPhysicsWorld(final int pStepsPerSecond, final Vector2 pGravity, final boolean pAllowSleep) {
 		this(pStepsPerSecond, Integer.MAX_VALUE, pGravity, pAllowSleep);
 	}
 
-	public FixedStepPhysicsWorld(final int pStepsPerSecond, final int pMaximumStepsPerUpdate, final Vector2 pGravity, final boolean pAllowSleep) {
+        /**
+         * 
+         * @param pStepsPerSecond
+         * @param pMaximumStepsPerUpdate
+         * @param pGravity
+         * @param pAllowSleep
+         */
+        public FixedStepPhysicsWorld(final int pStepsPerSecond, final int pMaximumStepsPerUpdate, final Vector2 pGravity, final boolean pAllowSleep) {
 		super(pGravity, pAllowSleep);
 		this.mTimeStep = 1.0f / pStepsPerSecond;
 		this.mMaximumStepsPerUpdate = pMaximumStepsPerUpdate;
 	}
 
-	public FixedStepPhysicsWorld(final int pStepsPerSecond, final Vector2 pGravity, final boolean pAllowSleep, final int pVelocityIterations, final int pPositionIterations) {
+        /**
+         * 
+         * @param pStepsPerSecond
+         * @param pGravity
+         * @param pAllowSleep
+         * @param pVelocityIterations
+         * @param pPositionIterations
+         */
+        public FixedStepPhysicsWorld(final int pStepsPerSecond, final Vector2 pGravity, final boolean pAllowSleep, final int pVelocityIterations, final int pPositionIterations) {
 		this(pStepsPerSecond, Integer.MAX_VALUE, pGravity, pAllowSleep, pVelocityIterations, pPositionIterations);
 	}
 
-	public FixedStepPhysicsWorld(final int pStepsPerSecond, final int pMaximumStepsPerUpdate, final Vector2 pGravity, final boolean pAllowSleep, final int pVelocityIterations, final int pPositionIterations) {
+        /**
+         * 
+         * @param pStepsPerSecond
+         * @param pMaximumStepsPerUpdate
+         * @param pGravity
+         * @param pAllowSleep
+         * @param pVelocityIterations
+         * @param pPositionIterations
+         */
+        public FixedStepPhysicsWorld(final int pStepsPerSecond, final int pMaximumStepsPerUpdate, final Vector2 pGravity, final boolean pAllowSleep, final int pVelocityIterations, final int pPositionIterations) {
 		super(pGravity, pAllowSleep, pVelocityIterations, pPositionIterations);
 		this.mTimeStep = 1.0f / pStepsPerSecond;
 		this.mMaximumStepsPerUpdate = pMaximumStepsPerUpdate;

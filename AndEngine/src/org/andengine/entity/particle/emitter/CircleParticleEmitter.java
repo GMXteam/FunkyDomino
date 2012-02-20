@@ -28,11 +28,24 @@ public class CircleParticleEmitter extends BaseCircleParticleEmitter {
 	// Constructors
 	// ===========================================================
 
-	public CircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadius) {
+    /**
+     * 
+     * @param pCenterX
+     * @param pCenterY
+     * @param pRadius
+     */
+    public CircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadius) {
 		super(pCenterX, pCenterY, pRadius);
 	}
 
-	public CircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadiusX, final float pRadiusY) {
+    /**
+     * 
+     * @param pCenterX
+     * @param pCenterY
+     * @param pRadiusX
+     * @param pRadiusY
+     */
+    public CircleParticleEmitter(final float pCenterX, final float pCenterY, final float pRadiusX, final float pRadiusY) {
 		super(pCenterX, pCenterY, pRadiusX, pRadiusY);
 	}
 
@@ -44,7 +57,11 @@ public class CircleParticleEmitter extends BaseCircleParticleEmitter {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pOffset
+         */
+        @Override
 	public void getPositionOffset(final float[] pOffset) {
 		final float random = MathUtils.RANDOM.nextFloat() * MathConstants.PI * 2;
 		pOffset[VERTEX_INDEX_X] = this.mCenterX + FloatMath.cos(random) * this.mRadiusX * MathUtils.RANDOM.nextFloat();

@@ -30,7 +30,14 @@ public abstract class Shape {
 	 * 
 	 */
 	public enum Type {
-		Circle, Polygon,
+            /**
+             * 
+             */
+            Circle,
+            /**
+             * 
+             */
+            Polygon,
 	};
 
 	/** the address of the shape **/
@@ -44,7 +51,9 @@ public abstract class Shape {
 
 	/**
 	 * Returns the radius of this shape
-	 */
+         * 
+         * @return 
+         */
 	public float getRadius () {
 		return jniGetRadius(addr);
 	}
@@ -53,7 +62,9 @@ public abstract class Shape {
 
 	/**
 	 * Sets the radius of this shape
-	 */
+         * 
+         * @param radius 
+         */
 	public void setRadius (float radius) {
 		jniSetRadius(addr, radius);
 	}
@@ -69,7 +80,12 @@ public abstract class Shape {
 
 	private native void jniDispose (long addr);
 
-	protected static native int jniGetType (long addr);
+        /**
+         * 
+         * @param addr
+         * @return
+         */
+        protected static native int jniGetType (long addr);
 
 // /// Test a point for containment in this shape. This only works for convex shapes.
 // /// @param xf the shape world transform.

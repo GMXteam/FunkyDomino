@@ -34,7 +34,11 @@ public class RunnableHandler implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public synchronized void onUpdate(final float pSecondsElapsed) {
 		final ArrayList<Runnable> runnables = this.mRunnables;
 		final int runnableCount = runnables.size();
@@ -44,7 +48,10 @@ public class RunnableHandler implements IUpdateHandler {
 		runnables.clear();
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mRunnables.clear();
 	}
@@ -53,7 +60,11 @@ public class RunnableHandler implements IUpdateHandler {
 	// Methods
 	// ===========================================================
 
-	public synchronized void postRunnable(final Runnable pRunnable) {
+        /**
+         * 
+         * @param pRunnable
+         */
+        public synchronized void postRunnable(final Runnable pRunnable) {
 		this.mRunnables.add(pRunnable);
 	}
 

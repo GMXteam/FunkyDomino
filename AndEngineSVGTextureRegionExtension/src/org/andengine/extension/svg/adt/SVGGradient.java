@@ -51,7 +51,13 @@ public class SVGGradient implements ISVGConstants {
 	// Constructors
 	// ===========================================================
 
-	public SVGGradient(final String pID, final boolean pLinear, final Attributes pAttributes) {
+        /**
+         * 
+         * @param pID
+         * @param pLinear
+         * @param pAttributes
+         */
+        public SVGGradient(final String pID, final boolean pLinear, final Attributes pAttributes) {
 		this.mID = pID;
 		this.mHref = SVGParserUtils.parseHref(pAttributes);
 		this.mLinear = pLinear;
@@ -62,23 +68,43 @@ public class SVGGradient implements ISVGConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean hasHref() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasHref() {
 		return this.mHref != null;
 	}
 
-	public String getHref() {
+        /**
+         * 
+         * @return
+         */
+        public String getHref() {
 		return this.mHref;
 	}
 
-	public String getID() {
+        /**
+         * 
+         * @return
+         */
+        public String getID() {
 		return this.mID;
 	}
 
-	public boolean hasHrefResolved() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasHrefResolved() {
 		return this.mHref == null || this.mParent != null;
 	}
 
-	public Shader getShader() {
+        /**
+         * 
+         * @return
+         */
+        public Shader getShader() {
 		return this.mShader;
 	}
 
@@ -90,7 +116,11 @@ public class SVGGradient implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public Shader createShader() {
+        /**
+         * 
+         * @return
+         */
+        public Shader createShader() {
 		if(this.mShader != null) {
 			return this.mShader;
 		}
@@ -153,7 +183,11 @@ public class SVGGradient implements ISVGConstants {
 		}
 	}
 
-	public void ensureHrefResolved(final HashMap<String, SVGGradient> pSVGGradientMap) {
+        /**
+         * 
+         * @param pSVGGradientMap
+         */
+        public void ensureHrefResolved(final HashMap<String, SVGGradient> pSVGGradientMap) {
 		if(!this.hasHrefResolved()) {
 			this.resolveHref(pSVGGradientMap);
 		}
@@ -190,7 +224,11 @@ public class SVGGradient implements ISVGConstants {
 		}
 	}
 
-	public void addSVGGradientStop(final SVGGradientStop pSVGGradientStop) {
+        /**
+         * 
+         * @param pSVGGradientStop
+         */
+        public void addSVGGradientStop(final SVGGradientStop pSVGGradientStop) {
 		if(this.mSVGGradientStops == null) {
 			this.mSVGGradientStops = new ArrayList<SVGGradient.SVGGradientStop>();
 		}
@@ -201,7 +239,10 @@ public class SVGGradient implements ISVGConstants {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class SVGGradientStop {
+        /**
+         * 
+         */
+        public static class SVGGradientStop {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -217,7 +258,12 @@ public class SVGGradient implements ISVGConstants {
 		// Constructors
 		// ===========================================================
 
-		public SVGGradientStop(final float pOffset, final int pColor) {
+                /**
+                 * 
+                 * @param pOffset
+                 * @param pColor
+                 */
+                public SVGGradientStop(final float pOffset, final int pColor) {
 			this.mOffset = pOffset;
 			this.mColor = pColor;
 		}

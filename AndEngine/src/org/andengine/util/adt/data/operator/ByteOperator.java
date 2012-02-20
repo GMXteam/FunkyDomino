@@ -11,37 +11,55 @@ public enum ByteOperator {
 	// Elements
 	// ===========================================================
 
-	EQUALS() {
+    /**
+     * 
+     */
+    EQUALS() {
 		@Override
 		public boolean check(final byte pByteA, final byte pByteB) {
 			return pByteA == pByteB;
 		}
 	},
-	NOT_EQUALS()  {
+    /**
+     * 
+     */
+    NOT_EQUALS()  {
 		@Override
 		public boolean check(final byte pByteA, final byte pByteB) {
 			return pByteA != pByteB;
 		}
 	},
-	LESS_THAN()  {
+    /**
+     * 
+     */
+    LESS_THAN()  {
 		@Override
 		public boolean check(final byte pByteA, final byte pByteB) {
 			return pByteA < pByteB;
 		}
 	},
-	LESS_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        LESS_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final byte pByteA, final byte pByteB) {
 			return pByteA <= pByteB;
 		}
 	},
-	MORE_THAN()  {
+        /**
+         * 
+         */
+        MORE_THAN()  {
 		@Override
 		public boolean check(final byte pByteA, final byte pByteB) {
 			return pByteA > pByteB;
 		}
 	},
-	MORE_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        MORE_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final byte pByteA, final byte pByteB) {
 			return pByteA >= pByteB;
@@ -68,7 +86,13 @@ public enum ByteOperator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public abstract boolean check(final byte pByteA, final byte pByteB);
+        /**
+         * 
+         * @param pByteA
+         * @param pByteB
+         * @return
+         */
+        public abstract boolean check(final byte pByteA, final byte pByteB);
 
 	// ===========================================================
 	// Methods

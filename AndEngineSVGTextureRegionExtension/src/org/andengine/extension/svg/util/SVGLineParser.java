@@ -39,7 +39,13 @@ public class SVGLineParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
+    /**
+     * 
+     * @param pSVGProperties
+     * @param pCanvas
+     * @param pSVGPaint
+     */
+    public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
 		final float x1 = pSVGProperties.getFloatAttribute(ATTRIBUTE_X1, 0f);
 		final float x2 = pSVGProperties.getFloatAttribute(ATTRIBUTE_X2, 0f);
 		final float y1 = pSVGProperties.getFloatAttribute(ATTRIBUTE_Y1, 0f);

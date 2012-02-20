@@ -52,11 +52,17 @@ public class TextureManager {
 	// Methods
 	// ===========================================================
 
-	public synchronized void onCreate() {
+        /**
+         * 
+         */
+        public synchronized void onCreate() {
 
 	}
 
-	public synchronized void onReload() {
+        /**
+         * 
+         */
+        public synchronized void onReload() {
 		final HashSet<ITexture> managedTextures = this.mTexturesManaged;
 		if(!managedTextures.isEmpty()) {
 			for(final ITexture texture : managedTextures) { // TODO Can the use of the iterator be avoided somehow?
@@ -75,7 +81,10 @@ public class TextureManager {
 		}
 	}
 
-	public synchronized void onDestroy() {
+        /**
+         * 
+         */
+        public synchronized void onDestroy() {
 		final HashSet<ITexture> managedTextures = this.mTexturesManaged;
 		for(final ITexture texture : managedTextures) { // TODO Can the use of the iterator be avoided somehow?
 			texture.setNotLoadedToHardware();
@@ -87,21 +96,37 @@ public class TextureManager {
 		this.mTexturesMapped.clear();
 	}
 
-	public synchronized boolean hasMappedTexture(final String pID) {
+        /**
+         * 
+         * @param pID
+         * @return
+         */
+        public synchronized boolean hasMappedTexture(final String pID) {
 		if(pID == null) {
 			throw new IllegalArgumentException("pID must not be null!");
 		}
 		return this.mTexturesMapped.containsKey(pID);
 	}
 
-	public synchronized ITexture getMappedTexture(final String pID) {
+        /**
+         * 
+         * @param pID
+         * @return
+         */
+        public synchronized ITexture getMappedTexture(final String pID) {
 		if(pID == null) {
 			throw new IllegalArgumentException("pID must not be null!");
 		}
 		return this.mTexturesMapped.get(pID);
 	}
 
-	public synchronized void addMappedTexture(final String pID, final ITexture pTexture) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pID
+         * @param pTexture
+         * @throws IllegalArgumentException
+         */
+        public synchronized void addMappedTexture(final String pID, final ITexture pTexture) throws IllegalArgumentException {
 		if(pID == null) {
 			throw new IllegalArgumentException("pID must not be null!");
 		}
@@ -114,7 +139,12 @@ public class TextureManager {
 		this.mTexturesMapped.put(pID, pTexture);
 	}
 
-	public synchronized ITexture removedMappedTexture(final String pID) {
+        /**
+         * 
+         * @param pID
+         * @return
+         */
+        public synchronized ITexture removedMappedTexture(final String pID) {
 		if(pID == null) {
 			throw new IllegalArgumentException("pID must not be null!");
 		}
@@ -162,7 +192,11 @@ public class TextureManager {
 		}
 	}
 
-	public synchronized void updateTextures(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        public synchronized void updateTextures(final GLState pGLState) {
 		final HashSet<ITexture> texturesManaged = this.mTexturesManaged;
 		final ArrayList<ITexture> texturesLoaded = this.mTexturesLoaded;
 		final ArrayList<ITexture> texturesToBeLoaded = this.mTexturesToBeLoaded;
@@ -217,11 +251,28 @@ public class TextureManager {
 		}
 	}
 
-	public synchronized ITexture getTexture(final String pID, final AssetManager pAssetManager, final String pAssetPath) throws IOException {
+        /**
+         * 
+         * @param pID
+         * @param pAssetManager
+         * @param pAssetPath
+         * @return
+         * @throws IOException
+         */
+        public synchronized ITexture getTexture(final String pID, final AssetManager pAssetManager, final String pAssetPath) throws IOException {
 		return this.getTexture(pID, pAssetManager, pAssetPath, TextureOptions.DEFAULT);
 	}
 
-	public synchronized ITexture getTexture(final String pID, final AssetManager pAssetManager, final String pAssetPath, final TextureOptions pTextureOptions) throws IOException {
+        /**
+         * 
+         * @param pID
+         * @param pAssetManager
+         * @param pAssetPath
+         * @param pTextureOptions
+         * @return
+         * @throws IOException
+         */
+        public synchronized ITexture getTexture(final String pID, final AssetManager pAssetManager, final String pAssetPath, final TextureOptions pTextureOptions) throws IOException {
 		if(this.hasMappedTexture(pID)) {
 			return this.getMappedTexture(pID);
 		} else {
@@ -238,11 +289,28 @@ public class TextureManager {
 		}
 	}
 
-	public synchronized ITexture getTexture(final String pID, final IAssetInputStreamOpener pAssetInputStreamOpener, final String pAssetPath) throws IOException {
+        /**
+         * 
+         * @param pID
+         * @param pAssetInputStreamOpener
+         * @param pAssetPath
+         * @return
+         * @throws IOException
+         */
+        public synchronized ITexture getTexture(final String pID, final IAssetInputStreamOpener pAssetInputStreamOpener, final String pAssetPath) throws IOException {
 		return this.getTexture(pID, pAssetInputStreamOpener, pAssetPath, TextureOptions.DEFAULT);
 	}
 
-	public synchronized ITexture getTexture(final String pID, final IAssetInputStreamOpener pAssetInputStreamOpener, final String pAssetPath, final TextureOptions pTextureOptions) throws IOException {
+        /**
+         * 
+         * @param pID
+         * @param pAssetInputStreamOpener
+         * @param pAssetPath
+         * @param pTextureOptions
+         * @return
+         * @throws IOException
+         */
+        public synchronized ITexture getTexture(final String pID, final IAssetInputStreamOpener pAssetInputStreamOpener, final String pAssetPath, final TextureOptions pTextureOptions) throws IOException {
 		if(this.hasMappedTexture(pID)) {
 			return this.getMappedTexture(pID);
 		} else {
@@ -263,7 +331,10 @@ public class TextureManager {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface IAssetInputStreamOpener {
+        /**
+         * 
+         */
+        public interface IAssetInputStreamOpener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -272,6 +343,11 @@ public class TextureManager {
 		// Methods
 		// ===========================================================
 
-		public InputStream open(final String pAssetPath);
+            /**
+             * 
+             * @param pAssetPath
+             * @return
+             */
+            public InputStream open(final String pAssetPath);
 	}
 }

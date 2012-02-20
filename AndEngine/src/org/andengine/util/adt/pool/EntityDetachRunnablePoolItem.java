@@ -18,7 +18,10 @@ public class EntityDetachRunnablePoolItem extends RunnablePoolItem {
 	// Fields
 	// ===========================================================
 
-	protected IEntity mEntity;
+    /**
+     * 
+     */
+    protected IEntity mEntity;
 
 	// ===========================================================
 	// Constructors
@@ -28,7 +31,11 @@ public class EntityDetachRunnablePoolItem extends RunnablePoolItem {
 	// Getter & Setter
 	// ===========================================================
 
-	public void setEntity(final IEntity pEntity) {
+        /**
+         * 
+         * @param pEntity
+         */
+        public void setEntity(final IEntity pEntity) {
 		this.mEntity = pEntity;
 	}
 
@@ -36,7 +43,10 @@ public class EntityDetachRunnablePoolItem extends RunnablePoolItem {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void run() {
 		this.mEntity.detachSelf();
 	}

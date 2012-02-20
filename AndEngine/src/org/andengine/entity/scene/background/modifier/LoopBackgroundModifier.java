@@ -23,27 +23,60 @@ public class LoopBackgroundModifier extends LoopModifier<IBackground> implements
 	// Constructors
 	// ===========================================================
 
-	public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier) {
+    /**
+     * 
+     * @param pBackgroundModifier
+     */
+    public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier) {
 		super(pBackgroundModifier);
 	}
 
-	public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount) {
+        /**
+         * 
+         * @param pBackgroundModifier
+         * @param pLoopCount
+         */
+        public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount) {
 		super(pBackgroundModifier, pLoopCount);
 	}
 
-	public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount, final ILoopBackgroundModifierListener pLoopModifierListener) {
+        /**
+         * 
+         * @param pBackgroundModifier
+         * @param pLoopCount
+         * @param pLoopModifierListener
+         */
+        public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount, final ILoopBackgroundModifierListener pLoopModifierListener) {
 		super(pBackgroundModifier, pLoopCount, pLoopModifierListener, (IBackgroundModifierListener)null);
 	}
 
-	public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount, final IBackgroundModifierListener pBackgroundModifierListener) {
+        /**
+         * 
+         * @param pBackgroundModifier
+         * @param pLoopCount
+         * @param pBackgroundModifierListener
+         */
+        public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount, final IBackgroundModifierListener pBackgroundModifierListener) {
 		super(pBackgroundModifier, pLoopCount, pBackgroundModifierListener);
 	}
 
-	public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount, final ILoopBackgroundModifierListener pLoopModifierListener, final IBackgroundModifierListener pBackgroundModifierListener) {
+        /**
+         * 
+         * @param pBackgroundModifier
+         * @param pLoopCount
+         * @param pLoopModifierListener
+         * @param pBackgroundModifierListener
+         */
+        public LoopBackgroundModifier(final IBackgroundModifier pBackgroundModifier, final int pLoopCount, final ILoopBackgroundModifierListener pLoopModifierListener, final IBackgroundModifierListener pBackgroundModifierListener) {
 		super(pBackgroundModifier, pLoopCount, pLoopModifierListener, pBackgroundModifierListener);
 	}
 
-	protected LoopBackgroundModifier(final LoopBackgroundModifier pLoopBackgroundModifier) throws DeepCopyNotSupportedException {
+        /**
+         * 
+         * @param pLoopBackgroundModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        protected LoopBackgroundModifier(final LoopBackgroundModifier pLoopBackgroundModifier) throws DeepCopyNotSupportedException {
 		super(pLoopBackgroundModifier);
 	}
 
@@ -68,7 +101,10 @@ public class LoopBackgroundModifier extends LoopModifier<IBackground> implements
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface ILoopBackgroundModifierListener extends ILoopModifierListener<IBackground> {
+        /**
+         * 
+         */
+        public interface ILoopBackgroundModifierListener extends ILoopModifierListener<IBackground> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

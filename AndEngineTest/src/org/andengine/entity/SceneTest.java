@@ -41,7 +41,11 @@ public class SceneTest extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void setUp() throws Exception {
 		this.mCamera = new Camera(0, 0, 100, 100);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
@@ -56,7 +60,11 @@ public class SceneTest extends AndroidTestCase {
 		this.mEngine.start();
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void tearDown() throws Exception {
 		this.mEngine.stop();
 	}
@@ -65,7 +73,11 @@ public class SceneTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-	public void testSceneTouchCenter() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testSceneTouchCenter() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -75,7 +87,11 @@ public class SceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-	public void testSceneTouchEdge() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testSceneTouchEdge() throws Exception {
 		final int surfaceTouchX = 0;
 		final int surfaceTouchY = 100;
 
@@ -85,7 +101,11 @@ public class SceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-	public void testSceneTouchOffsetCamera() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testSceneTouchOffsetCamera() throws Exception {
 		this.mCamera.setCenter(0, 0);
 
 		final int surfaceTouchX = 50;
@@ -97,7 +117,11 @@ public class SceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-	public void testChildSceneTouch() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testChildSceneTouch() throws Exception {
 		final Scene childScene = new Scene();
 
 		this.mScene.setChildSceneModal(childScene);
@@ -111,7 +135,11 @@ public class SceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(childScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-	public void testChildSceneTouchOffsetCamera() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testChildSceneTouchOffsetCamera() throws Exception {
 		this.mCamera.setCenter(0, 0);
 
 		final Scene childScene = new Scene();
@@ -127,7 +155,11 @@ public class SceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(childScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-	public void testAreaTouchSimple() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testAreaTouchSimple() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -136,7 +168,11 @@ public class SceneTest extends AndroidTestCase {
 		this.testAreaTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, touchArea);
 	}
 
-	public void testAreaTouchOutside() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testAreaTouchOutside() throws Exception {
 		final int surfaceTouchX = 51;
 		final int surfaceTouchY = 51;
 

@@ -26,9 +26,18 @@ public class TiledSprite extends Sprite {
 	// Constants
 	// ===========================================================
 
-	public static final int VERTEX_SIZE = Sprite.VERTEX_SIZE;
-	public static final int VERTICES_PER_TILEDSPRITE = 6;
-	public static final int TILEDSPRITE_SIZE = TiledSprite.VERTEX_SIZE * TiledSprite.VERTICES_PER_TILEDSPRITE;
+    /**
+     * 
+     */
+    public static final int VERTEX_SIZE = Sprite.VERTEX_SIZE;
+    /**
+     * 
+     */
+    public static final int VERTICES_PER_TILEDSPRITE = 6;
+    /**
+     * 
+     */
+    public static final int TILEDSPRITE_SIZE = TiledSprite.VERTEX_SIZE * TiledSprite.VERTICES_PER_TILEDSPRITE;
 
 	// ===========================================================
 	// Fields
@@ -41,51 +50,157 @@ public class TiledSprite extends Sprite {
 	// Constructors
 	// ===========================================================
 
-	public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         */
+        public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
-	public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pShaderProgram
+         */
+        public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
-	public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         */
+        public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pTiledTextureRegion.getWidth(), pTiledTextureRegion.getHeight(), pTiledTextureRegion, pVertexBufferObjectManager, pDrawType);
 	}
 
-	public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         * @param pShaderProgram
+         */
+        public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTiledTextureRegion.getWidth(), pTiledTextureRegion.getHeight(), pTiledTextureRegion, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-	public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTiledTextureRegion
+         * @param pTiledSpriteVertexBufferObject
+         */
+        public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
 		this(pX, pY, pTiledTextureRegion.getWidth(), pTiledTextureRegion.getHeight(), pTiledTextureRegion, pTiledSpriteVertexBufferObject);
 	}
 
-	public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pTiledTextureRegion
+         * @param pTiledSpriteVertexBufferObject
+         * @param pShaderProgram
+         */
+        public TiledSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTiledTextureRegion.getWidth(), pTiledTextureRegion.getHeight(), pTiledTextureRegion, pTiledSpriteVertexBufferObject, pShaderProgram);
 	}
 
-	public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         */
+        public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pWidth, pHeight, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
-	public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pShaderProgram
+         */
+        public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
-	public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         */
+        public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pWidth, pHeight, pTiledTextureRegion, new HighPerformanceTiledSpriteVertexBufferObject(pVertexBufferObjectManager, TiledSprite.TILEDSPRITE_SIZE * pTiledTextureRegion.getTileCount(), pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
 	}
 
-	public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTiledTextureRegion
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         * @param pShaderProgram
+         */
+        public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTiledTextureRegion, new HighPerformanceTiledSpriteVertexBufferObject(pVertexBufferObjectManager, TiledSprite.TILEDSPRITE_SIZE * pTiledTextureRegion.getTileCount(), pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT), pShaderProgram);
 	}
 
-	public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTiledTextureRegion
+         * @param pTiledSpriteVertexBufferObject
+         */
+        public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
 		this(pX, pY, pWidth, pHeight, pTiledTextureRegion, pTiledSpriteVertexBufferObject, PositionColorTextureCoordinatesShaderProgram.getInstance());
 	}
 
-	public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pTiledTextureRegion
+         * @param pTiledSpriteVertexBufferObject
+         * @param pShaderProgram
+         */
+        public TiledSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pTiledSpriteVertexBufferObject, pShaderProgram);
 
 		this.mTiledSpriteVertexBufferObject = pTiledSpriteVertexBufferObject;
@@ -99,16 +214,28 @@ public class TiledSprite extends Sprite {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public ITextureRegion getTextureRegion() {
 		return this.getTiledTextureRegion().getTextureRegion(this.mCurrentTileIndex);
 	}
 
-	public ITiledTextureRegion getTiledTextureRegion() {
+        /**
+         * 
+         * @return
+         */
+        public ITiledTextureRegion getTiledTextureRegion() {
 		return (ITiledTextureRegion) this.mTextureRegion;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public ITiledSpriteVertexBufferObject getVertexBufferObject() {
 		return (ITiledSpriteVertexBufferObject) super.getVertexBufferObject();
 	}
@@ -118,17 +245,26 @@ public class TiledSprite extends Sprite {
 		this.mTiledSpriteVertexBufferObject.draw(GLES20.GL_TRIANGLES, this.mCurrentTileIndex * TiledSprite.VERTICES_PER_TILEDSPRITE, TiledSprite.VERTICES_PER_TILEDSPRITE);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateColor() {
 		this.getVertexBufferObject().onUpdateColor(this);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateVertices() {
 		this.getVertexBufferObject().onUpdateVertices(this);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateTextureCoordinates() {
 		this.getVertexBufferObject().onUpdateTextureCoordinates(this);
 	}
@@ -137,15 +273,27 @@ public class TiledSprite extends Sprite {
 	// Methods
 	// ===========================================================
 
-	public int getCurrentTileIndex() {
+        /**
+         * 
+         * @return
+         */
+        public int getCurrentTileIndex() {
 		return this.mCurrentTileIndex;
 	}
 
-	public void setCurrentTileIndex(final int pCurrentTileIndex) {
+        /**
+         * 
+         * @param pCurrentTileIndex
+         */
+        public void setCurrentTileIndex(final int pCurrentTileIndex) {
 		this.mCurrentTileIndex = pCurrentTileIndex;
 	}
 
-	public int getTileCount() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileCount() {
 		return this.getTiledTextureRegion().getTileCount();
 	}
 
@@ -153,7 +301,10 @@ public class TiledSprite extends Sprite {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface ITiledSpriteVertexBufferObject extends ISpriteVertexBufferObject {
+        /**
+         * 
+         */
+        public static interface ITiledSpriteVertexBufferObject extends ISpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -162,12 +313,27 @@ public class TiledSprite extends Sprite {
 		// Methods
 		// ===========================================================
 
-		public void onUpdateColor(final TiledSprite pTiledSprite);
-		public void onUpdateVertices(final TiledSprite pTiledSprite);
-		public void onUpdateTextureCoordinates(final TiledSprite pTiledSprite);
+            /**
+             * 
+             * @param pTiledSprite
+             */
+            public void onUpdateColor(final TiledSprite pTiledSprite);
+            /**
+             * 
+             * @param pTiledSprite
+             */
+            public void onUpdateVertices(final TiledSprite pTiledSprite);
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                public void onUpdateTextureCoordinates(final TiledSprite pTiledSprite);
 	}
 
-	public static class HighPerformanceTiledSpriteVertexBufferObject extends HighPerformanceSpriteVertexBufferObject implements ITiledSpriteVertexBufferObject {
+        /**
+         * 
+         */
+        public static class HighPerformanceTiledSpriteVertexBufferObject extends HighPerformanceSpriteVertexBufferObject implements ITiledSpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -180,7 +346,15 @@ public class TiledSprite extends Sprite {
 		// Constructors
 		// ===========================================================
 
-		public HighPerformanceTiledSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public HighPerformanceTiledSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -192,7 +366,11 @@ public class TiledSprite extends Sprite {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                @Override
 		public void onUpdateColor(final TiledSprite pTiledSprite) {
 			final float[] bufferData = this.mBufferData;
 
@@ -214,7 +392,11 @@ public class TiledSprite extends Sprite {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                @Override
 		public void onUpdateVertices(final TiledSprite pTiledSprite) {
 			final float[] bufferData = this.mBufferData;
 
@@ -250,7 +432,11 @@ public class TiledSprite extends Sprite {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                @Override
 		public void onUpdateTextureCoordinates(final TiledSprite pTiledSprite) {
 			final float[] bufferData = this.mBufferData;
 
@@ -345,7 +531,10 @@ public class TiledSprite extends Sprite {
 		// ===========================================================
 	}
 
-	public static class LowMemoryTiledSpriteVertexBufferObject extends LowMemorySpriteVertexBufferObject implements ITiledSpriteVertexBufferObject {
+        /**
+         * 
+         */
+        public static class LowMemoryTiledSpriteVertexBufferObject extends LowMemorySpriteVertexBufferObject implements ITiledSpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -358,7 +547,15 @@ public class TiledSprite extends Sprite {
 		// Constructors
 		// ===========================================================
 
-		public LowMemoryTiledSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public LowMemoryTiledSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -370,7 +567,11 @@ public class TiledSprite extends Sprite {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                @Override
 		public void onUpdateColor(final TiledSprite pTiledSprite) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 
@@ -392,7 +593,11 @@ public class TiledSprite extends Sprite {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                @Override
 		public void onUpdateVertices(final TiledSprite pTiledSprite) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 
@@ -428,7 +633,11 @@ public class TiledSprite extends Sprite {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pTiledSprite
+                 */
+                @Override
 		public void onUpdateTextureCoordinates(final TiledSprite pTiledSprite) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 

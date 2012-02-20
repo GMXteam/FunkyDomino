@@ -22,7 +22,10 @@ public class MusicManager extends BaseAudioManager<Music> {
 	// Constructors
 	// ===========================================================
 
-	public MusicManager() {
+    /**
+     * 
+     */
+    public MusicManager() {
 
 	}
 

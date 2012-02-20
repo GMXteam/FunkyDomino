@@ -34,7 +34,11 @@ public class OrientationData extends BaseSensorData {
 	// Constructors
 	// ===========================================================
 
-	public OrientationData(final int pDisplayRotation) {
+        /**
+         * 
+         * @param pDisplayRotation
+         */
+        public OrientationData(final int pDisplayRotation) {
 		super(3, pDisplayRotation);
 	}
 
@@ -42,36 +46,66 @@ public class OrientationData extends BaseSensorData {
 	// Getter & Setter
 	// ===========================================================
 
-	public float getRoll() {
+        /**
+         * 
+         * @return
+         */
+        public float getRoll() {
 		return super.mValues[SensorManager.DATA_Z];
 	}
 
-	public float getPitch() {
+        /**
+         * 
+         * @return
+         */
+        public float getPitch() {
 		return super.mValues[SensorManager.DATA_Y];
 	}
 
-	public float getYaw() {
+        /**
+         * 
+         * @return
+         */
+        public float getYaw() {
 		return super.mValues[SensorManager.DATA_X];
 	}
 
-	@Override
+        /**
+         * 
+         * @param pValues
+         * @deprecated
+         */
+        @Override
 	@Deprecated
 	public void setValues(final float[] pValues) {
 		super.setValues(pValues);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pAccuracy
+         * @deprecated
+         */
+        @Override
 	@Deprecated
 	public void setAccuracy(final int pAccuracy) {
 		super.setAccuracy(pAccuracy);
 	}
 
-	public void setAccelerationValues(final float[] pValues) {
+        /**
+         * 
+         * @param pValues
+         */
+        public void setAccelerationValues(final float[] pValues) {
 		System.arraycopy(pValues, 0, this.mAccelerationValues, 0, pValues.length);
 		this.updateOrientation();
 	}
 
-	public void setMagneticFieldValues(final float[] pValues) {
+        /**
+         * 
+         * @param pValues
+         */
+        public void setMagneticFieldValues(final float[] pValues) {
 		System.arraycopy(pValues, 0, this.mMagneticFieldValues, 0, pValues.length);
 		this.updateOrientation();
 	}
@@ -103,19 +137,35 @@ public class OrientationData extends BaseSensorData {
 		}
 	}
 
-	public int getAccelerationAccuracy() {
+        /**
+         * 
+         * @return
+         */
+        public int getAccelerationAccuracy() {
 		return this.getAccuracy();
 	}
 
-	public void setAccelerationAccuracy(final int pAccelerationAccuracy) {
+        /**
+         * 
+         * @param pAccelerationAccuracy
+         */
+        public void setAccelerationAccuracy(final int pAccelerationAccuracy) {
 		super.setAccuracy(pAccelerationAccuracy);
 	}
 
-	public int getMagneticFieldAccuracy() {
+        /**
+         * 
+         * @return
+         */
+        public int getMagneticFieldAccuracy() {
 		return this.mMagneticFieldAccuracy;
 	}
 
-	public void setMagneticFieldAccuracy(final int pMagneticFieldAccuracy) {
+        /**
+         * 
+         * @param pMagneticFieldAccuracy
+         */
+        public void setMagneticFieldAccuracy(final int pMagneticFieldAccuracy) {
 		this.mMagneticFieldAccuracy = pMagneticFieldAccuracy;
 	}
 
@@ -123,7 +173,11 @@ public class OrientationData extends BaseSensorData {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public String toString() {
 		return "Orientation: " + Arrays.toString(this.mValues);
 	}

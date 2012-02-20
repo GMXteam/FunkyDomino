@@ -25,7 +25,12 @@ import com.badlogic.gdx.physics.box2d.World;
  * both sides. This is useful to prevent one side of the pulley hitting the top.
  */
 public class PulleyJoint extends Joint {
-	public PulleyJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public PulleyJoint (World world, long addr) {
 		super(world, addr);
 	}
 
@@ -35,7 +40,11 @@ public class PulleyJoint extends Joint {
 	private final float[] tmp = new float[2];
 	private final Vector2 groundAnchorA = new Vector2();
 
-	public Vector2 getGroundAnchorA () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getGroundAnchorA () {
 		jniGetGroundAnchorA(addr, tmp);
 		groundAnchorA.set(tmp[0], tmp[1]);
 		return groundAnchorA;
@@ -48,7 +57,11 @@ public class PulleyJoint extends Joint {
 	 */
 	private final Vector2 groundAnchorB = new Vector2();
 
-	public Vector2 getGroundAnchorB () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getGroundAnchorB () {
 		jniGetGroundAnchorB(addr, tmp);
 		groundAnchorB.set(tmp[0], tmp[1]);
 		return groundAnchorB;
@@ -58,7 +71,9 @@ public class PulleyJoint extends Joint {
 
 	/**
 	 * Get the current length of the segment attached to body1.
-	 */
+         * 
+         * @return 
+         */
 	public float getLength1 () {
 		return jniGetLength1(addr);
 	}
@@ -67,7 +82,9 @@ public class PulleyJoint extends Joint {
 
 	/**
 	 * Get the current length of the segment attached to body2.
-	 */
+         * 
+         * @return 
+         */
 	public float getLength2 () {
 		return jniGetLength2(addr);
 	}
@@ -76,7 +93,9 @@ public class PulleyJoint extends Joint {
 
 	/**
 	 * Get the pulley ratio.
-	 */
+         * 
+         * @return 
+         */
 	public float getRatio () {
 		return jniGetRatio(addr);
 	}

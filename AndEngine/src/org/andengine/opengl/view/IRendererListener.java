@@ -12,8 +12,16 @@ public interface IRendererListener {
 	// Constants
 	// ===========================================================
 
-	public void onSurfaceCreated();
-	public void onSurfaceChanged(final int pWidth, final int pHeight);
+    /**
+     * 
+     */
+    public void onSurfaceCreated();
+    /**
+     * 
+     * @param pWidth
+     * @param pHeight
+     */
+    public void onSurfaceChanged(final int pWidth, final int pHeight);
 
 	// ===========================================================
 	// Methods

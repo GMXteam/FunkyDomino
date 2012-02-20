@@ -40,19 +40,43 @@ public abstract class ETC1Texture extends Texture {
 	// Constructors
 	// ===========================================================
 
-	public ETC1Texture(final TextureManager pTextureManager) throws IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @throws IOException
+         */
+        public ETC1Texture(final TextureManager pTextureManager) throws IOException {
 		this(pTextureManager, TextureOptions.DEFAULT, null);
 	}
 
-	public ETC1Texture(final TextureManager pTextureManager, final ITextureStateListener pTextureStateListener) throws IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pTextureStateListener
+         * @throws IOException
+         */
+        public ETC1Texture(final TextureManager pTextureManager, final ITextureStateListener pTextureStateListener) throws IOException {
 		this(pTextureManager, TextureOptions.DEFAULT, pTextureStateListener);
 	}
 
-	public ETC1Texture(final TextureManager pTextureManager, final TextureOptions pTextureOptions) throws IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @throws IOException
+         */
+        public ETC1Texture(final TextureManager pTextureManager, final TextureOptions pTextureOptions) throws IOException {
 		this(pTextureManager, pTextureOptions, null);
 	}
 
-	public ETC1Texture(final TextureManager pTextureManager, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @param pTextureStateListener
+         * @throws IOException
+         */
+        public ETC1Texture(final TextureManager pTextureManager, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IOException {
 		super(pTextureManager, PixelFormat.RGB_565, pTextureOptions, pTextureStateListener);
 
 		InputStream inputStream = null;
@@ -69,12 +93,20 @@ public abstract class ETC1Texture extends Texture {
 	// Getter & Setter
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getWidth() {
 		return this.mETC1TextureHeader.getWidth();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getHeight() {
 		return this.mETC1TextureHeader.getHeight();
 	}
@@ -83,9 +115,19 @@ public abstract class ETC1Texture extends Texture {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract InputStream getInputStream() throws IOException;
+        /**
+         * 
+         * @return
+         * @throws IOException
+         */
+        protected abstract InputStream getInputStream() throws IOException;
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @throws IOException
+         */
+        @Override
 	protected void writeTextureToHardware(final GLState pGLState) throws IOException {
 		final InputStream inputStream = this.getInputStream();
 		ETC1Util.loadTexture(GLES20.GL_TEXTURE_2D, 0, 0, this.mPixelFormat.getGLFormat(), this.mPixelFormat.getGLType(), inputStream);
@@ -99,7 +141,10 @@ public abstract class ETC1Texture extends Texture {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class ETC1TextureHeader {
+        /**
+         * 
+         */
+        public static class ETC1TextureHeader {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -117,7 +162,11 @@ public abstract class ETC1Texture extends Texture {
 		// Constructors
 		// ===========================================================
 
-		public ETC1TextureHeader(final byte[] pData) {
+                /**
+                 * 
+                 * @param pData
+                 */
+                public ETC1TextureHeader(final byte[] pData) {
 			if(pData.length != ETC1.ETC_PKM_HEADER_SIZE) {
 				throw new IllegalArgumentException("Invalid " + this.getClass().getSimpleName() + "!");
 			}
@@ -138,11 +187,19 @@ public abstract class ETC1Texture extends Texture {
 		// Getter & Setter
 		// ===========================================================
 
-		public int getWidth() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getWidth() {
 			return this.mWidth;
 		}
 
-		public int getHeight() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getHeight() {
 			return this.mHeight;
 		}
 

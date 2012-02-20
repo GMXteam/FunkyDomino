@@ -24,7 +24,12 @@ public class TexturePack {
 	// Constructors
 	// ===========================================================
 
-	public TexturePack(final ITexture pTexture, final TexturePackTextureRegionLibrary pTexturePackTextureRegionLibrary) {
+        /**
+         * 
+         * @param pTexture
+         * @param pTexturePackTextureRegionLibrary
+         */
+        public TexturePack(final ITexture pTexture, final TexturePackTextureRegionLibrary pTexturePackTextureRegionLibrary) {
 		this.mTexture = pTexture;
 		this.mTexturePackTextureRegionLibrary = pTexturePackTextureRegionLibrary;
 	}
@@ -33,11 +38,19 @@ public class TexturePack {
 	// Getter & Setter
 	// ===========================================================
 
-	public ITexture getTexture() {
+        /**
+         * 
+         * @return
+         */
+        public ITexture getTexture() {
 		return this.mTexture;
 	}
 
-	public TexturePackTextureRegionLibrary getTexturePackTextureRegionLibrary() {
+        /**
+         * 
+         * @return
+         */
+        public TexturePackTextureRegionLibrary getTexturePackTextureRegionLibrary() {
 		return this.mTexturePackTextureRegionLibrary;
 	}
 
@@ -45,11 +58,17 @@ public class TexturePack {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public void loadTexture() {
+        /**
+         * 
+         */
+        public void loadTexture() {
 		this.mTexture.load();
 	}
 
-	public void unloadTexture() {
+        /**
+         * 
+         */
+        public void unloadTexture() {
 		this.mTexture.unload();
 	}
 

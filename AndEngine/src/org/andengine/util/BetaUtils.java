@@ -49,11 +49,29 @@ public class BetaUtils implements Constants {
 	// Methods
 	// ===========================================================
 
-	public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID) {
+        /**
+         * 
+         * @param pActivity
+         * @param pExpirationDate
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @return
+         */
+        public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID) {
 		return BetaUtils.finishWhenExpired(pActivity, pExpirationDate, pTitleResourceID, pMessageResourceID, null, null);
 	}
 
-	public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID, final Intent pOkIntent, final Intent pCancelIntent) {
+        /**
+         * 
+         * @param pActivity
+         * @param pExpirationDate
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @param pOkIntent
+         * @param pCancelIntent
+         * @return
+         */
+        public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID, final Intent pOkIntent, final Intent pCancelIntent) {
 		final SharedPreferences spref = SimplePreferences.getInstance(pActivity);
 
 		final long now = System.currentTimeMillis();

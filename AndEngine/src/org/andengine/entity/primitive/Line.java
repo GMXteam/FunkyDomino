@@ -36,17 +36,41 @@ public class Line extends Shape {
 	// Constants
 	// ===========================================================
 
-	public static final float LINE_WIDTH_DEFAULT = 1.0f;
+    /**
+     * 
+     */
+    public static final float LINE_WIDTH_DEFAULT = 1.0f;
 
-	public static final int VERTEX_INDEX_X = 0;
-	public static final int VERTEX_INDEX_Y = Line.VERTEX_INDEX_X + 1;
-	public static final int COLOR_INDEX = Line.VERTEX_INDEX_Y + 1;
+        /**
+         * 
+         */
+        public static final int VERTEX_INDEX_X = 0;
+        /**
+         * 
+         */
+        public static final int VERTEX_INDEX_Y = Line.VERTEX_INDEX_X + 1;
+        /**
+         * 
+         */
+        public static final int COLOR_INDEX = Line.VERTEX_INDEX_Y + 1;
 
-	public static final int VERTEX_SIZE = 2 + 1;
-	public static final int VERTICES_PER_LINE = 2;
-	public static final int LINE_SIZE = Line.VERTEX_SIZE * Line.VERTICES_PER_LINE;
+        /**
+         * 
+         */
+        public static final int VERTEX_SIZE = 2 + 1;
+        /**
+         * 
+         */
+        public static final int VERTICES_PER_LINE = 2;
+        /**
+         * 
+         */
+        public static final int LINE_SIZE = Line.VERTEX_SIZE * Line.VERTICES_PER_LINE;
 
-	public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(2)
+        /**
+         * 
+         */
+        public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(2)
 		.add(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION, ShaderProgramConstants.ATTRIBUTE_POSITION, 2, GLES20.GL_FLOAT, false)
 		.add(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION, ShaderProgramConstants.ATTRIBUTE_COLOR, 4, GLES20.GL_UNSIGNED_BYTE, true)
 		.build();
@@ -55,12 +79,24 @@ public class Line extends Shape {
 	// Fields
 	// ===========================================================
 
-	protected float mX2;
-	protected float mY2;
+        /**
+         * 
+         */
+        protected float mX2;
+        /**
+         * 
+         */
+        protected float mY2;
 
-	protected float mLineWidth;
+        /**
+         * 
+         */
+        protected float mLineWidth;
 
-	protected final ILineVertexBufferObject mLineVertexBufferObject;
+        /**
+         * 
+         */
+        protected final ILineVertexBufferObject mLineVertexBufferObject;
 
 	// ===========================================================
 	// Constructors
@@ -68,30 +104,69 @@ public class Line extends Shape {
 
 	/**
 	 * Uses a default {@link HighPerformanceLineVertexBufferObject} in {@link DrawType#STATIC} with the {@link VertexBufferObjectAttribute}s: {@link Line#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-	 */
+         * 
+         * @param pX1
+         * @param pY1 
+         * @param pX2
+         * @param pY2
+         * @param pVertexBufferObjectManager  
+         */
 	public Line(final float pX1, final float pY1, final float pX2, final float pY2, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX1, pY1, pX2, pY2, Line.LINE_WIDTH_DEFAULT, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
 	/**
 	 * Uses a default {@link HighPerformanceLineVertexBufferObject} with the {@link VertexBufferObjectAttribute}s: {@link Line#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-	 */
+         * 
+         * @param pX1 
+         * @param pY1
+         * @param pX2 
+         * @param pY2
+         * @param pVertexBufferObjectManager 
+         * @param pDrawType  
+         */
 	public Line(final float pX1, final float pY1, final float pX2, final float pY2, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX1, pY1, pX2, pY2, Line.LINE_WIDTH_DEFAULT, pVertexBufferObjectManager, pDrawType);
 	}
 
 	/**
 	 * Uses a default {@link HighPerformanceLineVertexBufferObject} in {@link DrawType#STATIC} with the {@link VertexBufferObjectAttribute}s: {@link Line#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-	 */
+         * 
+         * @param pX1 
+         * @param pY1 
+         * @param pX2
+         * @param pY2 
+         * @param pVertexBufferObjectManager
+         * @param pLineWidth  
+         */
 	public Line(final float pX1, final float pY1, final float pX2, final float pY2, final float pLineWidth, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX1, pY1, pX2, pY2, pLineWidth, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
-	public Line(final float pX1, final float pY1, final float pX2, final float pY2, final float pLineWidth, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+        /**
+         * 
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         * @param pLineWidth
+         * @param pVertexBufferObjectManager
+         * @param pDrawType
+         */
+        public Line(final float pX1, final float pY1, final float pX2, final float pY2, final float pLineWidth, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX1, pY1, pX2, pY2, pLineWidth, new HighPerformanceLineVertexBufferObject(pVertexBufferObjectManager, Line.LINE_SIZE, pDrawType, true, Line.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
 	}
 
-	public Line(final float pX1, final float pY1, final float pX2, final float pY2, final float pLineWidth, final ILineVertexBufferObject pLineVertexBufferObject) {
+        /**
+         * 
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         * @param pLineWidth
+         * @param pLineVertexBufferObject
+         */
+        public Line(final float pX1, final float pY1, final float pX2, final float pY2, final float pLineWidth, final ILineVertexBufferObject pLineVertexBufferObject) {
 		super(pX1, pY1, PositionColorShaderProgram.getInstance());
 
 		this.mX2 = pX2;
@@ -121,7 +196,8 @@ public class Line extends Shape {
 	// ===========================================================
 
 	/**
-	 * @deprecated Instead use {@link Line#getX1()} or {@link Line#getX2()}.
+         * @return 
+         * @deprecated Instead use {@link Line#getX1()} or {@link Line#getX2()}.
 	 */
 	@Deprecated
 	@Override
@@ -130,40 +206,69 @@ public class Line extends Shape {
 	}
 
 	/**
-	 * @deprecatedInstead use {@link Line#getY1()} or {@link Line#getY2()}.
-	 */
+         * @return 
+         * @deprecatedInstead use {@link Line#getY1()} or {@link Line#getY2()}.
+         * 
+         * @deprecated 
+         */
 	@Deprecated
 	@Override
 	public float getY() {
 		return super.getY();
 	}
 
-	public float getX1() {
+        /**
+         * 
+         * @return
+         */
+        public float getX1() {
 		return super.getX();
 	}
 
-	public float getY1() {
+        /**
+         * 
+         * @return
+         */
+        public float getY1() {
 		return super.getY();
 	}
 
-	public float getX2() {
+        /**
+         * 
+         * @return
+         */
+        public float getX2() {
 		return this.mX2;
 	}
 
-	public float getY2() {
+        /**
+         * 
+         * @return
+         */
+        public float getY2() {
 		return this.mY2;
 	}
 
-	public float getLineWidth() {
+        /**
+         * 
+         * @return
+         */
+        public float getLineWidth() {
 		return this.mLineWidth;
 	}
 
-	public void setLineWidth(final float pLineWidth) {
+        /**
+         * 
+         * @param pLineWidth
+         */
+        public void setLineWidth(final float pLineWidth) {
 		this.mLineWidth = pLineWidth;
 	}
 
 	/**
-	 * @deprecated Instead use {@link Line#setPosition(float, float, float, float)}.
+         * @param pX 
+         * @param pY 
+         * @deprecated Instead use {@link Line#setPosition(float, float, float, float)}.
 	 */
 	@Deprecated
 	@Override
@@ -177,7 +282,14 @@ public class Line extends Shape {
 		this.mY2 += dY;
 	}
 
-	public void setPosition(final float pX1, final float pY1, final float pX2, final float pY2) {
+        /**
+         * 
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         */
+        public void setPosition(final float pX1, final float pY1, final float pX2, final float pY2) {
 		this.mX2 = pX2;
 		this.mY2 = pY2;
 
@@ -190,7 +302,11 @@ public class Line extends Shape {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public ILineVertexBufferObject getVertexBufferObject() {
 		return this.mLineVertexBufferObject;
 	}
@@ -221,12 +337,18 @@ public class Line extends Shape {
 		super.postDraw(pGLState, pCamera);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateColor() {
 		this.mLineVertexBufferObject.onUpdateColor(this);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateVertices() {
 		this.mLineVertexBufferObject.onUpdateVertices(this);
 	}
@@ -236,7 +358,14 @@ public class Line extends Shape {
 		throw new MethodNotSupportedException();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @return
+         * @deprecated
+         */
+        @Override
 	@Deprecated
 	public boolean contains(final float pX, final float pY) {
 		throw new MethodNotSupportedException();
@@ -262,7 +391,10 @@ public class Line extends Shape {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface ILineVertexBufferObject extends IVertexBufferObject {
+        /**
+         * 
+         */
+        public static interface ILineVertexBufferObject extends IVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -271,11 +403,22 @@ public class Line extends Shape {
 		// Methods
 		// ===========================================================
 
-		public void onUpdateColor(final Line pLine);
-		public void onUpdateVertices(final Line pLine);
+            /**
+             * 
+             * @param pLine
+             */
+            public void onUpdateColor(final Line pLine);
+            /**
+             * 
+             * @param pLine
+             */
+            public void onUpdateVertices(final Line pLine);
 	}
 
-	public static class HighPerformanceLineVertexBufferObject extends HighPerformanceVertexBufferObject implements ILineVertexBufferObject {
+        /**
+         * 
+         */
+        public static class HighPerformanceLineVertexBufferObject extends HighPerformanceVertexBufferObject implements ILineVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -288,7 +431,15 @@ public class Line extends Shape {
 		// Constructors
 		// ===========================================================
 
-		public HighPerformanceLineVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public HighPerformanceLineVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -300,7 +451,11 @@ public class Line extends Shape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+            /**
+             * 
+             * @param pLine
+             */
+            @Override
 		public void onUpdateColor(final Line pLine) {
 			final float[] bufferData = this.mBufferData;
 
@@ -312,7 +467,11 @@ public class Line extends Shape {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pLine
+                 */
+                @Override
 		public void onUpdateVertices(final Line pLine) {
 			final float[] bufferData = this.mBufferData;
 
@@ -334,7 +493,10 @@ public class Line extends Shape {
 		// ===========================================================
 	}
 
-	public static class LowMemoryLineVertexBufferObject extends LowMemoryVertexBufferObject implements ILineVertexBufferObject {
+        /**
+         * 
+         */
+        public static class LowMemoryLineVertexBufferObject extends LowMemoryVertexBufferObject implements ILineVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -347,7 +509,15 @@ public class Line extends Shape {
 		// Constructors
 		// ===========================================================
 
-		public LowMemoryLineVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public LowMemoryLineVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -359,7 +529,11 @@ public class Line extends Shape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pLine
+                 */
+                @Override
 		public void onUpdateColor(final Line pLine) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 
@@ -371,7 +545,11 @@ public class Line extends Shape {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pLine
+                 */
+                @Override
 		public void onUpdateVertices(final Line pLine) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 

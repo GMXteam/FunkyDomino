@@ -14,7 +14,10 @@ public class TriangleCollisionChecker {
 	// Constants
 	// ===========================================================
 
-	public static final int TRIANGLE_VERTEX_COUNT = 3;
+    /**
+     * 
+     */
+    public static final int TRIANGLE_VERTEX_COUNT = 3;
 
 	private static final float[] VERTICES_CONTAINS_TMP = new float[2 * TriangleCollisionChecker.TRIANGLE_VERTEX_COUNT];
 
@@ -38,7 +41,19 @@ public class TriangleCollisionChecker {
 	// Methods
 	// ===========================================================
 
-	public static boolean checkContains(final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final float pX, final float pY) {
+        /**
+         * 
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         * @param pX3
+         * @param pY3
+         * @param pX
+         * @param pY
+         * @return
+         */
+        public static boolean checkContains(final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final float pX, final float pY) {
 		final float v0x = pX3 - pX1;
 		final float v0y = pY3 - pY1;
 		final float v1x = pX2 - pX1;
@@ -62,7 +77,20 @@ public class TriangleCollisionChecker {
 		return (u > 0) && (v > 0) && (u + v < 1);
 	}
 
-	public static boolean checkContains(final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final Transformation pTransformation, final float pX, final float pY) {
+        /**
+         * 
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         * @param pX3
+         * @param pY3
+         * @param pTransformation
+         * @param pX
+         * @param pY
+         * @return
+         */
+        public static boolean checkContains(final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final Transformation pTransformation, final float pX, final float pY) {
 		TriangleCollisionChecker.VERTICES_CONTAINS_TMP[0 + Constants.VERTEX_INDEX_X] = pX1;
 		TriangleCollisionChecker.VERTICES_CONTAINS_TMP[0 + Constants.VERTEX_INDEX_Y] = pY1;
 

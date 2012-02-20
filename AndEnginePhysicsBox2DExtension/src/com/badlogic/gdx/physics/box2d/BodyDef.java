@@ -30,7 +30,18 @@ public class BodyDef {
 	 * moved by solver dynamic: positive mass, non-zero velocity determined by forces, moved by solver
 	 */
 	public enum BodyType {
-		StaticBody(0), KinematicBody(1), DynamicBody(2);
+            /**
+             * 
+             */
+            StaticBody(0),
+            /**
+             * 
+             */
+            KinematicBody(1),
+            /**
+             * 
+             */
+            DynamicBody(2);
 
 		private int value;
 
@@ -38,7 +49,11 @@ public class BodyDef {
 			this.value = value;
 		}
 
-		public int getValue () {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getValue () {
 			return value;
 		}
 	};

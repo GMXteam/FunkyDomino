@@ -24,23 +24,55 @@ public class MoveXModifier extends SingleValueSpanEntityModifier {
 	// Constructors
 	// ===========================================================
 
-	public MoveXModifier(final float pDuration, final float pFromX, final float pToX) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromX
+     * @param pToX
+     */
+    public MoveXModifier(final float pDuration, final float pFromX, final float pToX) {
 		this(pDuration, pFromX, pToX, null, EaseLinear.getInstance());
 	}
 
-	public MoveXModifier(final float pDuration, final float pFromX, final float pToX, final IEaseFunction pEaseFunction) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromX
+     * @param pToX
+     * @param pEaseFunction
+     */
+    public MoveXModifier(final float pDuration, final float pFromX, final float pToX, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromX, pToX, null, pEaseFunction);
 	}
 
-	public MoveXModifier(final float pDuration, final float pFromX, final float pToX, final IEntityModifierListener pEntityModifierListener) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromX
+     * @param pToX
+     * @param pEntityModifierListener
+     */
+    public MoveXModifier(final float pDuration, final float pFromX, final float pToX, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromX, pToX, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-	public MoveXModifier(final float pDuration, final float pFromX, final float pToX, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromX
+         * @param pToX
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public MoveXModifier(final float pDuration, final float pFromX, final float pToX, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromX, pToX, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected MoveXModifier(final MoveXModifier pMoveXModifier) {
+        /**
+         * 
+         * @param pMoveXModifier
+         */
+        protected MoveXModifier(final MoveXModifier pMoveXModifier) {
 		super(pMoveXModifier);
 	}
 
@@ -57,12 +89,23 @@ public class MoveXModifier extends SingleValueSpanEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pX
+         */
+        @Override
 	protected void onSetInitialValue(final IEntity pEntity, final float pX) {
 		pEntity.setPosition(pX, pEntity.getY());
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pPercentageDone
+         * @param pX
+         */
+        @Override
 	protected void onSetValue(final IEntity pEntity, final float pPercentageDone, final float pX) {
 		pEntity.setPosition(pX, pEntity.getY());
 	}

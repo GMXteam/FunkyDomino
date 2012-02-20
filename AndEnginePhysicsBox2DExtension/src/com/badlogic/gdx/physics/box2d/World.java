@@ -108,6 +108,7 @@ public class World {
 
         /**
          * Register a destruction listener. The listener is owned by you and must remain in scope.
+         * @param listener 
          */
         public void setDestructionListener (DestructionListener listener) {
 
@@ -116,6 +117,7 @@ public class World {
         /**
          * Register a contact filter to provide specific control over collision. Otherwise the default filter is used
          * (b2_defaultFilter). The listener is owned by you and must remain in scope.
+         * @param filter 
          */
         public void setContactFilter (ContactFilter filter) {
                 this.contactFilter = filter;
@@ -123,6 +125,7 @@ public class World {
 
         /**
          * Register a contact event listener. The listener is owned by you and must remain in scope.
+         * @param listener 
          */
         public void setContactListener (ContactListener listener) {
                 this.contactListener = listener;
@@ -130,6 +133,8 @@ public class World {
 
         /**
          * Create a rigid body given a definition. No reference to the definition is retained.
+         * @param def 
+         * @return 
          * @warning This function is locked during callbacks.
          */
         public Body createBody (BodyDef def) {
@@ -147,6 +152,7 @@ public class World {
         /**
          * Destroy a rigid body given a definition. No reference to the definition is retained. This function is locked during
          * callbacks.
+         * @param body 
          * @warning This automatically deletes all associated shapes and joints.
          * @warning This function is locked during callbacks.
          */
@@ -164,6 +170,8 @@ public class World {
         /**
          * Create a joint to constrain bodies together. No reference to the definition is retained. This may cause the connected bodies
          * to cease colliding.
+         * @param def 
+         * @return 
          * @warning This function is locked during callbacks.
          */
         public Joint createJoint (JointDef def) {
@@ -277,6 +285,7 @@ public class World {
 
         /**
          * Destroy a joint. This may cause the connected bodies to begin colliding.
+         * @param joint 
          * @warning This function is locked during callbacks.
          */
         public void destroyJoint (Joint joint) {
@@ -313,6 +322,7 @@ public class World {
 
         /**
          * Enable/disable warm starting. For testing.
+         * @param flag 
          */
         public void setWarmStarting (boolean flag) {
                 jniSetWarmStarting(addr, flag);
@@ -322,6 +332,7 @@ public class World {
 
         /**
          * Enable/disable continuous physics. For testing.
+         * @param flag 
          */
         public void setContinuousPhysics (boolean flag) {
                 jniSetContiousPhysics(addr, flag);
@@ -331,6 +342,7 @@ public class World {
 
         /**
          * Get the number of broad-phase proxies.
+         * @return 
          */
         public int getProxyCount () {
                 return jniGetProxyCount(addr);
@@ -340,6 +352,7 @@ public class World {
 
         /**
          * Get the number of bodies.
+         * @return 
          */
         public int getBodyCount () {
                 return jniGetBodyCount(addr);
@@ -349,6 +362,7 @@ public class World {
 
         /**
          * Get the number of joints.
+         * @return 
          */
         public int getJointCount () {
                 return jniGetJointcount(addr);
@@ -358,6 +372,7 @@ public class World {
 
         /**
          * Get the number of contacts (each may have 0 or more contact points).
+         * @return 
          */
         public int getContactCount () {
                 return jniGetContactCount(addr);
@@ -367,6 +382,7 @@ public class World {
 
         /**
          * Change the global gravity vector.
+         * @param gravity 
          */
         public void setGravity (Vector2 gravity) {
                 jniSetGravity(addr, gravity.x, gravity.y);
@@ -380,6 +396,10 @@ public class World {
         final float[] tmpGravity = new float[2];
         final Vector2 gravity = new Vector2();
 
+        /**
+         * 
+         * @return
+         */
         public Vector2 getGravity () {
                 jniGetGravity(addr, tmpGravity);
                 gravity.x = tmpGravity[0];
@@ -391,6 +411,7 @@ public class World {
 
         /**
          * Is the world locked (in the middle of a time step).
+         * @return 
          */
         public boolean isLocked () {
                 return jniIsLocked(addr);
@@ -400,6 +421,7 @@ public class World {
 
         /**
          * Set flag to control automatic clearing of forces after each time step.
+         * @param flag 
          */
         public void setAutoClearForces (boolean flag) {
                 jniSetAutoClearForces(addr, flag);
@@ -409,6 +431,7 @@ public class World {
 
         /**
          * Get the flag that controls automatic clearing of forces after each time step.
+         * @return 
          */
         public boolean getAutoClearForces () {
                 return jniGetAutoClearForces(addr);
@@ -452,6 +475,10 @@ public class World {
         private final ArrayList<Contact> contacts = new ArrayList<Contact>();
         private final ArrayList<Contact> freeContacts = new ArrayList<Contact>();
 
+        /**
+         * 
+         * @return
+         */
         public List<Contact> getContactList () {
                 int numContacts = getContactCount();
                 if (numContacts > contactAddrs.length) contactAddrs = new long[numContacts];
@@ -488,6 +515,9 @@ public class World {
 
         private native void jniGetContactList (long addr, long[] contacts);
 
+        /**
+         * 
+         */
         public void dispose () {
                 jniDispose(addr);
         }

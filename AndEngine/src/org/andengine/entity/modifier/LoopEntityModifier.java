@@ -23,27 +23,60 @@ public class LoopEntityModifier extends LoopModifier<IEntity> implements IEntity
 	// Constructors
 	// ===========================================================
 
-	public LoopEntityModifier(final IEntityModifier pEntityModifier) {
+    /**
+     * 
+     * @param pEntityModifier
+     */
+    public LoopEntityModifier(final IEntityModifier pEntityModifier) {
 		super(pEntityModifier);
 	}
 
-	public LoopEntityModifier(final IEntityModifier pEntityModifier, final int pLoopCount) {
+    /**
+     * 
+     * @param pEntityModifier
+     * @param pLoopCount
+     */
+    public LoopEntityModifier(final IEntityModifier pEntityModifier, final int pLoopCount) {
 		super(pEntityModifier, pLoopCount);
 	}
 
-	public LoopEntityModifier(final IEntityModifier pEntityModifier, final int pLoopCount, final ILoopEntityModifierListener pLoopModifierListener) {
+        /**
+         * 
+         * @param pEntityModifier
+         * @param pLoopCount
+         * @param pLoopModifierListener
+         */
+        public LoopEntityModifier(final IEntityModifier pEntityModifier, final int pLoopCount, final ILoopEntityModifierListener pLoopModifierListener) {
 		super(pEntityModifier, pLoopCount, pLoopModifierListener);
 	}
 
-	public LoopEntityModifier(final IEntityModifier pEntityModifier, final int pLoopCount, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pEntityModifier
+         * @param pLoopCount
+         * @param pEntityModifierListener
+         */
+        public LoopEntityModifier(final IEntityModifier pEntityModifier, final int pLoopCount, final IEntityModifierListener pEntityModifierListener) {
 		super(pEntityModifier, pLoopCount, pEntityModifierListener);
 	}
 
-	public LoopEntityModifier(final IEntityModifierListener pEntityModifierListener, final int pLoopCount, final ILoopEntityModifierListener pLoopModifierListener, final IEntityModifier pEntityModifier) {
+        /**
+         * 
+         * @param pEntityModifierListener
+         * @param pLoopCount
+         * @param pLoopModifierListener
+         * @param pEntityModifier
+         */
+        public LoopEntityModifier(final IEntityModifierListener pEntityModifierListener, final int pLoopCount, final ILoopEntityModifierListener pLoopModifierListener, final IEntityModifier pEntityModifier) {
 		super(pEntityModifier, pLoopCount, pLoopModifierListener, pEntityModifierListener);
 	}
 
-	protected LoopEntityModifier(final LoopEntityModifier pLoopEntityModifier) throws DeepCopyNotSupportedException {
+        /**
+         * 
+         * @param pLoopEntityModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        protected LoopEntityModifier(final LoopEntityModifier pLoopEntityModifier) throws DeepCopyNotSupportedException {
 		super(pLoopEntityModifier);
 	}
 
@@ -68,7 +101,10 @@ public class LoopEntityModifier extends LoopModifier<IEntity> implements IEntity
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface ILoopEntityModifierListener extends ILoopModifierListener<IEntity> {
+        /**
+         * 
+         */
+        public interface ILoopEntityModifierListener extends ILoopModifierListener<IEntity> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

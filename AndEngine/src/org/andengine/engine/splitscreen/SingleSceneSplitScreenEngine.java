@@ -30,7 +30,12 @@ public class SingleSceneSplitScreenEngine extends Engine {
 	// Constructors
 	// ===========================================================
 
-	public SingleSceneSplitScreenEngine(final EngineOptions pEngineOptions, final Camera pSecondCamera) {
+        /**
+         * 
+         * @param pEngineOptions
+         * @param pSecondCamera
+         */
+        public SingleSceneSplitScreenEngine(final EngineOptions pEngineOptions, final Camera pSecondCamera) {
 		super(pEngineOptions);
 		this.mSecondCamera = pSecondCamera;
 	}
@@ -39,17 +44,30 @@ public class SingleSceneSplitScreenEngine extends Engine {
 	// Getter & Setter
 	// ===========================================================
 
-	@Deprecated
+        /**
+         * 
+         * @return
+         * @deprecated
+         */
+        @Deprecated
 	@Override
 	public Camera getCamera() {
 		return super.mCamera;
 	}
 
-	public Camera getFirstCamera() {
+        /**
+         * 
+         * @return
+         */
+        public Camera getFirstCamera() {
 		return super.mCamera;
 	}
 
-	public Camera getSecondCamera() {
+        /**
+         * 
+         * @return
+         */
+        public Camera getSecondCamera() {
 		return this.mSecondCamera;
 	}
 
@@ -57,7 +75,12 @@ public class SingleSceneSplitScreenEngine extends Engine {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pFirstCamera
+         */
+        @Override
 	protected void onDrawScene(final GLState pGLState, final Camera pFirstCamera) {
 		if(super.mScene != null) {
 			final Camera secondCamera = this.getSecondCamera();
@@ -91,7 +114,12 @@ public class SingleSceneSplitScreenEngine extends Engine {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTouchEvent
+         * @return
+         */
+        @Override
 	protected Camera getCameraFromSurfaceTouchEvent(final TouchEvent pTouchEvent) {
 		if(pTouchEvent.getX() <= this.mSurfaceWidth >> 1) {
 			return this.getFirstCamera();
@@ -100,7 +128,12 @@ public class SingleSceneSplitScreenEngine extends Engine {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pCamera
+         * @param pSurfaceTouchEvent
+         */
+        @Override
 	protected void convertSurfaceToSceneTouchEvent(final Camera pCamera, final TouchEvent pSurfaceTouchEvent) {
 		final int surfaceWidthHalf = this.mSurfaceWidth >> 1;
 
@@ -112,13 +145,20 @@ public class SingleSceneSplitScreenEngine extends Engine {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	protected void onUpdateUpdateHandlers(final float pSecondsElapsed) {
 		super.onUpdateUpdateHandlers(pSecondsElapsed);
 		this.getSecondCamera().onUpdate(pSecondsElapsed);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateCameraSurface() {
 		final int surfaceWidth = this.mSurfaceWidth;
 		final int surfaceWidthHalf = surfaceWidth >> 1;

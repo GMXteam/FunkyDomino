@@ -39,19 +39,38 @@ public class Vector2Pool {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public static Vector2 obtain() {
+        /**
+         * 
+         * @return
+         */
+        public static Vector2 obtain() {
 		return POOL.obtainPoolItem();
 	}
 
-	public static Vector2 obtain(final Vector2 pCopyFrom) {
+        /**
+         * 
+         * @param pCopyFrom
+         * @return
+         */
+        public static Vector2 obtain(final Vector2 pCopyFrom) {
 		return POOL.obtainPoolItem().set(pCopyFrom);
 	}
 
-	public static Vector2 obtain(final float pX, final float pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @return
+         */
+        public static Vector2 obtain(final float pX, final float pY) {
 		return POOL.obtainPoolItem().set(pX, pY);
 	}
 
-	public static void recycle(final Vector2 pVector2) {
+        /**
+         * 
+         * @param pVector2
+         */
+        public static void recycle(final Vector2 pVector2) {
 		POOL.recyclePoolItem(pVector2);
 	}
 

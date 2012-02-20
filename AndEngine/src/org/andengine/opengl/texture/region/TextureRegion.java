@@ -20,36 +20,102 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 	// Fields
 	// ===========================================================
 
-	protected float mTextureX;
-	protected float mTextureY;
-	protected float mTextureWidth;
-	protected float mTextureHeight;
+        /**
+         * 
+         */
+        protected float mTextureX;
+        /**
+         * 
+         */
+        protected float mTextureY;
+        /**
+         * 
+         */
+        protected float mTextureWidth;
+        /**
+         * 
+         */
+        protected float mTextureHeight;
 
-	protected float mU;
-	protected float mU2;
-	protected float mV;
-	protected float mV2;
+        /**
+         * 
+         */
+        protected float mU;
+        /**
+         * 
+         */
+        protected float mU2;
+        /**
+         * 
+         */
+        protected float mV;
+        /**
+         * 
+         */
+        protected float mV2;
 
-	protected final float mScale;
-	protected final boolean mRotated;
+        /**
+         * 
+         */
+        protected final float mScale;
+        /**
+         * 
+         */
+        protected final boolean mRotated;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight) {
+        /**
+         * 
+         * @param pTexture
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         */
+        public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight) {
 		this(pTexture, pTextureX, pTextureY, pTextureWidth, pTextureHeight, false);
 	}
 
-	public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight, final boolean pRotated) {
+        /**
+         * 
+         * @param pTexture
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         * @param pRotated
+         */
+        public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight, final boolean pRotated) {
 		this(pTexture, pTextureX, pTextureY, pTextureWidth, pTextureHeight, SCALE_DEFAULT, pRotated);
 	}
 
-	public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight, final float pScale) {
+        /**
+         * 
+         * @param pTexture
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         * @param pScale
+         */
+        public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight, final float pScale) {
 		this(pTexture, pTextureX, pTextureY, pTextureWidth, pTextureHeight, pScale, false);
 	}
 
-	public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight, final float pScale, final boolean pRotated) {
+        /**
+         * 
+         * @param pTexture
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         * @param pScale
+         * @param pRotated
+         */
+        public TextureRegion(final ITexture pTexture, final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight, final float pScale, final boolean pRotated) {
 		super(pTexture);
 
 		this.mTextureX = pTextureX;
@@ -72,7 +138,11 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		this.updateUV();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public TextureRegion deepCopy() {
 		if(this.mRotated) {
 			return new TextureRegion(this.mTexture, this.mTextureX, this.mTextureY, this.mTextureHeight, this.mTextureWidth, this.mRotated);
@@ -85,31 +155,52 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 	// Getter & Setter
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getTextureX() {
 		return this.mTextureX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getTextureY() {
 		return this.mTextureY;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureX
+         */
+        @Override
 	public void setTextureX(final float pTextureX) {
 		this.mTextureX = pTextureX;
 
 		this.updateUV();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureY
+         */
+        @Override
 	public void setTextureY(final float pTextureY) {
 		this.mTextureY = pTextureY;
 
 		this.updateUV();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureX
+         * @param pTextureY
+         */
+        @Override
 	public void setTexturePosition(final float pTextureX, final float pTextureY) {
 		this.mTextureX = pTextureX;
 		this.mTextureY = pTextureY;
@@ -135,7 +226,11 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureWidth
+         */
+        @Override
 	public void setTextureWidth(final float pTextureWidth) {
 		this.mTextureWidth = pTextureWidth;
 
@@ -149,7 +244,12 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		this.updateUV();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureWidth
+         * @param pTextureHeight
+         */
+        @Override
 	public void setTextureSize(final float pTextureWidth, final float pTextureHeight) {
 		this.mTextureWidth = pTextureWidth;
 		this.mTextureHeight = pTextureHeight;
@@ -157,7 +257,14 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		this.updateUV();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         */
+        @Override
 	public void set(final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight) {
 		this.mTextureX = pTextureX;
 		this.mTextureY = pTextureY;
@@ -167,7 +274,11 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		this.updateUV();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getU() {
 		return this.mU;
 	}
@@ -182,7 +293,11 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		return this.mV;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getV2() {
 		return this.mV2;
 	}
@@ -192,12 +307,20 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 		return this.mScale != SCALE_DEFAULT;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getScale() {
 		return this.mScale;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isRotated() {
 		return this.mRotated;
 	}
@@ -210,7 +333,10 @@ public class TextureRegion extends BaseTextureRegion implements ITextureRegion {
 	// Methods
 	// ===========================================================
 
-	public void updateUV() {
+        /**
+         * 
+         */
+        public void updateUV() {
 		final ITexture texture = this.mTexture;
 		final float textureWidth = texture.getWidth();
 		final float textureHeight = texture.getHeight();

@@ -70,7 +70,12 @@ public class SVGHandler extends DefaultHandler implements ISVGConstants {
 	// Constructors
 	// ===========================================================
 
-	public SVGHandler(final Picture pPicture, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pPicture
+         * @param pSVGColorMapper
+         */
+        public SVGHandler(final Picture pPicture, final ISVGColorMapper pSVGColorMapper) {
 		this.mPicture = pPicture;
 		this.mSVGPaint = new SVGPaint(pSVGColorMapper);
 	}
@@ -79,11 +84,19 @@ public class SVGHandler extends DefaultHandler implements ISVGConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public RectF getBounds() {
+        /**
+         * 
+         * @return
+         */
+        public RectF getBounds() {
 		return this.mBounds;
 	}
 
-	public RectF getComputedBounds() {
+        /**
+         * 
+         * @return
+         */
+        public RectF getComputedBounds() {
 		return this.mSVGPaint.getComputedBounds();
 	}
 
@@ -91,7 +104,15 @@ public class SVGHandler extends DefaultHandler implements ISVGConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pNamespace
+         * @param pLocalName
+         * @param pQualifiedName
+         * @param pAttributes
+         * @throws SAXException
+         */
+        @Override
 	public void startElement(final String pNamespace, final String pLocalName, final String pQualifiedName, final Attributes pAttributes) throws SAXException {
 		/* Ignore everything but rectangles in bounds mode. */
 		if (this.mBoundsMode) {
@@ -137,7 +158,14 @@ public class SVGHandler extends DefaultHandler implements ISVGConstants {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pNamespace
+         * @param pLocalName
+         * @param pQualifiedName
+         * @throws SAXException
+         */
+        @Override
 	public void endElement(final String pNamespace, final String pLocalName, final String pQualifiedName) throws SAXException {
 		if (pLocalName.equals(TAG_SVG)) {
 			this.mPicture.endRecording();

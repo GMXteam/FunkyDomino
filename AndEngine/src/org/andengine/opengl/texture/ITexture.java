@@ -24,42 +24,117 @@ public interface ITexture {
 	// Methods
 	// ===========================================================
 
-	public int getWidth();
-	public int getHeight();
+    /**
+     * 
+     * @return
+     */
+    public int getWidth();
+        /**
+         * 
+         * @return
+         */
+        public int getHeight();
 
-	public int getHardwareTextureID();
+        /**
+         * 
+         * @return
+         */
+        public int getHardwareTextureID();
 
-	public boolean isLoadedToHardware();
-	public void setNotLoadedToHardware();
+        /**
+         * 
+         * @return
+         */
+        public boolean isLoadedToHardware();
+        /**
+         * 
+         */
+        public void setNotLoadedToHardware();
 
-	public boolean isUpdateOnHardwareNeeded();
-	public void setUpdateOnHardwareNeeded(final boolean pUpdateOnHardwareNeeded);
+        /**
+         * 
+         * @return
+         */
+        public boolean isUpdateOnHardwareNeeded();
+        /**
+         * 
+         * @param pUpdateOnHardwareNeeded
+         */
+        public void setUpdateOnHardwareNeeded(final boolean pUpdateOnHardwareNeeded);
 
-	public void load();
-	public void unload();
+        /**
+         * 
+         */
+        public void load();
+        /**
+         * 
+         */
+        public void unload();
 
-	public void loadToHardware(final GLState pGLState) throws IOException;
-	public void unloadFromHardware(final GLState pGLState);
-	public void reloadToHardware(final GLState pGLState) throws IOException;
+        /**
+         * 
+         * @param pGLState
+         * @throws IOException
+         */
+        public void loadToHardware(final GLState pGLState) throws IOException;
+        /**
+         * 
+         * @param pGLState
+         */
+        public void unloadFromHardware(final GLState pGLState);
+        /**
+         * 
+         * @param pGLState
+         * @throws IOException
+         */
+        public void reloadToHardware(final GLState pGLState) throws IOException;
 
-	public void bind(final GLState pGLState);
+        /**
+         * 
+         * @param pGLState
+         */
+        public void bind(final GLState pGLState);
 	/**
-	 * @param pGLActiveTexture from {@link GLES20#GL_TEXTURE0} to {@link GLES20#GL_TEXTURE31}. 
+         * @param pGLState 
+         * @param pGLActiveTexture from {@link GLES20#GL_TEXTURE0} to {@link GLES20#GL_TEXTURE31}. 
 	 */
 	public void bind(final GLState pGLState, final int pGLActiveTexture);
 
-	public PixelFormat getPixelFormat();
-	public TextureOptions getTextureOptions();
+        /**
+         * 
+         * @return
+         */
+        public PixelFormat getPixelFormat();
+        /**
+         * 
+         * @return
+         */
+        public TextureOptions getTextureOptions();
 
-	public boolean hasTextureStateListener();
-	public ITextureStateListener getTextureStateListener();
-	public void setTextureStateListener(final ITextureStateListener pTextureStateListener);
+        /**
+         * 
+         * @return
+         */
+        public boolean hasTextureStateListener();
+        /**
+         * 
+         * @return
+         */
+        public ITextureStateListener getTextureStateListener();
+        /**
+         * 
+         * @param pTextureStateListener
+         */
+        public void setTextureStateListener(final ITextureStateListener pTextureStateListener);
 
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public static interface ITextureStateListener {
+        /**
+         * 
+         */
+        public static interface ITextureStateListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -68,28 +143,60 @@ public interface ITexture {
 		// Methods
 		// ===========================================================
 
-		public void onLoadedToHardware(final ITexture pTexture);
-		public void onUnloadedFromHardware(final ITexture pTexture);
+            /**
+             * 
+             * @param pTexture
+             */
+            public void onLoadedToHardware(final ITexture pTexture);
+                /**
+                 * 
+                 * @param pTexture
+                 */
+                public void onUnloadedFromHardware(final ITexture pTexture);
 
 		// ===========================================================
 		// Inner and Anonymous Classes
 		// ===========================================================
 
-		public static class TextureStateAdapter<T extends ITextureAtlasSource> implements ITextureStateListener {
-			@Override
+                /**
+                 * 
+                 * @param <T>
+                 */
+                public static class TextureStateAdapter<T extends ITextureAtlasSource> implements ITextureStateListener {
+                    /**
+                     * 
+                     * @param pTexture
+                     */
+                    @Override
 			public void onLoadedToHardware(final ITexture pTexture) { }
 
-			@Override
+                        /**
+                         * 
+                         * @param pTexture
+                         */
+                        @Override
 			public void onUnloadedFromHardware(final ITexture pTexture) { }
 		}
 
-		public static class DebugTextureStateListener<T extends ITextureAtlasSource> implements ITextureStateListener {
-			@Override
+                /**
+                 * 
+                 * @param <T>
+                 */
+                public static class DebugTextureStateListener<T extends ITextureAtlasSource> implements ITextureStateListener {
+                    /**
+                     * 
+                     * @param pTexture
+                     */
+                    @Override
 			public void onLoadedToHardware(final ITexture pTexture) {
 				Debug.d("Texture loaded: " + pTexture.toString());
 			}
 
-			@Override
+                    /**
+                     * 
+                     * @param pTexture
+                     */
+                    @Override
 			public void onUnloadedFromHardware(final ITexture pTexture) {
 				Debug.d("Texture unloaded: " + pTexture.toString());
 			}

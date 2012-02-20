@@ -11,37 +11,55 @@ public enum FloatOperator {
 	// Elements
 	// ===========================================================
 
-	EQUALS() {
+    /**
+     * 
+     */
+    EQUALS() {
 		@Override
 		public boolean check(final float pFloatA, final float pFloatB) {
 			return pFloatA == pFloatB;
 		}
 	},
-	NOT_EQUALS()  {
+        /**
+         * 
+         */
+        NOT_EQUALS()  {
 		@Override
 		public boolean check(final float pFloatA, final float pFloatB) {
 			return pFloatA != pFloatB;
 		}
 	},
-	LESS_THAN()  {
+        /**
+         * 
+         */
+        LESS_THAN()  {
 		@Override
 		public boolean check(final float pFloatA, final float pFloatB) {
 			return pFloatA < pFloatB;
 		}
 	},
-	LESS_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        LESS_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final float pFloatA, final float pFloatB) {
 			return pFloatA <= pFloatB;
 		}
 	},
-	MORE_THAN()  {
+        /**
+         * 
+         */
+        MORE_THAN()  {
 		@Override
 		public boolean check(final float pFloatA, final float pFloatB) {
 			return pFloatA > pFloatB;
 		}
 	},
-	MORE_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        MORE_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final float pFloatA, final float pFloatB) {
 			return pFloatA >= pFloatB;
@@ -68,7 +86,13 @@ public enum FloatOperator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public abstract boolean check(final float pFloatA, final float pFloatB);
+        /**
+         * 
+         * @param pFloatA
+         * @param pFloatB
+         * @return
+         */
+        public abstract boolean check(final float pFloatA, final float pFloatB);
 
 	// ===========================================================
 	// Methods

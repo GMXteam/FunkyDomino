@@ -39,7 +39,11 @@ public class ZIndexSorter extends InsertionSorter<IEntity> {
 
 	}
 
-	public static ZIndexSorter getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static ZIndexSorter getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new ZIndexSorter();
 		}
@@ -58,27 +62,57 @@ public class ZIndexSorter extends InsertionSorter<IEntity> {
 	// Methods
 	// ===========================================================
 
-	public void sort(final IEntity[] pEntities) {
+        /**
+         * 
+         * @param pEntities
+         */
+        public void sort(final IEntity[] pEntities) {
 		this.sort(pEntities, this.mZIndexComparator);
 	}
 
-	public void sort(final IEntity[] pEntities, final int pStart, final int pEnd) {
+        /**
+         * 
+         * @param pEntities
+         * @param pStart
+         * @param pEnd
+         */
+        public void sort(final IEntity[] pEntities, final int pStart, final int pEnd) {
 		this.sort(pEntities, pStart, pEnd, this.mZIndexComparator);
 	}
 
-	public void sort(final List<IEntity> pEntities) {
+        /**
+         * 
+         * @param pEntities
+         */
+        public void sort(final List<IEntity> pEntities) {
 		this.sort(pEntities, this.mZIndexComparator);
 	}
 
-	public void sort(final List<IEntity> pEntities, final int pStart, final int pEnd) {
+        /**
+         * 
+         * @param pEntities
+         * @param pStart
+         * @param pEnd
+         */
+        public void sort(final List<IEntity> pEntities, final int pStart, final int pEnd) {
 		this.sort(pEntities, pStart, pEnd, this.mZIndexComparator);
 	}
 
-	public void sort(final IList<IEntity> pEntities) {
+        /**
+         * 
+         * @param pEntities
+         */
+        public void sort(final IList<IEntity> pEntities) {
 		this.sort(pEntities, this.mZIndexComparator);
 	}
 
-	public void sort(final IList<IEntity> pEntities, final int pStart, final int pEnd) {
+        /**
+         * 
+         * @param pEntities
+         * @param pStart
+         * @param pEnd
+         */
+        public void sort(final IList<IEntity> pEntities, final int pStart, final int pEnd) {
 		this.sort(pEntities, pStart, pEnd, this.mZIndexComparator);
 	}
 

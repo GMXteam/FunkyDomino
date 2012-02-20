@@ -31,7 +31,12 @@ public final class DataUtils implements DataConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public static final int unsignedByteToInt(final byte pByte) {
+    /**
+     * 
+     * @param pByte
+     * @return
+     */
+    public static final int unsignedByteToInt(final byte pByte) {
 		return pByte & 0xFF;
 	}
 

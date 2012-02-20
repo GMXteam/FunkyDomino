@@ -8,6 +8,7 @@ import android.hardware.SensorManager;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 12:04:00 - 15.03.2010
  */
@@ -24,7 +25,10 @@ public class GravityParticleInitializer<T extends IEntity> extends AccelerationP
 	// Constructors
 	// ===========================================================
 
-	public GravityParticleInitializer() {
+    /**
+     * 
+     */
+    public GravityParticleInitializer() {
 		super(0, SensorManager.GRAVITY_EARTH);
 	}
 

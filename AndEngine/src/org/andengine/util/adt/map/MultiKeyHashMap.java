@@ -8,6 +8,8 @@ import java.util.Map;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <K> 
+ * @param <V> 
  * @author Nicolas Gramlich
  * @since 16:54:24 - 07.11.2010
  */
@@ -30,7 +32,12 @@ public class MultiKeyHashMap<K, V> extends HashMap<MultiKey<K>, V> {
 	// Getter & Setter
 	// ===========================================================
 
-	public V get(final K ... pKeys) {
+        /**
+         * 
+         * @param pKeys
+         * @return
+         */
+        public V get(final K ... pKeys) {
 		final int hashCode = MultiKey.hash(pKeys);
 
 		final Iterator<Map.Entry<MultiKey<K>, V>> it = this.entrySet().iterator();

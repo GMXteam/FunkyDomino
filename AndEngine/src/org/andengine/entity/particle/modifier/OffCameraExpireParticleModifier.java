@@ -9,6 +9,7 @@ import org.andengine.entity.shape.RectangularShape;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 21:21:10 - 14.03.2010
  */
@@ -27,7 +28,11 @@ public class OffCameraExpireParticleModifier<T extends RectangularShape> impleme
 	// Constructors
 	// ===========================================================
 
-	public OffCameraExpireParticleModifier(final Camera pCamera) {
+        /**
+         * 
+         * @param pCamera
+         */
+        public OffCameraExpireParticleModifier(final Camera pCamera) {
 		this.mCamera = pCamera;
 	}
 
@@ -35,7 +40,11 @@ public class OffCameraExpireParticleModifier<T extends RectangularShape> impleme
 	// Getter & Setter
 	// ===========================================================
 
-	public Camera getCamera() {
+        /**
+         * 
+         * @return
+         */
+        public Camera getCamera() {
 		return this.mCamera;
 	}
 
@@ -43,12 +52,20 @@ public class OffCameraExpireParticleModifier<T extends RectangularShape> impleme
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         */
+        @Override
 	public void onInitializeParticle(final Particle<T> pParticle) {
 
 	}
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         */
+        @Override
 	public void onUpdateParticle(final Particle<T> pParticle) {
 		if(!this.mCamera.isRectangularShapeVisible(pParticle.getEntity())) {
 			pParticle.setExpired(true);

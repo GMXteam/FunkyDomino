@@ -24,17 +24,32 @@ public abstract class BaseSingleValueChangeModifier<T> extends BaseDurationModif
 	// Constructors
 	// ===========================================================
 
-	public BaseSingleValueChangeModifier(final float pDuration, final float pValueChange) {
+        /**
+         * 
+         * @param pDuration
+         * @param pValueChange
+         */
+        public BaseSingleValueChangeModifier(final float pDuration, final float pValueChange) {
 		this(pDuration, pValueChange, null);
 	}
 
-	public BaseSingleValueChangeModifier(final float pDuration, final float pValueChange, final IModifierListener<T> pModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pValueChange
+         * @param pModifierListener
+         */
+        public BaseSingleValueChangeModifier(final float pDuration, final float pValueChange, final IModifierListener<T> pModifierListener) {
 		super(pDuration, pModifierListener);
 
 		this.mValueChangePerSecond = pValueChange / pDuration;
 	}
 
-	protected BaseSingleValueChangeModifier(final BaseSingleValueChangeModifier<T> pBaseSingleValueChangeModifier) {
+        /**
+         * 
+         * @param pBaseSingleValueChangeModifier
+         */
+        protected BaseSingleValueChangeModifier(final BaseSingleValueChangeModifier<T> pBaseSingleValueChangeModifier) {
 		super(pBaseSingleValueChangeModifier);
 
 		this.mValueChangePerSecond = pBaseSingleValueChangeModifier.mValueChangePerSecond;
@@ -48,14 +63,25 @@ public abstract class BaseSingleValueChangeModifier<T> extends BaseDurationModif
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onChangeValue(final float pSecondsElapsed, final T pItem, final float pValue);
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pItem
+         * @param pValue
+         */
+        protected abstract void onChangeValue(final float pSecondsElapsed, final T pItem, final float pValue);
 
 	@Override
 	protected void onManagedInitialize(final T pItem) {
 
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pItem
+         */
+        @Override
 	protected void onManagedUpdate(final float pSecondsElapsed, final T pItem) {
 		this.onChangeValue(pSecondsElapsed, pItem, this.mValueChangePerSecond * pSecondsElapsed);
 	}

@@ -50,11 +50,26 @@ public class PhysicsFactory {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public static FixtureDef createFixtureDef(final float pDensity, final float pElasticity, final float pFriction) {
+    /**
+     * 
+     * @param pDensity
+     * @param pElasticity
+     * @param pFriction
+     * @return
+     */
+    public static FixtureDef createFixtureDef(final float pDensity, final float pElasticity, final float pFriction) {
 		return PhysicsFactory.createFixtureDef(pDensity, pElasticity, pFriction, false);
 	}
 
-	public static FixtureDef createFixtureDef(final float pDensity, final float pElasticity, final float pFriction, final boolean pSensor) {
+    /**
+     * 
+     * @param pDensity
+     * @param pElasticity
+     * @param pFriction
+     * @param pSensor
+     * @return
+     */
+    public static FixtureDef createFixtureDef(final float pDensity, final float pElasticity, final float pFriction, final boolean pSensor) {
 		final FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.density = pDensity;
 		fixtureDef.restitution = pElasticity;
@@ -63,7 +78,18 @@ public class PhysicsFactory {
 		return fixtureDef;
 	}
 
-	public static FixtureDef createFixtureDef(final float pDensity, final float pElasticity, final float pFriction, final boolean pSensor, final short pCategoryBits, final short pMaskBits, final short pGroupIndex) {
+    /**
+     * 
+     * @param pDensity
+     * @param pElasticity
+     * @param pFriction
+     * @param pSensor
+     * @param pCategoryBits
+     * @param pMaskBits
+     * @param pGroupIndex
+     * @return
+     */
+    public static FixtureDef createFixtureDef(final float pDensity, final float pElasticity, final float pFriction, final boolean pSensor, final short pCategoryBits, final short pMaskBits, final short pGroupIndex) {
 		final FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.density = pDensity;
 		fixtureDef.restitution = pElasticity;
@@ -76,30 +102,95 @@ public class PhysicsFactory {
 		return fixtureDef;
 	}
 
-	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pAreaShape
+         * @param pBodyType
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		return PhysicsFactory.createBoxBody(pPhysicsWorld, pAreaShape, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pAreaShape
+         * @param pBodyType
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final float[] sceneCenterCoordinates = pAreaShape.getSceneCenterCoordinates();
 		final float centerX = sceneCenterCoordinates[Constants.VERTEX_INDEX_X];
 		final float centerY = sceneCenterCoordinates[Constants.VERTEX_INDEX_Y];
 		return PhysicsFactory.createBoxBody(pPhysicsWorld, centerX, centerY, pAreaShape.getWidthScaled(), pAreaShape.getHeightScaled(), pAreaShape.getRotation(), pBodyType, pFixtureDef, pPixelToMeterRatio);
 	}
 
-	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pWidth
+         * @param pHeight
+         * @param pBodyType
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		return PhysicsFactory.createBoxBody(pPhysicsWorld, pCenterX, pCenterY, pWidth, pHeight, 0, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pWidth
+         * @param pHeight
+         * @param pRotation
+         * @param pBodyType
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		return PhysicsFactory.createBoxBody(pPhysicsWorld, pCenterX, pCenterY, pWidth, pHeight, pRotation, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pWidth
+         * @param pHeight
+         * @param pBodyType
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		return PhysicsFactory.createBoxBody(pPhysicsWorld, pCenterX, pCenterY, pWidth, pHeight, 0, pBodyType, pFixtureDef, pPixelToMeterRatio);
 	}
 
-	public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pWidth
+         * @param pHeight
+         * @param pRotation
+         * @param pBodyType
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createBoxBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pWidth, final float pHeight, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final BodyDef boxBodyDef = new BodyDef();
 		boxBodyDef.type = pBodyType;
 
@@ -125,30 +216,91 @@ public class PhysicsFactory {
 		return boxBody;
 	}
 
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pAreaShape
+         * @param pBodyType
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		return PhysicsFactory.createCircleBody(pPhysicsWorld, pAreaShape, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pAreaShape
+         * @param pBodyType
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final IAreaShape pAreaShape, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final float[] sceneCenterCoordinates = pAreaShape.getSceneCenterCoordinates();
 		final float centerX = sceneCenterCoordinates[Constants.VERTEX_INDEX_X];
 		final float centerY = sceneCenterCoordinates[Constants.VERTEX_INDEX_Y];
 		return PhysicsFactory.createCircleBody(pPhysicsWorld, centerX, centerY, pAreaShape.getWidthScaled() * 0.5f, pAreaShape.getRotation(), pBodyType, pFixtureDef, pPixelToMeterRatio);
 	}
 
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pRadius
+         * @param pBodyType
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		return createCircleBody(pPhysicsWorld, pCenterX, pCenterY, pRadius, 0, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pRadius
+         * @param pRotation
+         * @param pBodyType
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef) {
 		return createCircleBody(pPhysicsWorld, pCenterX, pCenterY, pRadius, pRotation, pBodyType, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pRadius
+         * @param pBodyType
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		return createCircleBody(pPhysicsWorld, pCenterX, pCenterY, pRadius, 0, pBodyType, pFixtureDef, pPixelToMeterRatio);
 	}
 
-	public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pCenterX
+         * @param pCenterY
+         * @param pRadius
+         * @param pRotation
+         * @param pBodyType
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createCircleBody(final PhysicsWorld pPhysicsWorld, final float pCenterX, final float pCenterY, final float pRadius, final float pRotation, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final BodyDef circleBodyDef = new BodyDef();
 		circleBodyDef.type = pBodyType;
 
@@ -172,11 +324,26 @@ public class PhysicsFactory {
 		return circleBody;
 	}
 
-	public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final Line pLine, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pLine
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final Line pLine, final FixtureDef pFixtureDef) {
 		return PhysicsFactory.createLineBody(pPhysicsWorld, pLine, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final Line pLine, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pLine
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final Line pLine, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final float[] sceneCoordinates = pLine.convertLocalToSceneCoordinates(0, 0);
 		final float x1 = sceneCoordinates[Constants.VERTEX_INDEX_X];
 		final float y1 = sceneCoordinates[Constants.VERTEX_INDEX_Y];
@@ -188,11 +355,32 @@ public class PhysicsFactory {
 		return PhysicsFactory.createLineBody(pPhysicsWorld, x1, y1, x2, y2, pFixtureDef, pPixelToMeterRatio);
 	}
 	
-	public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final float pX1, final float pY1, final float pX2, final float pY2, final FixtureDef pFixtureDef) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         * @param pFixtureDef
+         * @return
+         */
+        public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final float pX1, final float pY1, final float pX2, final float pY2, final FixtureDef pFixtureDef) {
 		return PhysicsFactory.createLineBody(pPhysicsWorld, pX1, pY1, pX2, pY2, pFixtureDef, PIXEL_TO_METER_RATIO_DEFAULT);
 	}
 
-	public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final float pX1, final float pY1, final float pX2, final float pY2, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
+        /**
+         * 
+         * @param pPhysicsWorld
+         * @param pX1
+         * @param pY1
+         * @param pX2
+         * @param pY2
+         * @param pFixtureDef
+         * @param pPixelToMeterRatio
+         * @return
+         */
+        public static Body createLineBody(final PhysicsWorld pPhysicsWorld, final float pX1, final float pY1, final float pX2, final float pY2, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final BodyDef lineBodyDef = new BodyDef();
 		lineBodyDef.type = BodyType.StaticBody;
 		
@@ -228,7 +416,8 @@ public class PhysicsFactory {
 	 * @param pVertices are to be defined relative to the center of the pShape.
 	 * @param pBodyType
 	 * @param pFixtureDef
-	 * @return
+         * @param pPixelToMeterRatio 
+         * @return
 	 */
 	public static Body createPolygonBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final Vector2[] pVertices, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final BodyDef boxBodyDef = new BodyDef();
@@ -272,7 +461,8 @@ public class PhysicsFactory {
 	 * 					The vertices will be triangulated and for each triangle a {@link Fixture} will be created.
 	 * @param pBodyType
 	 * @param pFixtureDef
-	 * @return
+         * @param pPixelToMeterRatio 
+         * @return
 	 */
 	public static Body createTrianglulatedBody(final PhysicsWorld pPhysicsWorld, final IShape pShape, final List<Vector2> pTriangleVertices, final BodyType pBodyType, final FixtureDef pFixtureDef, final float pPixelToMeterRatio) {
 		final Vector2[] TMP_TRIANGLE = new Vector2[3];

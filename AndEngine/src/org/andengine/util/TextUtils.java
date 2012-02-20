@@ -16,9 +16,18 @@ public final class TextUtils {
 	// Constants
 	// ===========================================================
 
-	public static final Pattern SPLITPATTERN_SPACE = Pattern.compile(" ");
-	public static final Pattern SPLITPATTERN_SPACES = Pattern.compile(" +");
-	public static final Pattern SPLITPATTERN_COMMA = Pattern.compile(",");
+    /**
+     * 
+     */
+    public static final Pattern SPLITPATTERN_SPACE = Pattern.compile(" ");
+    /**
+     * 
+     */
+    public static final Pattern SPLITPATTERN_SPACES = Pattern.compile(" +");
+    /**
+     * 
+     */
+    public static final Pattern SPLITPATTERN_COMMA = Pattern.compile(",");
 
 	// ===========================================================
 	// Fields
@@ -40,7 +49,14 @@ public final class TextUtils {
 	// Methods
 	// ===========================================================
 
-	public static final CharSequence padFront(final CharSequence pText, final char pPadChar, final int pLength) {
+        /**
+         * 
+         * @param pText
+         * @param pPadChar
+         * @param pLength
+         * @return
+         */
+        public static final CharSequence padFront(final CharSequence pText, final char pPadChar, final int pLength) {
 		final int padCount = pLength - pText.length();
 		if(padCount <= 0) {
 			return pText;
@@ -56,7 +72,13 @@ public final class TextUtils {
 		}
 	}
 
-	public static final int countOccurrences(final CharSequence pText, final char pCharacter) {
+        /**
+         * 
+         * @param pText
+         * @param pCharacter
+         * @return
+         */
+        public static final int countOccurrences(final CharSequence pText, final char pCharacter) {
 		int count = 0;
 
 		int lastOccurrence = android.text.TextUtils.indexOf(pText, pCharacter, 0);
@@ -72,7 +94,11 @@ public final class TextUtils {
 	/**
 	 * Split a {@link CharSequence} by a Character, i.e. Split lines by using '\n'.<br/>
 	 * Same behavior as <code>String.split("" + pCharacter);</code> .
-	 */
+         * 
+         * @param pText 
+         * @param pCharacter
+         * @return  
+         */
 	public static final ArrayList<CharSequence> split(final CharSequence pText, final char pCharacter) {
 		return TextUtils.split(pText, pCharacter, new ArrayList<CharSequence>());
 	}
@@ -80,7 +106,13 @@ public final class TextUtils {
 	/**
 	 * Split a {@link CharSequence} by a Character, i.e. Split lines by using '\n'.<br/>
 	 * Same behavior as <code>String.split("" + pCharacter);</code> .
-	 */
+         * 
+         * @param <L>
+         * @param pText
+         * @param pCharacter 
+         * @param pResult
+         * @return  
+         */
 	public static final <L extends List<CharSequence>> L split(final CharSequence pText, final char pCharacter, final L pResult) {
 		final int partCount = TextUtils.countOccurrences(pText, pCharacter) + 1;
 
@@ -102,7 +134,12 @@ public final class TextUtils {
 		return pResult;
 	}
 
-	public static final String formatStackTrace(final StackTraceElement pStackTraceElement) {
+        /**
+         * 
+         * @param pStackTraceElement
+         * @return
+         */
+        public static final String formatStackTrace(final StackTraceElement pStackTraceElement) {
 		return new StringBuilder()
 		.append(pStackTraceElement.getClassName())
 		.append('.')
@@ -115,7 +152,12 @@ public final class TextUtils {
 		.toString();
 	}
 
-	public static final String formatStackTrace(final StackTraceElement[] pStackTraceElements) {
+        /**
+         * 
+         * @param pStackTraceElements
+         * @return
+         */
+        public static final String formatStackTrace(final StackTraceElement[] pStackTraceElements) {
 		final StringBuilder sb = new StringBuilder();
 		final int stackTraceElementCount = pStackTraceElements.length;
 		for(int i = 0; i < stackTraceElementCount; i++) {
@@ -127,11 +169,22 @@ public final class TextUtils {
 		return sb.toString();
 	}
 
-	public static int countCharacters(final List<CharSequence> pTexts) {
+        /**
+         * 
+         * @param pTexts
+         * @return
+         */
+        public static int countCharacters(final List<CharSequence> pTexts) {
 		return TextUtils.countCharacters(pTexts, false);
 	}
 
-	public static int countCharacters(final List<CharSequence> pTexts, final boolean pIgnoreWhitespaces) {
+        /**
+         * 
+         * @param pTexts
+         * @param pIgnoreWhitespaces
+         * @return
+         */
+        public static int countCharacters(final List<CharSequence> pTexts, final boolean pIgnoreWhitespaces) {
 		int characters = 0;
 		if(pIgnoreWhitespaces) {
 			for(int i = pTexts.size() - 1; i >= 0; i--) {

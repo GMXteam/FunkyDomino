@@ -22,7 +22,12 @@ public class GLVersionShaderSourceCriteria extends StringShaderSourceCriteria {
 	// Constructors
 	// ===========================================================
 
-	public GLVersionShaderSourceCriteria(final StringOperator pStringOperator, final String pExpectedGLVersion) {
+    /**
+     * 
+     * @param pStringOperator
+     * @param pExpectedGLVersion
+     */
+    public GLVersionShaderSourceCriteria(final StringOperator pStringOperator, final String pExpectedGLVersion) {
 		super(pStringOperator, pExpectedGLVersion);
 	}
 	
@@ -34,7 +39,12 @@ public class GLVersionShaderSourceCriteria extends StringShaderSourceCriteria {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @param pGLState
+     * @return
+     */
+    @Override
 	protected String getActualCriteria(final GLState pGLState) {
 		return pGLState.getVersion();
 	}

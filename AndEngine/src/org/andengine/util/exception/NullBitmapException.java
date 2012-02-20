@@ -21,19 +21,35 @@ public class NullBitmapException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public NullBitmapException() {
+        /**
+         * 
+         */
+        public NullBitmapException() {
 
 	}
 
-	public NullBitmapException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public NullBitmapException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public NullBitmapException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public NullBitmapException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-	public NullBitmapException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public NullBitmapException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

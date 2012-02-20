@@ -7,6 +7,7 @@ import android.util.SparseArray;
 /**
  * (c) Zynga 2011
  *
+ * @param <V> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 12:19:22 - 08.12.2011
  */
@@ -42,7 +43,11 @@ public class IntLRUCache<V> {
 	// Constructors
 	// ===========================================================
 
-	public IntLRUCache(final int pCapacity) {
+        /**
+         * 
+         * @param pCapacity
+         */
+        public IntLRUCache(final int pCapacity) {
 		this.mCapacity = pCapacity;
 		this.mSparseArray = new SparseArray<IntLRUCacheValueHolder<V>>(pCapacity);
 		this.mIntLRUCacheQueue = new IntLRUCacheQueue();
@@ -52,11 +57,19 @@ public class IntLRUCache<V> {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getCapacity() {
+        /**
+         * 
+         * @return
+         */
+        public int getCapacity() {
 		return this.mCapacity;
 	}
 
-	public int getSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getSize() {
 		return this.mSize;
 	}
 
@@ -64,11 +77,21 @@ public class IntLRUCache<V> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public boolean isEmpty() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isEmpty() {
 		return this.mSize == 0;
 	}
 
-	public V put(final int pKey, final V pValue) {
+        /**
+         * 
+         * @param pKey
+         * @param pValue
+         * @return
+         */
+        public V put(final int pKey, final V pValue) {
 		final IntLRUCacheValueHolder<V> existingIntLRUCacheValueHolder = this.mSparseArray.get(pKey);
 		if(existingIntLRUCacheValueHolder != null) {
 			/* Just heat up that item. */
@@ -97,7 +120,12 @@ public class IntLRUCache<V> {
 		return null;
 	}
 
-	public V get(final int pKey) {
+        /**
+         * 
+         * @param pKey
+         * @return
+         */
+        public V get(final int pKey) {
 		final IntLRUCacheValueHolder<V> IntLRUCacheValueHolder = this.mSparseArray.get(pKey);
 		if(IntLRUCacheValueHolder == null) {
 			return null;
@@ -108,7 +136,10 @@ public class IntLRUCache<V> {
 		return IntLRUCacheValueHolder.mValue;
 	}
 
-	public void clear() {
+        /**
+         * 
+         */
+        public void clear() {
 		while(!this.mIntLRUCacheQueue.isEmpty()) {
 			final int key = this.mIntLRUCacheQueue.poll();
 			final IntLRUCacheValueHolder<V> lruCacheValueHolder = this.mSparseArray.get(key);

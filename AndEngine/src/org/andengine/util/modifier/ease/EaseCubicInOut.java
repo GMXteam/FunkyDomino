@@ -27,7 +27,11 @@ public class EaseCubicInOut implements IEaseFunction {
 
 	}
 
-	public static EaseCubicInOut getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static EaseCubicInOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseCubicInOut();
 		}
@@ -42,7 +46,13 @@ public class EaseCubicInOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pDuration
+         * @return
+         */
+        @Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		final float percentage = pSecondsElapsed / pDuration;
 

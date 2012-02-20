@@ -24,23 +24,55 @@ public abstract class SingleValueSpanEntityModifier extends BaseSingleValueSpanM
 	// Constructors
 	// ===========================================================
 
-	public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromValue
+     * @param pToValue
+     */
+    public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue) {
 		super(pDuration, pFromValue, pToValue);
 	}
 
-	public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue, final IEaseFunction pEaseFunction) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromValue
+     * @param pToValue
+     * @param pEaseFunction
+     */
+    public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromValue, pToValue, pEaseFunction);
 	}
 
-	public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue, final IEntityModifierListener pEntityModifierListener) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromValue
+     * @param pToValue
+     * @param pEntityModifierListener
+     */
+    public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromValue, pToValue, pEntityModifierListener);
 	}
 
-	public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public SingleValueSpanEntityModifier(final float pDuration, final float pFromValue, final float pToValue, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromValue, pToValue, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected SingleValueSpanEntityModifier(final SingleValueSpanEntityModifier pSingleValueSpanEntityModifier) {
+        /**
+         * 
+         * @param pSingleValueSpanEntityModifier
+         */
+        protected SingleValueSpanEntityModifier(final SingleValueSpanEntityModifier pSingleValueSpanEntityModifier) {
 		super(pSingleValueSpanEntityModifier);
 	}
 

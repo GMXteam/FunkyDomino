@@ -24,7 +24,11 @@ public class TrieTest extends TestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	protected void setUp() throws Exception {
 		this.mTrie = new Trie();
 	}
@@ -41,51 +45,81 @@ public class TrieTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testAddEmpty() {
+        /**
+         * 
+         */
+        public void testAddEmpty() {
 		this.mTrie.add("");
 	}
 
-	public void testAdd() {
+        /**
+         * 
+         */
+        public void testAdd() {
 		this.mTrie.add("H");
 	}
 
-	public void testAddExisting() {
+        /**
+         * 
+         */
+        public void testAddExisting() {
 		this.mTrie.add("HELLO");
 		this.mTrie.add("HELLO");
 	}
 
-	public void testAddSubSequenceExisting() {
+        /**
+         * 
+         */
+        public void testAddSubSequenceExisting() {
 		this.mTrie.add("HELL");
 		this.mTrie.add("HELLO");
 	}
 	
-	public void testAddSubSequenceOfExisting() {
+        /**
+         * 
+         */
+        public void testAddSubSequenceOfExisting() {
 		this.mTrie.add("HELLO");
 		this.mTrie.add("HELL");
 	}
 	
-	public void testContains() {
+        /**
+         * 
+         */
+        public void testContains() {
 		this.mTrie.add("HELL");
 		Assert.assertTrue(this.mTrie.contains("HELL"));
 	}
 	
-	public void testContainsSubSequenceExisting() {
+        /**
+         * 
+         */
+        public void testContainsSubSequenceExisting() {
 		this.mTrie.add("HELL");
 		Assert.assertFalse(this.mTrie.contains("HELLO"));
 	}
 	
-	public void testContainsSubSequenceOfExisting() {
+        /**
+         * 
+         */
+        public void testContainsSubSequenceOfExisting() {
 		this.mTrie.add("HELLO");
 		Assert.assertFalse(this.mTrie.contains("HELL"));
 	}
 
-	public void testContainsAddingSubSequenceOfExisting() {
+        /**
+         * 
+         */
+        public void testContainsAddingSubSequenceOfExisting() {
 		this.mTrie.add("HELLO");
 		this.mTrie.add("HELL");
 		Assert.assertTrue(this.mTrie.contains("HELL"));
 	}
 	
-	public void testContainsAddingSubSequenceExisting() {
+        /**
+         * 
+         */
+        public void testContainsAddingSubSequenceExisting() {
 		this.mTrie.add("HELL");
 		this.mTrie.add("HELLO");
 		Assert.assertTrue(this.mTrie.contains("HELL"));

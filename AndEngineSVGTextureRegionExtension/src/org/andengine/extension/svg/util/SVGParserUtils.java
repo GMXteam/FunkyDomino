@@ -40,7 +40,12 @@ public class SVGParserUtils implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static Float extractFloatAttribute(final String pString) {
+    /**
+     * 
+     * @param pString
+     * @return
+     */
+    public static Float extractFloatAttribute(final String pString) {
 		if (pString == null) {
 			return null;
 		} else {
@@ -56,11 +61,21 @@ public class SVGParserUtils implements ISVGConstants {
 		}
 	}
 
-	public static String extractIDFromURLProperty(final String pProperty) {
+    /**
+     * 
+     * @param pProperty
+     * @return
+     */
+    public static String extractIDFromURLProperty(final String pProperty) {
 		return pProperty.substring("url(#".length(), pProperty.length() - 1);
 	}
 
-	public static Integer extractColorFromRGBProperty(final String pProperty) {
+    /**
+     * 
+     * @param pProperty
+     * @return
+     */
+    public static Integer extractColorFromRGBProperty(final String pProperty) {
 		final SVGNumberParserIntegerResult svgNumberParserIntegerResult = SVGNumberParser.parseInts(pProperty.substring("rgb(".length(), pProperty.indexOf(')')));
 		if(svgNumberParserIntegerResult.getNumberCount() == 3) {
 			return Color.argb(0, svgNumberParserIntegerResult.getNumber(0), svgNumberParserIntegerResult.getNumber(1), svgNumberParserIntegerResult.getNumber(2));
@@ -69,11 +84,21 @@ public class SVGParserUtils implements ISVGConstants {
 		}
 	}
 
-	public static Integer extraColorIntegerProperty(final String pProperty) {
+        /**
+         * 
+         * @param pProperty
+         * @return
+         */
+        public static Integer extraColorIntegerProperty(final String pProperty) {
 		return Integer.parseInt(pProperty, 16);
 	}
 
-	public static Integer extractColorFromHexProperty(final String pProperty) {
+        /**
+         * 
+         * @param pProperty
+         * @return
+         */
+        public static Integer extractColorFromHexProperty(final String pProperty) {
 		final String hexColorString = pProperty.substring(1).trim();
 		if(hexColorString.length() == 3) {
 			final int parsedInt = Integer.parseInt(hexColorString, 16);
@@ -89,7 +114,12 @@ public class SVGParserUtils implements ISVGConstants {
 		}
 	}
 
-	public static String parseHref(final Attributes pAttributes) {
+        /**
+         * 
+         * @param pAttributes
+         * @return
+         */
+        public static String parseHref(final Attributes pAttributes) {
 		String href = SAXHelper.getStringAttribute(pAttributes, ATTRIBUTE_HREF);
 		if(href != null) {
 			if(href.startsWith("#")) {

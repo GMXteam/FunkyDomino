@@ -23,7 +23,11 @@ public class ShaderProgramException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public ShaderProgramException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public ShaderProgramException(final String pMessage) {
 		super(pMessage);
 	}
 

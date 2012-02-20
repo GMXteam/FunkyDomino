@@ -17,5 +17,11 @@ public interface IEaseFunction {
 	// Methods
 	// ===========================================================
 
-	public float getPercentage(final float pSecondsElapsed, final float pDuration);
+    /**
+     * 
+     * @param pSecondsElapsed
+     * @param pDuration
+     * @return
+     */
+    public float getPercentage(final float pSecondsElapsed, final float pDuration);
 }

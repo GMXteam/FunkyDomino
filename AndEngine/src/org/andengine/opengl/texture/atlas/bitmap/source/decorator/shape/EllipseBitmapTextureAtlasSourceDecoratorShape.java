@@ -30,11 +30,18 @@ public class EllipseBitmapTextureAtlasSourceDecoratorShape implements IBitmapTex
 	// Constructors
 	// ===========================================================
 
-	public EllipseBitmapTextureAtlasSourceDecoratorShape() {
+        /**
+         * 
+         */
+        public EllipseBitmapTextureAtlasSourceDecoratorShape() {
 
 	}
 
-	public static EllipseBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static EllipseBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
 		if(sDefaultInstance == null) {
 			sDefaultInstance = new EllipseBitmapTextureAtlasSourceDecoratorShape();
 		}
@@ -49,7 +56,13 @@ public class EllipseBitmapTextureAtlasSourceDecoratorShape implements IBitmapTex
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pCanvas
+         * @param pPaint
+         * @param pDecoratorOptions
+         */
+        @Override
 	public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions) {
 		final float left = pDecoratorOptions.getInsetLeft();
 		final float top = pDecoratorOptions.getInsetTop();

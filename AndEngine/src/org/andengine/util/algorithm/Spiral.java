@@ -31,11 +31,22 @@ public class Spiral {
 	// Constructors
 	// ===========================================================
 
-	public Spiral(final int pCenterX, final int pCenterY) {
+        /**
+         * 
+         * @param pCenterX
+         * @param pCenterY
+         */
+        public Spiral(final int pCenterX, final int pCenterY) {
 		this(pCenterX, pCenterY, 1);
 	}
 
-	public Spiral(final int pCenterX, final int pCenterY, final int pStepSize) {
+        /**
+         * 
+         * @param pCenterX
+         * @param pCenterY
+         * @param pStepSize
+         */
+        public Spiral(final int pCenterX, final int pCenterY, final int pStepSize) {
 		this.mCenterX = pCenterX;
 		this.mCenterY = pCenterY;
 		this.mStepSize = pStepSize;
@@ -55,19 +66,35 @@ public class Spiral {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getCenterX() {
+        /**
+         * 
+         * @return
+         */
+        public int getCenterX() {
 		return this.mCenterX;
 	}
 
-	public int getCenterY() {
+        /**
+         * 
+         * @return
+         */
+        public int getCenterY() {
 		return this.mCenterY;
 	}
 
-	public int getX() {
+        /**
+         * 
+         * @return
+         */
+        public int getX() {
 		return this.mX;
 	}
 
-	public int getY() {
+        /**
+         * 
+         * @return
+         */
+        public int getY() {
 		return this.mY;
 	}
 
@@ -79,7 +106,10 @@ public class Spiral {
 	// Methods
 	// ===========================================================
 
-	public void step() {
+        /**
+         * 
+         */
+        public void step() {
 		/* Take a step. */
 		this.mX += this.mDirection.getDeltaX() * this.mStepSize;
 		this.mY += this.mDirection.getDeltaY() * this.mStepSize;

@@ -29,7 +29,13 @@ public class AssetTexturePackParser extends TexturePackParser {
 	// Constructors
 	// ===========================================================
 
-	public AssetTexturePackParser(final TextureManager pTextureManager, final AssetManager pAssetManager, final String pAssetBasePath) {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pAssetManager
+         * @param pAssetBasePath
+         */
+        public AssetTexturePackParser(final TextureManager pTextureManager, final AssetManager pAssetManager, final String pAssetBasePath) {
 		super(pTextureManager);
 
 		this.mAssetManager = pAssetManager;
@@ -44,7 +50,13 @@ public class AssetTexturePackParser extends TexturePackParser {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected InputStream onGetInputStream(final String pFilename) throws IOException {
+        /**
+         * 
+         * @param pFilename
+         * @return
+         * @throws IOException
+         */
+        protected InputStream onGetInputStream(final String pFilename) throws IOException {
 		return this.mAssetManager.open(this.mAssetBasePath + pFilename);
 	}
 

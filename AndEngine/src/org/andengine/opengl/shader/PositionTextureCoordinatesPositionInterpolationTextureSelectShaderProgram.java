@@ -20,7 +20,10 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 
 	private static PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram INSTANCE;
 
-	public static final String VERTEXSHADER =
+        /**
+         * 
+         */
+        public static final String VERTEXSHADER =
 			"uniform mat4 " + ShaderProgramConstants.UNIFORM_MODELVIEWPROJECTIONMATRIX + ";\n" +
 			"uniform float " + ShaderProgramConstants.UNIFORM_POSITION_INTERPOLATION_MIX_0 + ";\n" +
 			"attribute vec4 " + ShaderProgramConstants.ATTRIBUTE_POSITION_0 + ";\n" +
@@ -34,17 +37,35 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 			"	gl_Position = " + ShaderProgramConstants.UNIFORM_MODELVIEWPROJECTIONMATRIX + " * position;\n" +
 			"}";
 
-	public static final String FRAGMENTSHADER = PositionTextureCoordinatesTextureSelectShaderProgram.FRAGMENTSHADER;
+        /**
+         * 
+         */
+        public static final String FRAGMENTSHADER = PositionTextureCoordinatesTextureSelectShaderProgram.FRAGMENTSHADER;
 
 	// ===========================================================
 	// Fields
 	// ===========================================================
 
-	public static int sUniformModelViewPositionMatrixLocation = ShaderProgram.LOCATION_INVALID;
-	public static int sUniformTexture0Location = ShaderProgram.LOCATION_INVALID;
-	public static int sUniformTexture1Location = ShaderProgram.LOCATION_INVALID;
-	public static int sUniformTextureSelectTexture0Location = ShaderProgram.LOCATION_INVALID;
-	public static int sUniformPositionInterpolationMix0Location = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformModelViewPositionMatrixLocation = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformTexture0Location = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformTexture1Location = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformTextureSelectTexture0Location = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformPositionInterpolationMix0Location = ShaderProgram.LOCATION_INVALID;
 
 	// ===========================================================
 	// Constructors
@@ -54,7 +75,11 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 		super(PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.VERTEXSHADER, PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.FRAGMENTSHADER);
 	}
 
-	public static PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram getInstance() {
 		if(PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.INSTANCE == null) {
 			PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.INSTANCE = new PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram();
 		}
@@ -84,7 +109,12 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 		PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.sUniformPositionInterpolationMix0Location = this.getUniformLocation(ShaderProgramConstants.UNIFORM_POSITION_INTERPOLATION_MIX_0);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pVertexBufferObjectAttributes
+         */
+        @Override
 	public void bind(final GLState pGLState, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		GLES20.glDisableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION);
 		GLES20.glDisableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION);
@@ -98,7 +128,11 @@ public class PositionTextureCoordinatesPositionInterpolationTextureSelectShaderP
 		GLES20.glUniform1i(PositionTextureCoordinatesPositionInterpolationTextureSelectShaderProgram.sUniformTexture1Location, 1);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         */
+        @Override
 	public void unbind(final GLState pGLState) {
 		GLES20.glEnableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION);
 		GLES20.glEnableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION);

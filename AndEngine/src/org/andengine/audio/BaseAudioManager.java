@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 18:07:02 - 13.06.2010
  */
@@ -18,9 +19,15 @@ public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudio
 	// Fields
 	// ===========================================================
 
-	protected final ArrayList<T> mAudioEntities = new ArrayList<T>();
+    /**
+     * 
+     */
+    protected final ArrayList<T> mAudioEntities = new ArrayList<T>();
 
-	protected float mMasterVolume = 1.0f;
+        /**
+         * 
+         */
+        protected float mMasterVolume = 1.0f;
 
 	// ===========================================================
 	// Constructors
@@ -34,12 +41,20 @@ public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudio
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getMasterVolume() {
 		return this.mMasterVolume;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pMasterVolume
+         */
+        @Override
 	public void setMasterVolume(final float pMasterVolume) {
 		this.mMasterVolume = pMasterVolume;
 
@@ -51,17 +66,29 @@ public abstract class BaseAudioManager<T extends IAudioEntity> implements IAudio
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pAudioEntity
+         */
+        @Override
 	public void add(final T pAudioEntity) {
 		this.mAudioEntities.add(pAudioEntity);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pAudioEntity
+         * @return
+         */
+        @Override
 	public boolean remove(final T pAudioEntity) {
 		return this.mAudioEntities.remove(pAudioEntity);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void releaseAll() {
 		final ArrayList<T> audioEntities = this.mAudioEntities;
 		for(int i = audioEntities.size() - 1; i >= 0; i--) {

@@ -36,19 +36,39 @@ public class Background implements IBackground {
 	// Constructors
 	// ===========================================================
 
-	protected Background() {
+        /**
+         * 
+         */
+        protected Background() {
 
 	}
 
-	public Background(final float pRed, final float pGreen, final float pBlue) {
+        /**
+         * 
+         * @param pRed
+         * @param pGreen
+         * @param pBlue
+         */
+        public Background(final float pRed, final float pGreen, final float pBlue) {
 		this.mColor.set(pRed, pGreen, pBlue);
 	}
 
-	public Background(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
+        /**
+         * 
+         * @param pRed
+         * @param pGreen
+         * @param pBlue
+         * @param pAlpha
+         */
+        public Background(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
 		this.mColor.set(pRed, pGreen, pBlue, pAlpha);
 	}
 
-	public Background(final Color pColor) {
+        /**
+         * 
+         * @param pColor
+         */
+        public Background(final Color pColor) {
 		this.mColor.set(pColor);
 	}
 
@@ -79,17 +99,29 @@ public class Background implements IBackground {
 		this.mColor.set(pRed, pGreen, pBlue, pAlpha);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pColor
+         */
+        @Override
 	public void setColor(final Color pColor) {
 		this.mColor.set(pColor);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isColorEnabled() {
 		return this.mColorEnabled;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pColorEnabled
+         */
+        @Override
 	public void setColorEnabled(final boolean pColorEnabled) {
 		this.mColorEnabled = pColorEnabled;
 	}
@@ -98,7 +130,11 @@ public class Background implements IBackground {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pBackgroundModifier
+         */
+        @Override
 	public void registerBackgroundModifier(final IModifier<IBackground> pBackgroundModifier) {
 		if(this.mBackgroundModifiers == null) {
 			this.allocateBackgroundModifiers();
@@ -106,7 +142,12 @@ public class Background implements IBackground {
 		this.mBackgroundModifiers.add(pBackgroundModifier);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pBackgroundModifier
+         * @return
+         */
+        @Override
 	public boolean unregisterBackgroundModifier(final IModifier<IBackground> pBackgroundModifier) {
 		if(this.mBackgroundModifiers != null) {
 			return this.mBackgroundModifiers.remove(pBackgroundModifier);
@@ -122,14 +163,23 @@ public class Background implements IBackground {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		if(this.mBackgroundModifiers != null) {
 			this.mBackgroundModifiers.onUpdate(pSecondsElapsed);
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        @Override
 	public void onDraw(final GLState pGLState, final Camera pCamera) {
 		if(this.mColorEnabled) {
 			GLES20.glClearColor(this.mColor.getRed(), this.mColor.getGreen(), this.mColor.getBlue(), this.mColor.getAlpha());
@@ -137,7 +187,10 @@ public class Background implements IBackground {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mBackgroundModifiers.reset();
 	}

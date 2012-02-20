@@ -23,19 +23,35 @@ public class TexturePackParseException extends SAXException {
 	// Constructors
 	// ===========================================================
 
-	public TexturePackParseException() {
+        /**
+         * 
+         */
+        public TexturePackParseException() {
 		super();
 	}
 
-	public TexturePackParseException(final String pDetailMessage) {
+        /**
+         * 
+         * @param pDetailMessage
+         */
+        public TexturePackParseException(final String pDetailMessage) {
 		super(pDetailMessage);
 	}
 
-	public TexturePackParseException(final Exception pException) {
+        /**
+         * 
+         * @param pException
+         */
+        public TexturePackParseException(final Exception pException) {
 		super(pException);
 	}
 
-	public TexturePackParseException(final String pMessage, final Exception pException) {
+        /**
+         * 
+         * @param pMessage
+         * @param pException
+         */
+        public TexturePackParseException(final String pMessage, final Exception pException) {
 		super(pMessage, pException);
 	}
 

@@ -23,19 +23,35 @@ public class SVGParseException extends RuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public SVGParseException() {
+        /**
+         * 
+         */
+        public SVGParseException() {
 
 	}
 
-	public SVGParseException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public SVGParseException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public SVGParseException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public SVGParseException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 
-	public SVGParseException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public SVGParseException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 

@@ -25,6 +25,7 @@ import android.util.Log;
  * there can be gaps in the indices.  It is intended to be more efficient
  * than using a HashMap to map Longs to Objects.
  *
+ * @param <E> 
  * @hide
  */
 public class LongSparseArray<E> {
@@ -42,6 +43,7 @@ public class LongSparseArray<E> {
      * Creates a new SparseArray containing no mappings that will not
      * require any additional memory allocation to store the specified
      * number of mappings.
+     * @param initialCapacity 
      */
     public LongSparseArray(int initialCapacity) {
         initialCapacity = ArrayUtils.idealIntArraySize(initialCapacity);
@@ -76,6 +78,8 @@ public class LongSparseArray<E> {
     /**
      * Gets the Object mapped from the specified key, or <code>null</code>
      * if no such mapping has been made.
+     * @param key 
+     * @return 
      */
     public E get(long key) {
         return get(key, null);
@@ -84,6 +88,9 @@ public class LongSparseArray<E> {
     /**
      * Gets the Object mapped from the specified key, or the specified Object
      * if no such mapping has been made.
+     * @param key
+     * @param valueIfKeyNotFound
+     * @return  
      */
     @SuppressWarnings("unchecked")
 	public E get(long key, E valueIfKeyNotFound) {
@@ -98,6 +105,7 @@ public class LongSparseArray<E> {
 
     /**
      * Removes the mapping from the specified key, if there was any.
+     * @param key 
      */
     public void delete(long key) {
         int i = binarySearch(mKeys, 0, mSize, key);
@@ -112,6 +120,7 @@ public class LongSparseArray<E> {
 
     /**
      * Alias for {@link #delete(long)}.
+     * @param key 
      */
     public void remove(long key) {
         delete(key);
@@ -148,6 +157,8 @@ public class LongSparseArray<E> {
      * Adds a mapping from the specified key to the specified value,
      * replacing the previous mapping from the specified key if there
      * was one.
+     * @param key 
+     * @param value 
      */
     public void put(long key, E value) {
         int i = binarySearch(mKeys, 0, mSize, key);
@@ -199,6 +210,7 @@ public class LongSparseArray<E> {
     /**
      * Returns the number of key-value mappings that this SparseArray
      * currently stores.
+     * @return 
      */
     public int size() {
         if (mGarbage) {
@@ -212,6 +224,8 @@ public class LongSparseArray<E> {
      * Given an index in the range <code>0...size()-1</code>, returns
      * the key from the <code>index</code>th key-value mapping that this
      * SparseArray stores.
+     * @param index
+     * @return  
      */
     public long keyAt(int index) {
         if (mGarbage) {
@@ -225,6 +239,8 @@ public class LongSparseArray<E> {
      * Given an index in the range <code>0...size()-1</code>, returns
      * the value from the <code>index</code>th key-value mapping that this
      * SparseArray stores.
+     * @param index
+     * @return  
      */
     @SuppressWarnings("unchecked")
 	public E valueAt(int index) {
@@ -239,6 +255,8 @@ public class LongSparseArray<E> {
      * Given an index in the range <code>0...size()-1</code>, sets a new
      * value for the <code>index</code>th key-value mapping that this
      * SparseArray stores.
+     * @param index
+     * @param value  
      */
     public void setValueAt(int index, E value) {
         if (mGarbage) {
@@ -252,6 +270,8 @@ public class LongSparseArray<E> {
      * Returns the index for which {@link #keyAt} would return the
      * specified key, or a negative number if the specified
      * key is not mapped.
+     * @param key 
+     * @return 
      */
     public int indexOfKey(long key) {
         if (mGarbage) {
@@ -268,6 +288,8 @@ public class LongSparseArray<E> {
      * Beware that this is a linear search, unlike lookups by key,
      * and that multiple keys can map to the same value and this will
      * find only one of them.
+     * @param value
+     * @return  
      */
     public int indexOfValue(E value) {
         if (mGarbage) {
@@ -299,6 +321,8 @@ public class LongSparseArray<E> {
     /**
      * Puts a key/value pair into the array, optimizing for the case where
      * the key is greater than all existing keys in the array.
+     * @param key 
+     * @param value 
      */
     public void append(long key, E value) {
         if (mSize != 0 && key <= mKeys[mSize - 1]) {

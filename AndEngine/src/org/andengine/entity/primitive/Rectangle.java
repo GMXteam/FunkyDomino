@@ -30,15 +30,36 @@ public class Rectangle extends RectangularShape {
 	// Constants
 	// ===========================================================
 
-	public static final int VERTEX_INDEX_X = 0;
-	public static final int VERTEX_INDEX_Y = Rectangle.VERTEX_INDEX_X + 1;
-	public static final int COLOR_INDEX = Rectangle.VERTEX_INDEX_Y + 1;
+    /**
+     * 
+     */
+    public static final int VERTEX_INDEX_X = 0;
+    /**
+     * 
+     */
+    public static final int VERTEX_INDEX_Y = Rectangle.VERTEX_INDEX_X + 1;
+    /**
+     * 
+     */
+    public static final int COLOR_INDEX = Rectangle.VERTEX_INDEX_Y + 1;
 
-	public static final int VERTEX_SIZE = 2 + 1;
-	public static final int VERTICES_PER_RECTANGLE = 4;
-	public static final int RECTANGLE_SIZE = Rectangle.VERTEX_SIZE * Rectangle.VERTICES_PER_RECTANGLE;
+        /**
+         * 
+         */
+        public static final int VERTEX_SIZE = 2 + 1;
+        /**
+         * 
+         */
+        public static final int VERTICES_PER_RECTANGLE = 4;
+        /**
+         * 
+         */
+        public static final int RECTANGLE_SIZE = Rectangle.VERTEX_SIZE * Rectangle.VERTICES_PER_RECTANGLE;
 
-	public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(2)
+        /**
+         * 
+         */
+        public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(2)
 		.add(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION, ShaderProgramConstants.ATTRIBUTE_POSITION, 2, GLES20.GL_FLOAT, false)
 		.add(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION, ShaderProgramConstants.ATTRIBUTE_COLOR, 4, GLES20.GL_UNSIGNED_BYTE, true)
 		.build();
@@ -47,7 +68,10 @@ public class Rectangle extends RectangularShape {
 	// Fields
 	// ===========================================================
 
-	protected final IRectangleVertexBufferObject mRectangleVertexBufferObject;
+        /**
+         * 
+         */
+        protected final IRectangleVertexBufferObject mRectangleVertexBufferObject;
 
 	// ===========================================================
 	// Constructors
@@ -55,19 +79,40 @@ public class Rectangle extends RectangularShape {
 
 	/**
 	 * Uses a default {@link HighPerformanceRectangleVertexBufferObject} in {@link DrawType#STATIC} with the {@link VertexBufferObjectAttribute}s: {@link Rectangle#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-	 */
+         * 
+         * @param pX
+         * @param pY 
+         * @param pWidth 
+         * @param pVertexBufferObjectManager
+         * @param pHeight  
+         */
 	public Rectangle(final float pX, final float pY, final float pWidth, final float pHeight, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pWidth, pHeight, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
 	/**
 	 * Uses a default {@link HighPerformanceRectangleVertexBufferObject} with the {@link VertexBufferObjectAttribute}s: {@link Rectangle#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-	 */
+         * 
+         * @param pX 
+         * @param pY 
+         * @param pWidth
+         * @param pHeight
+         * @param pVertexBufferObjectManager
+         * @param pDrawType  
+         */
 	public Rectangle(final float pX, final float pY, final float pWidth, final float pHeight, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pWidth, pHeight, new HighPerformanceRectangleVertexBufferObject(pVertexBufferObjectManager, Rectangle.RECTANGLE_SIZE, pDrawType, true, Rectangle.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
 	}
 
-	public Rectangle(final float pX, final float pY, final float pWidth, final float pHeight, final IRectangleVertexBufferObject pRectangleVertexBufferObject) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pRectangleVertexBufferObject
+         */
+        public Rectangle(final float pX, final float pY, final float pWidth, final float pHeight, final IRectangleVertexBufferObject pRectangleVertexBufferObject) {
 		super(pX, pY, pWidth, pHeight, PositionColorShaderProgram.getInstance());
 
 		this.mRectangleVertexBufferObject = pRectangleVertexBufferObject;
@@ -86,7 +131,11 @@ public class Rectangle extends RectangularShape {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public IRectangleVertexBufferObject getVertexBufferObject() {
 		return this.mRectangleVertexBufferObject;
 	}
@@ -110,12 +159,18 @@ public class Rectangle extends RectangularShape {
 		super.postDraw(pGLState, pCamera);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateColor() {
 		this.mRectangleVertexBufferObject.onUpdateColor(this);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onUpdateVertices() {
 		this.mRectangleVertexBufferObject.onUpdateVertices(this);
 	}
@@ -128,7 +183,10 @@ public class Rectangle extends RectangularShape {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface IRectangleVertexBufferObject extends IVertexBufferObject {
+        /**
+         * 
+         */
+        public static interface IRectangleVertexBufferObject extends IVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -137,11 +195,22 @@ public class Rectangle extends RectangularShape {
 		// Methods
 		// ===========================================================
 
-		public void onUpdateColor(final Rectangle pRectangle);
-		public void onUpdateVertices(final Rectangle pRectangle);
+            /**
+             * 
+             * @param pRectangle
+             */
+            public void onUpdateColor(final Rectangle pRectangle);
+            /**
+             * 
+             * @param pRectangle
+             */
+            public void onUpdateVertices(final Rectangle pRectangle);
 	}
 
-	public static class HighPerformanceRectangleVertexBufferObject extends HighPerformanceVertexBufferObject implements IRectangleVertexBufferObject {
+        /**
+         * 
+         */
+        public static class HighPerformanceRectangleVertexBufferObject extends HighPerformanceVertexBufferObject implements IRectangleVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -154,7 +223,15 @@ public class Rectangle extends RectangularShape {
 		// Constructors
 		// ===========================================================
 
-		public HighPerformanceRectangleVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public HighPerformanceRectangleVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -166,7 +243,11 @@ public class Rectangle extends RectangularShape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pRectangle
+                 */
+                @Override
 		public void onUpdateColor(final Rectangle pRectangle) {
 			final float[] bufferData = this.mBufferData;
 
@@ -180,7 +261,11 @@ public class Rectangle extends RectangularShape {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pRectangle
+                 */
+                @Override
 		public void onUpdateVertices(final Rectangle pRectangle) {
 			final float[] bufferData = this.mBufferData;
 
@@ -213,7 +298,10 @@ public class Rectangle extends RectangularShape {
 		// ===========================================================
 	}
 
-	public static class LowMemoryRectangleVertexBufferObject extends LowMemoryVertexBufferObject implements IRectangleVertexBufferObject {
+        /**
+         * 
+         */
+        public static class LowMemoryRectangleVertexBufferObject extends LowMemoryVertexBufferObject implements IRectangleVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -226,7 +314,15 @@ public class Rectangle extends RectangularShape {
 		// Constructors
 		// ===========================================================
 
-		public LowMemoryRectangleVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+            /**
+             * 
+             * @param pVertexBufferObjectManager
+             * @param pCapacity
+             * @param pDrawType
+             * @param pAutoDispose
+             * @param pVertexBufferObjectAttributes
+             */
+            public LowMemoryRectangleVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -238,7 +334,11 @@ public class Rectangle extends RectangularShape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+            /**
+             * 
+             * @param pRectangle
+             */
+            @Override
 		public void onUpdateColor(final Rectangle pRectangle) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 
@@ -252,7 +352,11 @@ public class Rectangle extends RectangularShape {
 			this.setDirtyOnHardware();
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pRectangle
+                 */
+                @Override
 		public void onUpdateVertices(final Rectangle pRectangle) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 

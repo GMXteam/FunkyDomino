@@ -25,7 +25,11 @@ public class CriteriaShaderSource implements IShaderSource {
 	// Constructors
 	// ===========================================================
 
-	public CriteriaShaderSource(final CriteriaShaderSourceEntry ... pCriteriaShaderSourceEntries) {
+        /**
+         * 
+         * @param pCriteriaShaderSourceEntries
+         */
+        public CriteriaShaderSource(final CriteriaShaderSourceEntry ... pCriteriaShaderSourceEntries) {
 		this.mCriteriaShaderSourceEntries = pCriteriaShaderSourceEntries;
 	}
 
@@ -37,7 +41,12 @@ public class CriteriaShaderSource implements IShaderSource {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	public String getShaderSource(final GLState pGLState) {
 		for(int i = 0; i < this.mCriteriaShaderSourceEntries.length; i++) {
 			final CriteriaShaderSourceEntry criteriaShaderSourceEntry = this.mCriteriaShaderSourceEntries[i];
@@ -56,7 +65,10 @@ public class CriteriaShaderSource implements IShaderSource {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class CriteriaShaderSourceEntry {
+        /**
+         * 
+         */
+        public static class CriteriaShaderSourceEntry {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -72,11 +84,20 @@ public class CriteriaShaderSource implements IShaderSource {
 		// Constructors
 		// ===========================================================
 		
-		public CriteriaShaderSourceEntry(final String pShaderSource) {
+                /**
+                 * 
+                 * @param pShaderSource
+                 */
+                public CriteriaShaderSourceEntry(final String pShaderSource) {
 			this(pShaderSource, (IShaderSourceCriteria[]) null);
 		}
 
-		public CriteriaShaderSourceEntry(final String pShaderSource, final IShaderSourceCriteria ... pCriterias) {
+                /**
+                 * 
+                 * @param pShaderSource
+                 * @param pCriterias
+                 */
+                public CriteriaShaderSourceEntry(final String pShaderSource, final IShaderSourceCriteria ... pCriterias) {
 			this.mShaderSourceCriterias = pCriterias;
 			this.mShaderSource = pShaderSource;
 		}
@@ -85,7 +106,11 @@ public class CriteriaShaderSource implements IShaderSource {
 		// Getter & Setter
 		// ===========================================================
 
-		public String getShaderSource() {
+                /**
+                 * 
+                 * @return
+                 */
+                public String getShaderSource() {
 			return this.mShaderSource;
 		}
 
@@ -97,7 +122,12 @@ public class CriteriaShaderSource implements IShaderSource {
 		// Methods
 		// ===========================================================
 
-		public boolean isMet(final GLState pGLState) {
+                /**
+                 * 
+                 * @param pGLState
+                 * @return
+                 */
+                public boolean isMet(final GLState pGLState) {
 			if(this.mShaderSourceCriterias != null) {
 				for(IShaderSourceCriteria shaderSourceCriteria : this.mShaderSourceCriterias) {
 					if(!shaderSourceCriteria.isMet(pGLState)) {

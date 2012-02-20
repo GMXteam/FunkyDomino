@@ -24,23 +24,63 @@ public abstract class DoubleValueSpanEntityModifier extends BaseDoubleValueSpanM
 	// Constructors
 	// ===========================================================
 
-	public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromValueA
+     * @param pToValueA
+     * @param pFromValueB
+     * @param pToValueB
+     */
+    public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
 		super(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB);
 	}
 
-	public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         * @param pEaseFunction
+         */
+        public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, pEaseFunction);
 	}
 
-	public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         * @param pEntityModifierListener
+         */
+        public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, pEntityModifierListener);
 	}
 
-	public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValueA
+         * @param pToValueA
+         * @param pFromValueB
+         * @param pToValueB
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public DoubleValueSpanEntityModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected DoubleValueSpanEntityModifier(final DoubleValueSpanEntityModifier pDoubleValueSpanEntityModifier) {
+        /**
+         * 
+         * @param pDoubleValueSpanEntityModifier
+         */
+        protected DoubleValueSpanEntityModifier(final DoubleValueSpanEntityModifier pDoubleValueSpanEntityModifier) {
 		super(pDoubleValueSpanEntityModifier);
 	}
 

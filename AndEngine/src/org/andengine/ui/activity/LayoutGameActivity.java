@@ -30,10 +30,21 @@ public abstract class LayoutGameActivity extends BaseGameActivity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract int getLayoutID();
-	protected abstract int getRenderSurfaceViewID();
+    /**
+     * 
+     * @return
+     */
+    protected abstract int getLayoutID();
+    /**
+     * 
+     * @return
+     */
+    protected abstract int getRenderSurfaceViewID();
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onSetContentView() {
 		super.setContentView(this.getLayoutID());
 

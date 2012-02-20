@@ -22,19 +22,37 @@ public class EntityDetachRunnablePoolUpdateHandler extends RunnablePoolUpdateHan
 	// Constructors
 	// ===========================================================
 
-	public EntityDetachRunnablePoolUpdateHandler() {
+    /**
+     * 
+     */
+    public EntityDetachRunnablePoolUpdateHandler() {
 		super();
 	}
 
-	public EntityDetachRunnablePoolUpdateHandler(final int pInitialPoolSize) {
+        /**
+         * 
+         * @param pInitialPoolSize
+         */
+        public EntityDetachRunnablePoolUpdateHandler(final int pInitialPoolSize) {
 		super(pInitialPoolSize);
 	}
 
-	public EntityDetachRunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth) {
+        /**
+         * 
+         * @param pInitialPoolSize
+         * @param pGrowth
+         */
+        public EntityDetachRunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth) {
 		super(pInitialPoolSize, pGrowth);
 	}
 
-	public EntityDetachRunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth, final int pAvailableItemCountMaximum) {
+        /**
+         * 
+         * @param pInitialPoolSize
+         * @param pGrowth
+         * @param pAvailableItemCountMaximum
+         */
+        public EntityDetachRunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth, final int pAvailableItemCountMaximum) {
 		super(pInitialPoolSize, pGrowth, pAvailableItemCountMaximum);
 	}
 
@@ -46,7 +64,11 @@ public class EntityDetachRunnablePoolUpdateHandler extends RunnablePoolUpdateHan
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	protected EntityDetachRunnablePoolItem onAllocatePoolItem() {
 		return new EntityDetachRunnablePoolItem();
 	}
@@ -55,7 +77,11 @@ public class EntityDetachRunnablePoolUpdateHandler extends RunnablePoolUpdateHan
 	// Methods
 	// ===========================================================
 
-	public void scheduleDetach(final IEntity pEntity) {
+        /**
+         * 
+         * @param pEntity
+         */
+        public void scheduleDetach(final IEntity pEntity) {
 		final EntityDetachRunnablePoolItem entityDetachRunnablePoolItem = this.obtainPoolItem();
 		entityDetachRunnablePoolItem.setEntity(pEntity);
 		this.postPoolItem(entityDetachRunnablePoolItem);

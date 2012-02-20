@@ -25,7 +25,13 @@ public class ScaleMenuItemDecorator extends BaseMenuItemDecorator {
 	// Constructors
 	// ===========================================================
 
-	public ScaleMenuItemDecorator(final IMenuItem pMenuItem, final float pSelectedScale, final float pUnselectedScale) {
+        /**
+         * 
+         * @param pMenuItem
+         * @param pSelectedScale
+         * @param pUnselectedScale
+         */
+        public ScaleMenuItemDecorator(final IMenuItem pMenuItem, final float pSelectedScale, final float pUnselectedScale) {
 		super(pMenuItem);
 
 		this.mSelectedScale = pSelectedScale;
@@ -46,17 +52,29 @@ public class ScaleMenuItemDecorator extends BaseMenuItemDecorator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pMenuItem
+         */
+        @Override
 	public void onMenuItemSelected(final IMenuItem pMenuItem) {
 		this.setScale(this.mSelectedScale);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pMenuItem
+         */
+        @Override
 	public void onMenuItemUnselected(final IMenuItem pMenuItem) {
 		this.setScale(this.mUnselectedScale);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pMenuItem
+         */
+        @Override
 	public void onMenuItemReset(final IMenuItem pMenuItem) {
 		this.setScale(this.mUnselectedScale);
 	}

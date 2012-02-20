@@ -50,46 +50,115 @@ public class Entity implements IEntity {
 	// Fields
 	// ===========================================================
 
-	protected boolean mDisposed;
-	protected boolean mVisible = true;
-	protected boolean mCullingEnabled;
-	protected boolean mIgnoreUpdate;
-	protected boolean mChildrenVisible = true;
-	protected boolean mChildrenIgnoreUpdate;
-	protected boolean mChildrenSortPending;
+        /**
+         * 
+         */
+        protected boolean mDisposed;
+        /**
+         * 
+         */
+        protected boolean mVisible = true;
+        /**
+         * 
+         */
+        protected boolean mCullingEnabled;
+        /**
+         * 
+         */
+        protected boolean mIgnoreUpdate;
+        /**
+         * 
+         */
+        protected boolean mChildrenVisible = true;
+        /**
+         * 
+         */
+        protected boolean mChildrenIgnoreUpdate;
+        /**
+         * 
+         */
+        protected boolean mChildrenSortPending;
 
-	protected int mZIndex = 0;
+        /**
+         * 
+         */
+        protected int mZIndex = 0;
 
 	private IEntity mParent;
 
-	protected SmartList<IEntity> mChildren;
+        /**
+         * 
+         */
+        protected SmartList<IEntity> mChildren;
 	private EntityModifierList mEntityModifiers;
 	private UpdateHandlerList mUpdateHandlers;
 
-	protected Color mColor = new Color(1, 1, 1, 1);
+        /**
+         * 
+         */
+        protected Color mColor = new Color(1, 1, 1, 1);
 
-	protected float mX;
-	protected float mY;
+        /**
+         * 
+         */
+        protected float mX;
+        /**
+         * 
+         */
+        protected float mY;
 
 	private final float mInitialX;
 	private final float mInitialY;
 
-	protected float mRotation = 0;
+        /**
+         * 
+         */
+        protected float mRotation = 0;
 
-	protected float mRotationCenterX = 0;
-	protected float mRotationCenterY = 0;
+        /**
+         * 
+         */
+        protected float mRotationCenterX = 0;
+        /**
+         * 
+         */
+        protected float mRotationCenterY = 0;
 
-	protected float mScaleX = 1;
-	protected float mScaleY = 1;
+        /**
+         * 
+         */
+        protected float mScaleX = 1;
+        /**
+         * 
+         */
+        protected float mScaleY = 1;
 
-	protected float mScaleCenterX = 0;
-	protected float mScaleCenterY = 0;
+        /**
+         * 
+         */
+        protected float mScaleCenterX = 0;
+        /**
+         * 
+         */
+        protected float mScaleCenterY = 0;
 
-	protected float mSkewX = 0;
-	protected float mSkewY = 0;
+        /**
+         * 
+         */
+        protected float mSkewX = 0;
+        /**
+         * 
+         */
+        protected float mSkewY = 0;
 
-	protected float mSkewCenterX = 0;
-	protected float mSkewCenterY = 0;
+        /**
+         * 
+         */
+        protected float mSkewCenterX = 0;
+        /**
+         * 
+         */
+        protected float mSkewCenterY = 0;
 
 	private boolean mLocalToParentTransformationDirty = true;
 	private boolean mParentToLocalTransformationDirty = true;
@@ -106,11 +175,19 @@ public class Entity implements IEntity {
 	// Constructors
 	// ===========================================================
 
-	public Entity() {
+        /**
+         * 
+         */
+        public Entity() {
 		this(0, 0);
 	}
 
-	public Entity(final float pX, final float pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        public Entity(final float pX, final float pY) {
 		this.mInitialX = pX;
 		this.mInitialY = pY;
 
@@ -126,7 +203,10 @@ public class Entity implements IEntity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected void onUpdateColor() {
+        /**
+         * 
+         */
+        protected void onUpdateColor() {
 
 	}
 
@@ -150,7 +230,11 @@ public class Entity implements IEntity {
 		return this.mCullingEnabled;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pCullingEnabled
+         */
+        @Override
 	public void setCullingEnabled(final boolean pCullingEnabled) {
 		this.mCullingEnabled = pCullingEnabled;
 	}
@@ -160,7 +244,11 @@ public class Entity implements IEntity {
 		return false;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isChildrenVisible() {
 		return this.mChildrenVisible;
 	}
@@ -170,77 +258,138 @@ public class Entity implements IEntity {
 		this.mChildrenVisible = pChildrenVisible;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isIgnoreUpdate() {
 		return this.mIgnoreUpdate;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pIgnoreUpdate
+         */
+        @Override
 	public void setIgnoreUpdate(final boolean pIgnoreUpdate) {
 		this.mIgnoreUpdate = pIgnoreUpdate;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isChildrenIgnoreUpdate() {
 		return this.mChildrenIgnoreUpdate;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pChildrenIgnoreUpdate
+         */
+        @Override
 	public void setChildrenIgnoreUpdate(final boolean pChildrenIgnoreUpdate) {
 		this.mChildrenIgnoreUpdate = pChildrenIgnoreUpdate;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean hasParent() {
 		return this.mParent != null;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public IEntity getParent() {
 		return this.mParent;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         */
+        @Override
 	public void setParent(final IEntity pEntity) {
 		this.mParent = pEntity;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getZIndex() {
 		return this.mZIndex;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pZIndex
+         */
+        @Override
 	public void setZIndex(final int pZIndex) {
 		this.mZIndex = pZIndex;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getX() {
 		return this.mX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getY() {
 		return this.mY;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getInitialX() {
 		return this.mInitialX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getInitialY() {
 		return this.mInitialY;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pOtherEntity
+         */
+        @Override
 	public void setPosition(final IEntity pOtherEntity) {
 		this.setPosition(pOtherEntity.getX(), pOtherEntity.getY());
 	}
 
-	@Override
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        @Override
 	public void setPosition(final float pX, final float pY) {
 		this.mX = pX;
 		this.mY = pY;
@@ -248,7 +397,10 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void setInitialPosition() {
 		this.mX = this.mInitialX;
 		this.mY = this.mInitialY;
@@ -273,31 +425,52 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getRotationCenterX() {
 		return this.mRotationCenterX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getRotationCenterY() {
 		return this.mRotationCenterY;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pRotationCenterX
+         */
+        @Override
 	public void setRotationCenterX(final float pRotationCenterX) {
 		this.mRotationCenterX = pRotationCenterX;
 		this.mLocalToParentTransformationDirty = true;
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pRotationCenterY
+         */
+        @Override
 	public void setRotationCenterY(final float pRotationCenterY) {
 		this.mRotationCenterY = pRotationCenterY;
 		this.mLocalToParentTransformationDirty = true;
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pRotationCenterX
+         * @param pRotationCenterY
+         */
+        @Override
 	public void setRotationCenter(final float pRotationCenterX, final float pRotationCenterY) {
 		this.mRotationCenterX = pRotationCenterX;
 		this.mRotationCenterY = pRotationCenterY;
@@ -305,22 +478,38 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isScaled() {
 		return (this.mScaleX != 1) || (this.mScaleY != 1);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getScaleX() {
 		return this.mScaleX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getScaleY() {
 		return this.mScaleY;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScaleX
+         */
+        @Override
 	public void setScaleX(final float pScaleX) {
 		this.mScaleX = pScaleX;
 		this.mLocalToParentTransformationDirty = true;
@@ -334,7 +523,11 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScale
+         */
+        @Override
 	public void setScale(final float pScale) {
 		this.mScaleX = pScale;
 		this.mScaleY = pScale;
@@ -342,7 +535,12 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScaleX
+         * @param pScaleY
+         */
+        @Override
 	public void setScale(final float pScaleX, final float pScaleY) {
 		this.mScaleX = pScaleX;
 		this.mScaleY = pScaleY;
@@ -350,31 +548,52 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getScaleCenterX() {
 		return this.mScaleCenterX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getScaleCenterY() {
 		return this.mScaleCenterY;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScaleCenterX
+         */
+        @Override
 	public void setScaleCenterX(final float pScaleCenterX) {
 		this.mScaleCenterX = pScaleCenterX;
 		this.mLocalToParentTransformationDirty = true;
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScaleCenterY
+         */
+        @Override
 	public void setScaleCenterY(final float pScaleCenterY) {
 		this.mScaleCenterY = pScaleCenterY;
 		this.mLocalToParentTransformationDirty = true;
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScaleCenterX
+         * @param pScaleCenterY
+         */
+        @Override
 	public void setScaleCenter(final float pScaleCenterX, final float pScaleCenterY) {
 		this.mScaleCenterX = pScaleCenterX;
 		this.mScaleCenterY = pScaleCenterY;
@@ -382,36 +601,60 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isSkewed() {
 		return (this.mSkewX != 0) || (this.mSkewY != 0);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSkewX() {
 		return this.mSkewX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSkewY() {
 		return this.mSkewY;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSkewX
+         */
+        @Override
 	public void setSkewX(final float pSkewX) {
 		this.mSkewX = pSkewX;
 		this.mLocalToParentTransformationDirty = true;
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSkewY
+         */
+        @Override
 	public void setSkewY(final float pSkewY) {
 		this.mSkewY = pSkewY;
 		this.mLocalToParentTransformationDirty = true;
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSkew
+         */
+        @Override
 	public void setSkew(final float pSkew) {
 		this.mSkewX = pSkew;
 		this.mSkewY = pSkew;
@@ -419,7 +662,12 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSkewX
+         * @param pSkewY
+         */
+        @Override
 	public void setSkew(final float pSkewX, final float pSkewY) {
 		this.mSkewX = pSkewX;
 		this.mSkewY = pSkewY;
@@ -427,12 +675,20 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSkewCenterX() {
 		return this.mSkewCenterX;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSkewCenterY() {
 		return this.mSkewCenterY;
 	}
@@ -451,7 +707,12 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSkewCenterX
+         * @param pSkewCenterY
+         */
+        @Override
 	public void setSkewCenter(final float pSkewCenterX, final float pSkewCenterY) {
 		this.mSkewCenterX = pSkewCenterX;
 		this.mSkewCenterY = pSkewCenterY;
@@ -459,32 +720,56 @@ public class Entity implements IEntity {
 		this.mParentToLocalTransformationDirty = true;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean isRotatedOrScaledOrSkewed() {
 		return (this.mRotation != 0) || (this.mScaleX != 1) || (this.mScaleY != 1) || (this.mSkewX != 0) || (this.mSkewY != 0);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getRed() {
 		return this.mColor.getRed();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getGreen() {
 		return this.mColor.getGreen();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getBlue() {
 		return this.mColor.getBlue();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getAlpha() {
 		return this.mColor.getAlpha();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public Color getColor() {
 		return this.mColor;
 	}
@@ -531,7 +816,11 @@ public class Entity implements IEntity {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int getChildCount() {
 		if(this.mChildren == null) {
 			return 0;
@@ -547,12 +836,21 @@ public class Entity implements IEntity {
 		return this.mChildren.get(pIndex);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityMatcher
+         * @return
+         */
+        @Override
 	public IEntity getChild(final IEntityMatcher pEntityMatcher) {
 		return this.getChild(this.mChildren.indexOf(pEntityMatcher));
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public IEntity getFirstChild() {
 		if(this.mChildren == null) {
 			return null;
@@ -560,7 +858,11 @@ public class Entity implements IEntity {
 		return this.mChildren.get(0);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public IEntity getLastChild() {
 		if(this.mChildren == null) {
 			return null;
@@ -568,7 +870,12 @@ public class Entity implements IEntity {
 		return this.mChildren.get(this.mChildren.size() - 1);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @return
+         */
+        @Override
 	public int getChildIndex(final IEntity pEntity) {
 		if ((this.mChildren == null) || (pEntity.getParent() != this)) {
 			return -1;
@@ -576,7 +883,13 @@ public class Entity implements IEntity {
 		return this.mChildren.indexOf(pEntity);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pIndex
+         * @return
+         */
+        @Override
 	public boolean setChildIndex(final IEntity pEntity, final int pIndex) {
 		if ((this.mChildren == null) || (pEntity.getParent() != this)) {
 			return false;
@@ -631,7 +944,11 @@ public class Entity implements IEntity {
 		return pResult;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public boolean detachSelf() {
 		final IEntity parent = this.mParent;
 		if(parent != null) {
@@ -641,7 +958,10 @@ public class Entity implements IEntity {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void detachChildren() {
 		if(this.mChildren == null) {
 			return;
@@ -649,7 +969,12 @@ public class Entity implements IEntity {
 		this.mChildren.clear(Entity.PARAMETERCALLABLE_DETACHCHILD);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @throws IllegalStateException
+         */
+        @Override
 	public void attachChild(final IEntity pEntity) throws IllegalStateException {
 		if(pEntity.hasParent()) {
 			throw new IllegalStateException("pEntity already has a parent!");
@@ -662,7 +987,14 @@ public class Entity implements IEntity {
 		pEntity.onAttached();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pIndex
+         * @return
+         * @throws IllegalStateException
+         */
+        @Override
 	public boolean attachChild(final IEntity pEntity, final int pIndex) throws IllegalStateException {
 		if(pEntity.hasParent()) {
 			throw new IllegalStateException("pEntity already has a parent!");
@@ -680,12 +1012,24 @@ public class Entity implements IEntity {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityA
+         * @param pEntityB
+         * @return
+         */
+        @Override
 	public boolean swapChildren(final IEntity pEntityA, final IEntity pEntityB) {
 		return this.swapChildren(this.getChildIndex(pEntityA), this.getChildIndex(pEntityB));
 	}
 
-	@Override
+        /**
+         * 
+         * @param pIndexA
+         * @param pIndexB
+         * @return
+         */
+        @Override
 	public boolean swapChildren(final int pIndexA, final int pIndexB) {
 		try {
 			ListUtils.swap(this.mChildren, pIndexA, pIndexB);
@@ -744,7 +1088,11 @@ public class Entity implements IEntity {
 		return this.mChildren.removeAll(pEntityMatcher, Entity.PARAMETERCALLABLE_DETACHCHILD);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityParameterCallable
+         */
+        @Override
 	public void callOnChildren(final IEntityParameterCallable pEntityParameterCallable) {
 		if(this.mChildren == null) {
 			return;
@@ -752,7 +1100,12 @@ public class Entity implements IEntity {
 		this.mChildren.call(pEntityParameterCallable);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityParameterCallable
+         * @param pEntityMatcher
+         */
+        @Override
 	public void callOnChildren(final IEntityParameterCallable pEntityParameterCallable, final IEntityMatcher pEntityMatcher) {
 		if(this.mChildren == null) {
 			return;
@@ -760,7 +1113,11 @@ public class Entity implements IEntity {
 		this.mChildren.call(pEntityMatcher, pEntityParameterCallable);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pUpdateHandler
+         */
+        @Override
 	public void registerUpdateHandler(final IUpdateHandler pUpdateHandler) {
 		if(this.mUpdateHandlers == null) {
 			this.allocateUpdateHandlers();
@@ -776,7 +1133,12 @@ public class Entity implements IEntity {
 		return this.mUpdateHandlers.remove(pUpdateHandler);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pUpdateHandlerMatcher
+         * @return
+         */
+        @Override
 	public boolean unregisterUpdateHandlers(final IUpdateHandlerMatcher pUpdateHandlerMatcher) {
 		if(this.mUpdateHandlers == null) {
 			return false;
@@ -784,7 +1146,10 @@ public class Entity implements IEntity {
 		return this.mUpdateHandlers.removeAll(pUpdateHandlerMatcher);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void clearUpdateHandlers() {
 		if(this.mUpdateHandlers == null) {
 			return;
@@ -792,7 +1157,11 @@ public class Entity implements IEntity {
 		this.mUpdateHandlers.clear();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityModifier
+         */
+        @Override
 	public void registerEntityModifier(final IEntityModifier pEntityModifier) {
 		if(this.mEntityModifiers == null) {
 			this.allocateEntityModifiers();
@@ -800,7 +1169,12 @@ public class Entity implements IEntity {
 		this.mEntityModifiers.add(pEntityModifier);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityModifier
+         * @return
+         */
+        @Override
 	public boolean unregisterEntityModifier(final IEntityModifier pEntityModifier) {
 		if(this.mEntityModifiers == null) {
 			return false;
@@ -808,7 +1182,12 @@ public class Entity implements IEntity {
 		return this.mEntityModifiers.remove(pEntityModifier);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntityModifierMatcher
+         * @return
+         */
+        @Override
 	public boolean unregisterEntityModifiers(final IEntityModifierMatcher pEntityModifierMatcher) {
 		if(this.mEntityModifiers == null) {
 			return false;
@@ -816,7 +1195,10 @@ public class Entity implements IEntity {
 		return this.mEntityModifiers.removeAll(pEntityModifierMatcher);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void clearEntityModifiers() {
 		if(this.mEntityModifiers == null) {
 			return;
@@ -930,7 +1312,11 @@ public class Entity implements IEntity {
 		return parentToLocalTransformation;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public Transformation getLocalToSceneTransformation() {
 		// TODO Cache if parent(recursive) not dirty.
 		final Transformation localToSceneTransformation = this.mLocalToSceneTransformation;
@@ -944,7 +1330,11 @@ public class Entity implements IEntity {
 		return localToSceneTransformation;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public Transformation getSceneToLocalTransformation() {
 		// TODO Cache if parent(recursive) not dirty.
 		final Transformation sceneToLocalTransformation = this.mSceneToLocalTransformation;
@@ -1051,7 +1441,10 @@ public class Entity implements IEntity {
 
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void onDetached() {
 
 	}
@@ -1061,26 +1454,42 @@ public class Entity implements IEntity {
 		return this.mUserData;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pUserData
+         */
+        @Override
 	public void setUserData(final Object pUserData) {
 		this.mUserData = pUserData;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        @Override
 	public final void onDraw(final GLState pGLState, final Camera pCamera) {
 		if(this.mVisible && !(this.mCullingEnabled && this.isCulled(pCamera))) {
 			this.onManagedDraw(pGLState, pCamera);
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public final void onUpdate(final float pSecondsElapsed) {
 		if(!this.mIgnoreUpdate) {
 			this.onManagedUpdate(pSecondsElapsed);
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mVisible = true;
 		this.mCullingEnabled = false;
@@ -1119,7 +1528,11 @@ public class Entity implements IEntity {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Throwable
+         */
+        @Override
 	protected void finalize() throws Throwable {
 		super.finalize();
 
@@ -1128,14 +1541,22 @@ public class Entity implements IEntity {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public String toString() {
 		final StringBuilder stringBuilder = new StringBuilder();
 		this.toString(stringBuilder);
 		return stringBuilder.toString();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pStringBuilder
+         */
+        @Override
 	public void toString(final StringBuilder pStringBuilder) {
 		pStringBuilder.append(this.getClass().getSimpleName());
 
@@ -1192,7 +1613,11 @@ public class Entity implements IEntity {
 		this.mUpdateHandlers = new UpdateHandlerList(Entity.UPDATEHANDLERS_CAPACITY_DEFAULT);
 	}
 
-	protected void onApplyTransformations(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        protected void onApplyTransformations(final GLState pGLState) {
 		/* Translation. */
 		this.applyTranslation(pGLState);
 
@@ -1206,11 +1631,19 @@ public class Entity implements IEntity {
 		this.applyScale(pGLState);
 	}
 
-	protected void applyTranslation(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        protected void applyTranslation(final GLState pGLState) {
 		pGLState.translateModelViewGLMatrixf(this.mX, this.mY, 0);
 	}
 
-	protected void applyRotation(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        protected void applyRotation(final GLState pGLState) {
 		final float rotation = this.mRotation;
 
 		if(rotation != 0) {
@@ -1227,7 +1660,11 @@ public class Entity implements IEntity {
 		}
 	}
 
-	protected void applySkew(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        protected void applySkew(final GLState pGLState) {
 		final float skewX = this.mSkewX;
 		final float skewY = this.mSkewY;
 
@@ -1241,7 +1678,11 @@ public class Entity implements IEntity {
 		}
 	}
 
-	protected void applyScale(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        protected void applyScale(final GLState pGLState) {
 		final float scaleX = this.mScaleX;
 		final float scaleY = this.mScaleY;
 
@@ -1255,7 +1696,12 @@ public class Entity implements IEntity {
 		}
 	}
 
-	protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
 		pGLState.pushModelViewGLMatrix();
 		{
 			this.onApplyTransformations(pGLState);
@@ -1300,7 +1746,11 @@ public class Entity implements IEntity {
 		pGLState.popModelViewGLMatrix();
 	}
 
-	protected void onManagedUpdate(final float pSecondsElapsed) {
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        protected void onManagedUpdate(final float pSecondsElapsed) {
 		if(this.mEntityModifiers != null) {
 			this.mEntityModifiers.onUpdate(pSecondsElapsed);
 		}

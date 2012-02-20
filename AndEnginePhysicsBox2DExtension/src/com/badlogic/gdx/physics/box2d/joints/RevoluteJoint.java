@@ -25,13 +25,20 @@ import com.badlogic.gdx.physics.box2d.World;
  * provided so that infinite forces are not generated.
  */
 public class RevoluteJoint extends Joint {
-	public RevoluteJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public RevoluteJoint (World world, long addr) {
 		super(world, addr);
 	}
 
 	/**
 	 * Get the current joint angle in radians.
-	 */
+     * 
+     * @return 
+     */
 	public float getJointAngle () {
 		return jniGetJointAngle(addr);
 	}
@@ -40,7 +47,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Get the current joint angle speed in radians per second.
-	 */
+         * 
+         * @return 
+         */
 	public float getJointSpeed () {
 		return jniGetJointSpeed(addr);
 	}
@@ -49,7 +58,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Is the joint limit enabled?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isLimitEnabled () {
 		return jniIsLimitEnabled(addr);
 	}
@@ -58,7 +69,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Enable/disable the joint limit.
-	 */
+         * 
+         * @param flag 
+         */
 	public void enableLimit (boolean flag) {
 		jniEnableLimit(addr, flag);
 	}
@@ -67,7 +80,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Get the lower joint limit in radians.
-	 */
+         * 
+         * @return 
+         */
 	public float getLowerLimit () {
 		return jniGetLowerLimit(addr);
 	}
@@ -76,7 +91,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Get the upper joint limit in radians.
-	 */
+         * 
+         * @return 
+         */
 	public float getUpperLimit () {
 		return jniGetUpperLimit(addr);
 	}
@@ -85,7 +102,8 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Set the joint limits in radians.
-	 * @param upper
+         * @param lower 
+         * @param upper
 	 */
 	public void setLimits (float lower, float upper) {
 		jniSetLimits(addr, lower, upper);
@@ -95,7 +113,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Is the joint motor enabled?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isMotorEnabled () {
 		return jniIsMotorEnabled(addr);
 	}
@@ -104,7 +124,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Enable/disable the joint motor.
-	 */
+         * 
+         * @param flag 
+         */
 	public void enableMotor (boolean flag) {
 		jniEnableMotor(addr, flag);
 	}
@@ -113,7 +135,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Set the motor speed in radians per second.
-	 */
+         * 
+         * @param speed 
+         */
 	public void setMotorSpeed (float speed) {
 		jniSetMotorSpeed(addr, speed);
 	}
@@ -122,7 +146,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Get the motor speed in radians per second.
-	 */
+         * 
+         * @return 
+         */
 	public float getMotorSpeed () {
 		return jniGetMotorSpeed(addr);
 	}
@@ -131,7 +157,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Set the maximum motor torque, usually in N-m.
-	 */
+         * 
+         * @param torque 
+         */
 	public void setMaxMotorTorque (float torque) {
 		jniSetMaxMotorTorque(addr, torque);
 	}
@@ -140,7 +168,9 @@ public class RevoluteJoint extends Joint {
 
 	/**
 	 * Get the current motor torque, usually in N-m.
-	 */
+         * 
+         * @return 
+         */
 	public float getMotorTorque () {
 		return jniGetMotorTorque(addr);
 	}

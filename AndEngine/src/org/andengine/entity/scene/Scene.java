@@ -38,13 +38,22 @@ public class Scene extends Entity {
 
 	private float mSecondsElapsedTotal;
 
-	protected Scene mParentScene;
-	protected Scene mChildScene;
+        /**
+         * 
+         */
+        protected Scene mParentScene;
+        /**
+         * 
+         */
+        protected Scene mChildScene;
 	private boolean mChildSceneModalDraw;
 	private boolean mChildSceneModalUpdate;
 	private boolean mChildSceneModalTouch;
 
-	protected SmartList<ITouchArea> mTouchAreas = new SmartList<ITouchArea>(Scene.TOUCHAREAS_CAPACITY_DEFAULT);
+        /**
+         * 
+         */
+        protected SmartList<ITouchArea> mTouchAreas = new SmartList<ITouchArea>(Scene.TOUCHAREAS_CAPACITY_DEFAULT);
 
 	private final RunnableHandler mRunnableHandler = new RunnableHandler();
 
@@ -67,11 +76,19 @@ public class Scene extends Entity {
 	// Constructors
 	// ===========================================================
 
-	public Scene() {
+        /**
+         * 
+         */
+        public Scene() {
 
 	}
 
-	@Deprecated
+        /**
+         * 
+         * @param pChildCount
+         * @deprecated
+         */
+        @Deprecated
 	public Scene(final int pChildCount) {
 		for(int i = 0; i < pChildCount; i++) {
 			this.attachChild(new Entity());
@@ -82,47 +99,91 @@ public class Scene extends Entity {
 	// Getter & Setter
 	// ===========================================================
 
-	public float getSecondsElapsedTotal() {
+        /**
+         * 
+         * @return
+         */
+        public float getSecondsElapsedTotal() {
 		return this.mSecondsElapsedTotal;
 	}
 
-	public IBackground getBackground() {
+        /**
+         * 
+         * @return
+         */
+        public IBackground getBackground() {
 		return this.mBackground;
 	}
 
-	public void setBackground(final IBackground pBackground) {
+        /**
+         * 
+         * @param pBackground
+         */
+        public void setBackground(final IBackground pBackground) {
 		this.mBackground = pBackground;
 	}
 
-	public boolean isBackgroundEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isBackgroundEnabled() {
 		return this.mBackgroundEnabled;
 	}
 
-	public void setBackgroundEnabled(final boolean pEnabled) {
+        /**
+         * 
+         * @param pEnabled
+         */
+        public void setBackgroundEnabled(final boolean pEnabled) {
 		this.mBackgroundEnabled  = pEnabled;
 	}
 
-	public void setOnSceneTouchListener(final IOnSceneTouchListener pOnSceneTouchListener) {
+        /**
+         * 
+         * @param pOnSceneTouchListener
+         */
+        public void setOnSceneTouchListener(final IOnSceneTouchListener pOnSceneTouchListener) {
 		this.mOnSceneTouchListener = pOnSceneTouchListener;
 	}
 
-	public IOnSceneTouchListener getOnSceneTouchListener() {
+        /**
+         * 
+         * @return
+         */
+        public IOnSceneTouchListener getOnSceneTouchListener() {
 		return this.mOnSceneTouchListener;
 	}
 
-	public boolean hasOnSceneTouchListener() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasOnSceneTouchListener() {
 		return this.mOnSceneTouchListener != null;
 	}
 
-	public void setOnAreaTouchListener(final IOnAreaTouchListener pOnAreaTouchListener) {
+        /**
+         * 
+         * @param pOnAreaTouchListener
+         */
+        public void setOnAreaTouchListener(final IOnAreaTouchListener pOnAreaTouchListener) {
 		this.mOnAreaTouchListener = pOnAreaTouchListener;
 	}
 
-	public IOnAreaTouchListener getOnAreaTouchListener() {
+        /**
+         * 
+         * @return
+         */
+        public IOnAreaTouchListener getOnAreaTouchListener() {
 		return this.mOnAreaTouchListener;
 	}
 
-	public boolean hasOnAreaTouchListener() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasOnAreaTouchListener() {
 		return this.mOnAreaTouchListener != null;
 	}
 
@@ -130,23 +191,46 @@ public class Scene extends Entity {
 		this.mParentScene = pParentScene;
 	}
 
-	public boolean hasChildScene() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasChildScene() {
 		return this.mChildScene != null;
 	}
 
-	public Scene getChildScene() {
+        /**
+         * 
+         * @return
+         */
+        public Scene getChildScene() {
 		return this.mChildScene;
 	}
 
-	public void setChildSceneModal(final Scene pChildScene) {
+        /**
+         * 
+         * @param pChildScene
+         */
+        public void setChildSceneModal(final Scene pChildScene) {
 		this.setChildScene(pChildScene, true, true, true);
 	}
 
-	public void setChildScene(final Scene pChildScene) {
+        /**
+         * 
+         * @param pChildScene
+         */
+        public void setChildScene(final Scene pChildScene) {
 		this.setChildScene(pChildScene, false, false, false);
 	}
 
-	public void setChildScene(final Scene pChildScene, final boolean pModalDraw, final boolean pModalUpdate, final boolean pModalTouch) {
+        /**
+         * 
+         * @param pChildScene
+         * @param pModalDraw
+         * @param pModalUpdate
+         * @param pModalTouch
+         */
+        public void setChildScene(final Scene pChildScene, final boolean pModalDraw, final boolean pModalUpdate, final boolean pModalTouch) {
 		pChildScene.setParentScene(this);
 		this.mChildScene = pChildScene;
 		this.mChildSceneModalDraw = pModalDraw;
@@ -154,23 +238,40 @@ public class Scene extends Entity {
 		this.mChildSceneModalTouch = pModalTouch;
 	}
 
-	public void clearChildScene() {
+        /**
+         * 
+         */
+        public void clearChildScene() {
 		this.mChildScene = null;
 	}
 
-	public void setOnAreaTouchTraversalBackToFront() {
+        /**
+         * 
+         */
+        public void setOnAreaTouchTraversalBackToFront() {
 		this.mOnAreaTouchTraversalBackToFront = true;
 	}
 
-	public void setOnAreaTouchTraversalFrontToBack() {
+        /**
+         * 
+         */
+        public void setOnAreaTouchTraversalFrontToBack() {
 		this.mOnAreaTouchTraversalBackToFront = false;
 	}
 
-	public boolean isTouchAreaBindingOnActionDownEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isTouchAreaBindingOnActionDownEnabled() {
 		return this.mTouchAreaBindingOnActionDownEnabled;
 	}
 
-	public boolean isTouchAreaBindingOnActionMoveEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isTouchAreaBindingOnActionMoveEnabled() {
 		return this.mTouchAreaBindingOnActionMoveEnabled;
 	}
 
@@ -210,7 +311,11 @@ public class Scene extends Entity {
 		this.mTouchAreaBindingOnActionMoveEnabled = pTouchAreaBindingOnActionMoveEnabled;
 	}
 
-	public boolean isOnSceneTouchListenerBindingOnActionDownEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isOnSceneTouchListenerBindingOnActionDownEnabled() {
 		return this.mOnSceneTouchListenerBindingOnActionDownEnabled;
 	}
 
@@ -236,7 +341,12 @@ public class Scene extends Entity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        @Override
 	protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
 		final Scene childScene = this.mChildScene;
 
@@ -269,11 +379,20 @@ public class Scene extends Entity {
 		}
 	}
 
-	protected void onApplyMatrix(final GLState pGLState, final Camera pCamera) {
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        protected void onApplyMatrix(final GLState pGLState, final Camera pCamera) {
 		pCamera.onApplySceneMatrix(pGLState);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		this.mSecondsElapsedTotal += pSecondsElapsed;
 
@@ -290,7 +409,12 @@ public class Scene extends Entity {
 		}
 	}
 
-	public boolean onSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        public boolean onSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
 		final int action = pSceneTouchEvent.getAction();
 		final boolean isActionDown = pSceneTouchEvent.isActionDown();
 		final boolean isActionMove = pSceneTouchEvent.isActionMove();
@@ -417,18 +541,30 @@ public class Scene extends Entity {
 		}
 	}
 
-	protected boolean onChildSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        protected boolean onChildSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
 		return this.mChildScene.onSceneTouchEvent(pSceneTouchEvent);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		super.reset();
 
 		this.clearChildScene();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         */
+        @Override
 	public void setParent(final IEntity pEntity) {
 //		super.setParent(pEntity);
 	}
@@ -437,31 +573,59 @@ public class Scene extends Entity {
 	// Methods
 	// ===========================================================
 
-	public void postRunnable(final Runnable pRunnable) {
+        /**
+         * 
+         * @param pRunnable
+         */
+        public void postRunnable(final Runnable pRunnable) {
 		this.mRunnableHandler.postRunnable(pRunnable);
 	}
 
-	public void registerTouchArea(final ITouchArea pTouchArea) {
+        /**
+         * 
+         * @param pTouchArea
+         */
+        public void registerTouchArea(final ITouchArea pTouchArea) {
 		this.mTouchAreas.add(pTouchArea);
 	}
 
-	public boolean unregisterTouchArea(final ITouchArea pTouchArea) {
+        /**
+         * 
+         * @param pTouchArea
+         * @return
+         */
+        public boolean unregisterTouchArea(final ITouchArea pTouchArea) {
 		return this.mTouchAreas.remove(pTouchArea);
 	}
 
-	public boolean unregisterTouchAreas(final ITouchAreaMatcher pTouchAreaMatcher) {
+        /**
+         * 
+         * @param pTouchAreaMatcher
+         * @return
+         */
+        public boolean unregisterTouchAreas(final ITouchAreaMatcher pTouchAreaMatcher) {
 		return this.mTouchAreas.removeAll(pTouchAreaMatcher);
 	}
 
-	public void clearTouchAreas() {
+        /**
+         * 
+         */
+        public void clearTouchAreas() {
 		this.mTouchAreas.clear();
 	}
 
-	public SmartList<ITouchArea> getTouchAreas() {
+        /**
+         * 
+         * @return
+         */
+        public SmartList<ITouchArea> getTouchAreas() {
 		return this.mTouchAreas;
 	}
 
-	public void back() {
+        /**
+         * 
+         */
+        public void back() {
 		this.clearChildScene();
 
 		if(this.mParentScene != null) {
@@ -474,7 +638,10 @@ public class Scene extends Entity {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface ITouchArea {
+        /**
+         * 
+         */
+        public static interface ITouchArea {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -483,15 +650,35 @@ public class Scene extends Entity {
 		// Methods
 		// ===========================================================
 
-		public boolean contains(final float pX, final float pY);
+            /**
+             * 
+             * @param pX
+             * @param pY
+             * @return
+             */
+            public boolean contains(final float pX, final float pY);
 
-		public float[] convertSceneToLocalCoordinates(final float pX, final float pY);
-		public float[] convertLocalToSceneCoordinates(final float pX, final float pY);
+                /**
+                 * 
+                 * @param pX
+                 * @param pY
+                 * @return
+                 */
+                public float[] convertSceneToLocalCoordinates(final float pX, final float pY);
+                /**
+                 * 
+                 * @param pX
+                 * @param pY
+                 * @return
+                 */
+                public float[] convertLocalToSceneCoordinates(final float pX, final float pY);
 
 		/**
 		 * This method only fires if this {@link ITouchArea} is registered to the {@link Scene} via {@link Scene#registerTouchArea(ITouchArea)}.
 		 * @param pSceneTouchEvent
-		 * @return <code>true</code> if the event was handled (that means {@link IOnAreaTouchListener} of the {@link Scene} will not be fired!), otherwise <code>false</code>.
+                 * @param pTouchAreaLocalX 
+                 * @param pTouchAreaLocalY 
+                 * @return <code>true</code> if the event was handled (that means {@link IOnAreaTouchListener} of the {@link Scene} will not be fired!), otherwise <code>false</code>.
 		 */
 		public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, final float pTouchAreaLocalX, final float pTouchAreaLocalY);
 
@@ -499,7 +686,10 @@ public class Scene extends Entity {
 		// Inner and Anonymous Classes
 		// ===========================================================
 
-		public static interface ITouchAreaMatcher extends IMatcher<ITouchArea> {
+                /**
+                 * 
+                 */
+                public static interface ITouchAreaMatcher extends IMatcher<ITouchArea> {
 			// ===========================================================
 			// Constants
 			// ===========================================================

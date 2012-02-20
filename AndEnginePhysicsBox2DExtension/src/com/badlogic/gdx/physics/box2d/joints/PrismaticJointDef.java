@@ -27,13 +27,21 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * @warning at least one body should by dynamic with a non-fixed rotation.
  */
 public class PrismaticJointDef extends JointDef {
-	public PrismaticJointDef () {
+    /**
+     * 
+     */
+    public PrismaticJointDef () {
 		type = JointType.PrismaticJoint;
 	}
 
 	/**
 	 * Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.
-	 */
+         * 
+     * @param bodyA 
+     * @param bodyB
+     * @param axis
+     * @param anchor  
+         */
 	public void initialize (Body bodyA, Body bodyB, Vector2 anchor, Vector2 axis) {
 		this.bodyA = bodyA;
 		this.bodyB = bodyB;

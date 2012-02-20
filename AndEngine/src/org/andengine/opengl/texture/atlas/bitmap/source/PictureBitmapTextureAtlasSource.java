@@ -24,25 +24,53 @@ public abstract class PictureBitmapTextureAtlasSource extends BaseTextureAtlasSo
 	// Fields
 	// ===========================================================
 
-	protected final Picture mPicture;
+    /**
+     * 
+     */
+    protected final Picture mPicture;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public PictureBitmapTextureAtlasSource(final Picture pPicture) {
+    /**
+     * 
+     * @param pPicture
+     */
+    public PictureBitmapTextureAtlasSource(final Picture pPicture) {
 		this(pPicture, 0, 0);
 	}
 	
-	public PictureBitmapTextureAtlasSource(final Picture pPicture, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pPicture
+         * @param pTextureX
+         * @param pTextureY
+         */
+        public PictureBitmapTextureAtlasSource(final Picture pPicture, final int pTextureX, final int pTextureY) {
 		this(pPicture, pTextureX, pTextureY, pPicture.getWidth(), pPicture.getHeight());
 	}
 
-	public PictureBitmapTextureAtlasSource(final Picture pPicture, final int pTextureX, final int pTextureY, final float pScale) {
+        /**
+         * 
+         * @param pPicture
+         * @param pTextureX
+         * @param pTextureY
+         * @param pScale
+         */
+        public PictureBitmapTextureAtlasSource(final Picture pPicture, final int pTextureX, final int pTextureY, final float pScale) {
 		this(pPicture, pTextureX, pTextureY, Math.round(pPicture.getWidth() * pScale), Math.round(pPicture.getHeight() * pScale));
 	}
 
-	public PictureBitmapTextureAtlasSource(final Picture pPicture, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
+        /**
+         * 
+         * @param pPicture
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         */
+        public PictureBitmapTextureAtlasSource(final Picture pPicture, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		super(pTextureX, pTextureY, pTextureWidth, pTextureHeight);
 
 		this.mPicture = pPicture;
@@ -59,7 +87,12 @@ public abstract class PictureBitmapTextureAtlasSource extends BaseTextureAtlasSo
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pBitmapConfig
+         * @return
+         */
+        @Override
 	public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 		final Picture picture = this.mPicture;
 		if(picture == null) {

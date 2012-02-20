@@ -22,19 +22,35 @@ public class OutOfCharactersException extends TextException {
 	// Constructors
 	// ===========================================================
 
-	public OutOfCharactersException() {
+        /**
+         * 
+         */
+        public OutOfCharactersException() {
 		super();
 	}
 
-	public OutOfCharactersException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public OutOfCharactersException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public OutOfCharactersException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public OutOfCharactersException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-	public OutOfCharactersException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public OutOfCharactersException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

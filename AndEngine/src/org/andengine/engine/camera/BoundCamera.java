@@ -16,28 +16,73 @@ public class BoundCamera extends Camera {
 	// Fields
 	// ===========================================================
 
-	protected boolean mBoundsEnabled;
+    /**
+     * 
+     */
+    protected boolean mBoundsEnabled;
 
-	protected float mBoundsXMin;
-	protected float mBoundsXMax;
-	protected float mBoundsYMin;
-	protected float mBoundsYMax;
+        /**
+         * 
+         */
+        protected float mBoundsXMin;
+        /**
+         * 
+         */
+        protected float mBoundsXMax;
+        /**
+         * 
+         */
+        protected float mBoundsYMin;
+        /**
+         * 
+         */
+        protected float mBoundsYMax;
 
-	protected float mBoundsCenterX;
-	protected float mBoundsCenterY;
+        /**
+         * 
+         */
+        protected float mBoundsCenterX;
+        /**
+         * 
+         */
+        protected float mBoundsCenterY;
 
-	protected float mBoundsWidth;
-	protected float mBoundsHeight;
+        /**
+         * 
+         */
+        protected float mBoundsWidth;
+        /**
+         * 
+         */
+        protected float mBoundsHeight;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BoundCamera(final float pX, final float pY, final float pWidth, final float pHeight) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         */
+        public BoundCamera(final float pX, final float pY, final float pWidth, final float pHeight) {
 		super(pX, pY, pWidth, pHeight);
 	}
 
-	public BoundCamera(final float pX, final float pY, final float pWidth, final float pHeight, final float pBoundMinX, final float pBoundMaxX, final float pBoundMinY, final float pBoundMaxY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         * @param pBoundMinX
+         * @param pBoundMaxX
+         * @param pBoundMinY
+         * @param pBoundMaxY
+         */
+        public BoundCamera(final float pX, final float pY, final float pWidth, final float pHeight, final float pBoundMinX, final float pBoundMaxX, final float pBoundMinY, final float pBoundMaxY) {
 		super(pX, pY, pWidth, pHeight);
 		this.setBounds(pBoundMinX, pBoundMinY, pBoundMaxX, pBoundMaxY);
 		this.mBoundsEnabled = true;
@@ -47,15 +92,30 @@ public class BoundCamera extends Camera {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isBoundsEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isBoundsEnabled() {
 		return this.mBoundsEnabled;
 	}
 
-	public void setBoundsEnabled(final boolean pBoundsEnabled) {
+        /**
+         * 
+         * @param pBoundsEnabled
+         */
+        public void setBoundsEnabled(final boolean pBoundsEnabled) {
 		this.mBoundsEnabled = pBoundsEnabled;
 	}
 
-	public void setBounds(final float pBoundsXMin, final float pBoundsYMin, final float pBoundsXMax, final float pBoundsYMax) {
+        /**
+         * 
+         * @param pBoundsXMin
+         * @param pBoundsYMin
+         * @param pBoundsXMax
+         * @param pBoundsYMax
+         */
+        public void setBounds(final float pBoundsXMin, final float pBoundsYMin, final float pBoundsXMax, final float pBoundsYMax) {
 		this.mBoundsXMin = pBoundsXMin;
 		this.mBoundsXMax = pBoundsXMax;
 		this.mBoundsYMin = pBoundsYMin;
@@ -68,27 +128,51 @@ public class BoundCamera extends Camera {
 		this.mBoundsCenterY = this.mBoundsYMin + this.mBoundsHeight * 0.5f;
 	}
 
-	public float getBoundsXMin() {
+        /**
+         * 
+         * @return
+         */
+        public float getBoundsXMin() {
 		return this.mBoundsXMin;
 	}
 
-	public float getBoundsXMax() {
+        /**
+         * 
+         * @return
+         */
+        public float getBoundsXMax() {
 		return this.mBoundsXMax;
 	}
 
-	public float getBoundsYMin() {
+        /**
+         * 
+         * @return
+         */
+        public float getBoundsYMin() {
 		return this.mBoundsYMin;
 	}
 
-	public float getBoundsYMax() {
+        /**
+         * 
+         * @return
+         */
+        public float getBoundsYMax() {
 		return this.mBoundsYMax;
 	}
 
-	public float getBoundsWidth() {
+        /**
+         * 
+         * @return
+         */
+        public float getBoundsWidth() {
 		return this.mBoundsWidth;
 	}
 
-	public float getBoundsHeight() {
+        /**
+         * 
+         * @return
+         */
+        public float getBoundsHeight() {
 		return this.mBoundsHeight;
 	}
 
@@ -96,7 +180,12 @@ public class BoundCamera extends Camera {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 	
-	@Override
+        /**
+         * 
+         * @param pCenterX
+         * @param pCenterY
+         */
+        @Override
 	public void setCenter(final float pCenterX, final float pCenterY) {
 		super.setCenter(pCenterX, pCenterY);
 		
@@ -109,7 +198,10 @@ public class BoundCamera extends Camera {
 	// Methods
 	// ===========================================================
 
-	protected void ensureInBounds() {
+        /**
+         * 
+         */
+        protected void ensureInBounds() {
 		final float centerX;
 		if(this.mBoundsWidth < this.getWidth()) {
 			centerX = this.mBoundsCenterX;
@@ -125,7 +217,12 @@ public class BoundCamera extends Camera {
 		super.setCenter(centerX, centerY);
 	}
 
-	protected float getBoundedX(final float pX) {
+        /**
+         * 
+         * @param pX
+         * @return
+         */
+        protected float getBoundedX(final float pX) {
 		final float minXBoundExceededAmount = this.mBoundsXMin - this.getXMin();
 		final boolean minXBoundExceeded = minXBoundExceededAmount > 0;
 
@@ -151,7 +248,12 @@ public class BoundCamera extends Camera {
 		}
 	}
 
-	protected float getBoundedY(final float pY) {
+        /**
+         * 
+         * @param pY
+         * @return
+         */
+        protected float getBoundedY(final float pY) {
 		final float minYBoundExceededAmount = this.mBoundsYMin - this.getYMin();
 		final boolean minYBoundExceeded = minYBoundExceededAmount > 0;
 

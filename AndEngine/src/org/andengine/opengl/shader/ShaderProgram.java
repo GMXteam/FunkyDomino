@@ -38,25 +38,53 @@ public class ShaderProgram implements ShaderProgramConstants {
 	// Fields
 	// ===========================================================
 
-	protected final IShaderSource mVertexShaderSource;
-	protected final IShaderSource mFragmentShaderSource;
+        /**
+         * 
+         */
+        protected final IShaderSource mVertexShaderSource;
+        /**
+         * 
+         */
+        protected final IShaderSource mFragmentShaderSource;
 
-	protected int mProgramID = -1;
+        /**
+         * 
+         */
+        protected int mProgramID = -1;
 
-	protected boolean mCompiled;
+        /**
+         * 
+         */
+        protected boolean mCompiled;
 
-	protected final HashMap<String, Integer> mUniformLocations = new HashMap<String, Integer>();
-	protected final HashMap<String, Integer> mAttributeLocations = new HashMap<String, Integer>();
+        /**
+         * 
+         */
+        protected final HashMap<String, Integer> mUniformLocations = new HashMap<String, Integer>();
+        /**
+         * 
+         */
+        protected final HashMap<String, Integer> mAttributeLocations = new HashMap<String, Integer>();
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public ShaderProgram(final String pVertexShaderSource, final String pFragmentShaderSource) {
+        /**
+         * 
+         * @param pVertexShaderSource
+         * @param pFragmentShaderSource
+         */
+        public ShaderProgram(final String pVertexShaderSource, final String pFragmentShaderSource) {
 		this(new StringShaderSource(pVertexShaderSource), new StringShaderSource(pFragmentShaderSource));
 	}
 
-	public ShaderProgram(final IShaderSource pVertexShaderSource, final IShaderSource pFragmentShaderSource) {
+        /**
+         * 
+         * @param pVertexShaderSource
+         * @param pFragmentShaderSource
+         */
+        public ShaderProgram(final IShaderSource pVertexShaderSource, final IShaderSource pFragmentShaderSource) {
 		this.mVertexShaderSource = pVertexShaderSource;
 		this.mFragmentShaderSource = pFragmentShaderSource;
 	}
@@ -65,15 +93,28 @@ public class ShaderProgram implements ShaderProgramConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isCompiled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isCompiled() {
 		return this.mCompiled;
 	}
 
-	public void setCompiled(final boolean pCompiled) {
+        /**
+         * 
+         * @param pCompiled
+         */
+        public void setCompiled(final boolean pCompiled) {
 		this.mCompiled = pCompiled;
 	}
 
-	public int getAttributeLocation(final String pAttributeName) {
+        /**
+         * 
+         * @param pAttributeName
+         * @return
+         */
+        public int getAttributeLocation(final String pAttributeName) {
 		final Integer location = this.mAttributeLocations.get(pAttributeName);
 		if(location != null) {
 			return location.intValue();
@@ -82,7 +123,12 @@ public class ShaderProgram implements ShaderProgramConstants {
 		}
 	}
 
-	public int getAttributeLocationOptional(final String pAttributeName) {
+        /**
+         * 
+         * @param pAttributeName
+         * @return
+         */
+        public int getAttributeLocationOptional(final String pAttributeName) {
 		final Integer location = this.mAttributeLocations.get(pAttributeName);
 		if(location != null) {
 			return location.intValue();
@@ -91,7 +137,12 @@ public class ShaderProgram implements ShaderProgramConstants {
 		}
 	}
 
-	public int getUniformLocation(final String pUniformName) {
+        /**
+         * 
+         * @param pUniformName
+         * @return
+         */
+        public int getUniformLocation(final String pUniformName) {
 		final Integer location = this.mUniformLocations.get(pUniformName);
 		if(location != null) {
 			return location.intValue();
@@ -100,7 +151,12 @@ public class ShaderProgram implements ShaderProgramConstants {
 		}
 	}
 
-	public int getUniformLocationOptional(final String pUniformName) {
+        /**
+         * 
+         * @param pUniformName
+         * @return
+         */
+        public int getUniformLocationOptional(final String pUniformName) {
 		final Integer location = this.mUniformLocations.get(pUniformName);
 		if(location != null) {
 			return location.intValue();
@@ -117,7 +173,13 @@ public class ShaderProgram implements ShaderProgramConstants {
 	// Methods
 	// ===========================================================
 
-	public void bind(final GLState pGLState, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) throws ShaderProgramException {
+        /**
+         * 
+         * @param pGLState
+         * @param pVertexBufferObjectAttributes
+         * @throws ShaderProgramException
+         */
+        public void bind(final GLState pGLState, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) throws ShaderProgramException {
 		if(!this.mCompiled) {
 			this.compile(pGLState);
 		}
@@ -126,11 +188,20 @@ public class ShaderProgram implements ShaderProgramConstants {
 		pVertexBufferObjectAttributes.glVertexAttribPointers();
 	}
 
-	public void unbind(final GLState pGLState) throws ShaderProgramException {
+        /**
+         * 
+         * @param pGLState
+         * @throws ShaderProgramException
+         */
+        public void unbind(final GLState pGLState) throws ShaderProgramException {
 //		pGLState.useProgram(0); // TODO Does this have an positive/negative impact on performance?
 	}
 
-	public void delete(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        public void delete(final GLState pGLState) {
 		if(this.mCompiled) {
 			this.mCompiled = false;
 			pGLState.deleteProgram(this.mProgramID);
@@ -138,7 +209,12 @@ public class ShaderProgram implements ShaderProgramConstants {
 		}
 	}
 
-	protected void compile(final GLState pGLState) throws ShaderProgramException {
+        /**
+         * 
+         * @param pGLState
+         * @throws ShaderProgramException
+         */
+        protected void compile(final GLState pGLState) throws ShaderProgramException {
 		final int vertexShaderID = ShaderProgram.compileShader(this.mVertexShaderSource.getShaderSource(pGLState), GLES20.GL_VERTEX_SHADER);
 		final int fragmentShaderID = ShaderProgram.compileShader(this.mFragmentShaderSource.getShaderSource(pGLState), GLES20.GL_FRAGMENT_SHADER);
 
@@ -152,7 +228,12 @@ public class ShaderProgram implements ShaderProgramConstants {
 		GLES20.glDeleteShader(fragmentShaderID);
 	}
 
-	protected void link(final GLState pGLState) throws ShaderProgramLinkException {
+        /**
+         * 
+         * @param pGLState
+         * @throws ShaderProgramLinkException
+         */
+        protected void link(final GLState pGLState) throws ShaderProgramLinkException {
 		GLES20.glLinkProgram(this.mProgramID);
 
 		GLES20.glGetProgramiv(this.mProgramID, GLES20.GL_LINK_STATUS, ShaderProgram.HARDWAREID_CONTAINER, 0);
@@ -230,55 +311,117 @@ public class ShaderProgram implements ShaderProgramConstants {
 		}
 	}
 
-	public void setUniform(final String pUniformName, final float[] pGLMatrix) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pGLMatrix
+         */
+        public void setUniform(final String pUniformName, final float[] pGLMatrix) {
 		GLES20.glUniformMatrix4fv(this.getUniformLocation(pUniformName), 1, false, pGLMatrix, 0);
 	}
 
-	public void setUniformOptional(final String pUniformName, final float[] pGLMatrix) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pGLMatrix
+         */
+        public void setUniformOptional(final String pUniformName, final float[] pGLMatrix) {
 		final int location = this.getUniformLocationOptional(pUniformName);
 		if(location != ShaderProgramConstants.LOCATION_INVALID) {
 			GLES20.glUniformMatrix4fv(this.getUniformLocationOptional(pUniformName), 1, false, pGLMatrix, 0);
 		}
 	}
 
-	public void setUniform(final String pUniformName, final float pX) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         */
+        public void setUniform(final String pUniformName, final float pX) {
 		GLES20.glUniform1f(this.getUniformLocation(pUniformName), pX);
 	}
 
-	public void setUniformOptional(final String pUniformName, final float pX) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         */
+        public void setUniformOptional(final String pUniformName, final float pX) {
 		final int location = this.getUniformLocationOptional(pUniformName);
 		if(location != ShaderProgramConstants.LOCATION_INVALID) {
 			GLES20.glUniform1f(this.getUniformLocationOptional(pUniformName), pX);
 		}
 	}
 
-	public void setUniform(final String pUniformName, final float pX, final float pY) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         * @param pY
+         */
+        public void setUniform(final String pUniformName, final float pX, final float pY) {
 		GLES20.glUniform2f(this.getUniformLocation(pUniformName), pX, pY);
 	}
 
-	public void setUniformOptional(final String pUniformName, final float pX, final float pY) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         * @param pY
+         */
+        public void setUniformOptional(final String pUniformName, final float pX, final float pY) {
 		final int location = this.getUniformLocationOptional(pUniformName);
 		if(location != ShaderProgramConstants.LOCATION_INVALID) {
 			GLES20.glUniform2f(this.getUniformLocationOptional(pUniformName), pX, pY);
 		}
 	}
 
-	public void setUniform(final String pUniformName, final float pX, final float pY, final float pZ) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         * @param pY
+         * @param pZ
+         */
+        public void setUniform(final String pUniformName, final float pX, final float pY, final float pZ) {
 		GLES20.glUniform3f(this.getUniformLocation(pUniformName), pX, pY, pZ);
 	}
 
-	public void setUniformOptional(final String pUniformName, final float pX, final float pY, final float pZ) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         * @param pY
+         * @param pZ
+         */
+        public void setUniformOptional(final String pUniformName, final float pX, final float pY, final float pZ) {
 		final int location = this.getUniformLocationOptional(pUniformName);
 		if(location != ShaderProgramConstants.LOCATION_INVALID) {
 			GLES20.glUniform3f(this.getUniformLocationOptional(pUniformName), pX, pY, pZ);
 		}
 	}
 
-	public void setUniform(final String pUniformName, final float pX, final float pY, final float pZ, final float pW) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         * @param pY
+         * @param pZ
+         * @param pW
+         */
+        public void setUniform(final String pUniformName, final float pX, final float pY, final float pZ, final float pW) {
 		GLES20.glUniform4f(this.getUniformLocation(pUniformName), pX, pY, pZ, pW);
 	}
 
-	public void setUniformOptional(final String pUniformName, final float pX, final float pY, final float pZ, final float pW) {
+        /**
+         * 
+         * @param pUniformName
+         * @param pX
+         * @param pY
+         * @param pZ
+         * @param pW
+         */
+        public void setUniformOptional(final String pUniformName, final float pX, final float pY, final float pZ, final float pW) {
 		final int location = this.getUniformLocationOptional(pUniformName);
 		if(location != ShaderProgramConstants.LOCATION_INVALID) {
 			GLES20.glUniform4f(this.getUniformLocationOptional(pUniformName), pX, pY, pZ, pW);

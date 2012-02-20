@@ -9,6 +9,7 @@ import org.andengine.opengl.util.GLState;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 19:37:13 - 14.03.2010
  */
@@ -39,36 +40,68 @@ public class Particle<T extends IEntity> {
 	// Getter & Setter
 	// ===========================================================
 
-	public T getEntity() {
+        /**
+         * 
+         * @return
+         */
+        public T getEntity() {
 		return this.mEntity;
 	}
 
-	public void setEntity(final T pEntity) {
+        /**
+         * 
+         * @param pEntity
+         */
+        public void setEntity(final T pEntity) {
 		this.mEntity = pEntity;
 		this.mPhysicsHandler.setEntity(pEntity);
 	}
 
-	public float getLifeTime() {
+        /**
+         * 
+         * @return
+         */
+        public float getLifeTime() {
 		return this.mLifeTime;
 	}
 
-	public float getExpireTime() {
+        /**
+         * 
+         * @return
+         */
+        public float getExpireTime() {
 		return this.mExpireTime;
 	}
 
-	public void setExpireTime(final float pExpireTime) {
+        /**
+         * 
+         * @param pExpireTime
+         */
+        public void setExpireTime(final float pExpireTime) {
 		this.mExpireTime = pExpireTime;
 	}
 
-	public boolean isExpired() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isExpired() {
 		return this.mExpired ;
 	}
 
-	public void setExpired(final boolean pExpired) {
+        /**
+         * 
+         * @param pExpired
+         */
+        public void setExpired(final boolean pExpired) {
 		this.mExpired = pExpired;
 	}
 
-	public PhysicsHandler getPhysicsHandler() {
+        /**
+         * 
+         * @return
+         */
+        public PhysicsHandler getPhysicsHandler() {
 		return this.mPhysicsHandler;
 	}
 
@@ -76,7 +109,11 @@ public class Particle<T extends IEntity> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected void onUpdate(final float pSecondsElapsed) {
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        protected void onUpdate(final float pSecondsElapsed) {
 		if(!this.mExpired){
 			if(this.mExpireTime == Particle.EXPIRETIME_NEVER || this.mLifeTime + pSecondsElapsed < this.mExpireTime) {
 				/* Particle doesn't expire or didn't expire yet. */
@@ -93,7 +130,12 @@ public class Particle<T extends IEntity> {
 		}
 	}
 
-	public void onDraw(final GLState pGLState, final Camera pCamera) {
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        public void onDraw(final GLState pGLState, final Camera pCamera) {
 		if(!this.mExpired) {
 			this.mEntity.onDraw(pGLState, pCamera);
 		}
@@ -103,7 +145,10 @@ public class Particle<T extends IEntity> {
 	// Methods
 	// ===========================================================
 
-	public void reset() {
+        /**
+         * 
+         */
+        public void reset() {
 		this.mEntity.reset();
 		this.mPhysicsHandler.reset();
 		this.mExpired = false;

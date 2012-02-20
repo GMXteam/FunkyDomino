@@ -24,7 +24,11 @@ public class OrientationSensorOptions {
 	// Constructors
 	// ===========================================================
 
-	public OrientationSensorOptions(final SensorDelay pSensorDelay) {
+        /**
+         * 
+         * @param pSensorDelay
+         */
+        public OrientationSensorOptions(final SensorDelay pSensorDelay) {
 		this.mSensorDelay = pSensorDelay;
 	}
 
@@ -32,7 +36,11 @@ public class OrientationSensorOptions {
 	// Getter & Setter
 	// ===========================================================
 
-	public SensorDelay getSensorDelay() {
+        /**
+         * 
+         * @return
+         */
+        public SensorDelay getSensorDelay() {
 		return this.mSensorDelay;
 	}
 

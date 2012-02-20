@@ -50,12 +50,21 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 	// Fields
 	// ===========================================================
 
-	protected EngineOptions mEngineOptions;
-	protected Engine mEngine;
+    /**
+     * 
+     */
+    protected EngineOptions mEngineOptions;
+        /**
+         * 
+         */
+        protected Engine mEngine;
 
 	private WakeLock mWakeLock;
 
-	protected RenderSurfaceView mRenderSurfaceView;
+        /**
+         * 
+         */
+        protected RenderSurfaceView mRenderSurfaceView;
 
 	private boolean mGamePaused;
 	private boolean mGameCreated;
@@ -66,7 +75,11 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSavedInstanceState
+         */
+        @Override
 	protected void onCreate(final Bundle pSavedInstanceState) {
 		Debug.d(this.getClass().getSimpleName() + ".onCreate" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -87,7 +100,10 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		return new Engine(pEngineOptions);
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public synchronized void onSurfaceCreated() {
 		Debug.d(this.getClass().getSimpleName() + ".onSurfaceCreated" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -107,12 +123,20 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pWidth
+         * @param pHeight
+         */
+        @Override
 	public synchronized void onSurfaceChanged(final int pWidth, final int pHeight) {
 		Debug.d(this.getClass().getSimpleName() + ".onSurfaceChanged(Width=" + pWidth + ",  Height=" + pHeight + ")" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 	}
 
-	protected synchronized void onCreateGame() {
+        /**
+         * 
+         */
+        protected synchronized void onCreateGame() {
 		Debug.d(this.getClass().getSimpleName() + ".onCreateGame" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
 		final OnPopulateSceneCallback onPopulateSceneCallback = new OnPopulateSceneCallback() {
@@ -184,7 +208,10 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected synchronized void onResume() {
 		Debug.d(this.getClass().getSimpleName() + ".onResume" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -194,7 +221,10 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		this.mRenderSurfaceView.onResume();
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public synchronized void onResumeGame() {
 		Debug.d(this.getClass().getSimpleName() + ".onResumeGame" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -203,7 +233,11 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		this.mGamePaused = false;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pHasWindowFocus
+         */
+        @Override
 	public synchronized void onWindowFocusChanged(final boolean pHasWindowFocus) {
 		super.onWindowFocusChanged(pHasWindowFocus);
 
@@ -212,14 +246,20 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void onReloadResources() {
 		Debug.d(this.getClass().getSimpleName() + ".onReloadResources" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
 		this.mEngine.onReloadResources();
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onPause() {
 		Debug.d(this.getClass().getSimpleName() + ".onPause" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -242,7 +282,10 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		this.mEngine.stop();
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onDestroy() {
 		Debug.d(this.getClass().getSimpleName() + ".onDestroy" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -262,7 +305,11 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		this.mEngine = null;
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void onDestroyResources() throws Exception {
 		Debug.d(this.getClass().getSimpleName() + ".onDestroyResources" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -286,43 +333,83 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 	// Getter & Setter
 	// ===========================================================
 
-	public Engine getEngine() {
+        /**
+         * 
+         * @return
+         */
+        public Engine getEngine() {
 		return this.mEngine;
 	}
 
-	public boolean isGamePaused() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isGamePaused() {
 		return this.mGamePaused;
 	}
 
-	public boolean isGameRunning() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isGameRunning() {
 		return !this.mGamePaused;
 	}
 
-	public boolean isGameLoaded() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isGameLoaded() {
 		return this.mGameCreated;
 	}
 
-	public VertexBufferObjectManager getVertexBufferObjectManager() {
+        /**
+         * 
+         * @return
+         */
+        public VertexBufferObjectManager getVertexBufferObjectManager() {
 		return this.mEngine.getVertexBufferObjectManager();
 	}
 
-	public TextureManager getTextureManager() {
+        /**
+         * 
+         * @return
+         */
+        public TextureManager getTextureManager() {
 		return this.mEngine.getTextureManager();
 	}
 
-	public FontManager getFontManager() {
+        /**
+         * 
+         * @return
+         */
+        public FontManager getFontManager() {
 		return this.mEngine.getFontManager();
 	}
 
-	public ShaderProgramManager getShaderProgramManager() {
+        /**
+         * 
+         * @return
+         */
+        public ShaderProgramManager getShaderProgramManager() {
 		return this.mEngine.getShaderProgramManager();
 	}
 
-	public SoundManager getSoundManager() {
+        /**
+         * 
+         * @return
+         */
+        public SoundManager getSoundManager() {
 		return this.mEngine.getSoundManager();
 	}
 
-	public MusicManager getMusicManager() {
+        /**
+         * 
+         * @return
+         */
+        public MusicManager getMusicManager() {
 		return this.mEngine.getMusicManager();
 	}
 
@@ -343,14 +430,21 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		});
 	}
 
-	protected void onSetContentView() {
+        /**
+         * 
+         */
+        protected void onSetContentView() {
 		this.mRenderSurfaceView = new RenderSurfaceView(this);
 		this.mRenderSurfaceView.setRenderer(this.mEngine, this);
 
 		this.setContentView(this.mRenderSurfaceView, BaseGameActivity.createSurfaceViewLayoutParams());
 	}
 
-	public void runOnUpdateThread(final Runnable pRunnable) {
+        /**
+         * 
+         * @param pRunnable
+         */
+        public void runOnUpdateThread(final Runnable pRunnable) {
 		this.mEngine.runOnUpdateThread(pRunnable);
 	}
 
@@ -413,18 +507,27 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 		}
 	}
 
-	protected static LayoutParams createSurfaceViewLayoutParams() {
+        /**
+         * 
+         * @return
+         */
+        protected static LayoutParams createSurfaceViewLayoutParams() {
 		final LayoutParams layoutParams = new LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT, android.view.ViewGroup.LayoutParams.FILL_PARENT);
 		layoutParams.gravity = Gravity.CENTER;
 		return layoutParams;
 	}
 
-	protected void enableVibrator() {
+        /**
+         * 
+         */
+        protected void enableVibrator() {
 		this.mEngine.enableVibrator(this);
 	}
 
 	/**
-	 * @see {@link Engine#enableLocationSensor(Context, ILocationListener, LocationSensorOptions)}
+         * @param pLocationListener 
+         * @param pLocationSensorOptions 
+         * @see {@link Engine#enableLocationSensor(Context, ILocationListener, LocationSensorOptions)}
 	 */
 	protected void enableLocationSensor(final ILocationListener pLocationListener, final LocationSensorOptions pLocationSensorOptions) {
 		this.mEngine.enableLocationSensor(this, pLocationListener, pLocationSensorOptions);
@@ -438,42 +541,54 @@ public abstract class BaseGameActivity extends BaseActivity implements IGameInte
 	}
 
 	/**
-	 * @see {@link Engine#enableAccelerationSensor(Context, IAccelerationListener)}
+         * @param pAccelerationListener 
+         * @return 
+         * @see {@link Engine#enableAccelerationSensor(Context, IAccelerationListener)}
 	 */
 	protected boolean enableAccelerationSensor(final IAccelerationListener pAccelerationListener) {
 		return this.mEngine.enableAccelerationSensor(this, pAccelerationListener);
 	}
 
 	/**
-	 * @see {@link Engine#enableAccelerationSensor(Context, IAccelerationListener, AccelerationSensorOptions)}
+         * @param pAccelerationListener 
+         * @param pAccelerationSensorOptions 
+         * @return 
+         * @see {@link Engine#enableAccelerationSensor(Context, IAccelerationListener, AccelerationSensorOptions)}
 	 */
 	protected boolean enableAccelerationSensor(final IAccelerationListener pAccelerationListener, final AccelerationSensorOptions pAccelerationSensorOptions) {
 		return this.mEngine.enableAccelerationSensor(this, pAccelerationListener, pAccelerationSensorOptions);
 	}
 
 	/**
-	 * @see {@link Engine#disableAccelerationSensor(Context)}
+         * @return 
+         * @see {@link Engine#disableAccelerationSensor(Context)}
 	 */
 	protected boolean disableAccelerationSensor() {
 		return this.mEngine.disableAccelerationSensor(this);
 	}
 
 	/**
-	 * @see {@link Engine#enableOrientationSensor(Context, IOrientationListener)}
+         * @param pOrientationListener 
+         * @return 
+         * @see {@link Engine#enableOrientationSensor(Context, IOrientationListener)}
 	 */
 	protected boolean enableOrientationSensor(final IOrientationListener pOrientationListener) {
 		return this.mEngine.enableOrientationSensor(this, pOrientationListener);
 	}
 
 	/**
-	 * @see {@link Engine#enableOrientationSensor(Context, IOrientationListener, OrientationSensorOptions)}
+         * @param pOrientationListener 
+         * @param pLocationSensorOptions 
+         * @return 
+         * @see {@link Engine#enableOrientationSensor(Context, IOrientationListener, OrientationSensorOptions)}
 	 */
 	protected boolean enableOrientationSensor(final IOrientationListener pOrientationListener, final OrientationSensorOptions pLocationSensorOptions) {
 		return this.mEngine.enableOrientationSensor(this, pOrientationListener, pLocationSensorOptions);
 	}
 
 	/**
-	 * @see {@link Engine#disableOrientationSensor(Context)}
+         * @return 
+         * @see {@link Engine#disableOrientationSensor(Context)}
 	 */
 	protected boolean disableOrientationSensor() {
 		return this.mEngine.disableOrientationSensor(this);

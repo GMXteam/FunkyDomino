@@ -33,24 +33,47 @@ public abstract class SimpleBaseGameActivity extends BaseGameActivity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onCreateResources();
-	protected abstract Scene onCreateScene();
+    /**
+     * 
+     */
+    protected abstract void onCreateResources();
+        /**
+         * 
+         * @return
+         */
+        protected abstract Scene onCreateScene();
 
-	@Override
+        /**
+         * 
+         * @param pOnCreateResourcesCallback
+         * @throws Exception
+         */
+        @Override
 	public final void onCreateResources(final OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
 		this.onCreateResources();
 
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pOnCreateSceneCallback
+         * @throws Exception
+         */
+        @Override
 	public final void onCreateScene(final OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
 		final Scene scene = this.onCreateScene();
 
 		pOnCreateSceneCallback.onCreateSceneFinished(scene);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScene
+         * @param pOnPopulateSceneCallback
+         * @throws Exception
+         */
+        @Override
 	public final void onPopulateScene(final Scene pScene, final OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 	}

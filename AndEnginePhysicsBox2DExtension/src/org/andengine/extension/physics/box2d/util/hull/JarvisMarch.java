@@ -33,7 +33,12 @@ public class JarvisMarch extends BaseHullAlgorithm {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @param pVectors
+     * @return
+     */
+    @Override
 	public int computeHull(final Vector2[] pVectors) {
 		this.mVertices = pVectors;
 		this.mVertexCount = pVectors.length;

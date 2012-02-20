@@ -31,13 +31,24 @@ public class LowMemoryVertexBufferObject extends VertexBufferObject {
 	// Fields
 	// ===========================================================
 
-	protected final FloatBuffer mFloatBuffer;
+    /**
+     * 
+     */
+    protected final FloatBuffer mFloatBuffer;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public LowMemoryVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+    /**
+     * 
+     * @param pVertexBufferObjectManager
+     * @param pCapacity
+     * @param pDrawType
+     * @param pAutoDispose
+     * @param pVertexBufferObjectAttributes
+     */
+    public LowMemoryVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 
 		this.mFloatBuffer = this.mByteBuffer.asFloatBuffer();
@@ -47,7 +58,11 @@ public class LowMemoryVertexBufferObject extends VertexBufferObject {
 	// Getter & Setter
 	// ===========================================================
 
-	public FloatBuffer getFloatBuffer() {
+        /**
+         * 
+         * @return
+         */
+        public FloatBuffer getFloatBuffer() {
 		return this.mFloatBuffer;
 	}
 
@@ -65,7 +80,10 @@ public class LowMemoryVertexBufferObject extends VertexBufferObject {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	protected void onBufferData() {
 		GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, this.mByteBuffer.limit(), this.mByteBuffer, this.mUsage);
 	}

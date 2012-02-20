@@ -23,15 +23,28 @@ public abstract class DurationEntityModifier extends BaseDurationModifier<IEntit
 	// Constructors
 	// ===========================================================
 
-	public DurationEntityModifier(final float pDuration) {
+    /**
+     * 
+     * @param pDuration
+     */
+    public DurationEntityModifier(final float pDuration) {
 		super(pDuration);
 	}
 
-	public DurationEntityModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pEntityModifierListener
+         */
+        public DurationEntityModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pEntityModifierListener);
 	}
 
-	protected DurationEntityModifier(final DurationEntityModifier pDurationEntityModifier) {
+        /**
+         * 
+         * @param pDurationEntityModifier
+         */
+        protected DurationEntityModifier(final DurationEntityModifier pDurationEntityModifier) {
 		super(pDurationEntityModifier);
 	}
 

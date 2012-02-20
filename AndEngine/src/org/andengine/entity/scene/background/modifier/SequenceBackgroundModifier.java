@@ -23,23 +23,52 @@ public class SequenceBackgroundModifier extends SequenceModifier<IBackground> im
 	// Constructors
 	// ===========================================================
 
-	public SequenceBackgroundModifier(final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
+    /**
+     * 
+     * @param pBackgroundModifiers
+     * @throws IllegalArgumentException
+     */
+    public SequenceBackgroundModifier(final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
 		super(pBackgroundModifiers);
 	}
 	
-	public SequenceBackgroundModifier(final ISubSequenceBackgroundModifierListener pSubSequenceBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pSubSequenceBackgroundModifierListener
+         * @param pBackgroundModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceBackgroundModifier(final ISubSequenceBackgroundModifierListener pSubSequenceBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
 		super(pSubSequenceBackgroundModifierListener, pBackgroundModifiers);
 	}
 
-	public SequenceBackgroundModifier(final IBackgroundModifierListener pBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pBackgroundModifierListener
+         * @param pBackgroundModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceBackgroundModifier(final IBackgroundModifierListener pBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
 		super(pBackgroundModifierListener, pBackgroundModifiers);
 	}
 
-	public SequenceBackgroundModifier(final ISubSequenceBackgroundModifierListener pSubSequenceBackgroundModifierListener, final IBackgroundModifierListener pBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pSubSequenceBackgroundModifierListener
+         * @param pBackgroundModifierListener
+         * @param pBackgroundModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceBackgroundModifier(final ISubSequenceBackgroundModifierListener pSubSequenceBackgroundModifierListener, final IBackgroundModifierListener pBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
 		super(pSubSequenceBackgroundModifierListener, pBackgroundModifierListener, pBackgroundModifiers);
 	}
 
-	protected SequenceBackgroundModifier(final SequenceBackgroundModifier pSequenceBackgroundModifier) throws DeepCopyNotSupportedException {
+        /**
+         * 
+         * @param pSequenceBackgroundModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        protected SequenceBackgroundModifier(final SequenceBackgroundModifier pSequenceBackgroundModifier) throws DeepCopyNotSupportedException {
 		super(pSequenceBackgroundModifier);
 	}
 
@@ -64,7 +93,10 @@ public class SequenceBackgroundModifier extends SequenceModifier<IBackground> im
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface ISubSequenceBackgroundModifierListener extends ISubSequenceModifierListener<IBackground> {
+        /**
+         * 
+         */
+        public interface ISubSequenceBackgroundModifierListener extends ISubSequenceModifierListener<IBackground> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

@@ -15,10 +15,32 @@ public interface ITrie {
 	// Methods
 	// ===========================================================
 
-	public void add(final CharSequence pCharSequence);
-	public void add(final CharSequence pCharSequence, final int pStart, final int pEnd);
-	public boolean contains(final CharSequence pCharSequence);
-	public boolean contains(final CharSequence pCharSequence, final int pStart, final int pEnd);
+    /**
+     * 
+     * @param pCharSequence
+     */
+    public void add(final CharSequence pCharSequence);
+    /**
+     * 
+     * @param pCharSequence
+     * @param pStart
+     * @param pEnd
+     */
+    public void add(final CharSequence pCharSequence, final int pStart, final int pEnd);
+        /**
+         * 
+         * @param pCharSequence
+         * @return
+         */
+        public boolean contains(final CharSequence pCharSequence);
+        /**
+         * 
+         * @param pCharSequence
+         * @param pStart
+         * @param pEnd
+         * @return
+         */
+        public boolean contains(final CharSequence pCharSequence, final int pStart, final int pEnd);
 	/* TODO public void clear(); */
 	/* TODO public boolean remove(final CharSequence pCharSequence); */
 	/* TODO public boolean remove(final CharSequence pCharSequence, final int pStart, final int pEnd); */

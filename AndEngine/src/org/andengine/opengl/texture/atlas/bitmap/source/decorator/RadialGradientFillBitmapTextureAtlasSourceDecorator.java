@@ -26,27 +26,70 @@ public class RadialGradientFillBitmapTextureAtlasSourceDecorator extends BaseSha
 	// Fields
 	// ===========================================================
 
-	protected final RadialGradientDirection mRadialGradientDirection;
-	protected final int[] mColors;
-	protected final float[] mPositions;
+        /**
+         * 
+         */
+        protected final RadialGradientDirection mRadialGradientDirection;
+        /**
+         * 
+         */
+        protected final int[] mColors;
+        /**
+         * 
+         */
+        protected final float[] mPositions;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final RadialGradientDirection pRadialGradientDirection) {
+        /**
+         * 
+         * @param pBitmapTextureAtlasSource
+         * @param pBitmapTextureAtlasSourceDecoratorShape
+         * @param pFromColor
+         * @param pToColor
+         * @param pRadialGradientDirection
+         */
+        public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final RadialGradientDirection pRadialGradientDirection) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pFromColor, pToColor, pRadialGradientDirection, null);
 	}
 
-	public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final RadialGradientDirection pRadialGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+        /**
+         * 
+         * @param pBitmapTextureAtlasSource
+         * @param pBitmapTextureAtlasSourceDecoratorShape
+         * @param pFromColor
+         * @param pToColor
+         * @param pRadialGradientDirection
+         * @param pTextureAtlasSourceDecoratorOptions
+         */
+        public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final RadialGradientDirection pRadialGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, new int[] { pFromColor, pToColor }, POSITIONS_DEFAULT, pRadialGradientDirection, pTextureAtlasSourceDecoratorOptions);
 	}
 
-	public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape,  final int[] pColors, final float[] pPositions, final RadialGradientDirection pRadialGradientDirection) {
+        /**
+         * 
+         * @param pBitmapTextureAtlasSource
+         * @param pBitmapTextureAtlasSourceDecoratorShape
+         * @param pColors
+         * @param pPositions
+         * @param pRadialGradientDirection
+         */
+        public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape,  final int[] pColors, final float[] pPositions, final RadialGradientDirection pRadialGradientDirection) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pColors, pPositions, pRadialGradientDirection, null);
 	}
 
-	public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int[] pColors, final float[] pPositions, final RadialGradientDirection pRadialGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+        /**
+         * 
+         * @param pBitmapTextureAtlasSource
+         * @param pBitmapTextureAtlasSourceDecoratorShape
+         * @param pColors
+         * @param pPositions
+         * @param pRadialGradientDirection
+         * @param pTextureAtlasSourceDecoratorOptions
+         */
+        public RadialGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int[] pColors, final float[] pPositions, final RadialGradientDirection pRadialGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		super(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pTextureAtlasSourceDecoratorOptions);
 		this.mColors = pColors;
 		this.mPositions = pPositions;
@@ -94,13 +137,22 @@ public class RadialGradientFillBitmapTextureAtlasSourceDecorator extends BaseSha
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static enum RadialGradientDirection {
+        /**
+         * 
+         */
+        public static enum RadialGradientDirection {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-		INSIDE_OUT,
-		OUTSIDE_IN;
+            /**
+             * 
+             */
+            INSIDE_OUT,
+            /**
+             * 
+             */
+            OUTSIDE_IN;
 
 		// ===========================================================
 		// Constants

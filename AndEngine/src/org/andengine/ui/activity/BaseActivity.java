@@ -48,7 +48,6 @@ public abstract class BaseActivity extends Activity {
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
-	 * @param pErrorMessageResourceID
 	 * @param pCallable
 	 * @param pCallback
 	 */
@@ -63,7 +62,6 @@ public abstract class BaseActivity extends Activity {
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
-	 * @param pErrorMessageResourceID
 	 * @param pCallable
 	 * @param pCallback
 	 * @param pExceptionCallback
@@ -78,9 +76,8 @@ public abstract class BaseActivity extends Activity {
 	 * 
 	 * @param <T>
 	 * @param pTitleResourceID
-	 * @param pMessageResourceID
-	 * @param pErrorMessageResourceID
-	 * @param pAsyncCallable
+         * @param pIconResourceID 
+         * @param pCallable 
 	 * @param pCallback
 	 */
 	protected <T> void doProgressAsync(final int pTitleResourceID, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback) {
@@ -93,9 +90,8 @@ public abstract class BaseActivity extends Activity {
 	 * 
 	 * @param <T>
 	 * @param pTitleResourceID
-	 * @param pMessageResourceID
-	 * @param pErrorMessageResourceID
-	 * @param pAsyncCallable
+         * @param pIconResourceID 
+         * @param pCallable 
 	 * @param pCallback
 	 * @param pExceptionCallback
 	 */
@@ -110,7 +106,6 @@ public abstract class BaseActivity extends Activity {
 	 * @param <T>
 	 * @param pTitleResourceID
 	 * @param pMessageResourceID
-	 * @param pErrorMessageResourceID
 	 * @param pAsyncCallable
 	 * @param pCallback
 	 * @param pExceptionCallback
@@ -123,7 +118,10 @@ public abstract class BaseActivity extends Activity {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class CancelledException extends Exception {
+        /**
+         * 
+         */
+        public static class CancelledException extends Exception {
 		private static final long serialVersionUID = -78123211381435596L;
 	}
 }

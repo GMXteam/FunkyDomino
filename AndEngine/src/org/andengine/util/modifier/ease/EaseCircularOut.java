@@ -29,7 +29,11 @@ public class EaseCircularOut implements IEaseFunction {
 
 	}
 
-	public static EaseCircularOut getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static EaseCircularOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseCircularOut();
 		}
@@ -44,7 +48,13 @@ public class EaseCircularOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pDuration
+         * @return
+         */
+        @Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseCircularOut.getValue(pSecondsElapsed / pDuration);
 	}
@@ -53,7 +63,12 @@ public class EaseCircularOut implements IEaseFunction {
 	// Methods
 	// ===========================================================
 
-	public static float getValue(final float pPercentage) {
+        /**
+         * 
+         * @param pPercentage
+         * @return
+         */
+        public static float getValue(final float pPercentage) {
 		final float t = pPercentage - 1;
 		return FloatMath.sqrt(1 - t * t);
 	}

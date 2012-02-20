@@ -26,11 +26,20 @@ public class MusicOptions {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean needsMusic() {
+        /**
+         * 
+         * @return
+         */
+        public boolean needsMusic() {
 		return this.mNeedsMusic;
 	}
 
-	public MusicOptions setNeedsMusic(final boolean pNeedsMusic) {
+        /**
+         * 
+         * @param pNeedsMusic
+         * @return
+         */
+        public MusicOptions setNeedsMusic(final boolean pNeedsMusic) {
 		this.mNeedsMusic = pNeedsMusic;
 		return this;
 	}

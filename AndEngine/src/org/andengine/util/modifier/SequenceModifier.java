@@ -8,6 +8,7 @@ import org.andengine.util.modifier.util.ModifierUtils;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 19:39:25 - 19.03.2010
  */
@@ -34,19 +35,43 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 	// Constructors
 	// ===========================================================
 
-	public SequenceModifier(final IModifier<T> ... pModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceModifier(final IModifier<T> ... pModifiers) throws IllegalArgumentException {
 		this(null, null, pModifiers);
 	}
 
-	public SequenceModifier(final ISubSequenceModifierListener<T> pSubSequenceModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pSubSequenceModifierListener
+         * @param pModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceModifier(final ISubSequenceModifierListener<T> pSubSequenceModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
 		this(pSubSequenceModifierListener, null, pModifiers);
 	}
 
-	public SequenceModifier(final IModifierListener<T> pModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pModifierListener
+         * @param pModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceModifier(final IModifierListener<T> pModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
 		this(null, pModifierListener, pModifiers);
 	}
 
-	public SequenceModifier(final ISubSequenceModifierListener<T> pSubSequenceModifierListener, final IModifierListener<T> pModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pSubSequenceModifierListener
+         * @param pModifierListener
+         * @param pModifiers
+         * @throws IllegalArgumentException
+         */
+        public SequenceModifier(final ISubSequenceModifierListener<T> pSubSequenceModifierListener, final IModifierListener<T> pModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
 		super(pModifierListener);
 
 		if (pModifiers.length == 0) {
@@ -61,7 +86,12 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 		pModifiers[0].addModifierListener(this);
 	}
 
-	@SuppressWarnings("unchecked")
+        /**
+         * 
+         * @param pSequenceModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        @SuppressWarnings("unchecked")
 	protected SequenceModifier(final SequenceModifier<T> pSequenceModifier) throws DeepCopyNotSupportedException {
 		this.mDuration = pSequenceModifier.mDuration;
 
@@ -85,11 +115,19 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 	// Getter & Setter
 	// ===========================================================
 
-	public ISubSequenceModifierListener<T> getSubSequenceModifierListener() {
+        /**
+         * 
+         * @return
+         */
+        public ISubSequenceModifierListener<T> getSubSequenceModifierListener() {
 		return this.mSubSequenceModifierListener;
 	}
 
-	public void setSubSequenceModifierListener(final ISubSequenceModifierListener<T> pSubSequenceModifierListener) {
+        /**
+         * 
+         * @param pSubSequenceModifierListener
+         */
+        public void setSubSequenceModifierListener(final ISubSequenceModifierListener<T> pSubSequenceModifierListener) {
 		this.mSubSequenceModifierListener = pSubSequenceModifierListener;
 	}
 
@@ -97,12 +135,20 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSecondsElapsed() {
 		return this.mSecondsElapsed;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getDuration() {
 		return this.mDuration;
 	}
@@ -125,7 +171,10 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		if(this.isFinished()) {
 			this.mSubSequenceModifiers[this.mSubSequenceModifiers.length - 1].removeModifierListener(this);
@@ -145,7 +194,12 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pModifier
+         * @param pItem
+         */
+        @Override
 	public void onModifierStarted(final IModifier<T> pModifier, final T pItem) {
 		if(this.mCurrentSubSequenceModifierIndex == 0) {
 			this.onModifierStarted(pItem);
@@ -156,7 +210,12 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pModifier
+         * @param pItem
+         */
+        @Override
 	public void onModifierFinished(final IModifier<T> pModifier, final T pItem) {
 		if(this.mSubSequenceModifierListener != null) {
 			this.mSubSequenceModifierListener.onSubSequenceFinished(pModifier, pItem, this.mCurrentSubSequenceModifierIndex);
@@ -184,8 +243,24 @@ public class SequenceModifier<T> extends BaseModifier<T> implements IModifierLis
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface ISubSequenceModifierListener<T> {
-		public void onSubSequenceStarted(final IModifier<T> pModifier, final T pItem, final int pIndex);
-		public void onSubSequenceFinished(final IModifier<T> pModifier, final T pItem, final int pIndex);
+        /**
+         * 
+         * @param <T>
+         */
+        public interface ISubSequenceModifierListener<T> {
+            /**
+             * 
+             * @param pModifier
+             * @param pItem
+             * @param pIndex
+             */
+            public void onSubSequenceStarted(final IModifier<T> pModifier, final T pItem, final int pIndex);
+                /**
+                 * 
+                 * @param pModifier
+                 * @param pItem
+                 * @param pIndex
+                 */
+                public void onSubSequenceFinished(final IModifier<T> pModifier, final T pItem, final int pIndex);
 	}
 }

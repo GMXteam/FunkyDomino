@@ -20,6 +20,7 @@ import android.util.FloatMath;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 19:42:27 - 14.03.2010
  */
@@ -58,11 +59,29 @@ public class ParticleSystem<T extends Entity> extends Entity {
 	// Constructors
 	// ===========================================================
 
-	public ParticleSystem(final IEntityFactory<T> pEntityFactory, final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum) {
+        /**
+         * 
+         * @param pEntityFactory
+         * @param pParticleEmitter
+         * @param pRateMinimum
+         * @param pRateMaximum
+         * @param pParticlesMaximum
+         */
+        public ParticleSystem(final IEntityFactory<T> pEntityFactory, final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum) {
 		this(0, 0, pEntityFactory, pParticleEmitter, pRateMinimum, pRateMaximum, pParticlesMaximum);
 	}
 
-	@SuppressWarnings("unchecked")
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pEntityFactory
+         * @param pParticleEmitter
+         * @param pRateMinimum
+         * @param pRateMaximum
+         * @param pParticlesMaximum
+         */
+        @SuppressWarnings("unchecked")
 	public ParticleSystem(final float pX, final float pY, final IEntityFactory<T> pEntityFactory, final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum) {
 		super(pX, pY);
 
@@ -80,19 +99,35 @@ public class ParticleSystem<T extends Entity> extends Entity {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isParticlesSpawnEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isParticlesSpawnEnabled() {
 		return this.mParticlesSpawnEnabled;
 	}
 
-	public void setParticlesSpawnEnabled(final boolean pParticlesSpawnEnabled) {
+        /**
+         * 
+         * @param pParticlesSpawnEnabled
+         */
+        public void setParticlesSpawnEnabled(final boolean pParticlesSpawnEnabled) {
 		this.mParticlesSpawnEnabled = pParticlesSpawnEnabled;
 	}
 
-	public IEntityFactory<T> getParticleFactory() {
+        /**
+         * 
+         * @return
+         */
+        public IEntityFactory<T> getParticleFactory() {
 		return this.mEntityFactory;
 	}
 
-	public IParticleEmitter getParticleEmitter() {
+        /**
+         * 
+         * @return
+         */
+        public IParticleEmitter getParticleEmitter() {
 		return this.mParticleEmitter;
 	}
 
@@ -100,7 +135,10 @@ public class ParticleSystem<T extends Entity> extends Entity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		super.reset();
 
@@ -108,7 +146,12 @@ public class ParticleSystem<T extends Entity> extends Entity {
 		this.mParticlesAlive = 0;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        @Override
 	protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
 		final Particle<T>[] particles = this.mParticles;
 		for(int i = this.mParticlesAlive - 1; i >= 0; i--) {
@@ -116,7 +159,11 @@ public class ParticleSystem<T extends Entity> extends Entity {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 
@@ -151,22 +198,38 @@ public class ParticleSystem<T extends Entity> extends Entity {
 	// Methods
 	// ===========================================================
 
-	public void addParticleModifier(final IParticleModifier<T> pParticleModifier) {
+        /**
+         * 
+         * @param pParticleModifier
+         */
+        public void addParticleModifier(final IParticleModifier<T> pParticleModifier) {
 		this.mParticleModifiers.add(pParticleModifier);
 		this.mParticleModifierCount++;
 	}
 
-	public void removeParticleModifier(final IParticleModifier<T> pParticleModifier) {
+        /**
+         * 
+         * @param pParticleModifier
+         */
+        public void removeParticleModifier(final IParticleModifier<T> pParticleModifier) {
 		this.mParticleModifierCount--;
 		this.mParticleModifiers.remove(pParticleModifier);
 	}
 
-	public void addParticleInitializer(final IParticleInitializer<T> pParticleInitializer) {
+        /**
+         * 
+         * @param pParticleInitializer
+         */
+        public void addParticleInitializer(final IParticleInitializer<T> pParticleInitializer) {
 		this.mParticleInitializers.add(pParticleInitializer);
 		this.mParticleInitializerCount++;
 	}
 
-	public void removeParticleInitializer(final IParticleInitializer<T> pParticleInitializer) {
+        /**
+         * 
+         * @param pParticleInitializer
+         */
+        public void removeParticleInitializer(final IParticleInitializer<T> pParticleInitializer) {
 		this.mParticleInitializerCount--;
 		this.mParticleInitializers.remove(pParticleInitializer);
 	}
@@ -224,7 +287,11 @@ public class ParticleSystem<T extends Entity> extends Entity {
 		}
 	}
 
-	protected float determineCurrentRate() {
+        /**
+         * 
+         * @return
+         */
+        protected float determineCurrentRate() {
 		if(this.mRateMinimum == this.mRateMaximum){
 			return this.mRateMinimum;
 		} else {

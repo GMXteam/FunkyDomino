@@ -11,37 +11,55 @@ public enum CharOperator {
 	// Elements
 	// ===========================================================
 
-	EQUALS() {
+    /**
+     * 
+     */
+    EQUALS() {
 		@Override
 		public boolean check(final char pCharA, final char pCharB) {
 			return pCharA == pCharB;
 		}
 	},
-	NOT_EQUALS()  {
+        /**
+         * 
+         */
+        NOT_EQUALS()  {
 		@Override
 		public boolean check(final char pCharA, final char pCharB) {
 			return pCharA != pCharB;
 		}
 	},
-	LESS_THAN()  {
+        /**
+         * 
+         */
+        LESS_THAN()  {
 		@Override
 		public boolean check(final char pCharA, final char pCharB) {
 			return pCharA < pCharB;
 		}
 	},
-	LESS_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        LESS_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final char pCharA, final char pCharB) {
 			return pCharA <= pCharB;
 		}
 	},
-	MORE_THAN()  {
+        /**
+         * 
+         */
+        MORE_THAN()  {
 		@Override
 		public boolean check(final char pCharA, final char pCharB) {
 			return pCharA > pCharB;
 		}
 	},
-	MORE_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        MORE_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final char pCharA, final char pCharB) {
 			return pCharA >= pCharB;
@@ -68,7 +86,13 @@ public enum CharOperator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public abstract boolean check(final char pCharA, final char pCharB);
+        /**
+         * 
+         * @param pCharA
+         * @param pCharB
+         * @return
+         */
+        public abstract boolean check(final char pCharA, final char pCharB);
 
 	// ===========================================================
 	// Methods

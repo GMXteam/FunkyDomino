@@ -34,7 +34,11 @@ public abstract class SharedMemoryVertexBufferObject extends ZeroMemoryVertexBuf
 	private static ReentrantLock sSharedByteBufferLock = new ReentrantLock(true);
 	private static ByteBuffer sSharedByteBuffer;
 
-	public static int getSharedByteBufferByteCapacity() {
+        /**
+         * 
+         * @return
+         */
+        public static int getSharedByteBufferByteCapacity() {
 		final int byteCapacity;
 		try {
 			SharedMemoryVertexBufferObject.sSharedByteBufferLock.lock();
@@ -60,7 +64,14 @@ public abstract class SharedMemoryVertexBufferObject extends ZeroMemoryVertexBuf
 	// Constructors
 	// ===========================================================
 
-	public SharedMemoryVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+        /**
+         * 
+         * @param pVertexBufferObjectManager
+         * @param pCapacity
+         * @param pDrawType
+         * @param pVertexBufferObjectAttributes
+         */
+        public SharedMemoryVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		super(pVertexBufferObjectManager, pCapacity, pDrawType, false, pVertexBufferObjectAttributes);
 	}
 

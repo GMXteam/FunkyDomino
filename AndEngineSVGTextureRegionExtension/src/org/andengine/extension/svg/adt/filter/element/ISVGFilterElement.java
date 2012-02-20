@@ -18,5 +18,9 @@ public interface ISVGFilterElement {
 	// Methods
 	// ===========================================================
 
-	public void apply(final Paint pPaint);
+    /**
+     * 
+     * @param pPaint
+     */
+    public void apply(final Paint pPaint);
 }

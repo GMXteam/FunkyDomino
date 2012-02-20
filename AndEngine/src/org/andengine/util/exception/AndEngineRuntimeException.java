@@ -11,7 +11,10 @@ public class AndEngineRuntimeException extends RuntimeException {
 	// Constants
 	// ===========================================================
 
-	public static final long serialVersionUID = -4325207483842883006L;
+    /**
+     * 
+     */
+    public static final long serialVersionUID = -4325207483842883006L;
 
 	// ===========================================================
 	// Fields
@@ -22,19 +25,35 @@ public class AndEngineRuntimeException extends RuntimeException {
 	// ===========================================================
 
 
-	public AndEngineRuntimeException() {
+    /**
+     * 
+     */
+    public AndEngineRuntimeException() {
 		super();
 	}
 
-	public AndEngineRuntimeException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public AndEngineRuntimeException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public AndEngineRuntimeException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public AndEngineRuntimeException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-	public AndEngineRuntimeException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public AndEngineRuntimeException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

@@ -28,11 +28,18 @@ public class ProgressMonitor implements IProgressListener {
 	// Constructors
 	// ===========================================================
 
-	public ProgressMonitor() {
+        /**
+         * 
+         */
+        public ProgressMonitor() {
 
 	}
 
-	public ProgressMonitor(final IProgressListener pProgressListener) {
+        /**
+         * 
+         * @param pProgressListener
+         */
+        public ProgressMonitor(final IProgressListener pProgressListener) {
 		this.mProgressListeners.add(pProgressListener);
 	}
 
@@ -56,7 +63,13 @@ public class ProgressMonitor implements IProgressListener {
 	// Methods
 	// ===========================================================
 
-	public void registerChildProgressMonitor(final ProgressMonitor pChildProgressMonitor, final int pChildProgressMonitorRangeFrom, final int pChildProgressMonitorRangeTo) {
+        /**
+         * 
+         * @param pChildProgressMonitor
+         * @param pChildProgressMonitorRangeFrom
+         * @param pChildProgressMonitorRangeTo
+         */
+        public void registerChildProgressMonitor(final ProgressMonitor pChildProgressMonitor, final int pChildProgressMonitorRangeFrom, final int pChildProgressMonitorRangeTo) {
 		final IProgressListener childProgressMonitorListener = new IProgressListener() {
 			@Override
 			public void onProgressChanged(final int pProgress) {
@@ -68,7 +81,11 @@ public class ProgressMonitor implements IProgressListener {
 		this.mChildProgressMonitorToProgressListenerMap.put(pChildProgressMonitor, childProgressMonitorListener);
 	}
 
-	public void unregisterChildProgressMonitor(final ProgressMonitor pChildProgressMonitor) {
+        /**
+         * 
+         * @param pChildProgressMonitor
+         */
+        public void unregisterChildProgressMonitor(final ProgressMonitor pChildProgressMonitor) {
 		pChildProgressMonitor.removeProgressListener(this.mChildProgressMonitorToProgressListenerMap.get(pChildProgressMonitor));
 	}
 

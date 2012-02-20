@@ -34,7 +34,11 @@ public class PinchZoomDetector extends BaseDetector {
 	// Constructors
 	// ===========================================================
 
-	public PinchZoomDetector(final IPinchZoomDetectorListener pPinchZoomDetectorListener) {
+        /**
+         * 
+         * @param pPinchZoomDetectorListener
+         */
+        public PinchZoomDetector(final IPinchZoomDetectorListener pPinchZoomDetectorListener) {
 		this.mPinchZoomDetectorListener = pPinchZoomDetectorListener;
 	}
 
@@ -42,7 +46,11 @@ public class PinchZoomDetector extends BaseDetector {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isZooming() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isZooming() {
 		return this.mPinchZooming;
 	}
 
@@ -64,7 +72,12 @@ public class PinchZoomDetector extends BaseDetector {
 		this.mPinchZooming = false;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        @Override
 	public boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent) {
 		final MotionEvent motionEvent = pSceneTouchEvent.getMotionEvent();
 
@@ -129,7 +142,10 @@ public class PinchZoomDetector extends BaseDetector {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface IPinchZoomDetectorListener {
+        /**
+         * 
+         */
+        public static interface IPinchZoomDetectorListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -138,8 +154,25 @@ public class PinchZoomDetector extends BaseDetector {
 		// Methods
 		// ===========================================================
 
-		public void onPinchZoomStarted(final PinchZoomDetector pPinchZoomDetector, final TouchEvent pSceneTouchEvent);
-		public void onPinchZoom(final PinchZoomDetector pPinchZoomDetector, final TouchEvent pTouchEvent, final float pZoomFactor);
-		public void onPinchZoomFinished(final PinchZoomDetector pPinchZoomDetector, final TouchEvent pTouchEvent, final float pZoomFactor);
+            /**
+             * 
+             * @param pPinchZoomDetector
+             * @param pSceneTouchEvent
+             */
+            public void onPinchZoomStarted(final PinchZoomDetector pPinchZoomDetector, final TouchEvent pSceneTouchEvent);
+            /**
+             * 
+             * @param pPinchZoomDetector
+             * @param pTouchEvent
+             * @param pZoomFactor
+             */
+            public void onPinchZoom(final PinchZoomDetector pPinchZoomDetector, final TouchEvent pTouchEvent, final float pZoomFactor);
+            /**
+             * 
+             * @param pPinchZoomDetector
+             * @param pTouchEvent
+             * @param pZoomFactor
+             */
+            public void onPinchZoomFinished(final PinchZoomDetector pPinchZoomDetector, final TouchEvent pTouchEvent, final float pZoomFactor);
 	}
 }

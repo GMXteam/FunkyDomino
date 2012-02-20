@@ -18,7 +18,17 @@ public interface IMenuItem extends IAreaShape {
 	// Methods
 	// ===========================================================
 
-	public int getID();
-	public abstract void onSelected();
-	public abstract void onUnselected();
+    /**
+     * 
+     * @return
+     */
+    public int getID();
+    /**
+     * 
+     */
+    public abstract void onSelected();
+    /**
+     * 
+     */
+    public abstract void onUnselected();
 }

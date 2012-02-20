@@ -16,21 +16,65 @@ public interface IAudioEntity {
 	// Methods
 	// ===========================================================
 
-	public void play();
-	public void pause();
-	public void resume();
-	public void stop();
+    /**
+     * 
+     */
+    public void play();
+        /**
+         * 
+         */
+        public void pause();
+        /**
+         * 
+         */
+        public void resume();
+        /**
+         * 
+         */
+        public void stop();
 
-	public float getVolume();
-	public void setVolume(final float pVolume);
+        /**
+         * 
+         * @return
+         */
+        public float getVolume();
+        /**
+         * 
+         * @param pVolume
+         */
+        public void setVolume(final float pVolume);
 
-	public float getLeftVolume();
-	public float getRightVolume();
-	public void setVolume(final float pLeftVolume, final float pRightVolume);
+        /**
+         * 
+         * @return
+         */
+        public float getLeftVolume();
+        /**
+         * 
+         * @return
+         */
+        public float getRightVolume();
+        /**
+         * 
+         * @param pLeftVolume
+         * @param pRightVolume
+         */
+        public void setVolume(final float pLeftVolume, final float pRightVolume);
 
-	public void onMasterVolumeChanged(final float pMasterVolume);
+        /**
+         * 
+         * @param pMasterVolume
+         */
+        public void onMasterVolumeChanged(final float pMasterVolume);
 
-	public void setLooping(final boolean pLooping);
+        /**
+         * 
+         * @param pLooping
+         */
+        public void setLooping(final boolean pLooping);
 
-	public void release();
+        /**
+         * 
+         */
+        public void release();
 }

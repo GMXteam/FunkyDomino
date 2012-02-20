@@ -22,11 +22,20 @@ public class SurfaceScrollDetector extends ScrollDetector {
 	// Constructors
 	// ===========================================================
 
-	public SurfaceScrollDetector(final float pTriggerScrollMinimumDistance, final IScrollDetectorListener pScrollDetectorListener) {
+    /**
+     * 
+     * @param pTriggerScrollMinimumDistance
+     * @param pScrollDetectorListener
+     */
+    public SurfaceScrollDetector(final float pTriggerScrollMinimumDistance, final IScrollDetectorListener pScrollDetectorListener) {
 		super(pTriggerScrollMinimumDistance, pScrollDetectorListener);
 	}
 
-	public SurfaceScrollDetector(final IScrollDetectorListener pScrollDetectorListener) {
+    /**
+     * 
+     * @param pScrollDetectorListener
+     */
+    public SurfaceScrollDetector(final IScrollDetectorListener pScrollDetectorListener) {
 		super(pScrollDetectorListener);
 	}
 
@@ -43,7 +52,12 @@ public class SurfaceScrollDetector extends ScrollDetector {
 		return pTouchEvent.getMotionEvent().getX();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pTouchEvent
+         * @return
+         */
+        @Override
 	protected float getY(final TouchEvent pTouchEvent) {
 		return pTouchEvent.getMotionEvent().getY();
 	}

@@ -33,13 +33,36 @@ public class AnalogOnScreenControl extends BaseOnScreenControl implements TimeCo
 	// Constructors
 	// ===========================================================
 
-	public AnalogOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final VertexBufferObjectManager pVertexBufferObjectManager, final IAnalogOnScreenControlListener pAnalogOnScreenControlListener) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pCamera
+         * @param pControlBaseTextureRegion
+         * @param pControlKnobTextureRegion
+         * @param pTimeBetweenUpdates
+         * @param pVertexBufferObjectManager
+         * @param pAnalogOnScreenControlListener
+         */
+        public AnalogOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final VertexBufferObjectManager pVertexBufferObjectManager, final IAnalogOnScreenControlListener pAnalogOnScreenControlListener) {
 		super(pX, pY, pCamera, pControlBaseTextureRegion, pControlKnobTextureRegion, pTimeBetweenUpdates, pVertexBufferObjectManager, pAnalogOnScreenControlListener);
 
 		this.mClickDetector.setEnabled(false);
 	}
 
-	public AnalogOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final long pOnControlClickMaximumMilliseconds, final VertexBufferObjectManager pVertexBufferObjectManager, final IAnalogOnScreenControlListener pAnalogOnScreenControlListener) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pCamera
+         * @param pControlBaseTextureRegion
+         * @param pControlKnobTextureRegion
+         * @param pTimeBetweenUpdates
+         * @param pOnControlClickMaximumMilliseconds
+         * @param pVertexBufferObjectManager
+         * @param pAnalogOnScreenControlListener
+         */
+        public AnalogOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final long pOnControlClickMaximumMilliseconds, final VertexBufferObjectManager pVertexBufferObjectManager, final IAnalogOnScreenControlListener pAnalogOnScreenControlListener) {
 		super(pX, pY, pCamera, pControlBaseTextureRegion, pControlKnobTextureRegion, pTimeBetweenUpdates, pVertexBufferObjectManager, pAnalogOnScreenControlListener);
 
 		this.mClickDetector.setTriggerClickMaximumMilliseconds(pOnControlClickMaximumMilliseconds);
@@ -49,16 +72,28 @@ public class AnalogOnScreenControl extends BaseOnScreenControl implements TimeCo
 	// Getter & Setter
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public IAnalogOnScreenControlListener getOnScreenControlListener() {
 		return (IAnalogOnScreenControlListener)super.getOnScreenControlListener();
 	}
 
-	public void setOnControlClickEnabled(final boolean pOnControlClickEnabled) {
+        /**
+         * 
+         * @param pOnControlClickEnabled
+         */
+        public void setOnControlClickEnabled(final boolean pOnControlClickEnabled) {
 		this.mClickDetector.setEnabled(pOnControlClickEnabled);
 	}
 
-	public void setOnControlClickMaximumMilliseconds(final long pOnControlClickMaximumMilliseconds) {
+        /**
+         * 
+         * @param pOnControlClickMaximumMilliseconds
+         */
+        public void setOnControlClickMaximumMilliseconds(final long pOnControlClickMaximumMilliseconds) {
 		this.mClickDetector.setTriggerClickMaximumMilliseconds(pOnControlClickMaximumMilliseconds);
 	}
 
@@ -66,12 +101,26 @@ public class AnalogOnScreenControl extends BaseOnScreenControl implements TimeCo
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pClickDetector
+         * @param pPointerID
+         * @param pSceneX
+         * @param pSceneY
+         */
+        @Override
 	public void onClick(final ClickDetector pClickDetector, final int pPointerID, final float pSceneX, final float pSceneY) {
 		this.getOnScreenControlListener().onControlClick(this);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @param pTouchAreaLocalX
+         * @param pTouchAreaLocalY
+         * @return
+         */
+        @Override
 	protected boolean onHandleControlBaseTouched(final TouchEvent pSceneTouchEvent, final float pTouchAreaLocalX, final float pTouchAreaLocalY) {
 		this.mClickDetector.onSceneTouchEvent(null, pSceneTouchEvent);
 		return super.onHandleControlBaseTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
@@ -95,7 +144,10 @@ public class AnalogOnScreenControl extends BaseOnScreenControl implements TimeCo
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface IAnalogOnScreenControlListener extends IOnScreenControlListener {
+        /**
+         * 
+         */
+        public interface IAnalogOnScreenControlListener extends IOnScreenControlListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -104,6 +156,10 @@ public class AnalogOnScreenControl extends BaseOnScreenControl implements TimeCo
 		// Methods
 		// ===========================================================
 
-		public void onControlClick(final AnalogOnScreenControl pAnalogOnScreenControl);
+            /**
+             * 
+             * @param pAnalogOnScreenControl
+             */
+            public void onControlClick(final AnalogOnScreenControl pAnalogOnScreenControl);
 	}
 }

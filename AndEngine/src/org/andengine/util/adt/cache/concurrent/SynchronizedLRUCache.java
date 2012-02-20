@@ -5,6 +5,8 @@ import org.andengine.util.adt.cache.LRUCache;
 /**
  * (c) Zynga 2012
  *
+ * @param <K> 
+ * @param <V> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 18:26:47 - 16.01.2012
  */
@@ -21,7 +23,11 @@ public class SynchronizedLRUCache<K, V> extends LRUCache<K, V> {
 	// Constructors
 	// ===========================================================
 
-	public SynchronizedLRUCache(final int pCapacity) {
+    /**
+     * 
+     * @param pCapacity
+     */
+    public SynchronizedLRUCache(final int pCapacity) {
 		super(pCapacity);
 	}
 
@@ -38,17 +44,32 @@ public class SynchronizedLRUCache<K, V> extends LRUCache<K, V> {
 		return super.getSize();
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public synchronized boolean isEmpty() {
 		return super.isEmpty();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pKey
+         * @param pValue
+         * @return
+         */
+        @Override
 	public synchronized V put(final K pKey, final V pValue) {
 		return super.put(pKey, pValue);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pKey
+         * @return
+         */
+        @Override
 	public synchronized V get(final K pKey) {
 		return super.get(pKey);
 	}

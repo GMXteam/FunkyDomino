@@ -23,7 +23,11 @@ public class LogicalOrShaderSourceCriteria implements IShaderSourceCriteria {
 	// Constructors
 	// ===========================================================
 	
-	public LogicalOrShaderSourceCriteria(final IShaderSourceCriteria ... pShaderSourceCriterias) {
+        /**
+         * 
+         * @param pShaderSourceCriterias
+         */
+        public LogicalOrShaderSourceCriteria(final IShaderSourceCriteria ... pShaderSourceCriterias) {
 		this.mShaderSourceCriterias = pShaderSourceCriterias;
 	}
 
@@ -35,7 +39,12 @@ public class LogicalOrShaderSourceCriteria implements IShaderSourceCriteria {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	public boolean isMet(final GLState pGLState) {
 		for(IShaderSourceCriteria shaderSourceCriteria : this.mShaderSourceCriterias) {
 			if(shaderSourceCriteria.isMet(pGLState)) {

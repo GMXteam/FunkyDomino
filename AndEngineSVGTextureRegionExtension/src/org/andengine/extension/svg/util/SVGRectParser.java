@@ -40,7 +40,14 @@ public class SVGRectParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint, final RectF pRect) {
+    /**
+     * 
+     * @param pSVGProperties
+     * @param pCanvas
+     * @param pSVGPaint
+     * @param pRect
+     */
+    public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint, final RectF pRect) {
 		final float x = pSVGProperties.getFloatAttribute(ATTRIBUTE_X, 0f);
 		final float y = pSVGProperties.getFloatAttribute(ATTRIBUTE_Y, 0f);
 		final float width = pSVGProperties.getFloatAttribute(ATTRIBUTE_WIDTH, 0f);

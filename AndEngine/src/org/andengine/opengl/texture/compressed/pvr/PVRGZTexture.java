@@ -27,35 +27,103 @@ public abstract class PVRGZTexture extends PVRTexture {
 	// Constructors
 	// ===========================================================
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat) throws IllegalArgumentException, IOException {
+    /**
+     * 
+     * @param pTextureManager
+     * @param pPVRTextureFormat
+     * @throws IllegalArgumentException
+     * @throws IOException
+     */
+    public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pTextureStateListener);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy, pTextureStateListener);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pTextureOptions
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pTextureOptions);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @param pTextureOptions
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy, pTextureOptions);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pTextureOptions
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pTextureOptions, pTextureStateListener);
 	}
 
-	public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @param pTextureOptions
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRGZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy, pTextureOptions, pTextureStateListener);
 	}
 
@@ -67,7 +135,12 @@ public abstract class PVRGZTexture extends PVRTexture {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         * @throws IOException
+         */
+        @Override
 	public GZIPInputStream getInputStream() throws IOException {
 		return new GZIPInputStream(this.onGetInputStream());
 	}

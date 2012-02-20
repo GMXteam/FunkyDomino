@@ -21,17 +21,27 @@ public abstract class AverageFPSCounter extends FPSCounter implements TimeConsta
 	// Fields
 	// ===========================================================
 
-	protected final float mAverageDuration;
+        /**
+         * 
+         */
+        protected final float mAverageDuration;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public AverageFPSCounter() {
+        /**
+         * 
+         */
+        public AverageFPSCounter() {
 		this(AVERAGE_DURATION_DEFAULT);
 	}
 
-	public AverageFPSCounter(final float pAverageDuration) {
+        /**
+         * 
+         * @param pAverageDuration
+         */
+        public AverageFPSCounter(final float pAverageDuration) {
 		this.mAverageDuration = pAverageDuration;
 	}
 
@@ -43,9 +53,17 @@ public abstract class AverageFPSCounter extends FPSCounter implements TimeConsta
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onHandleAverageDurationElapsed(final float pFPS);
+        /**
+         * 
+         * @param pFPS
+         */
+        protected abstract void onHandleAverageDurationElapsed(final float pFPS);
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		super.onUpdate(pSecondsElapsed);
 

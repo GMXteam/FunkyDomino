@@ -47,7 +47,11 @@ public class EGLHelper {
 	// Constructors
 	// ===========================================================
 
-	public EGLHelper(final EGLConfigChooser pEGLConfigChooser) {
+        /**
+         * 
+         * @param pEGLConfigChooser
+         */
+        public EGLHelper(final EGLConfigChooser pEGLConfigChooser) {
 		this.mEGLConfigChooser = pEGLConfigChooser;
 	}
 
@@ -63,7 +67,10 @@ public class EGLHelper {
 	// Methods
 	// ===========================================================
 
-	public void start() {
+        /**
+         * 
+         */
+        public void start() {
 		/* Get an EGL instance. */
 		this.mEGL = (EGL10) EGLContext.getEGL();
 
@@ -89,7 +96,10 @@ public class EGLHelper {
 	/**
 	 * React to the creation of a new surface by creating and returning an
 	 * OpenGL interface that renders to that surface.
-	 */
+         * 
+         * @param pSurfaceHolder
+         * @return  
+         */
 	public GL createSurface(final SurfaceHolder pSurfaceHolder) {
 		/* The window size has changed, so we need to create a new surface. */
 		if (this.mEGLSurface != null && this.mEGLSurface != EGL10.EGL_NO_SURFACE) {
@@ -127,7 +137,10 @@ public class EGLHelper {
 		return this.mEGL.eglGetError() != EGL11.EGL_CONTEXT_LOST;
 	}
 
-	public void destroySurface() {
+        /**
+         * 
+         */
+        public void destroySurface() {
 		if (this.mEGLSurface != null && this.mEGLSurface != EGL10.EGL_NO_SURFACE) {
 			this.mEGL.eglMakeCurrent(this.mEGLDisplay, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_CONTEXT);
 			this.mEGL.eglDestroySurface(this.mEGLDisplay, this.mEGLSurface);
@@ -135,7 +148,10 @@ public class EGLHelper {
 		}
 	}
 
-	public void finish() {
+        /**
+         * 
+         */
+        public void finish() {
 		if (this.mEGLContext != null) {
 			this.mEGL.eglDestroyContext(this.mEGLDisplay, this.mEGLContext);
 			this.mEGLContext = null;

@@ -21,7 +21,8 @@ public interface ITriangulationAlgoritm {
 	// ===========================================================
 
 	/**
-	 * @return a {@link List} of {@link Vector2} objects where every three {@link Vector2} objects form a triangle.
+     * @param pVertices 
+     * @return a {@link List} of {@link Vector2} objects where every three {@link Vector2} objects form a triangle.
 	 */
 	public List<Vector2> computeTriangles(final List<Vector2> pVertices);
 }

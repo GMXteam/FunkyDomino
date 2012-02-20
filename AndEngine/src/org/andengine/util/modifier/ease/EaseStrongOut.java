@@ -27,7 +27,11 @@ public class EaseStrongOut implements IEaseFunction {
 
 	}
 
-	public static EaseStrongOut getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static EaseStrongOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseStrongOut();
 		}
@@ -42,7 +46,13 @@ public class EaseStrongOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pDuration
+         * @return
+         */
+        @Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseStrongOut.getValue(pSecondsElapsed / pDuration);
 	}
@@ -51,7 +61,12 @@ public class EaseStrongOut implements IEaseFunction {
 	// Methods
 	// ===========================================================
 
-	public static float getValue(final float pPercentage) {
+        /**
+         * 
+         * @param pPercentage
+         * @return
+         */
+        public static float getValue(final float pPercentage) {
 		final float t = pPercentage - 1;
 		return 1 + (t * t * t * t * t);
 	}

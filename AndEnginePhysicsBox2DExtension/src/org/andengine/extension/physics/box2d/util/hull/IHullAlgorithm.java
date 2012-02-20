@@ -18,5 +18,10 @@ public interface IHullAlgorithm {
 	// Methods
 	// ===========================================================
 
-	public int computeHull(final Vector2[] pVertices);
+    /**
+     * 
+     * @param pVertices
+     * @return
+     */
+    public int computeHull(final Vector2[] pVertices);
 }

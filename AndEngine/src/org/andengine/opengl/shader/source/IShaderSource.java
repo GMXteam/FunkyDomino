@@ -17,5 +17,10 @@ public interface IShaderSource {
 	// Methods
 	// ===========================================================
 
-	public String getShaderSource(final GLState pGLState);
+    /**
+     * 
+     * @param pGLState
+     * @return
+     */
+    public String getShaderSource(final GLState pGLState);
 }

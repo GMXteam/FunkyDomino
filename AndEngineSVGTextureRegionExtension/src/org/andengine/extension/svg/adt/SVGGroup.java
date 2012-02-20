@@ -28,7 +28,13 @@ public class SVGGroup implements ISVGConstants {
 	// Constructors
 	// ===========================================================
 
-	public SVGGroup(final SVGGroup pSVGroupParent, final SVGProperties pSVGProperties, final boolean pHasTransform) {
+        /**
+         * 
+         * @param pSVGroupParent
+         * @param pSVGProperties
+         * @param pHasTransform
+         */
+        public SVGGroup(final SVGGroup pSVGroupParent, final SVGProperties pSVGProperties, final boolean pHasTransform) {
 		this.mSVGroupParent = pSVGroupParent;
 		this.mSVGProperties = pSVGProperties;
 		this.mHasTransform = pHasTransform;
@@ -39,15 +45,27 @@ public class SVGGroup implements ISVGConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean hasTransform() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasTransform() {
 		return this.mHasTransform;
 	}
 
-	public SVGProperties getSVGProperties() {
+        /**
+         * 
+         * @return
+         */
+        public SVGProperties getSVGProperties() {
 		return this.mSVGProperties;
 	}
 
-	public boolean isHidden() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isHidden() {
 		return this.mHidden;
 	}
 

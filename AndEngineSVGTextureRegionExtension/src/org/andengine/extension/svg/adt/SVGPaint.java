@@ -51,7 +51,11 @@ public class SVGPaint implements ISVGConstants {
 	// Constructors
 	// ===========================================================
 
-	public SVGPaint(final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pSVGColorMapper
+         */
+        public SVGPaint(final ISVGColorMapper pSVGColorMapper) {
 		this.mSVGColorMapper = pSVGColorMapper;
 	}
 
@@ -59,11 +63,19 @@ public class SVGPaint implements ISVGConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public Paint getPaint() {
+        /**
+         * 
+         * @return
+         */
+        public Paint getPaint() {
 		return this.mPaint;
 	}
 
-	public RectF getComputedBounds() {
+        /**
+         * 
+         * @return
+         */
+        public RectF getComputedBounds() {
 		return this.mComputedBounds;
 	}
 
@@ -75,7 +87,11 @@ public class SVGPaint implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public void resetPaint(final Style pStyle) {
+        /**
+         * 
+         * @param pStyle
+         */
+        public void resetPaint(final Style pStyle) {
 		this.mPaint.reset();
 		this.mPaint.setAntiAlias(true); // TODO AntiAliasing could be made optional through some SVGOptions object.
 		this.mPaint.setStyle(pStyle);
@@ -83,7 +99,10 @@ public class SVGPaint implements ISVGConstants {
 
 	/**
 	 *  TODO Would it be better/cleaner to throw a SVGParseException when sth could not be parsed instead of simply returning false?
-	 */
+         * 
+         * @param pSVGProperties 
+         * @return 
+         */
 	public boolean setFill(final SVGProperties pSVGProperties) {
 		if(this.isDisplayNone(pSVGProperties) || this.isFillNone(pSVGProperties)) {
 			return false;
@@ -105,7 +124,12 @@ public class SVGPaint implements ISVGConstants {
 		}
 	}
 
-	public boolean setStroke(final SVGProperties pSVGProperties) {
+        /**
+         * 
+         * @param pSVGProperties
+         * @return
+         */
+        public boolean setStroke(final SVGProperties pSVGProperties) {
 		if(this.isDisplayNone(pSVGProperties) || this.isStrokeNone(pSVGProperties)) {
 			return false;
 		}
@@ -127,7 +151,13 @@ public class SVGPaint implements ISVGConstants {
 		return VALUE_NONE.equals(pSVGProperties.getStringProperty(ATTRIBUTE_STROKE));
 	}
 
-	public boolean applyPaintProperties(final SVGProperties pSVGProperties, final boolean pModeFill) {
+        /**
+         * 
+         * @param pSVGProperties
+         * @param pModeFill
+         * @return
+         */
+        public boolean applyPaintProperties(final SVGProperties pSVGProperties, final boolean pModeFill) {
 		if(this.setColorProperties(pSVGProperties, pModeFill)) {
 			if(pModeFill) {
 				return this.applyFillProperties(pSVGProperties);
@@ -218,7 +248,12 @@ public class SVGPaint implements ISVGConstants {
 		}
 	}
 
-	public void ensureComputedBoundsInclude(final float pX, final float pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        public void ensureComputedBoundsInclude(final float pX, final float pY) {
 		if (pX < this.mComputedBounds.left) {
 			this.mComputedBounds.left = pX;
 		}
@@ -233,12 +268,23 @@ public class SVGPaint implements ISVGConstants {
 		}
 	}
 
-	public void ensureComputedBoundsInclude(final float pX, final float pY, final float pWidth, final float pHeight) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pWidth
+         * @param pHeight
+         */
+        public void ensureComputedBoundsInclude(final float pX, final float pY, final float pWidth, final float pHeight) {
 		this.ensureComputedBoundsInclude(pX, pY);
 		this.ensureComputedBoundsInclude(pX + pWidth, pY + pHeight);
 	}
 
-	public void ensureComputedBoundsInclude(final Path pPath) {
+        /**
+         * 
+         * @param pPath
+         */
+        public void ensureComputedBoundsInclude(final Path pPath) {
 		pPath.computeBounds(this.mRect, false);
 		this.ensureComputedBoundsInclude(this.mRect.left, this.mRect.top);
 		this.ensureComputedBoundsInclude(this.mRect.right, this.mRect.bottom);
@@ -295,7 +341,12 @@ public class SVGPaint implements ISVGConstants {
 	// Methods for Gradients
 	// ===========================================================
 
-	public SVGFilter parseFilter(final Attributes pAttributes) {
+        /**
+         * 
+         * @param pAttributes
+         * @return
+         */
+        public SVGFilter parseFilter(final Attributes pAttributes) {
 		final String id = SAXHelper.getStringAttribute(pAttributes, ATTRIBUTE_ID);
 		if(id == null) {
 			return null;
@@ -306,7 +357,13 @@ public class SVGPaint implements ISVGConstants {
 		return svgFilter;
 	}
 
-	public SVGGradient parseGradient(final Attributes pAttributes, final boolean pLinear) {
+        /**
+         * 
+         * @param pAttributes
+         * @param pLinear
+         * @return
+         */
+        public SVGGradient parseGradient(final Attributes pAttributes, final boolean pLinear) {
 		final String id = SAXHelper.getStringAttribute(pAttributes, ATTRIBUTE_ID);
 		if(id == null) {
 			return null;
@@ -317,7 +374,12 @@ public class SVGPaint implements ISVGConstants {
 		return svgGradient;
 	}
 
-	public SVGGradientStop parseGradientStop(final SVGProperties pSVGProperties) {
+        /**
+         * 
+         * @param pSVGProperties
+         * @return
+         */
+        public SVGGradientStop parseGradientStop(final SVGProperties pSVGProperties) {
 		final float offset = pSVGProperties.getFloatProperty(ATTRIBUTE_OFFSET, 0f);
 		final String stopColor = pSVGProperties.getStringProperty(ATTRIBUTE_STOP_COLOR);
 		final int rgb = this.parseColor(stopColor.trim(), Color.BLACK);
@@ -365,7 +427,12 @@ public class SVGPaint implements ISVGConstants {
 		}
 	}
 
-	public SVGFilterElementGaussianBlur parseFilterElementGaussianBlur(final Attributes pAttributes) {
+        /**
+         * 
+         * @param pAttributes
+         * @return
+         */
+        public SVGFilterElementGaussianBlur parseFilterElementGaussianBlur(final Attributes pAttributes) {
 		final float standardDeviation = SAXHelper.getFloatAttribute(pAttributes, ATTRIBUTE_FILTER_ELEMENT_FEGAUSSIANBLUR_STANDARDDEVIATION);
 		return new SVGFilterElementGaussianBlur(standardDeviation);
 	}

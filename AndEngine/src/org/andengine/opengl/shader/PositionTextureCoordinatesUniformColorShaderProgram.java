@@ -20,7 +20,10 @@ public class PositionTextureCoordinatesUniformColorShaderProgram extends ShaderP
 
 	private static PositionTextureCoordinatesUniformColorShaderProgram INSTANCE;
 
-	public static final String VERTEXSHADER =
+        /**
+         * 
+         */
+        public static final String VERTEXSHADER =
 			"uniform mat4 " + ShaderProgramConstants.UNIFORM_MODELVIEWPROJECTIONMATRIX + ";\n" +
 			"attribute vec4 " + ShaderProgramConstants.ATTRIBUTE_POSITION + ";\n" +
 			"attribute vec2 " + ShaderProgramConstants.ATTRIBUTE_TEXTURECOORDINATES + ";\n" +
@@ -30,7 +33,10 @@ public class PositionTextureCoordinatesUniformColorShaderProgram extends ShaderP
 			"	gl_Position = " + ShaderProgramConstants.UNIFORM_MODELVIEWPROJECTIONMATRIX + " * " + ShaderProgramConstants.ATTRIBUTE_POSITION + ";\n" +
 			"}";
 
-	public static final String FRAGMENTSHADER =
+        /**
+         * 
+         */
+        public static final String FRAGMENTSHADER =
 			"precision lowp float;\n" +
 			"uniform sampler2D " + ShaderProgramConstants.UNIFORM_TEXTURE_0 + ";\n" +
 			"uniform vec4 " + ShaderProgramConstants.UNIFORM_COLOR + ";\n" +	
@@ -43,9 +49,18 @@ public class PositionTextureCoordinatesUniformColorShaderProgram extends ShaderP
 	// Fields
 	// ===========================================================
 
-	public static int sUniformModelViewPositionMatrixLocation = ShaderProgram.LOCATION_INVALID;
-	public static int sUniformTexture0Location = ShaderProgram.LOCATION_INVALID;
-	public static int sUniformColorLocation = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformModelViewPositionMatrixLocation = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformTexture0Location = ShaderProgram.LOCATION_INVALID;
+        /**
+         * 
+         */
+        public static int sUniformColorLocation = ShaderProgram.LOCATION_INVALID;
 
 	// ===========================================================
 	// Constructors
@@ -55,7 +70,11 @@ public class PositionTextureCoordinatesUniformColorShaderProgram extends ShaderP
 		super(PositionTextureCoordinatesUniformColorShaderProgram.VERTEXSHADER, PositionTextureCoordinatesUniformColorShaderProgram.FRAGMENTSHADER);
 	}
 
-	public static PositionTextureCoordinatesUniformColorShaderProgram getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static PositionTextureCoordinatesUniformColorShaderProgram getInstance() {
 		if(PositionTextureCoordinatesUniformColorShaderProgram.INSTANCE == null) {
 			PositionTextureCoordinatesUniformColorShaderProgram.INSTANCE = new PositionTextureCoordinatesUniformColorShaderProgram();
 		}
@@ -82,7 +101,12 @@ public class PositionTextureCoordinatesUniformColorShaderProgram extends ShaderP
 		PositionTextureCoordinatesUniformColorShaderProgram.sUniformColorLocation = this.getUniformLocation(ShaderProgramConstants.UNIFORM_COLOR);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pVertexBufferObjectAttributes
+         */
+        @Override
 	public void bind(final GLState pGLState, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		GLES20.glDisableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION);
 
@@ -92,7 +116,11 @@ public class PositionTextureCoordinatesUniformColorShaderProgram extends ShaderP
 		GLES20.glUniform1i(PositionTextureCoordinatesUniformColorShaderProgram.sUniformTexture0Location, 0);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         */
+        @Override
 	public void unbind(final GLState pGLState) {
 		GLES20.glEnableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION);
 		

@@ -26,13 +26,21 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * @warning Do not use a zero or short length.
  */
 public class DistanceJointDef extends JointDef {
-	public DistanceJointDef () {
+    /**
+     * 
+     */
+    public DistanceJointDef () {
 		type = JointType.DistanceJoint;
 	}
 
 	/**
 	 * Initialize the bodies, anchors, and length using the world anchors.
-	 */
+         * 
+     * @param bodyA 
+     * @param bodyB
+     * @param anchorB
+     * @param anchorA  
+         */
 	public void initialize (Body bodyA, Body bodyB, Vector2 anchorA, Vector2 anchorB) {
 		this.bodyA = bodyA;
 		this.bodyB = bodyB;

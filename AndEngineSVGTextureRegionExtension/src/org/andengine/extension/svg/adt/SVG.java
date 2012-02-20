@@ -48,7 +48,11 @@ public class SVG {
 	// Getter & Setter
 	// ===========================================================
 
-	public Picture getPicture() {
+        /**
+         * 
+         * @return
+         */
+        public Picture getPicture() {
 		return this.mPicture;
 	}
 

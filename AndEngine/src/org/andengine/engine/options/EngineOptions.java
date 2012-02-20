@@ -38,7 +38,14 @@ public class EngineOptions {
 	// Constructors
 	// ===========================================================
 
-	public EngineOptions(final boolean pFullscreen, final ScreenOrientation pScreenOrientation, final IResolutionPolicy pResolutionPolicy, final Camera pCamera) {
+        /**
+         * 
+         * @param pFullscreen
+         * @param pScreenOrientation
+         * @param pResolutionPolicy
+         * @param pCamera
+         */
+        public EngineOptions(final boolean pFullscreen, final ScreenOrientation pScreenOrientation, final IResolutionPolicy pResolutionPolicy, final Camera pCamera) {
 		this.mFullscreen = pFullscreen;
 		this.mScreenOrientation = pScreenOrientation;
 		this.mResolutionPolicy = pResolutionPolicy;
@@ -49,47 +56,91 @@ public class EngineOptions {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean hasEngineLock() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasEngineLock() {
 		return this.mEngineLock != null;
 	}
 
-	public EngineLock getEngineLock() {
+        /**
+         * 
+         * @return
+         */
+        public EngineLock getEngineLock() {
 		return this.mEngineLock;
 	}
 
-	public void setEngineLock(final EngineLock pEngineLock) {
+        /**
+         * 
+         * @param pEngineLock
+         */
+        public void setEngineLock(final EngineLock pEngineLock) {
 		this.mEngineLock = pEngineLock;
 	}
 
-	public TouchOptions getTouchOptions() {
+        /**
+         * 
+         * @return
+         */
+        public TouchOptions getTouchOptions() {
 		return this.mTouchOptions;
 	}
 
-	public AudioOptions getAudioOptions() {
+        /**
+         * 
+         * @return
+         */
+        public AudioOptions getAudioOptions() {
 		return this.mAudioOptions;
 	}
 
-	public RenderOptions getRenderOptions() {
+        /**
+         * 
+         * @return
+         */
+        public RenderOptions getRenderOptions() {
 		return this.mRenderOptions;
 	}
 
-	public boolean isFullscreen() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isFullscreen() {
 		return this.mFullscreen;
 	}
 
-	public ScreenOrientation getScreenOrientation() {
+        /**
+         * 
+         * @return
+         */
+        public ScreenOrientation getScreenOrientation() {
 		return this.mScreenOrientation;
 	}
 
-	public IResolutionPolicy getResolutionPolicy() {
+        /**
+         * 
+         * @return
+         */
+        public IResolutionPolicy getResolutionPolicy() {
 		return this.mResolutionPolicy;
 	}
 
-	public Camera getCamera() {
+        /**
+         * 
+         * @return
+         */
+        public Camera getCamera() {
 		return this.mCamera;
 	}
 
-	public int getUpdateThreadPriority() {
+        /**
+         * 
+         * @return
+         */
+        public int getUpdateThreadPriority() {
 		return this.mUpdateThreadPriority;
 	}
 
@@ -100,11 +151,20 @@ public class EngineOptions {
 		this.mUpdateThreadPriority = pUpdateThreadPriority;
 	}
 
-	public WakeLockOptions getWakeLockOptions() {
+        /**
+         * 
+         * @return
+         */
+        public WakeLockOptions getWakeLockOptions() {
 		return this.mWakeLockOptions;
 	}
 
-	public EngineOptions setWakeLockOptions(final WakeLockOptions pWakeLockOptions) {
+        /**
+         * 
+         * @param pWakeLockOptions
+         * @return
+         */
+        public EngineOptions setWakeLockOptions(final WakeLockOptions pWakeLockOptions) {
 		this.mWakeLockOptions = pWakeLockOptions;
 		return this;
 	}
@@ -121,7 +181,10 @@ public class EngineOptions {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static enum ScreenOrientation {
+        /**
+         * 
+         */
+        public static enum ScreenOrientation {
 		// ===========================================================
 		// Elements
 		// ===========================================================

@@ -31,11 +31,22 @@ public class SVGAttributes implements ISVGConstants {
 	// Constructors
 	// ===========================================================
 
-	public SVGAttributes(final Attributes pAttributes, final boolean pAttributesDeepCopy) {
+        /**
+         * 
+         * @param pAttributes
+         * @param pAttributesDeepCopy
+         */
+        public SVGAttributes(final Attributes pAttributes, final boolean pAttributesDeepCopy) {
 		this.mAttributes = (pAttributesDeepCopy) ? new AttributesImpl(pAttributes) : pAttributes;
 	}
 
-	public SVGAttributes(final SVGAttributes pParentSVGAttributes, final Attributes pAttributes, final boolean pAttributesDeepCopy) {
+        /**
+         * 
+         * @param pParentSVGAttributes
+         * @param pAttributes
+         * @param pAttributesDeepCopy
+         */
+        public SVGAttributes(final SVGAttributes pParentSVGAttributes, final Attributes pAttributes, final boolean pAttributesDeepCopy) {
 		this.mAttributes = (pAttributesDeepCopy) ? new AttributesImpl(pAttributes) : pAttributes;
 		this.mParentSVGAttributes = pParentSVGAttributes;
 	}
@@ -44,7 +55,11 @@ public class SVGAttributes implements ISVGConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public void setParentSVGAttributes(final SVGAttributes pParentSVGAttributes) {
+        /**
+         * 
+         * @param pParentSVGAttributes
+         */
+        public void setParentSVGAttributes(final SVGAttributes pParentSVGAttributes) {
 		this.mParentSVGAttributes = pParentSVGAttributes;
 	}
 
@@ -56,7 +71,14 @@ public class SVGAttributes implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public String getStringAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes, final String pDefaultValue) {
+        /**
+         * 
+         * @param pAttributeName
+         * @param pAllowParentSVGAttributes
+         * @param pDefaultValue
+         * @return
+         */
+        public String getStringAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes, final String pDefaultValue) {
 		final String s = this.getStringAttribute(pAttributeName, pAllowParentSVGAttributes);
 		if (s == null) {
 			return pDefaultValue;
@@ -65,7 +87,13 @@ public class SVGAttributes implements ISVGConstants {
 		}
 	}
 
-	public String getStringAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes) {
+        /**
+         * 
+         * @param pAttributeName
+         * @param pAllowParentSVGAttributes
+         * @return
+         */
+        public String getStringAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes) {
 		final String s = SAXHelper.getStringAttribute(this.mAttributes, pAttributeName);
 		if(s == null && pAllowParentSVGAttributes) {
 			if(this.mParentSVGAttributes == null) {
@@ -78,11 +106,24 @@ public class SVGAttributes implements ISVGConstants {
 		}
 	}
 
-	public Float getFloatAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes) {
+        /**
+         * 
+         * @param pAttributeName
+         * @param pAllowParentSVGAttributes
+         * @return
+         */
+        public Float getFloatAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes) {
 		return SVGParserUtils.extractFloatAttribute(this.getStringAttribute(pAttributeName, pAllowParentSVGAttributes));
 	}
 
-	public Float getFloatAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes, final float pDefaultValue) {
+        /**
+         * 
+         * @param pAttributeName
+         * @param pAllowParentSVGAttributes
+         * @param pDefaultValue
+         * @return
+         */
+        public Float getFloatAttribute(final String pAttributeName, final boolean pAllowParentSVGAttributes, final float pDefaultValue) {
 		final Float f = this.getFloatAttribute(pAttributeName, pAllowParentSVGAttributes);
 		if (f == null) {
 			return pDefaultValue;

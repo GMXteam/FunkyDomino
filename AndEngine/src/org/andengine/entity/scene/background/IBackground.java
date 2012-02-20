@@ -21,14 +21,51 @@ public interface IBackground extends IDrawHandler, IUpdateHandler {
 	// Methods
 	// ===========================================================
 
-	public void registerBackgroundModifier(final IModifier<IBackground> pBackgroundModifier);
-	public boolean unregisterBackgroundModifier(final IModifier<IBackground> pBackgroundModifier);
-	public void clearBackgroundModifiers();
+    /**
+     * 
+     * @param pBackgroundModifier
+     */
+    public void registerBackgroundModifier(final IModifier<IBackground> pBackgroundModifier);
+    /**
+     * 
+     * @param pBackgroundModifier
+     * @return
+     */
+    public boolean unregisterBackgroundModifier(final IModifier<IBackground> pBackgroundModifier);
+        /**
+         * 
+         */
+        public void clearBackgroundModifiers();
 
-	public boolean isColorEnabled();
-	public void setColorEnabled(final boolean pColorEnabled);
+        /**
+         * 
+         * @return
+         */
+        public boolean isColorEnabled();
+        /**
+         * 
+         * @param pColorEnabled
+         */
+        public void setColorEnabled(final boolean pColorEnabled);
 
-	public void setColor(final Color pColor);
-	public void setColor(final float pRed, final float pGreen, final float pBlue);
-	public void setColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha);
+        /**
+         * 
+         * @param pColor
+         */
+        public void setColor(final Color pColor);
+        /**
+         * 
+         * @param pRed
+         * @param pGreen
+         * @param pBlue
+         */
+        public void setColor(final float pRed, final float pGreen, final float pBlue);
+        /**
+         * 
+         * @param pRed
+         * @param pGreen
+         * @param pBlue
+         * @param pAlpha
+         */
+        public void setColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha);
 }

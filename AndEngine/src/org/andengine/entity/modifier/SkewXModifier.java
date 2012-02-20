@@ -23,23 +23,55 @@ public class SkewXModifier extends SingleValueSpanEntityModifier {
 	// Constructors
 	// ===========================================================
 
-	public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromSkewX
+     * @param pToSkewX
+     */
+    public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX) {
 		this(pDuration, pFromSkewX, pToSkewX, null, EaseLinear.getInstance());
 	}
 
-	public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromSkewX
+         * @param pToSkewX
+         * @param pEaseFunction
+         */
+        public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromSkewX, pToSkewX, null, pEaseFunction);
 	}
 
-	public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromSkewX
+         * @param pToSkewX
+         * @param pEntityModifierListener
+         */
+        public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromSkewX, pToSkewX, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-	public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromSkewX
+         * @param pToSkewX
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public SkewXModifier(final float pDuration, final float pFromSkewX, final float pToSkewX, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromSkewX, pToSkewX, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected SkewXModifier(final SkewXModifier pSkewXModifier) {
+        /**
+         * 
+         * @param pSkewXModifier
+         */
+        protected SkewXModifier(final SkewXModifier pSkewXModifier) {
 		super(pSkewXModifier);
 	}
 
@@ -56,7 +88,12 @@ public class SkewXModifier extends SingleValueSpanEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pSkewX
+         */
+        @Override
 	protected void onSetInitialValue(final IEntity pEntity, final float pSkewX) {
 		pEntity.setSkewX(pSkewX);
 	}

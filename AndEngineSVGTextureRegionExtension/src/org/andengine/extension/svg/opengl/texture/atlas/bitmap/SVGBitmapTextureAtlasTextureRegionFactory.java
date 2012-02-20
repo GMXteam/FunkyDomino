@@ -67,7 +67,10 @@ public class SVGBitmapTextureAtlasTextureRegionFactory {
 		}
 	}
 
-	public static void reset() {
+        /**
+         * 
+         */
+        public static void reset() {
 		SVGBitmapTextureAtlasTextureRegionFactory.setAssetBasePath("");
 	}
 
@@ -87,50 +90,172 @@ public class SVGBitmapTextureAtlasTextureRegionFactory {
 	// Methods using Texture
 	// ===========================================================
 
-	public static ITextureRegion createFromSVG(final BitmapTextureAtlas pBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pSVG
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureX
+         * @param pTextureY
+         * @return
+         */
+        public static ITextureRegion createFromSVG(final BitmapTextureAtlas pBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY) {
 		final IBitmapTextureAtlasSource bitmapTextureAtlasSource = new SVGBaseBitmapTextureAtlasSource(pSVG, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight));
 		return TextureRegionFactory.createFromSource(pBitmapTextureAtlas, bitmapTextureAtlasSource, pTextureX, pTextureY);
 	}
 
-	public static ITiledTextureRegion createTiledFromSVG(final BitmapTextureAtlas pBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pSVG
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromSVG(final BitmapTextureAtlas pBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
 		final IBitmapTextureAtlasSource textureSource = new SVGBaseBitmapTextureAtlasSource(pSVG, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight));
 		return TextureRegionFactory.createTiledFromSource(pBitmapTextureAtlas, textureSource, pTextureX, pTextureY, pTileColumns, pTileRows);
 	}
 
 
-	public static ITextureRegion createFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureX
+         * @param pTextureY
+         * @return
+         */
+        public static ITextureRegion createFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createFromAsset(pBitmapTextureAtlas, pContext, pAssetPath, pWidth, pHeight, null, pTextureX, pTextureY);
 	}
 
-	public static ITiledTextureRegion createTiledFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(pBitmapTextureAtlas, pContext, pAssetPath, pWidth, pHeight, null, pTextureX, pTextureY, pTileColumns, pTileRows);
 	}
 
-	public static ITextureRegion createFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @param pTextureX
+         * @param pTextureY
+         * @return
+         */
+        public static ITextureRegion createFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY) {
 		final IBitmapTextureAtlasSource textureSource = new SVGAssetBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.sAssetBasePath + pAssetPath, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pSVGColorMapper);
 		return TextureRegionFactory.createFromSource(pBitmapTextureAtlas, textureSource, pTextureX, pTextureY);
 	}
 
-	public static ITiledTextureRegion createTiledFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromAsset(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
 		final IBitmapTextureAtlasSource textureSource = new SVGAssetBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.sAssetBasePath + pAssetPath, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pSVGColorMapper);
 		return TextureRegionFactory.createTiledFromSource(pBitmapTextureAtlas, textureSource, pTextureX, pTextureY, pTileColumns, pTileRows);
 	}
 
 
-	public static ITextureRegion createFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureX
+         * @param pTextureY
+         * @return
+         */
+        public static ITextureRegion createFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createFromResource(pBitmapTextureAtlas, pContext, pRawResourceID, pWidth, pHeight, null, pTextureX, pTextureY);
 	}
 
-	public static ITiledTextureRegion createTiledFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createTiledFromResource(pBitmapTextureAtlas, pContext, pRawResourceID, pWidth, pHeight, null, pTextureX, pTextureY, pTileColumns, pTileRows);
 	}
 
-	public static ITextureRegion createFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @param pTextureX
+         * @param pTextureY
+         * @return
+         */
+        public static ITextureRegion createFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY) {
 		final IBitmapTextureAtlasSource textureSource = new SVGResourceBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pRawResourceID, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), pSVGColorMapper);
 		return TextureRegionFactory.createFromSource(pBitmapTextureAtlas, textureSource, pTextureX, pTextureY);
 	}
 
-	public static ITiledTextureRegion createTiledFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromResource(final BitmapTextureAtlas pBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTextureX, final int pTextureY, final int pTileColumns, final int pTileRows) {
 		final IBitmapTextureAtlasSource textureSource = new SVGResourceBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pRawResourceID, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), pSVGColorMapper);
 		return TextureRegionFactory.createTiledFromSource(pBitmapTextureAtlas, textureSource, pTextureX, pTextureY, pTileColumns, pTileRows);
 	}
@@ -139,62 +264,195 @@ public class SVGBitmapTextureAtlasTextureRegionFactory {
 	// Methods using BuildableTexture
 	// ===========================================================
 
-	public static ITextureRegion createFromSVG(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pSVG
+         * @param pWidth
+         * @param pHeight
+         * @return
+         */
+        public static ITextureRegion createFromSVG(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight) {
 		return createFromSVG(pBuildableBitmapTextureAtlas, pSVG, pWidth, pHeight, false);
 	}
 	
-	public static ITextureRegion createFromSVG(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final boolean pRotated) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pSVG
+         * @param pWidth
+         * @param pHeight
+         * @param pRotated
+         * @return
+         */
+        public static ITextureRegion createFromSVG(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final boolean pRotated) {
 		final IBitmapTextureAtlasSource textureSource = new SVGBaseBitmapTextureAtlasSource(pSVG, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight));
 		return BuildableTextureAtlasTextureRegionFactory.createFromSource(pBuildableBitmapTextureAtlas, textureSource, pRotated);
 	}
 
-	public static ITiledTextureRegion createTiledFromSVG(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pSVG
+         * @param pWidth
+         * @param pHeight
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromSVG(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final SVG pSVG, final int pWidth, final int pHeight, final int pTileColumns, final int pTileRows) {
 		final IBitmapTextureAtlasSource textureSource = new SVGBaseBitmapTextureAtlasSource(pSVG, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight));
 		return BuildableTextureAtlasTextureRegionFactory.createTiledFromSource(pBuildableBitmapTextureAtlas, textureSource, pTileColumns, pTileRows);
 	}
 
 
-	public static ITextureRegion createFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @return
+         */
+        public static ITextureRegion createFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createFromAsset(pBuildableBitmapTextureAtlas, pContext, pAssetPath, pWidth, pHeight, null);
 	}
 
-	public static ITiledTextureRegion createTiledFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final int pTileColumns, final int pTileRows) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(pBuildableBitmapTextureAtlas, pContext, pAssetPath, pWidth, pHeight, null, pTileColumns, pTileRows);
 	}
 
-	public static ITextureRegion createFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @return
+         */
+        public static ITextureRegion createFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper) {
 		return createFromAsset(pBuildableBitmapTextureAtlas, pContext, pAssetPath, pWidth, pHeight, false, pSVGColorMapper);
 	}
 	
-	public static ITextureRegion createFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final boolean pRotated, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pRotated
+         * @param pSVGColorMapper
+         * @return
+         */
+        public static ITextureRegion createFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final boolean pRotated, final ISVGColorMapper pSVGColorMapper) {
 		final IBitmapTextureAtlasSource textureSource = new SVGAssetBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.sAssetBasePath + pAssetPath, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pSVGColorMapper);
 		return BuildableTextureAtlasTextureRegionFactory.createFromSource(pBuildableBitmapTextureAtlas, textureSource, pRotated);
 	}
 
-	public static ITiledTextureRegion createTiledFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pAssetPath
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromAsset(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final String pAssetPath, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTileColumns, final int pTileRows) {
 		final IBitmapTextureAtlasSource textureSource = new SVGAssetBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.sAssetBasePath + pAssetPath, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pSVGColorMapper);
 		return BuildableTextureAtlasTextureRegionFactory.createTiledFromSource(pBuildableBitmapTextureAtlas, textureSource, pTileColumns, pTileRows);
 	}
 
 
-	public static ITextureRegion createFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @return
+         */
+        public static ITextureRegion createFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createFromResource(pBuildableBitmapTextureAtlas, pContext, pRawResourceID, pWidth, pHeight, null);
 	}
 
-	public static ITiledTextureRegion createTiledFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final int pTileColumns, final int pTileRows) {
 		return SVGBitmapTextureAtlasTextureRegionFactory.createTiledFromResource(pBuildableBitmapTextureAtlas, pContext, pRawResourceID, pWidth, pHeight, null, pTileColumns, pTileRows);
 	}
 
-	public static ITextureRegion createFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @return
+         */
+        public static ITextureRegion createFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper) {
 		return createFromResource(pBuildableBitmapTextureAtlas, pContext, pRawResourceID, pWidth, pHeight, false, pSVGColorMapper);
 	}
 	
-	public static ITextureRegion createFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final boolean pRotated, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pRotated
+         * @param pSVGColorMapper
+         * @return
+         */
+        public static ITextureRegion createFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final boolean pRotated, final ISVGColorMapper pSVGColorMapper) {
 		final IBitmapTextureAtlasSource textureSource = new SVGResourceBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pRawResourceID, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), pSVGColorMapper);
 		return BuildableTextureAtlasTextureRegionFactory.createFromSource(pBuildableBitmapTextureAtlas, textureSource, pRotated);
 	}
 
-	public static ITiledTextureRegion createTiledFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param pBuildableBitmapTextureAtlas
+         * @param pContext
+         * @param pRawResourceID
+         * @param pWidth
+         * @param pHeight
+         * @param pSVGColorMapper
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static ITiledTextureRegion createTiledFromResource(final BuildableBitmapTextureAtlas pBuildableBitmapTextureAtlas, final Context pContext, final int pRawResourceID, final int pWidth, final int pHeight, final ISVGColorMapper pSVGColorMapper, final int pTileColumns, final int pTileRows) {
 		final IBitmapTextureAtlasSource textureSource = new SVGResourceBitmapTextureAtlasSource(pContext, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pHeight), pRawResourceID, SVGBitmapTextureAtlasTextureRegionFactory.applyScaleFactor(pWidth), pSVGColorMapper);
 		return BuildableTextureAtlasTextureRegionFactory.createTiledFromSource(pBuildableBitmapTextureAtlas, textureSource, pTileColumns, pTileRows);
 	}

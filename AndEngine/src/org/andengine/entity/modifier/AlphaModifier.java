@@ -24,27 +24,63 @@ public class AlphaModifier extends SingleValueSpanEntityModifier {
 	// Constructors
 	// ===========================================================
 
-	public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromAlpha
+     * @param pToAlpha
+     */
+    public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha) {
 		this(pDuration, pFromAlpha, pToAlpha, null, EaseLinear.getInstance());
 	}
 
-	public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromAlpha
+         * @param pToAlpha
+         * @param pEaseFunction
+         */
+        public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromAlpha, pToAlpha, null, pEaseFunction);
 	}
 
-	public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromAlpha
+         * @param pToAlpha
+         * @param pEntityModifierListener
+         */
+        public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromAlpha, pToAlpha, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-	public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromAlpha
+         * @param pToAlpha
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public AlphaModifier(final float pDuration, final float pFromAlpha, final float pToAlpha, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromAlpha, pToAlpha, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected AlphaModifier(final AlphaModifier pAlphaModifier) {
+        /**
+         * 
+         * @param pAlphaModifier
+         */
+        protected AlphaModifier(final AlphaModifier pAlphaModifier) {
 		super(pAlphaModifier);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public AlphaModifier deepCopy(){
 		return new AlphaModifier(this);
 	}
@@ -57,12 +93,23 @@ public class AlphaModifier extends SingleValueSpanEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pAlpha
+         */
+        @Override
 	protected void onSetInitialValue(final IEntity pEntity, final float pAlpha) {
 		pEntity.setAlpha(pAlpha);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pPercentageDone
+         * @param pAlpha
+         */
+        @Override
 	protected void onSetValue(final IEntity pEntity, final float pPercentageDone, final float pAlpha) {
 		pEntity.setAlpha(pAlpha);
 	}

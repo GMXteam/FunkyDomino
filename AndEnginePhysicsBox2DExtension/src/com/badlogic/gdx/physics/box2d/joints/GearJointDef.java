@@ -23,7 +23,10 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * provided joints must attach a dynamic body to a static body.
  */
 public class GearJointDef extends JointDef {
-	public GearJointDef () {
+    /**
+     * 
+     */
+    public GearJointDef () {
 		type = JointType.GearJoint;
 	}
 

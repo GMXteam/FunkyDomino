@@ -22,5 +22,11 @@ package com.badlogic.gdx.physics.box2d;
  * 
  */
 public interface ContactFilter {
-	boolean shouldCollide (Fixture fixtureA, Fixture fixtureB);
+    /**
+     * 
+     * @param fixtureA
+     * @param fixtureB
+     * @return
+     */
+    boolean shouldCollide (Fixture fixtureA, Fixture fixtureB);
 }

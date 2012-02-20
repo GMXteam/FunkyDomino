@@ -27,35 +27,71 @@ public class SlideMenuAnimator extends BaseMenuAnimator {
 	// Constructors
 	// ===========================================================
 
-	public SlideMenuAnimator(){
+    /**
+     * 
+     */
+    public SlideMenuAnimator(){
 		super();
 	}
 
-	public SlideMenuAnimator(final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pEaseFunction
+         */
+        public SlideMenuAnimator(final IEaseFunction pEaseFunction) {
 		super(pEaseFunction);
 	}
 
-	public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign) {
+        /**
+         * 
+         * @param pHorizontalAlign
+         */
+        public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign) {
 		super(pHorizontalAlign);
 	}
 
-	public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pHorizontalAlign
+         * @param pEaseFunction
+         */
+        public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign, final IEaseFunction pEaseFunction) {
 		super(pHorizontalAlign, pEaseFunction);
 	}
 
-	public SlideMenuAnimator(final float pMenuItemSpacing) {
+        /**
+         * 
+         * @param pMenuItemSpacing
+         */
+        public SlideMenuAnimator(final float pMenuItemSpacing) {
 		super(pMenuItemSpacing);
 	}
 
-	public SlideMenuAnimator(final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pMenuItemSpacing
+         * @param pEaseFunction
+         */
+        public SlideMenuAnimator(final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
 		super(pMenuItemSpacing, pEaseFunction);
 	}
 
-	public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing) {
+        /**
+         * 
+         * @param pHorizontalAlign
+         * @param pMenuItemSpacing
+         */
+        public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing) {
 		super(pHorizontalAlign, pMenuItemSpacing);
 	}
 
-	public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pHorizontalAlign
+         * @param pMenuItemSpacing
+         * @param pEaseFunction
+         */
+        public SlideMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
 		super(pHorizontalAlign, pMenuItemSpacing, pEaseFunction);
 	}
 
@@ -67,7 +103,13 @@ public class SlideMenuAnimator extends BaseMenuAnimator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pMenuItems
+         * @param pCameraWidth
+         * @param pCameraHeight
+         */
+        @Override
 	public void buildAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight) {
 		final IEaseFunction easeFunction = this.mEaseFunction;
 		final float maximumWidth = this.getMaximumWidth(pMenuItems);
@@ -103,7 +145,13 @@ public class SlideMenuAnimator extends BaseMenuAnimator {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pMenuItems
+         * @param pCameraWidth
+         * @param pCameraHeight
+         */
+        @Override
 	public void prepareAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight) {
 		final float maximumWidth = this.getMaximumWidth(pMenuItems);
 		final float overallHeight = this.getOverallHeight(pMenuItems);

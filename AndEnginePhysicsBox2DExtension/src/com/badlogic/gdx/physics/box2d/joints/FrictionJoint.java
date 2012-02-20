@@ -22,13 +22,20 @@ import com.badlogic.gdx.physics.box2d.World;
  * Friction joint. This is used for top-down friction. It provides 2D translational friction and angular friction.
  */
 public class FrictionJoint extends Joint {
-	public FrictionJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public FrictionJoint (World world, long addr) {
 		super(world, addr);
 	}
 
 	/**
 	 * Set the maximum friction force in N.
-	 */
+     * 
+     * @param force 
+     */
 	public void setMaxForce (float force) {
 		jniSetMaxForce(addr, force);
 	}
@@ -37,7 +44,9 @@ public class FrictionJoint extends Joint {
 
 	/**
 	 * Get the maximum friction force in N.
-	 */
+         * 
+         * @return 
+         */
 	public float getMaxForce () {
 		return jniGetMaxForce(addr);
 	}
@@ -46,7 +55,9 @@ public class FrictionJoint extends Joint {
 
 	/**
 	 * Set the maximum friction torque in N*m.
-	 */
+         * 
+         * @param torque 
+         */
 	public void setMaxTorque (float torque) {
 		jniSetMaxTorque(addr, torque);
 	}
@@ -55,7 +66,9 @@ public class FrictionJoint extends Joint {
 
 	/**
 	 * Get the maximum friction torque in N*m.
-	 */
+         * 
+         * @return 
+         */
 	public float getMaxTorque () {
 		return jniGetMaxTorque(addr);
 	}

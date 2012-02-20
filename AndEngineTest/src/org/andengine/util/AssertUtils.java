@@ -31,7 +31,12 @@ public class AssertUtils {
 	// Methods
 	// ===========================================================
 
-	public static void assertArrayEquals(final byte[] pArrayA, final byte[] pArrayB) {
+    /**
+     * 
+     * @param pArrayA
+     * @param pArrayB
+     */
+    public static void assertArrayEquals(final byte[] pArrayA, final byte[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;
@@ -46,7 +51,12 @@ public class AssertUtils {
 		}
 	}
 
-	public static void assertArrayEquals(final short[] pArrayA, final short[] pArrayB) {
+    /**
+     * 
+     * @param pArrayA
+     * @param pArrayB
+     */
+    public static void assertArrayEquals(final short[] pArrayA, final short[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;
@@ -61,7 +71,12 @@ public class AssertUtils {
 		}
 	}
 
-	public static void assertArrayEquals(final int[] pArrayA, final int[] pArrayB) {
+        /**
+         * 
+         * @param pArrayA
+         * @param pArrayB
+         */
+        public static void assertArrayEquals(final int[] pArrayA, final int[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;
@@ -76,7 +91,12 @@ public class AssertUtils {
 		}
 	}
 
-	public static void assertArrayEquals(final long[] pArrayA, final long[] pArrayB) {
+        /**
+         * 
+         * @param pArrayA
+         * @param pArrayB
+         */
+        public static void assertArrayEquals(final long[] pArrayA, final long[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;
@@ -91,7 +111,13 @@ public class AssertUtils {
 		}
 	}
 
-	public static void assertArrayEquals(final float[] pArrayA, final float[] pArrayB, final float pDelta) {
+        /**
+         * 
+         * @param pArrayA
+         * @param pArrayB
+         * @param pDelta
+         */
+        public static void assertArrayEquals(final float[] pArrayA, final float[] pArrayB, final float pDelta) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;
@@ -106,7 +132,13 @@ public class AssertUtils {
 		}
 	}
 
-	public static void assertArrayEquals(final double[] pArrayA, final double[] pArrayB, final float pDelta) {
+        /**
+         * 
+         * @param pArrayA
+         * @param pArrayB
+         * @param pDelta
+         */
+        public static void assertArrayEquals(final double[] pArrayA, final double[] pArrayB, final float pDelta) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;
@@ -121,7 +153,12 @@ public class AssertUtils {
 		}
 	}
 
-	public static void assertArrayEquals(final String[] pArrayA, final String[] pArrayB) {
+        /**
+         * 
+         * @param pArrayA
+         * @param pArrayB
+         */
+        public static void assertArrayEquals(final String[] pArrayA, final String[] pArrayB) {
 		if(pArrayA == null || pArrayB == null) {
 			Assert.fail("One of the arrays was null.");
 			return;

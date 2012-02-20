@@ -21,7 +21,11 @@ public class AllTests extends TestSuite {
 	// Constructors
 	// ===========================================================
 
-	public static Test suite() {
+    /**
+     * 
+     * @return
+     */
+    public static Test suite() {
 		return new TestSuiteBuilder(AllTests.class).includeAllPackagesUnderHere().build();
 	}
 

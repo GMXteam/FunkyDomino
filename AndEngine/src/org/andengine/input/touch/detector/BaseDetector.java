@@ -30,11 +30,19 @@ public abstract class BaseDetector implements IOnSceneTouchListener {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isEnabled() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isEnabled() {
 		return this.mEnabled;
 	}
 
-	public void setEnabled(final boolean pEnabled) {
+        /**
+         * 
+         * @param pEnabled
+         */
+        public void setEnabled(final boolean pEnabled) {
 		this.mEnabled = pEnabled;
 	}
 
@@ -42,16 +50,29 @@ public abstract class BaseDetector implements IOnSceneTouchListener {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public abstract void reset();
+        /**
+         * 
+         */
+        public abstract void reset();
 
-	protected abstract boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent);
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        protected abstract boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent);
 
 	@Override
 	public boolean onSceneTouchEvent(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 		return this.onTouchEvent(pSceneTouchEvent);
 	}
 
-	public final boolean onTouchEvent(final TouchEvent pSceneTouchEvent) {
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        public final boolean onTouchEvent(final TouchEvent pSceneTouchEvent) {
 		if(this.mEnabled) {
 			return this.onManagedTouchEvent(pSceneTouchEvent);
 		} else {

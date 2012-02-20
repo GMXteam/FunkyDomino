@@ -16,7 +16,10 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 	// Constants
 	// ===========================================================
 
-	public static final int LOOP_CONTINUOUS = -1;
+    /**
+     * 
+     */
+    public static final int LOOP_CONTINUOUS = -1;
 
 	// ===========================================================
 	// Fields
@@ -39,23 +42,51 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 	// Constructors
 	// ===========================================================
 
-	public LoopModifier(final IModifier<T> pModifier) {
+        /**
+         * 
+         * @param pModifier
+         */
+        public LoopModifier(final IModifier<T> pModifier) {
 		this(pModifier, LOOP_CONTINUOUS);
 	}
 
-	public LoopModifier(final IModifier<T> pModifier, final int pLoopCount) {
+        /**
+         * 
+         * @param pModifier
+         * @param pLoopCount
+         */
+        public LoopModifier(final IModifier<T> pModifier, final int pLoopCount) {
 		this(pModifier, pLoopCount, null, (IModifierListener<T>)null);
 	}
 
-	public LoopModifier(final IModifier<T> pModifier, final int pLoopCount, final IModifierListener<T> pModifierListener) {
+        /**
+         * 
+         * @param pModifier
+         * @param pLoopCount
+         * @param pModifierListener
+         */
+        public LoopModifier(final IModifier<T> pModifier, final int pLoopCount, final IModifierListener<T> pModifierListener) {
 		this(pModifier, pLoopCount, null, pModifierListener);
 	}
 
-	public LoopModifier(final IModifier<T> pModifier, final int pLoopCount, final ILoopModifierListener<T> pLoopModifierListener) {
+        /**
+         * 
+         * @param pModifier
+         * @param pLoopCount
+         * @param pLoopModifierListener
+         */
+        public LoopModifier(final IModifier<T> pModifier, final int pLoopCount, final ILoopModifierListener<T> pLoopModifierListener) {
 		this(pModifier, pLoopCount, pLoopModifierListener, (IModifierListener<T>)null);
 	}
 
-	public LoopModifier(final IModifier<T> pModifier, final int pLoopCount, final ILoopModifierListener<T> pLoopModifierListener, final IModifierListener<T> pModifierListener) {
+        /**
+         * 
+         * @param pModifier
+         * @param pLoopCount
+         * @param pLoopModifierListener
+         * @param pModifierListener
+         */
+        public LoopModifier(final IModifier<T> pModifier, final int pLoopCount, final ILoopModifierListener<T> pLoopModifierListener, final IModifierListener<T> pModifierListener) {
 		super(pModifierListener);
 
 		this.mModifier = pModifier;
@@ -68,7 +99,12 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 		this.mModifier.addModifierListener(this);
 	}
 
-	protected LoopModifier(final LoopModifier<T> pLoopModifier) throws DeepCopyNotSupportedException {
+        /**
+         * 
+         * @param pLoopModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        protected LoopModifier(final LoopModifier<T> pLoopModifier) throws DeepCopyNotSupportedException {
 		this(pLoopModifier.mModifier.deepCopy(), pLoopModifier.mLoopCount);
 	}
 
@@ -81,11 +117,19 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 	// Getter & Setter
 	// ===========================================================
 
-	public ILoopModifierListener<T> getLoopModifierListener() {
+        /**
+         * 
+         * @return
+         */
+        public ILoopModifierListener<T> getLoopModifierListener() {
 		return this.mLoopModifierListener;
 	}
 
-	public void setLoopModifierListener(final ILoopModifierListener<T> pLoopModifierListener) {
+        /**
+         * 
+         * @param pLoopModifierListener
+         */
+        public void setLoopModifierListener(final ILoopModifierListener<T> pLoopModifierListener) {
 		this.mLoopModifierListener = pLoopModifierListener;
 	}
 
@@ -93,12 +137,20 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSecondsElapsed() {
 		return this.mSecondsElapsed;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getDuration() {
 		return this.mDuration;
 	}
@@ -122,7 +174,10 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mFinished = false;
 		this.mLoop = 0;
@@ -136,7 +191,12 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 	// Methods
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pModifier
+         * @param pItem
+         */
+        @Override
 	public void onModifierStarted(final IModifier<T> pModifier, final T pItem) {
 		if(!this.mModifierStartedCalled) {
 			this.mModifierStartedCalled = true;
@@ -147,7 +207,12 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pModifier
+         * @param pItem
+         */
+        @Override
 	public void onModifierFinished(final IModifier<T> pModifier, final T pItem) {
 		if(this.mLoopModifierListener != null) {
 			this.mLoopModifierListener.onLoopFinished(this, this.mLoop, this.mLoopCount);
@@ -173,8 +238,24 @@ public class LoopModifier<T> extends BaseModifier<T> implements IModifierListene
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface ILoopModifierListener<T> {
-		public void onLoopStarted(final LoopModifier<T> pLoopModifier, final int pLoop, final int pLoopCount);
-		public void onLoopFinished(final LoopModifier<T> pLoopModifier, final int pLoop, final int pLoopCount);
+        /**
+         * 
+         * @param <T>
+         */
+        public interface ILoopModifierListener<T> {
+            /**
+             * 
+             * @param pLoopModifier
+             * @param pLoop
+             * @param pLoopCount
+             */
+            public void onLoopStarted(final LoopModifier<T> pLoopModifier, final int pLoop, final int pLoopCount);
+                /**
+                 * 
+                 * @param pLoopModifier
+                 * @param pLoop
+                 * @param pLoopCount
+                 */
+                public void onLoopFinished(final LoopModifier<T> pLoopModifier, final int pLoop, final int pLoopCount);
 	}
 }

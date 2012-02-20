@@ -41,7 +41,13 @@ public class SVGPolylineParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
+    /**
+     * 
+     * @param pSVGProperties
+     * @param pCanvas
+     * @param pSVGPaint
+     */
+    public static void parse(final SVGProperties pSVGProperties, final Canvas pCanvas, final SVGPaint pSVGPaint) {
 		final SVGNumberParserFloatResult svgNumberParserFloatResult = SVGNumberParser.parseFloats(pSVGProperties.getStringAttribute(ATTRIBUTE_POINTS));
 		if (svgNumberParserFloatResult != null) {
 			final float[] points = svgNumberParserFloatResult.getNumbers();

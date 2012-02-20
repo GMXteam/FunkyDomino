@@ -22,7 +22,10 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * Mouse joint definition. This requires a world target point, tuning parameters, and the time step.
  */
 public class MouseJointDef extends JointDef {
-	public MouseJointDef () {
+    /**
+     * 
+     */
+    public MouseJointDef () {
 		type = JointType.MouseJoint;
 	}
 

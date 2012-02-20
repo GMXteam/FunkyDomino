@@ -32,19 +32,51 @@ public class SVGResourceBitmapTextureAtlasSource extends SVGBaseBitmapTextureAtl
 	// Constructors
 	// ===========================================================
 
-	public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY) {
+        /**
+         * 
+         * @param pContext
+         * @param pRawResourceID
+         * @param pTextureX
+         * @param pTextureY
+         */
+        public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY) {
 		this(pContext, pRawResourceID, pTextureX, pTextureY, null);
 	}
 
-	public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final float pScale) {
+        /**
+         * 
+         * @param pContext
+         * @param pRawResourceID
+         * @param pTextureX
+         * @param pTextureY
+         * @param pScale
+         */
+        public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final float pScale) {
 		this(pContext, pRawResourceID, pTextureX, pTextureY, pScale, null);
 	}
 
-	public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
+        /**
+         * 
+         * @param pContext
+         * @param pRawResourceID
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         */
+        public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		this(pContext, pRawResourceID, pTextureX, pTextureY, pTextureWidth, pTextureHeight, null);
 	}
 
-	public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pContext
+         * @param pRawResourceID
+         * @param pTextureX
+         * @param pTextureY
+         * @param pSVGColorMapper
+         */
+        public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final ISVGColorMapper pSVGColorMapper) {
 		super(SVGResourceBitmapTextureAtlasSource.getSVG(pContext, pRawResourceID, pSVGColorMapper), pTextureX, pTextureY);
 
 		this.mContext = pContext;
@@ -52,7 +84,16 @@ public class SVGResourceBitmapTextureAtlasSource extends SVGBaseBitmapTextureAtl
 		this.mSVGColorMapper = pSVGColorMapper;
 	}
 
-	public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final float pScale, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pContext
+         * @param pRawResourceID
+         * @param pTextureX
+         * @param pTextureY
+         * @param pScale
+         * @param pSVGColorMapper
+         */
+        public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final float pScale, final ISVGColorMapper pSVGColorMapper) {
 		super(SVGResourceBitmapTextureAtlasSource.getSVG(pContext, pRawResourceID, pSVGColorMapper), pTextureX, pTextureY, pScale);
 
 		this.mContext = pContext;
@@ -60,7 +101,17 @@ public class SVGResourceBitmapTextureAtlasSource extends SVGBaseBitmapTextureAtl
 		this.mSVGColorMapper = pSVGColorMapper;
 	}
 
-	public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight, final ISVGColorMapper pSVGColorMapper) {
+        /**
+         * 
+         * @param pContext
+         * @param pRawResourceID
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         * @param pSVGColorMapper
+         */
+        public SVGResourceBitmapTextureAtlasSource(final Context pContext, final int pRawResourceID, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight, final ISVGColorMapper pSVGColorMapper) {
 		super(SVGResourceBitmapTextureAtlasSource.getSVG(pContext, pRawResourceID, pSVGColorMapper), pTextureX, pTextureY, pTextureWidth, pTextureHeight);
 
 		this.mContext = pContext;

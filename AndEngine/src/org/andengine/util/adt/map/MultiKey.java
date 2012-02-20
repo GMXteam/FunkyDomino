@@ -6,6 +6,7 @@ import java.util.Arrays;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <K> 
  * @author Nicolas Gramlich
  * @since 16:54:24 - 07.11.2010
  */
@@ -25,7 +26,11 @@ public class MultiKey<K> {
 	// Constructors
 	// ===========================================================
 
-	public MultiKey(final K... pKeys) {
+        /**
+         * 
+         * @param pKeys
+         */
+        public MultiKey(final K... pKeys) {
 		this.mKeys = pKeys;
 
 		this.mCachedHashCode = MultiKey.hash(pKeys);
@@ -35,7 +40,11 @@ public class MultiKey<K> {
 	// Getter & Setter
 	// ===========================================================
 
-	public K[] getKeys() {
+        /**
+         * 
+         * @return
+         */
+        public K[] getKeys() {
 		return this.mKeys;
 	}
 
@@ -43,7 +52,12 @@ public class MultiKey<K> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pOther
+         * @return
+         */
+        @Override
 	public boolean equals(final Object pOther) {
 		if(pOther == this) {
 			return true;
@@ -55,7 +69,12 @@ public class MultiKey<K> {
 		return false;
 	}
 
-	public static int hash(final Object ... pKeys) {
+        /**
+         * 
+         * @param pKeys
+         * @return
+         */
+        public static int hash(final Object ... pKeys) {
 		int hashCode = 0;
 		for(final Object key : pKeys) {
 			if(key != null) {
@@ -66,12 +85,20 @@ public class MultiKey<K> {
 	}
 
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public int hashCode() {
 		return this.mCachedHashCode;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public String toString() {
 		return "MultiKey" + Arrays.asList(this.mKeys).toString();
 	}
@@ -80,11 +107,20 @@ public class MultiKey<K> {
 	// Methods
 	// ===========================================================
 
-	public K getKey(final int pIndex) {
+        /**
+         * 
+         * @param pIndex
+         * @return
+         */
+        public K getKey(final int pIndex) {
 		return this.mKeys[pIndex];
 	}
 
-	public int size() {
+        /**
+         * 
+         * @return
+         */
+        public int size() {
 		return this.mKeys.length;
 	}
 

@@ -43,13 +43,20 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 
 	/**
 	 * Uses {@link BitmapTextureFormat#RGBA_8888}.
-	 */
+         * 
+         * @param pTextureManager
+         * @param pWidth 
+         * @param pHeight  
+         */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight) {
 		this(pTextureManager, pWidth, pHeight, BitmapTextureFormat.RGBA_8888);
 	}
 
 	/**
-	 * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
+         * @param pTextureManager 
+         * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
+         * @param pWidth 
+         * @param pHeight  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final BitmapTextureFormat pBitmapTextureFormat) {
 		this(pTextureManager, pWidth, pHeight, pBitmapTextureFormat, TextureOptions.DEFAULT, null);
@@ -58,15 +65,21 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 	/**
 	 * Uses {@link BitmapTextureFormat#RGBA_8888}.
 	 *
-	 * @param pTextureStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @param pTextureManager 
+         * @param pWidth 
+         * @param pHeight
+         * @param pTextureAtlasStateListener  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final ITextureAtlasStateListener<IBitmapTextureAtlasSource> pTextureAtlasStateListener) {
 		this(pTextureManager, pWidth, pHeight, BitmapTextureFormat.RGBA_8888, TextureOptions.DEFAULT, pTextureAtlasStateListener);
 	}
 
 	/**
-	 * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
-	 * @param pTextureAtlasStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @param pTextureManager 
+         * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
+         * @param pWidth 
+         * @param pTextureAtlasStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @param pHeight  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final BitmapTextureFormat pBitmapTextureFormat, final ITextureAtlasStateListener<IBitmapTextureAtlasSource> pTextureAtlasStateListener) {
 		this(pTextureManager, pWidth, pHeight, pBitmapTextureFormat, TextureOptions.DEFAULT, pTextureAtlasStateListener);
@@ -75,15 +88,23 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 	/**
 	 * Uses {@link BitmapTextureFormat#RGBA_8888}.
 	 *
-	 * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
+         * @param pTextureManager 
+         * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
+         * @param pWidth 
+         * @param pHeight
+         * @throws IllegalArgumentException  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final TextureOptions pTextureOptions) throws IllegalArgumentException {
 		this(pTextureManager, pWidth, pHeight, BitmapTextureFormat.RGBA_8888, pTextureOptions, null);
 	}
 
 	/**
-	 * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
-	 * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
+         * @param pTextureManager 
+         * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
+         * @param pWidth 
+         * @param pHeight 
+         * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
+         * @throws IllegalArgumentException  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final BitmapTextureFormat pBitmapTextureFormat, final TextureOptions pTextureOptions) throws IllegalArgumentException {
 		this(pTextureManager, pWidth, pHeight, pBitmapTextureFormat, pTextureOptions, null);
@@ -92,17 +113,25 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 	/**
 	 * Uses {@link BitmapTextureFormat#RGBA_8888}.
 	 *
-	 * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
-	 * @param pTextureAtlasStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @param pTextureManager 
+         * @param pWidth 
+         * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
+         * @param pHeight 
+         * @param pTextureAtlasStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @throws IllegalArgumentException  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final TextureOptions pTextureOptions, final ITextureAtlasStateListener<IBitmapTextureAtlasSource> pTextureAtlasStateListener) throws IllegalArgumentException {
 		this(pTextureManager, pWidth, pHeight, BitmapTextureFormat.RGBA_8888, pTextureOptions, pTextureAtlasStateListener);
 	}
 
 	/**
-	 * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
-	 * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
-	 * @param pTextureAtlasStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @param pTextureManager 
+         * @param pBitmapTextureFormat use {@link BitmapTextureFormat#RGBA_8888} or {@link BitmapTextureFormat#RGBA_4444} for a {@link BitmapTextureAtlas} with transparency and {@link BitmapTextureFormat#RGB_565} for a {@link BitmapTextureAtlas} without transparency.
+         * @param pWidth 
+         * @param pHeight 
+         * @param pTextureOptions the (quality) settings of this {@link BitmapTextureAtlas}.
+         * @param pTextureAtlasStateListener to be informed when this {@link BitmapTextureAtlas} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
+         * @throws IllegalArgumentException  
 	 */
 	public BitmapTextureAtlas(final TextureManager pTextureManager, final int pWidth, final int pHeight, final BitmapTextureFormat pBitmapTextureFormat, final TextureOptions pTextureOptions, final ITextureAtlasStateListener<IBitmapTextureAtlasSource> pTextureAtlasStateListener) throws IllegalArgumentException {
 		super(pTextureManager, pWidth, pHeight, pBitmapTextureFormat.getPixelFormat(), pTextureOptions, pTextureAtlasStateListener);
@@ -114,7 +143,11 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 	// Getter & Setter
 	// ===========================================================
 
-	public BitmapTextureFormat getBitmapTextureFormat() {
+        /**
+         * 
+         * @return
+         */
+        public BitmapTextureFormat getBitmapTextureFormat() {
 		return this.mBitmapTextureFormat;
 	}
 
@@ -122,7 +155,14 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 	
-	@Override
+        /**
+         * 
+         * @param pTextureX
+         * @param pTextureY
+         * @param pWidth
+         * @param pHeight
+         */
+        @Override
 	public void addEmptyTextureAtlasSource(final int pTextureX, final int pTextureY, final int pWidth, final int pHeight) {
 		this.addTextureAtlasSource(new EmptyBitmapTextureAtlasSource(pWidth, pHeight), pTextureX, pTextureY);
 	}
@@ -131,7 +171,11 @@ public class BitmapTextureAtlas extends TextureAtlas<IBitmapTextureAtlasSource> 
 	// Methods
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         */
+        @Override
 	protected void writeTextureToHardware(final GLState pGLState) {
 		final PixelFormat pixelFormat = this.mBitmapTextureFormat.getPixelFormat();
 		final int glInternalFormat = pixelFormat.getGLInternalFormat();

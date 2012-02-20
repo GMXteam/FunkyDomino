@@ -26,7 +26,11 @@ public class SVGFilterElementGaussianBlur implements ISVGFilterElement {
 	// Constructors
 	// ===========================================================
 
-	public SVGFilterElementGaussianBlur(final float pStandardDeviation) {
+        /**
+         * 
+         * @param pStandardDeviation
+         */
+        public SVGFilterElementGaussianBlur(final float pStandardDeviation) {
 		final float radius = pStandardDeviation * 2;
 		this.mBlurMaskFilter = new BlurMaskFilter(radius, Blur.NORMAL);
 	}
@@ -39,7 +43,11 @@ public class SVGFilterElementGaussianBlur implements ISVGFilterElement {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pPaint
+         */
+        @Override
 	public void apply(final Paint pPaint) {
 		pPaint.setMaskFilter(this.mBlurMaskFilter);
 	}

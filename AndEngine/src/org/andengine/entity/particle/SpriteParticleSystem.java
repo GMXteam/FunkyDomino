@@ -25,11 +25,31 @@ public class SpriteParticleSystem extends ParticleSystem<Sprite> {
 	// Constructors
 	// ===========================================================
 
-	public SpriteParticleSystem(final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+    /**
+     * 
+     * @param pParticleEmitter
+     * @param pRateMinimum
+     * @param pRateMaximum
+     * @param pParticlesMaximum
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
+    public SpriteParticleSystem(final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(0, 0, pParticleEmitter, pRateMinimum, pRateMaximum, pParticlesMaximum, pTextureRegion, pVertexBufferObjectManager);
 	}
 
-	public SpriteParticleSystem(final float pX, final float pY, final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pParticleEmitter
+         * @param pRateMinimum
+         * @param pRateMaximum
+         * @param pParticlesMaximum
+         * @param pTextureRegion
+         * @param pVertexBufferObjectManager
+         */
+        public SpriteParticleSystem(final float pX, final float pY, final IParticleEmitter pParticleEmitter, final float pRateMinimum, final float pRateMaximum, final int pParticlesMaximum, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, new IEntityFactory<Sprite>() {
 			@Override
 			public Sprite create(final float pX, final float pY) {

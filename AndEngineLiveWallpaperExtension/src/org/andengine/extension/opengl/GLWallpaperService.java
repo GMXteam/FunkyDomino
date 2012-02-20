@@ -34,7 +34,11 @@ public class GLWallpaperService extends WallpaperService {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @return
+     */
+    @Override
 	public Engine onCreateEngine() {
 		return new GLEngine();
 	}
@@ -47,13 +51,22 @@ public class GLWallpaperService extends WallpaperService {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public class GLEngine extends Engine {
+        /**
+         * 
+         */
+        public class GLEngine extends Engine {
 		// ===========================================================
 		// Constants
 		// ===========================================================
 
-		public final static int RENDERMODE_WHEN_DIRTY = 0;
-		public final static int RENDERMODE_CONTINUOUSLY = 1;
+            /**
+             * 
+             */
+            public final static int RENDERMODE_WHEN_DIRTY = 0;
+            /**
+             * 
+             */
+            public final static int RENDERMODE_CONTINUOUSLY = 1;
 
 		// ===========================================================
 		// Fields
@@ -71,15 +84,27 @@ public class GLWallpaperService extends WallpaperService {
 		// Getter & Setter
 		// ===========================================================
 
-		public int getDebugFlags() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getDebugFlags() {
 			return this.mDebugFlags;
 		}
 
-		public void setDebugFlags(final int pDebugFlags) {
+                /**
+                 * 
+                 * @param pDebugFlags
+                 */
+                public void setDebugFlags(final int pDebugFlags) {
 			this.mDebugFlags = pDebugFlags;
 		}
 
-		public void setRenderer(final Renderer pRenderer) {
+                /**
+                 * 
+                 * @param pRenderer
+                 */
+                public void setRenderer(final Renderer pRenderer) {
 			this.checkRenderThreadState();
 
 			if (this.mEGLConfigChooser == null) {
@@ -90,17 +115,29 @@ public class GLWallpaperService extends WallpaperService {
 			this.mGLThread.start();
 		}
 
-		public void setEGLConfigChooser(final EGLConfigChooser pEGLConfigChooser) {
+                /**
+                 * 
+                 * @param pEGLConfigChooser
+                 */
+                public void setEGLConfigChooser(final EGLConfigChooser pEGLConfigChooser) {
 			this.checkRenderThreadState();
 
 			this.mEGLConfigChooser = pEGLConfigChooser;
 		}
 
-		public int getRenderMode() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getRenderMode() {
 			return this.mGLThread.getRenderMode();
 		}
 
-		public void setRenderMode(final int pRenderMode) {
+                /**
+                 * 
+                 * @param pRenderMode
+                 */
+                public void setRenderMode(final int pRenderMode) {
 			this.mGLThread.setRenderMode(pRenderMode);
 		}
 
@@ -108,7 +145,11 @@ public class GLWallpaperService extends WallpaperService {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pVisibility
+                 */
+                @Override
 		public void onVisibilityChanged(final boolean pVisibility) {
 			Debug.d(this.getClass().getSimpleName() + ".onVisibilityChanged(" + pVisibility + ")");
 
@@ -121,21 +162,36 @@ public class GLWallpaperService extends WallpaperService {
 			super.onVisibilityChanged(pVisibility);
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pSurfaceHolder
+                 * @param pFormat
+                 * @param pWidth
+                 * @param pHeight
+                 */
+                @Override
 		public void onSurfaceChanged(final SurfaceHolder pSurfaceHolder, final int pFormat, final int pWidth, final int pHeight) {
 			this.mGLThread.onWindowResize(pWidth, pHeight);
 
 			super.onSurfaceChanged(pSurfaceHolder, pFormat, pWidth, pHeight);
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pSurfaceHolder
+                 */
+                @Override
 		public void onSurfaceCreated(final SurfaceHolder pSurfaceHolder) {
 			this.mGLThread.surfaceCreated(pSurfaceHolder);
 
 			super.onSurfaceCreated(pSurfaceHolder);
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pSurfaceHolder
+                 */
+                @Override
 		public void onSurfaceDestroyed(final SurfaceHolder pSurfaceHolder) {
 			this.mGLThread.surfaceDestroyed();
 
@@ -146,19 +202,32 @@ public class GLWallpaperService extends WallpaperService {
 		// Methods
 		// ===========================================================
 
-		public void requestRender() {
+                /**
+                 * 
+                 */
+                public void requestRender() {
 			this.mGLThread.requestRender();
 		}
 
-		public void onPause() {
+                /**
+                 * 
+                 */
+                public void onPause() {
 			this.mGLThread.onPause();
 		}
 
-		public void onResume() {
+                /**
+                 * 
+                 */
+                public void onResume() {
 			this.mGLThread.onResume();
 		}
 
-		public void queueEvent(final Runnable pRunnable) {
+                /**
+                 * 
+                 * @param pRunnable
+                 */
+                public void queueEvent(final Runnable pRunnable) {
 			this.mGLThread.queueEvent(pRunnable);
 		}
 

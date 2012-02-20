@@ -20,5 +20,10 @@ public interface IDrawHandler {
 	// Methods
 	// ===========================================================
 
-	public void onDraw(final GLState pGLState, final Camera pCamera);
+    /**
+     * 
+     * @param pGLState
+     * @param pCamera
+     */
+    public void onDraw(final GLState pGLState, final Camera pCamera);
 }

@@ -21,7 +21,8 @@ import android.os.Bundle;
 import com.gmxteam.funkydomino.activities.examples.R;
 
 /**
- * Activité utilisée pour configurer Funky Domino.
+ * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
+ * activité de type liste.
  * @author Guillaume Poirier-Morency
  */
 public final class PreferencesActivity extends Activity {

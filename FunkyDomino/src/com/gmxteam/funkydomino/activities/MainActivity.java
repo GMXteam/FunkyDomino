@@ -16,25 +16,16 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import android.os.Bundle;
 import org.andengine.engine.Engine;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.entity.scene.Scene;
 
 /**
- * Activité principale de l'application Android.
- * Elle sera construite avec JBox2D et permettera d'accéder aux autres activités.
+ * Classe principale de l'application Android.
+ * Elle sera construite avec AndEngine.
  * @author Guillaume Poirier-Morency
  */
 public final class MainActivity extends AndEngineActivity {
-
-    /** Called when the activity is first created.
-     * @param savedInstanceState 
-     */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     /**
      * 
@@ -66,18 +57,38 @@ public final class MainActivity extends AndEngineActivity {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * 
+     * @return
+     */
     public EngineOptions onCreateEngineOptions() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * 
+     * @param pOnCreateResourcesCallback
+     * @throws Exception
+     */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * 
+     * @param pOnCreateSceneCallback
+     * @throws Exception
+     */
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * 
+     * @param pScene
+     * @param pOnPopulateSceneCallback
+     * @throws Exception
+     */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }

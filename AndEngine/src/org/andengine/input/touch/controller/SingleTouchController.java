@@ -22,7 +22,10 @@ public class SingleTouchController extends BaseTouchController {
 	// Constructors
 	// ===========================================================
 
-	public SingleTouchController() {
+    /**
+     * 
+     */
+    public SingleTouchController() {
 
 	}
 
@@ -34,7 +37,11 @@ public class SingleTouchController extends BaseTouchController {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @param pMotionEvent
+     */
+    @Override
 	public void onHandleMotionEvent(final MotionEvent pMotionEvent) {
 		this.fireTouchEvent(pMotionEvent.getX(), pMotionEvent.getY(), pMotionEvent.getAction(), 0, pMotionEvent);
 	}

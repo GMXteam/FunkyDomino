@@ -6,6 +6,7 @@ import org.andengine.util.adt.bounds.IBounds;
 /**
  * (c) Zynga 2011
  *
+ * @param <B> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 20:23:12 - 07.10.2011
  */
@@ -18,5 +19,9 @@ public interface ISpatialItem<B extends IBounds> {
 	// Methods
 	// ===========================================================
 
-	public B getBounds();
+    /**
+     * 
+     * @return
+     */
+    public B getBounds();
 }

@@ -39,11 +39,20 @@ public class TexturePackLoader {
 	// Constructors
 	// ===========================================================
 
-	public TexturePackLoader(final TextureManager pTextureManager) {
+        /**
+         * 
+         * @param pTextureManager
+         */
+        public TexturePackLoader(final TextureManager pTextureManager) {
 		this(pTextureManager, "");
 	}
 
-	public TexturePackLoader(final TextureManager pTextureManager, final String pAssetBasePath) {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pAssetBasePath
+         */
+        public TexturePackLoader(final TextureManager pTextureManager, final String pAssetBasePath) {
 		this.mTextureManager = pTextureManager;
 		this.mAssetBasePath = pAssetBasePath;
 	}
@@ -60,7 +69,14 @@ public class TexturePackLoader {
 	// Methods
 	// ===========================================================
 
-	public TexturePack loadFromAsset(final AssetManager pAssetManager, final String pAssetPath) throws TexturePackParseException {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pAssetPath
+         * @return
+         * @throws TexturePackParseException
+         */
+        public TexturePack loadFromAsset(final AssetManager pAssetManager, final String pAssetPath) throws TexturePackParseException {
 		try {
 			return this.load(pAssetManager, pAssetManager.open(this.mAssetBasePath + pAssetPath));
 		} catch (final IOException e) {
@@ -68,7 +84,14 @@ public class TexturePackLoader {
 		}
 	}
 
-	public TexturePack load(final AssetManager pAssetManager, final InputStream pInputStream) throws TexturePackParseException {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pInputStream
+         * @return
+         * @throws TexturePackParseException
+         */
+        public TexturePack load(final AssetManager pAssetManager, final InputStream pInputStream) throws TexturePackParseException {
 		try{
 			final SAXParserFactory spf = SAXParserFactory.newInstance();
 			final SAXParser sp = spf.newSAXParser();

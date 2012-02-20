@@ -17,7 +17,12 @@ public interface IShaderSourceCriteria {
 	// Fields
 	// ===========================================================
 
-	public boolean isMet(final GLState pGLState);
+    /**
+     * 
+     * @param pGLState
+     * @return
+     */
+    public boolean isMet(final GLState pGLState);
 
 	// ===========================================================
 	// Inner and Anonymous Classes

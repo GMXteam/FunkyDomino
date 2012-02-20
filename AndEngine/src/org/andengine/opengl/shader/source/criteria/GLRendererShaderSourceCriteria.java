@@ -22,7 +22,12 @@ public class GLRendererShaderSourceCriteria extends StringShaderSourceCriteria {
 	// Constructors
 	// ===========================================================
 
-	public GLRendererShaderSourceCriteria(final StringOperator pStringOperator, final String pGLRenderer) {
+    /**
+     * 
+     * @param pStringOperator
+     * @param pGLRenderer
+     */
+    public GLRendererShaderSourceCriteria(final StringOperator pStringOperator, final String pGLRenderer) {
 		super(pStringOperator, pGLRenderer);
 	}
 	
@@ -34,7 +39,12 @@ public class GLRendererShaderSourceCriteria extends StringShaderSourceCriteria {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	protected String getActualCriteria(final GLState pGLState) {
 		return pGLState.getRenderer();
 	}

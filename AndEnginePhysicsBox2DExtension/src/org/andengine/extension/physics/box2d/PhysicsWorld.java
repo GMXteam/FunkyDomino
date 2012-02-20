@@ -35,29 +35,62 @@ public class PhysicsWorld implements IUpdateHandler {
 		System.loadLibrary( "andenginephysicsbox2dextension" );
 	}
 
-	public static final int VELOCITY_ITERATIONS_DEFAULT = 8;
-	public static final int POSITION_ITERATIONS_DEFAULT = 8;
+        /**
+         * 
+         */
+        public static final int VELOCITY_ITERATIONS_DEFAULT = 8;
+        /**
+         * 
+         */
+        public static final int POSITION_ITERATIONS_DEFAULT = 8;
 
 	// ===========================================================
 	// Fields
 	// ===========================================================
 
-	protected final PhysicsConnectorManager mPhysicsConnectorManager = new PhysicsConnectorManager();
-	protected final RunnableHandler mRunnableHandler = new RunnableHandler();
-	protected final World mWorld;
+        /**
+         * 
+         */
+        protected final PhysicsConnectorManager mPhysicsConnectorManager = new PhysicsConnectorManager();
+        /**
+         * 
+         */
+        protected final RunnableHandler mRunnableHandler = new RunnableHandler();
+        /**
+         * 
+         */
+        protected final World mWorld;
 
-	protected int mVelocityIterations = VELOCITY_ITERATIONS_DEFAULT;
-	protected int mPositionIterations = POSITION_ITERATIONS_DEFAULT;
+        /**
+         * 
+         */
+        protected int mVelocityIterations = VELOCITY_ITERATIONS_DEFAULT;
+        /**
+         * 
+         */
+        protected int mPositionIterations = POSITION_ITERATIONS_DEFAULT;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public PhysicsWorld(final Vector2 pGravity, final boolean pAllowSleep) {
+        /**
+         * 
+         * @param pGravity
+         * @param pAllowSleep
+         */
+        public PhysicsWorld(final Vector2 pGravity, final boolean pAllowSleep) {
 		this(pGravity, pAllowSleep, VELOCITY_ITERATIONS_DEFAULT, POSITION_ITERATIONS_DEFAULT);
 	}
 
-	public PhysicsWorld(final Vector2 pGravity, final boolean pAllowSleep, final int pVelocityIterations, final int pPositionIterations) {
+        /**
+         * 
+         * @param pGravity
+         * @param pAllowSleep
+         * @param pVelocityIterations
+         * @param pPositionIterations
+         */
+        public PhysicsWorld(final Vector2 pGravity, final boolean pAllowSleep, final int pVelocityIterations, final int pPositionIterations) {
 		this.mWorld = new World(pGravity, pAllowSleep);
 		this.mVelocityIterations = pVelocityIterations;
 		this.mPositionIterations = pPositionIterations;
@@ -71,35 +104,66 @@ public class PhysicsWorld implements IUpdateHandler {
 	//		return this.mWorld;
 	//	}
 
-	public int getPositionIterations() {
+        /**
+         * 
+         * @return
+         */
+        public int getPositionIterations() {
 		return this.mPositionIterations;
 	}
 
-	public void setPositionIterations(final int pPositionIterations) {
+        /**
+         * 
+         * @param pPositionIterations
+         */
+        public void setPositionIterations(final int pPositionIterations) {
 		this.mPositionIterations = pPositionIterations;
 	}
 
-	public int getVelocityIterations() {
+        /**
+         * 
+         * @return
+         */
+        public int getVelocityIterations() {
 		return this.mVelocityIterations;
 	}
 
-	public void setVelocityIterations(final int pVelocityIterations) {
+        /**
+         * 
+         * @param pVelocityIterations
+         */
+        public void setVelocityIterations(final int pVelocityIterations) {
 		this.mVelocityIterations = pVelocityIterations;
 	}
 
-	public PhysicsConnectorManager getPhysicsConnectorManager() {
+        /**
+         * 
+         * @return
+         */
+        public PhysicsConnectorManager getPhysicsConnectorManager() {
 		return this.mPhysicsConnectorManager;
 	}
 
-	public void clearPhysicsConnectors() {
+        /**
+         * 
+         */
+        public void clearPhysicsConnectors() {
 		this.mPhysicsConnectorManager.clear();
 	}
 
-	public void registerPhysicsConnector(final PhysicsConnector pPhysicsConnector) {
+        /**
+         * 
+         * @param pPhysicsConnector
+         */
+        public void registerPhysicsConnector(final PhysicsConnector pPhysicsConnector) {
 		this.mPhysicsConnectorManager.add(pPhysicsConnector);
 	}
 
-	public void unregisterPhysicsConnector(final PhysicsConnector pPhysicsConnector) {
+        /**
+         * 
+         * @param pPhysicsConnector
+         */
+        public void unregisterPhysicsConnector(final PhysicsConnector pPhysicsConnector) {
 		this.mPhysicsConnectorManager.remove(pPhysicsConnector);
 	}
 
@@ -125,107 +189,217 @@ public class PhysicsWorld implements IUpdateHandler {
 	// Methods
 	// ===========================================================
 
-	public void postRunnable(final Runnable pRunnable) {
+        /**
+         * 
+         * @param pRunnable
+         */
+        public void postRunnable(final Runnable pRunnable) {
 		this.mRunnableHandler.postRunnable(pRunnable);
 	}
 
-	public void clearForces() {
+        /**
+         * 
+         */
+        public void clearForces() {
 		this.mWorld.clearForces();
 	}
 
-	public Body createBody(final BodyDef pDef) {
+        /**
+         * 
+         * @param pDef
+         * @return
+         */
+        public Body createBody(final BodyDef pDef) {
 		return this.mWorld.createBody(pDef);
 	}
 
-	public Joint createJoint(final JointDef pDef) {
+        /**
+         * 
+         * @param pDef
+         * @return
+         */
+        public Joint createJoint(final JointDef pDef) {
 		return this.mWorld.createJoint(pDef);
 	}
 
-	public void destroyBody(final Body pBody) {
+        /**
+         * 
+         * @param pBody
+         */
+        public void destroyBody(final Body pBody) {
 		this.mWorld.destroyBody(pBody);
 	}
 
-	public void destroyJoint(final Joint pJoint) {
+        /**
+         * 
+         * @param pJoint
+         */
+        public void destroyJoint(final Joint pJoint) {
 		this.mWorld.destroyJoint(pJoint);
 	}
 
-	public void dispose() {
+        /**
+         * 
+         */
+        public void dispose() {
 		this.mWorld.dispose();
 	}
 
-	public boolean getAutoClearForces() {
+        /**
+         * 
+         * @return
+         */
+        public boolean getAutoClearForces() {
 		return this.mWorld.getAutoClearForces();
 	}
 
-	public Iterator<Body> getBodies() {
+        /**
+         * 
+         * @return
+         */
+        public Iterator<Body> getBodies() {
 		return this.mWorld.getBodies();
 	}
 
-	public int getBodyCount() {
+        /**
+         * 
+         * @return
+         */
+        public int getBodyCount() {
 		return this.mWorld.getBodyCount();
 	}
 
-	public int getContactCount() {
+        /**
+         * 
+         * @return
+         */
+        public int getContactCount() {
 		return this.mWorld.getContactCount();
 	}
 
-	public List<Contact> getContactList() {
+        /**
+         * 
+         * @return
+         */
+        public List<Contact> getContactList() {
 		return this.mWorld.getContactList();
 	}
 
-	public Vector2 getGravity() {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getGravity() {
 		return this.mWorld.getGravity();
 	}
 
-	public Iterator<Joint> getJoints() {
+        /**
+         * 
+         * @return
+         */
+        public Iterator<Joint> getJoints() {
 		return this.mWorld.getJoints();
 	}
 
-	public int getJointCount() {
+        /**
+         * 
+         * @return
+         */
+        public int getJointCount() {
 		return this.mWorld.getJointCount();
 	}
 
-	public int getProxyCount() {
+        /**
+         * 
+         * @return
+         */
+        public int getProxyCount() {
 		return this.mWorld.getProxyCount();
 	}
 
-	public boolean isLocked() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isLocked() {
 		return this.mWorld.isLocked();
 	}
 
-	public void QueryAABB(final QueryCallback pCallback, final float pLowerX, final float pLowerY, final float pUpperX, final float pUpperY) {
+        /**
+         * 
+         * @param pCallback
+         * @param pLowerX
+         * @param pLowerY
+         * @param pUpperX
+         * @param pUpperY
+         */
+        public void QueryAABB(final QueryCallback pCallback, final float pLowerX, final float pLowerY, final float pUpperX, final float pUpperY) {
 		this.mWorld.QueryAABB(pCallback, pLowerX, pLowerY, pUpperX, pUpperY);
 	}
 
-	public void setAutoClearForces(final boolean pFlag) {
+        /**
+         * 
+         * @param pFlag
+         */
+        public void setAutoClearForces(final boolean pFlag) {
 		this.mWorld.setAutoClearForces(pFlag);
 	}
 
-	public void setContactFilter(final ContactFilter pFilter) {
+        /**
+         * 
+         * @param pFilter
+         */
+        public void setContactFilter(final ContactFilter pFilter) {
 		this.mWorld.setContactFilter(pFilter);
 	}
 
-	public void setContactListener(final ContactListener pListener) {
+        /**
+         * 
+         * @param pListener
+         */
+        public void setContactListener(final ContactListener pListener) {
 		this.mWorld.setContactListener(pListener);
 	}
 
-	public void setContinuousPhysics(final boolean pFlag) {
+        /**
+         * 
+         * @param pFlag
+         */
+        public void setContinuousPhysics(final boolean pFlag) {
 		this.mWorld.setContinuousPhysics(pFlag);
 	}
 
-	public void setDestructionListener(final DestructionListener pListener) {
+        /**
+         * 
+         * @param pListener
+         */
+        public void setDestructionListener(final DestructionListener pListener) {
 		this.mWorld.setDestructionListener(pListener);
 	}
 
-	public void setGravity(final Vector2 pGravity) {
+        /**
+         * 
+         * @param pGravity
+         */
+        public void setGravity(final Vector2 pGravity) {
 		this.mWorld.setGravity(pGravity);
 	}
 
-	public void setWarmStarting(final boolean pFlag) {
+        /**
+         * 
+         * @param pFlag
+         */
+        public void setWarmStarting(final boolean pFlag) {
 		this.mWorld.setWarmStarting(pFlag);
 	}
 
-	public void rayCast(final RayCastCallback pRayCastCallback, final Vector2 pPoint1, final Vector2 pPoint2) {
+        /**
+         * 
+         * @param pRayCastCallback
+         * @param pPoint1
+         * @param pPoint2
+         */
+        public void rayCast(final RayCastCallback pRayCastCallback, final Vector2 pPoint1, final Vector2 pPoint2) {
 		this.mWorld.rayCast(pRayCastCallback, pPoint1, pPoint2);
 	}
 

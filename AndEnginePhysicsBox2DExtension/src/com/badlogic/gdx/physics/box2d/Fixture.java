@@ -18,6 +18,10 @@ package com.badlogic.gdx.physics.box2d;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Shape.Type;
 
+/**
+ * 
+ * @author guillaume
+ */
 public class Fixture {
 	/** body **/
 	private final Body body;
@@ -33,7 +37,8 @@ public class Fixture {
 
 	/**
 	 * Constructs a new fixture
-	 * @param addr the address of the fixture
+         * @param body 
+         * @param addr the address of the fixture
 	 */
 	protected Fixture (Body body, long addr) {
 		this.body = body;
@@ -56,7 +61,9 @@ public class Fixture {
 
 	/**
 	 * Returns the shape of this fixture
-	 */
+         * 
+         * @return 
+         */
 	public Shape getShape () {
 		if (shape == null) {
 			long shapeAddr = jniGetShape(addr);
@@ -75,7 +82,9 @@ public class Fixture {
 
 	/**
 	 * Set if this fixture is a sensor.
-	 */
+         * 
+         * @param sensor 
+         */
 	public void setSensor (boolean sensor) {
 		jniSetSensor(addr, sensor);
 	}
@@ -95,7 +104,9 @@ public class Fixture {
 	/**
 	 * Set the contact filtering data. This will not update contacts until the next time step when either parent body is active and
 	 * awake.
-	 */
+         * 
+         * @param filter 
+         */
 	public void setFilterData (Filter filter) {
 		jniSetFilterData(addr, filter.categoryBits, filter.maskBits, filter.groupIndex);
 	}
@@ -108,7 +119,11 @@ public class Fixture {
 	private final short[] tmp = new short[3];
 	private final Filter filter = new Filter();
 
-	public Filter getFilterData () {
+        /**
+         * 
+         * @return
+         */
+        public Filter getFilterData () {
 		jniGetFilterData(addr, tmp);
 		filter.maskBits = tmp[0];
 		filter.categoryBits = tmp[1];
@@ -120,14 +135,17 @@ public class Fixture {
 
 	/**
 	 * Get the parent body of this fixture. This is NULL if the fixture is not attached.
-	 */
+         * 
+         * @return 
+         */
 	public Body getBody () {
 		return body;
 	}
 
 	/**
 	 * Test a point for containment in this fixture.
-	 * @param p a point in world coordinates.
+         * @param p a point in world coordinates.
+         * @return  
 	 */
 	public boolean testPoint (Vector2 p) {
 		return jniTestPoint(addr, p.x, p.y);
@@ -136,7 +154,8 @@ public class Fixture {
 	/**
 	 * Test a point for containment in this fixture.
 	 * @param x the x-coordinate
-	 * @param y the y-coordinate
+         * @param y the y-coordinate
+         * @return  
 	 */
 	public boolean testPoint(float x, float y) {
 		return jniTestPoint(addr, x, y);
@@ -171,7 +190,9 @@ public class Fixture {
 	/**
 	 * Set the density of this fixture. This will _not_ automatically adjust the mass of the body. You must call
 	 * b2Body::ResetMassData to update the body's mass.
-	 */
+         * 
+         * @param density 
+         */
 	public void setDensity (float density) {
 		jniSetDensity(addr, density);
 	}
@@ -180,7 +201,9 @@ public class Fixture {
 
 	/**
 	 * Get the density of this fixture.
-	 */
+         * 
+         * @return 
+         */
 	public float getDensity () {
 		return jniGetDensity(addr);
 	}
@@ -189,7 +212,9 @@ public class Fixture {
 
 	/**
 	 * Get the coefficient of friction.
-	 */
+         * 
+         * @return 
+         */
 	public float getFriction () {
 		return jniGetFriction(addr);
 	}
@@ -198,7 +223,9 @@ public class Fixture {
 
 	/**
 	 * Set the coefficient of friction.
-	 */
+         * 
+         * @param friction 
+         */
 	public void setFriction (float friction) {
 		jniSetFriction(addr, friction);
 	}
@@ -207,7 +234,9 @@ public class Fixture {
 
 	/**
 	 * Get the coefficient of restitution.
-	 */
+         * 
+         * @return 
+         */
 	public float getRestitution () {
 		return jniGetRestitution(addr);
 	}
@@ -216,7 +245,9 @@ public class Fixture {
 
 	/**
 	 * Set the coefficient of restitution.
-	 */
+         * 
+         * @param restitution 
+         */
 	public void setRestitution (float restitution) {
 		jniSetRestitution(addr, restitution);
 	}
@@ -230,7 +261,9 @@ public class Fixture {
 
 	/**
 	 * Sets custom user data.
-	 */
+         * 
+         * @param userData 
+         */
 	public void setUserData (Object userData) {
 		this.userData = userData;
 	}

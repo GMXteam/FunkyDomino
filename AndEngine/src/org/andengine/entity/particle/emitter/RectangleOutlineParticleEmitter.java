@@ -25,7 +25,14 @@ public class RectangleOutlineParticleEmitter extends BaseRectangleParticleEmitte
 	// Constructors
 	// ===========================================================
 
-	public RectangleOutlineParticleEmitter(final float pCenterX, final float pCenterY, final float pWidth, final float pHeight) {
+    /**
+     * 
+     * @param pCenterX
+     * @param pCenterY
+     * @param pWidth
+     * @param pHeight
+     */
+    public RectangleOutlineParticleEmitter(final float pCenterX, final float pCenterY, final float pWidth, final float pHeight) {
 		super(pCenterX, pCenterY, pWidth, pHeight);
 	}
 
@@ -37,7 +44,11 @@ public class RectangleOutlineParticleEmitter extends BaseRectangleParticleEmitte
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @param pOffset
+     */
+    @Override
 	public void getPositionOffset(final float[] pOffset) {
 		pOffset[VERTEX_INDEX_X] = this.mCenterX + MathUtils.randomSign() * this.mWidthHalf;
 		pOffset[VERTEX_INDEX_Y] = this.mCenterY + MathUtils.randomSign() * this.mHeightHalf;

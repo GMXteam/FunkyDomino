@@ -7,6 +7,7 @@ import org.andengine.util.modifier.ease.IEaseFunction;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 23:29:22 - 19.03.2010
  */
@@ -22,25 +23,56 @@ public abstract class BaseSingleValueSpanModifier<T> extends BaseDurationModifie
 	private float mFromValue;
 	private float mValueSpan;
 
-	protected final IEaseFunction mEaseFunction;
+        /**
+         * 
+         */
+        protected final IEaseFunction mEaseFunction;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         */
+        public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue) {
 		this(pDuration, pFromValue, pToValue, null, EaseLinear.getInstance());
 	}
 
-	public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         * @param pEaseFunction
+         */
+        public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromValue, pToValue, null, pEaseFunction);
 	}
 
-	public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue, final IModifierListener<T> pModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         * @param pModifierListener
+         */
+        public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue, final IModifierListener<T> pModifierListener) {
 		this(pDuration, pFromValue, pToValue, pModifierListener, EaseLinear.getInstance());
 	}
 
-	public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue, final IModifierListener<T> pModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         * @param pModifierListener
+         * @param pEaseFunction
+         */
+        public BaseSingleValueSpanModifier(final float pDuration, final float pFromValue, final float pToValue, final IModifierListener<T> pModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pModifierListener);
 
 		this.mFromValue = pFromValue;
@@ -48,7 +80,11 @@ public abstract class BaseSingleValueSpanModifier<T> extends BaseDurationModifie
 		this.mEaseFunction = pEaseFunction;
 	}
 
-	protected BaseSingleValueSpanModifier(final BaseSingleValueSpanModifier<T> pBaseSingleValueSpanModifier) {
+        /**
+         * 
+         * @param pBaseSingleValueSpanModifier
+         */
+        protected BaseSingleValueSpanModifier(final BaseSingleValueSpanModifier<T> pBaseSingleValueSpanModifier) {
 		super(pBaseSingleValueSpanModifier);
 
 		this.mFromValue = pBaseSingleValueSpanModifier.mFromValue;
@@ -60,11 +96,19 @@ public abstract class BaseSingleValueSpanModifier<T> extends BaseDurationModifie
 	// Getter & Setter
 	// ===========================================================
 
-	public float getFromValue() {
+        /**
+         * 
+         * @return
+         */
+        public float getFromValue() {
 		return this.mFromValue;
 	}
 
-	public float getToValue() {
+        /**
+         * 
+         * @return
+         */
+        public float getToValue() {
 		return this.mFromValue + this.mValueSpan;
 	}
 
@@ -72,15 +116,31 @@ public abstract class BaseSingleValueSpanModifier<T> extends BaseDurationModifie
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onSetInitialValue(final T pItem, final float pValue);
-	protected abstract void onSetValue(final T pItem, final float pPercentageDone, final float pValue);
+        /**
+         * 
+         * @param pItem
+         * @param pValue
+         */
+        protected abstract void onSetInitialValue(final T pItem, final float pValue);
+        /**
+         * 
+         * @param pItem
+         * @param pPercentageDone
+         * @param pValue
+         */
+        protected abstract void onSetValue(final T pItem, final float pPercentageDone, final float pValue);
 
 	@Override
 	protected void onManagedInitialize(final T pItem) {
 		this.onSetInitialValue(pItem, this.mFromValue);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pItem
+         */
+        @Override
 	protected void onManagedUpdate(final float pSecondsElapsed, final T pItem) {
 		final float percentageDone = this.mEaseFunction.getPercentage(this.getSecondsElapsed(), this.mDuration);
 
@@ -91,7 +151,13 @@ public abstract class BaseSingleValueSpanModifier<T> extends BaseDurationModifie
 	// Methods
 	// ===========================================================
 	
-	public void reset(final float pDuration, final float pFromValue, final float pToValue) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromValue
+         * @param pToValue
+         */
+        public void reset(final float pDuration, final float pFromValue, final float pToValue) {
 		super.reset();
 		
 		this.mDuration = pDuration;

@@ -21,11 +21,26 @@ public class FontUtilsTest extends TestCase {
 	// Constants
 	// ===========================================================
 
-	protected static final int WIDTH = 10;
-	protected static final int HEIGHT = 0;
-	protected static final float OFFSET_X = 0;
-	protected static final float OFFSET_Y = 0;
-	protected static final float ADVANCE = 10;
+    /**
+     * 
+     */
+    protected static final int WIDTH = 10;
+    /**
+     * 
+     */
+    protected static final int HEIGHT = 0;
+        /**
+         * 
+         */
+        protected static final float OFFSET_X = 0;
+        /**
+         * 
+         */
+        protected static final float OFFSET_Y = 0;
+        /**
+         * 
+         */
+        protected static final float ADVANCE = 10;
 
 	// ===========================================================
 	// Fields
@@ -72,85 +87,145 @@ public class FontUtilsTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testMeasureSingleChar() {
+        /**
+         * 
+         */
+        public void testMeasureSingleChar() {
 		this.runMeasureTextTest("A", 10);
 	}
 
-	public void testMeasureMultipleChars() {
+        /**
+         * 
+         */
+        public void testMeasureMultipleChars() {
 		this.runMeasureTextTest("AAA", 30);
 	}
 
-	public void testMeasureMultipleCharsSubstring() {
+        /**
+         * 
+         */
+        public void testMeasureMultipleCharsSubstring() {
 		this.runMeasureTextTest("AAA", 0, 1, 10);
 	}
 	
-	public void testMeasureMultipleCharsInnerSpace() {
+        /**
+         * 
+         */
+        public void testMeasureMultipleCharsInnerSpace() {
 		this.runMeasureTextTest("A A", 0, 3, 30);
 	}
 
-	public void testMeasureMultipleCharsMultipleInnerSpaces() {
+        /**
+         * 
+         */
+        public void testMeasureMultipleCharsMultipleInnerSpaces() {
 		this.runMeasureTextTest("A   A", 0, 5, 50);
 	}
 
 	
-	public void testSplitSingleLineZeroWidth() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineZeroWidth() {
 		this.runSplitLinesTest("A", 0, "A");
 	}
 
-	public void testSplitSingleLine() {
+        /**
+         * 
+         */
+        public void testSplitSingleLine() {
 		this.runSplitLinesTest("AAA", 100, "AAA");
 		this.runSplitLinesTest("AAA", 30,  "AAA");
 	}
 
-	public void testSplitSingleLineMultiWordTrailingSpaced() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineMultiWordTrailingSpaced() {
 		this.runSplitLinesTest("AAA AAA   ", 100, "AAA AAA");
 	}
 
-	public void testSplitSingleLineExactWidth() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineExactWidth() {
 		this.runSplitLinesTest("AAA", 29,  "AAA");
 	}
 
-	public void testSplitSingleLineOverWidth() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineOverWidth() {
 		this.runSplitLinesTest("AAA", 29,  "AAA");
 	}
 
-	public void testMultiLine() {
+        /**
+         * 
+         */
+        public void testMultiLine() {
 		this.runSplitLinesTest("AAA A", 30, "AAA", "A");
 	}
 
-	public void testMultiLineOverWidth() {
+        /**
+         * 
+         */
+        public void testMultiLineOverWidth() {
 		this.runSplitLinesTest("AAA AAAA A AAA", 30, "AAA", "AAAA", "A", "AAA");
 	}
 
-	public void testSplitSingleLineWidthLeadingSpaces() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineWidthLeadingSpaces() {
 		this.runSplitLinesTest("         A", 30, "A");
 	}
 
-	public void testSplitSingleLineTrailingSpaces() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineTrailingSpaces() {
 		this.runSplitLinesTest("A         ", 30, "A");
 	}
 
-	public void testSplitSingleLineLeadingAndTrailingSpaces() {
+        /**
+         * 
+         */
+        public void testSplitSingleLineLeadingAndTrailingSpaces() {
 		this.runSplitLinesTest("         A         ", 30, "A");
 	}
 
-	public void testSplitMultiLineMultiWords() {
+        /**
+         * 
+         */
+        public void testSplitMultiLineMultiWords() {
 		this.runSplitLinesTest("AA AA AA AA AA", 50, "AA AA", "AA AA", "AA");
 	}
 	
-	public void testSplitMultipleInnerSpaces() {
+        /**
+         * 
+         */
+        public void testSplitMultipleInnerSpaces() {
 		this.runSplitLinesTest("A   A", 100, "A   A");
 	}
 
-	public void testSplitMultipleInnerSpacesExactWidth() {
+        /**
+         * 
+         */
+        public void testSplitMultipleInnerSpacesExactWidth() {
 		this.runSplitLinesTest("A   A", 50, "A   A");
 	}
 	
-	public void testSplitMultipleInnerSpacesOverWidth() {
+        /**
+         * 
+         */
+        public void testSplitMultipleInnerSpacesOverWidth() {
 		this.runSplitLinesTest("A    A", 50, "A", "A");
 	}
 	
-	public void testSplitMultipleLinesMultipleInnerSpacesOverWidth() {
+        /**
+         * 
+         */
+        public void testSplitMultipleLinesMultipleInnerSpacesOverWidth() {
 		this.runSplitLinesTest("AAAAA  A", 50, "AAAAA", "A");
 		this.runSplitLinesTest("AAAAA A", 50, "AAAAA", "A");
 		this.runSplitLinesTest("AAAAA   A", 50, "AAAAA", "A");

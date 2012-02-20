@@ -14,6 +14,7 @@ import org.andengine.entity.scene.Scene;
  * 
  * @author Nicolas Gramlich
  * @since 11:27:06 - 08.03.2010
+ * @deprecated 
  */
 @Deprecated
 public abstract class LegacyBaseGameActivity extends BaseGameActivity {
@@ -37,13 +38,35 @@ public abstract class LegacyBaseGameActivity extends BaseGameActivity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract Engine onLoadEngine();
-	protected abstract void onLoadResources();
-	protected abstract void onUnloadResources();
-	protected abstract Scene onLoadScene();
-	protected abstract Scene onLoadComplete();
+    /**
+     * 
+     * @return
+     */
+    protected abstract Engine onLoadEngine();
+    /**
+     * 
+     */
+    protected abstract void onLoadResources();
+        /**
+         * 
+         */
+        protected abstract void onUnloadResources();
+        /**
+         * 
+         * @return
+         */
+        protected abstract Scene onLoadScene();
+        /**
+         * 
+         * @return
+         */
+        protected abstract Scene onLoadComplete();
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public final EngineOptions onCreateEngineOptions() {
 		return null;
 	}
@@ -53,26 +76,46 @@ public abstract class LegacyBaseGameActivity extends BaseGameActivity {
 		return this.onLoadEngine();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pOnCreateResourcesCallback
+         * @throws Exception
+         */
+        @Override
 	public final void onCreateResources(final OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
 		this.onLoadResources();
 
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pOnCreateSceneCallback
+         * @throws Exception
+         */
+        @Override
 	public final void onCreateScene(final OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
 		final Scene scene = this.onLoadScene();
 
 		pOnCreateSceneCallback.onCreateSceneFinished(scene);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pScene
+         * @param pOnPopulateSceneCallback
+         * @throws Exception
+         */
+        @Override
 	public final void onPopulateScene(final Scene pScene, final OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public final void onDestroyResources() throws Exception {
 		super.onDestroyResources();
 

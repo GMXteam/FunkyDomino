@@ -26,13 +26,21 @@ import com.badlogic.gdx.physics.box2d.JointDef;
  * game.
  */
 public class LineJointDef extends JointDef {
-	public LineJointDef () {
+    /**
+     * 
+     */
+    public LineJointDef () {
 		type = JointType.LineJoint;
 	}
 
 	/**
 	 * Initialize the bodies, anchors, axis, and reference angle using the world anchor and world axis.
-	 */
+         * 
+     * @param bodyA 
+     * @param axis
+     * @param bodyB 
+     * @param anchor  
+         */
 	public void initialize (Body bodyA, Body bodyB, Vector2 anchor, Vector2 axis) {
 		this.bodyA = bodyA;
 		this.bodyB = bodyB;

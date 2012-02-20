@@ -21,7 +21,10 @@ public class CameraScene extends Scene {
 	// Fields
 	// ===========================================================
 
-	protected Camera mCamera;
+    /**
+     * 
+     */
+    protected Camera mCamera;
 
 	// ===========================================================
 	// Constructors
@@ -34,7 +37,11 @@ public class CameraScene extends Scene {
 		this(null);
 	}
 
-	public CameraScene(final Camera pCamera) {
+        /**
+         * 
+         * @param pCamera
+         */
+        public CameraScene(final Camera pCamera) {
 		this.mCamera = pCamera;
 	}
 
@@ -42,11 +49,19 @@ public class CameraScene extends Scene {
 	// Getter & Setter
 	// ===========================================================
 
-	public Camera getCamera() {
+        /**
+         * 
+         * @return
+         */
+        public Camera getCamera() {
 		return this.mCamera;
 	}
 
-	public void setCamera(final Camera pCamera) {
+        /**
+         * 
+         * @param pCamera
+         */
+        public void setCamera(final Camera pCamera) {
 		this.mCamera = pCamera;
 	}
 
@@ -54,7 +69,12 @@ public class CameraScene extends Scene {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        @Override
 	public boolean onSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
 		if(this.mCamera == null) {
 			return false;
@@ -85,7 +105,12 @@ public class CameraScene extends Scene {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @param pCamera
+         */
+        @Override
 	protected void onApplyMatrix(final GLState pGLState, final Camera pCamera) {
 		this.mCamera.onApplyCameraSceneMatrix(pGLState);
 	}
@@ -94,16 +119,28 @@ public class CameraScene extends Scene {
 	// Methods
 	// ===========================================================
 
-	public void centerShapeInCamera(final IAreaShape pAreaShape) {
+        /**
+         * 
+         * @param pAreaShape
+         */
+        public void centerShapeInCamera(final IAreaShape pAreaShape) {
 		final Camera camera = this.mCamera;
 		pAreaShape.setPosition((camera.getWidth() - pAreaShape.getWidth()) * 0.5f, (camera.getHeight() - pAreaShape.getHeight()) * 0.5f);
 	}
 
-	public void centerShapeInCameraHorizontally(final IAreaShape pAreaShape) {
+        /**
+         * 
+         * @param pAreaShape
+         */
+        public void centerShapeInCameraHorizontally(final IAreaShape pAreaShape) {
 		pAreaShape.setPosition((this.mCamera.getWidth() - pAreaShape.getWidth()) * 0.5f, pAreaShape.getY());
 	}
 
-	public void centerShapeInCameraVertically(final IAreaShape pAreaShape) {
+        /**
+         * 
+         * @param pAreaShape
+         */
+        public void centerShapeInCameraVertically(final IAreaShape pAreaShape) {
 		pAreaShape.setPosition(pAreaShape.getX(), (this.mCamera.getHeight() - pAreaShape.getHeight()) * 0.5f);
 	}
 

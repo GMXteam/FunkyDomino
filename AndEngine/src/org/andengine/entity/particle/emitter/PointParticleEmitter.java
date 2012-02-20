@@ -23,7 +23,12 @@ public class PointParticleEmitter extends BaseParticleEmitter {
 	// Constructors
 	// ===========================================================
 
-	public PointParticleEmitter(final float pCenterX, final float pCenterY) {
+    /**
+     * 
+     * @param pCenterX
+     * @param pCenterY
+     */
+    public PointParticleEmitter(final float pCenterX, final float pCenterY) {
 		super(pCenterX, pCenterY);
 	}
 
@@ -35,7 +40,11 @@ public class PointParticleEmitter extends BaseParticleEmitter {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pOffset
+         */
+        @Override
 	public void getPositionOffset(final float[] pOffset) {
 		pOffset[VERTEX_INDEX_X] = this.mCenterX;
 		pOffset[VERTEX_INDEX_Y] = this.mCenterY;

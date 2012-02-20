@@ -23,11 +23,18 @@ public abstract class EntityModifier extends BaseModifier<IEntity> implements IE
 	// Constructors
 	// ===========================================================
 
-	public EntityModifier() {
+    /**
+     * 
+     */
+    public EntityModifier() {
 		super();
 	}
 
-	public EntityModifier(final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pEntityModifierListener
+         */
+        public EntityModifier(final IEntityModifierListener pEntityModifierListener) {
 		super(pEntityModifierListener);
 	}
 

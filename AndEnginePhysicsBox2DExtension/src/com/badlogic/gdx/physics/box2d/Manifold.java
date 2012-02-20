@@ -2,6 +2,10 @@ package com.badlogic.gdx.physics.box2d;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * 
+ * @author guillaume
+ */
 public class Manifold {
         final World world;
         long addr;
@@ -12,11 +16,20 @@ public class Manifold {
         final int[] tmpInt = new int[2];
         final float[] tmpFloat = new float[4];
         
+        /**
+         * 
+         * @param world
+         * @param addr
+         */
         protected Manifold(World world, long addr) {
                 this.world = world;
                 this.addr = addr;
         }
         
+        /**
+         * 
+         * @return
+         */
         public ManifoldType getType() {
                 int type = jniGetType(addr);
                 if(type == 0) return ManifoldType.Circle;
@@ -27,12 +40,20 @@ public class Manifold {
         
         private native int jniGetType(long addr);
         
+        /**
+         * 
+         * @return
+         */
         public int getPointCount() {
                 return jniGetPointCount(addr);
         }
         
         private native int jniGetPointCount(long addr);
         
+        /**
+         * 
+         * @return
+         */
         public Vector2 getLocalNormal() {
                 jniGetLocalNormal(addr, tmpFloat);
                 localNormal.set(tmpFloat[0], tmpFloat[1]);
@@ -41,6 +62,10 @@ public class Manifold {
         
         private native void jniGetLocalNormal(long addr, float[] values);
         
+        /**
+         * 
+         * @return
+         */
         public Vector2 getLocalPoint() {
                 jniGetLocalPoint(addr, tmpFloat);
                 localPoint.set(tmpFloat[0], tmpFloat[1]);
@@ -49,6 +74,10 @@ public class Manifold {
         
         private native void jniGetLocalPoint(long addr, float[] values);
         
+        /**
+         * 
+         * @return
+         */
         public ManifoldPoint[] getPoints() {
                 int count = jniGetPointCount(addr);
                 
@@ -66,20 +95,51 @@ public class Manifold {
         
         private native int jniGetPoint(long addr, float[] values, int i);       
         
+        /**
+         * 
+         */
         public class ManifoldPoint {
-                public final Vector2 localPoint = new Vector2();
+            /**
+             * 
+             */
+            public final Vector2 localPoint = new Vector2();
+                /**
+                 * 
+                 */
                 public float normalImpulse;
+                /**
+                 * 
+                 */
                 public float tangentImpulse;
+                /**
+                 * 
+                 */
                 public int contactID = 0;
                 
+                /**
+                 * 
+                 * @return
+                 */
                 public String toString() {
                         return "id: " + contactID + ", " + localPoint + ", "  + normalImpulse + ", " + tangentImpulse;
                 }
         }
         
+        /**
+         * 
+         */
         public enum ManifoldType {
-                Circle,
+            /**
+             * 
+             */
+            Circle,
+                /**
+                 * 
+                 */
                 FaceA,
+                /**
+                 * 
+                 */
                 FaceB
         }       
 }

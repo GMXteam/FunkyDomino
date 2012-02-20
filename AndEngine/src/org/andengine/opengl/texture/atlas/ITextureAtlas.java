@@ -8,6 +8,7 @@ import org.andengine.util.debug.Debug;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 14:24:29 - 14.07.2011
  */
@@ -20,32 +21,94 @@ public interface ITextureAtlas<T extends ITextureAtlasSource> extends ITexture {
 	// Methods
 	// ===========================================================
 
-	public void addTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY) throws IllegalArgumentException;
-	public void addTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY, final int pTextureAtlasSourcePadding) throws IllegalArgumentException;
-	public void addEmptyTextureAtlasSource(final int pTextureX, final int pTextureY, final int pWidth, final int pHeight);
-	public void removeTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY);
-	public void clearTextureAtlasSources();
+    /**
+     * 
+     * @param pTextureAtlasSource
+     * @param pTextureX
+     * @param pTextureY
+     * @throws IllegalArgumentException
+     */
+    public void addTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY) throws IllegalArgumentException;
+        /**
+         * 
+         * @param pTextureAtlasSource
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureAtlasSourcePadding
+         * @throws IllegalArgumentException
+         */
+        public void addTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY, final int pTextureAtlasSourcePadding) throws IllegalArgumentException;
+        /**
+         * 
+         * @param pTextureX
+         * @param pTextureY
+         * @param pWidth
+         * @param pHeight
+         */
+        public void addEmptyTextureAtlasSource(final int pTextureX, final int pTextureY, final int pWidth, final int pHeight);
+        /**
+         * 
+         * @param pTextureAtlasSource
+         * @param pTextureX
+         * @param pTextureY
+         */
+        public void removeTextureAtlasSource(final T pTextureAtlasSource, final int pTextureX, final int pTextureY);
+        /**
+         * 
+         */
+        public void clearTextureAtlasSources();
 
-	@Deprecated
+        /**
+         * 
+         * @return
+         * @deprecated
+         */
+        @Deprecated
 	@Override
 	public boolean hasTextureStateListener();
-	public boolean hasTextureAtlasStateListener();
+        /**
+         * 
+         * @return
+         */
+        public boolean hasTextureAtlasStateListener();
 
-	@Deprecated
+        /**
+         * 
+         * @return
+         * @deprecated
+         */
+        @Deprecated
 	@Override
 	public ITextureAtlasStateListener<T> getTextureStateListener();
-	public ITextureAtlasStateListener<T> getTextureAtlasStateListener();
+        /**
+         * 
+         * @return
+         */
+        public ITextureAtlasStateListener<T> getTextureAtlasStateListener();
 
-	@Deprecated
+        /**
+         * 
+         * @param pTextureStateListener
+         * @deprecated
+         */
+        @Deprecated
 	@Override
 	public void setTextureStateListener(final ITextureStateListener pTextureStateListener);
-	public void setTextureAtlasStateListener(final ITextureAtlasStateListener<T> pTextureAtlasStateListener);
+        /**
+         * 
+         * @param pTextureAtlasStateListener
+         */
+        public void setTextureAtlasStateListener(final ITextureAtlasStateListener<T> pTextureAtlasStateListener);
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface ITextureAtlasStateListener<T extends ITextureAtlasSource> extends ITextureStateListener {
+        /**
+         * 
+         * @param <T>
+         */
+        public static interface ITextureAtlasStateListener<T extends ITextureAtlasSource> extends ITextureStateListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -54,44 +117,95 @@ public interface ITextureAtlas<T extends ITextureAtlasSource> extends ITexture {
 		// Methods
 		// ===========================================================
 
-		public void onTextureAtlasSourceLoaded(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource);
-		public void onTextureAtlasSourceLoadExeption(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource, final Throwable pThrowable);
+            /**
+             * 
+             * @param pTextureAtlas
+             * @param pTextureAtlasSource
+             */
+            public void onTextureAtlasSourceLoaded(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource);
+                /**
+                 * 
+                 * @param pTextureAtlas
+                 * @param pTextureAtlasSource
+                 * @param pThrowable
+                 */
+                public void onTextureAtlasSourceLoadExeption(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource, final Throwable pThrowable);
 
 		// ===========================================================
 		// Inner and Anonymous Classes
 		// ===========================================================
 
-		public static class TextureAtlasStateAdapter<T extends ITextureAtlasSource> implements ITextureAtlasStateListener<T> {
-			@Override
+                /**
+                 * 
+                 * @param <T>
+                 */
+                public static class TextureAtlasStateAdapter<T extends ITextureAtlasSource> implements ITextureAtlasStateListener<T> {
+                    /**
+                     * 
+                     * @param pTexture
+                     */
+                    @Override
 			public void onLoadedToHardware(final ITexture pTexture) { }
 
-			@Override
+                    /**
+                     * 
+                     * @param pTextureAtlas
+                     * @param pTextureAtlasSource
+                     */
+                    @Override
 			public void onTextureAtlasSourceLoaded(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource) { }
 
 			@Override
 			public void onTextureAtlasSourceLoadExeption(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource, final Throwable pThrowable) { }
 
-			@Override
+                        /**
+                         * 
+                         * @param pTexture
+                         */
+                        @Override
 			public void onUnloadedFromHardware(final ITexture pTexture) { }
 		}
 
-		public static class DebugTextureAtlasStateListener<T extends ITextureAtlasSource> implements ITextureAtlasStateListener<T> {
-			@Override
+                /**
+                 * 
+                 * @param <T>
+                 */
+                public static class DebugTextureAtlasStateListener<T extends ITextureAtlasSource> implements ITextureAtlasStateListener<T> {
+                    /**
+                     * 
+                     * @param pTexture
+                     */
+                    @Override
 			public void onLoadedToHardware(final ITexture pTexture) {
 				Debug.d("Texture loaded: " + pTexture.toString());
 			}
 
-			@Override
+                        /**
+                         * 
+                         * @param pTextureAtlas
+                         * @param pTextureAtlasSource
+                         */
+                        @Override
 			public void onTextureAtlasSourceLoaded(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource) {
 				Debug.e("Loaded TextureAtlasSource. TextureAtlas: " + pTextureAtlas.toString() + " TextureAtlasSource: " + pTextureAtlasSource.toString());
 			}
 
-			@Override
+                        /**
+                         * 
+                         * @param pTextureAtlas
+                         * @param pTextureAtlasSource
+                         * @param pThrowable
+                         */
+                        @Override
 			public void onTextureAtlasSourceLoadExeption(final ITextureAtlas<T> pTextureAtlas, final T pTextureAtlasSource, final Throwable pThrowable) {
 				Debug.e("Exception loading TextureAtlasSource. TextureAtlas: " + pTextureAtlas.toString() + " TextureAtlasSource: " + pTextureAtlasSource.toString(), pThrowable);
 			}
 
-			@Override
+                        /**
+                         * 
+                         * @param pTexture
+                         */
+                        @Override
 			public void onUnloadedFromHardware(final ITexture pTexture) {
 				Debug.d("Texture unloaded: " + pTexture.toString());
 			}

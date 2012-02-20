@@ -38,8 +38,14 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 	// Fields
 	// ===========================================================
 
-	protected EngineOptions mEngineOptions;
-	protected org.andengine.engine.Engine mEngine;
+    /**
+     * 
+     */
+    protected EngineOptions mEngineOptions;
+    /**
+     * 
+     */
+    protected org.andengine.engine.Engine mEngine;
 
 	private boolean mGamePaused;
 	private boolean mGameCreated;
@@ -50,7 +56,10 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void onCreate() {
 		Debug.d(this.getClass().getSimpleName() + ".onCreate" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -90,7 +99,10 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 		Debug.d(this.getClass().getSimpleName() + ".onSurfaceChanged(Width=" + pWidth + ",  Height=" + pHeight + ")" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 	}
 
-	protected void onCreateGame() {
+        /**
+         * 
+         */
+        protected void onCreateGame() {
 		Debug.d(this.getClass().getSimpleName() + ".onCreateGame" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
 		final OnPopulateSceneCallback onPopulateSceneCallback = new OnPopulateSceneCallback() {
@@ -162,7 +174,10 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 		}
 	}
 
-	protected synchronized void onResume() {
+        /**
+         * 
+         */
+        protected synchronized void onResume() {
 		Debug.d(this.getClass().getSimpleName() + ".onResume" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 	}
 
@@ -184,7 +199,10 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 		this.onResumeGame();
 	}
 
-	protected void onPause(){
+        /**
+         * 
+         */
+        protected void onPause(){
 		Debug.d(this.getClass().getSimpleName() + ".onPause" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
 		if(!this.mGamePaused) {
@@ -201,7 +219,10 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 		this.mEngine.stop();
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void onDestroy() {
 		Debug.d(this.getClass().getSimpleName() + ".onDestroy" + " @(Thread: '" + Thread.currentThread().getName() + "')");
 
@@ -242,43 +263,85 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 	// Getter & Setter
 	// ===========================================================
 
-	public org.andengine.engine.Engine getEngine() {
+        /**
+         * 
+         * @return
+         */
+        public org.andengine.engine.Engine getEngine() {
 		return this.mEngine;
 	}
 
-	public boolean isGamePaused() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isGamePaused() {
 		return this.mGamePaused;
 	}
 
-	public boolean isGameRunning() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isGameRunning() {
 		return !this.mGamePaused;
 	}
 
-	public boolean isGameLoaded() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isGameLoaded() {
 		return this.mGameCreated;
 	}
 
-	public VertexBufferObjectManager getVertexBufferObjectManager() {
+        /**
+         * 
+         * @return
+         */
+        public VertexBufferObjectManager getVertexBufferObjectManager() {
 		return this.mEngine.getVertexBufferObjectManager();
 	}
 
-	public TextureManager getTextureManager() {
+        /**
+         * 
+         * @return
+         */
+        public TextureManager getTextureManager() {
 		return this.mEngine.getTextureManager();
 	}
 
-	public FontManager getFontManager() {
+        /**
+         * 
+         * @return
+         */
+        public FontManager getFontManager() {
 		return this.mEngine.getFontManager();
 	}
 
-	public ShaderProgramManager getShaderProgramManager() {
+        /**
+         * 
+         * @return
+         */
+        public ShaderProgramManager getShaderProgramManager() {
 		return this.mEngine.getShaderProgramManager();
 	}
 
-	public SoundManager getSoundManager() throws IllegalStateException {
+        /**
+         * 
+         * @return
+         * @throws IllegalStateException
+         */
+        public SoundManager getSoundManager() throws IllegalStateException {
 		return this.mEngine.getSoundManager();
 	}
 
-	public MusicManager getMusicManager() throws IllegalStateException {
+        /**
+         * 
+         * @return
+         * @throws IllegalStateException
+         */
+        public MusicManager getMusicManager() throws IllegalStateException {
 		return this.mEngine.getMusicManager();
 	}
 
@@ -286,7 +349,11 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public Engine onCreateEngine() {
 		return new BaseWallpaperGLEngine(this);
 	}
@@ -295,31 +362,67 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 	// Methods
 	// ===========================================================
 
-	protected void onTap(final int pX, final int pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        protected void onTap(final int pX, final int pY) {
 		this.mEngine.onTouch(null, MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), MotionEvent.ACTION_DOWN, pX, pY, 0));
 	}
 
-	protected void onDrop(final int pX, final int pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        protected void onDrop(final int pX, final int pY) {
 
 	}
 
-	protected void onOffsetsChanged(final float pXOffset, final float pYOffset, final float pXOffsetStep, final float pYOffsetStep, final int pXPixelOffset, final int pYPixelOffset) {
+        /**
+         * 
+         * @param pXOffset
+         * @param pYOffset
+         * @param pXOffsetStep
+         * @param pYOffsetStep
+         * @param pXPixelOffset
+         * @param pYPixelOffset
+         */
+        protected void onOffsetsChanged(final float pXOffset, final float pYOffset, final float pXOffsetStep, final float pYOffsetStep, final int pXPixelOffset, final int pYPixelOffset) {
 
 	}
 
-	protected void applyEngineOptions() {
+        /**
+         * 
+         */
+        protected void applyEngineOptions() {
 
 	}
 
-	protected boolean enableVibrator() {
+        /**
+         * 
+         * @return
+         */
+        protected boolean enableVibrator() {
 		return this.mEngine.enableVibrator(this);
 	}
 
-	protected boolean enableAccelerationSensor(final IAccelerationListener pAccelerationListener) {
+        /**
+         * 
+         * @param pAccelerationListener
+         * @return
+         */
+        protected boolean enableAccelerationSensor(final IAccelerationListener pAccelerationListener) {
 		return this.mEngine.enableAccelerationSensor(this, pAccelerationListener);
 	}
 
-	protected boolean enableOrientationSensor(final IOrientationListener pOrientationListener) {
+        /**
+         * 
+         * @param pOrientationListener
+         * @return
+         */
+        protected boolean enableOrientationSensor(final IOrientationListener pOrientationListener) {
 		return this.mEngine.enableOrientationSensor(this, pOrientationListener);
 	}
 
@@ -327,7 +430,10 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	protected class BaseWallpaperGLEngine extends GLEngine {
+        /**
+         * 
+         */
+        protected class BaseWallpaperGLEngine extends GLEngine {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -343,7 +449,11 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 		// Constructors
 		// ===========================================================
 
-		public BaseWallpaperGLEngine(final IRendererListener pRendererListener) {
+                /**
+                 * 
+                 * @param pRendererListener
+                 */
+                public BaseWallpaperGLEngine(final IRendererListener pRendererListener) {
 			if(this.mConfigChooser == null) {
 				this.mConfigChooser = new ConfigChooser(BaseLiveWallpaperService.this.mEngine.getEngineOptions().getRenderOptions().isMultiSampling());
 			}
@@ -362,7 +472,17 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pAction
+                 * @param pX
+                 * @param pY
+                 * @param pZ
+                 * @param pExtras
+                 * @param pResultRequested
+                 * @return
+                 */
+                @Override
 		public Bundle onCommand(final String pAction, final int pX, final int pY, final int pZ, final Bundle pExtras, final boolean pResultRequested) {
 			if(pAction.equals(WallpaperManager.COMMAND_TAP)) {
 				BaseLiveWallpaperService.this.onTap(pX, pY);
@@ -373,12 +493,24 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 			return super.onCommand(pAction, pX, pY, pZ, pExtras, pResultRequested);
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pXOffset
+                 * @param pYOffset
+                 * @param pXOffsetStep
+                 * @param pYOffsetStep
+                 * @param pXPixelOffset
+                 * @param pYPixelOffset
+                 */
+                @Override
 		public void onOffsetsChanged(final float pXOffset, final float pYOffset, final float pXOffsetStep, final float pYOffsetStep, final int pXPixelOffset, final int pYPixelOffset) {
 			BaseLiveWallpaperService.this.onOffsetsChanged(pXOffset, pYOffset, pXOffsetStep, pYOffsetStep, pXPixelOffset, pYPixelOffset);
 		}
 
-		@Override
+                /**
+                 * 
+                 */
+                @Override
 		public void onResume() {
 			super.onResume();
 
@@ -386,14 +518,20 @@ public abstract class BaseLiveWallpaperService extends GLWallpaperService implem
 			BaseLiveWallpaperService.this.onResume();
 		}
 
-		@Override
+                /**
+                 * 
+                 */
+                @Override
 		public void onPause() {
 			super.onPause();
 
 			BaseLiveWallpaperService.this.onPause();
 		}
 
-		@Override
+                /**
+                 * 
+                 */
+                @Override
 		public void onDestroy() {
 			super.onDestroy();
 

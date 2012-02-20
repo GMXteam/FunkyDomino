@@ -44,7 +44,11 @@ public final class BitVector {
 		this.mData = new long[dataCapacity];
 	}
 
-	public BitVector(final byte[] pBytes) {
+        /**
+         * 
+         * @param pBytes
+         */
+        public BitVector(final byte[] pBytes) {
 		this(pBytes.length * DataConstants.BITS_PER_BYTE);
 
 		final long[] data = this.mData;
@@ -101,11 +105,20 @@ public final class BitVector {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getCapacity() {
+        /**
+         * 
+         * @return
+         */
+        public int getCapacity() {
 		return this.mCapacity;
 	}
 
-	public boolean getBit(final int pPosition) {
+        /**
+         * 
+         * @param pPosition
+         * @return
+         */
+        public boolean getBit(final int pPosition) {
 		if(pPosition < 0) {
 			throw new IllegalArgumentException("pPosition must be >= 0.");
 		}
@@ -124,23 +137,49 @@ public final class BitVector {
 		return bit != 0;
 	}
 
-	public byte getByte(final int pPosition) {
+        /**
+         * 
+         * @param pPosition
+         * @return
+         */
+        public byte getByte(final int pPosition) {
 		return (byte) this.getBits(pPosition, DataConstants.BITS_PER_BYTE);
 	}
 
-	public short getShort(final int pPosition) {
+        /**
+         * 
+         * @param pPosition
+         * @return
+         */
+        public short getShort(final int pPosition) {
 		return (short) this.getBits(pPosition, DataConstants.BITS_PER_SHORT);
 	}
 
-	public int getInt(final int pPosition) {
+        /**
+         * 
+         * @param pPosition
+         * @return
+         */
+        public int getInt(final int pPosition) {
 		return (int) this.getBits(pPosition, DataConstants.BITS_PER_INT);
 	}
 
-	public long getLong(final int pPosition) {
+        /**
+         * 
+         * @param pPosition
+         * @return
+         */
+        public long getLong(final int pPosition) {
 		return this.getBits(pPosition, DataConstants.BITS_PER_LONG);
 	}
 
-	public long getBits(final int pPosition, final int pLength) {
+        /**
+         * 
+         * @param pPosition
+         * @param pLength
+         * @return
+         */
+        public long getBits(final int pPosition, final int pLength) {
 		/* Sanity checks. */
 		if(pPosition < 0) {
 			throw new IllegalArgumentException("pPosition must be >= 0.");
@@ -184,7 +223,11 @@ public final class BitVector {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append('[');
@@ -202,7 +245,11 @@ public final class BitVector {
 	// Methods
 	// ===========================================================
 
-	public byte[] toByteArray() {
+        /**
+         * 
+         * @return
+         */
+        public byte[] toByteArray() {
 		final int byteArrayLength;
 		if(this.mCapacity % DataConstants.BITS_PER_BYTE == 0) {
 			byteArrayLength = this.mCapacity / DataConstants.BITS_PER_BYTE;

@@ -21,19 +21,35 @@ public class MethodNotSupportedException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public MethodNotSupportedException() {
+        /**
+         * 
+         */
+        public MethodNotSupportedException() {
 
 	}
 
-	public MethodNotSupportedException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public MethodNotSupportedException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public MethodNotSupportedException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public MethodNotSupportedException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-	public MethodNotSupportedException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public MethodNotSupportedException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

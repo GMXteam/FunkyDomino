@@ -34,23 +34,59 @@ public abstract class Sorter<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public abstract void sort(final T[] pArray, final int pStart, final int pEnd, final Comparator<T> pComparator);
-	public abstract void sort(final List<T> pList, final int pStart, final int pEnd, final Comparator<T> pComparator);
-	public abstract void sort(final IList<T> pList, final int pStart, final int pEnd, final Comparator<T> pComparator);
+    /**
+     * 
+     * @param pArray
+     * @param pStart
+     * @param pEnd
+     * @param pComparator
+     */
+    public abstract void sort(final T[] pArray, final int pStart, final int pEnd, final Comparator<T> pComparator);
+        /**
+         * 
+         * @param pList
+         * @param pStart
+         * @param pEnd
+         * @param pComparator
+         */
+        public abstract void sort(final List<T> pList, final int pStart, final int pEnd, final Comparator<T> pComparator);
+        /**
+         * 
+         * @param pList
+         * @param pStart
+         * @param pEnd
+         * @param pComparator
+         */
+        public abstract void sort(final IList<T> pList, final int pStart, final int pEnd, final Comparator<T> pComparator);
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
-	public final void sort(final T[] pArray, final Comparator<T> pComparator){
+        /**
+         * 
+         * @param pArray
+         * @param pComparator
+         */
+        public final void sort(final T[] pArray, final Comparator<T> pComparator){
 		this.sort(pArray, 0, pArray.length, pComparator);
 	}
 
-	public final void sort(final List<T> pList, final Comparator<T> pComparator){
+        /**
+         * 
+         * @param pList
+         * @param pComparator
+         */
+        public final void sort(final List<T> pList, final Comparator<T> pComparator){
 		this.sort(pList, 0, pList.size(), pComparator);
 	}
 
-	public final void sort(final IList<T> pList, final Comparator<T> pComparator){
+        /**
+         * 
+         * @param pList
+         * @param pComparator
+         */
+        public final void sort(final IList<T> pList, final Comparator<T> pComparator){
 		this.sort(pList, 0, pList.size(), pComparator);
 	}
 

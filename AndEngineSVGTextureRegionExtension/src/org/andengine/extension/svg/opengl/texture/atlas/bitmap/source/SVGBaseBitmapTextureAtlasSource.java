@@ -27,24 +27,54 @@ public class SVGBaseBitmapTextureAtlasSource extends PictureBitmapTextureAtlasSo
 	// Constructors
 	// ===========================================================
 
-	public SVGBaseBitmapTextureAtlasSource(final SVG pSVG) {
+        /**
+         * 
+         * @param pSVG
+         */
+        public SVGBaseBitmapTextureAtlasSource(final SVG pSVG) {
 		this(pSVG, 0, 0);
 	}
 
-	public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final float pScale) {
+        /**
+         * 
+         * @param pSVG
+         * @param pScale
+         */
+        public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final float pScale) {
 		this(pSVG, 0, 0, pScale);
 	}
 
-	public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final int pTextureX, final int pTextureY, final float pScale) {
+        /**
+         * 
+         * @param pSVG
+         * @param pTextureX
+         * @param pTextureY
+         * @param pScale
+         */
+        public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final int pTextureX, final int pTextureY, final float pScale) {
 		super(pSVG.getPicture(), pTextureX, pTextureY, pScale);
 		this.mSVG = pSVG;
 	}
 
-	public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final int pWidth, final int pHeight) {
+        /**
+         * 
+         * @param pSVG
+         * @param pWidth
+         * @param pHeight
+         */
+        public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final int pWidth, final int pHeight) {
 		this(pSVG, 0, 0, pWidth, pHeight);
 	}
 
-	public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
+        /**
+         * 
+         * @param pSVG
+         * @param pTextureX
+         * @param pTextureY
+         * @param pTextureWidth
+         * @param pTextureHeight
+         */
+        public SVGBaseBitmapTextureAtlasSource(final SVG pSVG, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		super(pSVG.getPicture(), pTextureX, pTextureY, pTextureWidth, pTextureHeight);
 		this.mSVG = pSVG;
 	}

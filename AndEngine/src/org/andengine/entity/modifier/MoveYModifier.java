@@ -24,23 +24,55 @@ public class MoveYModifier extends SingleValueSpanEntityModifier {
 	// Constructors
 	// ===========================================================
 
-	public MoveYModifier(final float pDuration, final float pFromY, final float pToY) {
+    /**
+     * 
+     * @param pDuration
+     * @param pFromY
+     * @param pToY
+     */
+    public MoveYModifier(final float pDuration, final float pFromY, final float pToY) {
 		this(pDuration, pFromY, pToY, null, EaseLinear.getInstance());
 	}
 
-	public MoveYModifier(final float pDuration, final float pFromY, final float pToY, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromY
+         * @param pToY
+         * @param pEaseFunction
+         */
+        public MoveYModifier(final float pDuration, final float pFromY, final float pToY, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromY, pToY, null, pEaseFunction);
 	}
 
-	public MoveYModifier(final float pDuration, final float pFromY, final float pToY, final IEntityModifierListener pEntityModifierListener) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromY
+         * @param pToY
+         * @param pEntityModifierListener
+         */
+        public MoveYModifier(final float pDuration, final float pFromY, final float pToY, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromY, pToY, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-	public MoveYModifier(final float pDuration, final float pFromY, final float pToY, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pDuration
+         * @param pFromY
+         * @param pToY
+         * @param pEntityModifierListener
+         * @param pEaseFunction
+         */
+        public MoveYModifier(final float pDuration, final float pFromY, final float pToY, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromY, pToY, pEntityModifierListener, pEaseFunction);
 	}
 
-	protected MoveYModifier(final MoveYModifier pMoveYModifier) {
+        /**
+         * 
+         * @param pMoveYModifier
+         */
+        protected MoveYModifier(final MoveYModifier pMoveYModifier) {
 		super(pMoveYModifier);
 	}
 
@@ -57,12 +89,23 @@ public class MoveYModifier extends SingleValueSpanEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pY
+         */
+        @Override
 	protected void onSetInitialValue(final IEntity pEntity, final float pY) {
 		pEntity.setPosition(pEntity.getX(), pY);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pEntity
+         * @param pPercentageDone
+         * @param pY
+         */
+        @Override
 	protected void onSetValue(final IEntity pEntity, final float pPercentageDone, final float pY) {
 		pEntity.setPosition(pEntity.getX(), pY);
 	}

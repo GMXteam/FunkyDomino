@@ -26,7 +26,13 @@ public class ColorMenuItemDecorator extends BaseMenuItemDecorator {
 	// Constructors
 	// ===========================================================
 
-	public ColorMenuItemDecorator(final IMenuItem pMenuItem, final Color pSelectedColor, final Color pUnselectedColor) {
+        /**
+         * 
+         * @param pMenuItem
+         * @param pSelectedColor
+         * @param pUnselectedColor
+         */
+        public ColorMenuItemDecorator(final IMenuItem pMenuItem, final Color pSelectedColor, final Color pUnselectedColor) {
 		super(pMenuItem);
 
 		this.mSelectedColor = pSelectedColor;
@@ -47,17 +53,29 @@ public class ColorMenuItemDecorator extends BaseMenuItemDecorator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pMenuItem
+         */
+        @Override
 	public void onMenuItemSelected(final IMenuItem pMenuItem) {
 		pMenuItem.setColor(this.mSelectedColor);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pMenuItem
+         */
+        @Override
 	public void onMenuItemUnselected(final IMenuItem pMenuItem) {
 		pMenuItem.setColor(this.mUnselectedColor);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pMenuItem
+         */
+        @Override
 	public void onMenuItemReset(final IMenuItem pMenuItem) {
 		pMenuItem.setColor(this.mUnselectedColor);
 	}

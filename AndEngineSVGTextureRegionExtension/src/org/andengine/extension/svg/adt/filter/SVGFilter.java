@@ -40,7 +40,12 @@ public class SVGFilter implements ISVGConstants {
 	// Constructors
 	// ===========================================================
 
-	public SVGFilter(final String pID, final Attributes pAttributes) {
+        /**
+         * 
+         * @param pID
+         * @param pAttributes
+         */
+        public SVGFilter(final String pID, final Attributes pAttributes) {
 		this.mID = pID;
 		this.mHref = SVGParserUtils.parseHref(pAttributes);
 		this.mSVGAttributes = new SVGAttributes(pAttributes, true);
@@ -50,19 +55,35 @@ public class SVGFilter implements ISVGConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public String getID() {
+        /**
+         * 
+         * @return
+         */
+        public String getID() {
 		return this.mID;
 	}
 
-	public String getHref() {
+        /**
+         * 
+         * @return
+         */
+        public String getHref() {
 		return this.mHref;
 	}
 
-	public boolean hasHref() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasHref() {
 		return this.mHref != null;
 	}
 
-	public boolean hasHrefResolved() {
+        /**
+         * 
+         * @return
+         */
+        public boolean hasHrefResolved() {
 		return this.mHref == null || this.mParent != null;
 	}
 
@@ -74,7 +95,11 @@ public class SVGFilter implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public void ensureHrefResolved(final HashMap<String, SVGFilter> pSVGFilterMap) {
+        /**
+         * 
+         * @param pSVGFilterMap
+         */
+        public void ensureHrefResolved(final HashMap<String, SVGFilter> pSVGFilterMap) {
 		if(!this.hasHrefResolved()) {
 			this.resolveHref(pSVGFilterMap);
 		}
@@ -91,7 +116,11 @@ public class SVGFilter implements ISVGConstants {
 		}
 	}
 
-	public void applyFilterElements(final Paint pPaint) {
+        /**
+         * 
+         * @param pPaint
+         */
+        public void applyFilterElements(final Paint pPaint) {
 		this.mSVGAttributes.getFloatAttribute(ATTRIBUTE_X, true);
 		final ArrayList<ISVGFilterElement> svgFilterElements = this.mSVGFilterElements;
 		for(int i = 0; i < svgFilterElements.size(); i++) {
@@ -99,7 +128,11 @@ public class SVGFilter implements ISVGConstants {
 		}
 	}
 
-	public void addFilterElement(final ISVGFilterElement pSVGFilterElement) {
+        /**
+         * 
+         * @param pSVGFilterElement
+         */
+        public void addFilterElement(final ISVGFilterElement pSVGFilterElement) {
 		this.mSVGFilterElements.add(pSVGFilterElement);
 	}
 

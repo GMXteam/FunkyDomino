@@ -17,14 +17,25 @@ public interface IDisposable {
 	// Methods
 	// ===========================================================
 
-	public boolean isDisposed();
-	public void dispose() throws AlreadyDisposedException;
+    /**
+     * 
+     * @return
+     */
+    public boolean isDisposed();
+    /**
+     * 
+     * @throws org.andengine.util.IDisposable.AlreadyDisposedException
+     */
+    public void dispose() throws AlreadyDisposedException;
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public class AlreadyDisposedException extends AndEngineRuntimeException {
+    /**
+     * 
+     */
+    public class AlreadyDisposedException extends AndEngineRuntimeException {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -39,19 +50,35 @@ public interface IDisposable {
 		// Constructors
 		// ===========================================================
 
-		public AlreadyDisposedException() {
+                /**
+                 * 
+                 */
+                public AlreadyDisposedException() {
 			
 		}
 
-		public AlreadyDisposedException(String pMessage) {
+                /**
+                 * 
+                 * @param pMessage
+                 */
+                public AlreadyDisposedException(String pMessage) {
 			super(pMessage);
 		}
 
-		public AlreadyDisposedException(Throwable pThrowable) {
+                /**
+                 * 
+                 * @param pThrowable
+                 */
+                public AlreadyDisposedException(Throwable pThrowable) {
 			super(pThrowable);
 		}
 		
-		public AlreadyDisposedException(String pMessage, Throwable pThrowable) {
+                /**
+                 * 
+                 * @param pMessage
+                 * @param pThrowable
+                 */
+                public AlreadyDisposedException(String pMessage, Throwable pThrowable) {
 			super(pMessage, pThrowable);
 		}
 

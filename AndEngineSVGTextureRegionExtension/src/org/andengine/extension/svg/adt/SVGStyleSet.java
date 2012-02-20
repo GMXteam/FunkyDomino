@@ -25,7 +25,11 @@ public class SVGStyleSet {
 	// Constructors
 	// ===========================================================
 
-	public SVGStyleSet(final String pString) {
+        /**
+         * 
+         * @param pString
+         */
+        public SVGStyleSet(final String pString) {
 		final String[] styles = pString.split(";");
 		for (final String s : styles) {
 			final String[] style = s.split(":");
@@ -39,7 +43,12 @@ public class SVGStyleSet {
 	// Getter & Setter
 	// ===========================================================
 
-	public String getStyle(final String pStyleName) {
+        /**
+         * 
+         * @param pStyleName
+         * @return
+         */
+        public String getStyle(final String pStyleName) {
 		return this.mStyleMap.get(pStyleName);
 	}
 

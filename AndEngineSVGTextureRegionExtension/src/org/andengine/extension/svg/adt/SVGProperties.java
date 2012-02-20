@@ -32,7 +32,13 @@ public class SVGProperties implements ISVGConstants {
 	// Constructors
 	// ===========================================================#
 
-	public SVGProperties(final SVGProperties pParentSVGProperties, final Attributes pAttributes, final boolean pAttributesDeepCopy) {
+        /**
+         * 
+         * @param pParentSVGProperties
+         * @param pAttributes
+         * @param pAttributesDeepCopy
+         */
+        public SVGProperties(final SVGProperties pParentSVGProperties, final Attributes pAttributes, final boolean pAttributesDeepCopy) {
 		this.mAttributes = (pAttributesDeepCopy) ? new AttributesImpl(pAttributes) : pAttributes;
 		this.mParentSVGProperties = pParentSVGProperties;
 		final String styleAttr = SAXHelper.getStringAttribute(pAttributes, ATTRIBUTE_STYLE);
@@ -55,7 +61,13 @@ public class SVGProperties implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public String getStringProperty(final String pPropertyName, final String pDefaultValue) {
+        /**
+         * 
+         * @param pPropertyName
+         * @param pDefaultValue
+         * @return
+         */
+        public String getStringProperty(final String pPropertyName, final String pDefaultValue) {
 		final String s = this.getStringProperty(pPropertyName);
 		if (s == null) {
 			return pDefaultValue;
@@ -64,11 +76,22 @@ public class SVGProperties implements ISVGConstants {
 		}
 	}
 
-	public String getStringProperty(final String pPropertyName) { // TODO Remove this method and make all others take 'pAllowParentSVGProperties' too.
+        /**
+         * 
+         * @param pPropertyName
+         * @return
+         */
+        public String getStringProperty(final String pPropertyName) { // TODO Remove this method and make all others take 'pAllowParentSVGProperties' too.
 		return this.getStringProperty(pPropertyName, true);
 	}
 
-	public String getStringProperty(final String pPropertyName, final boolean pAllowParentSVGProperties) {
+        /**
+         * 
+         * @param pPropertyName
+         * @param pAllowParentSVGProperties
+         * @return
+         */
+        public String getStringProperty(final String pPropertyName, final boolean pAllowParentSVGProperties) {
 		String s = null;
 		if (this.mSVGStyleSet != null) {
 			s = this.mSVGStyleSet.getStyle(pPropertyName);
@@ -87,11 +110,22 @@ public class SVGProperties implements ISVGConstants {
 		}
 	}
 
-	public Float getFloatProperty(final String pPropertyName) {
+        /**
+         * 
+         * @param pPropertyName
+         * @return
+         */
+        public Float getFloatProperty(final String pPropertyName) {
 		return SVGParserUtils.extractFloatAttribute(this.getStringProperty(pPropertyName));
 	}
 
-	public Float getFloatProperty(final String pPropertyName, final float pDefaultValue) {
+        /**
+         * 
+         * @param pPropertyName
+         * @param pDefaultValue
+         * @return
+         */
+        public Float getFloatProperty(final String pPropertyName, final float pDefaultValue) {
 		final Float f = this.getFloatProperty(pPropertyName);
 		if (f == null) {
 			return pDefaultValue;
@@ -100,19 +134,41 @@ public class SVGProperties implements ISVGConstants {
 		}
 	}
 
-	public String getStringAttribute(final String pAttributeName) {
+        /**
+         * 
+         * @param pAttributeName
+         * @return
+         */
+        public String getStringAttribute(final String pAttributeName) {
 		return SAXHelper.getStringAttribute(this.mAttributes, pAttributeName);
 	}
 
-	public String getStringAttribute(final String pAttributeName, final String pDefaultValue) {
+        /**
+         * 
+         * @param pAttributeName
+         * @param pDefaultValue
+         * @return
+         */
+        public String getStringAttribute(final String pAttributeName, final String pDefaultValue) {
 		return SAXHelper.getStringAttribute(this.mAttributes, pAttributeName, pDefaultValue);
 	}
 
-	public Float getFloatAttribute(final String pAttributeName) {
+        /**
+         * 
+         * @param pAttributeName
+         * @return
+         */
+        public Float getFloatAttribute(final String pAttributeName) {
 		return SAXHelper.getFloatAttribute(this.mAttributes, pAttributeName);
 	}
 
-	public float getFloatAttribute(final String pAttributeName, final float pDefaultValue) {
+        /**
+         * 
+         * @param pAttributeName
+         * @param pDefaultValue
+         * @return
+         */
+        public float getFloatAttribute(final String pAttributeName, final float pDefaultValue) {
 		return SAXHelper.getFloatAttribute(this.mAttributes, pAttributeName, pDefaultValue);
 	}
 
@@ -120,15 +176,30 @@ public class SVGProperties implements ISVGConstants {
 	// Property-Testing-Methods
 	// ===========================================================
 
-	public static boolean isURLProperty(final String pProperty) {
+        /**
+         * 
+         * @param pProperty
+         * @return
+         */
+        public static boolean isURLProperty(final String pProperty) {
 		return pProperty.startsWith("url(#");
 	}
 
-	public static boolean isRGBProperty(final String pProperty) {
+        /**
+         * 
+         * @param pProperty
+         * @return
+         */
+        public static boolean isRGBProperty(final String pProperty) {
 		return pProperty.startsWith("rgb(");
 	}
 
-	public static boolean isHexProperty(final String pProperty) {
+        /**
+         * 
+         * @param pProperty
+         * @return
+         */
+        public static boolean isHexProperty(final String pProperty) {
 		return pProperty.startsWith("#");
 	}
 

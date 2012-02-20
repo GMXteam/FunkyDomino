@@ -36,11 +36,22 @@ public class ContinuousHoldDetector extends HoldDetector implements IUpdateHandl
 	// Constructors
 	// ===========================================================
 
-	public ContinuousHoldDetector(final IHoldDetectorListener pHoldDetectorListener) {
+        /**
+         * 
+         * @param pHoldDetectorListener
+         */
+        public ContinuousHoldDetector(final IHoldDetectorListener pHoldDetectorListener) {
 		this(HoldDetector.TRIGGER_HOLD_MINIMUM_MILLISECONDS_DEFAULT, HoldDetector.TRIGGER_HOLD_MAXIMUM_DISTANCE_DEFAULT, ContinuousHoldDetector.TIME_BETWEEN_UPDATES_DEFAULT, pHoldDetectorListener);
 	}
 
-	public ContinuousHoldDetector(final long pTriggerHoldMinimumMilliseconds, final float pTriggerHoldMaximumDistance, final float pTimeBetweenUpdates, final IHoldDetectorListener pHoldDetectorListener) {
+        /**
+         * 
+         * @param pTriggerHoldMinimumMilliseconds
+         * @param pTriggerHoldMaximumDistance
+         * @param pTimeBetweenUpdates
+         * @param pHoldDetectorListener
+         */
+        public ContinuousHoldDetector(final long pTriggerHoldMinimumMilliseconds, final float pTriggerHoldMaximumDistance, final float pTimeBetweenUpdates, final IHoldDetectorListener pHoldDetectorListener) {
 		super(pTriggerHoldMinimumMilliseconds, pTriggerHoldMaximumDistance, pHoldDetectorListener);
 
 		this.mTimerHandler = new TimerHandler(pTimeBetweenUpdates, true, new ITimerCallback() {
@@ -59,7 +70,11 @@ public class ContinuousHoldDetector extends HoldDetector implements IUpdateHandl
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		this.mTimerHandler.onUpdate(pSecondsElapsed);
 	}
@@ -73,7 +88,12 @@ public class ContinuousHoldDetector extends HoldDetector implements IUpdateHandl
 		this.mTimerHandler.reset();
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSceneTouchEvent
+         * @return
+         */
+        @Override
 	public boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent) {
 		final MotionEvent motionEvent = pSceneTouchEvent.getMotionEvent();
 
@@ -119,7 +139,11 @@ public class ContinuousHoldDetector extends HoldDetector implements IUpdateHandl
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pSceneTouchEvent
+         */
+        @Override
 	protected void prepareHold(final TouchEvent pSceneTouchEvent) {
 		super.prepareHold(pSceneTouchEvent);
 		this.mTimerHandler.reset();

@@ -21,16 +21,30 @@ public class ByteBufferOutputStream extends OutputStream {
 	// Fields
 	// ===========================================================
 
-	protected final int mMaximumGrow;
+    /**
+     * 
+     */
+    protected final int mMaximumGrow;
 
-	protected byte mData[];
-	protected int mCount;
+        /**
+         * 
+         */
+        protected byte mData[];
+        /**
+         * 
+         */
+        protected int mCount;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public ByteBufferOutputStream(final int pInitialCapacity, final int pMaximumGrow) {
+        /**
+         * 
+         * @param pInitialCapacity
+         * @param pMaximumGrow
+         */
+        public ByteBufferOutputStream(final int pInitialCapacity, final int pMaximumGrow) {
 		this.mMaximumGrow = pMaximumGrow;
 		this.mData = new byte[pInitialCapacity];
 	}
@@ -43,21 +57,35 @@ public class ByteBufferOutputStream extends OutputStream {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pByte
+         */
+        @Override
 	public void write(final int pByte) {
 		this.ensureCapacity(this.mCount + 1);
 		this.mData[this.mCount] = (byte) pByte;
 		this.mCount++;
 	}
 
-	@Override
+        /**
+         * 
+         * @param pData
+         * @param pOffset
+         * @param pLength
+         */
+        @Override
 	public void write(final byte pData[], final int pOffset, final int pLength) {
 		this.ensureCapacity(this.mCount + pLength);
 		System.arraycopy(pData, pOffset, this.mData, this.mCount, pLength);
 		this.mCount += pLength;
 	}
 
-	@Override
+        /**
+         * 
+         * @throws IOException
+         */
+        @Override
 	public void close() throws IOException {
 
 	}
@@ -93,7 +121,11 @@ public class ByteBufferOutputStream extends OutputStream {
 		this.mData = data;
 	}
 
-	public ByteBuffer toByteBuffer() {
+        /**
+         * 
+         * @return
+         */
+        public ByteBuffer toByteBuffer() {
 		return ByteBuffer.wrap(this.mData, 0, this.mCount).slice();
 	}
 

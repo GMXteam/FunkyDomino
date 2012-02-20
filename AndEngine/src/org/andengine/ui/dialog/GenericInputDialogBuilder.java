@@ -16,6 +16,7 @@ import android.widget.Toast;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 09:35:55 - 14.12.2009
  */
@@ -28,12 +29,30 @@ public abstract class GenericInputDialogBuilder<T> {
 	// Fields
 	// ===========================================================
 
-	protected final Callback<T> mSuccessCallback;
-	protected final OnCancelListener mOnCancelListener;
-	protected final int mTitleResID;
-	protected final int mMessageResID;
-	protected final int mIconResID;
-	protected final Context mContext;
+    /**
+     * 
+     */
+    protected final Callback<T> mSuccessCallback;
+        /**
+         * 
+         */
+        protected final OnCancelListener mOnCancelListener;
+        /**
+         * 
+         */
+        protected final int mTitleResID;
+        /**
+         * 
+         */
+        protected final int mMessageResID;
+        /**
+         * 
+         */
+        protected final int mIconResID;
+        /**
+         * 
+         */
+        protected final Context mContext;
 	private final int mErrorResID;
 	private final String mDefaultText;
 
@@ -41,11 +60,32 @@ public abstract class GenericInputDialogBuilder<T> {
 	// Constructors
 	// ===========================================================
 
-	public GenericInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final Callback<T> pSuccessCallback, final OnCancelListener pOnCancelListener){
+        /**
+         * 
+         * @param pContext
+         * @param pTitleResID
+         * @param pMessageResID
+         * @param pErrorResID
+         * @param pIconResID
+         * @param pSuccessCallback
+         * @param pOnCancelListener
+         */
+        public GenericInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final Callback<T> pSuccessCallback, final OnCancelListener pOnCancelListener){
 		this(pContext, pTitleResID, pMessageResID, pErrorResID, pIconResID, "", pSuccessCallback, pOnCancelListener);
 	}
 
-	public GenericInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final String pDefaultText, final Callback<T> pSuccessCallback, final OnCancelListener pOnCancelListener){
+        /**
+         * 
+         * @param pContext
+         * @param pTitleResID
+         * @param pMessageResID
+         * @param pErrorResID
+         * @param pIconResID
+         * @param pDefaultText
+         * @param pSuccessCallback
+         * @param pOnCancelListener
+         */
+        public GenericInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final String pDefaultText, final Callback<T> pSuccessCallback, final OnCancelListener pOnCancelListener){
 		this.mContext = pContext;
 		this.mTitleResID = pTitleResID;
 		this.mMessageResID = pMessageResID;
@@ -64,13 +104,22 @@ public abstract class GenericInputDialogBuilder<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract T generateResult(final String pInput);
+        /**
+         * 
+         * @param pInput
+         * @return
+         */
+        protected abstract T generateResult(final String pInput);
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
-	public Dialog create() {
+        /**
+         * 
+         * @return
+         */
+        public Dialog create() {
 		final EditText etInput = new EditText(this.mContext);
 		etInput.setText(this.mDefaultText);
 
@@ -113,7 +162,12 @@ public abstract class GenericInputDialogBuilder<T> {
 		return ab.create();
 	}
 
-	protected void setView(final AlertDialog.Builder pBuilder, final EditText pInputEditText) {
+        /**
+         * 
+         * @param pBuilder
+         * @param pInputEditText
+         */
+        protected void setView(final AlertDialog.Builder pBuilder, final EditText pInputEditText) {
 		pBuilder.setView(pInputEditText);
 	}
 

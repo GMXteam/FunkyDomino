@@ -44,19 +44,47 @@ public class FileUtils {
 	// Methods
 	// ===========================================================
 
-	public static void copyToExternalStorage(final Context pContext, final int pSourceResourceID, final String pFilename) throws FileNotFoundException {
+    /**
+     * 
+     * @param pContext
+     * @param pSourceResourceID
+     * @param pFilename
+     * @throws FileNotFoundException
+     */
+    public static void copyToExternalStorage(final Context pContext, final int pSourceResourceID, final String pFilename) throws FileNotFoundException {
 		FileUtils.copyToExternalStorage(pContext, pContext.getResources().openRawResource(pSourceResourceID), pFilename);
 	}
 
-	public static void copyToInternalStorage(final Context pContext, final int pSourceResourceID, final String pFilename) throws FileNotFoundException {
+        /**
+         * 
+         * @param pContext
+         * @param pSourceResourceID
+         * @param pFilename
+         * @throws FileNotFoundException
+         */
+        public static void copyToInternalStorage(final Context pContext, final int pSourceResourceID, final String pFilename) throws FileNotFoundException {
 		FileUtils.copyToInternalStorage(pContext, pContext.getResources().openRawResource(pSourceResourceID), pFilename);
 	}
 
-	public static void copyToExternalStorage(final Context pContext, final String pSourceAssetPath, final String pFilename) throws IOException {
+        /**
+         * 
+         * @param pContext
+         * @param pSourceAssetPath
+         * @param pFilename
+         * @throws IOException
+         */
+        public static void copyToExternalStorage(final Context pContext, final String pSourceAssetPath, final String pFilename) throws IOException {
 		FileUtils.copyToExternalStorage(pContext, pContext.getAssets().open(pSourceAssetPath), pFilename);
 	}
 
-	public static void copyToInternalStorage(final Context pContext, final String pSourceAssetPath, final String pFilename) throws IOException {
+        /**
+         * 
+         * @param pContext
+         * @param pSourceAssetPath
+         * @param pFilename
+         * @throws IOException
+         */
+        public static void copyToInternalStorage(final Context pContext, final String pSourceAssetPath, final String pFilename) throws IOException {
 		FileUtils.copyToInternalStorage(pContext, pContext.getAssets().open(pSourceAssetPath), pFilename);
 	}
 
@@ -64,7 +92,13 @@ public class FileUtils {
 		StreamUtils.copyAndClose(pInputStream, new FileOutputStream(new File(pContext.getFilesDir(), pFilename)));
 	}
 
-	public static void copyToExternalStorage(final InputStream pInputStream, final String pFilePath) throws FileNotFoundException {
+        /**
+         * 
+         * @param pInputStream
+         * @param pFilePath
+         * @throws FileNotFoundException
+         */
+        public static void copyToExternalStorage(final InputStream pInputStream, final String pFilePath) throws FileNotFoundException {
 		if (FileUtils.isExternalStorageWriteable()) {
 			final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pFilePath);
 			StreamUtils.copyAndClose(pInputStream, new FileOutputStream(absoluteFilePath));
@@ -73,7 +107,14 @@ public class FileUtils {
 		}
 	}
 
-	public static void copyToExternalStorage(final Context pContext, final InputStream pInputStream, final String pFilePath) throws FileNotFoundException {
+        /**
+         * 
+         * @param pContext
+         * @param pInputStream
+         * @param pFilePath
+         * @throws FileNotFoundException
+         */
+        public static void copyToExternalStorage(final Context pContext, final InputStream pInputStream, final String pFilePath) throws FileNotFoundException {
 		if (FileUtils.isExternalStorageWriteable()) {
 			final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pContext, pFilePath);
 			StreamUtils.copyAndClose(pInputStream, new FileOutputStream(absoluteFilePath));
@@ -82,7 +123,12 @@ public class FileUtils {
 		}
 	}
 
-	public static boolean isFileExistingOnExternalStorage(final String pFilePath) {
+        /**
+         * 
+         * @param pFilePath
+         * @return
+         */
+        public static boolean isFileExistingOnExternalStorage(final String pFilePath) {
 		if (FileUtils.isExternalStorageReadable()) {
 			final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pFilePath);
 			final File file = new File(absoluteFilePath);
@@ -92,7 +138,13 @@ public class FileUtils {
 		}
 	}
 
-	public static boolean isFileExistingOnExternalStorage(final Context pContext, final String pFilePath) {
+        /**
+         * 
+         * @param pContext
+         * @param pFilePath
+         * @return
+         */
+        public static boolean isFileExistingOnExternalStorage(final Context pContext, final String pFilePath) {
 		if (FileUtils.isExternalStorageReadable()) {
 			final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pContext, pFilePath);
 			final File file = new File(absoluteFilePath);
@@ -102,7 +154,13 @@ public class FileUtils {
 		}
 	}
 
-	public static boolean isDirectoryExistingOnExternalStorage(final Context pContext, final String pDirectory) {
+        /**
+         * 
+         * @param pContext
+         * @param pDirectory
+         * @return
+         */
+        public static boolean isDirectoryExistingOnExternalStorage(final Context pContext, final String pDirectory) {
 		if (FileUtils.isExternalStorageReadable()) {
 			final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pContext, pDirectory);
 			final File file = new File(absoluteFilePath);
@@ -112,7 +170,13 @@ public class FileUtils {
 		}
 	}
 
-	public static boolean ensureDirectoriesExistOnExternalStorage(final Context pContext, final String pDirectory) {
+        /**
+         * 
+         * @param pContext
+         * @param pDirectory
+         * @return
+         */
+        public static boolean ensureDirectoriesExistOnExternalStorage(final Context pContext, final String pDirectory) {
 		if (FileUtils.isDirectoryExistingOnExternalStorage(pContext, pDirectory)) {
 			return true;
 		}
@@ -125,48 +189,107 @@ public class FileUtils {
 		}
 	}
 
-	public static InputStream openOnExternalStorage(final String pFilePath) throws FileNotFoundException {
+        /**
+         * 
+         * @param pFilePath
+         * @return
+         * @throws FileNotFoundException
+         */
+        public static InputStream openOnExternalStorage(final String pFilePath) throws FileNotFoundException {
 		final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pFilePath);
 		return new FileInputStream(absoluteFilePath);
 	}
 
-	public static InputStream openOnExternalStorage(final Context pContext, final String pFilePath) throws FileNotFoundException {
+        /**
+         * 
+         * @param pContext
+         * @param pFilePath
+         * @return
+         * @throws FileNotFoundException
+         */
+        public static InputStream openOnExternalStorage(final Context pContext, final String pFilePath) throws FileNotFoundException {
 		final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pContext, pFilePath);
 		return new FileInputStream(absoluteFilePath);
 	}
 
-	public static String[] getDirectoryListOnExternalStorage(final Context pContext, final String pFilePath) throws FileNotFoundException {
+        /**
+         * 
+         * @param pContext
+         * @param pFilePath
+         * @return
+         * @throws FileNotFoundException
+         */
+        public static String[] getDirectoryListOnExternalStorage(final Context pContext, final String pFilePath) throws FileNotFoundException {
 		final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pContext, pFilePath);
 		return new File(absoluteFilePath).list();
 	}
 
-	public static String[] getDirectoryListOnExternalStorage(final Context pContext, final String pFilePath, final FilenameFilter pFilenameFilter) throws FileNotFoundException {
+        /**
+         * 
+         * @param pContext
+         * @param pFilePath
+         * @param pFilenameFilter
+         * @return
+         * @throws FileNotFoundException
+         */
+        public static String[] getDirectoryListOnExternalStorage(final Context pContext, final String pFilePath, final FilenameFilter pFilenameFilter) throws FileNotFoundException {
 		final String absoluteFilePath = FileUtils.getAbsolutePathOnExternalStorage(pContext, pFilePath);
 		return new File(absoluteFilePath).list(pFilenameFilter);
 	}
 
-	public static String getAbsolutePathOnInternalStorage(final Context pContext, final String pFilePath) {
+        /**
+         * 
+         * @param pContext
+         * @param pFilePath
+         * @return
+         */
+        public static String getAbsolutePathOnInternalStorage(final Context pContext, final String pFilePath) {
 		return pContext.getFilesDir().getAbsolutePath() + pFilePath;
 	}
 
-	public static String getAbsolutePathOnExternalStorage(final String pFilePath) {
+        /**
+         * 
+         * @param pFilePath
+         * @return
+         */
+        public static String getAbsolutePathOnExternalStorage(final String pFilePath) {
 		return Environment.getExternalStorageDirectory() + "/" + pFilePath;
 	}
 
-	public static String getAbsolutePathOnExternalStorage(final Context pContext, final String pFilePath) {
+        /**
+         * 
+         * @param pContext
+         * @param pFilePath
+         * @return
+         */
+        public static String getAbsolutePathOnExternalStorage(final Context pContext, final String pFilePath) {
 		return Environment.getExternalStorageDirectory() + "/Android/data/" + pContext.getApplicationInfo().packageName + "/files/" + pFilePath;
 	}
 
-	public static boolean isExternalStorageWriteable() {
+        /**
+         * 
+         * @return
+         */
+        public static boolean isExternalStorageWriteable() {
 		return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
 	}
 
-	public static boolean isExternalStorageReadable() {
+        /**
+         * 
+         * @return
+         */
+        public static boolean isExternalStorageReadable() {
 		final String state = Environment.getExternalStorageState();
 		return state.equals(Environment.MEDIA_MOUNTED) || state.equals(Environment.MEDIA_MOUNTED_READ_ONLY);
 	}
 
-	public static void copyFile(final File pSourceFile, final File pDestinationFile) throws IOException {
+        /**
+         * 
+         * @param pSourceFile
+         * @param pDestinationFile
+         * @throws IOException
+         */
+        public static void copyFile(final File pSourceFile, final File pDestinationFile) throws IOException {
 		InputStream in = null;
 		OutputStream out = null;
 		try {

@@ -33,63 +33,99 @@ public class TextUtilsTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testCountOccurrenceFollowUp() {
+    /**
+     * 
+     */
+    public void testCountOccurrenceFollowUp() {
 		Assert.assertEquals(2, TextUtils.countOccurrences("aabbccdd", 'b'));
 	}
 
-	public void testCountOccurrenceEmpty() {
+        /**
+         * 
+         */
+        public void testCountOccurrenceEmpty() {
 		Assert.assertEquals(0, TextUtils.countOccurrences("", 'b'));
 	}
 
-	public void testCountOccurrenceNone() {
+        /**
+         * 
+         */
+        public void testCountOccurrenceNone() {
 		Assert.assertEquals(0, TextUtils.countOccurrences("aaaaaaaa", 'b'));
 	}
 
-	public void testCountOccurrenceBeginning() {
+        /**
+         * 
+         */
+        public void testCountOccurrenceBeginning() {
 		Assert.assertEquals(1, TextUtils.countOccurrences("baaaaa", 'b'));
 	}
 
-	public void testCountOccurrenceBeginningAndEnd() {
+        /**
+         * 
+         */
+        public void testCountOccurrenceBeginningAndEnd() {
 		Assert.assertEquals(2, TextUtils.countOccurrences("baaaaab", 'b'));
 	}
 
-	public void testSplitSimple() {
+        /**
+         * 
+         */
+        public void testSplitSimple() {
 		final String[] split = TextUtils.split("a\nb", '\n').toArray(new String[2]);
 		Assert.assertEquals(2, split.length);
 		this.assertArrayEquals(new String[]{"a", "b"}, split);
 	}
 
-	public void testSplitSimple2() {
+        /**
+         * 
+         */
+        public void testSplitSimple2() {
 		final String[] split = TextUtils.split("a\nb\nc", '\n').toArray(new String[3]);
 		Assert.assertEquals(3, split.length);
 		this.assertArrayEquals(new String[]{"a", "b", "c"}, split);
 	}
 
-	public void testSplitSimple3() {
+        /**
+         * 
+         */
+        public void testSplitSimple3() {
 		final String[] split = TextUtils.split("a\nb\nc\n", '\n').toArray(new String[4]);
 		Assert.assertEquals(4, split.length);
 		this.assertArrayEquals(new String[]{"a", "b", "c", ""}, split);
 	}
 
-	public void testSplitEmpty() {
+        /**
+         * 
+         */
+        public void testSplitEmpty() {
 		final String[] split = TextUtils.split("", '\n').toArray(new String[1]);
 		Assert.assertEquals(1, split.length);
 		this.assertArrayEquals(new String[]{""}, split);
 	}
 
-	public void testSplitEmpty2() {
+        /**
+         * 
+         */
+        public void testSplitEmpty2() {
 		final String[] split = TextUtils.split("\n", '\n').toArray(new String[2]);
 		Assert.assertEquals(2, split.length);
 		this.assertArrayEquals(new String[]{"", ""}, split);
 	}
 
-	public void testSplitEmptyLines() {
+        /**
+         * 
+         */
+        public void testSplitEmptyLines() {
 		final String[] split = TextUtils.split("\n\na", '\n').toArray(new String[3]);
 		Assert.assertEquals(3, split.length);
 		this.assertArrayEquals(new String[]{"", "", "a"}, split);
 	}
 
-	public void testSplitEmptyLines2() {
+        /**
+         * 
+         */
+        public void testSplitEmptyLines2() {
 		final String[] split = TextUtils.split("\n\n\n", '\n').toArray(new String[4]);
 		Assert.assertEquals(4, split.length);
 		this.assertArrayEquals(new String[]{"", "", "", ""}, split);

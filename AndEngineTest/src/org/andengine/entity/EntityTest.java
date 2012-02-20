@@ -29,13 +29,21 @@ public class EntityTest extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void setUp() throws Exception {
 		this.mVertexBufferObjectManager.onDestroy();
 		this.mVertexBufferObjectManager.onCreate();
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void tearDown() throws Exception {
 
 	}
@@ -44,7 +52,11 @@ public class EntityTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-	public void testConvertLocalToSceneCoordinatesOrigin() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesOrigin() throws Exception {
 		final IEntity entity = new Entity(0, 0);
 
 		final float testX = 5;
@@ -56,7 +68,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesOriginWithRotation() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesOriginWithRotation() throws Exception {
 		final IEntity entity = new Entity(0, 0);
 		entity.setRotation(180);
 
@@ -69,7 +85,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesOriginWithScale() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesOriginWithScale() throws Exception {
 		final IEntity entity = new Entity(0, 0);
 		entity.setScale(2);
 
@@ -82,7 +102,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesOriginWithParent() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		final IEntity entity = new Entity(0, 0);
 
@@ -97,7 +121,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesOriginWithParentAndRotation() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesOriginWithParentAndRotation() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setRotation(180);
 		final IEntity entity = new Entity(0, 0);
@@ -114,7 +142,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesWithParent() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesWithParent() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final IEntity entity = new Entity(5, 5);
 
@@ -129,7 +161,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesWithParentAndRotation() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesWithParentAndRotation() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final IEntity entity = new Entity(5, 5);
 		entity.setRotation(180);
@@ -145,7 +181,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesWithParentAndRotation2() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesWithParentAndRotation2() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final IEntity entity = new Entity(5, 5);
 		entity.setRotation(90);
@@ -161,7 +201,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesNotOrigin() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesNotOrigin() throws Exception {
 		final IEntity entity = new Entity(5, 5);
 
 		final float testX = 5;
@@ -173,7 +217,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesNotOriginWithRotation() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesNotOriginWithRotation() throws Exception {
 		final IEntity entity = new Entity(5, 5);
 		entity.setRotation(180);
 
@@ -186,7 +234,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertLocalToSceneCoordinatesNotOriginWithRotation2() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertLocalToSceneCoordinatesNotOriginWithRotation2() throws Exception {
 		final IEntity entity = new Entity(5, 5);
 		entity.setRotation(180);
 
@@ -199,7 +251,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertLocalToSceneCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertSceneToLocalCoordinatesOrigin() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertSceneToLocalCoordinatesOrigin() throws Exception {
 		final IEntity entity = new Entity(5, 5);
 
 		final float testX = 10;
@@ -211,7 +267,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertSceneToLocalCoordinatesOriginWithScale() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertSceneToLocalCoordinatesOriginWithScale() throws Exception {
 		final IEntity entity = new Entity(0, 0);
 		entity.setScale(2);
 
@@ -224,7 +284,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertSceneToLocalCoordinatesNotOriginWithScale() throws Exception {
 		final IEntity entity = new Entity(5, 5);
 		entity.setScale(2);
 
@@ -237,7 +301,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale1() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertSceneToLocalCoordinatesNotOriginWithScale1() throws Exception {
 		final IEntity entity = new Entity(5, 5);
 		entity.setScale(2);
 
@@ -250,7 +318,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertSceneToLocalCoordinates(entity, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale2() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertSceneToLocalCoordinatesNotOriginWithScale2() throws Exception {
 		final Rectangle rectangle = new Rectangle(5, 5, 5, 5, this.mVertexBufferObjectManager);
 
 		final float testX = 7.5f;
@@ -262,7 +334,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertSceneToLocalCoordinates(rectangle, testX, testY, expectedX, expectedY);
 	}
 
-	public void testConvertSceneToLocalCoordinatesNotOriginWithScale3() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testConvertSceneToLocalCoordinatesNotOriginWithScale3() throws Exception {
 		final Rectangle rectangle = new Rectangle(5, 5, 5, 5, this.mVertexBufferObjectManager);
 		rectangle.setScale(2);
 
@@ -275,7 +351,11 @@ public class EntityTest extends AndroidTestCase {
 		this.testConvertSceneToLocalCoordinates(rectangle, testX, testY, expectedX, expectedY);
 	}
 
-	public void testRectangleContains() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContains() throws Exception {
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 
 		Assert.assertTrue(rectangle.contains(5, 5));
@@ -290,7 +370,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(10 + DELTA, 10 + DELTA));
 	}
 
-	public void testRectangleContainsWithScale() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsWithScale() throws Exception {
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setScale(2);
 
@@ -306,7 +390,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(15 + DELTA, 15 + DELTA));
 	}
 
-	public void testRectangleContainsOriginWithParent() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
@@ -323,7 +411,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(10 + DELTA, 10 + DELTA));
 	}
 
-	public void testRectangleContainsOriginWithParentAndScale() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsOriginWithParentAndScale() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
@@ -341,7 +433,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(15 + DELTA, 15 + DELTA));
 	}
 
-	public void testRectangleContainsOriginWithParentAndScale2() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsOriginWithParentAndScale2() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setScale(2);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
@@ -359,7 +455,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(20 + DELTA, 20 + DELTA));
 	}
 
-	public void testRectangleContainsOriginWithParentAndScale3() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsOriginWithParentAndScale3() throws Exception {
 		final IEntity parent = new Entity(0, 0);
 		parent.setScale(2);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
@@ -378,7 +478,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(30 + DELTA, 30 + DELTA));
 	}
 
-	public void testRectangleContainsNonOriginWithParent() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsNonOriginWithParent() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final Rectangle rectangle = new Rectangle(0, 0, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);
@@ -395,7 +499,11 @@ public class EntityTest extends AndroidTestCase {
 		Assert.assertFalse(rectangle.contains(15 + DELTA, 15 + DELTA));
 	}
 
-	public void testRectangleContainsNonOriginWithParent2() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testRectangleContainsNonOriginWithParent2() throws Exception {
 		final IEntity parent = new Entity(5, 5);
 		final Rectangle rectangle = new Rectangle(5, 5, 10, 10, this.mVertexBufferObjectManager);
 		rectangle.setParent(parent);

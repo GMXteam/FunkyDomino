@@ -7,6 +7,7 @@ import org.andengine.entity.particle.Particle;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 21:21:10 - 14.03.2010
  */
@@ -23,15 +24,31 @@ public class AccelerationParticleInitializer<T extends IEntity> extends BaseDoub
 	// Constructors
 	// ===========================================================
 
-	public AccelerationParticleInitializer(final float pAcceleration) {
+    /**
+     * 
+     * @param pAcceleration
+     */
+    public AccelerationParticleInitializer(final float pAcceleration) {
 		this(pAcceleration, pAcceleration);
 	}
 
-	public AccelerationParticleInitializer(final float pAccelerationX, final float pAccelerationY) {
+        /**
+         * 
+         * @param pAccelerationX
+         * @param pAccelerationY
+         */
+        public AccelerationParticleInitializer(final float pAccelerationX, final float pAccelerationY) {
 		this(pAccelerationX, pAccelerationX, pAccelerationY, pAccelerationY);
 	}
 
-	public AccelerationParticleInitializer(final float pMinAccelerationX, final float pMaxAccelerationX, final float pMinAccelerationY, final float pMaxAccelerationY) {
+        /**
+         * 
+         * @param pMinAccelerationX
+         * @param pMaxAccelerationX
+         * @param pMinAccelerationY
+         * @param pMaxAccelerationY
+         */
+        public AccelerationParticleInitializer(final float pMinAccelerationX, final float pMaxAccelerationX, final float pMinAccelerationY, final float pMaxAccelerationY) {
 		super(pMinAccelerationX, pMaxAccelerationX, pMinAccelerationY, pMaxAccelerationY);
 	}
 
@@ -39,43 +56,84 @@ public class AccelerationParticleInitializer<T extends IEntity> extends BaseDoub
 	// Getter & Setter
 	// ===========================================================
 
-	public float getMinAccelerationX() {
+        /**
+         * 
+         * @return
+         */
+        public float getMinAccelerationX() {
 		return this.mMinValue;
 	}
 
-	public float getMaxAccelerationX() {
+        /**
+         * 
+         * @return
+         */
+        public float getMaxAccelerationX() {
 		return this.mMaxValue;
 	}
 
-	public float getMinAccelerationY() {
+        /**
+         * 
+         * @return
+         */
+        public float getMinAccelerationY() {
 		return this.mMinValueB;
 	}
 
-	public float getMaxAccelerationY() {
+        /**
+         * 
+         * @return
+         */
+        public float getMaxAccelerationY() {
 		return this.mMaxValueB;
 	}
 
-	public void setAccelerationX(final float pAccelerationX) {
+        /**
+         * 
+         * @param pAccelerationX
+         */
+        public void setAccelerationX(final float pAccelerationX) {
 		this.mMinValue = pAccelerationX;
 		this.mMaxValue = pAccelerationX;
 	}
 
-	public void setAccelerationY(final float pAccelerationY) {
+        /**
+         * 
+         * @param pAccelerationY
+         */
+        public void setAccelerationY(final float pAccelerationY) {
 		this.mMinValueB = pAccelerationY;
 		this.mMaxValueB = pAccelerationY;
 	}
 
-	public void setAccelerationX(final float pMinAccelerationX, final float pMaxAccelerationX) {
+        /**
+         * 
+         * @param pMinAccelerationX
+         * @param pMaxAccelerationX
+         */
+        public void setAccelerationX(final float pMinAccelerationX, final float pMaxAccelerationX) {
 		this.mMinValue = pMinAccelerationX;
 		this.mMaxValue = pMaxAccelerationX;
 	}
 
-	public void setAccelerationY(final float pMinAccelerationY, final float pMaxAccelerationY) {
+        /**
+         * 
+         * @param pMinAccelerationY
+         * @param pMaxAccelerationY
+         */
+        public void setAccelerationY(final float pMinAccelerationY, final float pMaxAccelerationY) {
 		this.mMinValueB = pMinAccelerationY;
 		this.mMaxValueB = pMaxAccelerationY;
 	}
 
-	public void setAcceleration(final float pMinAccelerationX, final float pMaxAccelerationX, final float pMinAccelerationY, final float pMaxAccelerationY) {
+        /**
+         * 
+         * @param pMinAccelerationX
+         * @param pMaxAccelerationX
+         * @param pMinAccelerationY
+         * @param pMaxAccelerationY
+         */
+        public void setAcceleration(final float pMinAccelerationX, final float pMaxAccelerationX, final float pMinAccelerationY, final float pMaxAccelerationY) {
 		this.mMinValue = pMinAccelerationX;
 		this.mMaxValue = pMaxAccelerationX;
 		this.mMinValueB = pMinAccelerationY;
@@ -86,7 +144,13 @@ public class AccelerationParticleInitializer<T extends IEntity> extends BaseDoub
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         * @param pAccelerationX
+         * @param pAccelerationY
+         */
+        @Override
 	public void onInitializeParticle(final Particle<T> pParticle, final float pAccelerationX, final float pAccelerationY) {
 		pParticle.getPhysicsHandler().accelerate(pAccelerationX, pAccelerationY);
 	}

@@ -12,7 +12,10 @@ public class MathUtils {
 	// Constants
 	// ===========================================================
 
-	public static final double[] POWERS_OF_10 = new double[128];
+    /**
+     * 
+     */
+    public static final double[] POWERS_OF_10 = new double[128];
 	static {
 		for (int i = 0; i < POWERS_OF_10.length; i++) {
 			POWERS_OF_10[i] = Math.pow(10, i);

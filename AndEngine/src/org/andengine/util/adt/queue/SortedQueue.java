@@ -5,6 +5,7 @@ import org.andengine.util.adt.list.SortedList;
 /**
  * (c) Zynga 2012
  *
+ * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 17:17:33 PM - 03.022012
  */
@@ -21,7 +22,11 @@ public class SortedQueue<T extends Comparable<T>> extends SortedList<T> implemen
 	// Constructors
 	// ===========================================================
 
-	public SortedQueue(final IQueue<T> pQueue) {
+    /**
+     * 
+     * @param pQueue
+     */
+    public SortedQueue(final IQueue<T> pQueue) {
 		super(pQueue);
 	}
 
@@ -42,7 +47,11 @@ public class SortedQueue<T extends Comparable<T>> extends SortedList<T> implemen
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public T poll() {
 		if(this.isEmpty()) {
 			return null;
@@ -51,12 +60,23 @@ public class SortedQueue<T extends Comparable<T>> extends SortedList<T> implemen
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pItem
+         */
+        @Override
 	public void enter(final T pItem) {
 		this.add(pItem);
 	}
 
-	@Deprecated
+        /**
+         * 
+         * @param pIndex
+         * @param pItem
+         * @throws IndexOutOfBoundsException
+         * @deprecated
+         */
+        @Deprecated
 	@Override
 	public void enter(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.add(pIndex, pItem);

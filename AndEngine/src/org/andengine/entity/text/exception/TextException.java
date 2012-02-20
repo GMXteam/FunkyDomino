@@ -23,19 +23,35 @@ public class TextException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public TextException() {
+        /**
+         * 
+         */
+        public TextException() {
 		super();
 	}
 
-	public TextException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public TextException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public TextException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public TextException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-	public TextException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public TextException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

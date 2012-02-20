@@ -16,13 +16,31 @@ public class TouchEvent {
 	// Constants
 	// ===========================================================
 
-	public static final int INVALID_POINTER_ID = -1;
+    /**
+     * 
+     */
+    public static final int INVALID_POINTER_ID = -1;
 
-	public static final int ACTION_CANCEL = MotionEvent.ACTION_CANCEL;
-	public static final int ACTION_DOWN = MotionEvent.ACTION_DOWN;
-	public static final int ACTION_MOVE = MotionEvent.ACTION_MOVE;
-	public static final int ACTION_OUTSIDE = MotionEvent.ACTION_OUTSIDE;
-	public static final int ACTION_UP = MotionEvent.ACTION_UP;
+    /**
+     * 
+     */
+    public static final int ACTION_CANCEL = MotionEvent.ACTION_CANCEL;
+    /**
+     * 
+     */
+    public static final int ACTION_DOWN = MotionEvent.ACTION_DOWN;
+        /**
+         * 
+         */
+        public static final int ACTION_MOVE = MotionEvent.ACTION_MOVE;
+        /**
+         * 
+         */
+        public static final int ACTION_OUTSIDE = MotionEvent.ACTION_OUTSIDE;
+        /**
+         * 
+         */
+        public static final int ACTION_UP = MotionEvent.ACTION_UP;
 
 	private static final TouchEventPool TOUCHEVENT_POOL = new TouchEventPool();
 
@@ -30,20 +48,44 @@ public class TouchEvent {
 	// Fields
 	// ===========================================================
 
-	protected int mPointerID;
+        /**
+         * 
+         */
+        protected int mPointerID;
 
-	protected float mX;
-	protected float mY;
+        /**
+         * 
+         */
+        protected float mX;
+        /**
+         * 
+         */
+        protected float mY;
 
-	protected int mAction;
+        /**
+         * 
+         */
+        protected int mAction;
 
-	protected MotionEvent mMotionEvent;
+        /**
+         * 
+         */
+        protected MotionEvent mMotionEvent;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public static TouchEvent obtain(final float pX, final float pY, final int pAction, final int pPointerID, final MotionEvent pMotionEvent) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         * @param pAction
+         * @param pPointerID
+         * @param pMotionEvent
+         * @return
+         */
+        public static TouchEvent obtain(final float pX, final float pY, final int pAction, final int pPointerID, final MotionEvent pMotionEvent) {
 		final TouchEvent touchEvent = TOUCHEVENT_POOL.obtainPoolItem();
 		touchEvent.set(pX, pY, pAction, pPointerID, pMotionEvent);
 		return touchEvent;
@@ -57,11 +99,18 @@ public class TouchEvent {
 		this.mMotionEvent = pMotionEvent;
 	}
 
-	public void recycle() {
+        /**
+         * 
+         */
+        public void recycle() {
 		TOUCHEVENT_POOL.recyclePoolItem(this);
 	}
 
-	public static void recycle(final TouchEvent pTouchEvent) {
+        /**
+         * 
+         * @param pTouchEvent
+         */
+        public static void recycle(final TouchEvent pTouchEvent) {
 		TOUCHEVENT_POOL.recyclePoolItem(pTouchEvent);
 	}
 
@@ -69,49 +118,95 @@ public class TouchEvent {
 	// Getter & Setter
 	// ===========================================================
 
-	public float getX() {
+        /**
+         * 
+         * @return
+         */
+        public float getX() {
 		return this.mX;
 	}
 
-	public float getY() {
+        /**
+         * 
+         * @return
+         */
+        public float getY() {
 		return this.mY;
 	}
 
-	public void set(final float pX, final float pY) {
+        /**
+         * 
+         * @param pX
+         * @param pY
+         */
+        public void set(final float pX, final float pY) {
 		this.mX = pX;
 		this.mY = pY;
 	}
 
-	public void offset(final float pDeltaX, final float pDeltaY) {
+        /**
+         * 
+         * @param pDeltaX
+         * @param pDeltaY
+         */
+        public void offset(final float pDeltaX, final float pDeltaY) {
 		this.mX += pDeltaX;
 		this.mY += pDeltaY;
 	}
 
-	public int getPointerID() {
+        /**
+         * 
+         * @return
+         */
+        public int getPointerID() {
 		return this.mPointerID;
 	}
 
-	public int getAction() {
+        /**
+         * 
+         * @return
+         */
+        public int getAction() {
 		return this.mAction;
 	}
 
-	public boolean isActionDown() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isActionDown() {
 		return this.mAction == TouchEvent.ACTION_DOWN;
 	}
 
-	public boolean isActionUp() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isActionUp() {
 		return this.mAction == TouchEvent.ACTION_UP;
 	}
 
-	public boolean isActionMove() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isActionMove() {
 		return this.mAction == TouchEvent.ACTION_MOVE;
 	}
 
-	public boolean isActionCancel() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isActionCancel() {
 		return this.mAction == TouchEvent.ACTION_CANCEL;
 	}
 
-	public boolean isActionOutside() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isActionOutside() {
 		return this.mAction == TouchEvent.ACTION_OUTSIDE;
 	}
 

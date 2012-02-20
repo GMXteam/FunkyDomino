@@ -23,15 +23,31 @@ public class ParallelBackgroundModifier extends ParallelModifier<IBackground> im
 	// Constructors
 	// ===========================================================
 
-	public ParallelBackgroundModifier(final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
+    /**
+     * 
+     * @param pBackgroundModifiers
+     * @throws IllegalArgumentException
+     */
+    public ParallelBackgroundModifier(final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
 		super(pBackgroundModifiers);
 	}
 
-	public ParallelBackgroundModifier(final IBackgroundModifierListener pBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
+    /**
+     * 
+     * @param pBackgroundModifierListener
+     * @param pBackgroundModifiers
+     * @throws IllegalArgumentException
+     */
+    public ParallelBackgroundModifier(final IBackgroundModifierListener pBackgroundModifierListener, final IBackgroundModifier... pBackgroundModifiers) throws IllegalArgumentException {
 		super(pBackgroundModifierListener, pBackgroundModifiers);
 	}
 
-	protected ParallelBackgroundModifier(final ParallelBackgroundModifier pParallelBackgroundModifier) throws DeepCopyNotSupportedException {
+        /**
+         * 
+         * @param pParallelBackgroundModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        protected ParallelBackgroundModifier(final ParallelBackgroundModifier pParallelBackgroundModifier) throws DeepCopyNotSupportedException {
 		super(pParallelBackgroundModifier);
 	}
 

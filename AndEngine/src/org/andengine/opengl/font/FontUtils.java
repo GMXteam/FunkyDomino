@@ -125,14 +125,22 @@ public class FontUtils {
 		throw new MethodNotYetImplementedException();
 	}
 
-	public static <L extends List<CharSequence>> L splitLines(final CharSequence pText, final L pResult) {
+        /**
+         * 
+         * @param <L>
+         * @param pText
+         * @param pResult
+         * @return
+         */
+        public static <L extends List<CharSequence>> L splitLines(final CharSequence pText, final L pResult) {
 		return TextUtils.split(pText, '\n', pResult);
 	}
 
 	/**
 	 * Does not respect linebreaks!
 	 * 
-	 * @param pFont
+         * @param <L> 
+         * @param pFont
 	 * @param pText
 	 * @param pResult
 	 * @param pLineWidthMaximum
@@ -273,13 +281,22 @@ public class FontUtils {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public enum MeasureDirection {
+        /**
+         * 
+         */
+        public enum MeasureDirection {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-		FORWARDS,
-		BACKWARDS;
+            /**
+             * 
+             */
+            FORWARDS,
+                /**
+                 * 
+                 */
+                BACKWARDS;
 
 		// ===========================================================
 		// Constants

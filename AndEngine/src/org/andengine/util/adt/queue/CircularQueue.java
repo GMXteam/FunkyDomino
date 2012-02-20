@@ -5,6 +5,7 @@ import org.andengine.util.adt.list.CircularList;
 /**
  * (c) Zynga 2012
  *
+ * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 17:06:49 - 03.01.2012
  */
@@ -21,11 +22,18 @@ public class CircularQueue<T> extends CircularList<T> implements IQueue<T> {
 	// Constructors
 	// ===========================================================
 
-	public CircularQueue() {
+    /**
+     * 
+     */
+    public CircularQueue() {
 		super();
 	}
 
-	public CircularQueue(final int pInitialCapacity) {
+    /**
+     * 
+     * @param pInitialCapacity
+     */
+    public CircularQueue(final int pInitialCapacity) {
 		super(pInitialCapacity);
 	}
 
@@ -46,7 +54,11 @@ public class CircularQueue<T> extends CircularList<T> implements IQueue<T> {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public T poll() {
 		if(this.isEmpty()) {
 			return null;
@@ -55,12 +67,22 @@ public class CircularQueue<T> extends CircularList<T> implements IQueue<T> {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pItem
+         */
+        @Override
 	public void enter(final T pItem) {
 		this.add(pItem);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pIndex
+         * @param pItem
+         * @throws IndexOutOfBoundsException
+         */
+        @Override
 	public void enter(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.add(pIndex, pItem);
 	}

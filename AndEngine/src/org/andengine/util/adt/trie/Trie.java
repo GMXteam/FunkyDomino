@@ -33,12 +33,22 @@ public class Trie implements ITrie {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pCharSequence
+         */
+        @Override
 	public void add(final CharSequence pCharSequence) {
 		this.mRoot.add(pCharSequence);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pCharSequence
+         * @param pStart
+         * @param pEnd
+         */
+        @Override
 	public void add(final CharSequence pCharSequence, final int pStart, final int pEnd) {
 		this.mRoot.add(pCharSequence, pStart, pEnd);
 	}
@@ -48,7 +58,14 @@ public class Trie implements ITrie {
 		return this.mRoot.contains(pCharSequence);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pCharSequence
+         * @param pStart
+         * @param pEnd
+         * @return
+         */
+        @Override
 	public boolean contains(final CharSequence pCharSequence, final int pStart, final int pEnd) {
 		return this.mRoot.contains(pCharSequence, pStart, pEnd);
 	}
@@ -61,7 +78,10 @@ public class Trie implements ITrie {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class TrieNode implements ITrie {
+        /**
+         * 
+         */
+        public static class TrieNode implements ITrie {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -78,11 +98,18 @@ public class Trie implements ITrie {
 		// Constructors
 		// ===========================================================
 
-		public TrieNode() {
+                /**
+                 * 
+                 */
+                public TrieNode() {
 			this(false);
 		}
 
-		public TrieNode(final boolean pWordEndFlag) {
+                /**
+                 * 
+                 * @param pWordEndFlag
+                 */
+                public TrieNode(final boolean pWordEndFlag) {
 			this.mWordEndFlag = pWordEndFlag;
 		}
 
@@ -98,7 +125,11 @@ public class Trie implements ITrie {
 		// Methods
 		// ===========================================================
 
-		@Override
+                /**
+                 * 
+                 * @param pCharSequence
+                 */
+                @Override
 		public void add(final CharSequence pCharSequence) {
 			final int length = pCharSequence.length();
 			if(length == 0) {
@@ -108,7 +139,13 @@ public class Trie implements ITrie {
 			this.add(pCharSequence, 0, length);
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pCharSequence
+                 * @param pStart
+                 * @param pEnd
+                 */
+                @Override
 		public void add(final CharSequence pCharSequence, final int pStart, final int pEnd) {
 			if(this.mChildren == null) {
 				this.mChildren = new SparseArray<Trie.TrieNode>(Trie.CHILDREN_SIZE_DEFAULT);
@@ -137,7 +174,14 @@ public class Trie implements ITrie {
 			return this.contains(pCharSequence, 0, length);
 		}
 
-		@Override
+                /**
+                 * 
+                 * @param pCharSequence
+                 * @param pStart
+                 * @param pEnd
+                 * @return
+                 */
+                @Override
 		public boolean contains(final CharSequence pCharSequence, final int pStart, final int pEnd) {
 			if(this.mChildren == null) {
 				return false;

@@ -9,6 +9,7 @@ import org.andengine.util.modifier.ease.IEaseFunction;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 16:10:16 - 04.05.2010
  */
@@ -34,11 +35,26 @@ public abstract class BaseSingleValueSpanParticleModifier<T extends IEntity> imp
 	// Constructors
 	// ===========================================================
 
-	public BaseSingleValueSpanParticleModifier(final float pFromTime, final float pToTime, final float pFromValue, final float pToValue) {
+        /**
+         * 
+         * @param pFromTime
+         * @param pToTime
+         * @param pFromValue
+         * @param pToValue
+         */
+        public BaseSingleValueSpanParticleModifier(final float pFromTime, final float pToTime, final float pFromValue, final float pToValue) {
 		this(pFromTime, pToTime, pFromValue, pToValue, EaseLinear.getInstance());
 	}
 
-	public BaseSingleValueSpanParticleModifier(final float pFromTime, final float pToTime, final float pFromValue, final float pToValue, final IEaseFunction pEaseFunction) {
+        /**
+         * 
+         * @param pFromTime
+         * @param pToTime
+         * @param pFromValue
+         * @param pToValue
+         * @param pEaseFunction
+         */
+        public BaseSingleValueSpanParticleModifier(final float pFromTime, final float pToTime, final float pFromValue, final float pToValue, final IEaseFunction pEaseFunction) {
 		this.mFromTime = pFromTime;
 		this.mToTime = pToTime;
 		this.mDuration = pToTime - pFromTime;
@@ -57,15 +73,34 @@ public abstract class BaseSingleValueSpanParticleModifier<T extends IEntity> imp
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onSetInitialValue(final Particle<T> pParticle, final float pValue);
-	protected abstract void onSetValue(final Particle<T> pParticle, final float pPercentageDone, final float pValue);
+        /**
+         * 
+         * @param pParticle
+         * @param pValue
+         */
+        protected abstract void onSetInitialValue(final Particle<T> pParticle, final float pValue);
+        /**
+         * 
+         * @param pParticle
+         * @param pPercentageDone
+         * @param pValue
+         */
+        protected abstract void onSetValue(final Particle<T> pParticle, final float pPercentageDone, final float pValue);
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         */
+        @Override
 	public void onInitializeParticle(final Particle<T> pParticle) {
 		this.onSetInitialValue(pParticle, this.mFromValue);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         */
+        @Override
 	public void onUpdateParticle(final Particle<T> pParticle) {
 		final float lifeTime = pParticle.getLifeTime();
 		if(lifeTime > this.mFromTime && lifeTime < this.mToTime) {
@@ -78,7 +113,14 @@ public abstract class BaseSingleValueSpanParticleModifier<T extends IEntity> imp
 	// Methods
 	// ===========================================================
 
-	public void reset(final float pFromValue, final float pToValue, final float pFromTime, final float pToTime) {
+        /**
+         * 
+         * @param pFromValue
+         * @param pToValue
+         * @param pFromTime
+         * @param pToTime
+         */
+        public void reset(final float pFromValue, final float pToValue, final float pFromTime, final float pToTime) {
 		this.mFromValue = pFromValue;
 		this.mFromTime = pFromTime;
 		this.mToTime = pToTime;

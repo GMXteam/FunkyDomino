@@ -19,17 +19,27 @@ public class Library<T> {
 	// Fields
 	// ===========================================================
 
-	protected final SparseArray<T> mItems;
+    /**
+     * 
+     */
+    protected final SparseArray<T> mItems;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public Library() {
+        /**
+         * 
+         */
+        public Library() {
 		this.mItems = new SparseArray<T>();
 	}
 
-	public Library(final int pInitialCapacity) {
+        /**
+         * 
+         * @param pInitialCapacity
+         */
+        public Library(final int pInitialCapacity) {
 		this.mItems = new SparseArray<T>(pInitialCapacity);
 	}
 
@@ -37,7 +47,12 @@ public class Library<T> {
 	// Getter & Setter
 	// ===========================================================
 
-	public void put(final int pID, final T pItem) {
+        /**
+         * 
+         * @param pID
+         * @param pItem
+         */
+        public void put(final int pID, final T pItem) {
 		final T existingItem = this.mItems.get(pID);
 		if(existingItem == null) {
 			this.mItems.put(pID, pItem);
@@ -46,11 +61,20 @@ public class Library<T> {
 		}
 	}
 
-	public void remove(final int pID) {
+        /**
+         * 
+         * @param pID
+         */
+        public void remove(final int pID) {
 		this.mItems.remove(pID);
 	}
 
-	public T get(final int pID) {
+        /**
+         * 
+         * @param pID
+         * @return
+         */
+        public T get(final int pID) {
 		return this.mItems.get(pID);
 	}
 

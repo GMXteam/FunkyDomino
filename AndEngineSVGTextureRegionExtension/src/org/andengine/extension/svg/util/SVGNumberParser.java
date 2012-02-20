@@ -34,7 +34,12 @@ public class SVGNumberParser {
 	// Methods
 	// ===========================================================
 
-	public static SVGNumberParserFloatResult parseFloats(final String pString) {
+    /**
+     * 
+     * @param pString
+     * @return
+     */
+    public static SVGNumberParserFloatResult parseFloats(final String pString) {
 		if(pString == null) {
 			return null;
 		}
@@ -48,7 +53,12 @@ public class SVGNumberParser {
 		return new SVGNumberParserFloatResult(numbers);
 	}
 
-	public static SVGNumberParserIntegerResult parseInts(final String pString) {
+        /**
+         * 
+         * @param pString
+         * @return
+         */
+        public static SVGNumberParserIntegerResult parseInts(final String pString) {
 		if(pString == null) {
 			return null;
 		}
@@ -66,7 +76,10 @@ public class SVGNumberParser {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class SVGNumberParserIntegerResult {
+        /**
+         * 
+         */
+        public static class SVGNumberParserIntegerResult {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -81,7 +94,11 @@ public class SVGNumberParser {
 		// Constructors
 		// ===========================================================
 
-		public SVGNumberParserIntegerResult(final int[] pNumbers) {
+                /**
+                 * 
+                 * @param pNumbers
+                 */
+                public SVGNumberParserIntegerResult(final int[] pNumbers) {
 			this.mNumbers = pNumbers;
 		}
 
@@ -90,15 +107,28 @@ public class SVGNumberParser {
 		// ===========================================================
 
 
-		public int[] getNumbers() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int[] getNumbers() {
 			return this.mNumbers;
 		}
 
-		public int getNumberCount() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getNumberCount() {
 			return this.mNumbers.length;
 		}
 
-		public int getNumber(final int pIndex) {
+                /**
+                 * 
+                 * @param pIndex
+                 * @return
+                 */
+                public int getNumber(final int pIndex) {
 			return this.mNumbers[pIndex];
 		}
 
@@ -115,7 +145,10 @@ public class SVGNumberParser {
 		// ===========================================================
 	}
 
-	public static class SVGNumberParserFloatResult {
+        /**
+         * 
+         */
+        public static class SVGNumberParserFloatResult {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -130,7 +163,11 @@ public class SVGNumberParser {
 		// Constructors
 		// ===========================================================
 
-		public SVGNumberParserFloatResult(final float[] pNumbers) {
+                /**
+                 * 
+                 * @param pNumbers
+                 */
+                public SVGNumberParserFloatResult(final float[] pNumbers) {
 			this.mNumbers = pNumbers;
 		}
 
@@ -139,15 +176,28 @@ public class SVGNumberParser {
 		// ===========================================================
 
 
-		public float[] getNumbers() {
+                /**
+                 * 
+                 * @return
+                 */
+                public float[] getNumbers() {
 			return this.mNumbers;
 		}
 
-		public int getNumberCount() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getNumberCount() {
 			return this.mNumbers.length;
 		}
 
-		public float getNumber(final int pIndex) {
+                /**
+                 * 
+                 * @param pIndex
+                 * @return
+                 */
+                public float getNumber(final int pIndex) {
 			return this.mNumbers[pIndex];
 		}
 

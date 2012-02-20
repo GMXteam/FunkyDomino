@@ -21,18 +21,32 @@ public class TimerHandler implements IUpdateHandler {
 	private float mTimerSeconds;
 	private float mTimerSecondsElapsed;
 	private boolean mTimerCallbackTriggered;
-	protected final ITimerCallback mTimerCallback;
+        /**
+         * 
+         */
+        protected final ITimerCallback mTimerCallback;
 	private boolean mAutoReset;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public TimerHandler(final float pTimerSeconds, final ITimerCallback pTimerCallback) {
+        /**
+         * 
+         * @param pTimerSeconds
+         * @param pTimerCallback
+         */
+        public TimerHandler(final float pTimerSeconds, final ITimerCallback pTimerCallback) {
 		this(pTimerSeconds, false, pTimerCallback);
 	}
 
-	public TimerHandler(final float pTimerSeconds, final boolean pAutoReset, final ITimerCallback pTimerCallback) {
+        /**
+         * 
+         * @param pTimerSeconds
+         * @param pAutoReset
+         * @param pTimerCallback
+         */
+        public TimerHandler(final float pTimerSeconds, final boolean pAutoReset, final ITimerCallback pTimerCallback) {
 		this.mTimerSeconds = pTimerSeconds;
 		this.mAutoReset = pAutoReset;
 		this.mTimerCallback = pTimerCallback;
@@ -42,31 +56,59 @@ public class TimerHandler implements IUpdateHandler {
 	// Getter & Setter
 	// ===========================================================
 
-	public boolean isAutoReset() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isAutoReset() {
 		return this.mAutoReset;
 	}
 
-	public void setAutoReset(final boolean pAutoReset) {
+        /**
+         * 
+         * @param pAutoReset
+         */
+        public void setAutoReset(final boolean pAutoReset) {
 		this.mAutoReset = pAutoReset;
 	}
 
-	public void setTimerSeconds(final float pTimerSeconds) {
+        /**
+         * 
+         * @param pTimerSeconds
+         */
+        public void setTimerSeconds(final float pTimerSeconds) {
 		this.mTimerSeconds = pTimerSeconds;
 	}
 
-	public float getTimerSeconds() {
+        /**
+         * 
+         * @return
+         */
+        public float getTimerSeconds() {
 		return this.mTimerSeconds;
 	}
 
-	public float getTimerSecondsElapsed() {
+        /**
+         * 
+         * @return
+         */
+        public float getTimerSecondsElapsed() {
 		return this.mTimerSecondsElapsed;
 	}
 	
-	public boolean isTimerCallbackTriggered() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isTimerCallbackTriggered() {
 		return this.mTimerCallbackTriggered;
 	}
 
-	public void setTimerCallbackTriggered(boolean pTimerCallbackTriggered) {
+        /**
+         * 
+         * @param pTimerCallbackTriggered
+         */
+        public void setTimerCallbackTriggered(boolean pTimerCallbackTriggered) {
 		this.mTimerCallbackTriggered = pTimerCallbackTriggered;
 	}
 
@@ -74,7 +116,11 @@ public class TimerHandler implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         */
+        @Override
 	public void onUpdate(final float pSecondsElapsed) {
 		if(this.mAutoReset) {
 			this.mTimerSecondsElapsed += pSecondsElapsed;
@@ -93,7 +139,10 @@ public class TimerHandler implements IUpdateHandler {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mTimerCallbackTriggered = false;
 		this.mTimerSecondsElapsed = 0;

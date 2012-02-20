@@ -46,7 +46,12 @@ public class SVGTransformParser implements ISVGConstants {
 	// Methods
 	// ===========================================================
 
-	public static Matrix parseTransform(final String pString) {
+        /**
+         * 
+         * @param pString
+         * @return
+         */
+        public static Matrix parseTransform(final String pString) {
 		if(pString == null) {
 			return null;
 		}
@@ -94,7 +99,12 @@ public class SVGTransformParser implements ISVGConstants {
 		}
 	}
 
-	public static Matrix parseTransformRotate(final String pString) {
+        /**
+         * 
+         * @param pString
+         * @return
+         */
+        public static Matrix parseTransformRotate(final String pString) {
 		final SVGNumberParserFloatResult svgNumberParserFloatResult = SVGNumberParser.parseFloats(pString.substring(ATTRIBUTE_TRANSFORM_VALUE_ROTATE.length() + 1, pString.indexOf(')')));
 		SVGTransformParser.assertNumberParserResultNumberCountMinimum(svgNumberParserFloatResult, 1);
 

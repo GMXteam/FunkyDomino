@@ -49,7 +49,11 @@ public class ActivityUtils {
 	// Methods
 	// ===========================================================
 
-	public static void requestFullscreen(final Activity pActivity) {
+    /**
+     * 
+     * @param pActivity
+     */
+    public static void requestFullscreen(final Activity pActivity) {
 		final Window window = pActivity.getWindow();
 		window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -67,39 +71,123 @@ public class ActivityUtils {
 		window.setAttributes(windowLayoutParams);
 	}
 
-	public static void keepScreenOn(final Activity pActivity) {
+        /**
+         * 
+         * @param pActivity
+         */
+        public static void keepScreenOn(final Activity pActivity) {
 		pActivity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 
-	public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @param pCallable
+         * @param pCallback
+         */
+        public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback) {
 		ActivityUtils.doAsync(pContext, pTitleResourceID, pMessageResourceID, pCallable, pCallback, null, false);
 	}
 
-	public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pMessage
+         * @param pCallable
+         * @param pCallback
+         */
+        public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback) {
 		ActivityUtils.doAsync(pContext, pTitle, pMessage, pCallable, pCallback, null, false);
 	}
 
-	public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback, final boolean pCancelable) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @param pCallable
+         * @param pCallback
+         * @param pCancelable
+         */
+        public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback, final boolean pCancelable) {
 		ActivityUtils.doAsync(pContext, pTitleResourceID, pMessageResourceID, pCallable, pCallback, null, pCancelable);
 	}
 
-	public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback, final boolean pCancelable) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pMessage
+         * @param pCallable
+         * @param pCallback
+         * @param pCancelable
+         */
+        public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback, final boolean pCancelable) {
 		ActivityUtils.doAsync(pContext, pTitle, pMessage, pCallable, pCallback, null, pCancelable);
 	}
 
-	public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @param pCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         */
+        public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
 		ActivityUtils.doAsync(pContext, pTitleResourceID, pMessageResourceID, pCallable, pCallback, pExceptionCallback, false);
 	}
 
-	public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pMessage
+         * @param pCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         */
+        public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
 		ActivityUtils.doAsync(pContext, pTitle, pMessage, pCallable, pCallback, pExceptionCallback, false);
 	}
 
-	public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback, final boolean pCancelable) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @param pCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         * @param pCancelable
+         */
+        public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback, final boolean pCancelable) {
 		ActivityUtils.doAsync(pContext, pContext.getString(pTitleResourceID), pContext.getString(pMessageResourceID), pCallable, pCallback, pExceptionCallback, pCancelable);
 	}
 
-	public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback, final boolean pCancelable) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pMessage
+         * @param pCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         * @param pCancelable
+         */
+        public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final Callable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback, final boolean pCancelable) {
 		new AsyncTask<Void, Void, T>() {
 			private ProgressDialog mPD;
 			private Exception mException = null;
@@ -156,19 +244,57 @@ public class ActivityUtils {
 		}.execute((Void[]) null);
 	}
 	
-	public static <T> void doProgressAsync(final Context pContext, final int pTitleResourceID, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pIconResourceID
+         * @param pCallable
+         * @param pCallback
+         */
+        public static <T> void doProgressAsync(final Context pContext, final int pTitleResourceID, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback) {
 		ActivityUtils.doProgressAsync(pContext, pTitleResourceID, pIconResourceID, pCallable, pCallback, null);
 	}
 
-	public static <T> void doProgressAsync(final Context pContext, final CharSequence pTitle, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pIconResourceID
+         * @param pCallable
+         * @param pCallback
+         */
+        public static <T> void doProgressAsync(final Context pContext, final CharSequence pTitle, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback) {
 		ActivityUtils.doProgressAsync(pContext, pTitle, pIconResourceID, pCallable, pCallback, null);
 	}
 
-	public static <T> void doProgressAsync(final Context pContext, final int pTitleResourceID, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pIconResourceID
+         * @param pCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         */
+        public static <T> void doProgressAsync(final Context pContext, final int pTitleResourceID, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
 		ActivityUtils.doProgressAsync(pContext, pContext.getString(pTitleResourceID), pIconResourceID, pCallable, pCallback, pExceptionCallback);
 	}
 
-	public static <T> void doProgressAsync(final Context pContext, final CharSequence pTitle, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pIconResourceID
+         * @param pCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         */
+        public static <T> void doProgressAsync(final Context pContext, final CharSequence pTitle, final int pIconResourceID, final ProgressCallable<T> pCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
 		new AsyncTask<Void, Integer, T>() {
 			private ProgressDialog mPD;
 			private Exception mException = null;
@@ -232,11 +358,31 @@ public class ActivityUtils {
 		}.execute((Void[]) null);
 	}
 
-	public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final AsyncCallable<T> pAsyncCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitleResourceID
+         * @param pMessageResourceID
+         * @param pAsyncCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         */
+        public static <T> void doAsync(final Context pContext, final int pTitleResourceID, final int pMessageResourceID, final AsyncCallable<T> pAsyncCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
 		ActivityUtils.doAsync(pContext, pContext.getString(pTitleResourceID), pContext.getString(pMessageResourceID), pAsyncCallable, pCallback, pExceptionCallback);
 	}
 
-	public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final AsyncCallable<T> pAsyncCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
+        /**
+         * 
+         * @param <T>
+         * @param pContext
+         * @param pTitle
+         * @param pMessage
+         * @param pAsyncCallable
+         * @param pCallback
+         * @param pExceptionCallback
+         */
+        public static <T> void doAsync(final Context pContext, final CharSequence pTitle, final CharSequence pMessage, final AsyncCallable<T> pAsyncCallable, final Callback<T> pCallback, final Callback<Exception> pExceptionCallback) {
 		final ProgressDialog pd = ProgressDialog.show(pContext, pTitle, pMessage);
 		pAsyncCallable.call(new Callback<T>() {
 			@Override

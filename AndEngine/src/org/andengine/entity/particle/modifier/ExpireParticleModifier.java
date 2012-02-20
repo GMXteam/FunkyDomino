@@ -8,6 +8,7 @@ import org.andengine.util.math.MathUtils;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 21:21:10 - 14.03.2010
  */
@@ -27,11 +28,20 @@ public class ExpireParticleModifier<T extends IEntity> implements IParticleModif
 	// Constructors
 	// ===========================================================
 
-	public ExpireParticleModifier(final float pLifeTime) {
+        /**
+         * 
+         * @param pLifeTime
+         */
+        public ExpireParticleModifier(final float pLifeTime) {
 		this(pLifeTime, pLifeTime);
 	}
 
-	public ExpireParticleModifier(final float pMinLifeTime, final float pMaxLifeTime) {
+        /**
+         * 
+         * @param pMinLifeTime
+         * @param pMaxLifeTime
+         */
+        public ExpireParticleModifier(final float pMinLifeTime, final float pMaxLifeTime) {
 		this.mMinLifeTime = pMinLifeTime;
 		this.mMaxLifeTime = pMaxLifeTime;
 	}
@@ -40,20 +50,37 @@ public class ExpireParticleModifier<T extends IEntity> implements IParticleModif
 	// Getter & Setter
 	// ===========================================================
 
-	public float getMinLifeTime() {
+        /**
+         * 
+         * @return
+         */
+        public float getMinLifeTime() {
 		return this.mMinLifeTime;
 	}
 
-	public float getMaxLifeTime() {
+        /**
+         * 
+         * @return
+         */
+        public float getMaxLifeTime() {
 		return this.mMaxLifeTime;
 	}
 
-	public void setLifeTime(final float pLifeTime) {
+        /**
+         * 
+         * @param pLifeTime
+         */
+        public void setLifeTime(final float pLifeTime) {
 		this.mMinLifeTime = pLifeTime;
 		this.mMaxLifeTime = pLifeTime;
 	}
 
-	public void setLifeTime(final float pMinLifeTime, final float pMaxLifeTime) {
+        /**
+         * 
+         * @param pMinLifeTime
+         * @param pMaxLifeTime
+         */
+        public void setLifeTime(final float pMinLifeTime, final float pMaxLifeTime) {
 		this.mMinLifeTime = pMinLifeTime;
 		this.mMaxLifeTime = pMaxLifeTime;
 	}
@@ -62,12 +89,20 @@ public class ExpireParticleModifier<T extends IEntity> implements IParticleModif
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         */
+        @Override
 	public void onInitializeParticle(final Particle<T> pParticle) {
 		pParticle.setExpireTime((MathUtils.RANDOM.nextFloat() * (this.mMaxLifeTime - this.mMinLifeTime) + this.mMinLifeTime));
 	}
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         */
+        @Override
 	public void onUpdateParticle(final Particle<T> pParticle) {
 
 	}

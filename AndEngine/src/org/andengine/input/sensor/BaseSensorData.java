@@ -18,15 +18,29 @@ public class BaseSensorData {
 	// Fields
 	// ===========================================================
 
-	protected final float[] mValues;
-	protected int mAccuracy;
-	protected int mDisplayRotation;
+    /**
+     * 
+     */
+    protected final float[] mValues;
+        /**
+         * 
+         */
+        protected int mAccuracy;
+        /**
+         * 
+         */
+        protected int mDisplayRotation;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BaseSensorData(final int pValueCount, int pDisplayRotation) {
+        /**
+         * 
+         * @param pValueCount
+         * @param pDisplayRotation
+         */
+        public BaseSensorData(final int pValueCount, int pDisplayRotation) {
 		this.mValues = new float[pValueCount];
 
 		this.mDisplayRotation = pDisplayRotation;
@@ -36,19 +50,35 @@ public class BaseSensorData {
 	// Getter & Setter
 	// ===========================================================
 
-	public float[] getValues() {
+        /**
+         * 
+         * @return
+         */
+        public float[] getValues() {
 		return this.mValues;
 	}
 
-	public void setValues(final float[] pValues) {
+        /**
+         * 
+         * @param pValues
+         */
+        public void setValues(final float[] pValues) {
 		System.arraycopy(pValues, 0, this.mValues, 0, pValues.length);
 	}
 
-	public void setAccuracy(final int pAccuracy) {
+        /**
+         * 
+         * @param pAccuracy
+         */
+        public void setAccuracy(final int pAccuracy) {
 		this.mAccuracy = pAccuracy;
 	}
 
-	public int getAccuracy() {
+        /**
+         * 
+         * @return
+         */
+        public int getAccuracy() {
 		return this.mAccuracy;
 	}
 
@@ -56,7 +86,11 @@ public class BaseSensorData {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public String toString() {
 		return "Values: " + Arrays.toString(this.mValues);
 	}

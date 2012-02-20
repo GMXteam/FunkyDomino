@@ -40,7 +40,12 @@ public class MultiTouch {
 	// Methods
 	// ===========================================================
 
-	public static boolean isSupported(final Context pContext) {
+        /**
+         * 
+         * @param pContext
+         * @return
+         */
+        public static boolean isSupported(final Context pContext) {
 		if(MultiTouch.SUPPORTED == null) {
 			MultiTouch.SUPPORTED = SystemUtils.hasSystemFeature(pContext, PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH);
 		}
@@ -48,7 +53,12 @@ public class MultiTouch {
 		return MultiTouch.SUPPORTED;
 	}
 
-	public static boolean isSupportedDistinct(final Context pContext) {
+        /**
+         * 
+         * @param pContext
+         * @return
+         */
+        public static boolean isSupportedDistinct(final Context pContext) {
 		if(MultiTouch.SUPPORTED_DISTINCT == null) {
 			MultiTouch.SUPPORTED_DISTINCT = SystemUtils.hasSystemFeature(pContext, PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH_DISTINCT);
 		}

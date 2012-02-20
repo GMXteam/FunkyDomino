@@ -24,5 +24,10 @@ public interface IBitmapTextureAtlasSource extends ITextureAtlasSource {
 	@Override
 	public IBitmapTextureAtlasSource deepCopy();
 
-	public Bitmap onLoadBitmap(final Config pBitmapConfig);
+        /**
+         * 
+         * @param pBitmapConfig
+         * @return
+         */
+        public Bitmap onLoadBitmap(final Config pBitmapConfig);
 }

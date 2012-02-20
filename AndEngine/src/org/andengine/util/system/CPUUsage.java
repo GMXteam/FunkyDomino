@@ -32,7 +32,10 @@ public class CPUUsage {
 	// Constructors
 	// ===========================================================
 
-	public CPUUsage() {
+        /**
+         * 
+         */
+        public CPUUsage() {
 
 	}
 
@@ -55,7 +58,10 @@ public class CPUUsage {
 	// Methods
 	// ===========================================================
 
-	public void update() {
+        /**
+         * 
+         */
+        public void update() {
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream("/proc/stat")), StreamUtils.IO_BUFFER_SIZE);

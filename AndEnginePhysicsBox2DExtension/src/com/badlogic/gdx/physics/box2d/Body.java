@@ -59,7 +59,8 @@ public class Body {
 	 * Otherwise you can create the fixture directly from a shape. If the density is non-zero, this function automatically updates
 	 * the mass of the body. Contacts are not created until the next time step.
 	 * @param def the fixture definition.
-	 * @warning This function is locked during callbacks.
+         * @return 
+         * @warning This function is locked during callbacks.
 	 */
 	public Fixture createFixture (FixtureDef def) {
 		Fixture fixture = new Fixture(this, jniCreateFixture(addr, def.shape.addr, def.friction, def.restitution, def.density,
@@ -78,7 +79,8 @@ public class Body {
 	 * updates the mass of the body.
 	 * @param shape the shape to be cloned.
 	 * @param density the shape density (set to zero for static bodies).
-	 * @warning This function is locked during callbacks.
+         * @return 
+         * @warning This function is locked during callbacks.
 	 */
 	public Fixture createFixture (Shape shape, float density) {
 		Fixture fixture = new Fixture(this, jniCreateFixture(addr, shape.addr, density));
@@ -133,7 +135,11 @@ public class Body {
 	 */
 	private final Transform transform = new Transform();
 
-	public Transform getTransform () {
+        /**
+         * 
+         * @return
+         */
+        public Transform getTransform () {
 		jniGetTransform(addr, transform.vals);
 		return transform;
 	}
@@ -170,7 +176,11 @@ public class Body {
 	 */
 	private final Vector2 worldCenter = new Vector2();
 
-	public Vector2 getWorldCenter () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getWorldCenter () {
 		jniGetWorldCenter(addr, tmp);
 		worldCenter.x = tmp[0];
 		worldCenter.y = tmp[1];
@@ -184,7 +194,11 @@ public class Body {
 	 */
 	private final Vector2 localCenter = new Vector2();
 
-	public Vector2 getLocalCenter () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getLocalCenter () {
 		jniGetLocalCenter(addr, tmp);
 		localCenter.x = tmp[0];
 		localCenter.y = tmp[1];
@@ -195,14 +209,19 @@ public class Body {
 
 	/**
 	 * Set the linear velocity of the center of mass.
-	 */
+         * 
+         * @param v 
+         */
 	public void setLinearVelocity (Vector2 v) {
 		jniSetLinearVelocity(addr, v.x, v.y);
 	}
 	
 	/**
 	 * Set the linear velocity of the center of mass.
-	 */
+         * 
+         * @param vX 
+         * @param vY 
+         */
 	public void setLinearVelocity (float vX, float vY) {
 		jniSetLinearVelocity(addr, vX, vY);
 	}
@@ -214,7 +233,11 @@ public class Body {
 	 */
 	private final Vector2 linearVelocity = new Vector2();
 
-	public Vector2 getLinearVelocity () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getLinearVelocity () {
 		jniGetLinearVelocity(addr, tmp);
 		linearVelocity.x = tmp[0];
 		linearVelocity.y = tmp[1];
@@ -225,7 +248,9 @@ public class Body {
 
 	/**
 	 * Set the angular velocity.
-	 */
+         * 
+         * @param omega 
+         */
 	public void setAngularVelocity (float omega) {
 		jniSetAngularVelocity(addr, omega);
 	}
@@ -234,7 +259,9 @@ public class Body {
 
 	/**
 	 * Get the angular velocity.
-	 */
+         * 
+         * @return 
+         */
 	public float getAngularVelocity () {
 		return jniGetAngularVelocity(addr);
 	}
@@ -400,7 +427,10 @@ public class Body {
 
 	private native void jniGetWorldVector (long addr, float localVectorX, float localVectorY, float[] worldVector);
 
-	public final Vector2 localPoint2 = new Vector2();
+        /**
+         * 
+         */
+        public final Vector2 localPoint2 = new Vector2();
 
 	/**
 	 * Gets a local point relative to the body's origin given a world point.
@@ -416,7 +446,10 @@ public class Body {
 
 	private native void jniGetLocalPoint (long addr, float worldPointX, float worldPointY, float[] localPoint);
 
-	public final Vector2 localVector = new Vector2();
+        /**
+         * 
+         */
+        public final Vector2 localVector = new Vector2();
 
 	/**
 	 * Gets a local vector given a world vector.
@@ -432,7 +465,10 @@ public class Body {
 
 	private native void jniGetLocalVector (long addr, float worldVectorX, float worldVectorY, float[] worldVector);
 
-	public final Vector2 linVelWorld = new Vector2();
+        /**
+         * 
+         */
+        public final Vector2 linVelWorld = new Vector2();
 
 	/**
 	 * Get the world linear velocity of a world point attached to this body.
@@ -448,7 +484,10 @@ public class Body {
 
 	private native void jniGetLinearVelocityFromWorldPoint (long addr, float worldPointX, float worldPointY, float[] linVelWorld);
 
-	public final Vector2 linVelLoc = new Vector2();
+        /**
+         * 
+         */
+        public final Vector2 linVelLoc = new Vector2();
 
 	/**
 	 * Get the world velocity of a local point.
@@ -466,7 +505,9 @@ public class Body {
 
 	/**
 	 * Get the linear damping of the body.
-	 */
+         * 
+         * @return 
+         */
 	public float getLinearDamping () {
 		return jniGetLinearDamping(addr);
 	}
@@ -475,7 +516,9 @@ public class Body {
 
 	/**
 	 * Set the linear damping of the body.
-	 */
+         * 
+         * @param linearDamping 
+         */
 	public void setLinearDamping (float linearDamping) {
 		jniSetLinearDamping(addr, linearDamping);
 	}
@@ -484,7 +527,9 @@ public class Body {
 
 	/**
 	 * Get the angular damping of the body.
-	 */
+         * 
+         * @return 
+         */
 	public float getAngularDamping () {
 		return jniGetAngularDamping(addr);
 	}
@@ -493,7 +538,9 @@ public class Body {
 
 	/**
 	 * Set the angular damping of the body.
-	 */
+         * 
+         * @param angularDamping 
+         */
 	public void setAngularDamping (float angularDamping) {
 		jniSetAngularDamping(addr, angularDamping);
 	}
@@ -502,7 +549,9 @@ public class Body {
 
 	/**
 	 * Set the type of this body. This may alter the mass and velocity.
-	 */
+         * 
+         * @param type 
+         */
 	public void setType (BodyType type) {
 		jniSetType(addr, type.getValue());
 	}
@@ -511,7 +560,9 @@ public class Body {
 
 	/**
 	 * Get the type of this body.
-	 */
+         * 
+         * @return 
+         */
 	public BodyType getType () {
 		int type = jniGetType(addr);
 		if (type == 0) return BodyType.StaticBody;
@@ -524,7 +575,9 @@ public class Body {
 
 	/**
 	 * Should this body be treated like a bullet for continuous collision detection?
-	 */
+         * 
+         * @param flag 
+         */
 	public void setBullet (boolean flag) {
 		jniSetBullet(addr, flag);
 	}
@@ -533,7 +586,9 @@ public class Body {
 
 	/**
 	 * Is this body treated like a bullet for continuous collision detection?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isBullet () {
 		return jniIsBullet(addr);
 	}
@@ -542,7 +597,9 @@ public class Body {
 
 	/**
 	 * You can disable sleeping on this body. If you disable sleeping, the
-	 */
+         * 
+         * @param flag 
+         */
 	public void setSleepingAllowed (boolean flag) {
 		jniSetSleepingAllowed(addr, flag);
 	}
@@ -551,7 +608,9 @@ public class Body {
 
 	/**
 	 * Is this body allowed to sleep
-	 */
+         * 
+         * @return 
+         */
 	public boolean isSleepingAllowed () {
 		return jniIsSleepingAllowed(addr);
 	}
@@ -585,7 +644,9 @@ public class Body {
 	 * create/destroy fixtures and joints on inactive bodies. Fixtures on an inactive body are implicitly inactive and will not
 	 * participate in collisions, ray-casts, or queries. Joints connected to an inactive body are implicitly inactive. An inactive
 	 * body is still owned by a b2World object and remains in the body list.
-	 */
+         * 
+         * @param flag 
+         */
 	public void setActive (boolean flag) {
 		jniSetActive(addr, flag);
 	}
@@ -594,7 +655,9 @@ public class Body {
 
 	/**
 	 * Get the active state of the body.
-	 */
+         * 
+         * @return 
+         */
 	public boolean isActive () {
 		return jniIsActive(addr);
 	}
@@ -603,7 +666,9 @@ public class Body {
 
 	/**
 	 * Set this body to have fixed rotation. This causes the mass to be reset.
-	 */
+         * 
+         * @param flag 
+         */
 	public void setFixedRotation (boolean flag) {
 		jniSetFixedRotation(addr, flag);
 	}
@@ -612,7 +677,9 @@ public class Body {
 
 	/**
 	 * Does this body have fixed rotation?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isFixedRotation () {
 		return jniIsFixedRotation(addr);
 	}
@@ -621,14 +688,18 @@ public class Body {
 
 	/**
 	 * Get the list of all fixtures attached to this body. Do not modify the list!
-	 */
+         * 
+         * @return 
+         */
 	public ArrayList<Fixture> getFixtureList () {
 		return fixtures;
 	}
 
 	/**
 	 * Get the list of all joints attached to this body. Do not modify the list!
-	 */
+         * 
+         * @return 
+         */
 	public ArrayList<JointEdge> getJointList () {
 		return joints;
 	}
@@ -645,21 +716,27 @@ public class Body {
 
 	/**
 	 * Get the parent world of this body.
-	 */
+         * 
+         * @return 
+         */
 	public World getWorld () {
 		return world;
 	}
 
 	/**
 	 * Get the user data
-	 */
+         * 
+         * @return 
+         */
 	public Object getUserData () {
 		return userData;
 	}
 
 	/**
 	 * Set the user data
-	 */
+         * 
+         * @param userData 
+         */
 	public void setUserData (Object userData) {
 		this.userData = userData;
 	}

@@ -36,35 +36,103 @@ public abstract class PVRCCZTexture extends PVRTexture {
 	// Constructors
 	// ===========================================================
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pTextureStateListener);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy, pTextureStateListener);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pTextureOptions
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pTextureOptions);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @param pTextureOptions
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy, pTextureOptions);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pTextureOptions
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pTextureOptions, pTextureStateListener);
 	}
 
-	public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
+        /**
+         * 
+         * @param pTextureManager
+         * @param pPVRTextureFormat
+         * @param pPVRTexturePixelBufferStrategy
+         * @param pTextureOptions
+         * @param pTextureStateListener
+         * @throws IllegalArgumentException
+         * @throws IOException
+         */
+        public PVRCCZTexture(final TextureManager pTextureManager, final PVRTextureFormat pPVRTextureFormat, final IPVRTexturePixelBufferStrategy pPVRTexturePixelBufferStrategy, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException, IOException {
 		super(pTextureManager, pPVRTextureFormat, pPVRTexturePixelBufferStrategy, pTextureOptions, pTextureStateListener);
 	}
 
@@ -76,7 +144,12 @@ public abstract class PVRCCZTexture extends PVRTexture {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         * @throws IOException
+         */
+        @Override
 	public final InflaterInputStream getInputStream() throws IOException {
 		final InputStream inputStream = this.onGetInputStream();
 
@@ -85,7 +158,12 @@ public abstract class PVRCCZTexture extends PVRTexture {
 		return this.mCCZHeader.getCCZCompressionFormat().wrap(inputStream);
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         * @throws IOException
+         */
+        @Override
 	public ByteBuffer getPVRTextureBuffer() throws IOException {
 		final InputStream inputStream = this.getInputStream();
 		try {
@@ -105,7 +183,10 @@ public abstract class PVRCCZTexture extends PVRTexture {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class CCZHeader {
+        /**
+         * 
+         */
+        public static class CCZHeader {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -117,7 +198,10 @@ public abstract class PVRCCZTexture extends PVRTexture {
 			(byte)'!'
 		};
 
-		public static final int SIZE = 16;
+                /**
+                 * 
+                 */
+                public static final int SIZE = 16;
 
 		// ===========================================================
 		// Fields
@@ -130,7 +214,11 @@ public abstract class PVRCCZTexture extends PVRTexture {
 		// Constructors
 		// ===========================================================
 
-		public CCZHeader(final byte[] pData) {
+                /**
+                 * 
+                 * @param pData
+                 */
+                public CCZHeader(final byte[] pData) {
 			this.mDataByteBuffer = ByteBuffer.wrap(pData);
 			this.mDataByteBuffer.rewind();
 			this.mDataByteBuffer.order(ByteOrder.BIG_ENDIAN);
@@ -153,19 +241,35 @@ public abstract class PVRCCZTexture extends PVRTexture {
 			return this.mDataByteBuffer.getShort(4);
 		}
 
-		public CCZCompressionFormat getCCZCompressionFormat() {
+                /**
+                 * 
+                 * @return
+                 */
+                public CCZCompressionFormat getCCZCompressionFormat() {
 			return this.mCCZCompressionFormat;
 		}
 
-		public short getVersion() {
+                /**
+                 * 
+                 * @return
+                 */
+                public short getVersion() {
 			return this.mDataByteBuffer.getShort(6);
 		}
 
-		public int getUserdata() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getUserdata() {
 			return this.mDataByteBuffer.getInt(8);
 		}
 
-		public int getUncompressedSize() {
+                /**
+                 * 
+                 * @return
+                 */
+                public int getUncompressedSize() {
 			return this.mDataByteBuffer.getInt(12);
 		}
 
@@ -182,15 +286,30 @@ public abstract class PVRCCZTexture extends PVRTexture {
 		// ===========================================================
 	}
 
-	public static enum CCZCompressionFormat {
+        /**
+         * 
+         */
+        public static enum CCZCompressionFormat {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-		ZLIB((short)0),
-		BZIP2((short)1),
-		GZIP((short)2),
-		NONE((short)3);
+            /**
+             * 
+             */
+            ZLIB((short)0),
+                /**
+                 * 
+                 */
+                BZIP2((short)1),
+                /**
+                 * 
+                 */
+                GZIP((short)2),
+                /**
+                 * 
+                 */
+                NONE((short)3);
 
 		// ===========================================================
 		// Constants
@@ -210,7 +329,13 @@ public abstract class PVRCCZTexture extends PVRTexture {
 			this.mID = pID;
 		}
 
-		public InflaterInputStream wrap(final InputStream pInputStream) throws IOException {
+                /**
+                 * 
+                 * @param pInputStream
+                 * @return
+                 * @throws IOException
+                 */
+                public InflaterInputStream wrap(final InputStream pInputStream) throws IOException {
 			switch(this) {
 				case GZIP:
 					return new GZIPInputStream(pInputStream);
@@ -223,7 +348,12 @@ public abstract class PVRCCZTexture extends PVRTexture {
 			}
 		}
 
-		public static CCZCompressionFormat fromID(final short pID) {
+                /**
+                 * 
+                 * @param pID
+                 * @return
+                 */
+                public static CCZCompressionFormat fromID(final short pID) {
 			final CCZCompressionFormat[] cczCompressionFormats = CCZCompressionFormat.values();
 			final int cczCompressionFormatCount = cczCompressionFormats.length;
 			for(int i = 0; i < cczCompressionFormatCount; i++) {

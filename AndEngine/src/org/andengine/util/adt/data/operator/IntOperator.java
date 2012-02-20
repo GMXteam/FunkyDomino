@@ -11,37 +11,55 @@ public enum IntOperator {
 	// Elements
 	// ===========================================================
 
-	EQUALS() {
+    /**
+     * 
+     */
+    EQUALS() {
 		@Override
 		public boolean check(final int pIntA, final int pIntB) {
 			return pIntA == pIntB;
 		}
 	},
-	NOT_EQUALS()  {
+        /**
+         * 
+         */
+        NOT_EQUALS()  {
 		@Override
 		public boolean check(final int pIntA, final int pIntB) {
 			return pIntA != pIntB;
 		}
 	},
-	LESS_THAN()  {
+        /**
+         * 
+         */
+        LESS_THAN()  {
 		@Override
 		public boolean check(final int pIntA, final int pIntB) {
 			return pIntA < pIntB;
 		}
 	},
-	LESS_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        LESS_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final int pIntA, final int pIntB) {
 			return pIntA <= pIntB;
 		}
 	},
-	MORE_THAN()  {
+        /**
+         * 
+         */
+        MORE_THAN()  {
 		@Override
 		public boolean check(final int pIntA, final int pIntB) {
 			return pIntA > pIntB;
 		}
 	},
-	MORE_OR_EQUAL_THAN()  {
+        /**
+         * 
+         */
+        MORE_OR_EQUAL_THAN()  {
 		@Override
 		public boolean check(final int pIntA, final int pIntB) {
 			return pIntA >= pIntB;
@@ -68,7 +86,13 @@ public enum IntOperator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public abstract boolean check(final int pIntA, final int pIntB);
+        /**
+         * 
+         * @param pIntA
+         * @param pIntB
+         * @return
+         */
+        public abstract boolean check(final int pIntA, final int pIntB);
 
 	// ===========================================================
 	// Methods

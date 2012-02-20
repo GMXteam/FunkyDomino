@@ -10,6 +10,8 @@ import org.andengine.opengl.texture.atlas.source.ITextureAtlasSource;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
+ * @param <A> 
  * @author Nicolas Gramlich
  * @since 15:59:14 - 12.08.2010
  */
@@ -22,13 +24,22 @@ public interface ITextureAtlasBuilder<T extends ITextureAtlasSource, A extends I
 	// Methods
 	// ===========================================================
 
-	public void build(final A pTextureAtlas, final ArrayList<TextureAtlasSourceWithWithLocationCallback<T>> pTextureAtlasSourcesWithLocationCallback) throws TextureAtlasBuilderException;
+    /**
+     * 
+     * @param pTextureAtlas
+     * @param pTextureAtlasSourcesWithLocationCallback
+     * @throws org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder.TextureAtlasBuilderException
+     */
+    public void build(final A pTextureAtlas, final ArrayList<TextureAtlasSourceWithWithLocationCallback<T>> pTextureAtlasSourcesWithLocationCallback) throws TextureAtlasBuilderException;
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static class TextureAtlasBuilderException extends Exception {
+    /**
+     * 
+     */
+    public static class TextureAtlasBuilderException extends Exception {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -43,7 +54,11 @@ public interface ITextureAtlasBuilder<T extends ITextureAtlasSource, A extends I
 		// Constructors
 		// ===========================================================
 
-		public TextureAtlasBuilderException(final String pMessage) {
+                /**
+                 * 
+                 * @param pMessage
+                 */
+                public TextureAtlasBuilderException(final String pMessage) {
 			super(pMessage);
 		}
 

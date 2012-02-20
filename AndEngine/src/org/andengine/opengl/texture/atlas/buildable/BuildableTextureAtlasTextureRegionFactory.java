@@ -49,7 +49,16 @@ public class BuildableTextureAtlasTextureRegionFactory {
 	// Methods
 	// ===========================================================
 
-	public static <T extends ITextureAtlasSource, A extends ITextureAtlas<T>> ITextureRegion createFromSource(final BuildableTextureAtlas<T, A> pBuildableTextureAtlas, final T pTextureAtlasSource, final boolean pRotated) {
+    /**
+     * 
+     * @param <T>
+     * @param <A>
+     * @param pBuildableTextureAtlas
+     * @param pTextureAtlasSource
+     * @param pRotated
+     * @return
+     */
+    public static <T extends ITextureAtlasSource, A extends ITextureAtlas<T>> ITextureRegion createFromSource(final BuildableTextureAtlas<T, A> pBuildableTextureAtlas, final T pTextureAtlasSource, final boolean pRotated) {
 		final TextureRegion textureRegion = new TextureRegion(pBuildableTextureAtlas, 0, 0, pTextureAtlasSource.getTextureWidth(), pTextureAtlasSource.getTextureHeight(), pRotated);
 		pBuildableTextureAtlas.addTextureAtlasSource(pTextureAtlasSource, new Callback<T>() {
 			@Override
@@ -60,7 +69,17 @@ public class BuildableTextureAtlasTextureRegionFactory {
 		return textureRegion;
 	}
 
-	public static <T extends ITextureAtlasSource, A extends ITextureAtlas<T>> TiledTextureRegion createTiledFromSource(final BuildableTextureAtlas<T, A> pBuildableTextureAtlas, final T pTextureAtlasSource, final int pTileColumns, final int pTileRows) {
+        /**
+         * 
+         * @param <T>
+         * @param <A>
+         * @param pBuildableTextureAtlas
+         * @param pTextureAtlasSource
+         * @param pTileColumns
+         * @param pTileRows
+         * @return
+         */
+        public static <T extends ITextureAtlasSource, A extends ITextureAtlas<T>> TiledTextureRegion createTiledFromSource(final BuildableTextureAtlas<T, A> pBuildableTextureAtlas, final T pTextureAtlasSource, final int pTileColumns, final int pTileRows) {
 		final TiledTextureRegion tiledTextureRegion = TiledTextureRegion.create(pBuildableTextureAtlas, 0, 0, pTextureAtlasSource.getTextureWidth(), pTextureAtlasSource.getTextureHeight(), pTileColumns, pTileRows);
 		pBuildableTextureAtlas.addTextureAtlasSource(pTextureAtlasSource, new Callback<T>() {
 			@Override

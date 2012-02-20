@@ -45,7 +45,10 @@ public class MusicFactory {
 		}
 	}
 
-	public static void onCreate() {
+        /**
+         * 
+         */
+        public static void onCreate() {
 		MusicFactory.setAssetBasePath("");
 	}
 
@@ -57,7 +60,14 @@ public class MusicFactory {
 	// Methods
 	// ===========================================================
 
-	public static Music createMusicFromFile(final MusicManager pMusicManager, final File pFile) throws IOException {
+        /**
+         * 
+         * @param pMusicManager
+         * @param pFile
+         * @return
+         * @throws IOException
+         */
+        public static Music createMusicFromFile(final MusicManager pMusicManager, final File pFile) throws IOException {
 		final MediaPlayer mediaPlayer = new MediaPlayer();
 
 		mediaPlayer.setDataSource(new FileInputStream(pFile).getFD());
@@ -69,7 +79,15 @@ public class MusicFactory {
 		return music;
 	}
 
-	public static Music createMusicFromAsset(final MusicManager pMusicManager, final Context pContext, final String pAssetPath) throws IOException {
+        /**
+         * 
+         * @param pMusicManager
+         * @param pContext
+         * @param pAssetPath
+         * @return
+         * @throws IOException
+         */
+        public static Music createMusicFromAsset(final MusicManager pMusicManager, final Context pContext, final String pAssetPath) throws IOException {
 		final MediaPlayer mediaPlayer = new MediaPlayer();
 
 		final AssetFileDescriptor assetFileDescritor = pContext.getAssets().openFd(MusicFactory.sAssetBasePath + pAssetPath);
@@ -82,7 +100,15 @@ public class MusicFactory {
 		return music;
 	}
 
-	public static Music createMusicFromResource(final MusicManager pMusicManager, final Context pContext, final int pMusicResID) throws IOException {
+        /**
+         * 
+         * @param pMusicManager
+         * @param pContext
+         * @param pMusicResID
+         * @return
+         * @throws IOException
+         */
+        public static Music createMusicFromResource(final MusicManager pMusicManager, final Context pContext, final int pMusicResID) throws IOException {
 		final MediaPlayer mediaPlayer = MediaPlayer.create(pContext, pMusicResID);
 		mediaPlayer.prepare();
 
@@ -92,7 +118,14 @@ public class MusicFactory {
 		return music;
 	}
 
-	public static Music createMusicFromAssetFileDescriptor(final MusicManager pMusicManager, final AssetFileDescriptor pAssetFileDescriptor) throws IOException {
+        /**
+         * 
+         * @param pMusicManager
+         * @param pAssetFileDescriptor
+         * @return
+         * @throws IOException
+         */
+        public static Music createMusicFromAssetFileDescriptor(final MusicManager pMusicManager, final AssetFileDescriptor pAssetFileDescriptor) throws IOException {
 		final MediaPlayer mediaPlayer = new MediaPlayer();
 
 		mediaPlayer.setDataSource(pAssetFileDescriptor.getFileDescriptor(), pAssetFileDescriptor.getStartOffset(), pAssetFileDescriptor.getLength());

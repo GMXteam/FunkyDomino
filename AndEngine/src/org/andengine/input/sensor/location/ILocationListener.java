@@ -26,11 +26,15 @@ public interface ILocationListener {
 	public void onLocationProviderEnabled();
 
 	/**
-	 * @see {@link LocationListener#onLocationChanged(Location)}
+         * @param pLocation 
+         * @see {@link LocationListener#onLocationChanged(Location)}
 	 */
 	public void onLocationChanged(final Location pLocation);
 
-	public void onLocationLost();
+        /**
+         * 
+         */
+        public void onLocationLost();
 
 	/**
 	 * @see {@link LocationListener#onProviderDisabled(String)}
@@ -38,7 +42,9 @@ public interface ILocationListener {
 	public void onLocationProviderDisabled();
 
 	/**
-	 * @see {@link LocationListener#onStatusChanged(String, int, android.os.Bundle)}
+         * @param pLocationProviderStatus 
+         * @param pBundle 
+         * @see {@link LocationListener#onStatusChanged(String, int, android.os.Bundle)}
 	 */
 	public void onLocationProviderStatusChanged(final LocationProviderStatus pLocationProviderStatus, final Bundle pBundle);
 }

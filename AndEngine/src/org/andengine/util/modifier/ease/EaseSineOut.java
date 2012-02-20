@@ -31,7 +31,11 @@ public class EaseSineOut implements IEaseFunction, MathConstants {
 
 	}
 
-	public static EaseSineOut getInstance() {
+        /**
+         * 
+         * @return
+         */
+        public static EaseSineOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseSineOut();
 		}
@@ -46,7 +50,13 @@ public class EaseSineOut implements IEaseFunction, MathConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pDuration
+         * @return
+         */
+        @Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseSineOut.getValue(pSecondsElapsed / pDuration);
 	}
@@ -55,7 +65,12 @@ public class EaseSineOut implements IEaseFunction, MathConstants {
 	// Methods
 	// ===========================================================
 
-	public static float getValue(final float pPercentage) {
+        /**
+         * 
+         * @param pPercentage
+         * @return
+         */
+        public static float getValue(final float pPercentage) {
 		return FloatMath.sin(pPercentage * PI_HALF);
 	}
 

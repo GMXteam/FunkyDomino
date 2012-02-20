@@ -32,7 +32,11 @@ public class VertexBufferObjectManager {
 	// Getter & Setter
 	// ===========================================================
 
-	public synchronized int getHeapMemoryByteSize() {
+        /**
+         * 
+         * @return
+         */
+        public synchronized int getHeapMemoryByteSize() {
 		int byteSize = 0;
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsLoaded = this.mVertexBufferObjectsLoaded;
 		for(int i = vertexBufferObjectsLoaded.size() - 1; i >= 0; i--) {
@@ -41,7 +45,11 @@ public class VertexBufferObjectManager {
 		return byteSize;
 	}
 
-	public synchronized int getNativeHeapMemoryByteSize() {
+        /**
+         * 
+         * @return
+         */
+        public synchronized int getNativeHeapMemoryByteSize() {
 		int byteSize = 0;
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsLoaded = this.mVertexBufferObjectsLoaded;
 		for(int i = vertexBufferObjectsLoaded.size() - 1; i >= 0; i--) {
@@ -50,7 +58,11 @@ public class VertexBufferObjectManager {
 		return byteSize;
 	}
 
-	public synchronized int getGPUHeapMemoryByteSize() {
+        /**
+         * 
+         * @return
+         */
+        public synchronized int getGPUHeapMemoryByteSize() {
 		int byteSize = 0;
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsLoaded = this.mVertexBufferObjectsLoaded;
 		for(int i = vertexBufferObjectsLoaded.size() - 1; i >= 0; i--) {
@@ -67,11 +79,17 @@ public class VertexBufferObjectManager {
 	// Methods
 	// ===========================================================
 
-	public void onCreate() {
+        /**
+         * 
+         */
+        public void onCreate() {
 
 	}
 
-	public synchronized void onDestroy() {
+        /**
+         * 
+         */
+        public synchronized void onDestroy() {
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsLoaded = this.mVertexBufferObjectsLoaded;
 		for(int i = vertexBufferObjectsLoaded.size() - 1; i >= 0; i--) {
 			vertexBufferObjectsLoaded.get(i).setNotLoadedToHardware();
@@ -80,17 +98,28 @@ public class VertexBufferObjectManager {
 		vertexBufferObjectsLoaded.clear();
 	}
 
-	public synchronized void onVertexBufferObjectLoaded(final IVertexBufferObject pVertexBufferObject) {
+        /**
+         * 
+         * @param pVertexBufferObject
+         */
+        public synchronized void onVertexBufferObjectLoaded(final IVertexBufferObject pVertexBufferObject) {
 		this.mVertexBufferObjectsLoaded.add(pVertexBufferObject);
 	}
 
-	public synchronized void onUnloadVertexBufferObject(final IVertexBufferObject pVertexBufferObject) {
+        /**
+         * 
+         * @param pVertexBufferObject
+         */
+        public synchronized void onUnloadVertexBufferObject(final IVertexBufferObject pVertexBufferObject) {
 		if(this.mVertexBufferObjectsLoaded.remove(pVertexBufferObject)) {
 			this.mVertexBufferObjectsToBeUnloaded.add(pVertexBufferObject);
 		}
 	}
 
-	public synchronized void onReload() {
+        /**
+         * 
+         */
+        public synchronized void onReload() {
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsLoaded = this.mVertexBufferObjectsLoaded;
 		for(int i = vertexBufferObjectsLoaded.size() - 1; i >= 0; i--) {
 			vertexBufferObjectsLoaded.get(i).setNotLoadedToHardware();
@@ -99,7 +128,11 @@ public class VertexBufferObjectManager {
 		vertexBufferObjectsLoaded.clear();
 	}
 
-	public synchronized void updateVertexBufferObjects(final GLState pGLState) {
+        /**
+         * 
+         * @param pGLState
+         */
+        public synchronized void updateVertexBufferObjects(final GLState pGLState) {
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsLoaded = this.mVertexBufferObjectsLoaded;
 		final ArrayList<IVertexBufferObject> vertexBufferObjectsToBeUnloaded = this.mVertexBufferObjectsToBeUnloaded;
 

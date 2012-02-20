@@ -22,11 +22,22 @@ public class SpriteBackground extends EntityBackground {
 	// Constructors
 	// ===========================================================
 
-	public SpriteBackground(final Sprite pSprite) {
+    /**
+     * 
+     * @param pSprite
+     */
+    public SpriteBackground(final Sprite pSprite) {
 		super(pSprite);
 	}
 
-	public SpriteBackground(final float pRed, final float pGreen, final float pBlue, final Sprite pSprite) {
+        /**
+         * 
+         * @param pRed
+         * @param pGreen
+         * @param pBlue
+         * @param pSprite
+         */
+        public SpriteBackground(final float pRed, final float pGreen, final float pBlue, final Sprite pSprite) {
 		super(pRed, pGreen, pBlue, pSprite);
 	}
 
@@ -34,7 +45,11 @@ public class SpriteBackground extends EntityBackground {
 	// Getter & Setter
 	// ===========================================================
 	
-	public Sprite getSprite() {
+        /**
+         * 
+         * @return
+         */
+        public Sprite getSprite() {
 		return (Sprite)this.mEntity;
 	}
 	

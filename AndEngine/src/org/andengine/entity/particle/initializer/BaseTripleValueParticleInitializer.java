@@ -8,6 +8,7 @@ import org.andengine.util.math.MathUtils;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 15:58:29 - 04.05.2010
  */
@@ -20,14 +21,29 @@ public abstract class BaseTripleValueParticleInitializer<T extends IEntity> exte
 	// Fields
 	// ===========================================================
 
-	protected float mMinValueC;
-	protected float mMaxValueC;
+    /**
+     * 
+     */
+    protected float mMinValueC;
+        /**
+         * 
+         */
+        protected float mMaxValueC;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public BaseTripleValueParticleInitializer(final float pMinValueA, final float pMaxValueA, final float pMinValueB, final float pMaxValueB, final float pMinValueC, final float pMaxValueC) {
+        /**
+         * 
+         * @param pMinValueA
+         * @param pMaxValueA
+         * @param pMinValueB
+         * @param pMaxValueB
+         * @param pMinValueC
+         * @param pMaxValueC
+         */
+        public BaseTripleValueParticleInitializer(final float pMinValueA, final float pMaxValueA, final float pMinValueB, final float pMaxValueB, final float pMinValueC, final float pMaxValueC) {
 		super(pMinValueA, pMaxValueA, pMinValueB, pMaxValueB);
 		this.mMinValueC = pMinValueC;
 		this.mMaxValueC = pMaxValueC;
@@ -41,9 +57,22 @@ public abstract class BaseTripleValueParticleInitializer<T extends IEntity> exte
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract void onInitializeParticle(final Particle<T> pParticle, final float pValueA, final float pValueB, final float pValueC);
+        /**
+         * 
+         * @param pParticle
+         * @param pValueA
+         * @param pValueB
+         * @param pValueC
+         */
+        protected abstract void onInitializeParticle(final Particle<T> pParticle, final float pValueA, final float pValueB, final float pValueC);
 
-	@Override
+        /**
+         * 
+         * @param pParticle
+         * @param pValueA
+         * @param pValueB
+         */
+        @Override
 	protected final void onInitializeParticle(final Particle<T> pParticle, final float pValueA, final float pValueB) {
 		this.onInitializeParticle(pParticle, pValueA, pValueB, this.getRandomValueC());
 	}
@@ -52,7 +81,11 @@ public abstract class BaseTripleValueParticleInitializer<T extends IEntity> exte
 	// Methods
 	// ===========================================================
 
-	protected float getRandomValueC() {
+        /**
+         * 
+         * @return
+         */
+        protected float getRandomValueC() {
 		if(this.mMinValueC == this.mMaxValueC) {
 			return this.mMaxValueC;
 		} else {

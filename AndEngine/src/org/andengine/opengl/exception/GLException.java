@@ -25,11 +25,20 @@ public class GLException extends RuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public GLException(final int pError) {
+        /**
+         * 
+         * @param pError
+         */
+        public GLException(final int pError) {
 		this(pError, GLException.getErrorString(pError));
 	}
 
-	public GLException(final int pError, final String pString) {
+        /**
+         * 
+         * @param pError
+         * @param pString
+         */
+        public GLException(final int pError, final String pString) {
 		super(pString);
 
 		this.mError = pError;
@@ -39,7 +48,11 @@ public class GLException extends RuntimeException {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getError() {
+        /**
+         * 
+         * @return
+         */
+        public int getError() {
 		return this.mError;
 	}
 

@@ -25,7 +25,12 @@ public abstract class StringShaderSourceCriteria implements IShaderSourceCriteri
 	// Constructors
 	// ===========================================================
 
-	public StringShaderSourceCriteria(final StringOperator pStringOperator, final String pCriteria) {
+        /**
+         * 
+         * @param pStringOperator
+         * @param pCriteria
+         */
+        public StringShaderSourceCriteria(final StringOperator pStringOperator, final String pCriteria) {
 		this.mCriteria = pCriteria;
 		this.mStringOperator = pStringOperator;
 	}
@@ -38,9 +43,19 @@ public abstract class StringShaderSourceCriteria implements IShaderSourceCriteri
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract String getActualCriteria(final GLState pGLState);
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        protected abstract String getActualCriteria(final GLState pGLState);
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	public boolean isMet(final GLState pGLState) {
 		return this.mStringOperator.check(this.getActualCriteria(pGLState), this.mCriteria);
 	}

@@ -8,6 +8,7 @@ import android.util.FloatMath;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 22:58:01 - 16.08.2010
  */
@@ -32,7 +33,17 @@ public class EuclideanHeuristic<T> implements IAStarHeuristic<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @param pPathFinderMap
+     * @param pEntity
+     * @param pFromX
+     * @param pFromY
+     * @param pToX
+     * @param pToY
+     * @return
+     */
+    @Override
 	public float getExpectedRestCost(final IPathFinderMap<T> pPathFinderMap, final T pEntity, final int pFromX, final int pFromY, final int pToX, final int pToY) {
 		final float dX = pToX - pFromX;
 		final float dY = pToY - pFromY;

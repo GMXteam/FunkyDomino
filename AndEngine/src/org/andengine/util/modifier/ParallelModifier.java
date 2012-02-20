@@ -31,11 +31,22 @@ public class ParallelModifier<T> extends BaseModifier<T> implements IModifierLis
 	// Constructors
 	// ===========================================================
 
-	public ParallelModifier(final IModifier<T> ... pModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pModifiers
+         * @throws IllegalArgumentException
+         */
+        public ParallelModifier(final IModifier<T> ... pModifiers) throws IllegalArgumentException {
 		this(null, pModifiers);
 	}
 
-	public ParallelModifier(final IModifierListener<T> pModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
+        /**
+         * 
+         * @param pModifierListener
+         * @param pModifiers
+         * @throws IllegalArgumentException
+         */
+        public ParallelModifier(final IModifierListener<T> pModifierListener, final IModifier<T> ... pModifiers) throws IllegalArgumentException {
 		super(pModifierListener);
 
 		if(pModifiers.length == 0) {
@@ -49,7 +60,12 @@ public class ParallelModifier<T> extends BaseModifier<T> implements IModifierLis
 		modifierWithLongestDuration.addModifierListener(this);
 	}
 
-	@SuppressWarnings("unchecked")
+        /**
+         * 
+         * @param pParallelModifier
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        @SuppressWarnings("unchecked")
 	protected ParallelModifier(final ParallelModifier<T> pParallelModifier) throws DeepCopyNotSupportedException {
 		final IModifier<T>[] otherModifiers = pParallelModifier.mModifiers;
 		this.mModifiers = new IModifier[otherModifiers.length];
@@ -77,12 +93,20 @@ public class ParallelModifier<T> extends BaseModifier<T> implements IModifierLis
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getSecondsElapsed() {
 		return this.mSecondsElapsed;
 	}
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public float getDuration() {
 		return this.mDuration;
 	}
@@ -112,7 +136,10 @@ public class ParallelModifier<T> extends BaseModifier<T> implements IModifierLis
 		}
 	}
 
-	@Override
+        /**
+         * 
+         */
+        @Override
 	public void reset() {
 		this.mFinished = false;
 		this.mSecondsElapsed = 0;
@@ -123,12 +150,22 @@ public class ParallelModifier<T> extends BaseModifier<T> implements IModifierLis
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pModifier
+         * @param pItem
+         */
+        @Override
 	public void onModifierStarted(final IModifier<T> pModifier, final T pItem) {
 		this.onModifierStarted(pItem);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pModifier
+         * @param pItem
+         */
+        @Override
 	public void onModifierFinished(final IModifier<T> pModifier, final T pItem) {
 		this.mFinished = true;
 		this.mFinishedCached = true;

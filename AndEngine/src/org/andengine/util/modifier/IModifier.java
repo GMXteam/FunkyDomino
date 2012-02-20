@@ -9,6 +9,7 @@ import org.andengine.util.exception.AndEngineRuntimeException;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
+ * @param <T> 
  * @author Nicolas Gramlich
  * @since 11:17:50 - 19.03.2010
  */
@@ -17,7 +18,10 @@ public interface IModifier<T> {
 	// Constants
 	// ===========================================================
 
-	public static final Comparator<IModifier<?>> MODIFIER_COMPARATOR_DURATION_DESCENDING = new Comparator<IModifier<?>>() {
+    /**
+     * 
+     */
+    public static final Comparator<IModifier<?>> MODIFIER_COMPARATOR_DURATION_DESCENDING = new Comparator<IModifier<?>>() {
 		@Override
 		public int compare(final IModifier<?> pModifierA, final IModifier<?> pModifierB) {
 			final float durationA = pModifierA.getDuration();
@@ -37,27 +41,74 @@ public interface IModifier<T> {
 	// Methods
 	// ===========================================================
 
-	public void reset();
+    /**
+     * 
+     */
+    public void reset();
 
-	public boolean isFinished();
-	public boolean isAutoUnregisterWhenFinished();
-	public void setAutoUnregisterWhenFinished(final boolean pRemoveWhenFinished);
+    /**
+     * 
+     * @return
+     */
+    public boolean isFinished();
+        /**
+         * 
+         * @return
+         */
+        public boolean isAutoUnregisterWhenFinished();
+        /**
+         * 
+         * @param pRemoveWhenFinished
+         */
+        public void setAutoUnregisterWhenFinished(final boolean pRemoveWhenFinished);
 
-	public IModifier<T> deepCopy() throws DeepCopyNotSupportedException;
+        /**
+         * 
+         * @return
+         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
+         */
+        public IModifier<T> deepCopy() throws DeepCopyNotSupportedException;
 
-	public float getSecondsElapsed();
-	public float getDuration();
+        /**
+         * 
+         * @return
+         */
+        public float getSecondsElapsed();
+        /**
+         * 
+         * @return
+         */
+        public float getDuration();
 
-	public float onUpdate(final float pSecondsElapsed, final T pItem);
+        /**
+         * 
+         * @param pSecondsElapsed
+         * @param pItem
+         * @return
+         */
+        public float onUpdate(final float pSecondsElapsed, final T pItem);
 
-	public void addModifierListener(final IModifierListener<T> pModifierListener);
-	public boolean removeModifierListener(final IModifierListener<T> pModifierListener);
+        /**
+         * 
+         * @param pModifierListener
+         */
+        public void addModifierListener(final IModifierListener<T> pModifierListener);
+        /**
+         * 
+         * @param pModifierListener
+         * @return
+         */
+        public boolean removeModifierListener(final IModifierListener<T> pModifierListener);
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface IModifierListener<T> {
+        /**
+         * 
+         * @param <T>
+         */
+        public static interface IModifierListener<T> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -66,11 +117,24 @@ public interface IModifier<T> {
 		// Methods
 		// ===========================================================
 
-		public void onModifierStarted(final IModifier<T> pModifier, final T pItem);
-		public void onModifierFinished(final IModifier<T> pModifier, final T pItem);
+            /**
+             * 
+             * @param pModifier
+             * @param pItem
+             */
+            public void onModifierStarted(final IModifier<T> pModifier, final T pItem);
+            /**
+             * 
+             * @param pModifier
+             * @param pItem
+             */
+            public void onModifierFinished(final IModifier<T> pModifier, final T pItem);
 	}
 
-	public static class DeepCopyNotSupportedException extends AndEngineRuntimeException {
+        /**
+         * 
+         */
+        public static class DeepCopyNotSupportedException extends AndEngineRuntimeException {
 		// ===========================================================
 		// Constants
 		// ===========================================================

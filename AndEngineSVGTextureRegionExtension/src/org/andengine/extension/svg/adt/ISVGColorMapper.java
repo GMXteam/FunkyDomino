@@ -16,5 +16,10 @@ public interface ISVGColorMapper {
 	// Methods
 	// ===========================================================
 
-	public Integer mapColor(final Integer pColor);
+    /**
+     * 
+     * @param pColor
+     * @return
+     */
+    public Integer mapColor(final Integer pColor);
 }

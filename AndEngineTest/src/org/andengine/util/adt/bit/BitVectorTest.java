@@ -34,7 +34,10 @@ public class BitVectorTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testGetBit() {
+    /**
+     * 
+     */
+    public void testGetBit() {
 		final BitVector bitVector = new BitVector(new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF});
 		
 		assertEquals(false, bitVector.getBit(0));
@@ -119,7 +122,10 @@ public class BitVectorTest extends TestCase {
 		assertEquals(true, bitVector.getBit(71));
 	}
 
-	public void testGetByte() {
+    /**
+     * 
+     */
+    public void testGetByte() {
 		final BitVector bitVector = new BitVector(new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF});
 		
 		assertEquals((byte)0x01, bitVector.getByte(0));
@@ -134,7 +140,10 @@ public class BitVectorTest extends TestCase {
 	}
 	
 	
-	public void testGetByteUneven() {
+        /**
+         * 
+         */
+        public void testGetByteUneven() {
 		final BitVector bitVector = new BitVector(new byte[]{(byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0x00, (byte)0xF0, (byte)0x0F});
 		
 		assertEquals((byte)0xE0, bitVector.getByte(57));
@@ -146,7 +155,10 @@ public class BitVectorTest extends TestCase {
 		assertEquals((byte)0x07, bitVector.getByte(63));
 	}
 
-	public void testGetShort() {
+        /**
+         * 
+         */
+        public void testGetShort() {
 		final BitVector bitVector = new BitVector(new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF, (byte)0xFF});
 		
 		assertEquals((short)0x0102, bitVector.getShort(0));
@@ -156,7 +168,10 @@ public class BitVectorTest extends TestCase {
 		assertEquals((short)0xFFFF, bitVector.getShort(64));
 	}
 
-	public void testGetInt() {
+        /**
+         * 
+         */
+        public void testGetInt() {
 		final BitVector bitVector = new BitVector(new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF});
 		
 		assertEquals(0x01020408, bitVector.getInt(0));
@@ -164,21 +179,30 @@ public class BitVectorTest extends TestCase {
 		assertEquals(0xFFFFFFFF, bitVector.getInt(64));
 	}
 
-	public void testGetLong() {
+        /**
+         * 
+         */
+        public void testGetLong() {
 		final BitVector bitVector = new BitVector(new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF});
 		
 		assertEquals(0x0102040810204080L, bitVector.getLong(0));
 		assertEquals(0xFFFFFFFFFFFFFFFFL, bitVector.getLong(64));
 	}
 	
-	public void testToByteArray() {
+        /**
+         * 
+         */
+        public void testToByteArray() {
 		final byte[] bytes = new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF};
 		final BitVector bitVector = new BitVector(bytes);
 		
 		AssertUtils.assertArrayEquals(bytes, bitVector.toByteArray());
 	}
 	
-	public void testToByteArrayUneven() {
+        /**
+         * 
+         */
+        public void testToByteArrayUneven() {
 		final byte[] bytes = new byte[]{(byte)0x01, (byte)0x02, (byte)0x04, (byte)0x08, (byte)0x10, (byte)0x20, (byte)0x40, (byte)0x80, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFF, (byte)0xFE, (byte)0xFF, (byte)0xFF, (byte)0x23, (byte)0xAC};
 		final BitVector bitVector = new BitVector(bytes);
 		

@@ -24,11 +24,19 @@ public class SVGDirectColorMapper implements ISVGColorMapper {
 	// Constructors
 	// ===========================================================
 
-	public SVGDirectColorMapper() {
+        /**
+         * 
+         */
+        public SVGDirectColorMapper() {
 
 	}
 
-	public SVGDirectColorMapper(final Integer pColorFrom, final Integer pColorTo) {
+        /**
+         * 
+         * @param pColorFrom
+         * @param pColorTo
+         */
+        public SVGDirectColorMapper(final Integer pColorFrom, final Integer pColorTo) {
 		this.addColorMapping(pColorFrom, pColorTo);
 	}
 
@@ -44,11 +52,21 @@ public class SVGDirectColorMapper implements ISVGColorMapper {
 	// Methods
 	// ===========================================================
 
-	public void addColorMapping(final Integer pColorFrom, final Integer pColorTo) {
+        /**
+         * 
+         * @param pColorFrom
+         * @param pColorTo
+         */
+        public void addColorMapping(final Integer pColorFrom, final Integer pColorTo) {
 		this.mColorMappings.put(pColorFrom, pColorTo);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pColor
+         * @return
+         */
+        @Override
 	public Integer mapColor(final Integer pColor) {
 		final Integer mappedColor = this.mColorMappings.get(pColor);
 		if(mappedColor == null) {

@@ -24,13 +24,20 @@ import com.badlogic.gdx.physics.box2d.World;
  * friction.
  */
 public class PrismaticJoint extends Joint {
-	public PrismaticJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public PrismaticJoint (World world, long addr) {
 		super(world, addr);
 	}
 
 	/**
 	 * Get the current joint translation, usually in meters.
-	 */
+         * 
+         * @return 
+         */
 	public float getJointTranslation () {
 		return jniGetJointTranslation(addr);
 	}
@@ -39,7 +46,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Get the current joint translation speed, usually in meters per second.
-	 */
+         * 
+         * @return 
+         */
 	public float getJointSpeed () {
 		return jniGetJointSpeed(addr);
 	}
@@ -48,7 +57,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Is the joint limit enabled?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isLimitEnabled () {
 		return jniIsLimitEnabled(addr);
 	}
@@ -57,7 +68,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Enable/disable the joint limit.
-	 */
+         * 
+         * @param flag 
+         */
 	public void enableLimit (boolean flag) {
 		jniEnableLimit(addr, flag);
 	}
@@ -66,7 +79,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Get the lower joint limit, usually in meters.
-	 */
+         * 
+         * @return 
+         */
 	public float getLowerLimit () {
 		return jniGetLowerLimit(addr);
 	}
@@ -75,7 +90,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Get the upper joint limit, usually in meters.
-	 */
+         * 
+         * @return 
+         */
 	public float getUpperLimit () {
 		return jniGetUpperLimit(addr);
 	}
@@ -84,7 +101,10 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Set the joint limits, usually in meters.
-	 */
+         * 
+         * @param lower 
+         * @param upper 
+         */
 	public void setLimits (float lower, float upper) {
 		jniSetLimits(addr, lower, upper);
 	}
@@ -93,7 +113,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Is the joint motor enabled?
-	 */
+         * 
+         * @return 
+         */
 	public boolean isMotorEnabled () {
 		return jniIsMotorEnabled(addr);
 	}
@@ -102,7 +124,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Enable/disable the joint motor.
-	 */
+         * 
+         * @param flag 
+         */
 	public void enableMotor (boolean flag) {
 		jniEnableMotor(addr, flag);
 	}
@@ -111,7 +135,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Set the motor speed, usually in meters per second.
-	 */
+         * 
+         * @param speed 
+         */
 	public void setMotorSpeed (float speed) {
 		jniSetMotorSpeed(addr, speed);
 	}
@@ -120,7 +146,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Get the motor speed, usually in meters per second.
-	 */
+         * 
+         * @return 
+         */
 	public float getMotorSpeed () {
 		return jniGetMotorSpeed(addr);
 	}
@@ -129,7 +157,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Set the maximum motor force, usually in N.
-	 */
+         * 
+         * @param force 
+         */
 	public void setMaxMotorForce (float force) {
 		jniSetMaxMotorForce(addr, force);
 	}
@@ -138,7 +168,9 @@ public class PrismaticJoint extends Joint {
 
 	/**
 	 * Get the current motor force, usually in N.
-	 */
+         * 
+         * @return 
+         */
 	public float getMotorForce () {
 		return jniGetMotorForce(addr);
 	}

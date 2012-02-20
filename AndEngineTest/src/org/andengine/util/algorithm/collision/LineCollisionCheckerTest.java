@@ -31,13 +31,21 @@ public class LineCollisionCheckerTest extends TestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void setUp() throws Exception {
 		this.mVertexBufferObjectManager.onDestroy();
 		this.mVertexBufferObjectManager.onCreate();
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void tearDown() throws Exception {
 
 	}
@@ -54,20 +62,29 @@ public class LineCollisionCheckerTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-	public void testSimple() {
+        /**
+         * 
+         */
+        public void testSimple() {
 		final Line line = new Line(-10, 0, 10, 0, this.mVertexBufferObjectManager);
 
 		this.assertLine(-10, 0, 10, 0, line);
 	}
 	
-	public void testRotation90() {
+        /**
+         * 
+         */
+        public void testRotation90() {
 		final Line line = new Line(-10, 0, 10, 0, this.mVertexBufferObjectManager);
 		line.setRotation(90);
 
 		this.assertLine(0, -10, 0, 10, line);
 	}
 	
-	public void testRotation180() {
+        /**
+         * 
+         */
+        public void testRotation180() {
 		final Line line = new Line(-10, 0, 10, 0, this.mVertexBufferObjectManager);
 		line.setRotation(180);
 

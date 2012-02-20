@@ -31,7 +31,12 @@ public class GrahamScan extends BaseHullAlgorithm {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+    /**
+     * 
+     * @param pVertices
+     * @return
+     */
+    @Override
 	public int computeHull(final Vector2[] pVertices) {
 		this.mVertices = pVertices;
 		this.mVertexCount = pVertices.length;

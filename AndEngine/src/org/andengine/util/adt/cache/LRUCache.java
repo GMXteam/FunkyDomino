@@ -7,6 +7,8 @@ import org.andengine.util.adt.pool.GenericPool;
 /**
  * (c) Zynga 2011
  *
+ * @param <K> 
+ * @param <V> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 00:24:52 - 02.11.2011
  */
@@ -42,7 +44,11 @@ public class LRUCache<K, V> {
 	// Constructors
 	// ===========================================================
 
-	public LRUCache(final int pCapacity) {
+        /**
+         * 
+         * @param pCapacity
+         */
+        public LRUCache(final int pCapacity) {
 		this.mCapacity = pCapacity;
 		this.mMap = new HashMap<K, LRUCacheValueHolder<K, V>>(pCapacity);
 		this.mLRUCacheQueue = new LRUCacheQueue<K>();
@@ -52,11 +58,19 @@ public class LRUCache<K, V> {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getCapacity() {
+        /**
+         * 
+         * @return
+         */
+        public int getCapacity() {
 		return this.mCapacity;
 	}
 
-	public int getSize() {
+        /**
+         * 
+         * @return
+         */
+        public int getSize() {
 		return this.mSize;
 	}
 
@@ -64,11 +78,21 @@ public class LRUCache<K, V> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public boolean isEmpty() {
+        /**
+         * 
+         * @return
+         */
+        public boolean isEmpty() {
 		return this.mSize == 0;
 	}
 
-	public V put(final K pKey, final V pValue) {
+        /**
+         * 
+         * @param pKey
+         * @param pValue
+         * @return
+         */
+        public V put(final K pKey, final V pValue) {
 		final LRUCacheValueHolder<K, V> existingLRUCacheValueHolder = this.mMap.get(pKey);
 		if(existingLRUCacheValueHolder != null) {
 			/* Just heat up that item. */
@@ -97,7 +121,12 @@ public class LRUCache<K, V> {
 		return null;
 	}
 
-	public V get(final K pKey) {
+        /**
+         * 
+         * @param pKey
+         * @return
+         */
+        public V get(final K pKey) {
 		final LRUCacheValueHolder<K, V> lruCacheValueHolder = this.mMap.get(pKey);
 		if(lruCacheValueHolder == null) {
 			return null;
@@ -108,7 +137,10 @@ public class LRUCache<K, V> {
 		return lruCacheValueHolder.mValue;
 	}
 
-	public void clear() {
+        /**
+         * 
+         */
+        public void clear() {
 		while(!this.mLRUCacheQueue.isEmpty()) {
 			final K key = this.mLRUCacheQueue.poll();
 			final LRUCacheValueHolder<K, V> lruCacheValueHolder = this.mMap.remove(key);

@@ -23,19 +23,35 @@ public class AudioException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-	public AudioException() {
+        /**
+         * 
+         */
+        public AudioException() {
 		super();
 	}
 
-	public AudioException(final String pMessage) {
+        /**
+         * 
+         * @param pMessage
+         */
+        public AudioException(final String pMessage) {
 		super(pMessage);
 	}
 
-	public AudioException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public AudioException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-	public AudioException(final String pMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pMessage
+         * @param pThrowable
+         */
+        public AudioException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

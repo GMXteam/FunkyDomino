@@ -24,7 +24,12 @@ public class AndroidVersionCodeShaderSourceCriteria extends IntShaderSourceCrite
 	// Constructors
 	// ===========================================================
 
-	public AndroidVersionCodeShaderSourceCriteria(final IntOperator pIntOperator, final int pAndroidVersionCode) {
+    /**
+     * 
+     * @param pIntOperator
+     * @param pAndroidVersionCode
+     */
+    public AndroidVersionCodeShaderSourceCriteria(final IntOperator pIntOperator, final int pAndroidVersionCode) {
 		super(pIntOperator, pAndroidVersionCode);
 	}
 	
@@ -36,7 +41,12 @@ public class AndroidVersionCodeShaderSourceCriteria extends IntShaderSourceCrite
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	protected int getActualCriteria(final GLState pGLState) {
 		return Build.VERSION.SDK_INT;
 	}

@@ -20,26 +20,74 @@ public interface IGameInterface {
 	// Methods
 	// ===========================================================
 
-	public EngineOptions onCreateEngineOptions();
-	public Engine onCreateEngine(final EngineOptions pEngineOptions);
+    /**
+     * 
+     * @return
+     */
+    public EngineOptions onCreateEngineOptions();
+        /**
+         * 
+         * @param pEngineOptions
+         * @return
+         */
+        public Engine onCreateEngine(final EngineOptions pEngineOptions);
 
-	public void onCreateResources(final OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception;
-	public void onCreateScene(final OnCreateSceneCallback pOnCreateSceneCallback) throws Exception;
-	public void onPopulateScene(final Scene pScene, final OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception;
+        /**
+         * 
+         * @param pOnCreateResourcesCallback
+         * @throws Exception
+         */
+        public void onCreateResources(final OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception;
+        /**
+         * 
+         * @param pOnCreateSceneCallback
+         * @throws Exception
+         */
+        public void onCreateScene(final OnCreateSceneCallback pOnCreateSceneCallback) throws Exception;
+        /**
+         * 
+         * @param pScene
+         * @param pOnPopulateSceneCallback
+         * @throws Exception
+         */
+        public void onPopulateScene(final Scene pScene, final OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception;
 
-	public void onReloadResources() throws Exception;
-	public void onDestroyResources() throws Exception;
+        /**
+         * 
+         * @throws Exception
+         */
+        public void onReloadResources() throws Exception;
+        /**
+         * 
+         * @throws Exception
+         */
+        public void onDestroyResources() throws Exception;
 
-	public void onGameCreated();
-	public void onResumeGame();
-	public void onPauseGame();
-	public void onGameDestroyed();
+        /**
+         * 
+         */
+        public void onGameCreated();
+        /**
+         * 
+         */
+        public void onResumeGame();
+        /**
+         * 
+         */
+        public void onPauseGame();
+        /**
+         * 
+         */
+        public void onGameDestroyed();
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public static interface OnCreateResourcesCallback {
+        /**
+         * 
+         */
+        public static interface OnCreateResourcesCallback {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -48,10 +96,16 @@ public interface IGameInterface {
 		// Methods
 		// ===========================================================
 
-		public void onCreateResourcesFinished();
+            /**
+             * 
+             */
+            public void onCreateResourcesFinished();
 	}
 
-	public static interface OnCreateSceneCallback {
+        /**
+         * 
+         */
+        public static interface OnCreateSceneCallback {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -60,10 +114,17 @@ public interface IGameInterface {
 		// Methods
 		// ===========================================================
 
-		public void onCreateSceneFinished(final Scene pScene);
+            /**
+             * 
+             * @param pScene
+             */
+            public void onCreateSceneFinished(final Scene pScene);
 	}
 
-	public static interface OnPopulateSceneCallback {
+        /**
+         * 
+         */
+        public static interface OnPopulateSceneCallback {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -72,6 +133,9 @@ public interface IGameInterface {
 		// Methods
 		// ===========================================================
 
-		public void onPopulateSceneFinished();
+            /**
+             * 
+             */
+            public void onPopulateSceneFinished();
 	}
 }

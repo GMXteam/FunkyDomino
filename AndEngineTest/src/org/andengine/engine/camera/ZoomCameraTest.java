@@ -42,7 +42,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void setUp() throws Exception {
 		this.mZoomCamera = new ZoomCamera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mZoomCamera));
@@ -60,7 +64,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 		this.mEngine.start();
 	}
 
-	@Override
+        /**
+         * 
+         * @throws Exception
+         */
+        @Override
 	public void tearDown() throws Exception {
 		this.mEngine.stop();
 	}
@@ -69,7 +77,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 	
-	public void testCameraSceneTouchCenterUncenteredRotated() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testCameraSceneTouchCenterUncenteredRotated() throws Exception {
 		this.mZoomCamera.setCameraSceneRotation(180);
 		this.mZoomCamera.setZoomFactor(2);
 		this.mZoomCamera.setCenter(0, 0);
@@ -83,7 +95,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-	public void testCameraSceneTouchCenterUncenteredRotated2() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testCameraSceneTouchCenterUncenteredRotated2() throws Exception {
 		this.mZoomCamera.setCameraSceneRotation(180);
 		this.mZoomCamera.setZoomFactor(4);
 		this.mZoomCamera.setCenter(0, 0);
@@ -97,7 +113,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-	public void testCameraSceneTouchCenterUncenteredRotated3() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testCameraSceneTouchCenterUncenteredRotated3() throws Exception {
 		this.mZoomCamera.setCameraSceneRotation(180);
 		this.mZoomCamera.setZoomFactor(0.5f);
 		this.mZoomCamera.setCenter(0, 0);
@@ -111,7 +131,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-	public void testCameraSceneTouchCenterUncenteredRotated4() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testCameraSceneTouchCenterUncenteredRotated4() throws Exception {
 		this.mZoomCamera.setCameraSceneRotation(180);
 		this.mZoomCamera.setZoomFactor(0.5f);
 		this.mZoomCamera.setCenter(100, 100);
@@ -125,7 +149,11 @@ public class ZoomCameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-	public void testCameraSceneTouchCenterUncenteredRotated5() throws Exception {
+        /**
+         * 
+         * @throws Exception
+         */
+        public void testCameraSceneTouchCenterUncenteredRotated5() throws Exception {
 		this.mZoomCamera.setCameraSceneRotation(180);
 		this.mZoomCamera.setZoomFactor(2);
 		this.mZoomCamera.setCenter(15, 15);

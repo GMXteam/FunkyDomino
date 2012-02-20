@@ -25,13 +25,20 @@ import com.badlogic.gdx.physics.box2d.World;
  * because it was developed to be used in the testbed. If you want to learn how to use the mouse joint, look at the testbed.
  */
 public class MouseJoint extends Joint {
-	public MouseJoint (World world, long addr) {
+    /**
+     * 
+     * @param world
+     * @param addr
+     */
+    public MouseJoint (World world, long addr) {
 		super(world, addr);
 	}
 
 	/**
 	 * Use this to update the target point.
-	 */
+     * 
+     * @param target 
+     */
 	public void setTarget (Vector2 target) {
 		jniSetTarget(addr, target.x, target.y);
 	}
@@ -44,7 +51,11 @@ public class MouseJoint extends Joint {
 	final float[] tmp = new float[2];
 	private final Vector2 target = new Vector2();
 
-	public Vector2 getTarget () {
+        /**
+         * 
+         * @return
+         */
+        public Vector2 getTarget () {
 		jniGetTarget(addr, tmp);
 		target.x = tmp[0];
 		target.y = tmp[1];
@@ -55,7 +66,9 @@ public class MouseJoint extends Joint {
 
 	/**
 	 * Set/get the maximum force in Newtons.
-	 */
+         * 
+         * @param force 
+         */
 	public void setMaxForce (float force) {
 		jniSetMaxForce(addr, force);
 	}
@@ -64,7 +77,9 @@ public class MouseJoint extends Joint {
 
 	/**
 	 * Set/get the maximum force in Newtons.
-	 */
+         * 
+         * @return 
+         */
 	public float getMaxForce () {
 		return jniGetMaxForce(addr);
 	}
@@ -73,7 +88,9 @@ public class MouseJoint extends Joint {
 
 	/**
 	 * Set/get the frequency in Hertz.
-	 */
+         * 
+         * @param hz 
+         */
 	public void setFrequency (float hz) {
 		jniSetFrequency(addr, hz);
 	}
@@ -82,7 +99,9 @@ public class MouseJoint extends Joint {
 
 	/**
 	 * Set/get the frequency in Hertz.
-	 */
+         * 
+         * @return 
+         */
 	public float getFrequency () {
 		return jniGetFrequency(addr);
 	}
@@ -91,7 +110,9 @@ public class MouseJoint extends Joint {
 
 	/**
 	 * Set/get the damping ratio (dimensionless).
-	 */
+         * 
+         * @param ratio 
+         */
 	public void setDampingRatio (float ratio) {
 		jniSetDampingRatio(addr, ratio);
 	}
@@ -100,7 +121,9 @@ public class MouseJoint extends Joint {
 
 	/**
 	 * Set/get the damping ratio (dimensionless).
-	 */
+         * 
+         * @return 
+         */
 	public float getDampingRatio () {
 		return jniGetDampingRatio(addr);
 	}

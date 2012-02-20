@@ -25,7 +25,12 @@ public abstract class IntShaderSourceCriteria implements IShaderSourceCriteria {
 	// Constructors
 	// ===========================================================
 
-	public IntShaderSourceCriteria(final IntOperator pIntOperator, final int pCriteria) {
+        /**
+         * 
+         * @param pIntOperator
+         * @param pCriteria
+         */
+        public IntShaderSourceCriteria(final IntOperator pIntOperator, final int pCriteria) {
 		this.mCriteria = pCriteria;
 		this.mIntOperator = pIntOperator;
 	}
@@ -38,9 +43,19 @@ public abstract class IntShaderSourceCriteria implements IShaderSourceCriteria {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	protected abstract int getActualCriteria(final GLState pGLState);
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        protected abstract int getActualCriteria(final GLState pGLState);
 
-	@Override
+        /**
+         * 
+         * @param pGLState
+         * @return
+         */
+        @Override
 	public boolean isMet(final GLState pGLState) {
 		return this.mIntOperator.check(this.getActualCriteria(pGLState), this.mCriteria);
 	}
