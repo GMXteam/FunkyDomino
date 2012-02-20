@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.activities;
 
 import android.hardware.SensorManager;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
+import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.engine.Engine;
@@ -66,7 +66,7 @@ public final class MainActivity extends AndEngineActivity {
 
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
         try {
-            GameActivityXMLParser.buildGameInstance(this, pScene, pOnPopulateSceneCallback, R.raw.stage1);
+            AndEngineActivityXMLParser.buildGameInstance(this, pScene, pOnPopulateSceneCallback, R.raw.stage1);
         } catch (ParserConfigurationException ex) {
         } catch (SAXException ex) {
         } catch (IOException ex) {
