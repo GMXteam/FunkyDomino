@@ -16,9 +16,15 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import org.xml.sax.Attributes;
+
 /**
  *
  * @author Guillaume Poirier-Morency
  */
 public final class Ground extends Component {
+
+    public Ground(Attributes atts) {
+        
+    }
 }

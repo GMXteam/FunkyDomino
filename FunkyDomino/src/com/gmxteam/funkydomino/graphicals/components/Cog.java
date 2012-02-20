@@ -16,9 +16,15 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import org.xml.sax.Attributes;
+
 /**
  *
  * @author Guillaume Poirier-Morency
  */
 public final class Cog extends Component {
+
+    public Cog(Attributes atts) {
+        
+    }
 }
