@@ -18,7 +18,14 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
 
-import org.andengine.ui.activity.BaseGameActivity;
+import com.gmxteam.funkydomino.graphicals.components.Ball;
+import com.gmxteam.funkydomino.graphicals.components.Cog;
+import com.gmxteam.funkydomino.graphicals.components.Domino;
+import com.gmxteam.funkydomino.graphicals.components.Ground;
+import com.gmxteam.funkydomino.graphicals.components.Water;
+import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
+import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
+import org.andengine.entity.scene.Scene;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -35,14 +42,14 @@ public final class XMLHandler extends DefaultHandler {
     private boolean inDomino, inCog, inWater, inBall, inGround, inAddBall, inAddDomino;
     // this holds the data 
     private GameInformation gameInformationData;
-    private BaseGameActivity gameActivity;
+    private Scene mScene;
 
     /**
      * 
      */
     public XMLHandler() {
 
-        gameActivity = null;
+        mScene = null;
 
 
     }
@@ -51,9 +58,9 @@ public final class XMLHandler extends DefaultHandler {
      * 
      * @param ga
      */
-    public XMLHandler(BaseGameActivity ga) {
+    public XMLHandler(Scene ga) {
 
-        gameActivity = ga;
+        mScene = ga;
 
     }
 
@@ -126,24 +133,24 @@ public final class XMLHandler extends DefaultHandler {
 
 
         if (inComponent) {
-            if (gameActivity == null) {
+            if (mScene == null) {
                 return;
             }
             if (localName.equals("domino")) {
-                //new Domino(gameActivity.world, atts);
+                mScene.attachChild(new Domino(atts));
                 inDomino = true;
 
             } else if (localName.equals("cog")) {
-                //new Cog(gameActivity.world, atts);
+                mScene.attachChild(new Cog(atts));
                 inCog = true;
             } else if (localName.equals("ball")) {
-                //new Ball(gameActivity.world, atts);
+                mScene.attachChild(new Ball(atts));
                 inBall = true;
             } else if (localName.equals("ground")) {
-                //new Ground(gameActivity.world, atts);
+                mScene.attachChild(new Ground(atts));
                 inGround = true;
             } else if (localName.equals("water")) {
-                //new Water(gameActivity.world, atts);
+                mScene.attachChild(new Water(atts));
                 inWater = true;
             } else {
                 throw new IllegalXMLNameException("Balise inconnue " + localName + " dans component.");
@@ -151,16 +158,16 @@ public final class XMLHandler extends DefaultHandler {
 
 
         } else if (inWidget) {
-            if (gameActivity == null) {
+            if (mScene == null) {
                 return;
             }
             if (localName.equals("addball")) {
-                //new AddBall(gameActivity.world, atts);
-                inDomino = true;
+                mScene.attachChild(new AddBall(atts));
+                inAddBall = true;
 
             } else if (localName.equals("adddomino")) {
-                //new AddDomino(gameActivity.world, atts);
-                inCog = true;
+                mScene.attachChild(new AddDomino(atts));
+                inAddDomino = true;
             } else {
                 throw new IllegalXMLNameException("Balise inconnue " + localName + " dans widget.");
             }

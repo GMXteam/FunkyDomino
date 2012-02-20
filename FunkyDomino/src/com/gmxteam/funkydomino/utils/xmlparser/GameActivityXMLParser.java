@@ -16,16 +16,15 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-
-import android.R;
 import android.app.Activity;
 import android.util.Log;
+import com.gmxteam.funkydomino.activities.R;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.entity.scene.Scene;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -50,27 +49,28 @@ public final class GameActivityXMLParser {
     /**
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
      * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
-     * @param ga 
+     * @param scene 
      * @param resourceId 
      * @return une activité Android pour la partie à jouer !
      */
-    public static BaseGameActivity buildGameInstance(BaseGameActivity ga, int resourceId) {
+    public static void buildGameInstance(Activity a, Scene scene, int resourceId) throws ParserConfigurationException, SAXException, IOException {
         try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             SAXParser sp = spf.newSAXParser();
             XMLReader xr = sp.getXMLReader();
-            XMLHandler xh = new XMLHandler(ga);
+            XMLHandler xh = new XMLHandler(scene);
             xr.setContentHandler(xh);
-            xr.parse(new InputSource(decrypt(ga, resourceId)));
-            return ga;
+            xr.parse(new InputSource(decrypt(a, resourceId)));
         } catch (ParserConfigurationException ex) {
-            Log.v("funky-domino", "", ex);            
-        } catch (SAXException ex) {
             Log.v("funky-domino", "", ex);
+            throw ex;
+        } catch (SAXException ex2) {
+            Log.v("funky-domino", "", ex2);
+            throw ex2;
         } catch (IOException ioe) {
             Log.v("funky-domino", "", ioe);
+            throw ioe;
         }
-        return null;
     }
 
     /**
@@ -111,14 +111,14 @@ public final class GameActivityXMLParser {
      */
     private static InputStream decrypt(Activity ga, int resourceId) {
         // On récupère la clé publique...
-//        String publickey = ga.getString(R.string.key_0)
-//                + ga.getString(R.string.key_1)
-//                + ga.getString(R.string.key_2)
-//                + ga.getString(R.string.key_3)
-//                + ga.getString(R.string.key_4)
-//                + ga.getString(R.string.key_5)
-//                + ga.getString(R.string.key_6)
-//                + ga.getString(R.string.key_7);
+        String publickey = ga.getString(R.string.key_0)
+                + ga.getString(R.string.key_1)
+                + ga.getString(R.string.key_2)
+                + ga.getString(R.string.key_3)
+                + ga.getString(R.string.key_4)
+                + ga.getString(R.string.key_5)
+                + ga.getString(R.string.key_6)
+                + ga.getString(R.string.key_7);
         // On décrypte le niveau avec cette clé...
 
 

@@ -16,9 +16,15 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import org.xml.sax.Attributes;
+
 /**
  *
  * @author Guillaume Poirier-Morency
  */
 public final class AddDomino extends Widget {
+
+    public AddDomino(Attributes atts) {
+        
+    }
 }
