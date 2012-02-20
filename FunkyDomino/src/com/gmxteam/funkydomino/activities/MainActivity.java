@@ -16,8 +16,12 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.hardware.SensorManager;
+import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.graphicals.components.Domino;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 
 /**
  * Classe principale de l'application Android.
@@ -31,14 +35,15 @@ public final class MainActivity extends AndEngineActivity {
      * @return
      */
     public Engine onLoadEngine() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.GRAVITY_EARTH), false);
+        mEngine = new Engine(mEngineOptions);
+        return mEngine;
     }
 
     /**
      * 
      */
     public void onLoadResources() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -46,43 +51,17 @@ public final class MainActivity extends AndEngineActivity {
      * @return
      */
     public Scene onLoadScene() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        mScene = new Scene();
+        return mScene;
     }
 
-    /**
-     * 
-     */
-    public void onLoadComplete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-   
-
-    /**
-     * 
-     * @param pOnCreateResourcesCallback
-     * @throws Exception
-     */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @param pOnCreateSceneCallback
-     * @throws Exception
-     */
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @param pScene
-     * @param pOnPopulateSceneCallback
-     * @throws Exception
-     */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        pScene.attachChild(new Domino());
     }
 }

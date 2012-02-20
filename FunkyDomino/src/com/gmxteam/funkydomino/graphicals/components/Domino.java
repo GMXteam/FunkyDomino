@@ -21,4 +21,15 @@ package com.gmxteam.funkydomino.graphicals.components;
  * @author Guillaume Poirier-Morency
  */
 public final class Domino extends Component {
+    
+    
+    
+    public Domino() {
+    
+       
+        
+    
+    }
+    
+   
 }

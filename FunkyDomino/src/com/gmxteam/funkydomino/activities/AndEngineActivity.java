@@ -31,6 +31,8 @@ import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.ui.activity.BaseGameActivity;
 
 /**
@@ -56,7 +58,8 @@ import org.andengine.ui.activity.BaseGameActivity;
  * @author Guillaume Poirier-Morency
  */
 public abstract class AndEngineActivity extends BaseGameActivity implements AndEngineActivityConstants {
-
+    PhysicsWorld mPhysicsWorld;
+    Scene mScene;
     private Camera mCamera;
     private static final int CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
     private static final int CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
