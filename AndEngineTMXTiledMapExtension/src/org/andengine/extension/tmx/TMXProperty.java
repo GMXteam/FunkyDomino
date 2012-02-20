@@ -26,7 +26,11 @@ public class TMXProperty implements TMXConstants {
 	// Constructors
 	// ===========================================================
 
-	public TMXProperty(final Attributes pAttributes) {
+        /**
+         * 
+         * @param pAttributes
+         */
+        public TMXProperty(final Attributes pAttributes) {
 		this.mName = pAttributes.getValue("", TMXConstants.TAG_PROPERTY_ATTRIBUTE_NAME);
 		this.mValue = pAttributes.getValue("", TMXConstants.TAG_PROPERTY_ATTRIBUTE_VALUE);
 	}
@@ -35,11 +39,19 @@ public class TMXProperty implements TMXConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public String getName() {
+        /**
+         * 
+         * @return
+         */
+        public String getName() {
 		return this.mName;
 	}
 
-	public String getValue() {
+        /**
+         * 
+         * @return
+         */
+        public String getValue() {
 		return this.mValue;
 	}
 
@@ -47,7 +59,11 @@ public class TMXProperty implements TMXConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @return
+         */
+        @Override
 	public String toString() {
 		return this.mName + "='" + this.mValue + "'";
 	}

@@ -45,39 +45,99 @@ public class TMXLoader {
 	// Constructors
 	// ===========================================================
 
-	@Deprecated
+        /**
+         * 
+         * @param pContext
+         * @param pTextureManager
+         * @param pVertexBufferObjectManager
+         * @deprecated
+         */
+        @Deprecated
 	public TMXLoader(final Context pContext, final TextureManager pTextureManager, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pContext.getAssets(), pTextureManager, pVertexBufferObjectManager);
 	}
 
-	public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pVertexBufferObjectManager
+         */
+        public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pAssetManager, pTextureManager, TextureOptions.DEFAULT, pVertexBufferObjectManager);
 	}
 
-	@Deprecated
+        /**
+         * 
+         * @param pContext
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @param pVertexBufferObjectManager
+         * @deprecated
+         */
+        @Deprecated
 	public TMXLoader(final Context pContext, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pContext.getAssets(), pTextureManager, pTextureOptions, pVertexBufferObjectManager);
 	}
 
-	public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @param pVertexBufferObjectManager
+         */
+        public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pAssetManager, pTextureManager, pTextureOptions, pVertexBufferObjectManager, null);
 	}
 
-	@Deprecated
+        /**
+         * 
+         * @param pContext
+         * @param pTextureManager
+         * @param pVertexBufferObjectManager
+         * @param pTMXTilePropertyListener
+         * @deprecated
+         */
+        @Deprecated
 	public TMXLoader(final Context pContext, final TextureManager pTextureManager, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
 		this(pContext.getAssets(), pTextureManager, pVertexBufferObjectManager, pTMXTilePropertyListener);
 	}
 
-	public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pVertexBufferObjectManager
+         * @param pTMXTilePropertyListener
+         */
+        public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
 		this(pAssetManager, pTextureManager, TextureOptions.DEFAULT, pVertexBufferObjectManager, pTMXTilePropertyListener);
 	}
 
-	@Deprecated
+        /**
+         * 
+         * @param pContext
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @param pVertexBufferObjectManager
+         * @param pTMXTilePropertyListener
+         * @deprecated
+         */
+        @Deprecated
 	public TMXLoader(final Context pContext, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
 		this(pContext.getAssets(), pTextureManager, pTextureOptions, pVertexBufferObjectManager, pTMXTilePropertyListener);
 	}
 
-	public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @param pVertexBufferObjectManager
+         * @param pTMXTilePropertyListener
+         */
+        public TMXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
 		this.mAssetManager = pAssetManager;
 		this.mTextureManager = pTextureManager;
 		this.mTextureOptions = pTextureOptions;
@@ -97,7 +157,13 @@ public class TMXLoader {
 	// Methods
 	// ===========================================================
 
-	public TMXTiledMap loadFromAsset(final String pAssetPath) throws TMXLoadException {
+        /**
+         * 
+         * @param pAssetPath
+         * @return
+         * @throws TMXLoadException
+         */
+        public TMXTiledMap loadFromAsset(final String pAssetPath) throws TMXLoadException {
 		try {
 			return this.load(this.mAssetManager.open(pAssetPath));
 		} catch (final IOException e) {
@@ -105,7 +171,13 @@ public class TMXLoader {
 		}
 	}
 
-	public TMXTiledMap load(final InputStream pInputStream) throws TMXLoadException {
+        /**
+         * 
+         * @param pInputStream
+         * @return
+         * @throws TMXLoadException
+         */
+        public TMXTiledMap load(final InputStream pInputStream) throws TMXLoadException {
 		try {
 			final SAXParserFactory spf = SAXParserFactory.newInstance();
 			final SAXParser sp = spf.newSAXParser();
@@ -131,7 +203,10 @@ public class TMXLoader {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-	public interface ITMXTilePropertiesListener {
+        /**
+         * 
+         */
+        public interface ITMXTilePropertiesListener {
 		// ===========================================================
 		// Final Fields
 		// ===========================================================
@@ -140,6 +215,13 @@ public class TMXLoader {
 		// Methods
 		// ===========================================================
 
-		public void onTMXTileWithPropertiesCreated(final TMXTiledMap pTMXTiledMap, final TMXLayer pTMXLayer, final TMXTile pTMXTile, final TMXProperties<TMXTileProperty> pTMXTileProperties);
+            /**
+             * 
+             * @param pTMXTiledMap
+             * @param pTMXLayer
+             * @param pTMXTile
+             * @param pTMXTileProperties
+             */
+            public void onTMXTileWithPropertiesCreated(final TMXTiledMap pTMXTiledMap, final TMXLayer pTMXLayer, final TMXTile pTMXTile, final TMXProperties<TMXTileProperty> pTMXTileProperties);
 	}
 }

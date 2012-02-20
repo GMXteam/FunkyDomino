@@ -29,7 +29,16 @@ public class TMXTile {
 	// Constructors
 	// ===========================================================
 
-	public TMXTile(final int pGlobalTileID, final int pTileColumn, final int pTileRow, final int pTileWidth, final int pTileHeight, final ITextureRegion pTextureRegion) {
+        /**
+         * 
+         * @param pGlobalTileID
+         * @param pTileColumn
+         * @param pTileRow
+         * @param pTileWidth
+         * @param pTileHeight
+         * @param pTextureRegion
+         */
+        public TMXTile(final int pGlobalTileID, final int pTileColumn, final int pTileRow, final int pTileWidth, final int pTileHeight, final ITextureRegion pTextureRegion) {
 		this.mGlobalTileID = pGlobalTileID;
 		this.mTileRow = pTileRow;
 		this.mTileColumn = pTileColumn;
@@ -42,35 +51,67 @@ public class TMXTile {
 	// Getter & Setter
 	// ===========================================================
 
-	public int getGlobalTileID() {
+        /**
+         * 
+         * @return
+         */
+        public int getGlobalTileID() {
 		return this.mGlobalTileID;
 	}
 
-	public int getTileRow() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileRow() {
 		return this.mTileRow;
 	}
 
-	public int getTileColumn() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileColumn() {
 		return this.mTileColumn;
 	}
 
-	public int getTileX() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileX() {
 		return this.mTileColumn * this.mTileWidth;
 	}
 
-	public int getTileY() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileY() {
 		return this.mTileRow * this.mTileHeight;
 	}
 
-	public int getTileWidth() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileWidth() {
 		return this.mTileWidth;
 	}
 
-	public int getTileHeight() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileHeight() {
 		return this.mTileHeight;
 	}
 
-	public ITextureRegion getTextureRegion() {
+        /**
+         * 
+         * @return
+         */
+        public ITextureRegion getTextureRegion() {
 		return this.mTextureRegion;
 	}
 
@@ -92,7 +133,12 @@ public class TMXTile {
 		this.mTextureRegion = pTextureRegion;
 	}
 
-	public TMXProperties<TMXTileProperty> getTMXTileProperties(final TMXTiledMap pTMXTiledMap) {
+        /**
+         * 
+         * @param pTMXTiledMap
+         * @return
+         */
+        public TMXProperties<TMXTileProperty> getTMXTileProperties(final TMXTiledMap pTMXTiledMap) {
 		return pTMXTiledMap.getTMXTileProperties(this.mGlobalTileID);
 	}
 

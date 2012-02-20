@@ -59,7 +59,11 @@ public class TMXTiledMap implements TMXConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public final String getOrientation() {
+        /**
+         * 
+         * @return
+         */
+        public final String getOrientation() {
 		return this.mOrientation;
 	}
 	/**
@@ -71,7 +75,11 @@ public class TMXTiledMap implements TMXConstants {
 		return this.mTileColumns;
 	}
 
-	public final int getTileColumns() {
+        /**
+         * 
+         * @return
+         */
+        public final int getTileColumns() {
 		return this.mTileColumns;
 	}
 
@@ -84,15 +92,27 @@ public class TMXTiledMap implements TMXConstants {
 		return this.mTilesRows;
 	}
 
-	public final int getTileRows() {
+        /**
+         * 
+         * @return
+         */
+        public final int getTileRows() {
 		return this.mTilesRows;
 	}
 
-	public final int getTileWidth() {
+        /**
+         * 
+         * @return
+         */
+        public final int getTileWidth() {
 		return this.mTileWidth;
 	}
 
-	public final int getTileHeight() {
+        /**
+         * 
+         * @return
+         */
+        public final int getTileHeight() {
 		return this.mTileHeight;
 	}
 
@@ -100,7 +120,11 @@ public class TMXTiledMap implements TMXConstants {
 		this.mTMXTileSets.add(pTMXTileSet);
 	}
 
-	public ArrayList<TMXTileSet> getTMXTileSets() {
+        /**
+         * 
+         * @return
+         */
+        public ArrayList<TMXTileSet> getTMXTileSets() {
 		return this.mTMXTileSets;
 	}
 
@@ -108,7 +132,11 @@ public class TMXTiledMap implements TMXConstants {
 		this.mTMXLayers.add(pTMXLayer);
 	}
 
-	public ArrayList<TMXLayer> getTMXLayers() {
+        /**
+         * 
+         * @return
+         */
+        public ArrayList<TMXLayer> getTMXLayers() {
 		return this.mTMXLayers;
 	}
 
@@ -116,19 +144,36 @@ public class TMXTiledMap implements TMXConstants {
 		this.mTMXObjectGroups.add(pTMXObjectGroup);
 	}
 
-	public ArrayList<TMXObjectGroup> getTMXObjectGroups() {
+        /**
+         * 
+         * @return
+         */
+        public ArrayList<TMXObjectGroup> getTMXObjectGroups() {
 		return this.mTMXObjectGroups;
 	}
 
-	public TMXProperties<TMXTileProperty> getTMXTilePropertiesByGlobalTileID(final int pGlobalTileID) {
+        /**
+         * 
+         * @param pGlobalTileID
+         * @return
+         */
+        public TMXProperties<TMXTileProperty> getTMXTilePropertiesByGlobalTileID(final int pGlobalTileID) {
 		return this.mGlobalTileIDToTMXTilePropertiesCache.get(pGlobalTileID);
 	}
 
-	public void addTMXTiledMapProperty(final TMXTiledMapProperty pTMXTiledMapProperty) {
+        /**
+         * 
+         * @param pTMXTiledMapProperty
+         */
+        public void addTMXTiledMapProperty(final TMXTiledMapProperty pTMXTiledMapProperty) {
 		this.mTMXTiledMapProperties.add(pTMXTiledMapProperty);
 	}
 
-	public TMXProperties<TMXTiledMapProperty> getTMXTiledMapProperties() {
+        /**
+         * 
+         * @return
+         */
+        public TMXProperties<TMXTiledMapProperty> getTMXTiledMapProperties() {
 		return this.mTMXTiledMapProperties;
 	}
 
@@ -140,7 +185,12 @@ public class TMXTiledMap implements TMXConstants {
 	// Methods
 	// ===========================================================
 
-	public TMXProperties<TMXTileProperty> getTMXTileProperties(final int pGlobalTileID) {
+        /**
+         * 
+         * @param pGlobalTileID
+         * @return
+         */
+        public TMXProperties<TMXTileProperty> getTMXTileProperties(final int pGlobalTileID) {
 		final SparseArray<TMXProperties<TMXTileProperty>> globalTileIDToTMXTilePropertiesCache = this.mGlobalTileIDToTMXTilePropertiesCache;
 
 		final TMXProperties<TMXTileProperty> cachedTMXTileProperties = globalTileIDToTMXTilePropertiesCache.get(pGlobalTileID);
@@ -159,7 +209,12 @@ public class TMXTiledMap implements TMXConstants {
 		}
 	}
 
-	public ITextureRegion getTextureRegionFromGlobalTileID(final int pGlobalTileID) {
+        /**
+         * 
+         * @param pGlobalTileID
+         * @return
+         */
+        public ITextureRegion getTextureRegionFromGlobalTileID(final int pGlobalTileID) {
 		final SparseArray<ITextureRegion> globalTileIDToTextureRegionCache = this.mGlobalTileIDToTextureRegionCache;
 
 		final ITextureRegion cachedTextureRegion = globalTileIDToTextureRegionCache.get(pGlobalTileID);

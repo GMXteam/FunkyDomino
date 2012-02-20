@@ -65,7 +65,13 @@ public class TMXLayer extends SpriteBatch implements TMXConstants {
 	// Constructors
 	// ===========================================================
 
-	public TMXLayer(final TMXTiledMap pTMXTiledMap, final Attributes pAttributes, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        /**
+         * 
+         * @param pTMXTiledMap
+         * @param pAttributes
+         * @param pVertexBufferObjectManager
+         */
+        public TMXLayer(final TMXTiledMap pTMXTiledMap, final Attributes pAttributes, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(null, SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_LAYER_ATTRIBUTE_WIDTH) * SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_LAYER_ATTRIBUTE_HEIGHT), pVertexBufferObjectManager);
 
 		this.mTMXTiledMap = pTMXTiledMap;
@@ -93,31 +99,62 @@ public class TMXLayer extends SpriteBatch implements TMXConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public String getName() {
+        /**
+         * 
+         * @return
+         */
+        public String getName() {
 		return this.mName;
 	}
 
-	public int getWidth() {
+        /**
+         * 
+         * @return
+         */
+        public int getWidth() {
 		return this.mWidth;
 	}
 
-	public int getHeight() {
+        /**
+         * 
+         * @return
+         */
+        public int getHeight() {
 		return this.mHeight;
 	}
 
-	public int getTileColumns() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileColumns() {
 		return this.mTileColumns;
 	}
 
-	public int getTileRows() {
+        /**
+         * 
+         * @return
+         */
+        public int getTileRows() {
 		return this.mTileRows;
 	}
 
-	public TMXTile[][] getTMXTiles() {
+        /**
+         * 
+         * @return
+         */
+        public TMXTile[][] getTMXTiles() {
 		return this.mTMXTiles;
 	}
 
-	public TMXTile getTMXTile(final int pTileColumn, final int pTileRow) throws ArrayIndexOutOfBoundsException {
+        /**
+         * 
+         * @param pTileColumn
+         * @param pTileRow
+         * @return
+         * @throws ArrayIndexOutOfBoundsException
+         */
+        public TMXTile getTMXTile(final int pTileColumn, final int pTileRow) throws ArrayIndexOutOfBoundsException {
 		return this.mTMXTiles[pTileRow][pTileColumn];
 	}
 
@@ -142,11 +179,19 @@ public class TMXLayer extends SpriteBatch implements TMXConstants {
 		return this.mTMXTiles[tileRow][tileColumn];
 	}
 
-	public void addTMXLayerProperty(final TMXLayerProperty pTMXLayerProperty) {
+        /**
+         * 
+         * @param pTMXLayerProperty
+         */
+        public void addTMXLayerProperty(final TMXLayerProperty pTMXLayerProperty) {
 		this.mTMXLayerProperties.add(pTMXLayerProperty);
 	}
 
-	public TMXProperties<TMXLayerProperty> getTMXLayerProperties() {
+        /**
+         * 
+         * @return
+         */
+        public TMXProperties<TMXLayerProperty> getTMXLayerProperties() {
 		return this.mTMXLayerProperties;
 	}
 

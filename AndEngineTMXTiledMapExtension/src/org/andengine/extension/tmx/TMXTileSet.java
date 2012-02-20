@@ -76,35 +76,70 @@ public class TMXTileSet implements TMXConstants {
 	// Getter & Setter
 	// ===========================================================
 
-	public final int getFirstGlobalTileID() {
+        /**
+         * 
+         * @return
+         */
+        public final int getFirstGlobalTileID() {
 		return this.mFirstGlobalTileID;
 	}
 
-	public final String getName() {
+        /**
+         * 
+         * @return
+         */
+        public final String getName() {
 		return this.mName;
 	}
 
-	public final int getTileWidth() {
+        /**
+         * 
+         * @return
+         */
+        public final int getTileWidth() {
 		return this.mTileWidth;
 	}
 
-	public final int getTileHeight() {
+        /**
+         * 
+         * @return
+         */
+        public final int getTileHeight() {
 		return this.mTileHeight;
 	}
 
-	public int getTilesHorizontal() {
+        /**
+         * 
+         * @return
+         */
+        public int getTilesHorizontal() {
 		return this.mTilesHorizontal;
 	}
 
-	public int getTilesVertical() {
+        /**
+         * 
+         * @return
+         */
+        public int getTilesVertical() {
 		return this.mTilesVertical;
 	}
 
-	public ITexture getTexture() {
+        /**
+         * 
+         * @return
+         */
+        public ITexture getTexture() {
 		return this.mTexture;
 	}
 
-	public void setImageSource(final AssetManager pAssetManager, final TextureManager pTextureManager, final Attributes pAttributes) throws TMXParseException {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pAttributes
+         * @throws TMXParseException
+         */
+        public void setImageSource(final AssetManager pAssetManager, final TextureManager pTextureManager, final Attributes pAttributes) throws TMXParseException {
 		this.mImageSource = pAttributes.getValue("", TMXConstants.TAG_IMAGE_ATTRIBUTE_SOURCE);
 
 		final AssetBitmapTextureAtlasSource assetBitmapTextureAtlasSource = AssetBitmapTextureAtlasSource.create(pAssetManager, this.mImageSource);
@@ -127,11 +162,19 @@ public class TMXTileSet implements TMXConstants {
 		this.mTexture.load();
 	}
 
-	public String getImageSource() {
+        /**
+         * 
+         * @return
+         */
+        public String getImageSource() {
 		return this.mImageSource;
 	}
 
-	public SparseArray<TMXProperties<TMXTileProperty>> getTMXTileProperties() {
+        /**
+         * 
+         * @return
+         */
+        public SparseArray<TMXProperties<TMXTileProperty>> getTMXTileProperties() {
 		return this.mTMXTileProperties;
 	}
 
@@ -143,12 +186,22 @@ public class TMXTileSet implements TMXConstants {
 	// Methods
 	// ===========================================================
 
-	public TMXProperties<TMXTileProperty> getTMXTilePropertiesFromGlobalTileID(final int pGlobalTileID) {
+        /**
+         * 
+         * @param pGlobalTileID
+         * @return
+         */
+        public TMXProperties<TMXTileProperty> getTMXTilePropertiesFromGlobalTileID(final int pGlobalTileID) {
 		final int localTileID = pGlobalTileID - this.mFirstGlobalTileID;
 		return this.mTMXTileProperties.get(localTileID);
 	}
 
-	public void addTMXTileProperty(final int pLocalTileID, final TMXTileProperty pTMXTileProperty) {
+        /**
+         * 
+         * @param pLocalTileID
+         * @param pTMXTileProperty
+         */
+        public void addTMXTileProperty(final int pLocalTileID, final TMXTileProperty pTMXTileProperty) {
 		final TMXProperties<TMXTileProperty> existingProperties = this.mTMXTileProperties.get(pLocalTileID);
 		if(existingProperties != null) {
 			existingProperties.add(pTMXTileProperty);
@@ -159,7 +212,12 @@ public class TMXTileSet implements TMXConstants {
 		}
 	}
 
-	public ITextureRegion getTextureRegionFromGlobalTileID(final int pGlobalTileID) {
+        /**
+         * 
+         * @param pGlobalTileID
+         * @return
+         */
+        public ITextureRegion getTextureRegionFromGlobalTileID(final int pGlobalTileID) {
 		final int localTileID = pGlobalTileID - this.mFirstGlobalTileID;
 		final int tileColumn = localTileID % this.mTilesHorizontal;
 		final int tileRow = localTileID / this.mTilesHorizontal;

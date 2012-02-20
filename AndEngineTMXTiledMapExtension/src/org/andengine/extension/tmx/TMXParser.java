@@ -66,7 +66,15 @@ public class TMXParser extends DefaultHandler implements TMXConstants {
 	// Constructors
 	// ===========================================================
 
-	public TMXParser(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pTextureOptions
+         * @param pVertexBufferObjectManager
+         * @param pTMXTilePropertyListener
+         */
+        public TMXParser(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final VertexBufferObjectManager pVertexBufferObjectManager, final ITMXTilePropertiesListener pTMXTilePropertyListener) {
 		this.mAssetManager = pAssetManager;
 		this.mTextureManager = pTextureManager;
 		this.mTextureOptions = pTextureOptions;
@@ -86,7 +94,15 @@ public class TMXParser extends DefaultHandler implements TMXConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	@Override
+        /**
+         * 
+         * @param pUri
+         * @param pLocalName
+         * @param pQualifiedName
+         * @param pAttributes
+         * @throws SAXException
+         */
+        @Override
 	public void startElement(final String pUri, final String pLocalName, final String pQualifiedName, final Attributes pAttributes) throws SAXException {
 		if(pLocalName.equals(TMXConstants.TAG_MAP)){
 			this.mInMap = true;
@@ -168,12 +184,26 @@ public class TMXParser extends DefaultHandler implements TMXConstants {
 		}
 	}
 
-	@Override
+        /**
+         * 
+         * @param pCharacters
+         * @param pStart
+         * @param pLength
+         * @throws SAXException
+         */
+        @Override
 	public void characters(final char[] pCharacters, final int pStart, final int pLength) throws SAXException {
 		this.mStringBuilder.append(pCharacters, pStart, pLength);
 	}
 
-	@Override
+        /**
+         * 
+         * @param pUri
+         * @param pLocalName
+         * @param pQualifiedName
+         * @throws SAXException
+         */
+        @Override
 	public void endElement(final String pUri, final String pLocalName, final String pQualifiedName) throws SAXException {
 		if(pLocalName.equals(TMXConstants.TAG_MAP)){
 			this.mInMap = false;

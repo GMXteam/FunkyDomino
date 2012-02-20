@@ -22,19 +22,35 @@ public abstract class TMXException extends Exception {
 	// Constructors
 	// ===========================================================
 
-	public TMXException() {
+        /**
+         * 
+         */
+        public TMXException() {
 		super();
 	}
 
-	public TMXException(final String pDetailMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pDetailMessage
+         * @param pThrowable
+         */
+        public TMXException(final String pDetailMessage, final Throwable pThrowable) {
 		super(pDetailMessage, pThrowable);
 	}
 
-	public TMXException(final String pDetailMessage) {
+        /**
+         * 
+         * @param pDetailMessage
+         */
+        public TMXException(final String pDetailMessage) {
 		super(pDetailMessage);
 	}
 
-	public TMXException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public TMXException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 

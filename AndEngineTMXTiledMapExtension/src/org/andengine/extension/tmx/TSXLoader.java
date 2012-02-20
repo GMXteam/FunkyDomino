@@ -41,7 +41,13 @@ public class TSXLoader {
 	// Constructors
 	// ===========================================================
 
-	public TSXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions) {
+        /**
+         * 
+         * @param pAssetManager
+         * @param pTextureManager
+         * @param pTextureOptions
+         */
+        public TSXLoader(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions) {
 		this.mAssetManager = pAssetManager;
 		this.mTextureManager = pTextureManager;
 		this.mTextureOptions = pTextureOptions;
@@ -59,7 +65,14 @@ public class TSXLoader {
 	// Methods
 	// ===========================================================
 
-	public TMXTileSet loadFromAsset(final int pFirstGlobalTileID, final String pAssetPath) throws TSXLoadException {
+        /**
+         * 
+         * @param pFirstGlobalTileID
+         * @param pAssetPath
+         * @return
+         * @throws TSXLoadException
+         */
+        public TMXTileSet loadFromAsset(final int pFirstGlobalTileID, final String pAssetPath) throws TSXLoadException {
 		try {
 			return this.load(pFirstGlobalTileID, this.mAssetManager.open(pAssetPath));
 		} catch (final IOException e) {

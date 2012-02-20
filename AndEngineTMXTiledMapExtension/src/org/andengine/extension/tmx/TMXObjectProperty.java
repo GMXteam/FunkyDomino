@@ -22,7 +22,11 @@ public class TMXObjectProperty extends TMXProperty {
 	// Constructors
 	// ===========================================================
 
-	public TMXObjectProperty(final Attributes pAttributes) {
+    /**
+     * 
+     * @param pAttributes
+     */
+    public TMXObjectProperty(final Attributes pAttributes) {
 		super(pAttributes);
 	}
 

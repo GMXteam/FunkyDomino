@@ -22,19 +22,35 @@ public class TMXLoadException extends TMXException {
 	// Constructors
 	// ===========================================================
 
-	public TMXLoadException() {
+        /**
+         * 
+         */
+        public TMXLoadException() {
 		super();
 	}
 
-	public TMXLoadException(final String pDetailMessage, final Throwable pThrowable) {
+        /**
+         * 
+         * @param pDetailMessage
+         * @param pThrowable
+         */
+        public TMXLoadException(final String pDetailMessage, final Throwable pThrowable) {
 		super(pDetailMessage, pThrowable);
 	}
 
-	public TMXLoadException(final String pDetailMessage) {
+        /**
+         * 
+         * @param pDetailMessage
+         */
+        public TMXLoadException(final String pDetailMessage) {
 		super(pDetailMessage);
 	}
 
-	public TMXLoadException(final Throwable pThrowable) {
+        /**
+         * 
+         * @param pThrowable
+         */
+        public TMXLoadException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
