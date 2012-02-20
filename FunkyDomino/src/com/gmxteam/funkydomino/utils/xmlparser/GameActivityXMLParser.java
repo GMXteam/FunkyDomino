@@ -25,6 +25,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.andengine.entity.scene.Scene;
+import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -53,7 +54,7 @@ public final class GameActivityXMLParser {
      * @param resourceId 
      * @return une activité Android pour la partie à jouer !
      */
-    public static void buildGameInstance(Activity a, Scene scene, int resourceId) throws ParserConfigurationException, SAXException, IOException {
+    public static void buildGameInstance(Activity a, Scene scene, OnPopulateSceneCallback pOnPopulateSceneCallback, int resourceId) throws ParserConfigurationException, SAXException, IOException {
         try {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             SAXParser sp = spf.newSAXParser();

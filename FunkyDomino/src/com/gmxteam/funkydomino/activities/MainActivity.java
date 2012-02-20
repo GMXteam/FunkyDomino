@@ -18,10 +18,13 @@ package com.gmxteam.funkydomino.activities;
 
 import android.hardware.SensorManager;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.graphicals.components.Domino;
+import com.gmxteam.funkydomino.utils.xmlparser.GameActivityXMLParser;
+import java.io.IOException;
+import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.xml.sax.SAXException;
 
 /**
  * Classe principale de l'application Android.
@@ -61,7 +64,12 @@ public final class MainActivity extends AndEngineActivity {
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
     }
 
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
-        pScene.attachChild(new Domino());
+    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+        try {
+            GameActivityXMLParser.buildGameInstance(this, pScene, pOnPopulateSceneCallback, R.raw.stage1);
+        } catch (ParserConfigurationException ex) {
+        } catch (SAXException ex) {
+        } catch (IOException ex) {
+        }
     }
 }

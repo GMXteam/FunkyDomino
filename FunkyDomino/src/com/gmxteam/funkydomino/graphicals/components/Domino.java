@@ -23,19 +23,7 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Domino extends Component {
-    
-    
-    
-    public Domino() {
-    
-       
-        
-    
-    }
 
     public Domino(Attributes atts) {
-        
     }
-    
-   
 }
