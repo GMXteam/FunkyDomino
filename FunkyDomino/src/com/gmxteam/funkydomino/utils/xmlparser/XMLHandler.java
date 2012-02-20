@@ -138,19 +138,25 @@ public final class XMLHandler extends DefaultHandler {
             }
             if (localName.equals("domino")) {
                 mScene.attachChild(new Domino(atts));
+                Log.v("funky-domino", "Adding a domino to the scene.");
                 inDomino = true;
 
             } else if (localName.equals("cog")) {
                 mScene.attachChild(new Cog(atts));
+                Log.v("funky-domino", "Adding a cog to the scene.");
+
                 inCog = true;
             } else if (localName.equals("ball")) {
                 mScene.attachChild(new Ball(atts));
+                Log.v("funky-domino", "Adding a ball to the scene.");
                 inBall = true;
             } else if (localName.equals("ground")) {
                 mScene.attachChild(new Ground(atts));
+                Log.v("funky-domino", "Adding a ground to the scene.");
                 inGround = true;
             } else if (localName.equals("water")) {
                 mScene.attachChild(new Water(atts));
+                Log.v("funky-domino", "Adding water to the scene.");
                 inWater = true;
             } else {
                 throw new IllegalXMLNameException("Balise inconnue " + localName + " dans component.");
@@ -163,10 +169,12 @@ public final class XMLHandler extends DefaultHandler {
             }
             if (localName.equals("addball")) {
                 mScene.attachChild(new AddBall(atts));
+                Log.v("funky-domino", "Adding a addball widget to the scene.");
                 inAddBall = true;
 
             } else if (localName.equals("adddomino")) {
                 mScene.attachChild(new AddDomino(atts));
+                Log.v("funky-domino", "Adding a adddomino widget to the scene.");
                 inAddDomino = true;
             } else {
                 throw new IllegalXMLNameException("Balise inconnue " + localName + " dans widget.");
