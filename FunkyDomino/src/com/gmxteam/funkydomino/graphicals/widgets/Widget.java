@@ -16,13 +16,14 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import com.gmxteam.funkydomino.constants.WidgetsConstants;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Widget extends Graphical {
+abstract class Widget extends Graphical implements WidgetsConstants {
     
     /**
      * 

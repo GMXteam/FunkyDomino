@@ -17,19 +17,20 @@
 package com.gmxteam.funkydomino.activities;
 
 // Importations locales
-
 // Importations pour le moteur de collisions
 //import org.jbox2d.collision.AABB;
 //import org.jbox2d.collision.Shape;
 //import org.jbox2d.common.Vec2;
 //import org.jbox2d.dynamics.Body;
 //import org.jbox2d.dynamics.World;
-
 // Importations pour le moteur de rendu
-
 // Librairies standard Android
-
 // Librairie standard Java
+import com.gmxteam.funkydomino.constants.AndEngineActivityConstants;
+import org.andengine.engine.camera.Camera;
+import org.andengine.engine.options.EngineOptions;
+import org.andengine.engine.options.EngineOptions.ScreenOrientation;
+import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.ui.activity.BaseGameActivity;
 
 /**
@@ -54,6 +55,22 @@ import org.andengine.ui.activity.BaseGameActivity;
  * La physique est gérée dans un thread à part.
  * @author Guillaume Poirier-Morency
  */
-public abstract class AndEngineActivity extends BaseGameActivity {
+public abstract class AndEngineActivity extends BaseGameActivity implements AndEngineActivityConstants {
 
+    private Camera mCamera;
+    private static final int CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
+    private static final int CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
+
+    /**
+     * 
+     * @return
+     */
+    @Override
+    public EngineOptions onCreateEngineOptions() {
+        this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
+
+        final EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+        engineOptions.getAudioOptions().setNeedsSound(true);
+        return engineOptions;
+    }
 }

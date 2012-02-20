@@ -17,7 +17,6 @@
 package com.gmxteam.funkydomino.activities;
 
 import org.andengine.engine.Engine;
-import org.andengine.engine.options.EngineOptions;
 import org.andengine.entity.scene.Scene;
 
 /**
@@ -57,13 +56,7 @@ public final class MainActivity extends AndEngineActivity {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @return
-     */
-    public EngineOptions onCreateEngineOptions() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   
 
     /**
      * 

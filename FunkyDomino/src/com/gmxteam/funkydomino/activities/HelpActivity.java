@@ -18,11 +18,10 @@ package com.gmxteam.funkydomino.activities;
 
 import android.os.Bundle;
 import org.andengine.engine.Engine;
-import org.andengine.engine.options.EngineOptions;
 import org.andengine.entity.scene.Scene;
 
 /**
- *
+ * Activité pour présenter l'aide à l'utilisateur.
  * @author Guillaume Poirier-Morency
  */
 public final class HelpActivity extends AndEngineActivity {
@@ -67,13 +66,7 @@ public final class HelpActivity extends AndEngineActivity {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @return
-     */
-    public EngineOptions onCreateEngineOptions() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+ 
 
     /**
      * 

@@ -60,13 +60,6 @@ public final class NewGameActivity extends AndEngineActivity {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @return
-     */
-    public EngineOptions onCreateEngineOptions() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     /**
      * 

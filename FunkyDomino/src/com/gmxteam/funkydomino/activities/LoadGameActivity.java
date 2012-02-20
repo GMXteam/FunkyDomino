@@ -18,7 +18,6 @@ package com.gmxteam.funkydomino.activities;
 
 import android.os.Bundle;
 import org.andengine.engine.Engine;
-import org.andengine.engine.options.EngineOptions;
 import org.andengine.entity.scene.Scene;
 
 /**
@@ -66,14 +65,6 @@ public final class LoadGameActivity extends AndEngineActivity {
      * 
      */
     public void onLoadComplete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     * 
-     * @return
-     */
-    public EngineOptions onCreateEngineOptions() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

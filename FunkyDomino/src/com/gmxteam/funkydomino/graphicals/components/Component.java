@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.gmxteam.funkydomino.constants.ComponentsConstants;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 
 /**
@@ -24,7 +25,7 @@ import com.gmxteam.funkydomino.graphicals.Graphical;
  * objets.
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Graphical {
+abstract class Component extends Graphical implements ComponentsConstants {
     /* Ici, on peut mettre toutes les variables définissant généralement les
      * composants, sans toutefois définir les widgets.
      */
