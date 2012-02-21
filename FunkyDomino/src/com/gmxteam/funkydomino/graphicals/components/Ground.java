@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import org.andengine.util.color.Color;
 import org.xml.sax.Attributes;
 
 /**
@@ -23,8 +24,13 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Ground extends Component {
-
     public Ground(Attributes atts) {
         
+    }
+    
+    public Ground() {
+        this.mColor = Color.BLACK;
+       
+    
     }
 }

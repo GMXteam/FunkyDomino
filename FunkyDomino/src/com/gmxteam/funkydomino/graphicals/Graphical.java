@@ -16,14 +16,13 @@
  */
 package com.gmxteam.funkydomino.graphicals;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
 import org.andengine.entity.Entity;
 
 /**
  * Objet de base pour construire un élément graphique (widgets et composants).
  * @author Guillaume Poirier-Morency
  */
-public abstract class Graphical extends Entity implements AndEngineActivityConstants {
+public abstract class Graphical extends Entity  {
     
     
     

@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,6 +47,8 @@ public final class MainActivity extends AndEngineActivity {
      * @param pOnPopulateSceneCallback 
      */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+        ////////////////////////////////////////////////////////////////////////
+        // Code utilisant le système XML
         String publickey = getString(R.string.key_0)
                 + getString(R.string.key_1)
                 + getString(R.string.key_2)
@@ -64,6 +67,10 @@ public final class MainActivity extends AndEngineActivity {
         } catch (IOException ex) {
             Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
         }
+        ////////////////////////////////////////////////////////////////////////
+        // Code de test
+        pScene.attachChild(new Ground());
+        
 
     }
 }
