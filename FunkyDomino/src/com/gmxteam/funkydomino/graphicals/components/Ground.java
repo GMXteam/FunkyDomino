@@ -24,13 +24,20 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Ground extends Component {
+
+    /**
+     * 
+     * @param atts 
+     */
     public Ground(Attributes atts) {
-        
     }
-    
+
+    /**
+     * 
+     */
     public Ground() {
         this.mColor = Color.BLACK;
-       
-    
+
+
     }
 }

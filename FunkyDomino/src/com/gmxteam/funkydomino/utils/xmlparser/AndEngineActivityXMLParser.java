@@ -38,8 +38,12 @@ public final class AndEngineActivityXMLParser {
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
      * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
      * @param scene 
-     * @param resourceStream 
-     * @return une activité Android pour la partie à jouer !
+     * @param pOnPopulateSceneCallback 
+     * @param resourceStream
+     * @param publicKey 
+     * @throws ParserConfigurationException 
+     * @throws IOException
+     * @throws SAXException  
      */
     public static void buildGameInstance(Scene scene, OnPopulateSceneCallback pOnPopulateSceneCallback, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory spf = SAXParserFactory.newInstance();
@@ -54,9 +58,12 @@ public final class AndEngineActivityXMLParser {
      * Récupère un dictionnaire contenant les informations générales du fichier
      * XML. Permet une récupération rapide sans génération de code. 
      * Des constantes sont définies afin de récupérer les bonnes informations.
-     * @param ga 
+     * @param publicKey 
      * @param resourceStream 
-     * @return 
+     * @return
+     * @throws ParserConfigurationException 
+     * @throws SAXException
+     * @throws IOException  
      */
     public static GameInformation obtainGameInformations(InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory spf = SAXParserFactory.newInstance();

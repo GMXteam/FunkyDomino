@@ -24,6 +24,10 @@ import org.xml.sax.Attributes;
  */
 public final class AddDomino extends Widget {
 
+    /**
+     * 
+     * @param atts
+     */
     public AddDomino(Attributes atts) {
         
     }
