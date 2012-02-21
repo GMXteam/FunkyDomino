@@ -16,7 +16,6 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.gmxteam.funkydomino.constants.ComponentsConstants;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 
 /**

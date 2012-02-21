@@ -28,7 +28,6 @@ package com.gmxteam.funkydomino.activities;
 // Librairie standard Java
 import android.hardware.SensorManager;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.constants.AndEngineActivityConstants;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;

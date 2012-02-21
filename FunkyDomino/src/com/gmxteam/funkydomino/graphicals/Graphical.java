@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals;
 
-import com.gmxteam.funkydomino.constants.AndEngineActivityConstants;
+import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
 import org.andengine.entity.Entity;
 
 /**
