@@ -16,9 +16,6 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-import android.app.Activity;
-import android.util.Log;
-import com.gmxteam.funkydomino.activities.R;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,43 +32,22 @@ import org.xml.sax.XMLReader;
  * encrypté asymétriquement en Activity.
  * @author Guillaume Poirier-morency
  */
-public final class AndEngineActivityXMLParser {
-
-    // D'autres constantes seront définies en fonction de la structure XML choisie.
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    public static Integer INFO_APP_NAME = 0,
-            INFO_APP_DESCRIPTION = 1;
+public final class AndEngineActivityXMLParser { 
 
     /**
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
      * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
      * @param scene 
-     * @param resourceId 
+     * @param resourceStream 
      * @return une activité Android pour la partie à jouer !
      */
-    public static void buildGameInstance(Activity a, Scene scene, OnPopulateSceneCallback pOnPopulateSceneCallback, int resourceId) throws ParserConfigurationException, SAXException, IOException {
-        try {
-            SAXParserFactory spf = SAXParserFactory.newInstance();
-            SAXParser sp = spf.newSAXParser();
-            XMLReader xr = sp.getXMLReader();
-            XMLHandler xh = new XMLHandler(scene);
-            xr.setContentHandler(xh);
-            xr.parse(new InputSource(decrypt(a, resourceId)));
-        } catch (ParserConfigurationException ex) {
-            Log.e("funky-domino", "", ex);            
-            throw ex;
-        } catch (SAXException ex2) {
-            Log.e("funky-domino", "", ex2);
-            throw ex2;
-        } catch (IOException ioe) {
-            Log.e("funky-domino", "", ioe);
-            throw ioe;
-        }
+    public static void buildGameInstance(Scene scene, OnPopulateSceneCallback pOnPopulateSceneCallback, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+        XMLReader xr = sp.getXMLReader();
+        XMLHandler xh = new XMLHandler(scene);
+        xr.setContentHandler(xh);
+        xr.parse(new InputSource(decrypt(resourceStream, publicKey)));
     }
 
     /**
@@ -79,53 +55,34 @@ public final class AndEngineActivityXMLParser {
      * XML. Permet une récupération rapide sans génération de code. 
      * Des constantes sont définies afin de récupérer les bonnes informations.
      * @param ga 
-     * @param resourceId 
+     * @param resourceStream 
      * @return 
      */
-    public static GameInformation obtainGameInformations(Activity ga, int resourceId) {
-
-        try {
-            SAXParserFactory spf = SAXParserFactory.newInstance();
-            SAXParser sp = spf.newSAXParser();
-            XMLReader xr = sp.getXMLReader();
-            XMLHandler xh = new XMLHandler();
-            xr.setContentHandler(xh);
-            xr.parse(new InputSource(decrypt(ga, resourceId)));
-            return xh.getGameInformation();
-        } catch (ParserConfigurationException ex) {
-            Log.e("funky-domino", "", ex);
-        } catch (SAXException ex) {
-            Log.e("funky-domino", "", ex);
-        } catch (IOException ioe) {
-            Log.e("funky-domino", "", ioe);
-        }
-
-
-        return null;
+    public static GameInformation obtainGameInformations(InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
+        SAXParserFactory spf = SAXParserFactory.newInstance();
+        SAXParser sp = spf.newSAXParser();
+        XMLReader xr = sp.getXMLReader();
+        XMLHandler xh = new XMLHandler();
+        xr.setContentHandler(xh);
+        xr.parse(new InputSource(decrypt(resourceStream, publicKey)));
+        return xh.getGameInformation();
     }
 
     /**
      * 
      * @param ga
-     * @param resourceId     
+     * @param resourceStream     
      * @return 
      */
-    private static InputStream decrypt(Activity ga, int resourceId) {
+    private static InputStream decrypt(InputStream resourceStream, String publicKey) {
         // On récupère la clé publique...
-        String publickey = ga.getString(R.string.key_0)
-                + ga.getString(R.string.key_1)
-                + ga.getString(R.string.key_2)
-                + ga.getString(R.string.key_3)
-                + ga.getString(R.string.key_4)
-                + ga.getString(R.string.key_5)
-                + ga.getString(R.string.key_6)
-                + ga.getString(R.string.key_7);
+
         // On décrypte le niveau avec cette clé...
 
 
         // On retourne l'inputstream du niveau décrypté
 
-        return ga.getResources().openRawResource(resourceId);
+        return resourceStream;
 
 
     }

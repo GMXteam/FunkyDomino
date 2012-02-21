@@ -26,7 +26,10 @@ package com.gmxteam.funkydomino.activities;
 // Importations pour le moteur de rendu
 // Librairies standard Android
 // Librairie standard Java
+import android.hardware.SensorManager;
+import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.constants.AndEngineActivityConstants;
+import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.EngineOptions.ScreenOrientation;
@@ -58,6 +61,7 @@ import org.andengine.ui.activity.BaseGameActivity;
  * @author Guillaume Poirier-Morency
  */
 public abstract class AndEngineActivity extends BaseGameActivity implements AndEngineActivityConstants {
+
     PhysicsWorld mPhysicsWorld;
     Scene mScene;
     private Camera mCamera;
@@ -71,9 +75,43 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     @Override
     public EngineOptions onCreateEngineOptions() {
         this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-
         final EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
         engineOptions.getAudioOptions().setNeedsSound(true);
         return engineOptions;
+    }
+    
+    /**
+     * Création des ressources.
+     * @param pOnCreateResourcesCallback
+     * @throws Exception 
+     */
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+    }
+
+    /**
+     * Chargement du moteur de physique et du moteur de jeu.
+     * @return
+     */
+    public Engine onLoadEngine() {
+        mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.GRAVITY_EARTH), false);
+        mEngine = new Engine(mEngineOptions);
+        return mEngine;
+    }
+
+    /**
+     * 
+     * @param pOnCreateSceneCallback
+     * @throws Exception 
+     */
+    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+    }
+
+    /**
+     * Chargement de la scène.
+     * @return
+     */
+    public Scene onLoadScene() {
+        mScene = new Scene();
+        return mScene;
     }
 }

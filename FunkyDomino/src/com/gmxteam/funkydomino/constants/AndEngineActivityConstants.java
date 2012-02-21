@@ -26,5 +26,9 @@ public interface AndEngineActivityConstants {
          * 
          */
         public static final int CELL_HEIGHT = CELL_WIDTH;
+        
+        public static final String APP_LOG_NAME = "funky-domino";
+        
+        public static final String LEVEL_KEY_IN_BUNDLE = "level";
     
 }

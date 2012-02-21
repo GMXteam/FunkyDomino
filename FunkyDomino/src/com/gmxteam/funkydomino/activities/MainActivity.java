@@ -16,14 +16,12 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import android.hardware.SensorManager;
-import com.badlogic.gdx.math.Vector2;
+import android.util.Log;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
+import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
-import org.andengine.engine.Engine;
 import org.andengine.entity.scene.Scene;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.SAXException;
 
 /**
@@ -33,43 +31,39 @@ import org.xml.sax.SAXException;
  */
 public final class MainActivity extends AndEngineActivity {
 
-    /**
-     * 
-     * @return
-     */
-    public Engine onLoadEngine() {
-        mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.GRAVITY_EARTH), false);
-        mEngine = new Engine(mEngineOptions);
-        return mEngine;
-    }
+    private InputStream levelStream;
 
     /**
-     * 
+     * Chargement des ressources du programme (images, textes, etc...).
      */
     public void onLoadResources() {
+        levelStream = this.getResources().openRawResource(R.raw.stage1);
     }
 
     /**
      * 
-     * @return
+     * @param pScene
+     * @param pOnPopulateSceneCallback 
      */
-    public Scene onLoadScene() {
-        mScene = new Scene();
-        return mScene;
-    }
-
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-    }
-
-    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
-    }
-
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+        String publickey = getString(R.string.key_0)
+                + getString(R.string.key_1)
+                + getString(R.string.key_2)
+                + getString(R.string.key_3)
+                + getString(R.string.key_4)
+                + getString(R.string.key_5)
+                + getString(R.string.key_6)
+                + getString(R.string.key_7);
         try {
-            AndEngineActivityXMLParser.buildGameInstance(this, pScene, pOnPopulateSceneCallback, R.raw.stage1);
+            AndEngineActivityXMLParser.buildGameInstance(pScene, pOnPopulateSceneCallback, levelStream, publickey);
+            levelStream.close();
         } catch (ParserConfigurationException ex) {
+            Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);
         } catch (SAXException ex) {
+            Log.e(APP_LOG_NAME, "Parser has crashed !", ex);
         } catch (IOException ex) {
+            Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
         }
+
     }
 }
