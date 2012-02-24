@@ -18,7 +18,6 @@ package com.gmxteam.funkydomino.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.gmxteam.funkydomino.activities.examples.R;
 
 /**
  * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
