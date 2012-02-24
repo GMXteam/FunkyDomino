@@ -26,16 +26,19 @@ package com.gmxteam.funkydomino.activities;
 // Importations pour le moteur de rendu
 // Librairies standard Android
 // Librairie standard Java
-import android.hardware.SensorManager;
-import com.badlogic.gdx.math.Vector2;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.util.FPSLogger;
+import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.util.color.Color;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
@@ -74,17 +77,19 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     @Override
     public EngineOptions onCreateEngineOptions() {
         this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
-        final EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
-        engineOptions.getAudioOptions().setNeedsSound(true);
-        return engineOptions;
+        //engineOptions.getAudioOptions().setNeedsSound(true);
+        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+
     }
-    
+
     /**
      * Création des ressources.
-     * @param pOnCreateResourcesCallback
+     * @param pOnCreateResourcesCallback est un callback à utiliser pour avertir
+     * AndEngine que les ressources ont été créée.
      * @throws Exception 
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+        pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 
     /**
@@ -92,7 +97,6 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * @return
      */
     public Engine onLoadEngine() {
-        mPhysicsWorld = new PhysicsWorld(new Vector2(0, SensorManager.GRAVITY_EARTH), false);
         mEngine = new Engine(mEngineOptions);
         return mEngine;
     }
@@ -103,6 +107,12 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * @throws Exception 
      */
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+        this.mEngine.registerUpdateHandler(new FPSLogger());
+        mScene = new Scene();
+        mScene.setBackground(new Background(Color.RED));
+        this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, 0), false, 8, 1);
+        this.mScene.registerUpdateHandler(this.mPhysicsWorld);
+        pOnCreateSceneCallback.onCreateSceneFinished(mScene);
     }
 
     /**
@@ -110,7 +120,6 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * @return
      */
     public Scene onLoadScene() {
-        mScene = new Scene();
         return mScene;
     }
 }

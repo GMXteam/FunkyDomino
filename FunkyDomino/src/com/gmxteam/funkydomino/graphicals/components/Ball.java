@@ -24,6 +24,10 @@ import org.xml.sax.Attributes;
  */
 public final class Ball extends Component {
 
+    /**
+     * 
+     * @param atts
+     */
     public Ball(Attributes atts) {
         
     }

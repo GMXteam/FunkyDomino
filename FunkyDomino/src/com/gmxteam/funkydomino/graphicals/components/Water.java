@@ -24,6 +24,10 @@ import org.xml.sax.Attributes;
  */
 public final class Water extends Component {
 
+    /**
+     * 
+     * @param atts
+     */
     public Water(Attributes atts) {
         
     }

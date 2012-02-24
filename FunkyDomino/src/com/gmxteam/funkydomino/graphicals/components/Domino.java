@@ -24,6 +24,10 @@ import org.xml.sax.Attributes;
  */
 public final class Domino extends Component {
 
+    /**
+     * 
+     * @param atts
+     */
     public Domino(Attributes atts) {
     }
 }

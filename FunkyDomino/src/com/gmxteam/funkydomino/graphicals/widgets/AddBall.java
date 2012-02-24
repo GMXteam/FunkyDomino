@@ -24,6 +24,10 @@ import org.xml.sax.Attributes;
  */
 public final class AddBall extends Widget {
 
+    /**
+     * 
+     * @param atts
+     */
     public AddBall(Attributes atts) {
         
     }
