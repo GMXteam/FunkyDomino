@@ -34,6 +34,7 @@ public final class NewGameActivity extends AndEngineActivity {
      * 
      * @return
      */
+    @Override
     public Engine onLoadEngine() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -75,6 +76,7 @@ public final class NewGameActivity extends AndEngineActivity {
      * @param pOnCreateSceneCallback
      * @throws Exception
      */
+    @Override
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }

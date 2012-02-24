@@ -57,8 +57,9 @@ public final class MainActivity extends AndEngineActivity {
                 + getString(R.string.key_5)
                 + getString(R.string.key_6)
                 + getString(R.string.key_7);
+
         try {
-            AndEngineActivityXMLParser.buildGameInstance(pScene, pOnPopulateSceneCallback, levelStream, publickey);
+            AndEngineActivityXMLParser.buildGameInstance(pScene, mPhysicsWorld, levelStream, publickey);
             levelStream.close();
         } catch (ParserConfigurationException ex) {
             Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);
@@ -67,10 +68,16 @@ public final class MainActivity extends AndEngineActivity {
         } catch (IOException ex) {
             Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
         }
+
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-        pScene.attachChild(new Ground());
-        
+        float[] x = {};
+        float[] y = {};
+        pScene.attachChild(new Ground(mPhysicsWorld, x, y));
 
+
+
+
+        pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
 }

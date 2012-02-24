@@ -24,6 +24,10 @@ import org.xml.sax.Attributes;
  */
 public final class Cog extends Component {
 
+    /**
+     * 
+     * @param atts
+     */
     public Cog(Attributes atts) {
         
     }

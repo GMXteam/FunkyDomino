@@ -20,6 +20,7 @@ import org.andengine.entity.Entity;
 
 /**
  * Objet de base pour construire un élément graphique (widgets et composants).
+ * Cet objet fournit toutes les méthodes nécéssaire pour le draw.
  * @author Guillaume Poirier-Morency
  */
 public abstract class Graphical extends Entity  {
