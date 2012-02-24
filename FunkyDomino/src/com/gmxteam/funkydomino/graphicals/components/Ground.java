@@ -16,6 +16,8 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.util.color.Color;
 import org.xml.sax.Attributes;
@@ -44,6 +46,15 @@ public final class Ground extends Component {
         this.mPhysicsWorld = pw;
         this.mColor = Color.BLACK;
 
+
+    }
+    
+    /**
+     * Experimental constructor.
+     */
+    private Ground() {
+    
+    
 
     }
 }
