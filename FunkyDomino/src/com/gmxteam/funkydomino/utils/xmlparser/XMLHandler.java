@@ -18,6 +18,7 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
 
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import com.gmxteam.funkydomino.graphicals.components.Ball;
 import com.gmxteam.funkydomino.graphicals.components.Cog;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
@@ -25,8 +26,6 @@ import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.graphicals.components.Water;
 import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
 import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
-import org.andengine.entity.scene.Scene;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -43,15 +42,15 @@ public final class XMLHandler extends DefaultHandler {
     private boolean inDomino, inCog, inWater, inBall, inGround, inAddBall, inAddDomino;
     // this holds the data 
     private GameInformation gameInformationData;
-    private PhysicsWorld mPhysicsWorld;
-    private Scene mScene;
+    private AndEngineActivity mAndEngineActivity;
+    
 
     /**
      * 
      */
     public XMLHandler() {
 
-        mScene = null;
+        mAndEngineActivity = null;
 
 
     }
@@ -60,10 +59,8 @@ public final class XMLHandler extends DefaultHandler {
      * 
      * @param ga
      */
-    public XMLHandler(Scene ga, PhysicsWorld pw) {
-        mPhysicsWorld = pw;
-        mScene = ga;
-
+    public XMLHandler(AndEngineActivity aea) {
+        mAndEngineActivity = aea;
     }
 
     /** 
@@ -135,29 +132,29 @@ public final class XMLHandler extends DefaultHandler {
 
 
         if (inComponent) {
-            if (mScene == null) {
+            if (mAndEngineActivity == null) {
                 return;
             }
             if (localName.equals("domino")) {
-                mScene.attachChild(new Domino(atts));
+                mAndEngineActivity.mScene.attachChild(new Domino(atts));
                 Log.v("funky-domino", "Adding a domino to the scene.");
                 inDomino = true;
 
             } else if (localName.equals("cog")) {
-                mScene.attachChild(new Cog(atts));
+                mAndEngineActivity.mScene.attachChild(new Cog(atts));
                 Log.v("funky-domino", "Adding a cog to the scene.");
 
                 inCog = true;
             } else if (localName.equals("ball")) {
-                mScene.attachChild(new Ball(atts));
+                mAndEngineActivity.mScene.attachChild(new Ball(atts));
                 Log.v("funky-domino", "Adding a ball to the scene.");
                 inBall = true;
             } else if (localName.equals("ground")) {
-                mScene.attachChild(new Ground(mPhysicsWorld, atts));
+                mAndEngineActivity.mScene.attachChild(new Ground(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a ground to the scene.");
                 inGround = true;
             } else if (localName.equals("water")) {
-                mScene.attachChild(new Water(atts));
+                mAndEngineActivity.mScene.attachChild(new Water(atts));
                 Log.v("funky-domino", "Adding water to the scene.");
                 inWater = true;
             } else {
@@ -166,16 +163,16 @@ public final class XMLHandler extends DefaultHandler {
 
 
         } else if (inWidget) {
-            if (mScene == null) {
+            if (mAndEngineActivity.mScene == null) {
                 return;
             }
             if (localName.equals("addball")) {
-                mScene.attachChild(new AddBall(atts));
+                mAndEngineActivity.mScene.attachChild(new AddBall(atts));
                 Log.v("funky-domino", "Adding a addball widget to the scene.");
                 inAddBall = true;
 
             } else if (localName.equals("adddomino")) {
-                mScene.attachChild(new AddDomino(atts));
+                mAndEngineActivity.mScene.attachChild(new AddDomino(atts));
                 Log.v("funky-domino", "Adding a adddomino widget to the scene.");
                 inAddDomino = true;
             } else {
