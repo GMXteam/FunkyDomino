@@ -26,6 +26,7 @@ import com.gmxteam.funkydomino.graphicals.components.Water;
 import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
 import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
 import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -42,6 +43,7 @@ public final class XMLHandler extends DefaultHandler {
     private boolean inDomino, inCog, inWater, inBall, inGround, inAddBall, inAddDomino;
     // this holds the data 
     private GameInformation gameInformationData;
+    private PhysicsWorld mPhysicsWorld;
     private Scene mScene;
 
     /**
@@ -58,8 +60,8 @@ public final class XMLHandler extends DefaultHandler {
      * 
      * @param ga
      */
-    public XMLHandler(Scene ga) {
-
+    public XMLHandler(Scene ga, PhysicsWorld pw) {
+        mPhysicsWorld = pw;
         mScene = ga;
 
     }
@@ -151,7 +153,7 @@ public final class XMLHandler extends DefaultHandler {
                 Log.v("funky-domino", "Adding a ball to the scene.");
                 inBall = true;
             } else if (localName.equals("ground")) {
-                mScene.attachChild(new Ground(atts));
+                mScene.attachChild(new Ground(mPhysicsWorld, atts));
                 Log.v("funky-domino", "Adding a ground to the scene.");
                 inGround = true;
             } else if (localName.equals("water")) {

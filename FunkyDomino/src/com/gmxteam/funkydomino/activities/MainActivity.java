@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,7 +59,7 @@ public final class MainActivity extends AndEngineActivity {
                 + getString(R.string.key_7);
 
         try {
-            AndEngineActivityXMLParser.buildGameInstance(pScene, pOnPopulateSceneCallback, levelStream, publickey);
+            AndEngineActivityXMLParser.buildGameInstance(pScene, mPhysicsWorld, levelStream, publickey);
             levelStream.close();
         } catch (ParserConfigurationException ex) {
             Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);
@@ -67,9 +68,16 @@ public final class MainActivity extends AndEngineActivity {
         } catch (IOException ex) {
             Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
         }
-        pOnPopulateSceneCallback.onPopulateSceneFinished();
+
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-        //pScene.attachChild(new Ground());
+        float[] x = {};
+        float[] y = {};
+        pScene.attachChild(new Ground(mPhysicsWorld, x, y));
+
+
+
+
+        pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
 }

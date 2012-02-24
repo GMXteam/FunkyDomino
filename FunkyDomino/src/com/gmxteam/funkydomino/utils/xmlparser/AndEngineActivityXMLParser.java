@@ -22,7 +22,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.andengine.entity.scene.Scene;
-import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -45,11 +45,11 @@ public final class AndEngineActivityXMLParser {
      * @throws IOException
      * @throws SAXException  
      */
-    public static void buildGameInstance(Scene scene, OnPopulateSceneCallback pOnPopulateSceneCallback, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
+    public static void buildGameInstance(Scene scene, PhysicsWorld pw, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp = spf.newSAXParser();
         XMLReader xr = sp.getXMLReader();
-        XMLHandler xh = new XMLHandler(scene);
+        XMLHandler xh = new XMLHandler( scene, pw);
         xr.setContentHandler(xh);
         xr.parse(new InputSource(decrypt(resourceStream, publicKey)));
     }

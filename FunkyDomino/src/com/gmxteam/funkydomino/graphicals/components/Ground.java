@@ -16,26 +16,32 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.util.color.Color;
 import org.xml.sax.Attributes;
 
 /**
- *
+ * Objet définissant le sol.
  * @author Guillaume Poirier-Morency
  */
 public final class Ground extends Component {
 
     /**
-     * 
+     * Constructeur interprétant les attributs XML. Il ne devrait que convertir
+     * les attributs et les passer en paramètres.
      * @param atts 
      */
-    public Ground(Attributes atts) {
+    public Ground(PhysicsWorld pw, Attributes atts) {
     }
 
     /**
-     * 
+     * Constructeur extensif.
+     * @param x est un tableau contenant les valeurs x des points formant le sol.
+     * @param y est un tableau contenant les valeurs y des points formant le sol.
      */
-    public Ground() {
+    public Ground(PhysicsWorld pw, float[] x, float y[]) {
+
+        this.mPhysicsWorld = pw;
         this.mColor = Color.BLACK;
 
 
