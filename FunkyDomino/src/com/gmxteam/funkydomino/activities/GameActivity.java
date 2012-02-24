@@ -52,7 +52,7 @@ public class GameActivity extends AndEngineActivity implements AndEngineActivity
                 + getString(R.string.key_6)
                 + getString(R.string.key_7);
         try {
-            AndEngineActivityXMLParser.buildGameInstance(pScene, mPhysicsWorld, levelStream, publickey);
+            AndEngineActivityXMLParser.buildGameInstance(this, levelStream, publickey);
             levelStream.close();
         } catch (ParserConfigurationException ex) {
             Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);

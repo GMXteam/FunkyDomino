@@ -64,11 +64,11 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class AndEngineActivity extends BaseGameActivity implements AndEngineActivityConstants {
 
-    PhysicsWorld mPhysicsWorld;
-    Scene mScene;
+    public PhysicsWorld mPhysicsWorld;
+    public Scene mScene;
     private Camera mCamera;
-    private static final int CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
-    private static final int CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
+    public static final int CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
+    public static final int CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
 
     /**
      * 

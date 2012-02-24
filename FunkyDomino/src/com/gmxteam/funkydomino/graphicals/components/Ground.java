@@ -16,9 +16,12 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import org.andengine.entity.primitive.Rectangle;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.color.Color;
 import org.xml.sax.Attributes;
 
@@ -33,7 +36,7 @@ public final class Ground extends Component {
      * les attributs et les passer en paramètres.
      * @param atts 
      */
-    public Ground(PhysicsWorld pw, Attributes atts) {
+    public Ground(AndEngineActivity aea, Attributes atts) {
     }
 
     /**
@@ -41,20 +44,40 @@ public final class Ground extends Component {
      * @param x est un tableau contenant les valeurs x des points formant le sol.
      * @param y est un tableau contenant les valeurs y des points formant le sol.
      */
-    public Ground(PhysicsWorld pw, float[] x, float y[]) {
+    public Ground(AndEngineActivity aea, float[] x, float y[]) {
 
-        this.mPhysicsWorld = pw;
-        this.mColor = Color.BLACK;
+        this.mAndEngineActivity = aea;
 
 
+        init();
     }
-    
+
     /**
      * Experimental constructor.
      */
-    private Ground() {
-    
-    
+    private void init() {
+        this.mColor = Color.BLACK;
+        final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
+
+        final Rectangle bottomOuter = new Rectangle(0, AndEngineActivity.CAMERA_HEIGHT - 2, AndEngineActivity.CAMERA_WIDTH, 2, vertexBufferObjectManager);
+        final Rectangle topOuter = new Rectangle(0, 0, AndEngineActivity.CAMERA_WIDTH, 2, vertexBufferObjectManager);
+        final Rectangle leftOuter = new Rectangle(0, 0, 2, AndEngineActivity.CAMERA_HEIGHT, vertexBufferObjectManager);
+        final Rectangle rightOuter = new Rectangle(AndEngineActivity.CAMERA_WIDTH - 2, 0, 2, AndEngineActivity.CAMERA_HEIGHT, vertexBufferObjectManager);
+
+
+        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
+        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, bottomOuter, BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, topOuter, BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, leftOuter, BodyType.StaticBody, wallFixtureDef);
+        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, rightOuter, BodyType.StaticBody, wallFixtureDef);
+
+
+        mAndEngineActivity.mScene.attachChild(bottomOuter);
+        mAndEngineActivity.mScene.attachChild(topOuter);
+        mAndEngineActivity.mScene.attachChild(leftOuter);
+        mAndEngineActivity.mScene.attachChild(rightOuter);
+
+
 
     }
 }

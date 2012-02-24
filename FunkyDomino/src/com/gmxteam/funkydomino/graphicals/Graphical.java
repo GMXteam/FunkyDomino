@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals;
 
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.andengine.entity.Entity;
 
 /**
@@ -23,9 +24,9 @@ import org.andengine.entity.Entity;
  * Cet objet fournit toutes les méthodes nécéssaire pour le draw.
  * @author Guillaume Poirier-Morency
  */
-public abstract class Graphical extends Entity  {
+public abstract class Graphical extends Entity {
     
-    
+    protected AndEngineActivity mAndEngineActivity;
     
     
 }

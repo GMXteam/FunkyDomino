@@ -17,7 +17,6 @@
 package com.gmxteam.funkydomino.graphicals.components;
 
 import com.gmxteam.funkydomino.graphicals.Graphical;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
 
 /**
  * Classe abstraite définissant les composants. Les composants sont des éléments
@@ -25,13 +24,10 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
  * objets.
  * @author Guillaume Poirier-Morency
  */
-abstract class Component extends Graphical implements ComponentsConstants {
+public abstract class Component extends Graphical implements ComponentsConstants {
     /* Ici, on peut mettre toutes les variables définissant généralement les
      * composants, sans toutefois définir les widgets.
      */
     
-    /**
-     * Monde physique dans lequel le composant se trouve.
-     */
-    PhysicsWorld mPhysicsWorld;
+   
 }
