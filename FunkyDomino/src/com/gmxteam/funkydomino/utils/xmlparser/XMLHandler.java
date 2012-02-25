@@ -57,7 +57,7 @@ public final class XMLHandler extends DefaultHandler {
 
     /**
      * 
-     * @param ga
+     * @param aea 
      */
     public XMLHandler(AndEngineActivity aea) {
         mAndEngineActivity = aea;
