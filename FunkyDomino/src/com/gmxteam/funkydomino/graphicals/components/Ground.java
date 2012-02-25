@@ -19,6 +19,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.utils.xmlparser.IllegalXMLAttributeValueException;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -34,10 +35,35 @@ public final class Ground extends Component {
     /**
      * Constructeur interprétant les attributs XML. Il ne devrait que convertir
      * les attributs et les passer en paramètres.
-     * @param aea 
-     * @param atts 
+     * @param aea est l'activité sur laquelle le Ground va se contruire.
+     * @param atts est un attribut XML contenant tous les attributs spécifiés
+     * dans le fichier XML pour cet objet.
      */
     public Ground(AndEngineActivity aea, Attributes atts) {
+        String[] xStringList = atts.getValue("x").split(" ");
+        String[] yStringList = atts.getValue("y").split(" ");
+        if (xStringList.length != yStringList.length) {
+            throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
+                    + "\n" + atts.getValue("x")
+                    + "\n" + atts.getValue("y"));
+        }
+        float[] x = new float[xStringList.length];
+        float[] y = new float[yStringList.length];
+        for (int i = 0; i < xStringList.length; i++) {
+            try {
+                x[i] = Float.parseFloat(xStringList[i]);
+            } catch (NumberFormatException nfe) {
+                throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+            }
+            try {
+                y[i] = Float.parseFloat(yStringList[i]);
+            } catch (NumberFormatException nfe) {
+                throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+            }
+        }
+        init(aea, x, y);
     }
 
     /**
@@ -47,17 +73,14 @@ public final class Ground extends Component {
      * @param y est un tableau contenant les valeurs y des points formant le sol.
      */
     public Ground(AndEngineActivity aea, float[] x, float y[]) {
-
-        this.mAndEngineActivity = aea;
-
-
-        init();
+        init(aea, x, y);
     }
 
     /**
-     * Experimental constructor.
+     * Méthode pour unifier les appels de constructeurs.
      */
-    private void init() {
+    private void init(AndEngineActivity aea, float[] x, float y[]) {
+        this.mAndEngineActivity = aea;
         this.mColor = Color.BLACK;
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
 

@@ -8,7 +8,7 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author guillaume
  */
-interface AndEngineActivityConstants {
+public interface AndEngineActivityConstants {
 
     /**
      * 
@@ -26,6 +26,6 @@ interface AndEngineActivityConstants {
      * 
      */
     static final int CELL_HEIGHT = CELL_WIDTH;
-    static final String APP_LOG_NAME = "funky-domino";
+    public static final String APP_LOG_NAME = "funky-domino";
     static final String LEVEL_KEY_IN_BUNDLE = "level";
 }
