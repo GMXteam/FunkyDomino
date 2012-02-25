@@ -34,6 +34,7 @@ public final class Ground extends Component {
     /**
      * Constructeur interprétant les attributs XML. Il ne devrait que convertir
      * les attributs et les passer en paramètres.
+     * @param aea 
      * @param atts 
      */
     public Ground(AndEngineActivity aea, Attributes atts) {
@@ -41,6 +42,7 @@ public final class Ground extends Component {
 
     /**
      * Constructeur extensif.
+     * @param aea 
      * @param x est un tableau contenant les valeurs x des points formant le sol.
      * @param y est un tableau contenant les valeurs y des points formant le sol.
      */

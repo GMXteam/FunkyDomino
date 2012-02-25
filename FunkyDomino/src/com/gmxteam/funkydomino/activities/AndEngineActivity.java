@@ -39,6 +39,10 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.color.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.graphicals.components.Domino;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
@@ -64,10 +68,22 @@ import com.badlogic.gdx.math.Vector2;
  */
 public abstract class AndEngineActivity extends BaseGameActivity implements AndEngineActivityConstants {
 
+    /**
+     * 
+     */
     public PhysicsWorld mPhysicsWorld;
+    /**
+     * 
+     */
     public Scene mScene;
     private Camera mCamera;
+    /**
+     * 
+     */
     public static final int CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
+    /**
+     * 
+     */
     public static final int CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
 
     /**
@@ -89,7 +105,11 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * @throws Exception 
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        pOnCreateResourcesCallback.onCreateResourcesFinished();
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        Domino.mVehiclesTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        Domino.mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(Domino.mVehiclesTexture, this, "vehicles.png", 0, 0, 6, 1);
+        Domino.mVehiclesTexture.load();
+
     }
 
     /**
