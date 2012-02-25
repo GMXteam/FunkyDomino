@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.components.Domino;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
@@ -32,6 +33,12 @@ import org.xml.sax.SAXException;
  */
 public final class MainActivity extends AndEngineActivity {
 
+    /**
+     * InputStream contenant le niveau qui sera joué. Il est dans MainActivity
+     * pour des raisons de tests. 
+     * TODO Il sera déplacé dans GameActivity lorsque le programme sera plus 
+     * fonctionnel.
+     */
     private InputStream levelStream;
 
     /**
@@ -75,6 +82,7 @@ public final class MainActivity extends AndEngineActivity {
         float[] y = {};
         pScene.attachChild(new Ground(this, x, y));
 
+        pScene.attachChild(new Domino(this, 5.0f,5.0f));
 
 
 

@@ -16,6 +16,15 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.xml.sax.Attributes;
 
 /**
@@ -24,10 +33,43 @@ import org.xml.sax.Attributes;
  */
 public final class Domino extends Component {
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Les textures sont statiques et chargées lors
+    /**
+     * 
+     */
+    public static BitmapTextureAtlas mVehiclesTexture;
+    /**
+     * 
+     */
+    public static TiledTextureRegion mVehiclesTextureRegion;
+    
+    
     /**
      * 
      * @param atts
      */
     public Domino(Attributes atts) {
+    }
+    private TiledSprite mCar;
+    /**
+     * 
+     * @param aea
+     * @param f
+     * @param f0
+     */
+    public Domino(AndEngineActivity aea, float f, float f0) {
+        
+                this.mCar = new TiledSprite(20, 20, 20, 20, mVehiclesTextureRegion, aea.getVertexBufferObjectManager());
+		this.mCar.setCurrentTileIndex(0);
+
+		final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
+		final Body mCarBody = PhysicsFactory.createBoxBody(aea.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
+
+		aea.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
+
+		aea.mScene.attachChild(this.mCar);
+        
+        
     }
 }

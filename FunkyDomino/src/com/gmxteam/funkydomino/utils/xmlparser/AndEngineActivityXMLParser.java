@@ -36,8 +36,7 @@ public final class AndEngineActivityXMLParser {
     /**
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
      * d'un niveau. Le GameActivity ainsi retourné est prêt à être joué !
-     * @param scene 
-     * @param pOnPopulateSceneCallback 
+     * @param aea 
      * @param resourceStream
      * @param publicKey 
      * @throws ParserConfigurationException 
