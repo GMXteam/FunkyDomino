@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.Graphical;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
@@ -24,9 +25,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.entity.scene.Scene;
-import org.andengine.opengl.texture.TextureOptions;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.xml.sax.SAXException;
 
 /**
@@ -99,10 +97,7 @@ public final class MainActivity extends AndEngineActivity {
      * @throws Exception 
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-        Domino.mVehiclesTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
-        Domino.mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(Domino.mVehiclesTexture, this, "vehicles.png", 0, 0, 6, 1);
-        Domino.mVehiclesTexture.load();
+        Domino.loadResource(this);
         pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 }

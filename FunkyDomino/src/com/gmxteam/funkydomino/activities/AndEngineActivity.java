@@ -16,16 +16,6 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-// Importations locales
-// Importations pour le moteur de collisions
-//import org.jbox2d.collision.AABB;
-//import org.jbox2d.collision.Shape;
-//import org.jbox2d.common.Vec2;
-//import org.jbox2d.dynamics.Body;
-//import org.jbox2d.dynamics.World;
-// Importations pour le moteur de rendu
-// Librairies standard Android
-// Librairie standard Java
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
@@ -72,6 +62,9 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * 
      */
     public Scene mScene;
+    /**
+     * 
+     */
     private Camera mCamera;
     /**
      * 

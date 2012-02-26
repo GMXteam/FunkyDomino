@@ -23,7 +23,9 @@ import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
+import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.xml.sax.Attributes;
 
@@ -38,11 +40,19 @@ public final class Domino extends Component {
     /**
      * 
      */
-    public static BitmapTextureAtlas mVehiclesTexture;
+    private static BitmapTextureAtlas mVehiclesTexture;
     /**
      * 
      */
-    public static TiledTextureRegion mVehiclesTextureRegion;
+    private static TiledTextureRegion mVehiclesTextureRegion;
+
+    public static void loadResource(AndEngineActivity aea) {
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        mVehiclesTexture = new BitmapTextureAtlas(aea.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mVehiclesTexture, aea, "vehicles.png", 0, 0, 6, 1);
+        mVehiclesTexture.load();
+        
+    }
     ////////////////////////////////////////////////////////////////////////////
     //
     private TiledSprite mCar;

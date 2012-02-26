@@ -32,6 +32,12 @@ import org.xml.sax.Attributes;
  */
 public final class Ground extends Component {
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Les textures sont statiques et chargées lors
+    public static void loadResource(AndEngineActivity aea) {
+    }
+    ////////////////////////////////////////////////////////////////////////////
+
     /**
      * Constructeur interprétant les attributs XML. Il ne devrait que convertir
      * les attributs et les passer en paramètres.
