@@ -27,9 +27,9 @@ import org.andengine.entity.Entity;
 public abstract class Graphical extends Entity {
     
     /**
-     * 
+     * @see AndEngineActivity
      */
     protected AndEngineActivity mAndEngineActivity;
     
-    
+
 }

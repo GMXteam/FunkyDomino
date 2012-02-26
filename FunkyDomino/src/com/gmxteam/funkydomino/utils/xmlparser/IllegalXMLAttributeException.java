@@ -16,19 +16,31 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
+import android.util.Log;
+import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
+
 /**
- *
+ * Exception lancée lorsqu'un attribut est invalide.
  * @author guillaume
  */
-public final class IllegalXMLAttributeException extends RuntimeException {
+public final class IllegalXMLAttributeException extends RuntimeException implements AndEngineActivityConstants {
 
     /**
      * 
      * @param message
      */
     public IllegalXMLAttributeException(String message) {
-
-
         super(message);
+        Log.e(APP_LOG_NAME, message);
+    }
+    
+    /**
+     * 
+     * @param message
+     * @param t  
+     */
+    public IllegalXMLAttributeException(String message, Throwable t) {
+        super(message, t);
+        Log.e(APP_LOG_NAME, message, t);
     }
 }

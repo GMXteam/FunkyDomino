@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.Graphical;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
@@ -82,10 +83,21 @@ public final class MainActivity extends AndEngineActivity {
         float[] y = {};
         pScene.attachChild(new Ground(this, x, y));
 
-        pScene.attachChild(new Domino(this, 5.0f,5.0f));
+        pScene.attachChild(new Domino(this, 25.0f,25.0f));
 
 
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
+    }
+    
+    /**
+     * Création des ressources.
+     * @param pOnCreateResourcesCallback est un callback à utiliser pour avertir
+     * AndEngine que les ressources ont été créée.
+     * @throws Exception 
+     */
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+        Domino.loadResource(this);
+        pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 }

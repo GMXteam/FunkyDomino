@@ -16,16 +16,31 @@
  */
 package com.gmxteam.funkydomino.graphicals;
 
+import android.util.Log;
+import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
+
 /**
- *
+ * Exception lancée lorsqu'un objet que l'on présume de type Graphical, mais 
+ * s'avère être autre chose.
  * @author guillaume
+ * @deprecated Cette exception n'est plus très utile.
  */
-public final class UnknownGraphicalElementException extends Exception {    
+@Deprecated
+public final class UnknownGraphicalElementException extends Exception implements AndEngineActivityConstants {    
     
     /**
      * 
      */
-    public UnknownGraphicalElementException() {
-        super();
+    public UnknownGraphicalElementException(String message) {
+        super(message);
+        Log.e(APP_LOG_NAME, message);
+    }
+    
+    /**
+     * 
+     */
+    public UnknownGraphicalElementException(String message, Throwable t) {
+        super(message, t);
+        Log.e(APP_LOG_NAME, message, t);
     }
 }

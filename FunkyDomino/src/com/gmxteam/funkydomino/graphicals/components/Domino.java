@@ -23,7 +23,9 @@ import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
+import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.xml.sax.Attributes;
 
@@ -36,40 +38,75 @@ public final class Domino extends Component {
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
     /**
-     * 
+     * @see BitmapTextureAtlas
      */
-    public static BitmapTextureAtlas mVehiclesTexture;
+    private static BitmapTextureAtlas mVehiclesTexture;
     /**
-     * 
+     * @see TiledTextureRegion
      */
-    public static TiledTextureRegion mVehiclesTextureRegion;
-    
-    
+    private static TiledTextureRegion mVehiclesTextureRegion;
+
     /**
-     * 
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @param andEngineActivity
+     */
+    public static void loadResource(AndEngineActivity andEngineActivity) {
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        mVehiclesTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mVehiclesTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
+        mVehiclesTexture.load();
+        
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    private TiledSprite mCar;
+
+    /**
+     * Constructeur qui interprète des données XML. Il gère les exceptions et 
+     * appelle ensuite la méthode init().
+     * @param andEngineActivity 
      * @param atts
      */
-    public Domino(Attributes atts) {
+    public Domino(AndEngineActivity andEngineActivity, Attributes atts) {
+        float x = Float.parseFloat(atts.getValue("x"));
+        float y = Float.parseFloat(atts.getValue("y"));
+        init(andEngineActivity, x, y);
     }
-    private TiledSprite mCar;
-    /**
-     * 
-     * @param aea
-     * @param f
-     * @param f0
+
+    /** 
+     * Constructeur extensif. Tous les constructeurs sont connectés avec une
+     * méthode interne init().
+     * @param andEngineActivity
+     * @param x 
+     * @param y  
      */
-    public Domino(AndEngineActivity aea, float f, float f0) {
-        
-                this.mCar = new TiledSprite(20, 20, 20, 20, mVehiclesTextureRegion, aea.getVertexBufferObjectManager());
-		this.mCar.setCurrentTileIndex(0);
+    public Domino(AndEngineActivity andEngineActivity, float x, float y) {
+        init(andEngineActivity, x, y);
+    }
 
-		final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
-		final Body mCarBody = PhysicsFactory.createBoxBody(aea.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
-
-		aea.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
-
-		aea.mScene.attachChild(this.mCar);
+    /**
+     * @see Domino#Domino(com.gmxteam.funkydomino.activities.AndEngineActivity, float, float) 
+     * @param andEngineActivity est l'activité sur laquelle le domino est ajouté.
+     * @param x est la position initiale en x du domino.
+     * @param y est la position initiale en y du domino.
+     */
+    private void init(AndEngineActivity andEngineActivity, float x, float y) {
+        this.mAndEngineActivity = andEngineActivity;
         
+        // Entité visible
+        this.mCar = new TiledSprite(x, y, 20, 20, mVehiclesTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
+        this.mCar.setCurrentTileIndex(0);
+
+        // Entité physique
+        final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
+        final Body mCarBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
         
+        // Connexion entre la physique et le visible
+        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
+        
+        // Connexion avec la scène visible
+        mAndEngineActivity.mScene.attachChild(this.mCar);
+
+
     }
 }

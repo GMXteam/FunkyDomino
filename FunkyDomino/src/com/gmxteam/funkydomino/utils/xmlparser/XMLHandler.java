@@ -39,9 +39,18 @@ public final class XMLHandler extends DefaultHandler {
     // booleans that check whether it's in a specific tag or not 
     private boolean inComponent;
     private boolean inWidget, inLevel;
+    /* Ces booléens ne sont pas utilisés, car le contenu de leurs balises n'est
+     * pas encore bien défini. 
+     */
     private boolean inDomino, inCog, inWater, inBall, inGround, inAddBall, inAddDomino;
     // this holds the data 
+    /**
+     * @see GameInformation
+     */
     private GameInformation gameInformationData;
+    /**
+     * @see AndEngineActivity
+     */
     private AndEngineActivity mAndEngineActivity;
     
 
@@ -136,17 +145,17 @@ public final class XMLHandler extends DefaultHandler {
                 return;
             }
             if (localName.equals("domino")) {
-                mAndEngineActivity.mScene.attachChild(new Domino(atts));
+                mAndEngineActivity.mScene.attachChild(new Domino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a domino to the scene.");
                 inDomino = true;
 
             } else if (localName.equals("cog")) {
-                mAndEngineActivity.mScene.attachChild(new Cog(atts));
+                mAndEngineActivity.mScene.attachChild(new Cog(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a cog to the scene.");
 
                 inCog = true;
             } else if (localName.equals("ball")) {
-                mAndEngineActivity.mScene.attachChild(new Ball(atts));
+                mAndEngineActivity.mScene.attachChild(new Ball(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a ball to the scene.");
                 inBall = true;
             } else if (localName.equals("ground")) {
@@ -154,7 +163,7 @@ public final class XMLHandler extends DefaultHandler {
                 Log.v("funky-domino", "Adding a ground to the scene.");
                 inGround = true;
             } else if (localName.equals("water")) {
-                mAndEngineActivity.mScene.attachChild(new Water(atts));
+                mAndEngineActivity.mScene.attachChild(new Water(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding water to the scene.");
                 inWater = true;
             } else {
@@ -167,12 +176,12 @@ public final class XMLHandler extends DefaultHandler {
                 return;
             }
             if (localName.equals("addball")) {
-                mAndEngineActivity.mScene.attachChild(new AddBall(atts));
+                mAndEngineActivity.mScene.attachChild(new AddBall(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a addball widget to the scene.");
                 inAddBall = true;
 
             } else if (localName.equals("adddomino")) {
-                mAndEngineActivity.mScene.attachChild(new AddDomino(atts));
+                mAndEngineActivity.mScene.attachChild(new AddDomino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a adddomino widget to the scene.");
                 inAddDomino = true;
             } else {
@@ -245,7 +254,7 @@ public final class XMLHandler extends DefaultHandler {
     /** 
      * Calling when we're within an element. Here we're checking to see if there is any content in the tags that we're interested in 
      * and populating it in the Config object. 
-     * 
+     * <p>
      * On ne devrait pas avoir à utiliser cette section.
      * @param ch 
      * @param start 
