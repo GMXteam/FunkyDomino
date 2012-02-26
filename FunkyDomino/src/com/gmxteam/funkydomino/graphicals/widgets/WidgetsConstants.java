@@ -17,8 +17,8 @@
 package com.gmxteam.funkydomino.graphicals.widgets;
 
 /**
- *
- * @author guillaume
+ * @see Widget
+ * @author Guillaume Poirier-Morency
  */
 interface WidgetsConstants {
     

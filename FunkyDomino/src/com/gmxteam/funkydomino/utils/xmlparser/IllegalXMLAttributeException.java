@@ -20,7 +20,7 @@ import android.util.Log;
 import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
 
 /**
- * Exception lancée lorsqu'un attribut ou une balise est invalide.
+ * Exception lancée lorsqu'un attribut est invalide.
  * @author guillaume
  */
 public final class IllegalXMLAttributeException extends RuntimeException implements AndEngineActivityConstants {
