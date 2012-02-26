@@ -136,7 +136,7 @@ public final class XMLHandler extends DefaultHandler {
                 return;
             }
             if (localName.equals("domino")) {
-                mAndEngineActivity.mScene.attachChild(new Domino(atts));
+                mAndEngineActivity.mScene.attachChild(new Domino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a domino to the scene.");
                 inDomino = true;
 

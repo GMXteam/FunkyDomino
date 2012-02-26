@@ -63,4 +63,8 @@ public class GameActivity extends AndEngineActivity implements AndEngineActivity
         }
 
     }
+
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

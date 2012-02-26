@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.entity.scene.Scene;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.xml.sax.SAXException;
 
 /**
@@ -82,10 +85,24 @@ public final class MainActivity extends AndEngineActivity {
         float[] y = {};
         pScene.attachChild(new Ground(this, x, y));
 
-        pScene.attachChild(new Domino(this, 5.0f,5.0f));
+        pScene.attachChild(new Domino(this, 25.0f,25.0f));
 
 
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
+    }
+    
+    /**
+     * Création des ressources.
+     * @param pOnCreateResourcesCallback est un callback à utiliser pour avertir
+     * AndEngine que les ressources ont été créée.
+     * @throws Exception 
+     */
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        Domino.mVehiclesTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        Domino.mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(Domino.mVehiclesTexture, this, "vehicles.png", 0, 0, 6, 1);
+        Domino.mVehiclesTexture.load();
+        pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 }

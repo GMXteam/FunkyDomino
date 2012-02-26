@@ -39,10 +39,6 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.color.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.graphicals.components.Domino;
-import org.andengine.opengl.texture.TextureOptions;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
@@ -98,19 +94,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
 
     }
 
-    /**
-     * Création des ressources.
-     * @param pOnCreateResourcesCallback est un callback à utiliser pour avertir
-     * AndEngine que les ressources ont été créée.
-     * @throws Exception 
-     */
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-        Domino.mVehiclesTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
-        Domino.mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(Domino.mVehiclesTexture, this, "vehicles.png", 0, 0, 6, 1);
-        Domino.mVehiclesTexture.load();
-
-    }
+    
 
     /**
      * Chargement du moteur de physique et du moteur de jeu.
@@ -132,7 +116,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
         mScene.setBackground(new Background(Color.RED));
         this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, 0), false, 8, 1);
         this.mScene.registerUpdateHandler(this.mPhysicsWorld);
-        pOnCreateSceneCallback.onCreateSceneFinished(mScene);
+        pOnCreateSceneCallback.onCreateSceneFinished(mScene);        
     }
 
     /**

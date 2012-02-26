@@ -43,15 +43,21 @@ public final class Domino extends Component {
      * 
      */
     public static TiledTextureRegion mVehiclesTextureRegion;
-    
-    
+    ////////////////////////////////////////////////////////////////////////////
+    //
+    private TiledSprite mCar;
+
     /**
      * 
+     * @param aea 
      * @param atts
      */
-    public Domino(Attributes atts) {
+    public Domino(AndEngineActivity aea, Attributes atts) {
+        float f = Float.parseFloat(atts.getValue("x"));
+        float f0 = Float.parseFloat(atts.getValue("y"));
+        init(aea, f, f0);
     }
-    private TiledSprite mCar;
+
     /**
      * 
      * @param aea
@@ -59,17 +65,26 @@ public final class Domino extends Component {
      * @param f0
      */
     public Domino(AndEngineActivity aea, float f, float f0) {
-        
-                this.mCar = new TiledSprite(20, 20, 20, 20, mVehiclesTextureRegion, aea.getVertexBufferObjectManager());
-		this.mCar.setCurrentTileIndex(0);
+        init(aea, f, f0);
+    }
 
-		final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
-		final Body mCarBody = PhysicsFactory.createBoxBody(aea.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
+    /**
+     * 
+     * @param aea
+     * @param f
+     * @param f0 
+     */
+    private void init(AndEngineActivity aea, float f, float f0) {
+        this.mCar = new TiledSprite(20, 20, 20, 20, mVehiclesTextureRegion, aea.getVertexBufferObjectManager());
+        this.mCar.setCurrentTileIndex(0);
 
-		aea.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
+        final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
+        final Body mCarBody = PhysicsFactory.createBoxBody(aea.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
 
-		aea.mScene.attachChild(this.mCar);
-        
-        
+        aea.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
+
+        aea.mScene.attachChild(this.mCar);
+
+
     }
 }
