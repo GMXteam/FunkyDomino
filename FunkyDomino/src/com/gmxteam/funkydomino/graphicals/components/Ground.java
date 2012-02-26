@@ -34,6 +34,12 @@ public final class Ground extends Component {
 
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
+    /**
+     * Permet de charger les ressources de façon statique (disponible a tous les
+     * objets de ce type). Cette méthode doit nécéssairement être lancée avant
+     * toute forme de création d'objets de type Graphical.
+     * @param aea 
+     */
     public static void loadResource(AndEngineActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////

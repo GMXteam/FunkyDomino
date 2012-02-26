@@ -31,10 +31,10 @@ public final class AddDomino extends Widget {
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * 
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity)
      * @param atts
      */
-    public AddDomino(Attributes atts) {
-        
+    public AddDomino(AndEngineActivity mAndEngineActivity, Attributes atts) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

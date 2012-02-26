@@ -20,12 +20,18 @@ import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.xml.sax.Attributes;
 
 /**
- *
+ * Objet pour générer de l'eau. Cela risque plus d'être un champ de force 
+ * qu'autre chose par contre.
+ * @see Component
  * @author Guillaume Poirier-Morency
  */
 public final class Water extends Component {
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
+    /**
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @param aea 
+     */
     public static void loadResource(AndEngineActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////
@@ -33,7 +39,7 @@ public final class Water extends Component {
      * 
      * @param atts
      */
-    public Water(Attributes atts) {
+    public Water(AndEngineActivity aea, Attributes atts) {
         
     }
 }

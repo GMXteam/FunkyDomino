@@ -38,18 +38,22 @@ public final class Domino extends Component {
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
     /**
-     * 
+     * @see BitmapTextureAtlas
      */
     private static BitmapTextureAtlas mVehiclesTexture;
     /**
-     * 
+     * @see TiledTextureRegion
      */
     private static TiledTextureRegion mVehiclesTextureRegion;
 
-    public static void loadResource(AndEngineActivity aea) {
+    /**
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @param andEngineActivity
+     */
+    public static void loadResource(AndEngineActivity andEngineActivity) {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-        mVehiclesTexture = new BitmapTextureAtlas(aea.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
-        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mVehiclesTexture, aea, "vehicles.png", 0, 0, 6, 1);
+        mVehiclesTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mVehiclesTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
         mVehiclesTexture.load();
         
     }
@@ -58,42 +62,50 @@ public final class Domino extends Component {
     private TiledSprite mCar;
 
     /**
-     * 
-     * @param aea 
+     * Constructeur qui interprète des données XML. Il gère les exceptions et 
+     * appelle ensuite la méthode init().
+     * @param andEngineActivity 
      * @param atts
      */
-    public Domino(AndEngineActivity aea, Attributes atts) {
-        float f = Float.parseFloat(atts.getValue("x"));
-        float f0 = Float.parseFloat(atts.getValue("y"));
-        init(aea, f, f0);
+    public Domino(AndEngineActivity andEngineActivity, Attributes atts) {
+        float x = Float.parseFloat(atts.getValue("x"));
+        float y = Float.parseFloat(atts.getValue("y"));
+        init(andEngineActivity, x, y);
+    }
+
+    /** 
+     * Constructeur extensif. Tous les constructeurs sont connectés avec une
+     * méthode interne init().
+     * @param andEngineActivity
+     * @param x 
+     * @param y  
+     */
+    public Domino(AndEngineActivity andEngineActivity, float x, float y) {
+        init(andEngineActivity, x, y);
     }
 
     /**
-     * 
-     * @param aea
-     * @param f
-     * @param f0
+     * @see Domino#Domino(com.gmxteam.funkydomino.activities.AndEngineActivity, float, float) 
+     * @param andEngineActivity est l'activité sur laquelle le domino est ajouté.
+     * @param x est la position initiale en x du domino.
+     * @param y est la position initiale en y du domino.
      */
-    public Domino(AndEngineActivity aea, float f, float f0) {
-        init(aea, f, f0);
-    }
-
-    /**
-     * 
-     * @param aea
-     * @param f
-     * @param f0 
-     */
-    private void init(AndEngineActivity aea, float f, float f0) {
-        this.mCar = new TiledSprite(20, 20, 20, 20, mVehiclesTextureRegion, aea.getVertexBufferObjectManager());
+    private void init(AndEngineActivity andEngineActivity, float x, float y) {
+        this.mAndEngineActivity = andEngineActivity;
+        
+        // Entité visible
+        this.mCar = new TiledSprite(x, y, 20, 20, mVehiclesTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
         this.mCar.setCurrentTileIndex(0);
 
+        // Entité physique
         final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
-        final Body mCarBody = PhysicsFactory.createBoxBody(aea.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
-
-        aea.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
-
-        aea.mScene.attachChild(this.mCar);
+        final Body mCarBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
+        
+        // Connexion entre la physique et le visible
+        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
+        
+        // Connexion avec la scène visible
+        mAndEngineActivity.mScene.attachChild(this.mCar);
 
 
     }
