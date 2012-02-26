@@ -37,6 +37,7 @@ public final class IllegalXMLAttributeException extends RuntimeException impleme
     /**
      * 
      * @param message
+     * @param t  
      */
     public IllegalXMLAttributeException(String message, Throwable t) {
         super(message, t);
