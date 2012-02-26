@@ -22,7 +22,7 @@ import com.gmxteam.funkydomino.graphicals.Graphical;
  *
  * @author Guillaume Poirier-Morency
  */
-abstract class Widget extends Graphical implements WidgetsConstants {
+public abstract class Widget extends Graphical implements WidgetsConstants {
     
     /**
      * 

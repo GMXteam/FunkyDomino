@@ -16,19 +16,30 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.xml.sax.Attributes;
 
 /**
  *
+ * @see Component
  * @author Guillaume Poirier-Morency
  */
 public final class Ball extends Component {
-
+    ////////////////////////////////////////////////////////////////////////////
+    // Les textures sont statiques et chargées lors
+    /**
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @param aea 
+     */
+    public static void loadResource(AndEngineActivity aea) {
+    }
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * 
+     * @param andEngineActivity
      * @param atts
      */
-    public Ball(Attributes atts) {
+    public Ball(AndEngineActivity andEngineActivity, Attributes atts) {
         
     }
 }

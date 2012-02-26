@@ -16,11 +16,14 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
+import android.util.Log;
+import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
+
 /**
- *
+ * Exception lancée lorsqu'un nom de balise est invalide.
  * @author guillaume
  */
-public final class IllegalXMLNameException extends RuntimeException {
+public final class IllegalXMLNameException extends RuntimeException implements AndEngineActivityConstants {
 
     /**
      * 
@@ -28,6 +31,18 @@ public final class IllegalXMLNameException extends RuntimeException {
      */
     public IllegalXMLNameException(String message) {
         super(message);
+        Log.e(APP_LOG_NAME, message);
+        
 
+    }
+    
+    /**
+     * 
+     * @param message
+     * @param t
+     */
+    public IllegalXMLNameException(String message, Throwable t) {
+        super(message);
+        Log.e(APP_LOG_NAME, message, t);
     }
 }

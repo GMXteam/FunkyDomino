@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.xml.sax.Attributes;
 
 /**
@@ -23,12 +24,17 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class AddDomino extends Widget {
+    ////////////////////////////////////////////////////////////////////////////
+    // Les textures sont statiques et chargées lors
+    public static void loadResource(AndEngineActivity aea) {
+    }
+    ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * 
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity)
      * @param atts
      */
-    public AddDomino(Attributes atts) {
-        
+    public AddDomino(AndEngineActivity mAndEngineActivity, Attributes atts) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

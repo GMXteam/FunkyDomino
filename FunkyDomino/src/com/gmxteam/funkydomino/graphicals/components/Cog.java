@@ -16,19 +16,29 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.xml.sax.Attributes;
 
 /**
- *
+ * Objet générant une roue dentée.
+ * @see Component
  * @author Guillaume Poirier-Morency
  */
 public final class Cog extends Component {
+    ////////////////////////////////////////////////////////////////////////////
+    // Les textures sont statiques et chargées lors
+/**
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @param aea 
+     */
+    public static void loadResource(AndEngineActivity aea) {
+    }
+    ////////////////////////////////////////////////////////////////////////////
 
     /**
      * 
      * @param atts
-     */
-    public Cog(Attributes atts) {
-        
+     */ 
+    public Cog(AndEngineActivity mAndEngineActivity, Attributes atts) {
     }
 }

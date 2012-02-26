@@ -5,10 +5,11 @@
 package com.gmxteam.funkydomino.graphicals.components;
 
 /**
- *
+ * Constantes pour l'objet Component.
+ * @see Component
  * @author guillaume
  */
-public interface ComponentsConstants {
+interface ComponentsConstants {
     
     
     
