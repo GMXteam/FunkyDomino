@@ -34,10 +34,7 @@ public class DebugTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public void testDebugLevel() {
+	public void testDebugLevel() {
 		Debug.setDebugLevel(DebugLevel.VERBOSE);
 //		Debug.v("1");
 //		Debug.d("2");

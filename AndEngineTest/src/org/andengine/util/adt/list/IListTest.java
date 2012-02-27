@@ -29,11 +29,7 @@ public abstract class IListTest extends TestCase {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	protected void setUp() throws Exception {
 		this.mList = this.newList(1);
 	}
@@ -46,44 +42,27 @@ public abstract class IListTest extends TestCase {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pInitialCapacity
-         * @return
-         */
-        protected abstract IList<String> newList(final int pInitialCapacity);
+	protected abstract IList<String> newList(final int pInitialCapacity);
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void testIsEmpty() {
+	public void testIsEmpty() {
 		Assert.assertEquals(true, this.mList.isEmpty());
 	}
 
-        /**
-         * 
-         */
-        public void testIsNotEmpty() {
+	public void testIsNotEmpty() {
 		this.mList.add("A");
 		Assert.assertEquals(false, this.mList.isEmpty());
 	}
 
-        /**
-         * 
-         */
-        public void testAdd() {
+	public void testAdd() {
 		this.mList.add("A");
 		Assert.assertEquals(1, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testAddMany() {
+	public void testAddMany() {
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
@@ -93,10 +72,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(5, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testAddAndRemove() {
+	public void testAddAndRemove() {
 		this.mList.add("A");
 
 		Assert.assertEquals(1, this.mList.size());
@@ -106,10 +82,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(0, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testAddAndRemoveMany() {
+	public void testAddAndRemoveMany() {
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
@@ -127,10 +100,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(0, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testAddAndRemoveAndAddMany() {
+	public void testAddAndRemoveAndAddMany() {
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
@@ -154,10 +124,7 @@ public abstract class IListTest extends TestCase {
 		this.mList.add("E");
 	}
 
-        /**
-         * 
-         */
-        public void testAutoShift() {
+	public void testAutoShift() {
 		this.mList.add("A");
 		this.mList.add("B");
 
@@ -171,10 +138,7 @@ public abstract class IListTest extends TestCase {
 		this.mList.add("A");
 	}
 
-        /**
-         * 
-         */
-        public void testShiftNulling1() {
+	public void testShiftNulling1() {
 		this.mList.add("A");
 		this.mList.add("B");
 		this.mList.add("C");
@@ -187,10 +151,7 @@ public abstract class IListTest extends TestCase {
 		this.mList.add("B");
 	}
 
-        /**
-         * 
-         */
-        public void testShiftNulling2() {
+	public void testShiftNulling2() {
 		this.mList = this.newList(3);
 
 		this.mList.add("A");
@@ -205,10 +166,7 @@ public abstract class IListTest extends TestCase {
 		this.mList.add("B");
 	}
 
-        /**
-         * 
-         */
-        public void testShiftNulling3() {
+	public void testShiftNulling3() {
 		this.mList = this.newList(4);
 
 		this.mList.add("A");
@@ -221,10 +179,7 @@ public abstract class IListTest extends TestCase {
 		this.mList.add("D");
 	}
 
-        /**
-         * 
-         */
-        public void testClear() {
+	public void testClear() {
 		this.mList = this.newList(1);
 
 		this.mList.add("A");
@@ -234,10 +189,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(0, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testClearMany() {
+	public void testClearMany() {
 		this.mList = this.newList(3);
 
 		this.mList.add("A");
@@ -249,10 +201,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(0, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testClearComplex() {
+	public void testClearComplex() {
 		this.mList = this.newList(3);
 
 		this.mList.add("A");
@@ -268,10 +217,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(0, this.mList.size());
 	}
 
-        /**
-         * 
-         */
-        public void testGetExactSIze() {
+	public void testGetExactSIze() {
 		this.mList = this.newList(3);
 		
 		this.mList.add("A");
@@ -283,10 +229,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals("C", this.mList.get(2));
 	}
 
-        /**
-         * 
-         */
-        public void testGet() {
+	public void testGet() {
 		this.mList = this.newList(2);
 		
 		this.mList.add("A");
@@ -298,10 +241,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals("C", this.mList.get(2));
 	}
 
-        /**
-         * 
-         */
-        public void testIndexOfExactSize() {
+	public void testIndexOfExactSize() {
 		this.mList = this.newList(2);
 		
 		this.mList.add("A");
@@ -313,10 +253,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(2, this.mList.indexOf("C"));
 	}
 
-        /**
-         * 
-         */
-        public void testIndexOfWithRemove() {
+	public void testIndexOfWithRemove() {
 		this.mList = this.newList(2);
 		
 		this.mList.add("A");
@@ -336,10 +273,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(4, this.mList.indexOf("F"));
 	}
 
-        /**
-         * 
-         */
-        public void testIndexOfWithRemove2() {
+	public void testIndexOfWithRemove2() {
 		this.mList = this.newList(2);
 		
 		this.mList.add("A");
@@ -359,10 +293,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(4, this.mList.indexOf("F"));
 	}
 
-        /**
-         * 
-         */
-        public void testIndexOfWithPoll() {
+	public void testIndexOfWithPoll() {
 		this.mList = this.newList(2);
 		
 		this.mList.add("A");
@@ -378,10 +309,7 @@ public abstract class IListTest extends TestCase {
 		Assert.assertEquals(2, this.mList.indexOf("D"));
 	}
 
-        /**
-         * 
-         */
-        public void testWeird() {
+	public void testWeird() {
 		final int[] values = new int[] { 0, 0, 499, 470, 421, 346, 37, 445, 752, 9, 297, 936, 910, 423, 725, 754, 240, 450, 512, 464, 952, 563, 170, 862, 870, 660, 956, 339, 768, 433, 378, 984, 154, 795, 805, 486, 162, 181, 729, 695, 284, 499, 400, 856, 151, 111, 561, 90, 287, 295, 901, 899, 185, 134, 513, 21, 998, 304, 85, 862, 569, 841, 577, 208, 481, 349, 869, 816, 960, 884, 664, 838, 586, 239, 0, 18, 838, 167, 925, 707, 212, 981, 764, 347, 67, 303, 602, 347, 864, 591, 865, 171 };
 
 		final IList<String> list = newList(5);
@@ -406,11 +334,7 @@ public abstract class IListTest extends TestCase {
 		testIdentical(list, arraylist);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCorrectness() throws Exception {
+	public void testCorrectness() throws Exception {
 		MathUtils.RANDOM.setSeed(1234567890);
 		final IList<String> list = newList(5);
 		final ArrayList<String> arraylist = new ArrayList<String>(5);

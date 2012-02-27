@@ -41,20 +41,14 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void testSingle() {
+	public void testSingle() {
 		final Node node = new Node(0, 0, 10, 10);
 		final Node inserted = node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 
 		this.assertNodeRect(inserted, 0, 0, 4, 2);
 	}
 
-        /**
-         * 
-         */
-        public void testDouble() {
+	public void testDouble() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 
@@ -63,10 +57,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 4, 0, 4, 2);
 	}
 
-        /**
-         * 
-         */
-        public void testTriple() {
+	public void testTriple() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -76,10 +67,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 0, 2, 4, 2);
 	}
 
-        /**
-         * 
-         */
-        public void testQuadrupel() {
+	public void testQuadrupel() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -90,10 +78,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 8, 0, 2, 2);
 	}
 
-        /**
-         * 
-         */
-        public void testQuadrupel2() {
+	public void testQuadrupel2() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -104,10 +89,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 0, 4, 2, 3);
 	}
 
-        /**
-         * 
-         */
-        public void testQuintupel() {
+	public void testQuintupel() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -119,10 +101,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 2, 4, 2, 3);
 	}
 
-        /**
-         * 
-         */
-        public void testQuintupel2() {
+	public void testQuintupel2() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -134,10 +113,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 4, 2, 2, 8);
 	}
 
-        /**
-         * 
-         */
-        public void testQuintupel3() {
+	public void testQuintupel3() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 2), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -149,10 +125,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		Assert.assertNull(inserted);
 	}
 
-        /**
-         * 
-         */
-        public void testFullSize() {
+	public void testFullSize() {
 		final Node node = new Node(0, 0, 10, 10);
 
 		final Node inserted = node.insert(new DummyTextureSource(10, 10), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -160,10 +133,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 0, 0, 10, 10);
 	}
 
-        /**
-         * 
-         */
-        public void testPerfectFit() {
+	public void testPerfectFit() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(5, 5), 10, 10, SPACING_NONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(5, 5), 10, 10, SPACING_NONE, PADDING_NONE);
@@ -174,10 +144,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 5, 5, 5, 5);
 	}
 
-        /**
-         * 
-         */
-        public void testPerfectFit2() {
+	public void testPerfectFit2() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(4, 4), 10, 10, SPACING_ONE, PADDING_NONE);
 		node.insert(new DummyTextureSource(4, 4), 10, 10, SPACING_ONE, PADDING_NONE);
@@ -188,10 +155,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		this.assertNodeRect(inserted, 5, 5, 5, 5);
 	}
 
-        /**
-         * 
-         */
-        public void testNoFitDueToSpacing() {
+	public void testNoFitDueToSpacing() {
 		final Node node = new Node(0, 0, 10, 10);
 		node.insert(new DummyTextureSource(5, 5), 10, 10, SPACING_ONE, PADDING_NONE);
 
@@ -200,10 +164,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 		Assert.assertNull(inserted);
 	}
 
-        /**
-         * 
-         */
-        public void testSinglePadding() {
+	public void testSinglePadding() {
 		final Node node = new Node(0, 0, 10, 10);
 		final Node inserted = node.insert(new DummyTextureSource(8, 8), 10, 10, SPACING_NONE, PADDING_ONE);
 
@@ -221,19 +182,11 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected static class DummyTextureSource implements ITextureAtlasSource {
+	protected static class DummyTextureSource implements ITextureAtlasSource {
 		private final int mWidth;
 		private final int mHeight;
 
-                /**
-                 * 
-                 * @param pWidth
-                 * @param pHeight
-                 */
-                public DummyTextureSource(final int pWidth, final int pHeight) {
+		public DummyTextureSource(final int pWidth, final int pHeight) {
 			this.mWidth = pWidth;
 			this.mHeight = pHeight;
 		}
@@ -248,11 +201,7 @@ public class BlackPawnTextureAtlasBuilderTest extends TestCase {
 			return this.mWidth;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		public DummyTextureSource clone() {
 			return new DummyTextureSource(this.mWidth, this.mHeight);
 		}

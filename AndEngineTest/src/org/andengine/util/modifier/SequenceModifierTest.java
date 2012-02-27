@@ -34,21 +34,13 @@ public class SequenceModifierTest extends AndroidTestCase implements ISubSequenc
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void setUp() throws Exception {
 		this.mSubSequenceStartedCount = 0;
 		this.mSubSequenceFinishedCount = 0;
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void tearDown() throws Exception {
 
 	}
@@ -71,11 +63,7 @@ public class SequenceModifierTest extends AndroidTestCase implements ISubSequenc
 	// Test-Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDuration() throws Exception {
+	public void testDuration() throws Exception {
 		float elapsed;
 		this.mSequenceModifier = new SequenceModifier<Object>(this, new DummyModifier(DURATION), new DummyModifier(DURATION));
 
@@ -89,11 +77,7 @@ public class SequenceModifierTest extends AndroidTestCase implements ISubSequenc
 		Assert.assertEquals(1, this.mSubSequenceFinishedCount);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDurationAlmost() throws Exception {
+	public void testDurationAlmost() throws Exception {
 		float elapsed;
 		this.mSequenceModifier = new SequenceModifier<Object>(this, new DummyModifier(DURATION), new DummyModifier(DURATION));
 
@@ -113,11 +97,7 @@ public class SequenceModifierTest extends AndroidTestCase implements ISubSequenc
 		Assert.assertEquals(1, this.mSubSequenceFinishedCount);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDurationDouble() throws Exception {
+	public void testDurationDouble() throws Exception {
 		float elapsed;
 		this.mSequenceModifier = new SequenceModifier<Object>(this, new DummyModifier(DURATION), new DummyModifier(DURATION));
 
@@ -138,10 +118,7 @@ public class SequenceModifierTest extends AndroidTestCase implements ISubSequenc
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public class DummyModifier extends BaseDurationModifier<Object> {
+	public class DummyModifier extends BaseDurationModifier<Object> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
