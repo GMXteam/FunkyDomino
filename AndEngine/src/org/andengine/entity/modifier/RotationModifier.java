@@ -24,55 +24,23 @@ public class RotationModifier extends SingleValueSpanEntityModifier {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDuration
-     * @param pFromRotation
-     * @param pToRotation
-     */
-    public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation) {
+	public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation) {
 		this(pDuration, pFromRotation, pToRotation, null, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromRotation
-         * @param pToRotation
-         * @param pEaseFunction
-         */
-        public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation, final IEaseFunction pEaseFunction) {
+	public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromRotation, pToRotation, null, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromRotation
-         * @param pToRotation
-         * @param pEntityModifierListener
-         */
-        public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation, final IEntityModifierListener pEntityModifierListener) {
+	public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pFromRotation, pToRotation, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromRotation
-         * @param pToRotation
-         * @param pEntityModifierListener
-         * @param pEaseFunction
-         */
-        public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+	public RotationModifier(final float pDuration, final float pFromRotation, final float pToRotation, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromRotation, pToRotation, pEntityModifierListener, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pRotationModifier
-         */
-        protected RotationModifier(final RotationModifier pRotationModifier) {
+	protected RotationModifier(final RotationModifier pRotationModifier) {
 		super(pRotationModifier);
 	}
 
@@ -89,12 +57,7 @@ public class RotationModifier extends SingleValueSpanEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEntity
-         * @param pRotation
-         */
-        @Override
+	@Override
 	protected void onSetInitialValue(final IEntity pEntity, final float pRotation) {
 		pEntity.setRotation(pRotation);
 	}

@@ -23,35 +23,19 @@ public class FontException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public FontException() {
+	public FontException() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pMessage
-         */
-        public FontException(final String pMessage) {
+	public FontException(final String pMessage) {
 		super(pMessage);
 	}
 
-        /**
-         * 
-         * @param pThrowable
-         */
-        public FontException(final Throwable pThrowable) {
+	public FontException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pThrowable
-         */
-        public FontException(final String pMessage, final Throwable pThrowable) {
+	public FontException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

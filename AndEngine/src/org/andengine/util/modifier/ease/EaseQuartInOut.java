@@ -27,11 +27,7 @@ public class EaseQuartInOut implements IEaseFunction {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseQuartInOut getInstance() {
+	public static EaseQuartInOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseQuartInOut();
 		}
@@ -46,13 +42,7 @@ public class EaseQuartInOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		final float percentage = pSecondsElapsed / pDuration;
 

@@ -26,18 +26,11 @@ public class FloatArrayList implements IFloatList {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public FloatArrayList() {
+	public FloatArrayList() {
 		this(FloatArrayList.CAPACITY_INITIAL_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pInitialCapacity
-         */
-        public FloatArrayList(final int pInitialCapacity) {
+	public FloatArrayList(final int pInitialCapacity) {
 		this.mItems = new float[pInitialCapacity];
 	}
 
@@ -49,31 +42,17 @@ public class FloatArrayList implements IFloatList {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isEmpty() {
 		return this.mSize == 0;
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public float get(final int pIndex) throws ArrayIndexOutOfBoundsException {
 		return this.mItems[pIndex];
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        @Override
+	@Override
 	public void add(final float pItem) {
 		this.ensureCapacity(this.mSize + 1);
 
@@ -91,13 +70,7 @@ public class FloatArrayList implements IFloatList {
 		this.mSize++;
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public float remove(final int pIndex) throws ArrayIndexOutOfBoundsException {
 		final float oldValue = this.mItems[pIndex];
 
@@ -111,19 +84,12 @@ public class FloatArrayList implements IFloatList {
 		return oldValue;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int size() {
 		return this.mSize;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void clear() {
 		this.mSize = 0;
 	}

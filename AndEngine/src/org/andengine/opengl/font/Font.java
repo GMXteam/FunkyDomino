@@ -33,10 +33,7 @@ public class Font implements IFont {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected static final int LETTER_TEXTURE_PADDING = 1;
+	protected static final int LETTER_TEXTURE_PADDING = 1;
 
 	// ===========================================================
 	// Fields
@@ -54,57 +51,24 @@ public class Font implements IFont {
 	private final SparseArray<Letter> mManagedCharacterToLetterMap = new SparseArray<Letter>();
 	private final ArrayList<Letter> mLettersPendingToBeDrawnToTexture = new ArrayList<Letter>();
 
-        /**
-         * 
-         */
-        protected final Paint mPaint;
+	protected final Paint mPaint;
 	private final Paint mBackgroundPaint;
 
-        /**
-         * 
-         */
-        protected final FontMetrics mFontMetrics;
+	protected final FontMetrics mFontMetrics;
 
-        /**
-         * 
-         */
-        protected final Canvas mCanvas = new Canvas();
-        /**
-         * 
-         */
-        protected final Rect mTextBounds = new Rect();
-        /**
-         * 
-         */
-        protected final float[] mTextWidthContainer = new float[1];
+	protected final Canvas mCanvas = new Canvas();
+	protected final Rect mTextBounds = new Rect();
+	protected final float[] mTextWidthContainer = new float[1];
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pFontManager
-         * @param pTexture
-         * @param pTypeface
-         * @param pSize
-         * @param pAntiAlias
-         * @param pColor
-         */
-        public Font(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final Color pColor) {
+	public Font(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final Color pColor) {
 		this(pFontManager, pTexture, pTypeface, pSize, pAntiAlias, pColor.getARGBPackedInt());
 	}
 
-        /**
-         * 
-         * @param pFontManager
-         * @param pTexture
-         * @param pTypeface
-         * @param pSize
-         * @param pAntiAlias
-         * @param pColorARGBPackedInt
-         */
-        public Font(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColorARGBPackedInt) {
+	public Font(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColorARGBPackedInt) {
 		this.mFontManager = pFontManager;
 		this.mTexture = pTexture;
 		this.mTextureWidth = pTexture.getWidth();
@@ -152,49 +116,29 @@ public class Font implements IFont {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public ITexture getTexture() {
 		return this.mTexture;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void load() {
 		this.mTexture.load();
 		this.mFontManager.loadFont(this);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void unload() {
 		this.mTexture.unload();
 		this.mFontManager.unloadFont(this);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getLineHeight() {
 		return -this.getAscent() + this.getDescent();
 	}
 
-        /**
-         * 
-         * @param pCharacter
-         * @return
-         * @throws FontException
-         */
-        @Override
+	@Override
 	public synchronized Letter getLetter(final char pCharacter) throws FontException {
 		Letter letter = this.mManagedCharacterToLetterMap.get(pCharacter);
 		if(letter == null) {
@@ -210,10 +154,7 @@ public class Font implements IFont {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public synchronized void invalidateLetters() {
+	public synchronized void invalidateLetters() {
 		final ArrayList<Letter> lettersPendingToBeDrawnToTexture = this.mLettersPendingToBeDrawnToTexture;
 		final SparseArray<Letter> managedCharacterToLetterMap = this.mManagedCharacterToLetterMap;
 
@@ -228,13 +169,7 @@ public class Font implements IFont {
 		return this.mTextWidthContainer[0];
 	}
 
-        /**
-         * 
-         * @param pLetter
-         * @return
-         * @throws FontException
-         */
-        protected Bitmap getLetterBitmap(final Letter pLetter) throws FontException {
+	protected Bitmap getLetterBitmap(final Letter pLetter) throws FontException {
 		final char character = pLetter.mCharacter;
 		final String characterAsString = String.valueOf(character);
 
@@ -256,22 +191,11 @@ public class Font implements IFont {
 		return bitmap;
 	}
 
-        /**
-         * 
-         * @param pCharacterAsString
-         * @param pLeft
-         * @param pTop
-         */
-        protected void drawLetter(final String pCharacterAsString, final float pLeft, final float pTop) {
+	protected void drawLetter(final String pCharacterAsString, final float pLeft, final float pTop) {
 		this.mCanvas.drawText(pCharacterAsString, pLeft + Font.LETTER_TEXTURE_PADDING, pTop + Font.LETTER_TEXTURE_PADDING, this.mPaint);
 	}
 
-        /**
-         * 
-         * @param pCharacters
-         * @throws FontException
-         */
-        public void prepareLetters(final char... pCharacters) throws FontException {
+	public void prepareLetters(final char... pCharacters) throws FontException {
 		for(final char character : pCharacters) {
 			this.getLetter(character);
 		}
@@ -323,19 +247,11 @@ public class Font implements IFont {
 		return letter;
 	}
 
-        /**
-         * 
-         * @param pCharacterAsString
-         */
-        protected void updateTextBounds(final String pCharacterAsString) {
+	protected void updateTextBounds(final String pCharacterAsString) {
 		this.mPaint.getTextBounds(pCharacterAsString, 0, 1, this.mTextBounds);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public synchronized void update(final GLState pGLState) {
+	public synchronized void update(final GLState pGLState) {
 		if(this.mTexture.isLoadedToHardware()) {
 			final ArrayList<Letter> lettersPendingToBeDrawnToTexture = this.mLettersPendingToBeDrawnToTexture;
 			if(lettersPendingToBeDrawnToTexture.size() > 0) {

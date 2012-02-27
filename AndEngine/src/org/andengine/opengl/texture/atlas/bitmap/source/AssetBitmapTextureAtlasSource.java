@@ -35,25 +35,11 @@ public class AssetBitmapTextureAtlasSource extends BaseTextureAtlasSource implem
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pAssetManager
-         * @param pAssetPath
-         * @return
-         */
-        public static AssetBitmapTextureAtlasSource create(final AssetManager pAssetManager, final String pAssetPath) {
+	public static AssetBitmapTextureAtlasSource create(final AssetManager pAssetManager, final String pAssetPath) {
 		return AssetBitmapTextureAtlasSource.create(pAssetManager, pAssetPath, 0, 0);
 	}
 
-        /**
-         * 
-         * @param pAssetManager
-         * @param pAssetPath
-         * @param pTextureX
-         * @param pTextureY
-         * @return
-         */
-        public static AssetBitmapTextureAtlasSource create(final AssetManager pAssetManager, final String pAssetPath, final int pTextureX, final int pTextureY) {
+	public static AssetBitmapTextureAtlasSource create(final AssetManager pAssetManager, final String pAssetPath, final int pTextureX, final int pTextureY) {
 		final BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		decodeOptions.inJustDecodeBounds = true;
 
@@ -90,12 +76,7 @@ public class AssetBitmapTextureAtlasSource extends BaseTextureAtlasSource implem
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapConfig
-         * @return
-         */
-        @Override
+	@Override
 	public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 		InputStream in = null;
 		try {

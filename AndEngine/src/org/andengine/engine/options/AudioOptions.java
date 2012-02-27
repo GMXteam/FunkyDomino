@@ -26,54 +26,28 @@ public class AudioOptions {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public SoundOptions getSoundOptions() {
+	public SoundOptions getSoundOptions() {
 		return this.mSoundOptions;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public MusicOptions getMusicOptions() {
+	public MusicOptions getMusicOptions() {
 		return this.mMusicOptions;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean needsSound() {
+	public boolean needsSound() {
 		return this.mSoundOptions.needsSound();
 	}
 
-        /**
-         * 
-         * @param pNeedsSound
-         * @return
-         */
-        public AudioOptions setNeedsSound(final boolean pNeedsSound) {
+	public AudioOptions setNeedsSound(final boolean pNeedsSound) {
 		this.mSoundOptions.setNeedsSound(pNeedsSound);
 		return this;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean needsMusic() {
+	public boolean needsMusic() {
 		return this.mMusicOptions.needsMusic();
 	}
 
-        /**
-         * 
-         * @param pNeedsMusic
-         * @return
-         */
-        public AudioOptions setNeedsMusic(final boolean pNeedsMusic) {
+	public AudioOptions setNeedsMusic(final boolean pNeedsMusic) {
 		this.mMusicOptions.setNeedsMusic(pNeedsMusic);
 		return this;
 	}

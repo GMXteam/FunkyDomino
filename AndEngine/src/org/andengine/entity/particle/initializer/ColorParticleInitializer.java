@@ -9,7 +9,6 @@ import org.andengine.util.color.Color;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 10:17:42 - 29.06.2010
  */
@@ -26,43 +25,19 @@ public class ColorParticleInitializer<T extends IEntity> extends BaseTripleValue
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pColor
-     */
-    public ColorParticleInitializer(final Color pColor) {
+	public ColorParticleInitializer(final Color pColor) {
 		super(pColor.getRed(), pColor.getRed(), pColor.getGreen(), pColor.getGreen(), pColor.getBlue(), pColor.getBlue());
 	}
 	
-    /**
-     * 
-     * @param pRed
-     * @param pGreen
-     * @param pBlue
-     */
-    public ColorParticleInitializer(final float pRed, final float pGreen, final float pBlue) {
+	public ColorParticleInitializer(final float pRed, final float pGreen, final float pBlue) {
 		super(pRed, pRed, pGreen, pGreen, pBlue, pBlue);
 	}
 
-        /**
-         * 
-         * @param pMinColor
-         * @param pMaxColor
-         */
-        public ColorParticleInitializer(final Color pMinColor, final Color pMaxColor) {
+	public ColorParticleInitializer(final Color pMinColor, final Color pMaxColor) {
 		super(pMinColor.getRed(), pMaxColor.getRed(), pMinColor.getGreen(), pMaxColor.getGreen(), pMinColor.getBlue(), pMaxColor.getBlue());
 	}
 	
-        /**
-         * 
-         * @param pMinRed
-         * @param pMaxRed
-         * @param pMinGreen
-         * @param pMaxGreen
-         * @param pMinBlue
-         * @param pMaxBlue
-         */
-        public ColorParticleInitializer(final float pMinRed, final float pMaxRed, final float pMinGreen, final float pMaxGreen, final float pMinBlue, final float pMaxBlue) {
+	public ColorParticleInitializer(final float pMinRed, final float pMaxRed, final float pMinGreen, final float pMaxGreen, final float pMinBlue, final float pMaxBlue) {
 		super(pMinRed, pMaxRed, pMinGreen, pMaxGreen, pMinBlue, pMaxBlue);
 	}
 
@@ -74,14 +49,7 @@ public class ColorParticleInitializer<T extends IEntity> extends BaseTripleValue
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParticle
-         * @param pRed
-         * @param pGreen
-         * @param pBlue
-         */
-        @Override
+	@Override
 	protected void onInitializeParticle(final Particle<T> pParticle, final float pRed, final float pGreen, final float pBlue) {
 		pParticle.getEntity().setColor(pRed, pGreen, pBlue);
 	}

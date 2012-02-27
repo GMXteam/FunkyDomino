@@ -34,22 +34,11 @@ public final class TimeUtils implements TimeConstants {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pSecondsTotal
-     * @return
-     */
-    public static final String formatSeconds(final int pSecondsTotal) {
+	public static final String formatSeconds(final int pSecondsTotal) {
 		return formatSeconds(pSecondsTotal, new StringBuilder());
 	}
 	
-        /**
-         * 
-         * @param pSecondsTotal
-         * @param pStringBuilder
-         * @return
-         */
-        public static final String formatSeconds(final int pSecondsTotal, final StringBuilder pStringBuilder) {
+	public static final String formatSeconds(final int pSecondsTotal, final StringBuilder pStringBuilder) {
 		final int minutes = pSecondsTotal / SECONDS_PER_MINUTE;
 		final int seconds = pSecondsTotal % SECONDS_PER_MINUTE;
 		

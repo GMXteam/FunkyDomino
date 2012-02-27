@@ -31,18 +31,11 @@ public abstract class SurfaceGestureDetector extends BaseDetector {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public SurfaceGestureDetector() {
+	public SurfaceGestureDetector() {
 		this(SurfaceGestureDetector.SWIPE_MIN_DISTANCE_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pSwipeMinDistance
-         */
-        public SurfaceGestureDetector(final float pSwipeMinDistance) {
+	public SurfaceGestureDetector(final float pSwipeMinDistance) {
 		this.mGestureDetector = new GestureDetector(new InnerOnGestureDetectorListener(pSwipeMinDistance));
 	}
 
@@ -54,48 +47,19 @@ public abstract class SurfaceGestureDetector extends BaseDetector {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        protected abstract boolean onSingleTap();
-        /**
-         * 
-         * @return
-         */
-        protected abstract boolean onDoubleTap();
-        /**
-         * 
-         * @return
-         */
-        protected abstract boolean onSwipeUp();
-        /**
-         * 
-         * @return
-         */
-        protected abstract boolean onSwipeDown();
-        /**
-         * 
-         * @return
-         */
-        protected abstract boolean onSwipeLeft();
-        /**
-         * 
-         * @return
-         */
-        protected abstract boolean onSwipeRight();
+	protected abstract boolean onSingleTap();
+	protected abstract boolean onDoubleTap();
+	protected abstract boolean onSwipeUp();
+	protected abstract boolean onSwipeDown();
+	protected abstract boolean onSwipeLeft();
+	protected abstract boolean onSwipeRight();
 
 	@Override
 	public void reset() {
 
 	}
 
-        /**
-         * 
-         * @param pSceneTouchEvent
-         * @return
-         */
-        @Override
+	@Override
 	public boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent) {
 		return this.mGestureDetector.onTouchEvent(pSceneTouchEvent.getMotionEvent());
 	}
@@ -177,10 +141,7 @@ public abstract class SurfaceGestureDetector extends BaseDetector {
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        public static class SurfaceGestureDetectorAdapter extends SurfaceGestureDetector {
+	public static class SurfaceGestureDetectorAdapter extends SurfaceGestureDetector {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -201,11 +162,7 @@ public abstract class SurfaceGestureDetector extends BaseDetector {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-            /**
-             * 
-             * @return
-             */
-            @Override
+		@Override
 		protected boolean onDoubleTap() {
 			return false;
 		}
@@ -215,38 +172,22 @@ public abstract class SurfaceGestureDetector extends BaseDetector {
 			return false;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		protected boolean onSwipeDown() {
 			return false;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		protected boolean onSwipeLeft() {
 			return false;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		protected boolean onSwipeRight() {
 			return false;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		protected boolean onSwipeUp() {
 			return false;
 		}

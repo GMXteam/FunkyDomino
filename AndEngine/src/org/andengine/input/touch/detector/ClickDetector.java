@@ -32,20 +32,11 @@ public class ClickDetector extends BaseDetector {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pClickDetectorListener
-         */
-        public ClickDetector(final IClickDetectorListener pClickDetectorListener) {
+	public ClickDetector(final IClickDetectorListener pClickDetectorListener) {
 		this(ClickDetector.TRIGGER_CLICK_MAXIMUM_MILLISECONDS_DEFAULT, pClickDetectorListener);
 	}
 
-        /**
-         * 
-         * @param pTriggerClickMaximumMilliseconds
-         * @param pClickDetectorListener
-         */
-        public ClickDetector(final long pTriggerClickMaximumMilliseconds, final IClickDetectorListener pClickDetectorListener) {
+	public ClickDetector(final long pTriggerClickMaximumMilliseconds, final IClickDetectorListener pClickDetectorListener) {
 		this.mTriggerClickMaximumMilliseconds = pTriggerClickMaximumMilliseconds;
 		this.mClickDetectorListener = pClickDetectorListener;
 	}
@@ -54,19 +45,11 @@ public class ClickDetector extends BaseDetector {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public long getTriggerClickMaximumMilliseconds() {
+	public long getTriggerClickMaximumMilliseconds() {
 		return this.mTriggerClickMaximumMilliseconds;
 	}
 
-        /**
-         * 
-         * @param pClickMaximumMilliseconds
-         */
-        public void setTriggerClickMaximumMilliseconds(final long pClickMaximumMilliseconds) {
+	public void setTriggerClickMaximumMilliseconds(final long pClickMaximumMilliseconds) {
 		this.mTriggerClickMaximumMilliseconds = pClickMaximumMilliseconds;
 	}
 
@@ -80,12 +63,7 @@ public class ClickDetector extends BaseDetector {
 		this.mPointerID = TouchEvent.INVALID_POINTER_ID;
 	}
 
-        /**
-         * 
-         * @param pSceneTouchEvent
-         * @return
-         */
-        @Override
+	@Override
 	public boolean onManagedTouchEvent(final TouchEvent pSceneTouchEvent) {
 		switch(pSceneTouchEvent.getAction()) {
 			case TouchEvent.ACTION_DOWN:
@@ -124,10 +102,7 @@ public class ClickDetector extends BaseDetector {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IClickDetectorListener {
+	public static interface IClickDetectorListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -136,13 +111,6 @@ public class ClickDetector extends BaseDetector {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pClickDetector
-             * @param pPointerID
-             * @param pSceneX
-             * @param pSceneY
-             */
-            public void onClick(final ClickDetector pClickDetector, final int pPointerID, final float pSceneX, final float pSceneY);
+		public void onClick(final ClickDetector pClickDetector, final int pPointerID, final float pSceneX, final float pSceneY);
 	}
 }

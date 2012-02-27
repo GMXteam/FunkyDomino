@@ -18,14 +18,8 @@ public class GLMatrixStack {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int GLMATRIXSTACK_DEPTH_MAX = 32;
-    /**
-     * 
-     */
-    public static final int GLMATRIX_SIZE = 16;
+	public static final int GLMATRIXSTACK_DEPTH_MAX = 32;
+	public static final int GLMATRIX_SIZE = 16;
 
 	private static final int GLMATRIXSTACKOFFSET_UNDERFLOW = -1 * GLMatrixStack.GLMATRIX_SIZE;
 	private static final int GLMATRIXSTACKOFFSET_OVERFLOW = GLMatrixStack.GLMATRIXSTACK_DEPTH_MAX * GLMatrixStack.GLMATRIX_SIZE;
@@ -43,10 +37,7 @@ public class GLMatrixStack {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public GLMatrixStack() {
+	public GLMatrixStack() {
 		this.glLoadIdentity();
 	}
 
@@ -58,11 +49,7 @@ public class GLMatrixStack {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @param pMatrix
-         */
-        public void getMatrix(final float[] pMatrix) {
+	public void getMatrix(final float[] pMatrix) {
 		System.arraycopy(this.mMatrixStack, this.mMatrixStackOffset, pMatrix, 0, GLMatrixStack.GLMATRIX_SIZE);
 	}
 
@@ -74,75 +61,35 @@ public class GLMatrixStack {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void glLoadIdentity() {
+	public void glLoadIdentity() {
 		Matrix.setIdentityM(this.mMatrixStack, this.mMatrixStackOffset);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pZ
-         */
-        public void glTranslatef(final float pX, final float pY, final float pZ) {
+	public void glTranslatef(final float pX, final float pY, final float pZ) {
 		Matrix.translateM(this.mMatrixStack, this.mMatrixStackOffset, pX, pY, pZ);
 	}
 
-        /**
-         * 
-         * @param pAngle
-         * @param pX
-         * @param pY
-         * @param pZ
-         */
-        public void glRotatef(final float pAngle, final float pX, final float pY, final float pZ) {
+	public void glRotatef(final float pAngle, final float pX, final float pY, final float pZ) {
 		Matrix.setRotateM(this.mTemp, 0, pAngle, pX, pY, pZ);
 		System.arraycopy(this.mMatrixStack, this.mMatrixStackOffset, this.mTemp, GLMatrixStack.GLMATRIX_SIZE, GLMatrixStack.GLMATRIX_SIZE);
 		Matrix.multiplyMM(this.mMatrixStack, this.mMatrixStackOffset, this.mTemp, GLMatrixStack.GLMATRIX_SIZE, this.mTemp, 0);
 	}
 
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleZ
-         */
-        public void glScalef(final float pScaleX, final float pScaleY, final float pScaleZ) {
+	public void glScalef(final float pScaleX, final float pScaleY, final float pScaleZ) {
 		Matrix.scaleM(this.mMatrixStack, this.mMatrixStackOffset, pScaleX, pScaleY, pScaleZ);
 	}
 
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         */
-        public void glSkewf(final float pSkewX, final float pSkewY) {
+	public void glSkewf(final float pSkewX, final float pSkewY) {
 		GLMatrixStack.setSkewM(this.mTemp, 0, pSkewX, pSkewY);
 		System.arraycopy(this.mMatrixStack, this.mMatrixStackOffset, this.mTemp, GLMatrixStack.GLMATRIX_SIZE, GLMatrixStack.GLMATRIX_SIZE);
 		Matrix.multiplyMM(this.mMatrixStack, this.mMatrixStackOffset, this.mTemp, GLMatrixStack.GLMATRIX_SIZE, this.mTemp, 0);
 	}
 
-        /**
-         * 
-         * @param pLeft
-         * @param pRight
-         * @param pBottom
-         * @param pTop
-         * @param pZNear
-         * @param pZFar
-         */
-        public void glOrthof(final float pLeft, final float pRight, final float pBottom, final float pTop, final float pZNear, final float pZFar) {
+	public void glOrthof(final float pLeft, final float pRight, final float pBottom, final float pTop, final float pZNear, final float pZFar) {
 		Matrix.orthoM(this.mMatrixStack, this.mMatrixStackOffset, pLeft, pRight, pBottom, pTop, pZNear, pZFar);
 	}
 
-        /**
-         * 
-         * @throws org.andengine.opengl.util.GLMatrixStack.GLMatrixStackOverflowException
-         */
-        public void glPushMatrix() throws GLMatrixStackOverflowException {
+	public void glPushMatrix() throws GLMatrixStackOverflowException {
 		if (this.mMatrixStackOffset + GLMatrixStack.GLMATRIX_SIZE >= GLMatrixStack.GLMATRIXSTACKOFFSET_OVERFLOW) {
 			throw new GLMatrixStackOverflowException();
 		}
@@ -151,10 +98,7 @@ public class GLMatrixStack {
 		this.mMatrixStackOffset += GLMatrixStack.GLMATRIX_SIZE;
 	}
 
-        /**
-         * 
-         */
-        public void glPopMatrix() {
+	public void glPopMatrix() {
 		if (this.mMatrixStackOffset - GLMatrixStack.GLMATRIX_SIZE <= GLMatrixStack.GLMATRIXSTACKOFFSET_UNDERFLOW) {
 			throw new GLMatrixStackUnderflowException();
 		}
@@ -162,10 +106,7 @@ public class GLMatrixStack {
 		this.mMatrixStackOffset -= GLMatrixStack.GLMATRIX_SIZE;
 	}
 
-        /**
-         * 
-         */
-        public void reset() {
+	public void reset() {
 		this.mMatrixStackOffset = 0;
 		this.glLoadIdentity();
 	}
@@ -196,10 +137,7 @@ public class GLMatrixStack {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class GLMatrixStackOverflowException extends AndEngineRuntimeException {
+	public static class GLMatrixStackOverflowException extends AndEngineRuntimeException {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -214,10 +152,7 @@ public class GLMatrixStack {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 */
-                public GLMatrixStackOverflowException() {
+		public GLMatrixStackOverflowException() {
 
 		}
 
@@ -238,10 +173,7 @@ public class GLMatrixStack {
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        public static class GLMatrixStackUnderflowException extends AndEngineRuntimeException {
+	public static class GLMatrixStackUnderflowException extends AndEngineRuntimeException {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -256,10 +188,7 @@ public class GLMatrixStack {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 */
-                public GLMatrixStackUnderflowException() {
+		public GLMatrixStackUnderflowException() {
 
 		}
 

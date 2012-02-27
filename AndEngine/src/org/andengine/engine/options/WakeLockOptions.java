@@ -45,11 +45,7 @@ public enum WakeLockOptions {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public int getFlag() {
+	public int getFlag() {
 		return this.mFlag;
 	}
 

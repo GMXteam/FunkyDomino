@@ -16,25 +16,14 @@ public abstract class BaseParticleEmitter implements IParticleEmitter {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected float mCenterX;
-    /**
-     * 
-     */
-    protected float mCenterY;
+	protected float mCenterX;
+	protected float mCenterY;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCenterX
-         * @param pCenterY
-         */
-        public BaseParticleEmitter(final float pCenterX, final float pCenterY) {
+	public BaseParticleEmitter(final float pCenterX, final float pCenterY) {
 		this.mCenterX = pCenterX;
 		this.mCenterY = pCenterY;
 	}
@@ -43,44 +32,23 @@ public abstract class BaseParticleEmitter implements IParticleEmitter {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float getCenterX() {
+	public float getCenterX() {
 		return this.mCenterX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getCenterY() {
+	public float getCenterY() {
 		return this.mCenterY;
 	}
 
-        /**
-         * 
-         * @param pCenterX
-         */
-        public void setCenterX(final float pCenterX) {
+	public void setCenterX(final float pCenterX) {
 		this.mCenterX = pCenterX;
 	}
 
-        /**
-         * 
-         * @param pCenterY
-         */
-        public void setCenterY(final float pCenterY) {
+	public void setCenterY(final float pCenterY) {
 		this.mCenterY = pCenterY;
 	}
 
-        /**
-         * 
-         * @param pCenterX
-         * @param pCenterY
-         */
-        public void setCenter(final float pCenterX, final float pCenterY) {
+	public void setCenter(final float pCenterX, final float pCenterY) {
 		this.mCenterX = pCenterX;
 		this.mCenterY = pCenterY;
 	}
@@ -89,19 +57,12 @@ public abstract class BaseParticleEmitter implements IParticleEmitter {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 
 	}

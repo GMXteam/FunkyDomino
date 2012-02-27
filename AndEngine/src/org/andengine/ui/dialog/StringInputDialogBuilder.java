@@ -25,32 +25,11 @@ public class StringInputDialogBuilder extends GenericInputDialogBuilder<String> 
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pContext
-     * @param pTitleResID
-     * @param pMessageResID
-     * @param pErrorResID
-     * @param pIconResID
-     * @param pSuccessCallback
-     * @param pOnCancelListener
-     */
-    public StringInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final Callback<String> pSuccessCallback, final OnCancelListener pOnCancelListener) {
+	public StringInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final Callback<String> pSuccessCallback, final OnCancelListener pOnCancelListener) {
 		super(pContext, pTitleResID, pMessageResID, pErrorResID, pIconResID, pSuccessCallback, pOnCancelListener);
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pTitleResID
-         * @param pMessageResID
-         * @param pErrorResID
-         * @param pIconResID
-         * @param pDefaultText
-         * @param pSuccessCallback
-         * @param pOnCancelListener
-         */
-        public StringInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final String pDefaultText, final Callback<String> pSuccessCallback, final OnCancelListener pOnCancelListener) {
+	public StringInputDialogBuilder(final Context pContext, final int pTitleResID, final int pMessageResID, final int pErrorResID, final int pIconResID, final String pDefaultText, final Callback<String> pSuccessCallback, final OnCancelListener pOnCancelListener) {
 		super(pContext, pTitleResID, pMessageResID, pErrorResID, pIconResID, pDefaultText, pSuccessCallback, pOnCancelListener);
 	}
 

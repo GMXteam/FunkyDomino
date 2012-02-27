@@ -32,11 +32,7 @@ public class TMXObject implements TMXConstants {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pAttributes
-         */
-        public TMXObject(final Attributes pAttributes) {
+	public TMXObject(final Attributes pAttributes) {
 		this.mName = pAttributes.getValue("", TMXConstants.TAG_OBJECT_ATTRIBUTE_NAME);
 		this.mType = pAttributes.getValue("", TMXConstants.TAG_OBJECT_ATTRIBUTE_TYPE);
 		this.mX = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECT_ATTRIBUTE_X);
@@ -49,67 +45,35 @@ public class TMXObject implements TMXConstants {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public String getName() {
+	public String getName() {
 		return this.mName;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public String getType() {
+	public String getType() {
 		return this.mType;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getX() {
+	public int getX() {
 		return this.mX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getY() {
+	public int getY() {
 		return this.mY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getWidth() {
+	public int getWidth() {
 		return this.mWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getHeight() {
+	public int getHeight() {
 		return this.mHeight;
 	}
 
-        /**
-         * 
-         * @param pTMXObjectProperty
-         */
-        public void addTMXObjectProperty(final TMXObjectProperty pTMXObjectProperty) {
+	public void addTMXObjectProperty(final TMXObjectProperty pTMXObjectProperty) {
 		this.mTMXObjectProperties.add(pTMXObjectProperty);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public TMXProperties<TMXObjectProperty> getTMXObjectProperties() {
+	public TMXProperties<TMXObjectProperty> getTMXObjectProperties() {
 		return this.mTMXObjectProperties;
 	}
 

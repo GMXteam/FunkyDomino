@@ -20,10 +20,7 @@ public abstract class BaseModifier<T> implements IModifier<T> {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected boolean mFinished;
+	protected boolean mFinished;
 	private boolean mAutoUnregisterWhenFinished = true;
 	private final SmartList<IModifierListener<T>> mModifierListeners = new SmartList<IModifierListener<T>>(2);
 
@@ -31,18 +28,11 @@ public abstract class BaseModifier<T> implements IModifier<T> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public BaseModifier() {
+	public BaseModifier() {
 
 	}
 
-        /**
-         * 
-         * @param pModifierListener
-         */
-        public BaseModifier(final IModifierListener<T> pModifierListener) {
+	public BaseModifier(final IModifierListener<T> pModifierListener) {
 		this.addModifierListener(pModifierListener);
 	}
 
@@ -54,20 +44,12 @@ public abstract class BaseModifier<T> implements IModifier<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isFinished() {
 		return this.mFinished;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public final boolean isAutoUnregisterWhenFinished() {
 		return this.mAutoUnregisterWhenFinished;
 	}
@@ -77,23 +59,14 @@ public abstract class BaseModifier<T> implements IModifier<T> {
 		this.mAutoUnregisterWhenFinished = pAutoUnregisterWhenFinished;
 	}
 
-        /**
-         * 
-         * @param pModifierListener
-         */
-        @Override
+	@Override
 	public void addModifierListener(final IModifierListener<T> pModifierListener) {
 		if(pModifierListener != null) {
 			this.mModifierListeners.add(pModifierListener);
 		}
 	}
 
-        /**
-         * 
-         * @param pModifierListener
-         * @return
-         */
-        @Override
+	@Override
 	public boolean removeModifierListener(final IModifierListener<T> pModifierListener) {
 		if(pModifierListener == null) {
 			return false;
@@ -109,11 +82,7 @@ public abstract class BaseModifier<T> implements IModifier<T> {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pItem
-         */
-        protected void onModifierStarted(final T pItem) {
+	protected void onModifierStarted(final T pItem) {
 		final SmartList<IModifierListener<T>> modifierListeners = this.mModifierListeners;
 		final int modifierListenerCount = modifierListeners.size();
 		for(int i = modifierListenerCount - 1; i >= 0; i--) {
@@ -121,11 +90,7 @@ public abstract class BaseModifier<T> implements IModifier<T> {
 		}
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        protected void onModifierFinished(final T pItem) {
+	protected void onModifierFinished(final T pItem) {
 		final SmartList<IModifierListener<T>> modifierListeners = this.mModifierListeners;
 		final int modifierListenerCount = modifierListeners.size();
 		for(int i = modifierListenerCount - 1; i >= 0; i--) {

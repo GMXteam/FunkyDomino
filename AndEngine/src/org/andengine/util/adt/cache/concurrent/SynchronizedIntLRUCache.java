@@ -5,7 +5,6 @@ import org.andengine.util.adt.cache.IntLRUCache;
 /**
  * (c) Zynga 2012
  *
- * @param <V> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 18:26:47 - 16.01.2012
  */
@@ -22,11 +21,7 @@ public class SynchronizedIntLRUCache<V> extends IntLRUCache<V> {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pCapacity
-     */
-    public SynchronizedIntLRUCache(final int pCapacity) {
+	public SynchronizedIntLRUCache(final int pCapacity) {
 		super(pCapacity);
 	}
 
@@ -38,11 +33,7 @@ public class SynchronizedIntLRUCache<V> extends IntLRUCache<V> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized int getSize() {
 		return super.getSize();
 	}
@@ -57,12 +48,7 @@ public class SynchronizedIntLRUCache<V> extends IntLRUCache<V> {
 		return super.put(pKey, pValue);
 	}
 
-        /**
-         * 
-         * @param pKey
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized V get(final int pKey) {
 		return super.get(pKey);
 	}

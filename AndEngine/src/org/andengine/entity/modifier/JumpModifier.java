@@ -21,143 +21,49 @@ public class JumpModifier extends MoveModifier {
 	// Fields
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected final float mJumpHeight;
-        /**
-         * 
-         */
-        protected final int mJumpCount;
+	protected final float mJumpHeight;
+	protected final int mJumpCount;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, JumpModifier.JUMPCOUNT_DEFAULT, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pEaseFunction
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final IEaseFunction pEaseFunction) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, JumpModifier.JUMPCOUNT_DEFAULT, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pEntityModifierListener
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final IEntityModifierListener pEntityModifierListener) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final IEntityModifierListener pEntityModifierListener) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, JumpModifier.JUMPCOUNT_DEFAULT, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pEntityModifierListener
-         * @param pEaseFunction
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, JumpModifier.JUMPCOUNT_DEFAULT, pEntityModifierListener, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pJumpCount
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, pJumpCount, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pJumpCount
-         * @param pEaseFunction
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount, final IEaseFunction pEaseFunction) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, pJumpCount, null, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pJumpCount
-         * @param pEntityModifierListener
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount, final IEntityModifierListener pEntityModifierListener) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount, final IEntityModifierListener pEntityModifierListener) {
 		this(pDuration, pFromX, pToX, pFromY, pToY, pJumpHeight, pJumpCount, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromX
-         * @param pToX
-         * @param pFromY
-         * @param pToY
-         * @param pJumpHeight
-         * @param pJumpCount
-         * @param pEntityModifierListener
-         * @param pEaseFunction
-         */
-        public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+	public JumpModifier(final float pDuration, final float pFromX, final float pToX, final float pFromY, final float pToY, final float pJumpHeight, final int pJumpCount, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromX, pToX, pFromY, pToY, pEntityModifierListener, pEaseFunction);
 
 		this.mJumpHeight = pJumpHeight;
 		this.mJumpCount = pJumpCount;
 	}
 
-        /**
-         * 
-         * @param pJumpModifier
-         */
-        public JumpModifier(final JumpModifier pJumpModifier) {
+	public JumpModifier(final JumpModifier pJumpModifier) {
 		super(pJumpModifier);
 
 		this.mJumpHeight = pJumpModifier.mJumpHeight;
@@ -177,14 +83,7 @@ public class JumpModifier extends MoveModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEntity
-         * @param pPercentageDone
-         * @param pX
-         * @param pY
-         */
-        @Override
+	@Override
 	protected void onSetValues(final IEntity pEntity, final float pPercentageDone, final float pX, final float pY) {
 		final float fraction = (pPercentageDone * this.mJumpCount) % 1.0f;
 		final float deltaY = this.mJumpHeight * 4 * fraction * (1 - fraction);

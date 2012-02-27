@@ -30,178 +30,84 @@ public class SpriteGroup extends DynamicSpriteBatch {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pTexture
-     * @param pCapacity
-     * @param pVertexBufferObjectManager
-     */
-    public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-    /**
-     * 
-     * @param pX
-     * @param pY
-     * @param pTexture
-     * @param pCapacity
-     * @param pVertexBufferObjectManager
-     */
-    public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, pDrawType);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, pDrawType);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, pShaderProgram);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, pShaderProgram);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public SpriteGroup(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         */
-        public SpriteGroup(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
+	public SpriteGroup(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
 		super(pTexture, pCapacity, pSpriteBatchVertexBufferObject);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         */
-        public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
+	public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
 		super(pX, pY, pTexture, pCapacity, pSpriteBatchVertexBufferObject);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         * @param pShaderProgram
-         */
-        public SpriteGroup(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public SpriteGroup(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pTexture, pCapacity, pSpriteBatchVertexBufferObject, pShaderProgram);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
 		this.setChildrenVisible(false);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         * @param pShaderProgram
-         */
-        public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public SpriteGroup(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTexture, pCapacity, pSpriteBatchVertexBufferObject, pShaderProgram);
 
 		/* Make children not be drawn automatically, as we handle the drawing ourself. */
@@ -218,11 +124,7 @@ public class SpriteGroup extends DynamicSpriteBatch {
 
 	/**
 	 * Instead use {@link SpriteGroup#attachChild(BaseSprite)}.
-         * 
-         * @param pEntity 
-         * @throws IllegalArgumentException 
-         * @deprecated 
-         */
+	 */
 	@Override
 	@Deprecated
 	public void attachChild(final IEntity pEntity) throws IllegalArgumentException {
@@ -233,21 +135,13 @@ public class SpriteGroup extends DynamicSpriteBatch {
 		}
 	}
 
-        /**
-         * 
-         * @param pSprite
-         */
-        public void attachChild(final Sprite pSprite) {
+	public void attachChild(final Sprite pSprite) {
 		this.assertCapacity();
 		this.assertTexture(pSprite.getTextureRegion());
 		super.attachChild(pSprite);
 	}
 
-        /**
-         * 
-         * @param pSprites
-         */
-        public void attachChildren(final ArrayList<? extends Sprite> pSprites) {
+	public void attachChildren(final ArrayList<? extends Sprite> pSprites) {
 		final int baseSpriteCount = pSprites.size();
 		for(int i = 0; i < baseSpriteCount; i++) {
 			this.attachChild(pSprites.get(i));

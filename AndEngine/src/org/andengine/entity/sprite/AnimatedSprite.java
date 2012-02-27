@@ -49,157 +49,51 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.DYNAMIC);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.DYNAMIC, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, pDrawType);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pTiledSpriteVertexBufferObject
-         */
-        public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
+	public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
 		super(pX, pY, pTiledTextureRegion, pTiledSpriteVertexBufferObject);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pTiledSpriteVertexBufferObject
-         * @param pShaderProgram
-         */
-        public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public AnimatedSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTiledTextureRegion, pTiledSpriteVertexBufferObject, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.DYNAMIC);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pVertexBufferObjectManager, DrawType.DYNAMIC, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pVertexBufferObjectManager, pDrawType);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTiledTextureRegion
-         * @param pTiledSpriteVertexBufferObject
-         */
-        public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
+	public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pTiledSpriteVertexBufferObject, PositionColorTextureCoordinatesShaderProgram.getInstance());
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTiledTextureRegion
-         * @param pTiledSpriteVertexBufferObject
-         * @param pShaderProgram
-         */
-        public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public AnimatedSprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITiledTextureRegion pTiledTextureRegion, final ITiledSpriteVertexBufferObject pTiledSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pWidth, pHeight, pTiledTextureRegion, pTiledSpriteVertexBufferObject, pShaderProgram);
 	}
 
@@ -207,11 +101,7 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isAnimationRunning() {
+	public boolean isAnimationRunning() {
 		return this.mAnimationRunning;
 	}
 
@@ -219,11 +109,7 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if(this.mAnimationRunning) {
@@ -289,18 +175,11 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void stopAnimation() {
+	public void stopAnimation() {
 		this.mAnimationRunning = false;
 	}
 
-        /**
-         * 
-         * @param pTileIndex
-         */
-        public void stopAnimation(final int pTileIndex) {
+	public void stopAnimation(final int pTileIndex) {
 		this.mAnimationRunning = false;
 		this.setCurrentTileIndex(pTileIndex);
 	}
@@ -318,175 +197,69 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 		return frameCount - 1;
 	}
 
-        /**
-         * 
-         * @param pFrameDurationEach
-         * @return
-         */
-        public AnimatedSprite animate(final long pFrameDurationEach) {
+	public AnimatedSprite animate(final long pFrameDurationEach) {
 		return this.animate(pFrameDurationEach, true);
 	}
 
-        /**
-         * 
-         * @param pFrameDurationEach
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long pFrameDurationEach, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long pFrameDurationEach, final IAnimationListener pAnimationListener) {
 		return this.animate(pFrameDurationEach, true, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurationEach
-         * @param pLoop
-         * @return
-         */
-        public AnimatedSprite animate(final long pFrameDurationEach, final boolean pLoop) {
+	public AnimatedSprite animate(final long pFrameDurationEach, final boolean pLoop) {
 		return this.animate(pFrameDurationEach, (pLoop) ? AnimatedSprite.LOOP_CONTINUOUS : 0, null);
 	}
 
-        /**
-         * 
-         * @param pFrameDurationEach
-         * @param pLoop
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long pFrameDurationEach, final boolean pLoop, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long pFrameDurationEach, final boolean pLoop, final IAnimationListener pAnimationListener) {
 		return this.animate(pFrameDurationEach, (pLoop) ? AnimatedSprite.LOOP_CONTINUOUS : 0, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurationEach
-         * @param pLoopCount
-         * @return
-         */
-        public AnimatedSprite animate(final long pFrameDurationEach, final int pLoopCount) {
+	public AnimatedSprite animate(final long pFrameDurationEach, final int pLoopCount) {
 		return this.animate(pFrameDurationEach, pLoopCount, null);
 	}
 
-        /**
-         * 
-         * @param pFrameDurationEach
-         * @param pLoopCount
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long pFrameDurationEach, final int pLoopCount, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long pFrameDurationEach, final int pLoopCount, final IAnimationListener pAnimationListener) {
 		final long[] frameDurations = new long[this.getTiledTextureRegion().getTileCount()];
 		Arrays.fill(frameDurations, pFrameDurationEach);
 		return this.animate(frameDurations, pLoopCount, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations) {
+	public AnimatedSprite animate(final long[] pFrameDurations) {
 		return this.animate(pFrameDurations, true);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final IAnimationListener pAnimationListener) {
 		return this.animate(pFrameDurations, true, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pLoop
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final boolean pLoop) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final boolean pLoop) {
 		return this.animate(pFrameDurations, (pLoop) ? AnimatedSprite.LOOP_CONTINUOUS : 0, null);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pLoop
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final boolean pLoop, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final boolean pLoop, final IAnimationListener pAnimationListener) {
 		return this.animate(pFrameDurations, (pLoop) ? AnimatedSprite.LOOP_CONTINUOUS : 0, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pLoopCount
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final int pLoopCount) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final int pLoopCount) {
 		return this.animate(pFrameDurations, pLoopCount, null);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pLoopCount
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final int pLoopCount, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final int pLoopCount, final IAnimationListener pAnimationListener) {
 		return this.animate(pFrameDurations, 0, this.getTiledTextureRegion().getTileCount() - 1, pLoopCount, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pFirstTileIndex
-         * @param pLastTileIndex
-         * @param pLoop
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final boolean pLoop) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final boolean pLoop) {
 		return this.animate(pFrameDurations, pFirstTileIndex, pLastTileIndex, (pLoop) ? AnimatedSprite.LOOP_CONTINUOUS : 0, null);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pFirstTileIndex
-         * @param pLastTileIndex
-         * @param pLoop
-         * @param pAnimationListener
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final boolean pLoop, final IAnimationListener pAnimationListener) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final boolean pLoop, final IAnimationListener pAnimationListener) {
 		return this.animate(pFrameDurations, pFirstTileIndex, pLastTileIndex, (pLoop) ? AnimatedSprite.LOOP_CONTINUOUS : 0, pAnimationListener);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pFirstTileIndex
-         * @param pLastTileIndex
-         * @param pLoopCount
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final int pLoopCount) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final int pLoopCount) {
 		return this.animate(pFrameDurations, pFirstTileIndex, pLastTileIndex, pLoopCount, null);
 	}
 
-        /**
-         * 
-         * @param pFrameDurations
-         * @param pFrames
-         * @param pLoopCount
-         * @return
-         */
-        public AnimatedSprite animate(final long[] pFrameDurations, final int[] pFrames, final int pLoopCount) {
+	public AnimatedSprite animate(final long[] pFrameDurations, final int[] pFrames, final int pLoopCount) {
 		return this.animate(pFrameDurations, pFrames, pLoopCount, null);
 	}
 
@@ -496,8 +269,7 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	 * @param pFrameDurations must have the same length as pFrames.
 	 * @param pFrames indices of the frames to animate.
 	 * @param pLoopCount
-         * @param pAnimationListener
-         * @return  
+	 * @param pAnimationListener
 	 */
 	public AnimatedSprite animate(final long[] pFrameDurations, final int[] pFrames, final int pLoopCount, final IAnimationListener pAnimationListener) {
 		final int frameCount = pFrames.length;
@@ -513,8 +285,7 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	 * @param pFirstTileIndex
 	 * @param pLastTileIndex
 	 * @param pLoopCount
-         * @param pAnimationListener
-         * @return  
+	 * @param pAnimationListener
 	 */
 	public AnimatedSprite animate(final long[] pFrameDurations, final int pFirstTileIndex, final int pLastTileIndex, final int pLoopCount, final IAnimationListener pAnimationListener) {
 		if(pLastTileIndex - pFirstTileIndex < 1) {
@@ -558,10 +329,7 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IAnimationListener {
+	public static interface IAnimationListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -587,10 +355,6 @@ public class AnimatedSprite extends TiledSprite implements TimeConstants {
 		 * @param pInitialLoopCount is {@link AnimatedSprite#LOOP_CONTINUOUS} when {@link AnimatedSprite} loops infinitely.
 		 */
 		public void onAnimationLoopFinished(final AnimatedSprite pAnimatedSprite, final int pRemainingLoopCount, final int pInitialLoopCount);
-                /**
-                 * 
-                 * @param pAnimatedSprite
-                 */
-                public void onAnimationFinished(final AnimatedSprite pAnimatedSprite);
+		public void onAnimationFinished(final AnimatedSprite pAnimatedSprite);
 	}
 }

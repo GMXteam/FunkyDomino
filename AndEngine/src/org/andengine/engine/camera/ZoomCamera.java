@@ -23,23 +23,13 @@ public class ZoomCamera extends BoundCamera {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected float mZoomFactor = 1.0f;
+	protected float mZoomFactor = 1.0f;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pX
-     * @param pY
-     * @param pWidth
-     * @param pHeight
-     */
-    public ZoomCamera(final float pX, final float pY, final float pWidth, final float pHeight) {
+	public ZoomCamera(final float pX, final float pY, final float pWidth, final float pHeight) {
 		super(pX, pY, pWidth, pHeight);
 	}
 
@@ -47,19 +37,11 @@ public class ZoomCamera extends BoundCamera {
 	// Getter & Setter
 	// ===========================================================
 
-    /**
-     * 
-     * @return
-     */
-    public float getZoomFactor() {
+	public float getZoomFactor() {
 		return this.mZoomFactor;
 	}
 
-        /**
-         * 
-         * @param pZoomFactor
-         */
-        public void setZoomFactor(final float pZoomFactor) {
+	public void setZoomFactor(final float pZoomFactor) {
 		this.mZoomFactor = pZoomFactor;
 
 		if(this.mBoundsEnabled) {
@@ -71,11 +53,7 @@ public class ZoomCamera extends BoundCamera {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getXMin() {
 		if(this.mZoomFactor == 1.0f) {
 			return super.getXMin();
@@ -85,11 +63,7 @@ public class ZoomCamera extends BoundCamera {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getXMax() {
 		if(this.mZoomFactor == 1.0f) {
 			return super.getXMax();
@@ -99,11 +73,7 @@ public class ZoomCamera extends BoundCamera {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getYMin() {
 		if(this.mZoomFactor == 1.0f) {
 			return super.getYMin();
@@ -123,29 +93,17 @@ public class ZoomCamera extends BoundCamera {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getWidth() {
 		return super.getWidth() / this.mZoomFactor;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getHeight() {
 		return super.getHeight() / this.mZoomFactor;
 	}
 
-        /**
-         * 
-         * @param pSceneTouchEvent
-         */
-        @Override
+	@Override
 	protected void applySceneToCameraSceneOffset(final TouchEvent pSceneTouchEvent) {
 		final float zoomFactor = this.mZoomFactor;
 		if(zoomFactor != 1) {
@@ -170,11 +128,7 @@ public class ZoomCamera extends BoundCamera {
 		super.applySceneToCameraSceneOffset(pSceneCoordinates);
 	}
 
-        /**
-         * 
-         * @param pCameraSceneTouchEvent
-         */
-        @Override
+	@Override
 	protected void unapplySceneToCameraSceneOffset(final TouchEvent pCameraSceneTouchEvent) {
 		super.unapplySceneToCameraSceneOffset(pCameraSceneTouchEvent);
 
@@ -189,11 +143,7 @@ public class ZoomCamera extends BoundCamera {
 		}
 	}
 
-        /**
-         * 
-         * @param pCameraSceneCoordinates
-         */
-        @Override
+	@Override
 	protected void unapplySceneToCameraSceneOffset(final float[] pCameraSceneCoordinates) {
 		super.unapplySceneToCameraSceneOffset(pCameraSceneCoordinates);
 

@@ -16,10 +16,7 @@ public final class MathUtils implements MathConstants {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final Random RANDOM = new Random(System.nanoTime());
+	public static final Random RANDOM = new Random(System.nanoTime());
 
 	// ===========================================================
 	// Fields
@@ -41,40 +38,19 @@ public final class MathUtils implements MathConstants {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param dY
-     * @param dX
-     * @return
-     */
-    public static final float atan2(final float dY, final float dX) {
+	public static final float atan2(final float dY, final float dX) {
 		return (float)Math.atan2(dY, dX);
 	}
 
-    /**
-     * 
-     * @param pRad
-     * @return
-     */
-    public static final float radToDeg(final float pRad) {
+	public static final float radToDeg(final float pRad) {
 		return RAD_TO_DEG * pRad;
 	}
 
-    /**
-     * 
-     * @param pDegree
-     * @return
-     */
-    public static final float degToRad(final float pDegree) {
+	public static final float degToRad(final float pDegree) {
 		return DEG_TO_RAD * pDegree;
 	}
 
-        /**
-         * 
-         * @param n
-         * @return
-         */
-        public static final int signum(final int n) {
+	public static final int signum(final int n) {
 		if(n == 0) {
 			return 0;
 		} else if(n > 0) {
@@ -84,11 +60,7 @@ public final class MathUtils implements MathConstants {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static final int randomSign() {
+	public static final int randomSign() {
 		if(RANDOM.nextBoolean()) {
 			return 1;
 		} else {
@@ -96,13 +68,7 @@ public final class MathUtils implements MathConstants {
 		}
 	}
 
-        /**
-         * 
-         * @param pMin
-         * @param pMax
-         * @return
-         */
-        public static final float random(final float pMin, final float pMax) {
+	public static final float random(final float pMin, final float pMax) {
 		return pMin + RANDOM.nextFloat() * (pMax - pMin);
 	}
 
@@ -115,30 +81,15 @@ public final class MathUtils implements MathConstants {
 		return pMin + RANDOM.nextInt(pMax - pMin + 1);
 	}
 
-        /**
-         * 
-         * @param n
-         * @return
-         */
-        public static final boolean isPowerOfTwo(final int n) {
+	public static final boolean isPowerOfTwo(final int n) {
 		return ((n != 0) && (n & (n - 1)) == 0);
 	}
 
-        /**
-         * 
-         * @param f
-         * @return
-         */
-        public static final int nextPowerOfTwo(final float f) {
-		return MathUtils.nextPowerOfTwo((int)(Math.ceil(f)));
+	public static final int nextPowerOfTwo(final float f) {
+		return MathUtils.nextPowerOfTwo((int)(FloatMath.ceil(f)));
 	}
 
-        /**
-         * 
-         * @param n
-         * @return
-         */
-        public static final int nextPowerOfTwo(final int n) {
+	public static final int nextPowerOfTwo(final int n) {
 		int k = n;
 
 		if (k == 0) {
@@ -154,12 +105,7 @@ public final class MathUtils implements MathConstants {
 		return k + 1;
 	}
 
-        /**
-         * 
-         * @param pValues
-         * @return
-         */
-        public static final int sum(final int[] pValues) {
+	public static final int sum(final int[] pValues) {
 		int sum = 0;
 		for(int i = pValues.length - 1; i >= 0; i--) {
 			sum += pValues[i];
@@ -168,34 +114,21 @@ public final class MathUtils implements MathConstants {
 		return sum;
 	}
 
-        /**
-         * 
-         * @param pValues
-         */
-        public static final void arraySumInternal(final int[] pValues) {
+	public static final void arraySumInternal(final int[] pValues) {
 		final int valueCount = pValues.length;
 		for(int i = 1; i < valueCount; i++) {
 			pValues[i] = pValues[i-1] + pValues[i];
 		}
 	}
 
-        /**
-         * 
-         * @param pValues
-         */
-        public static final void arraySumInternal(final long[] pValues) {
+	public static final void arraySumInternal(final long[] pValues) {
 		final int valueCount = pValues.length;
 		for(int i = 1; i < valueCount; i++) {
 			pValues[i] = pValues[i-1] + pValues[i];
 		}
 	}
 
-        /**
-         * 
-         * @param pValues
-         * @param pFactor
-         */
-        public static final void arraySumInternal(final long[] pValues, final long pFactor) {
+	public static final void arraySumInternal(final long[] pValues, final long pFactor) {
 		pValues[0] = pValues[0] * pFactor;
 		final int valueCount = pValues.length;
 		for(int i = 1; i < valueCount; i++) {
@@ -203,13 +136,7 @@ public final class MathUtils implements MathConstants {
 		}
 	}
 
-        /**
-         * 
-         * @param pValues
-         * @param pTargetValues
-         * @param pFactor
-         */
-        public static final void arraySumInto(final long[] pValues, final long[] pTargetValues, final long pFactor) {
+	public static final void arraySumInto(final long[] pValues, final long[] pTargetValues, final long pFactor) {
 		pTargetValues[0] = pValues[0] * pFactor;
 		final int valueCount = pValues.length;
 		for(int i = 1; i < valueCount; i++) {
@@ -217,12 +144,7 @@ public final class MathUtils implements MathConstants {
 		}
 	}
 
-        /**
-         * 
-         * @param pValues
-         * @return
-         */
-        public static final float arraySum(final float[] pValues) {
+	public static final float arraySum(final float[] pValues) {
 		float sum = 0;
 		final int valueCount = pValues.length;
 		for(int i = 0; i < valueCount; i++) {
@@ -231,24 +153,11 @@ public final class MathUtils implements MathConstants {
 		return sum;
 	}
 
-        /**
-         * 
-         * @param pValues
-         * @return
-         */
-        public static final float arrayAverage(final float[] pValues) {
+	public static final float arrayAverage(final float[] pValues) {
 		return MathUtils.arraySum(pValues) / pValues.length;
 	}
 
-        /**
-         * 
-         * @param pVertices
-         * @param pRotation
-         * @param pRotationCenterX
-         * @param pRotationCenterY
-         * @return
-         */
-        public static float[] rotateAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY) {
+	public static float[] rotateAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY) {
 		if(pRotation != 0) {
 			final float rotationRad = MathUtils.degToRad(pRotation);
 			final float sinRotationRad = FloatMath.sin(rotationRad);
@@ -264,16 +173,7 @@ public final class MathUtils implements MathConstants {
 		return pVertices;
 	}
 
-        /**
-         * 
-         * @param pVertices
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleCenterX
-         * @param pScaleCenterY
-         * @return
-         */
-        public static float[] scaleAroundCenter(final float[] pVertices, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
+	public static float[] scaleAroundCenter(final float[] pVertices, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
 		if(pScaleX != 1 || pScaleY != 1) {
 			for(int i = pVertices.length - 2; i >= 0; i -= 2) {
 				pVertices[i] = pScaleCenterX + (pVertices[i] - pScaleCenterX) * pScaleX;
@@ -284,115 +184,42 @@ public final class MathUtils implements MathConstants {
 		return pVertices;
 	}
 
-        /**
-         * 
-         * @param pVertices
-         * @param pRotation
-         * @param pRotationCenterX
-         * @param pRotationCenterY
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleCenterX
-         * @param pScaleCenterY
-         * @return
-         */
-        public static float[] rotateAndScaleAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
+	public static float[] rotateAndScaleAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
 		MathUtils.rotateAroundCenter(pVertices, pRotation, pRotationCenterX, pRotationCenterY);
 		return MathUtils.scaleAroundCenter(pVertices, pScaleX, pScaleY, pScaleCenterX, pScaleCenterY);
 	}
 
-        /**
-         * 
-         * @param pVertices
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleCenterX
-         * @param pScaleCenterY
-         * @return
-         */
-        public static float[] revertScaleAroundCenter(final float[] pVertices, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
+	public static float[] revertScaleAroundCenter(final float[] pVertices, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
 		return MathUtils.scaleAroundCenter(pVertices, 1 / pScaleX, 1 / pScaleY, pScaleCenterX, pScaleCenterY);
 	}
 
-        /**
-         * 
-         * @param pVertices
-         * @param pRotation
-         * @param pRotationCenterX
-         * @param pRotationCenterY
-         * @return
-         */
-        public static float[] revertRotateAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY) {
+	public static float[] revertRotateAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY) {
 		return MathUtils.rotateAroundCenter(pVertices, -pRotation, pRotationCenterX, pRotationCenterY);
 	}
 
-        /**
-         * 
-         * @param pVertices
-         * @param pRotation
-         * @param pRotationCenterX
-         * @param pRotationCenterY
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleCenterX
-         * @param pScaleCenterY
-         * @return
-         */
-        public static float[] revertRotateAndScaleAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
+	public static float[] revertRotateAndScaleAroundCenter(final float[] pVertices, final float pRotation, final float pRotationCenterX, final float pRotationCenterY, final float pScaleX, final float pScaleY, final float pScaleCenterX, final float pScaleCenterY) {
 		MathUtils.revertScaleAroundCenter(pVertices, pScaleX, pScaleY, pScaleCenterX, pScaleCenterY);
 		return MathUtils.revertRotateAroundCenter(pVertices, pRotation, pRotationCenterX, pRotationCenterY);
 	}
 
-        /**
-         * 
-         * @param pMinValue
-         * @param pMaxValue
-         * @param pValue
-         * @return
-         */
-        public static final boolean isInBounds(final int pMinValue, final int pMaxValue, final int pValue) {
+	public static final boolean isInBounds(final int pMinValue, final int pMaxValue, final int pValue) {
 		return pValue >= pMinValue && pValue <= pMaxValue;
 	}
 
-        /**
-         * 
-         * @param pMinValue
-         * @param pMaxValue
-         * @param pValue
-         * @return
-         */
-        public static final boolean isInBounds(final float pMinValue, final float pMaxValue, final float pValue) {
+	public static final boolean isInBounds(final float pMinValue, final float pMaxValue, final float pValue) {
 		return pValue >= pMinValue && pValue <= pMaxValue;
 	}
 
-        /**
-         * 
-         * @param pMinValue
-         * @param pMaxValue
-         * @param pValue
-         * @return
-         */
-        public static final int bringToBounds(final int pMinValue, final int pMaxValue, final int pValue) {
+	public static final int bringToBounds(final int pMinValue, final int pMaxValue, final int pValue) {
 		return Math.max(pMinValue, Math.min(pMaxValue, pValue));
 	}
 
-        /**
-         * 
-         * @param pMinValue
-         * @param pMaxValue
-         * @param pValue
-         * @return
-         */
-        public static final float bringToBounds(final float pMinValue, final float pMaxValue, final float pValue) {
+	public static final float bringToBounds(final float pMinValue, final float pMaxValue, final float pValue) {
 		return Math.max(pMinValue, Math.min(pMaxValue, pValue));
 	}
 
 	/**
-         * @param pX1 
-         * @param pY2 
-         * @param pX2 
-         * @param pY1 
-         * @return the euclidean distance between the points (pX1, pY1) and (pX2, pY2).
+	 * @return the euclidean distance between the points (pX1, pY1) and (pX2, pY2).
 	 */
 	public static final float distance(final float pX1, final float pY1, final float pX2, final float pY2){
 		final float dX = pX2 - pX1;
@@ -401,9 +228,7 @@ public final class MathUtils implements MathConstants {
 	}
 
 	/**
-         * @param pX 
-         * @param pY 
-         * @return the euclidean distance between the origin (0, 0) and (pX, pY).
+	 * @return the euclidean distance between the origin (0, 0) and (pX, pY).
 	 */
 	public static final float length(final float pX, final float pY){
 		return FloatMath.sqrt((pX * pX) + (pY * pY));
@@ -429,45 +254,19 @@ public final class MathUtils implements MathConstants {
 		return (int)Math.round(pX * (1 - pMix) + pY * pMix);
 	}
 
-        /**
-         * 
-         * @param n
-         * @return
-         */
-        public static final boolean isEven(final int n) {
+	public static final boolean isEven(final int n) {
 		return n % 2 == 0;
 	}
 
-        /**
-         * 
-         * @param n
-         * @return
-         */
-        public static final boolean isOdd(final int n) {
+	public static final boolean isOdd(final int n) {
 		return n % 2 == 1;
 	}
 
-        /**
-         * 
-         * @param pXA
-         * @param pYA
-         * @param pXB
-         * @param pYB
-         * @return
-         */
-        public static float dot(final float pXA, final float pYA, final float pXB, final float pYB) { 
+	public static float dot(final float pXA, final float pYA, final float pXB, final float pYB) { 
 		return pXA * pXB + pYA * pYB;
 	}
 
-        /**
-         * 
-         * @param pXA
-         * @param pYA
-         * @param pXB
-         * @param pYB
-         * @return
-         */
-        public static float cross(final float pXA, final float pYA, final float pXB, final float pYB) { 
+	public static float cross(final float pXA, final float pYA, final float pXB, final float pYB) { 
 		return pXA * pYB - pXB * pYA;
 	}
 

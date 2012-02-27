@@ -16,35 +16,16 @@ public abstract class BaseTextureAtlasSource implements ITextureAtlasSource {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected int mTextureX;
-        /**
-         * 
-         */
-        protected int mTextureY;
-        /**
-         * 
-         */
-        protected int mTextureWidth;
-        /**
-         * 
-         */
-        protected int mTextureHeight;
+	protected int mTextureX;
+	protected int mTextureY;
+	protected int mTextureWidth;
+	protected int mTextureHeight;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureX
-         * @param pTextureY
-         * @param pTextureWidth
-         * @param pTextureHeight
-         */
-        public BaseTextureAtlasSource(final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
+	public BaseTextureAtlasSource(final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		this.mTextureX = pTextureX;
 		this.mTextureY = pTextureY;
 		this.mTextureWidth = pTextureWidth;
@@ -55,74 +36,42 @@ public abstract class BaseTextureAtlasSource implements ITextureAtlasSource {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getTextureX() {
 		return this.mTextureX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getTextureY() {
 		return this.mTextureY;
 	}
 
-        /**
-         * 
-         * @param pTextureX
-         */
-        @Override
+	@Override
 	public void setTextureX(final int pTextureX) {
 		this.mTextureX = pTextureX;
 	}
 
-        /**
-         * 
-         * @param pTextureY
-         */
-        @Override
+	@Override
 	public void setTextureY(final int pTextureY) {
 		this.mTextureY = pTextureY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getTextureWidth() {
 		return this.mTextureWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getTextureHeight() {
 		return this.mTextureHeight;
 	}
 
-        /**
-         * 
-         * @param pTextureWidth
-         */
-        @Override
+	@Override
 	public void setTextureWidth(final int pTextureWidth) {
 		this.mTextureWidth = pTextureWidth;
 	}
 
-        /**
-         * 
-         * @param pTextureHeight
-         */
-        @Override
+	@Override
 	public void setTextureHeight(final int pTextureHeight) {
 		this.mTextureHeight = pTextureHeight;
 	}
@@ -131,11 +80,7 @@ public abstract class BaseTextureAtlasSource implements ITextureAtlasSource {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "( " + this.getTextureWidth() + "x" + this.getTextureHeight() + " @ "+ this.mTextureX + "/" + this.mTextureY + " )";
 	}

@@ -28,12 +28,7 @@ public class CircularListTest extends IListTest {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pInitialCapacity
-     * @return
-     */
-    @Override
+	@Override
 	protected IList<String> newList(final int pInitialCapacity) {
 		return new CircularList<String>(pInitialCapacity);
 	}

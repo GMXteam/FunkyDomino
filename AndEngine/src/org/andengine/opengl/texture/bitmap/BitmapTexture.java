@@ -41,55 +41,23 @@ public abstract class BitmapTexture extends Texture {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureManager
-         * @throws IOException
-         */
-        public BitmapTexture(final TextureManager pTextureManager) throws IOException {
+	public BitmapTexture(final TextureManager pTextureManager) throws IOException {
 		this(pTextureManager, BitmapTextureFormat.RGBA_8888, TextureOptions.DEFAULT, null);
 	}
 
-        /**
-         * 
-         * @param pTextureManager
-         * @param pBitmapTextureFormat
-         * @throws IOException
-         */
-        public BitmapTexture(final TextureManager pTextureManager, final BitmapTextureFormat pBitmapTextureFormat) throws IOException {
+	public BitmapTexture(final TextureManager pTextureManager, final BitmapTextureFormat pBitmapTextureFormat) throws IOException {
 		this(pTextureManager, pBitmapTextureFormat, TextureOptions.DEFAULT, null);
 	}
 
-        /**
-         * 
-         * @param pTextureManager
-         * @param pTextureOptions
-         * @throws IOException
-         */
-        public BitmapTexture(final TextureManager pTextureManager, final TextureOptions pTextureOptions) throws IOException {
+	public BitmapTexture(final TextureManager pTextureManager, final TextureOptions pTextureOptions) throws IOException {
 		this(pTextureManager, BitmapTextureFormat.RGBA_8888, pTextureOptions, null);
 	}
 
-        /**
-         * 
-         * @param pTextureManager
-         * @param pBitmapTextureFormat
-         * @param pTextureOptions
-         * @throws IOException
-         */
-        public BitmapTexture(final TextureManager pTextureManager, final BitmapTextureFormat pBitmapTextureFormat, final TextureOptions pTextureOptions) throws IOException {
+	public BitmapTexture(final TextureManager pTextureManager, final BitmapTextureFormat pBitmapTextureFormat, final TextureOptions pTextureOptions) throws IOException {
 		this(pTextureManager, pBitmapTextureFormat, pTextureOptions, null);
 	}
 
-        /**
-         * 
-         * @param pTextureManager
-         * @param pBitmapTextureFormat
-         * @param pTextureOptions
-         * @param pTextureStateListener
-         * @throws IOException
-         */
-        public BitmapTexture(final TextureManager pTextureManager ,final BitmapTextureFormat pBitmapTextureFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IOException {
+	public BitmapTexture(final TextureManager pTextureManager ,final BitmapTextureFormat pBitmapTextureFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IOException {
 		super(pTextureManager, pBitmapTextureFormat.getPixelFormat(), pTextureOptions, pTextureStateListener);
 
 		this.mBitmapTextureFormat = pBitmapTextureFormat;
@@ -112,20 +80,12 @@ public abstract class BitmapTexture extends Texture {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getWidth() {
 		return this.mWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getHeight() {
 		return this.mHeight;
 	}
@@ -134,19 +94,9 @@ public abstract class BitmapTexture extends Texture {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         * @throws IOException
-         */
-        protected abstract InputStream onGetInputStream() throws IOException;
+	protected abstract InputStream onGetInputStream() throws IOException;
 
-        /**
-         * 
-         * @param pGLState
-         * @throws IOException
-         */
-        @Override
+	@Override
 	protected void writeTextureToHardware(final GLState pGLState) throws IOException {
 		final Config bitmapConfig = this.mBitmapTextureFormat.getBitmapConfig();
 		final Bitmap bitmap = this.onGetBitmap(bitmapConfig);
@@ -180,13 +130,7 @@ public abstract class BitmapTexture extends Texture {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapConfig
-         * @return
-         * @throws IOException
-         */
-        protected Bitmap onGetBitmap(final Config pBitmapConfig) throws IOException {
+	protected Bitmap onGetBitmap(final Config pBitmapConfig) throws IOException {
 		final BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		decodeOptions.inPreferredConfig = pBitmapConfig;
 
@@ -197,30 +141,15 @@ public abstract class BitmapTexture extends Texture {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static enum BitmapTextureFormat {
+	public static enum BitmapTextureFormat {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-            /**
-             * 
-             */
-            RGBA_8888(Config.ARGB_8888, PixelFormat.RGBA_8888),
-                /**
-                 * 
-                 */
-                RGB_565(Config.RGB_565, PixelFormat.RGB_565),
-                /**
-                 * 
-                 */
-                RGBA_4444(Config.ARGB_4444, PixelFormat.RGBA_4444),
-                /**
-                 * 
-                 */
-                A_8(Config.ALPHA_8, PixelFormat.A_8); // TODO
+		RGBA_8888(Config.ARGB_8888, PixelFormat.RGBA_8888),
+		RGB_565(Config.RGB_565, PixelFormat.RGB_565),
+		RGBA_4444(Config.ARGB_4444, PixelFormat.RGBA_4444),
+		A_8(Config.ALPHA_8, PixelFormat.A_8); // TODO
 
 		// ===========================================================
 		// Constants
@@ -242,12 +171,7 @@ public abstract class BitmapTexture extends Texture {
 			this.mPixelFormat = pPixelFormat;
 		}
 
-                /**
-                 * 
-                 * @param pPixelFormat
-                 * @return
-                 */
-                public static BitmapTextureFormat fromPixelFormat(final PixelFormat pPixelFormat) {
+		public static BitmapTextureFormat fromPixelFormat(final PixelFormat pPixelFormat) {
 			switch(pPixelFormat) {
 				case RGBA_8888:
 					return RGBA_8888;
@@ -266,19 +190,11 @@ public abstract class BitmapTexture extends Texture {
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public Config getBitmapConfig() {
+		public Config getBitmapConfig() {
 			return this.mBitmapConfig;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public PixelFormat getPixelFormat() {
+		public PixelFormat getPixelFormat() {
 			return this.mPixelFormat;
 		}
 

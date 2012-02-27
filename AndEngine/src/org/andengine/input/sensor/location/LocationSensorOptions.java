@@ -75,51 +75,27 @@ public class LocationSensorOptions extends Criteria {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEnabledOnly
-         */
-        public void setEnabledOnly(final boolean pEnabledOnly) {
+	public void setEnabledOnly(final boolean pEnabledOnly) {
 		this.mEnabledOnly = pEnabledOnly;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isEnabledOnly() {
+	public boolean isEnabledOnly() {
 		return this.mEnabledOnly;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public long getMinimumTriggerTime() {
+	public long getMinimumTriggerTime() {
 		return this.mMinimumTriggerTime;
 	}
 
-        /**
-         * 
-         * @param pMinimumTriggerTime
-         */
-        public void setMinimumTriggerTime(final long pMinimumTriggerTime) {
+	public void setMinimumTriggerTime(final long pMinimumTriggerTime) {
 		this.mMinimumTriggerTime = pMinimumTriggerTime;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public long getMinimumTriggerDistance() {
+	public long getMinimumTriggerDistance() {
 		return this.mMinimumTriggerDistance;
 	}
 
-        /**
-         * 
-         * @param pMinimumTriggerDistance
-         */
-        public void setMinimumTriggerDistance(final long pMinimumTriggerDistance) {
+	public void setMinimumTriggerDistance(final long pMinimumTriggerDistance) {
 		this.mMinimumTriggerDistance = pMinimumTriggerDistance;
 	}
 

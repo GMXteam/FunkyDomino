@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 import org.andengine.util.preferences.SimplePreferences;
 
 
-import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -49,29 +48,11 @@ public class BetaUtils implements Constants {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pActivity
-         * @param pExpirationDate
-         * @param pTitleResourceID
-         * @param pMessageResourceID
-         * @return
-         */
-        public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID) {
+	public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID) {
 		return BetaUtils.finishWhenExpired(pActivity, pExpirationDate, pTitleResourceID, pMessageResourceID, null, null);
 	}
 
-        /**
-         * 
-         * @param pActivity
-         * @param pExpirationDate
-         * @param pTitleResourceID
-         * @param pMessageResourceID
-         * @param pOkIntent
-         * @param pCancelIntent
-         * @return
-         */
-        public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID, final Intent pOkIntent, final Intent pCancelIntent) {
+	public static boolean finishWhenExpired(final Activity pActivity, final GregorianCalendar pExpirationDate, final int pTitleResourceID, final int pMessageResourceID, final Intent pOkIntent, final Intent pCancelIntent) {
 		final SharedPreferences spref = SimplePreferences.getInstance(pActivity);
 
 		final long now = System.currentTimeMillis();
@@ -84,7 +65,7 @@ public class BetaUtils implements Constants {
 		if(lastuseDate.after(pExpirationDate)){
 			final Builder alertDialogBuilder = new AlertDialog.Builder(pActivity)
 			.setTitle(pTitleResourceID)
-			.setIcon(R.drawable.ic_dialog_alert)
+			.setIcon(android.R.drawable.ic_dialog_alert)
 			.setMessage(pMessageResourceID);
 
 			alertDialogBuilder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){

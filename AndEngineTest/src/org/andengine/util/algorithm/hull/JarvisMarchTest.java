@@ -19,11 +19,7 @@ public class JarvisMarchTest extends IHullAlgorithmTest {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @return
-     */
-    @Override
+	@Override
 	protected IHullAlgorithm newHullALgorithm() {
 		return new JarvisMarch();
 	}

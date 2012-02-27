@@ -32,10 +32,7 @@ public class GLState {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int GL_UNPACK_ALIGNMENT_DEFAULT = 4;
+	public static final int GL_UNPACK_ALIGNMENT_DEFAULT = 4;
 
 	// ===========================================================
 	// Fields
@@ -82,67 +79,35 @@ public class GLState {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public String getVersion() {
+	public String getVersion() {
 		return this.mVersion;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public String getRenderer() {
+	public String getRenderer() {
 		return this.mRenderer;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public String getExtensions() {
+	public String getExtensions() {
 		return this.mExtensions;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getMaximumVertexAttributeCount() {
+	public int getMaximumVertexAttributeCount() {
 		return this.mMaximumVertexAttributeCount;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getMaximumVertexShaderUniformVectorCount() {
+	public int getMaximumVertexShaderUniformVectorCount() {
 		return this.mMaximumVertexShaderUniformVectorCount;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getMaximumFragmentShaderUniformVectorCount() {
+	public int getMaximumFragmentShaderUniformVectorCount() {
 		return this.mMaximumFragmentShaderUniformVectorCount;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getMaximumTextureUnits() {
+	public int getMaximumTextureUnits() {
 		return this.mMaximumTextureUnits;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getMaximumTextureSize() {
+	public int getMaximumTextureSize() {
 		return this.mMaximumTextureSize;
 	}
 
@@ -150,13 +115,7 @@ public class GLState {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pRenderOptions
-         * @param pConfigChooser
-         * @param pEGLConfig
-         */
-        public void reset(final RenderOptions pRenderOptions, final ConfigChooser pConfigChooser, final EGLConfig pEGLConfig) {
+	public void reset(final RenderOptions pRenderOptions, final ConfigChooser pConfigChooser, final EGLConfig pEGLConfig) {
 		this.mVersion = GLES20.glGetString(GLES20.GL_VERSION);
 		this.mRenderer = GLES20.glGetString(GLES20.GL_RENDERER);
 		this.mExtensions = GLES20.glGetString(GLES20.GL_EXTENSIONS);
@@ -202,117 +161,77 @@ public class GLState {
 		this.mLineWidth = 1;
 	}
 
-        /**
-         * 
-         */
-        public void enableScissorTest() {
+	public void enableScissorTest() {
 		if(!this.mEnableScissorTest) {
 			this.mEnableScissorTest = true;
 			GLES20.glEnable(GLES20.GL_SCISSOR_TEST);
 		}
 	}
-        /**
-         * 
-         */
-        public void disableScissorTest() {
+	public void disableScissorTest() {
 		if(this.mEnableScissorTest) {
 			this.mEnableScissorTest = false;
 			GLES20.glDisable(GLES20.GL_SCISSOR_TEST);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void enableBlend() {
+	public void enableBlend() {
 		if(!this.mEnableBlend) {
 			this.mEnableBlend = true;
 			GLES20.glEnable(GLES20.GL_BLEND);
 		}
 	}
-        /**
-         * 
-         */
-        public void disableBlend() {
+	public void disableBlend() {
 		if(this.mEnableBlend) {
 			this.mEnableBlend = false;
 			GLES20.glDisable(GLES20.GL_BLEND);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void enableCulling() {
+	public void enableCulling() {
 		if(!this.mEnableCulling) {
 			this.mEnableCulling = true;
 			GLES20.glEnable(GLES20.GL_CULL_FACE);
 		}
 	}
-        /**
-         * 
-         */
-        public void disableCulling() {
+	public void disableCulling() {
 		if(this.mEnableCulling) {
 			this.mEnableCulling = false;
 			GLES20.glDisable(GLES20.GL_CULL_FACE);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void enableDither() {
+	public void enableDither() {
 		if(!this.mEnableDither) {
 			this.mEnableDither = true;
 			GLES20.glEnable(GLES20.GL_DITHER);
 		}
 	}
-        /**
-         * 
-         */
-        public void disableDither() {
+	public void disableDither() {
 		if(this.mEnableDither) {
 			this.mEnableDither = false;
 			GLES20.glDisable(GLES20.GL_DITHER);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void enableDepthTest() {
+	public void enableDepthTest() {
 		if(!this.mEnableDepthTest) {
 			this.mEnableDepthTest = true;
 			GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 		}
 	}
-        /**
-         * 
-         */
-        public void disableDepthTest() {
+	public void disableDepthTest() {
 		if(this.mEnableDepthTest) {
 			this.mEnableDepthTest = false;
 			GLES20.glDisable(GLES20.GL_DEPTH_TEST);
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int generateBuffer() {
+	public int generateBuffer() {
 		GLES20.glGenBuffers(1, this.mHardwareIDContainer, 0);
 		return this.mHardwareIDContainer[0];
 	}
 
-        /**
-         * 
-         * @param pSize
-         * @param pUsage
-         * @return
-         */
-        public int generateBuffer(final int pSize, final int pUsage) {
+	public int generateBuffer(final int pSize, final int pUsage) {
 		GLES20.glGenBuffers(1, this.mHardwareIDContainer, 0);
 		final int hardwareBufferID = this.mHardwareIDContainer[0];
 
@@ -323,22 +242,14 @@ public class GLState {
 		return hardwareBufferID;
 	}
 
-        /**
-         * 
-         * @param pHardwareBufferID
-         */
-        public void bindBuffer(final int pHardwareBufferID) {
+	public void bindBuffer(final int pHardwareBufferID) {
 		if(this.mCurrentBufferID != pHardwareBufferID) {
 			this.mCurrentBufferID = pHardwareBufferID;
 			GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, pHardwareBufferID);
 		}
 	}
 
-        /**
-         * 
-         * @param pHardwareBufferID
-         */
-        public void deleteBuffer(final int pHardwareBufferID) {
+	public void deleteBuffer(final int pHardwareBufferID) {
 		if(this.mCurrentBufferID == pHardwareBufferID) {
 			this.mCurrentBufferID = -1;
 		}
@@ -346,37 +257,20 @@ public class GLState {
 		GLES20.glDeleteBuffers(1, this.mHardwareIDContainer, 0);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int generateFramebuffer() {
+	public int generateFramebuffer() {
 		GLES20.glGenFramebuffers(1, this.mHardwareIDContainer, 0);
 		return this.mHardwareIDContainer[0];
 	}
 
-        /**
-         * 
-         * @param pFramebufferID
-         */
-        public void bindFramebuffer(final int pFramebufferID) {
+	public void bindFramebuffer(final int pFramebufferID) {
 		GLES20.glBindFramebuffer(GLES20.GL_FRAMEBUFFER, pFramebufferID);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getFramebufferStatus() {
+	public int getFramebufferStatus() {
 		return GLES20.glCheckFramebufferStatus(GLES20.GL_FRAMEBUFFER);
 	}
 
-        /**
-         * 
-         * @throws GLFrameBufferException
-         * @throws GLException
-         */
-        public void checkFramebufferStatus() throws GLFrameBufferException, GLException {
+	public void checkFramebufferStatus() throws GLFrameBufferException, GLException {
 		final int framebufferStatus = this.getFramebufferStatus();
 		switch(framebufferStatus) {
 			case GLES20.GL_FRAMEBUFFER_COMPLETE:
@@ -396,19 +290,11 @@ public class GLState {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getActiveFramebuffer() {
+	public int getActiveFramebuffer() {
 		return this.getInteger(GLES20.GL_FRAMEBUFFER_BINDING);
 	}
 
-        /**
-         * 
-         * @param pHardwareFramebufferID
-         */
-        public void deleteFramebuffer(final int pHardwareFramebufferID) {
+	public void deleteFramebuffer(final int pHardwareFramebufferID) {
 		if(this.mCurrentFramebufferID == pHardwareFramebufferID) {
 			this.mCurrentFramebufferID = -1;
 		}
@@ -416,43 +302,26 @@ public class GLState {
 		GLES20.glDeleteFramebuffers(1, this.mHardwareIDContainer, 0);
 	}
 
-        /**
-         * 
-         * @param pShaderProgramID
-         */
-        public void useProgram(final int pShaderProgramID) {
+	public void useProgram(final int pShaderProgramID) {
 		if(this.mCurrentShaderProgramID != pShaderProgramID) {
 			this.mCurrentShaderProgramID = pShaderProgramID;
 			GLES20.glUseProgram(pShaderProgramID);
 		}
 	}
 
-        /**
-         * 
-         * @param pShaderProgramID
-         */
-        public void deleteProgram(final int pShaderProgramID) {
+	public void deleteProgram(final int pShaderProgramID) {
 		if(this.mCurrentShaderProgramID == pShaderProgramID) {
 			this.mCurrentShaderProgramID = -1;
 		}
 		GLES20.glDeleteProgram(pShaderProgramID);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int generateTexture() {
+	public int generateTexture() {
 		GLES20.glGenTextures(1, this.mHardwareIDContainer, 0);
 		return this.mHardwareIDContainer[0];
 	}
 
-        /**
-         * 
-         * @param pHardwareTextureID
-         * @return
-         */
-        public boolean isTexture(final int pHardwareTextureID) {
+	public boolean isTexture(final int pHardwareTextureID) {
 		return GLES20.glIsTexture(pHardwareTextureID);
 	}
 
@@ -476,6 +345,7 @@ public class GLState {
 
 	/**
 	 * @see {@link GLState#forceBindTexture(GLES20, int)}
+	 * @param GLES20
 	 * @param pHardwareTextureID
 	 */
 	public void bindTexture(final int pHardwareTextureID) {
@@ -485,11 +355,7 @@ public class GLState {
 		}
 	}
 
-        /**
-         * 
-         * @param pHardwareTextureID
-         */
-        public void deleteTexture(final int pHardwareTextureID) {
+	public void deleteTexture(final int pHardwareTextureID) {
 		if(this.mCurrentBoundTextureIDs[this.mCurrentActiveTextureIndex] == pHardwareTextureID) {
 			this.mCurrentBoundTextureIDs[this.mCurrentActiveTextureIndex] = -1;
 		}
@@ -497,12 +363,7 @@ public class GLState {
 		GLES20.glDeleteTextures(1, this.mHardwareIDContainer, 0);
 	}
 
-        /**
-         * 
-         * @param pSourceBlendMode
-         * @param pDestinationBlendMode
-         */
-        public void blendFunction(final int pSourceBlendMode, final int pDestinationBlendMode) {
+	public void blendFunction(final int pSourceBlendMode, final int pDestinationBlendMode) {
 		if(this.mCurrentSourceBlendMode != pSourceBlendMode || this.mCurrentDestinationBlendMode != pDestinationBlendMode) {
 			this.mCurrentSourceBlendMode = pSourceBlendMode;
 			this.mCurrentDestinationBlendMode = pDestinationBlendMode;
@@ -510,210 +371,101 @@ public class GLState {
 		}
 	}
 
-        /**
-         * 
-         * @param pLineWidth
-         */
-        public void lineWidth(final float pLineWidth) {
+	public void lineWidth(final float pLineWidth) {
 		if(this.mLineWidth  != pLineWidth) {
 			this.mLineWidth = pLineWidth;
 			GLES20.glLineWidth(pLineWidth);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void pushModelViewGLMatrix() {
+	public void pushModelViewGLMatrix() {
 		this.mModelViewGLMatrixStack.glPushMatrix();
 	}
 
-        /**
-         * 
-         */
-        public void popModelViewGLMatrix() {
+	public void popModelViewGLMatrix() {
 		this.mModelViewGLMatrixStack.glPopMatrix();
 	}
 
-        /**
-         * 
-         */
-        public void loadModelViewGLMatrixIdentity() {
+	public void loadModelViewGLMatrixIdentity() {
 		this.mModelViewGLMatrixStack.glLoadIdentity();
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pZ
-         */
-        public void translateModelViewGLMatrixf(final float pX, final float pY, final float pZ) {
+	public void translateModelViewGLMatrixf(final float pX, final float pY, final float pZ) {
 		this.mModelViewGLMatrixStack.glTranslatef(pX, pY, pZ);
 	}
 
-        /**
-         * 
-         * @param pAngle
-         * @param pX
-         * @param pY
-         * @param pZ
-         */
-        public void rotateModelViewGLMatrixf(final float pAngle, final float pX, final float pY, final float pZ) {
+	public void rotateModelViewGLMatrixf(final float pAngle, final float pX, final float pY, final float pZ) {
 		this.mModelViewGLMatrixStack.glRotatef(pAngle, pX, pY, pZ);
 	}
 
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleZ
-         */
-        public void scaleModelViewGLMatrixf(final float pScaleX, final float pScaleY, final int pScaleZ) {
+	public void scaleModelViewGLMatrixf(final float pScaleX, final float pScaleY, final int pScaleZ) {
 		this.mModelViewGLMatrixStack.glScalef(pScaleX, pScaleY, pScaleZ);
 	}
 
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         */
-        public void skewModelViewGLMatrixf(final float pSkewX, final float pSkewY) {
+	public void skewModelViewGLMatrixf(final float pSkewX, final float pSkewY) {
 		this.mModelViewGLMatrixStack.glSkewf(pSkewX, pSkewY);
 	}
 
-        /**
-         * 
-         * @param pLeft
-         * @param pRight
-         * @param pBottom
-         * @param pTop
-         * @param pZNear
-         * @param pZFar
-         */
-        public void orthoModelViewGLMatrixf(final float pLeft, final float pRight, final float pBottom, final float pTop, final float pZNear, final float pZFar) {
+	public void orthoModelViewGLMatrixf(final float pLeft, final float pRight, final float pBottom, final float pTop, final float pZNear, final float pZFar) {
 		this.mModelViewGLMatrixStack.glOrthof(pLeft, pRight, pBottom, pTop, pZNear, pZFar);
 	}
 
-        /**
-         * 
-         */
-        public void pushProjectionGLMatrix() {
+	public void pushProjectionGLMatrix() {
 		this.mProjectionGLMatrixStack.glPushMatrix();
 	}
 
-        /**
-         * 
-         */
-        public void popProjectionGLMatrix() {
+	public void popProjectionGLMatrix() {
 		this.mProjectionGLMatrixStack.glPopMatrix();
 	}
 
-        /**
-         * 
-         */
-        public void loadProjectionGLMatrixIdentity() {
+	public void loadProjectionGLMatrixIdentity() {
 		this.mProjectionGLMatrixStack.glLoadIdentity();
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pZ
-         */
-        public void translateProjectionGLMatrixf(final float pX, final float pY, final float pZ) {
+	public void translateProjectionGLMatrixf(final float pX, final float pY, final float pZ) {
 		this.mProjectionGLMatrixStack.glTranslatef(pX, pY, pZ);
 	}
 
-        /**
-         * 
-         * @param pAngle
-         * @param pX
-         * @param pY
-         * @param pZ
-         */
-        public void rotateProjectionGLMatrixf(final float pAngle, final float pX, final float pY, final float pZ) {
+	public void rotateProjectionGLMatrixf(final float pAngle, final float pX, final float pY, final float pZ) {
 		this.mProjectionGLMatrixStack.glRotatef(pAngle, pX, pY, pZ);
 	}
 
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         * @param pScaleZ
-         */
-        public void scaleProjectionGLMatrixf(final float pScaleX, final float pScaleY, final int pScaleZ) {
+	public void scaleProjectionGLMatrixf(final float pScaleX, final float pScaleY, final float pScaleZ) {
 		this.mProjectionGLMatrixStack.glScalef(pScaleX, pScaleY, pScaleZ);
 	}
 
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         */
-        public void skewProjectionGLMatrixf(final float pSkewX, final float pSkewY) {
+	public void skewProjectionGLMatrixf(final float pSkewX, final float pSkewY) {
 		this.mProjectionGLMatrixStack.glSkewf(pSkewX, pSkewY);
 	}
 
-        /**
-         * 
-         * @param pLeft
-         * @param pRight
-         * @param pBottom
-         * @param pTop
-         * @param pZNear
-         * @param pZFar
-         */
-        public void orthoProjectionGLMatrixf(final float pLeft, final float pRight, final float pBottom, final float pTop, final float pZNear, final float pZFar) {
+	public void orthoProjectionGLMatrixf(final float pLeft, final float pRight, final float pBottom, final float pTop, final float pZNear, final float pZFar) {
 		this.mProjectionGLMatrixStack.glOrthof(pLeft, pRight, pBottom, pTop, pZNear, pZFar);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float[] getModelViewGLMatrix() {
+	public float[] getModelViewGLMatrix() {
 		this.mModelViewGLMatrixStack.getMatrix(this.mModelViewGLMatrix);
 		return this.mModelViewGLMatrix;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float[] getProjectionGLMatrix() {
+	public float[] getProjectionGLMatrix() {
 		this.mProjectionGLMatrixStack.getMatrix(this.mProjectionGLMatrix);
 		return this.mProjectionGLMatrix;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float[] getModelViewProjectionGLMatrix() {
+	public float[] getModelViewProjectionGLMatrix() {
 		Matrix.multiplyMM(this.mModelViewProjectionGLMatrix, 0, this.mProjectionGLMatrixStack.mMatrixStack, this.mProjectionGLMatrixStack.mMatrixStackOffset, this.mModelViewGLMatrixStack.mMatrixStack, this.mModelViewGLMatrixStack.mMatrixStackOffset);
 		return this.mModelViewProjectionGLMatrix;
 	}
 
-        /**
-         * 
-         */
-        public void resetModelViewGLMatrixStack() {
+	public void resetModelViewGLMatrixStack() {
 		this.mModelViewGLMatrixStack.reset();
 	}
 
-        /**
-         * 
-         */
-        public void resetProjectionGLMatrixStack() {
+	public void resetProjectionGLMatrixStack() {
 		this.mProjectionGLMatrixStack.reset();
 	}
 
-        /**
-         * 
-         */
-        public void resetGLMatrixStacks() {
+	public void resetGLMatrixStacks() {
 		this.mModelViewGLMatrixStack.reset();
 		this.mProjectionGLMatrixStack.reset();
 	}
@@ -723,11 +475,7 @@ public class GLState {
 	 * Except that difference, same as: {@link GLUtils#texSubImage2D(int, int, int, int, Bitmap, int, int)}</br>
 	 * </br>
 	 * See topic: '<a href="http://groups.google.com/group/android-developers/browse_thread/thread/baa6c33e63f82fca">PNG loading that doesn't premultiply alpha?</a>'
-         * @param pTarget 
-         * @param pBorder
-         * @param pBitmap 
-         * @param pLevel
-         * @param pPixelFormat  
+	 * @param pBorder
 	 */
 	public void glTexImage2D(final int pTarget, final int pLevel, final Bitmap pBitmap, final int pBorder, final PixelFormat pPixelFormat) {
 		final Buffer pixelBuffer = GLHelper.getPixels(pBitmap, pPixelFormat, ByteOrder.BIG_ENDIAN);
@@ -740,14 +488,7 @@ public class GLState {
 	 * Except that difference, same as: {@link GLUtils#texSubImage2D(int, int, int, int, Bitmap, int, int)}</br>
 	 * </br>
 	 * See topic: '<a href="http://groups.google.com/group/android-developers/browse_thread/thread/baa6c33e63f82fca">PNG loading that doesn't premultiply alpha?</a>'
-         * 
-         * @param pTarget
-         * @param pLevel
-         * @param pX
-         * @param pY
-         * @param pBitmap
-         * @param pPixelFormat  
-         */
+	 */
 	public void glTexSubImage2D(final int pTarget, final int pLevel, final int pX, final int pY, final Bitmap pBitmap, final PixelFormat pPixelFormat) {
 		final Buffer pixelBuffer = GLHelper.getPixels(pBitmap, pPixelFormat, ByteOrder.BIG_ENDIAN);
 
@@ -776,39 +517,23 @@ public class GLState {
 		GLES20.glFinish();
 	}
 
-        /**
-         * 
-         * @param pAttribute
-         * @return
-         */
-        public int getInteger(final int pAttribute) {
+	public int getInteger(final int pAttribute) {
 		GLES20.glGetIntegerv(pAttribute, this.mHardwareIDContainer, 0);
 		return this.mHardwareIDContainer[0];
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getError() {
+	public int getError() {
 		return GLES20.glGetError();
 	}
 
-        /**
-         * 
-         * @throws GLException
-         */
-        public void checkError() throws GLException {
+	public void checkError() throws GLException {
 		final int error = GLES20.glGetError();
 		if(error != GLES20.GL_NO_ERROR) {
 			throw new GLException(error);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void clearError() {
+	public void clearError() {
 		GLES20.glGetError();
 	}
 

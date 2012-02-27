@@ -47,38 +47,22 @@ public class ScreenCapture extends Entity implements IScreenGrabberCallback {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @param pCamera
-         */
-        @Override
+	@Override
 	protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
 		this.mScreenGrabber.onManagedDraw(pGLState, pCamera);
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		/* Nothing */
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		/* Nothing */
 	}
 
-        /**
-         * 
-         * @param pBitmap
-         */
-        @Override
+	@Override
 	public void onScreenGrabbed(final Bitmap pBitmap) {
 		try {
 			ScreenCapture.saveCapture(pBitmap, this.mFilePath);
@@ -88,11 +72,7 @@ public class ScreenCapture extends Entity implements IScreenGrabberCallback {
 		}
 	}
 
-        /**
-         * 
-         * @param pException
-         */
-        @Override
+	@Override
 	public void onScreenGrabFailed(final Exception pException) {
 		this.mScreenCaptureCallback.onScreenCaptureFailed(this.mFilePath, pException);
 	}
@@ -101,27 +81,11 @@ public class ScreenCapture extends Entity implements IScreenGrabberCallback {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCaptureWidth
-         * @param pCaptureHeight
-         * @param pFilePath
-         * @param pScreenCaptureCallback
-         */
-        public void capture(final int pCaptureWidth, final int pCaptureHeight, final String pFilePath, final IScreenCaptureCallback pScreenCaptureCallback) {
+	public void capture(final int pCaptureWidth, final int pCaptureHeight, final String pFilePath, final IScreenCaptureCallback pScreenCaptureCallback) {
 		this.capture(0, 0, pCaptureWidth, pCaptureHeight, pFilePath, pScreenCaptureCallback);
 	}
 
-        /**
-         * 
-         * @param pCaptureX
-         * @param pCaptureY
-         * @param pCaptureWidth
-         * @param pCaptureHeight
-         * @param pFilePath
-         * @param pScreencaptureCallback
-         */
-        public void capture(final int pCaptureX, final int pCaptureY, final int pCaptureWidth, final int pCaptureHeight, final String pFilePath, final IScreenCaptureCallback pScreencaptureCallback) {
+	public void capture(final int pCaptureX, final int pCaptureY, final int pCaptureWidth, final int pCaptureHeight, final String pFilePath, final IScreenCaptureCallback pScreencaptureCallback) {
 		this.mFilePath = pFilePath;
 		this.mScreenCaptureCallback = pScreencaptureCallback;
 		this.mScreenGrabber.grab(pCaptureX, pCaptureY, pCaptureWidth, pCaptureHeight, this);
@@ -143,10 +107,7 @@ public class ScreenCapture extends Entity implements IScreenGrabberCallback {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IScreenCaptureCallback {
+	public static interface IScreenCaptureCallback {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -155,16 +116,7 @@ public class ScreenCapture extends Entity implements IScreenGrabberCallback {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pFilePath
-             */
-            public void onScreenCaptured(final String pFilePath);
-            /**
-             * 
-             * @param pFilePath
-             * @param pException
-             */
-            public void onScreenCaptureFailed(final String pFilePath, final Exception pException);
+		public void onScreenCaptured(final String pFilePath);
+		public void onScreenCaptureFailed(final String pFilePath, final Exception pException);
 	}
 }

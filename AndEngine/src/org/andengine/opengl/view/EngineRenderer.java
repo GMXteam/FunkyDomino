@@ -36,13 +36,7 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEngine
-         * @param pConfigChooser
-         * @param pRendererListener
-         */
-        public EngineRenderer(final Engine pEngine, final ConfigChooser pConfigChooser, final IRendererListener pRendererListener) {
+	public EngineRenderer(final Engine pEngine, final ConfigChooser pConfigChooser, final IRendererListener pRendererListener) {
 		this.mEngine = pEngine;
 		this.mConfigChooser = pConfigChooser;
 		this.mRendererListener = pRendererListener;
@@ -58,12 +52,7 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGL
-         * @param pEGLConfig
-         */
-        @Override
+	@Override
 	public void onSurfaceCreated(final GL10 pGL, final EGLConfig pEGLConfig) {
 		synchronized(GLState.class) {
 			if(this.mRendererListener != null) {
@@ -92,13 +81,7 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 		}
 	}
 
-        /**
-         * 
-         * @param pGL
-         * @param pWidth
-         * @param pHeight
-         */
-        @Override
+	@Override
 	public void onSurfaceChanged(final GL10 pGL, final int pWidth, final int pHeight) {
 		if(this.mRendererListener != null) {
 			this.mRendererListener.onSurfaceChanged(pWidth, pHeight);
@@ -109,11 +92,7 @@ public class EngineRenderer implements GLSurfaceView.Renderer {
 		this.mGLState.loadProjectionGLMatrixIdentity();
 	}
 
-        /**
-         * 
-         * @param pGL
-         */
-        @Override
+	@Override
 	public void onDrawFrame(final GL10 pGL) {
 		synchronized(GLState.class) {
 			if (this.mMultiSampling && this.mConfigChooser.isCoverageMultiSampling()) {

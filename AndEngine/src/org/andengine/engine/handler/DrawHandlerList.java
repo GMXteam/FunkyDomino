@@ -25,18 +25,11 @@ public class DrawHandlerList extends SmartList<IDrawHandler> implements IDrawHan
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public DrawHandlerList() {
+	public DrawHandlerList() {
 
 	}
 
-        /**
-         * 
-         * @param pCapacity
-         */
-        public DrawHandlerList(final int pCapacity) {
+	public DrawHandlerList(final int pCapacity) {
 		super(pCapacity);
 	}
 
@@ -48,12 +41,7 @@ public class DrawHandlerList extends SmartList<IDrawHandler> implements IDrawHan
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @param pCamera
-         */
-        @Override
+	@Override
 	public void onDraw(final GLState pGLState, final Camera pCamera) {
 		final int handlerCount = this.size();
 		for(int i = handlerCount - 1; i >= 0; i--) {

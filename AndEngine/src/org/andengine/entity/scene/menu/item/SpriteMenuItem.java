@@ -26,13 +26,7 @@ public class SpriteMenuItem extends Sprite implements IMenuItem {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pID
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public SpriteMenuItem(final int pID, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public SpriteMenuItem(final int pID, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(0, 0, pTextureRegion, pVertexBufferObjectManager);
 
 		this.mID = pID;
@@ -42,11 +36,7 @@ public class SpriteMenuItem extends Sprite implements IMenuItem {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getID() {
 		return this.mID;
 	}
@@ -59,18 +49,12 @@ public class SpriteMenuItem extends Sprite implements IMenuItem {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void onSelected() {
 		/* Nothing. */
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void onUnselected() {
 		/* Nothing. */
 	}

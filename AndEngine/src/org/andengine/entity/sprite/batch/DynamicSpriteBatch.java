@@ -24,145 +24,51 @@ public abstract class DynamicSpriteBatch extends SpriteBatch {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pTexture
-     * @param pCapacity
-     * @param pVertexBufferObjectManager
-     */
-    public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, DrawType.DYNAMIC);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         */
-        public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, DrawType.DYNAMIC);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, pDrawType);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, pDrawType);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, DrawType.DYNAMIC, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, DrawType.DYNAMIC, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         */
-        public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
+	public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
 		super(pTexture, pCapacity, pSpriteBatchVertexBufferObject);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         */
-        public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
+	public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject) {
 		super(pX, pY, pTexture, pCapacity, pSpriteBatchVertexBufferObject);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		super(pTexture, pCapacity, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         * @param pShaderProgram
-         */
-        public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public DynamicSpriteBatch(final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pTexture, pCapacity, pSpriteBatchVertexBufferObject, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTexture
-         * @param pCapacity
-         * @param pSpriteBatchVertexBufferObject
-         * @param pShaderProgram
-         */
-        public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public DynamicSpriteBatch(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final ISpriteBatchVertexBufferObject pSpriteBatchVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pTexture, pCapacity, pSpriteBatchVertexBufferObject, pShaderProgram);
 	}
 
@@ -179,10 +85,7 @@ public abstract class DynamicSpriteBatch extends SpriteBatch {
 	 */
 	protected abstract boolean onUpdateSpriteBatch();
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	protected void begin() {
 		super.begin();
 

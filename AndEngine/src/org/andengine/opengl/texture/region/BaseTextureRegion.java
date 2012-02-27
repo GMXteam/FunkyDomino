@@ -18,28 +18,17 @@ public abstract class BaseTextureRegion implements ITextureRegion {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final ITexture mTexture;
+	protected final ITexture mTexture;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTexture
-         */
-        public BaseTextureRegion(final ITexture pTexture) {
+	public BaseTextureRegion(final ITexture pTexture) {
 		this.mTexture = pTexture;
 	}
 	
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public abstract ITextureRegion deepCopy();
 
 	// ===========================================================
@@ -50,11 +39,7 @@ public abstract class BaseTextureRegion implements ITextureRegion {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public ITexture getTexture() {
 		return this.mTexture;
 	}

@@ -34,25 +34,12 @@ public final class SAXUtils {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pAttributes
-     * @param pAttributeName
-     * @param pDefaultValue
-     * @return
-     */
-    public static final String getAttribute(final Attributes pAttributes, final String pAttributeName, final String pDefaultValue) {
+	public static final String getAttribute(final Attributes pAttributes, final String pAttributeName, final String pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? value : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final String getAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final String getAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		if(value != null) {
 			return value;
@@ -61,243 +48,104 @@ public final class SAXUtils {
 		}
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final boolean getBooleanAttribute(final Attributes pAttributes, final String pAttributeName, final boolean pDefaultValue) {
+	public static final boolean getBooleanAttribute(final Attributes pAttributes, final String pAttributeName, final boolean pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Boolean.parseBoolean(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final boolean getBooleanAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final boolean getBooleanAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Boolean.parseBoolean(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final byte getByteAttribute(final Attributes pAttributes, final String pAttributeName, final byte pDefaultValue) {
+	public static final byte getByteAttribute(final Attributes pAttributes, final String pAttributeName, final byte pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Byte.parseByte(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final byte getByteAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final byte getByteAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Byte.parseByte(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final short getShortAttribute(final Attributes pAttributes, final String pAttributeName, final short pDefaultValue) {
+	public static final short getShortAttribute(final Attributes pAttributes, final String pAttributeName, final short pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Short.parseShort(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final short getShortAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final short getShortAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Short.parseShort(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final int getIntAttribute(final Attributes pAttributes, final String pAttributeName, final int pDefaultValue) {
+	public static final int getIntAttribute(final Attributes pAttributes, final String pAttributeName, final int pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Integer.parseInt(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final int getIntAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final int getIntAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Integer.parseInt(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final long getLongAttribute(final Attributes pAttributes, final String pAttributeName, final long pDefaultValue) {
+	public static final long getLongAttribute(final Attributes pAttributes, final String pAttributeName, final long pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Long.parseLong(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final long getLongAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final long getLongAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Long.parseLong(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final float getFloatAttribute(final Attributes pAttributes, final String pAttributeName, final float pDefaultValue) {
+	public static final float getFloatAttribute(final Attributes pAttributes, final String pAttributeName, final float pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Float.parseFloat(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final float getFloatAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final float getFloatAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Float.parseFloat(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @param pDefaultValue
-         * @return
-         */
-        public static final double getDoubleAttribute(final Attributes pAttributes, final String pAttributeName, final double pDefaultValue) {
+	public static final double getDoubleAttribute(final Attributes pAttributes, final String pAttributeName, final double pDefaultValue) {
 		final String value = pAttributes.getValue("", pAttributeName);
 		return (value != null) ? Double.parseDouble(value) : pDefaultValue;
 	}
 
-        /**
-         * 
-         * @param pAttributes
-         * @param pAttributeName
-         * @return
-         */
-        public static final double getDoubleAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
+	public static final double getDoubleAttributeOrThrow(final Attributes pAttributes, final String pAttributeName) {
 		return Double.parseDouble(SAXUtils.getAttributeOrThrow(pAttributes, pAttributeName));
 	}
 
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final boolean pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final boolean pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final byte pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final byte pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final short pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final short pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final int pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final int pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final long pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final long pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final float pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final float pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final double pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final double pValue) {
 		SAXUtils.appendAttribute(pStringBuilder, pName, String.valueOf(pValue));
 	}
 
-        /**
-         * 
-         * @param pStringBuilder
-         * @param pName
-         * @param pValue
-         */
-        public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final String pValue) {
+	public static final void appendAttribute(final StringBuilder pStringBuilder, final String pName, final String pValue) {
 		pStringBuilder.append(' ').append(pName).append('=').append('\"').append(pValue).append('\"');
 	}
 

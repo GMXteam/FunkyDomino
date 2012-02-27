@@ -12,10 +12,7 @@ public interface ColorConstants {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final float COLOR_FACTOR_INT_TO_FLOAT = 255.0f;
+	public static final float COLOR_FACTOR_INT_TO_FLOAT = 255.0f;
 
 	// ===========================================================
 	// Methods

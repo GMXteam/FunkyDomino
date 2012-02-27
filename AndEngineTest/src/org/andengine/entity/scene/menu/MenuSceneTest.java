@@ -54,11 +54,7 @@ public class MenuSceneTest extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void setUp() throws Exception {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
@@ -79,11 +75,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.mEngine.start();
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void tearDown() throws Exception {
 		this.mEngine.stop();
 	}
@@ -92,11 +84,7 @@ public class MenuSceneTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testMenuSceneTouchCenter() throws Exception {
+	public void testMenuSceneTouchCenter() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -106,11 +94,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mMenuScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testMenuSceneTouchEdge() throws Exception {
+	public void testMenuSceneTouchEdge() throws Exception {
 		final int surfaceTouchX = 0;
 		final int surfaceTouchY = 100;
 
@@ -120,11 +104,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mMenuScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testMenuSceneTouchOffsetCamera() throws Exception {
+	public void testMenuSceneTouchOffsetCamera() throws Exception {
 		this.mCamera.setCenter(-1000, -1000);
 
 		final int surfaceTouchX = 50;
@@ -136,11 +116,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mMenuScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSubMenuSceneTouch() throws Exception {
+	public void testSubMenuSceneTouch() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -156,11 +132,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(subMenuScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSubMenuSceneTouchOffsetCamera() throws Exception {
+	public void testSubMenuSceneTouchOffsetCamera() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -178,11 +150,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testSceneTouchWorker(subMenuScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testMenuItemTouch() throws Exception {
+	public void testMenuItemTouch() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -193,11 +161,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testMenuItemTouchEdge() throws Exception {
+	public void testMenuItemTouchEdge() throws Exception {
 		final int surfaceTouchX = 75;
 		final int surfaceTouchY = 75;
 
@@ -208,11 +172,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testMenuItemTouchOutside() throws Exception {
+	public void testMenuItemTouchOutside() throws Exception {
 		final int surfaceTouchX = 76;
 		final int surfaceTouchY = 76;
 
@@ -223,11 +183,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testMenuItemTouchWorker(this.mScene, this.mMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSubMenuItemTouch() throws Exception {
+	public void testSubMenuItemTouch() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -242,11 +198,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSubMenuItemTouchOffsetCamera() throws Exception {
+	public void testSubMenuItemTouchOffsetCamera() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -263,11 +215,7 @@ public class MenuSceneTest extends AndroidTestCase {
 		this.testMenuItemTouchWorker(this.mScene, subMenuScene, surfaceTouchX, surfaceTouchY, MENU_TEST_ID);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSubMenuItemTouchOutsideOffsetCamera() throws Exception {
+	public void testSubMenuItemTouchOutsideOffsetCamera() throws Exception {
 		final int surfaceTouchX = 76;
 		final int surfaceTouchY = 76;
 

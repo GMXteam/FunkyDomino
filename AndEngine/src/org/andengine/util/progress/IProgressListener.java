@@ -13,14 +13,8 @@ public interface IProgressListener {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int PROGRESS_MIN = 0;
-        /**
-         * 
-         */
-        public static final int PROGRESS_MAX = 100;
+	public static final int PROGRESS_MIN = 0;
+	public static final int PROGRESS_MAX = 100;
 
 	// ===========================================================
 	// Methods

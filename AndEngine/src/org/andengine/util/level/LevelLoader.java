@@ -44,18 +44,11 @@ public class LevelLoader implements LevelConstants {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public LevelLoader() {
+	public LevelLoader() {
 		this("");
 	}
 
-        /**
-         * 
-         * @param pAssetBasePath
-         */
-        public LevelLoader(final String pAssetBasePath) {
+	public LevelLoader(final String pAssetBasePath) {
 		this.setAssetBasePath(pAssetBasePath);
 	}
 
@@ -63,19 +56,11 @@ public class LevelLoader implements LevelConstants {
 	// Getter & Setter
 	// ===========================================================
 	
-        /**
-         * 
-         * @return
-         */
-        public IEntityLoader getDefaultEntityLoader() {
+	public IEntityLoader getDefaultEntityLoader() {
 		return this.mDefaultEntityLoader;
 	}
 	
-        /**
-         * 
-         * @param pDefaultEntityLoader
-         */
-        public void setDefaultEntityLoader(IEntityLoader pDefaultEntityLoader) {
+	public void setDefaultEntityLoader(IEntityLoader pDefaultEntityLoader) {
 		this.mDefaultEntityLoader = pDefaultEntityLoader;
 	}
 
@@ -94,17 +79,11 @@ public class LevelLoader implements LevelConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected void onAfterLoadLevel() {
+	protected void onAfterLoadLevel() {
 
 	}
 
-        /**
-         * 
-         */
-        protected void onBeforeLoadLevel() {
+	protected void onBeforeLoadLevel() {
 
 	}
 
@@ -112,21 +91,11 @@ public class LevelLoader implements LevelConstants {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEntityName
-         * @param pEntityLoader
-         */
-        public void registerEntityLoader(final String pEntityName, final IEntityLoader pEntityLoader) {
+	public void registerEntityLoader(final String pEntityName, final IEntityLoader pEntityLoader) {
 		this.mEntityLoaders.put(pEntityName, pEntityLoader);
 	}
 
-        /**
-         * 
-         * @param pEntityNames
-         * @param pEntityLoader
-         */
-        public void registerEntityLoader(final String[] pEntityNames, final IEntityLoader pEntityLoader) {
+	public void registerEntityLoader(final String[] pEntityNames, final IEntityLoader pEntityLoader) {
 		final HashMap<String, IEntityLoader> entityLoaders = this.mEntityLoaders;
 
 		for(int i = pEntityNames.length - 1; i >= 0; i--) {
@@ -134,32 +103,15 @@ public class LevelLoader implements LevelConstants {
 		}
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pAssetPath
-         * @throws IOException
-         */
-        public void loadLevelFromAsset(final Context pContext, final String pAssetPath) throws IOException {
+	public void loadLevelFromAsset(final Context pContext, final String pAssetPath) throws IOException {
 		this.loadLevelFromStream(pContext.getAssets().open(this.mAssetBasePath + pAssetPath));
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pRawResourceID
-         * @throws IOException
-         */
-        public void loadLevelFromResource(final Context pContext, final int pRawResourceID) throws IOException {
+	public void loadLevelFromResource(final Context pContext, final int pRawResourceID) throws IOException {
 		this.loadLevelFromStream(pContext.getResources().openRawResource(pRawResourceID));
 	}
 
-        /**
-         * 
-         * @param pInputStream
-         * @throws IOException
-         */
-        public void loadLevelFromStream(final InputStream pInputStream) throws IOException {
+	public void loadLevelFromStream(final InputStream pInputStream) throws IOException {
 		try{
 			final SAXParserFactory spf = SAXParserFactory.newInstance();
 			final SAXParser sp = spf.newSAXParser();
@@ -189,10 +141,7 @@ public class LevelLoader implements LevelConstants {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IEntityLoader {
+	public static interface IEntityLoader {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -201,11 +150,6 @@ public class LevelLoader implements LevelConstants {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pEntityName
-             * @param pAttributes
-             */
-            public void onLoadEntity(final String pEntityName, final Attributes pAttributes);
+		public void onLoadEntity(final String pEntityName, final Attributes pAttributes);
 	}
 }

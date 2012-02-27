@@ -5,10 +5,6 @@ import org.andengine.opengl.texture.atlas.bitmap.source.decorator.BaseBitmapText
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-/**
- * 
- * @author guillaume
- */
 public class RectangleBitmapTextureAtlasSourceDecoratorShape implements IBitmapTextureAtlasSourceDecoratorShape {
 	// ===========================================================
 	// Constants
@@ -24,18 +20,11 @@ public class RectangleBitmapTextureAtlasSourceDecoratorShape implements IBitmapT
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public RectangleBitmapTextureAtlasSourceDecoratorShape() {
+	public RectangleBitmapTextureAtlasSourceDecoratorShape() {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static RectangleBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
+	public static RectangleBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
 		if(sDefaultInstance == null) {
 			sDefaultInstance = new RectangleBitmapTextureAtlasSourceDecoratorShape();
 		}
@@ -50,13 +39,7 @@ public class RectangleBitmapTextureAtlasSourceDecoratorShape implements IBitmapT
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCanvas
-         * @param pPaint
-         * @param pDecoratorOptions
-         */
-        @Override
+	@Override
 	public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions) {
 		final float left = pDecoratorOptions.getInsetLeft();
 		final float top = pDecoratorOptions.getInsetTop();

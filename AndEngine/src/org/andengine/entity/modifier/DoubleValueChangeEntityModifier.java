@@ -22,32 +22,15 @@ public abstract class DoubleValueChangeEntityModifier extends BaseDoubleValueCha
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDuration
-     * @param pValueChangeA
-     * @param pValueChangeB
-     */
-    public DoubleValueChangeEntityModifier(final float pDuration, final float pValueChangeA, final float pValueChangeB) {
+	public DoubleValueChangeEntityModifier(final float pDuration, final float pValueChangeA, final float pValueChangeB) {
 		super(pDuration, pValueChangeA, pValueChangeB);
 	}
 
-    /**
-     * 
-     * @param pDuration
-     * @param pValueChangeA
-     * @param pValueChangeB
-     * @param pModifierListener
-     */
-    public DoubleValueChangeEntityModifier(final float pDuration, final float pValueChangeA, final float pValueChangeB, final IEntityModifierListener pModifierListener) {
+	public DoubleValueChangeEntityModifier(final float pDuration, final float pValueChangeA, final float pValueChangeB, final IEntityModifierListener pModifierListener) {
 		super(pDuration, pValueChangeA, pValueChangeB, pModifierListener);
 	}
 
-    /**
-     * 
-     * @param pDoubleValueChangeEntityModifier
-     */
-    public DoubleValueChangeEntityModifier(final DoubleValueChangeEntityModifier pDoubleValueChangeEntityModifier) {
+	public DoubleValueChangeEntityModifier(final DoubleValueChangeEntityModifier pDoubleValueChangeEntityModifier) {
 		super(pDoubleValueChangeEntityModifier);
 	}
 

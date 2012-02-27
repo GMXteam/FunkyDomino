@@ -38,23 +38,11 @@ public class FileBitmapTextureAtlasSource extends BaseTextureAtlasSource impleme
 	// Constructors
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pFile
-         * @return
-         */
-        public static FileBitmapTextureAtlasSource create(final File pFile) {
+	public static FileBitmapTextureAtlasSource create(final File pFile) {
 		return FileBitmapTextureAtlasSource.create(pFile, 0, 0);
 	}
 
-        /**
-         * 
-         * @param pFile
-         * @param pTextureX
-         * @param pTextureY
-         * @return
-         */
-        public static FileBitmapTextureAtlasSource create(final File pFile, final int pTextureX, final int pTextureY) {
+	public static FileBitmapTextureAtlasSource create(final File pFile, final int pTextureX, final int pTextureY) {
 		final BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		decodeOptions.inJustDecodeBounds = true;
 
@@ -71,27 +59,11 @@ public class FileBitmapTextureAtlasSource extends BaseTextureAtlasSource impleme
 		return new FileBitmapTextureAtlasSource(pFile, pTextureX, pTextureY, decodeOptions.outWidth, decodeOptions.outHeight);
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pFilePath
-         * @param pTextureX
-         * @param pTextureY
-         * @return
-         */
-        public static FileBitmapTextureAtlasSource createFromInternalStorage(final Context pContext, final String pFilePath, final int pTextureX, final int pTextureY) {
+	public static FileBitmapTextureAtlasSource createFromInternalStorage(final Context pContext, final String pFilePath, final int pTextureX, final int pTextureY) {
 		return FileBitmapTextureAtlasSource.create(new File(FileUtils.getAbsolutePathOnInternalStorage(pContext, pFilePath)), pTextureX, pTextureY);
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pFilePath
-         * @param pTextureX
-         * @param pTextureY
-         * @return
-         */
-        public static FileBitmapTextureAtlasSource createFromExternalStorage(final Context pContext, final String pFilePath, final int pTextureX, final int pTextureY) {
+	public static FileBitmapTextureAtlasSource createFromExternalStorage(final Context pContext, final String pFilePath, final int pTextureX, final int pTextureY) {
 		return FileBitmapTextureAtlasSource.create(new File(FileUtils.getAbsolutePathOnExternalStorage(pContext, pFilePath)), pTextureX, pTextureY);
 	}
 
@@ -101,11 +73,7 @@ public class FileBitmapTextureAtlasSource extends BaseTextureAtlasSource impleme
 		this.mFile = pFile;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public FileBitmapTextureAtlasSource deepCopy() {
 		return new FileBitmapTextureAtlasSource(this.mFile, this.mTextureX, this.mTextureY, this.mTextureWidth, this.mTextureHeight);
 	}
@@ -118,12 +86,7 @@ public class FileBitmapTextureAtlasSource extends BaseTextureAtlasSource impleme
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapConfig
-         * @return
-         */
-        @Override
+	@Override
 	public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 		final BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		decodeOptions.inPreferredConfig = pBitmapConfig;
@@ -140,11 +103,7 @@ public class FileBitmapTextureAtlasSource extends BaseTextureAtlasSource impleme
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName() + "(" + this.mFile + ")";
 	}

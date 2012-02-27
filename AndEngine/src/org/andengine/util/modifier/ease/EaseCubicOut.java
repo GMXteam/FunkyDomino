@@ -27,11 +27,7 @@ public class EaseCubicOut implements IEaseFunction {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseCubicOut getInstance() {
+	public static EaseCubicOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseCubicOut();
 		}
@@ -46,13 +42,7 @@ public class EaseCubicOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseCubicOut.getValue(pSecondsElapsed / pDuration);
 	}
@@ -61,12 +51,7 @@ public class EaseCubicOut implements IEaseFunction {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pPercentage
-         * @return
-         */
-        public static float getValue(final float pPercentage) {
+	public static float getValue(final float pPercentage) {
 		final float t = pPercentage - 1;
 		return 1 + (t * t * t);
 	}

@@ -23,11 +23,7 @@ public class StringShaderSource implements IShaderSource {
 	// Constructors
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pShaderSource
-         */
-        public StringShaderSource(final String pShaderSource) {
+	public StringShaderSource(final String pShaderSource) {
 		this.mShaderSource = pShaderSource;
 	}
 
@@ -39,12 +35,7 @@ public class StringShaderSource implements IShaderSource {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pGLState
-         * @return
-         */
-        @Override
+	@Override
 	public String getShaderSource(final GLState pGLState) {
 		return this.mShaderSource;
 	}

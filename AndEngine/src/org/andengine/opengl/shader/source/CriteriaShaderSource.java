@@ -1,8 +1,8 @@
 package org.andengine.opengl.shader.source;
 
 import org.andengine.opengl.shader.exception.ShaderProgramException;
-import org.andengine.opengl.shader.source.criteria.IShaderSourceCriteria;
 import org.andengine.opengl.util.GLState;
+import org.andengine.opengl.util.criteria.IGLCriteria;
 
 /**
  * (c) Zynga 2011
@@ -25,11 +25,7 @@ public class CriteriaShaderSource implements IShaderSource {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCriteriaShaderSourceEntries
-         */
-        public CriteriaShaderSource(final CriteriaShaderSourceEntry ... pCriteriaShaderSourceEntries) {
+	public CriteriaShaderSource(final CriteriaShaderSourceEntry ... pCriteriaShaderSourceEntries) {
 		this.mCriteriaShaderSourceEntries = pCriteriaShaderSourceEntries;
 	}
 
@@ -41,12 +37,7 @@ public class CriteriaShaderSource implements IShaderSource {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @return
-         */
-        @Override
+	@Override
 	public String getShaderSource(final GLState pGLState) {
 		for(int i = 0; i < this.mCriteriaShaderSourceEntries.length; i++) {
 			final CriteriaShaderSourceEntry criteriaShaderSourceEntry = this.mCriteriaShaderSourceEntries[i];
@@ -65,10 +56,7 @@ public class CriteriaShaderSource implements IShaderSource {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class CriteriaShaderSourceEntry {
+	public static class CriteriaShaderSourceEntry {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -78,27 +66,18 @@ public class CriteriaShaderSource implements IShaderSource {
 		// ===========================================================
 
 		private final String mShaderSource;
-		private final IShaderSourceCriteria[] mShaderSourceCriterias;
+		private final IGLCriteria[] mGLCriterias;
 
 		// ===========================================================
 		// Constructors
 		// ===========================================================
 		
-                /**
-                 * 
-                 * @param pShaderSource
-                 */
-                public CriteriaShaderSourceEntry(final String pShaderSource) {
-			this(pShaderSource, (IShaderSourceCriteria[]) null);
+		public CriteriaShaderSourceEntry(final String pShaderSource) {
+			this(pShaderSource, (IGLCriteria[]) null);
 		}
 
-                /**
-                 * 
-                 * @param pShaderSource
-                 * @param pCriterias
-                 */
-                public CriteriaShaderSourceEntry(final String pShaderSource, final IShaderSourceCriteria ... pCriterias) {
-			this.mShaderSourceCriterias = pCriterias;
+		public CriteriaShaderSourceEntry(final String pShaderSource, final IGLCriteria ... pCriterias) {
+			this.mGLCriterias = pCriterias;
 			this.mShaderSource = pShaderSource;
 		}
 
@@ -106,11 +85,7 @@ public class CriteriaShaderSource implements IShaderSource {
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public String getShaderSource() {
+		public String getShaderSource() {
 			return this.mShaderSource;
 		}
 
@@ -122,15 +97,10 @@ public class CriteriaShaderSource implements IShaderSource {
 		// Methods
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pGLState
-                 * @return
-                 */
-                public boolean isMet(final GLState pGLState) {
-			if(this.mShaderSourceCriterias != null) {
-				for(IShaderSourceCriteria shaderSourceCriteria : this.mShaderSourceCriterias) {
-					if(!shaderSourceCriteria.isMet(pGLState)) {
+		public boolean isMet(final GLState pGLState) {
+			if(this.mGLCriterias != null) {
+				for(IGLCriteria gLCriteria : this.mGLCriterias) {
+					if(!gLCriteria.isMet(pGLState)) {
 						return false;
 					}
 				}

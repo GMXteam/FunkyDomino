@@ -25,35 +25,19 @@ public class DirectMenuAnimator extends BaseMenuAnimator {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public DirectMenuAnimator(){
+	public DirectMenuAnimator(){
 		super();
 	}
 
-        /**
-         * 
-         * @param pHorizontalAlign
-         */
-        public DirectMenuAnimator(final HorizontalAlign pHorizontalAlign) {
+	public DirectMenuAnimator(final HorizontalAlign pHorizontalAlign) {
 		super(pHorizontalAlign);
 	}
 
-        /**
-         * 
-         * @param pMenuItemSpacing
-         */
-        public DirectMenuAnimator(final float pMenuItemSpacing) {
+	public DirectMenuAnimator(final float pMenuItemSpacing) {
 		super(pMenuItemSpacing);
 	}
 
-        /**
-         * 
-         * @param pHorizontalAlign
-         * @param pMenuItemSpacing
-         */
-        public DirectMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing) {
+	public DirectMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing) {
 		super(pHorizontalAlign, pMenuItemSpacing);
 	}
 
@@ -65,24 +49,12 @@ public class DirectMenuAnimator extends BaseMenuAnimator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pMenuItems
-         * @param pCameraWidth
-         * @param pCameraHeight
-         */
-        @Override
+	@Override
 	public void buildAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight) {
 
 	}
 
-        /**
-         * 
-         * @param pMenuItems
-         * @param pCameraWidth
-         * @param pCameraHeight
-         */
-        @Override
+	@Override
 	public void prepareAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight) {
 		final float maximumWidth = this.getMaximumWidth(pMenuItems);
 		final float overallHeight = this.getOverallHeight(pMenuItems);

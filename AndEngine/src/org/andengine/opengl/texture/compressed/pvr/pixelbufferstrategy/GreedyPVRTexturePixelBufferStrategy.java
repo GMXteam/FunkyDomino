@@ -42,19 +42,7 @@ public class GreedyPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuff
 		return new GreedyPVRTexturePixelBufferStrategyBufferManager(pPVRTexture);
 	}
 
-        /**
-         * 
-         * @param pPVRTexturePixelBufferStrategyManager
-         * @param pWidth
-         * @param pHeight
-         * @param pBytesPerPixel
-         * @param pPixelFormat
-         * @param pLevel
-         * @param pCurrentPixelDataOffset
-         * @param pCurrentPixelDataSize
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public void loadPVRTextureData(final IPVRTexturePixelBufferStrategyBufferManager pPVRTexturePixelBufferStrategyManager, final int pWidth, final int pHeight, final int pBytesPerPixel, final PixelFormat pPixelFormat, final int pLevel, final int pCurrentPixelDataOffset, final int pCurrentPixelDataSize) throws IOException {
 		/* Adjust buffer. */
 		final Buffer pixelBuffer = pPVRTexturePixelBufferStrategyManager.getPixelBuffer(PVRTextureHeader.SIZE + pCurrentPixelDataOffset, pCurrentPixelDataSize);
@@ -71,10 +59,7 @@ public class GreedyPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuff
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class GreedyPVRTexturePixelBufferStrategyBufferManager implements IPVRTexturePixelBufferStrategyBufferManager {
+	public static class GreedyPVRTexturePixelBufferStrategyBufferManager implements IPVRTexturePixelBufferStrategyBufferManager {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -89,12 +74,7 @@ public class GreedyPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuff
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pPVRTexture
-                 * @throws IOException
-                 */
-                public GreedyPVRTexturePixelBufferStrategyBufferManager(final PVRTexture pPVRTexture) throws IOException {
+		public GreedyPVRTexturePixelBufferStrategyBufferManager(final PVRTexture pPVRTexture) throws IOException {
 			this.mByteBuffer = pPVRTexture.getPVRTextureBuffer();
 		}
 
@@ -106,13 +86,7 @@ public class GreedyPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuff
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pStart
-                 * @param pByteCount
-                 * @return
-                 */
-                @Override
+		@Override
 		public ByteBuffer getPixelBuffer(final int pStart, final int pByteCount) {
 			this.mByteBuffer.position(pStart);
 			this.mByteBuffer.limit(pStart + pByteCount);

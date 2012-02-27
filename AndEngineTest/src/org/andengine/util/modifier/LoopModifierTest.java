@@ -31,21 +31,13 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void setUp() throws Exception {
 		this.mLoopsStarted = 0;
 		this.mLoopsFinished = 0;
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void tearDown() throws Exception {
 
 	}
@@ -68,11 +60,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 	// Test-Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDuration() throws Exception {
+	public void testDuration() throws Exception {
 		float elapsed;
 		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
 
@@ -86,11 +74,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 		Assert.assertEquals(1, this.mLoopsFinished);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDurationNonContinuous() throws Exception {
+	public void testDurationNonContinuous() throws Exception {
 		float elapsed;
 		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), 1, this);
 
@@ -111,11 +95,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 	}
 
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDurationNonContinuousAlmost() throws Exception {
+	public void testDurationNonContinuousAlmost() throws Exception {
 		float elapsed;
 		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), 1, this);
 
@@ -132,11 +112,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 		Assert.assertEquals(DURATION_DELTA, elapsed, DELTA);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDurationAlmost() throws Exception {
+	public void testDurationAlmost() throws Exception {
 		float elapsed;
 		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
 
@@ -156,11 +132,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 		Assert.assertEquals(1, this.mLoopsFinished);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testDurationDouble() throws Exception {
+	public void testDurationDouble() throws Exception {
 		float elapsed;
 		final LoopModifier<Object> loopModifier = new LoopModifier<Object>(new DummyModifier(DURATION), LoopModifier.LOOP_CONTINUOUS, this);
 
@@ -174,11 +146,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 		Assert.assertEquals(2, this.mLoopsFinished);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public void testLoopSequenceLoopSequenceNesting() throws Exception {
 		final SequenceModifier<Object> innerSequenceModifier = new SequenceModifier<Object>(new DummyModifier(DURATION), new DummyModifier(DURATION));
 		final LoopModifier<Object> innerLoopModifier = new LoopModifier<Object>(innerSequenceModifier, 3);
@@ -193,10 +161,7 @@ public class LoopModifierTest extends AndroidTestCase implements ILoopModifierLi
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public class DummyModifier extends BaseDurationModifier<Object> {
+	public class DummyModifier extends BaseDurationModifier<Object> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

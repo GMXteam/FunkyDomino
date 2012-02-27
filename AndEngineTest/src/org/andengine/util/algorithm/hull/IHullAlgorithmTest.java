@@ -33,20 +33,13 @@ public abstract class IHullAlgorithmTest extends TestCase {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @return
-     */
-    protected abstract IHullAlgorithm newHullALgorithm();
+	protected abstract IHullAlgorithm newHullALgorithm();
 
 	// ===========================================================
 	// TestMethods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void testSimple() {
+	public void testSimple() {
 		final IHullAlgorithm hullAlgorithm = this.newHullALgorithm();
 
 		final float[] vertices = new float[] {
@@ -62,10 +55,7 @@ public abstract class IHullAlgorithmTest extends TestCase {
 		Assert.assertEquals(4, hullvertices);
 	}
 
-        /**
-         * 
-         */
-        public void testSwappingOutNonHullPoint() {
+	public void testSwappingOutNonHullPoint() {
 		final IHullAlgorithm hullAlgorithm = this.newHullALgorithm();
 		
 		final float[] vertices = new float[] {
@@ -83,10 +73,7 @@ public abstract class IHullAlgorithmTest extends TestCase {
 		Assert.assertEquals(VertexUtils.getVertex(vertices, 1, 2, 4), 0.5f);
 	}
 
-        /**
-         * 
-         */
-        public void testDuplicateHullVertices() {
+	public void testDuplicateHullVertices() {
 		final IHullAlgorithm hullAlgorithm = this.newHullALgorithm();
 		
 		final float[] vertices = new float[] {

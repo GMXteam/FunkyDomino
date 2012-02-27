@@ -32,36 +32,14 @@ public class BaseCollisionChecker {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pLeftA
-     * @param pTopA
-     * @param pRightA
-     * @param pBottomA
-     * @param pLeftB
-     * @param pTopB
-     * @param pRightB
-     * @param pBottomB
-     * @return
-     */
-    public static boolean checkAxisAlignedRectangleCollision(final float pLeftA, final float pTopA, final float pRightA, final float pBottomA, final float pLeftB, final float pTopB, final float pRightB, final float pBottomB) {
+	public static boolean checkAxisAlignedRectangleCollision(final float pLeftA, final float pTopA, final float pRightA, final float pBottomA, final float pLeftB, final float pTopB, final float pRightB, final float pBottomB) {
 		return pLeftA < pRightB &&
 				pLeftB < pRightA &&
 				pTopA < pBottomB &&
 				pTopB < pBottomA;
 	}
 
-    /**
-     * 
-     * @param pLeft
-     * @param pTop
-     * @param pRight
-     * @param pBottom
-     * @param pX
-     * @param pY
-     * @return
-     */
-    public static boolean checkAxisAlignedRectangleContains(final float pLeft, final float pTop, final float pRight, final float pBottom, final float pX, final float pY) {
+	public static boolean checkAxisAlignedRectangleContains(final float pLeft, final float pTop, final float pRight, final float pBottom, final float pX, final float pY) {
 		return pX > pLeft &&
 				pX < pRight &&
 				pY > pTop &&
@@ -95,16 +73,13 @@ public class BaseCollisionChecker {
 	 * @param pX1
 	 *            ,&nbsp;Y1 the coordinates of the beginning of the specified
 	 *            line segment
-         * @param pY1 
-         * @param pX2
+	 * @param pX2
 	 *            ,&nbsp;Y2 the coordinates of the end of the specified line
 	 *            segment
 	 * @param pPX
 	 *            ,&nbsp;PY the coordinates of the specified point to be
 	 *            compared with the specified line segment
-         * @param pY2 
-         * @param pPY 
-         * @return an integer that indicates the position of the third specified
+	 * @return an integer that indicates the position of the third specified
 	 *         coordinates with respect to the line segment formed by the first
 	 *         two specified coordinates.
 	 */

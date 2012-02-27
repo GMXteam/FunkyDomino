@@ -35,10 +35,7 @@ public class SprialTest extends TestCase {
 	// TestMethods
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public void testScaleAroundCenterNonOriginFactor() {
+	public void testScaleAroundCenterNonOriginFactor() {
 		final Spiral spiral = new Spiral(0, 0);
 
 		Assert.assertEquals(0, spiral.getX());

@@ -9,7 +9,6 @@ package org.andengine.util.adt.list;
  *
  * (c) Zynga 2012
  *
- * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @author Greg Haynes
  * @since 15:02:40 - 24.02.2012
@@ -31,11 +30,7 @@ public class SortedList<T extends Comparable<T>> implements ISortedList<T> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pList
-         */
-        public SortedList(final IList<T> pList) {
+	public SortedList(final IList<T> pList) {
 		this.mList = pList;
 	}
 
@@ -47,56 +42,28 @@ public class SortedList<T extends Comparable<T>> implements ISortedList<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isEmpty() {
 		return this.mList.isEmpty();
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public T get(final int pIndex) throws IndexOutOfBoundsException {
 		return this.mList.get(pIndex);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         * @deprecated
-         */
-        @Override
+	@Override
 	@Deprecated
 	public void set(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.mList.set(pIndex, pItem);
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public int indexOf(final T pItem) {
 		return this.binarySearch(pItem, false);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @deprecated
-         */
-        @Override
+	@Override
 	@Deprecated
 	public void add(final int pIndex, final T pItem) {
 		this.mList.add(pItem);
@@ -112,11 +79,7 @@ public class SortedList<T extends Comparable<T>> implements ISortedList<T> {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T removeFirst() {
 		return this.mList.removeFirst();
 	}
@@ -126,12 +89,7 @@ public class SortedList<T extends Comparable<T>> implements ISortedList<T> {
 		return this.mList.removeLast();
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public boolean remove(final T pItem) {
 		if(pItem == null) {
 			return this.mList.remove(pItem);
@@ -151,19 +109,12 @@ public class SortedList<T extends Comparable<T>> implements ISortedList<T> {
 		return this.mList.remove(pIndex);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int size() {
 		return this.mList.size();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void clear() {
 		this.mList.clear();
 	}

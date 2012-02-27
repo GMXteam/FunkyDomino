@@ -32,15 +32,7 @@ public class HullUtils {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pVertices
-     * @param pVertexCount
-     * @param pVertexOffsetY
-     * @param pVertexStride
-     * @return
-     */
-    public static int indexOfLowestVertex(final float[] pVertices, final int pVertexCount, final int pVertexOffsetY, final int pVertexStride) {
+	public static int indexOfLowestVertex(final float[] pVertices, final int pVertexCount, final int pVertexOffsetY, final int pVertexStride) {
 		/* Simply choose 0 as the first candidate. */
 		int lowestVertexIndex = 0;
 		float lowestVertexY = pVertices[pVertexOffsetY];
@@ -66,14 +58,7 @@ public class HullUtils {
 		return lowestVertexIndex;
 	}
 
-    /**
-     * 
-     * @param pVertices
-     * @param pVertexStride
-     * @param pVertexIndexA
-     * @param pVertexIndexB
-     */
-    public static void swap(final float[] pVertices, final int pVertexStride, final int pVertexIndexA, final int pVertexIndexB) {
+	public static void swap(final float[] pVertices, final int pVertexStride, final int pVertexIndexA, final int pVertexIndexB) {
 		final int vertexOffsetA = pVertexIndexA * pVertexStride;
 		final int vertexOffsetB = pVertexIndexB * pVertexStride;
 

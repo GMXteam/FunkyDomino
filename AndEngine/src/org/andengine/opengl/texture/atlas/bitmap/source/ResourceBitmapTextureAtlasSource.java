@@ -31,25 +31,11 @@ public class ResourceBitmapTextureAtlasSource extends BaseTextureAtlasSource imp
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pResources
-         * @param pDrawableResourceID
-         * @return
-         */
-        public static ResourceBitmapTextureAtlasSource create(final Resources pResources, final int pDrawableResourceID) {
+	public static ResourceBitmapTextureAtlasSource create(final Resources pResources, final int pDrawableResourceID) {
 		return ResourceBitmapTextureAtlasSource.create(pResources, pDrawableResourceID, 0, 0);
 	}
 
-        /**
-         * 
-         * @param pResources
-         * @param pDrawableResourceID
-         * @param pTextureX
-         * @param pTextureY
-         * @return
-         */
-        public static ResourceBitmapTextureAtlasSource create(final Resources pResources, final int pDrawableResourceID, final int pTextureX, final int pTextureY) {
+	public static ResourceBitmapTextureAtlasSource create(final Resources pResources, final int pDrawableResourceID, final int pTextureX, final int pTextureY) {
 		final BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		decodeOptions.inJustDecodeBounds = true;
 //		decodeOptions.inScaled = false; // TODO Check how this behaves with drawable-""/nodpi/ldpi/mdpi/hdpi folders
@@ -59,16 +45,7 @@ public class ResourceBitmapTextureAtlasSource extends BaseTextureAtlasSource imp
 		return new ResourceBitmapTextureAtlasSource(pResources, pDrawableResourceID, pTextureX, pTextureY, decodeOptions.outWidth, decodeOptions.outHeight);
 	}
 
-        /**
-         * 
-         * @param pResources
-         * @param pDrawableResourceID
-         * @param pTextureX
-         * @param pTextureY
-         * @param pTextureWidth
-         * @param pTextureHeight
-         */
-        public ResourceBitmapTextureAtlasSource(final Resources pResources, final int pDrawableResourceID, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
+	public ResourceBitmapTextureAtlasSource(final Resources pResources, final int pDrawableResourceID, final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		super(pTextureX, pTextureY, pTextureWidth, pTextureHeight);
 
 		this.mResources = pResources;
@@ -88,12 +65,7 @@ public class ResourceBitmapTextureAtlasSource extends BaseTextureAtlasSource imp
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapConfig
-         * @return
-         */
-        @Override
+	@Override
 	public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 		final BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
 		decodeOptions.inPreferredConfig = pBitmapConfig;

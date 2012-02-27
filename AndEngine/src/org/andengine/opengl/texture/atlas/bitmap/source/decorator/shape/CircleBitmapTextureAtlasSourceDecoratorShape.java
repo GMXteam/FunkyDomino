@@ -27,18 +27,11 @@ public class CircleBitmapTextureAtlasSourceDecoratorShape implements IBitmapText
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public CircleBitmapTextureAtlasSourceDecoratorShape() {
+	public CircleBitmapTextureAtlasSourceDecoratorShape() {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static CircleBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
+	public static CircleBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
 		if(sDefaultInstance == null) {
 			sDefaultInstance = new CircleBitmapTextureAtlasSourceDecoratorShape();
 		}
@@ -53,13 +46,7 @@ public class CircleBitmapTextureAtlasSourceDecoratorShape implements IBitmapText
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pCanvas
-         * @param pPaint
-         * @param pDecoratorOptions
-         */
-        @Override
+	@Override
 	public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions) {
 		final float width = pCanvas.getWidth() - pDecoratorOptions.getInsetLeft() - pDecoratorOptions.getInsetRight();
 		final float height = pCanvas.getHeight() - pDecoratorOptions.getInsetTop() - pDecoratorOptions.getInsetBottom();

@@ -32,11 +32,7 @@ public class TMXObjectGroup implements TMXConstants {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pAttributes
-         */
-        public TMXObjectGroup(final Attributes pAttributes) {
+	public TMXObjectGroup(final Attributes pAttributes) {
 		this.mName = pAttributes.getValue("", TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_NAME);
 		this.mWidth = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_WIDTH);
 		this.mHeight = SAXUtils.getIntAttributeOrThrow(pAttributes, TMXConstants.TAG_OBJECTGROUP_ATTRIBUTE_HEIGHT);
@@ -46,27 +42,15 @@ public class TMXObjectGroup implements TMXConstants {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public String getName() {
+	public String getName() {
 		return this.mName;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getWidth() {
+	public int getWidth() {
 		return this.mWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getHeight() {
+	public int getHeight() {
 		return this.mHeight;
 	}
 
@@ -74,27 +58,15 @@ public class TMXObjectGroup implements TMXConstants {
 		this.mTMXObjects.add(pTMXObject);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public ArrayList<TMXObject> getTMXObjects() {
+	public ArrayList<TMXObject> getTMXObjects() {
 		return this.mTMXObjects ;
 	}
 
-        /**
-         * 
-         * @param pTMXObjectGroupProperty
-         */
-        public void addTMXObjectGroupProperty(final TMXObjectGroupProperty pTMXObjectGroupProperty) {
+	public void addTMXObjectGroupProperty(final TMXObjectGroupProperty pTMXObjectGroupProperty) {
 		this.mTMXObjectGroupProperties.add(pTMXObjectGroupProperty);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public TMXProperties<TMXObjectGroupProperty> getTMXObjectGroupProperties() {
+	public TMXProperties<TMXObjectGroupProperty> getTMXObjectGroupProperties() {
 		return this.mTMXObjectGroupProperties;
 	}
 

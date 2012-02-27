@@ -18,32 +18,12 @@ public interface IFont {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public void load();
-    /**
-     * 
-     */
-    public void unload();
+	public void load();
+	public void unload();
 
-        /**
-         * 
-         * @return
-         */
-        public ITexture getTexture();
+	public ITexture getTexture();
 
-        /**
-         * 
-         * @return
-         */
-        public float getLineHeight();
+	public float getLineHeight();
 
-        /**
-         * 
-         * @param pChar
-         * @return
-         * @throws LetterNotFoundException
-         */
-        public Letter getLetter(final char pChar) throws LetterNotFoundException;
+	public Letter getLetter(final char pChar) throws LetterNotFoundException;
 }

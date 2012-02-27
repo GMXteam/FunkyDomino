@@ -6,7 +6,6 @@ import android.util.SparseArray;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 10:13:26 - 02.03.2011
  */
@@ -37,21 +36,11 @@ public class MultiPool<T> {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pID
-         * @param pPool
-         */
-        public void registerPool(final int pID, final GenericPool<T> pPool) {
+	public void registerPool(final int pID, final GenericPool<T> pPool) {
 		this.mPools.put(pID, pPool);
 	}
 
-        /**
-         * 
-         * @param pID
-         * @return
-         */
-        public T obtainPoolItem(final int pID) {
+	public T obtainPoolItem(final int pID) {
 		final GenericPool<T> pool = this.mPools.get(pID);
 		if(pool == null) {
 			return null;
@@ -60,12 +49,7 @@ public class MultiPool<T> {
 		}
 	}
 
-        /**
-         * 
-         * @param pID
-         * @param pItem
-         */
-        public void recyclePoolItem(final int pID, final T pItem) {
+	public void recyclePoolItem(final int pID, final T pItem) {
 		final GenericPool<T> pool = this.mPools.get(pID);
 		if(pool != null) {
 			pool.recyclePoolItem(pItem);

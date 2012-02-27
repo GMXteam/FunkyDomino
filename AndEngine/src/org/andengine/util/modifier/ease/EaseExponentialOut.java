@@ -27,11 +27,7 @@ public class EaseExponentialOut implements IEaseFunction {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseExponentialOut getInstance() {
+	public static EaseExponentialOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseExponentialOut();
 		}
@@ -46,13 +42,7 @@ public class EaseExponentialOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseExponentialOut.getValue(pSecondsElapsed / pDuration);
 	}
@@ -61,12 +51,7 @@ public class EaseExponentialOut implements IEaseFunction {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pPercentage
-         * @return
-         */
-        public static float getValue(final float pPercentage) {
+	public static float getValue(final float pPercentage) {
 		return (pPercentage == 1) ? 1 : (-(float)Math.pow(2, -10 * pPercentage) + 1);
 	}
 

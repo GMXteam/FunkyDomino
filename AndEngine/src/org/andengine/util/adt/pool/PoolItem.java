@@ -29,28 +29,15 @@ public abstract class PoolItem {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public Pool<? extends PoolItem> getParent() {
+	public Pool<? extends PoolItem> getParent() {
 		return this.mParent;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isRecycled() {
+	public boolean isRecycled() {
 		return this.mRecycled;
 	}
 
-        /**
-         * 
-         * @param pPool
-         * @return
-         */
-        public boolean isFromPool(final Pool<? extends PoolItem> pPool) {
+	public boolean isFromPool(final Pool<? extends PoolItem> pPool) {
 		return pPool == this.mParent;
 	}
 
@@ -62,24 +49,15 @@ public abstract class PoolItem {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected void onRecycle() {
+	protected void onRecycle() {
 
 	}
 
-        /**
-         * 
-         */
-        protected void onObtain() {
+	protected void onObtain() {
 
 	}
 
-        /**
-         * 
-         */
-        public void recycle() {
+	public void recycle() {
 		if(this.mParent == null) {
 			throw new IllegalStateException("Item already recycled!");
 		}

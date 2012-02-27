@@ -8,7 +8,6 @@ import org.andengine.util.math.MathUtils;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 10:18:06 - 29.06.2010
  */
@@ -21,25 +20,14 @@ public abstract class BaseSingleValueParticleInitializer<T extends IEntity> impl
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected float mMinValue;
-    /**
-     * 
-     */
-    protected float mMaxValue;
+	protected float mMinValue;
+	protected float mMaxValue;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pMinValue
-         * @param pMaxValue
-         */
-        public BaseSingleValueParticleInitializer(final float pMinValue, final float pMaxValue) {
+	public BaseSingleValueParticleInitializer(final float pMinValue, final float pMaxValue) {
 		this.mMinValue = pMinValue;
 		this.mMaxValue = pMaxValue;
 	}
@@ -52,18 +40,9 @@ public abstract class BaseSingleValueParticleInitializer<T extends IEntity> impl
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParticle
-         * @param pValue
-         */
-        protected abstract void onInitializeParticle(final Particle<T> pParticle, final float pValue);
+	protected abstract void onInitializeParticle(final Particle<T> pParticle, final float pValue);
 
-        /**
-         * 
-         * @param pParticle
-         */
-        @Override
+	@Override
 	public final void onInitializeParticle(final Particle<T> pParticle) {
 		this.onInitializeParticle(pParticle, this.getRandomValue());
 	}
@@ -72,11 +51,7 @@ public abstract class BaseSingleValueParticleInitializer<T extends IEntity> impl
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        protected float getRandomValue() {
+	protected float getRandomValue() {
 		if(this.mMinValue == this.mMaxValue) {
 			return this.mMaxValue;
 		} else {

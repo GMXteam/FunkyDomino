@@ -12,8 +12,6 @@ import org.andengine.opengl.texture.atlas.source.ITextureAtlasSource;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
- * @param <A> 
  * @author Nicolas Gramlich
  * @author Jim Scott (BlackPawn)
  * @since 16:03:01 - 12.08.2010
@@ -67,13 +65,7 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureAtlas
-         * @param pTextureAtlasSourcesWithLocationCallback
-         * @throws org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder.TextureAtlasBuilderException
-         */
-        @Override
+	@Override
 	public void build(final A pTextureAtlas, final ArrayList<TextureAtlasSourceWithWithLocationCallback<T>> pTextureAtlasSourcesWithLocationCallback) throws TextureAtlasBuilderException {
 		Collections.sort(pTextureAtlasSourcesWithLocationCallback, TEXTURESOURCE_COMPARATOR);
 
@@ -115,10 +107,7 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected static class Rect {
+	protected static class Rect {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -136,14 +125,7 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pLeft
-                 * @param pTop
-                 * @param pWidth
-                 * @param pHeight
-                 */
-                public Rect(final int pLeft, final int pTop, final int pWidth, final int pHeight) {
+		public Rect(final int pLeft, final int pTop, final int pWidth, final int pHeight) {
 			this.mLeft = pLeft;
 			this.mTop = pTop;
 			this.mWidth = pWidth;
@@ -154,51 +136,27 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getWidth() {
+		public int getWidth() {
 			return this.mWidth;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getHeight() {
+		public int getHeight() {
 			return this.mHeight;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getLeft() {
+		public int getLeft() {
 			return this.mLeft;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getTop() {
+		public int getTop() {
 			return this.mTop;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getRight() {
+		public int getRight() {
 			return this.mLeft + this.mWidth;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getBottom() {
+		public int getBottom() {
 			return this.mTop + this.mHeight;
 		}
 
@@ -206,11 +164,7 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		public String toString() {
 			return "@: " + this.mLeft + "/" + this.mTop + " * " + this.mWidth + "x" + this.mHeight;
 		}
@@ -224,10 +178,7 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        protected static class Node {
+	protected static class Node {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -245,22 +196,11 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pLeft
-                 * @param pTop
-                 * @param pWidth
-                 * @param pHeight
-                 */
-                public Node(final int pLeft, final int pTop, final int pWidth, final int pHeight) {
+		public Node(final int pLeft, final int pTop, final int pWidth, final int pHeight) {
 			this(new Rect(pLeft, pTop, pWidth, pHeight));
 		}
 
-                /**
-                 * 
-                 * @param pRect
-                 */
-                public Node(final Rect pRect) {
+		public Node(final Rect pRect) {
 			this.mRect = pRect;
 		}
 
@@ -268,27 +208,15 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public Rect getRect() {
+		public Rect getRect() {
 			return this.mRect;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public Node getChildA() {
+		public Node getChildA() {
 			return this.mChildA;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public Node getChildB() {
+		public Node getChildB() {
 			return this.mChildB;
 		}
 
@@ -300,17 +228,7 @@ public class BlackPawnTextureAtlasBuilder<T extends ITextureAtlasSource, A exten
 		// Methods
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pTextureAtlasSource
-                 * @param pTextureWidth
-                 * @param pTextureHeight
-                 * @param pTextureAtlasSourceSpacing
-                 * @param pTextureAtlasSourcePadding
-                 * @return
-                 * @throws IllegalArgumentException
-                 */
-                public Node insert(final ITextureAtlasSource pTextureAtlasSource, final int pTextureWidth, final int pTextureHeight, final int pTextureAtlasSourceSpacing, final int pTextureAtlasSourcePadding) throws IllegalArgumentException {
+		public Node insert(final ITextureAtlasSource pTextureAtlasSource, final int pTextureWidth, final int pTextureHeight, final int pTextureAtlasSourceSpacing, final int pTextureAtlasSourcePadding) throws IllegalArgumentException {
 			if(this.mChildA != null && this.mChildB != null) {
 				final Node newNode = this.mChildA.insert(pTextureAtlasSource, pTextureWidth, pTextureHeight, pTextureAtlasSourceSpacing, pTextureAtlasSourcePadding);
 				if(newNode != null){

@@ -17,10 +17,7 @@ public class LineCollisionChecker extends ShapeCollisionChecker {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int LINE_VERTEX_COUNT = 2;
+	public static final int LINE_VERTEX_COUNT = 2;
 
 	// ===========================================================
 	// Fields
@@ -42,29 +39,12 @@ public class LineCollisionChecker extends ShapeCollisionChecker {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX1
-         * @param pY1
-         * @param pX2
-         * @param pY2
-         * @param pX3
-         * @param pY3
-         * @param pX4
-         * @param pY4
-         * @return
-         */
-        public static boolean checkLineCollision(final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final float pX4, final float pY4) {
+	public static boolean checkLineCollision(final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final float pX4, final float pY4) {
 		return ((BaseCollisionChecker.relativeCCW(pX1, pY1, pX2, pY2, pX3, pY3) * BaseCollisionChecker.relativeCCW(pX1, pY1, pX2, pY2, pX4, pY4) <= 0)
 				&& (BaseCollisionChecker.relativeCCW(pX3, pY3, pX4, pY4, pX1, pY1) * BaseCollisionChecker.relativeCCW(pX3, pY3, pX4, pY4, pX2, pY2) <= 0));
 	}
 
-        /**
-         * 
-         * @param pLine
-         * @param pVertices
-         */
-        public static void fillVertices(final Line pLine, final float[] pVertices) {
+	public static void fillVertices(final Line pLine, final float[] pVertices) {
 		pVertices[0 + VERTEX_INDEX_X] = 0;
 		pVertices[0 + VERTEX_INDEX_Y] = 0;
 

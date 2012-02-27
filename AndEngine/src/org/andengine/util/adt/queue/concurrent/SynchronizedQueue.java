@@ -5,7 +5,6 @@ import org.andengine.util.adt.queue.IQueue;
 /**
  * (c) Zynga 2012
  *
- * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 14:23:50 - 01.02.2012
  */
@@ -24,11 +23,7 @@ public class SynchronizedQueue<T> implements IQueue<T> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pQueue
-         */
-        public SynchronizedQueue(final IQueue<T> pQueue) {
+	public SynchronizedQueue(final IQueue<T> pQueue) {
 		this.mQueue = pQueue;
 	}
 
@@ -40,43 +35,22 @@ public class SynchronizedQueue<T> implements IQueue<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized boolean isEmpty() {
 		return this.mQueue.isEmpty();
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public synchronized T get(final int pIndex) throws IndexOutOfBoundsException {
 		return this.mQueue.get(pIndex);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public synchronized void set(int pIndex, T pItem) throws IndexOutOfBoundsException {
 		this.mQueue.set(pIndex, pItem);
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized int indexOf(final T pItem) {
 		return this.mQueue.indexOf(pItem);
 	}
@@ -86,60 +60,32 @@ public class SynchronizedQueue<T> implements IQueue<T> {
 		this.mQueue.add(pItem);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public synchronized void add(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.mQueue.add(pIndex, pItem);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized T peek() {
 		return this.mQueue.peek();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized T poll() {
 		return this.mQueue.poll();
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        @Override
+	@Override
 	public synchronized void enter(final T pItem) {
 		this.mQueue.enter(pItem);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public synchronized void enter(final int pIndex, final T pItem) throws IndexOutOfBoundsException{
 		this.mQueue.enter(pIndex, pItem);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized T removeFirst() {
 		return this.mQueue.removeFirst();
 	}
@@ -149,40 +95,22 @@ public class SynchronizedQueue<T> implements IQueue<T> {
 		return this.mQueue.removeLast();
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized boolean remove(final T pItem) {
 		return this.mQueue.remove(pItem);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public synchronized T remove(final int pIndex) throws IndexOutOfBoundsException{
 		return this.mQueue.remove(pIndex);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public synchronized int size() {
 		return this.mQueue.size();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public synchronized void clear() {
 		this.mQueue.clear();
 	}

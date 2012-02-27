@@ -23,12 +23,7 @@ public class VertexBufferObjectAttributes {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pStride
-         * @param pVertexBufferObjectAttributes
-         */
-        public VertexBufferObjectAttributes(final int pStride, final VertexBufferObjectAttribute ... pVertexBufferObjectAttributes) {
+	public VertexBufferObjectAttributes(final int pStride, final VertexBufferObjectAttribute ... pVertexBufferObjectAttributes) {
 		this.mVertexBufferObjectAttributes = pVertexBufferObjectAttributes;
 		this.mStride = pStride;
 	}
@@ -45,10 +40,7 @@ public class VertexBufferObjectAttributes {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void glVertexAttribPointers() {
+	public void glVertexAttribPointers() {
 		final VertexBufferObjectAttribute[] vertexBufferObjectAttributes = this.mVertexBufferObjectAttributes;
 
 		final int stride = this.mStride;

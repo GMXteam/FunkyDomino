@@ -26,14 +26,7 @@ public class TextMenuItem extends Text implements IMenuItem {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pID
-         * @param pFont
-         * @param pText
-         * @param pVertexBufferObjectManager
-         */
-        public TextMenuItem(final int pID, final IFont pFont, final String pText, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public TextMenuItem(final int pID, final IFont pFont, final String pText, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(0, 0, pFont, pText, pVertexBufferObjectManager);
 
 		this.mID = pID;
@@ -43,11 +36,7 @@ public class TextMenuItem extends Text implements IMenuItem {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getID() {
 		return this.mID;
 	}
@@ -60,18 +49,12 @@ public class TextMenuItem extends Text implements IMenuItem {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void onSelected() {
 		/* Nothing. */
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void onUnselected() {
 		/* Nothing. */
 	}

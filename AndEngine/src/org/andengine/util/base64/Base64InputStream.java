@@ -72,58 +72,33 @@ public class Base64InputStream extends FilterInputStream {
 		this.outputEnd = 0;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean markSupported() {
 		return false;
 	}
 
-        /**
-         * 
-         * @param readlimit
-         */
-        @Override
+	@Override
 	public void mark(final int readlimit) {
 		throw new UnsupportedOperationException();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		throw new UnsupportedOperationException();
 	}
 
-        /**
-         * 
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public void close() throws IOException {
 		this.in.close();
 		this.inputBuffer = null;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int available() {
 		return this.outputEnd - this.outputStart;
 	}
 
-        /**
-         * 
-         * @param n
-         * @return
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public long skip(final long n) throws IOException {
 		if (this.outputStart >= this.outputEnd) {
 			this.refill();
@@ -136,12 +111,7 @@ public class Base64InputStream extends FilterInputStream {
 		return bytes;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public int read() throws IOException {
 		if (this.outputStart >= this.outputEnd) {
 			this.refill();
@@ -153,15 +123,7 @@ public class Base64InputStream extends FilterInputStream {
 		}
 	}
 
-        /**
-         * 
-         * @param b
-         * @param off
-         * @param len
-         * @return
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public int read(final byte[] b, final int off, final int len) throws IOException {
 		if (this.outputStart >= this.outputEnd) {
 			this.refill();
