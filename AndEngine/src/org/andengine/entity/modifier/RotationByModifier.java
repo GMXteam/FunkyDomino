@@ -22,30 +22,15 @@ public class RotationByModifier extends SingleValueChangeEntityModifier {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDuration
-     * @param pRotation
-     */
-    public RotationByModifier(final float pDuration, final float pRotation) {
+	public RotationByModifier(final float pDuration, final float pRotation) {
 		super(pDuration, pRotation);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pRotation
-         * @param pEntityModifierListener
-         */
-        public RotationByModifier(final float pDuration, final float pRotation, final IEntityModifierListener pEntityModifierListener) {
+	public RotationByModifier(final float pDuration, final float pRotation, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pRotation, pEntityModifierListener);
 	}
 
-        /**
-         * 
-         * @param pRotationByModifier
-         */
-        protected RotationByModifier(final RotationByModifier pRotationByModifier) {
+	protected RotationByModifier(final RotationByModifier pRotationByModifier) {
 		super(pRotationByModifier);
 	}
 
@@ -62,13 +47,7 @@ public class RotationByModifier extends SingleValueChangeEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pEntity
-         * @param pRotation
-         */
-        @Override
+	@Override
 	protected void onChangeValue(final float pSecondsElapsed, final IEntity pEntity, final float pRotation) {
 		pEntity.setRotation(pEntity.getRotation() + pRotation);
 	}

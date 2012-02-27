@@ -34,121 +34,41 @@ public final class IntBoundsUtils {
 	// Methods
 	// ===========================================================
 	
-    /**
-     * 
-     * @param pIntBoundsA
-     * @param pIntBoundsB
-     * @return
-     */
-    public static final boolean intersects(final IIntBounds pIntBoundsA, final IIntBounds pIntBoundsB) {
+	public static final boolean intersects(final IIntBounds pIntBoundsA, final IIntBounds pIntBoundsB) {
 		return IntBoundsUtils.intersects(pIntBoundsA.getXMin(), pIntBoundsA.getYMin(), pIntBoundsA.getXMax(), pIntBoundsA.getYMax(), pIntBoundsB.getXMin(), pIntBoundsB.getYMin(), pIntBoundsB.getXMax(), pIntBoundsB.getYMax());
 	}
 
-        /**
-         * 
-         * @param pXMinA
-         * @param pYMinA
-         * @param pXMaxA
-         * @param pYMaxA
-         * @param pXMinB
-         * @param pYMinB
-         * @param pXMaxB
-         * @param pYMaxB
-         * @return
-         */
-        public static final boolean intersects(final int pXMinA, final int pYMinA, final int pXMaxA, final int pYMaxA, final int pXMinB, final int pYMinB, final int pXMaxB, final int pYMaxB) {
+	public static final boolean intersects(final int pXMinA, final int pYMinA, final int pXMaxA, final int pYMaxA, final int pXMinB, final int pYMinB, final int pXMaxB, final int pYMaxB) {
 		return ((pXMinA < pXMaxB) && (pXMinB < pXMaxA) && (pYMinA < pYMaxB) && (pYMinB < pYMaxA))
 				|| IntBoundsUtils.contains(pXMinA, pYMinA, pXMaxA, pYMaxA, pXMinB, pYMinB, pXMaxB, pYMaxB)
 				|| IntBoundsUtils.contains(pXMinB, pYMinB, pXMaxB, pYMaxB, pXMinA, pYMinA, pXMaxA, pYMaxA);
 	}
 	
-        /**
-         * 
-         * @param pIntBoundsA
-         * @param pIntBoundsB
-         * @return
-         */
-        public static final boolean contains(final IIntBounds pIntBoundsA, final IIntBounds pIntBoundsB) {
+	public static final boolean contains(final IIntBounds pIntBoundsA, final IIntBounds pIntBoundsB) {
 		return IntBoundsUtils.contains(pIntBoundsA.getXMin(), pIntBoundsA.getYMin(), pIntBoundsA.getXMax(), pIntBoundsA.getYMax(), pIntBoundsB.getXMin(), pIntBoundsB.getYMin(), pIntBoundsB.getXMax(), pIntBoundsB.getYMax());
 	}
 	
-        /**
-         * 
-         * @param pIntBounds
-         * @param pX
-         * @param pY
-         * @return
-         */
-        public static final boolean contains(final IIntBounds pIntBounds, final int pX, final int pY) {
+	public static final boolean contains(final IIntBounds pIntBounds, final int pX, final int pY) {
 		return IntBoundsUtils.contains(pIntBounds.getXMin(), pIntBounds.getYMin(), pIntBounds.getXMax(), pIntBounds.getYMax(), pX, pY);
 	}
 	
-        /**
-         * 
-         * @param pIntBounds
-         * @param pXMin
-         * @param pYMin
-         * @param pXMax
-         * @param pYMax
-         * @return
-         */
-        public static final boolean contains(final IIntBounds pIntBounds, final int pXMin, final int pYMin, final int pXMax, final int pYMax) {
+	public static final boolean contains(final IIntBounds pIntBounds, final int pXMin, final int pYMin, final int pXMax, final int pYMax) {
 		return IntBoundsUtils.contains(pIntBounds.getXMin(), pIntBounds.getYMin(), pIntBounds.getXMax(), pIntBounds.getYMax(), pXMin, pYMin, pXMax, pYMax);
 	}
 
-        /**
-         * 
-         * @param pXMin
-         * @param pYMin
-         * @param pXMax
-         * @param pYMax
-         * @param pX
-         * @param pY
-         * @return
-         */
-        public static final boolean contains(final int pXMin, final int pYMin, final int pXMax, final int pYMax, final int pX, final int pY) {
+	public static final boolean contains(final int pXMin, final int pYMin, final int pXMax, final int pYMax, final int pX, final int pY) {
 		return (pXMin <= pX) && (pYMin <= pY) && (pXMax >= pX) && (pYMax >= pY);
 	}
 
-        /**
-         * 
-         * @param pXMinA
-         * @param pYMinA
-         * @param pXMaxA
-         * @param pYMaxA
-         * @param pXMinB
-         * @param pYMinB
-         * @param pXMaxB
-         * @param pYMaxB
-         * @return
-         */
-        public static final boolean contains(final int pXMinA, final int pYMinA, final int pXMaxA, final int pYMaxA, final int pXMinB, final int pYMinB, final int pXMaxB, final int pYMaxB) {
+	public static final boolean contains(final int pXMinA, final int pYMinA, final int pXMaxA, final int pYMaxA, final int pXMinB, final int pYMinB, final int pXMaxB, final int pYMaxB) {
 		return (pXMinA <= pXMinB) && (pYMinA <= pYMinB) && (pXMaxA >= pXMaxB) && (pYMaxA >= pYMaxB);
 	}
 
-        /**
-         * 
-         * @param pIntBoundsA
-         * @param pIntBoundsB
-         * @return
-         */
-        public static final boolean adjacent(final IIntBounds pIntBoundsA, final IIntBounds pIntBoundsB) {
+	public static final boolean adjacent(final IIntBounds pIntBoundsA, final IIntBounds pIntBoundsB) {
 		return IntBoundsUtils.adjacent(pIntBoundsA.getXMin(), pIntBoundsA.getYMin(), pIntBoundsA.getXMax(), pIntBoundsA.getYMax(), pIntBoundsB.getXMin(), pIntBoundsB.getYMin(), pIntBoundsB.getXMax(), pIntBoundsB.getYMax());
 	}
 
-        /**
-         * 
-         * @param pXMinA
-         * @param pYMinA
-         * @param pXMaxA
-         * @param pYMaxA
-         * @param pXMinB
-         * @param pYMinB
-         * @param pXMaxB
-         * @param pYMaxB
-         * @return
-         */
-        public static final boolean adjacent(final int pXMinA, final int pYMinA, final int pXMaxA, final int pYMaxA, final int pXMinB, final int pYMinB, final int pXMaxB, final int pYMaxB) {
+	public static final boolean adjacent(final int pXMinA, final int pYMinA, final int pXMaxA, final int pYMaxA, final int pXMinB, final int pYMinB, final int pXMaxB, final int pYMaxB) {
 		final int width = Math.min(pXMaxA, pXMaxB) - Math.max(pXMinA, pXMinB);
 		final int height = Math.min(pYMaxA, pYMaxB) - Math.max(pYMinA, pYMinB);
 

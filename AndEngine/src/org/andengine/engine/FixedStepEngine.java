@@ -29,12 +29,7 @@ public class FixedStepEngine extends Engine {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEngineOptions
-         * @param pStepsPerSecond
-         */
-        public FixedStepEngine(final EngineOptions pEngineOptions, final int pStepsPerSecond) {
+	public FixedStepEngine(final EngineOptions pEngineOptions, final int pStepsPerSecond) {
 		super(pEngineOptions);
 		this.mStepLength = NANOSECONDS_PER_SECOND / pStepsPerSecond;
 	}
@@ -47,12 +42,7 @@ public class FixedStepEngine extends Engine {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pNanosecondsElapsed
-         * @throws InterruptedException
-         */
-        @Override
+	@Override
 	public void onUpdate(final long pNanosecondsElapsed) throws InterruptedException {
 		this.mSecondsElapsedAccumulator += pNanosecondsElapsed;
 

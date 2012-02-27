@@ -18,39 +18,23 @@ public abstract class BaseDurationModifier<T> extends BaseModifier<T> {
 	// ===========================================================
 
 	private float mSecondsElapsed;
-        /**
-         * 
-         */
-        protected float mDuration;
+	protected float mDuration;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDuration
-         */
-        public BaseDurationModifier(final float pDuration) {
+	public BaseDurationModifier(final float pDuration) {
 		this.mDuration = pDuration;
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pModifierListener
-         */
-        public BaseDurationModifier(final float pDuration, final IModifierListener<T> pModifierListener) {
+	public BaseDurationModifier(final float pDuration, final IModifierListener<T> pModifierListener) {
 		super(pModifierListener);
 
 		this.mDuration = pDuration;
 	}
 
-        /**
-         * 
-         * @param pBaseModifier
-         */
-        protected BaseDurationModifier(final BaseDurationModifier<T> pBaseModifier) {
+	protected BaseDurationModifier(final BaseDurationModifier<T> pBaseModifier) {
 		this(pBaseModifier.mDuration);
 	}
 
@@ -58,11 +42,7 @@ public abstract class BaseDurationModifier<T> extends BaseModifier<T> {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getSecondsElapsed() {
 		return this.mSecondsElapsed;
 	}
@@ -71,27 +51,14 @@ public abstract class BaseDurationModifier<T> extends BaseModifier<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getDuration() {
 		return this.mDuration;
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pItem
-         */
-        protected abstract void onManagedUpdate(final float pSecondsElapsed, final T pItem);
+	protected abstract void onManagedUpdate(final float pSecondsElapsed, final T pItem);
 
-        /**
-         * 
-         * @param pItem
-         */
-        protected abstract void onManagedInitialize(final T pItem);
+	protected abstract void onManagedInitialize(final T pItem);
 
 	@Override
 	public final float onUpdate(final float pSecondsElapsed, final T pItem) {
@@ -122,10 +89,7 @@ public abstract class BaseDurationModifier<T> extends BaseModifier<T> {
 		}
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		this.mFinished = false;
 		this.mSecondsElapsed = 0;

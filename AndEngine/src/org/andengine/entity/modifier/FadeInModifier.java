@@ -24,47 +24,23 @@ public class FadeInModifier extends AlphaModifier {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDuration
-     */
-    public FadeInModifier(final float pDuration) {
+	public FadeInModifier(final float pDuration) {
 		super(pDuration, 0.0f, 1.0f, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pEaseFunction
-         */
-        public FadeInModifier(final float pDuration, final IEaseFunction pEaseFunction) {
+	public FadeInModifier(final float pDuration, final IEaseFunction pEaseFunction) {
 		super(pDuration, 0.0f, 1.0f, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pEntityModifierListener
-         */
-        public FadeInModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
+	public FadeInModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, 0.0f, 1.0f, pEntityModifierListener, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pEntityModifierListener
-         * @param pEaseFunction
-         */
-        public FadeInModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
+	public FadeInModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, 0.0f, 1.0f, pEntityModifierListener, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pFadeInModifier
-         */
-        protected FadeInModifier(final FadeInModifier pFadeInModifier) {
+	protected FadeInModifier(final FadeInModifier pFadeInModifier) {
 		super(pFadeInModifier);
 	}
 

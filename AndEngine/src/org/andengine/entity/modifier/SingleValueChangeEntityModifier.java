@@ -23,30 +23,15 @@ public abstract class SingleValueChangeEntityModifier extends BaseSingleValueCha
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDuration
-     * @param pValueChange
-     */
-    public SingleValueChangeEntityModifier(final float pDuration, final float pValueChange) {
+	public SingleValueChangeEntityModifier(final float pDuration, final float pValueChange) {
 		super(pDuration, pValueChange);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pValueChange
-         * @param pEntityModifierListener
-         */
-        public SingleValueChangeEntityModifier(final float pDuration, final float pValueChange, final IEntityModifierListener pEntityModifierListener) {
+	public SingleValueChangeEntityModifier(final float pDuration, final float pValueChange, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pValueChange, pEntityModifierListener);
 	}
 
-        /**
-         * 
-         * @param pSingleValueChangeEntityModifier
-         */
-        protected SingleValueChangeEntityModifier(final SingleValueChangeEntityModifier pSingleValueChangeEntityModifier) {
+	protected SingleValueChangeEntityModifier(final SingleValueChangeEntityModifier pSingleValueChangeEntityModifier) {
 		super(pSingleValueChangeEntityModifier);
 	}
 

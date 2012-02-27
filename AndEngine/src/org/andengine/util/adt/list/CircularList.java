@@ -13,7 +13,6 @@ import org.andengine.util.adt.list.IList;
  *
  * (c) Zynga 2012
  *
- * @param <T> 
  * @author Greg Haynes
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 15:02:40 - 24.02.2012
@@ -38,18 +37,11 @@ public class CircularList<T> implements IList<T> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public CircularList() {
+	public CircularList() {
 		this(CircularList.CAPACITY_INITIAL_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pInitialCapacity
-         */
-        public CircularList(final int pInitialCapacity) {
+	public CircularList(final int pInitialCapacity) {
 		this.mItems = new Object[pInitialCapacity];
 	}
 
@@ -61,11 +53,7 @@ public class CircularList<T> implements IList<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isEmpty() {
 		return this.mSize == 0;
 	}
@@ -77,35 +65,18 @@ public class CircularList<T> implements IList<T> {
 		this.mSize++;
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	@SuppressWarnings("unchecked")
 	public T get(final int pIndex) throws ArrayIndexOutOfBoundsException {
 		return (T) this.mItems[this.encodeToInternalIndex(pIndex)];
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public void set(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.mItems[this.encodeToInternalIndex(pIndex)] = pItem;
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public int indexOf(final T pItem) {
 		final int size = this.size();
 		if(pItem == null) {
@@ -124,12 +95,7 @@ public class CircularList<T> implements IList<T> {
 		return CircularList.INDEX_INVALID;
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         */
-        @Override
+	@Override
 	public void add(final int pIndex, final T pItem) {
 		int internalIndex = this.encodeToInternalIndex(pIndex);
 
@@ -176,30 +142,17 @@ public class CircularList<T> implements IList<T> {
 		this.mSize++;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T removeFirst() {
 		return this.remove(0);
 	}
 	
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T removeLast() {
 		return this.remove(this.size() - 1);
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public boolean remove(final T pItem) {
 		final int index = this.indexOf(pItem);
 		if(index >= 0) {
@@ -252,19 +205,12 @@ public class CircularList<T> implements IList<T> {
 		return removed;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int size() {
 		return this.mSize;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void clear() {
 		final int tail = this.mHead + this.mSize;
 		final int capacity = this.mItems.length;

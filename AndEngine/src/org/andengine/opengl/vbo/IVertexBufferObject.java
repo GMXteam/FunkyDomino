@@ -17,48 +17,25 @@ public interface IVertexBufferObject extends IDisposable {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int HARDWARE_BUFFER_ID_INVALID = -1;
+	public static final int HARDWARE_BUFFER_ID_INVALID = -1;
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isAutoDispose();
+	public boolean isAutoDispose();
 
-        /**
-         * 
-         * @return
-         */
-        public int getHardwareBufferID();
+	public int getHardwareBufferID();
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isLoadedToHardware();
+	public boolean isLoadedToHardware();
 	/**
 	 * Mark this {@link VertexBufferObject} as not not loaded to hardware.
 	 * It will reload itself to hardware when it gets used again.
 	 */
 	public void setNotLoadedToHardware();
-        /**
-         * 
-         * @param pGLState
-         */
-        public void unloadFromHardware(final GLState pGLState);
+	public void unloadFromHardware(final GLState pGLState);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isDirtyOnHardware();
+	public boolean isDirtyOnHardware();
 	/** Mark this {@link VertexBufferObject} dirty so it gets updated on the hardware. */
 	public void setDirtyOnHardware();
 
@@ -84,41 +61,12 @@ public interface IVertexBufferObject extends IDisposable {
 	 */
 	public int getGPUMemoryByteSize();
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public void bind(final GLState pGLState);
-        /**
-         * 
-         * @param pGLState
-         * @param pShaderProgram
-         */
-        public void bind(final GLState pGLState, final ShaderProgram pShaderProgram);
-        /**
-         * 
-         * @param pGLState
-         * @param pShaderProgram
-         */
-        public void unbind(final GLState pGLState, final ShaderProgram pShaderProgram);
+	public void bind(final GLState pGLState);
+	public void bind(final GLState pGLState, final ShaderProgram pShaderProgram);
+	public void unbind(final GLState pGLState, final ShaderProgram pShaderProgram);
 
-        /**
-         * 
-         * @return
-         */
-        public VertexBufferObjectManager getVertexBufferObjectManager();
+	public VertexBufferObjectManager getVertexBufferObjectManager();
 
-        /**
-         * 
-         * @param pPrimitiveType
-         * @param pCount
-         */
-        public void draw(final int pPrimitiveType, final int pCount);
-        /**
-         * 
-         * @param pPrimitiveType
-         * @param pOffset
-         * @param pCount
-         */
-        public void draw(final int pPrimitiveType, final int pOffset, final int pCount);
+	public void draw(final int pPrimitiveType, final int pCount);
+	public void draw(final int pPrimitiveType, final int pOffset, final int pCount);
 }

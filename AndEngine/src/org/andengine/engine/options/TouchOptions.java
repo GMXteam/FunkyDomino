@@ -28,37 +28,20 @@ public class TouchOptions {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean needsMultiTouch() {
+	public boolean needsMultiTouch() {
 		return this.mNeedsMultiTouch;
 	}
 
-        /**
-         * 
-         * @param pNeedsMultiTouch
-         * @return
-         */
-        public TouchOptions setNeedsMultiTouch(final boolean pNeedsMultiTouch) {
+	public TouchOptions setNeedsMultiTouch(final boolean pNeedsMultiTouch) {
 		this.mNeedsMultiTouch = pNeedsMultiTouch;
 		return this;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public long getTouchEventIntervalMilliseconds() {
+	public long getTouchEventIntervalMilliseconds() {
 		return this.mTouchEventIntervalMilliseconds;
 	}
 
-        /**
-         * 
-         * @param pTouchEventIntervalMilliseconds
-         */
-        public void setTouchEventIntervalMilliseconds(final long pTouchEventIntervalMilliseconds) {
+	public void setTouchEventIntervalMilliseconds(final long pTouchEventIntervalMilliseconds) {
 		this.mTouchEventIntervalMilliseconds = pTouchEventIntervalMilliseconds;
 	}
 

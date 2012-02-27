@@ -37,20 +37,11 @@ public class BufferUtils {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCapacity
-         * @return
-         */
-        public static ByteBuffer allocateDirect(final int pCapacity) {
+	public static ByteBuffer allocateDirect(final int pCapacity) {
 		return BufferUtils.jniAllocateDirect(pCapacity);
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         */
-        public static void freeDirect(final ByteBuffer pByteBuffer) {
+	public static void freeDirect(final ByteBuffer pByteBuffer) {
 		BufferUtils.jniFreeDirect(pByteBuffer);
 	}
 
@@ -71,117 +62,51 @@ public class BufferUtils {
 
 	private native static void jniPut(final ByteBuffer pByteBuffer, final float[] pSource, final int pLength, final int pOffset);
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @return
-         */
-        public static short getUnsignedByte(final ByteBuffer pByteBuffer) {
+	public static short getUnsignedByte(final ByteBuffer pByteBuffer) {
 		return (short) (pByteBuffer.get() & 0xFF);
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pValue
-         */
-        public static void putUnsignedByte(final ByteBuffer pByteBuffer, final int pValue) {
+	public static void putUnsignedByte(final ByteBuffer pByteBuffer, final int pValue) {
 		pByteBuffer.put((byte) (pValue & 0xFF));
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pPosition
-         * @return
-         */
-        public static short getUnsignedByte(final ByteBuffer pByteBuffer, final int pPosition) {
+	public static short getUnsignedByte(final ByteBuffer pByteBuffer, final int pPosition) {
 		return (short) (pByteBuffer.get(pPosition) & (short) 0xFF);
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pPosition
-         * @param pValue
-         */
-        public static void putUnsignedByte(final ByteBuffer pByteBuffer, final int pPosition, final int pValue) {
+	public static void putUnsignedByte(final ByteBuffer pByteBuffer, final int pPosition, final int pValue) {
 		pByteBuffer.put(pPosition, (byte) (pValue & 0xFF));
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @return
-         */
-        public static int getUnsignedShort(final ByteBuffer pByteBuffer) {
+	public static int getUnsignedShort(final ByteBuffer pByteBuffer) {
 		return pByteBuffer.getShort() & 0xFFFF;
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pValue
-         */
-        public static void putUnsignedShort(final ByteBuffer pByteBuffer, final int pValue) {
+	public static void putUnsignedShort(final ByteBuffer pByteBuffer, final int pValue) {
 		pByteBuffer.putShort((short) (pValue & 0xFFFF));
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pPosition
-         * @return
-         */
-        public static int getUnsignedShort(final ByteBuffer pByteBuffer, final int pPosition) {
+	public static int getUnsignedShort(final ByteBuffer pByteBuffer, final int pPosition) {
 		return pByteBuffer.getShort(pPosition) & 0xFFFF;
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pPosition
-         * @param pValue
-         */
-        public static void putUnsignedShort(final ByteBuffer pByteBuffer, final int pPosition, final int pValue) {
+	public static void putUnsignedShort(final ByteBuffer pByteBuffer, final int pPosition, final int pValue) {
 		pByteBuffer.putShort(pPosition, (short) (pValue & 0xFFFF));
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @return
-         */
-        public static long getUnsignedInt(final ByteBuffer pByteBuffer) {
+	public static long getUnsignedInt(final ByteBuffer pByteBuffer) {
 		return pByteBuffer.getInt() & 0xFFFFFFFFL;
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pValue
-         */
-        public static void putUnsignedInt(final ByteBuffer pByteBuffer, final long pValue) {
+	public static void putUnsignedInt(final ByteBuffer pByteBuffer, final long pValue) {
 		pByteBuffer.putInt((int) (pValue & 0xFFFFFFFFL));
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pPosition
-         * @return
-         */
-        public static long getUnsignedInt(final ByteBuffer pByteBuffer, final int pPosition) {
+	public static long getUnsignedInt(final ByteBuffer pByteBuffer, final int pPosition) {
 		return pByteBuffer.getInt(pPosition) & 0xFFFFFFFFL;
 	}
 
-        /**
-         * 
-         * @param pByteBuffer
-         * @param pPosition
-         * @param pValue
-         */
-        public static void putUnsignedInt(final ByteBuffer pByteBuffer, final int pPosition, final long pValue) {
+	public static void putUnsignedInt(final ByteBuffer pByteBuffer, final int pPosition, final long pValue) {
 		pByteBuffer.putInt(pPosition, (short) (pValue & 0xFFFFFFFFL));
 	}
 

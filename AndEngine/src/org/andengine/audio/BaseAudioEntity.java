@@ -20,14 +20,8 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 
 	private final IAudioManager<? extends IAudioEntity> mAudioManager;
 
-        /**
-         * 
-         */
-        protected float mLeftVolume = 1.0f;
-        /**
-         * 
-         */
-        protected float mRightVolume = 1.0f;
+	protected float mLeftVolume = 1.0f;
+	protected float mRightVolume = 1.0f;
 
 	private boolean mReleased;
 
@@ -35,11 +29,7 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pAudioManager
-         */
-        public BaseAudioEntity(final IAudioManager<? extends IAudioEntity> pAudioManager) {
+	public BaseAudioEntity(final IAudioManager<? extends IAudioEntity> pAudioManager) {
 		this.mAudioManager = pAudioManager;
 	}
 
@@ -47,53 +37,29 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isReleased() {
+	public boolean isReleased() {
 		return this.mReleased;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        protected IAudioManager<? extends IAudioEntity> getAudioManager() throws AudioException {
+	protected IAudioManager<? extends IAudioEntity> getAudioManager() throws AudioException {
 		this.assertNotReleased();
 
 		return this.mAudioManager;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        public float getActualLeftVolume() throws AudioException {
+	public float getActualLeftVolume() throws AudioException {
 		this.assertNotReleased();
 
 		return this.mLeftVolume * this.getMasterVolume();
 	}
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        public float getActualRightVolume() throws AudioException {
+	public float getActualRightVolume() throws AudioException {
 		this.assertNotReleased();
 
 		return this.mRightVolume * this.getMasterVolume();
 	}
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        protected float getMasterVolume() throws AudioException {
+	protected float getMasterVolume() throws AudioException {
 		this.assertNotReleased();
 
 		return this.mAudioManager.getMasterVolume();
@@ -103,67 +69,37 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        protected abstract void throwOnReleased() throws AudioException ;
+	protected abstract void throwOnReleased() throws AudioException ;
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public float getVolume() throws AudioException {
 		this.assertNotReleased();
 
 		return (this.mLeftVolume + this.mRightVolume) * 0.5f;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public float getLeftVolume() throws AudioException {
 		this.assertNotReleased();
 
 		return this.mLeftVolume;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public float getRightVolume() throws AudioException {
 		this.assertNotReleased();
 
 		return this.mRightVolume;
 	}
 
-        /**
-         * 
-         * @param pVolume
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public final void setVolume(final float pVolume) throws AudioException {
 		this.assertNotReleased();
 
 		this.setVolume(pVolume, pVolume);
 	}
 
-        /**
-         * 
-         * @param pLeftVolume
-         * @param pRightVolume
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void setVolume(final float pLeftVolume, final float pRightVolume) throws AudioException {
 		this.assertNotReleased();
 
@@ -171,67 +107,37 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 		this.mRightVolume = pRightVolume;
 	}
 
-        /**
-         * 
-         * @param pMasterVolume
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void onMasterVolumeChanged(final float pMasterVolume) throws AudioException {
 		this.assertNotReleased();
 	}
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void play() throws AudioException {
 		this.assertNotReleased();
 	}
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void pause() throws AudioException {
 		this.assertNotReleased();
 	}
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void resume() throws AudioException {
 		this.assertNotReleased();
 	}
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void stop() throws AudioException {
 		this.assertNotReleased();
 	}
 
-        /**
-         * 
-         * @param pLooping
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void setLooping(final boolean pLooping) throws AudioException {
 		this.assertNotReleased();
 	}
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        @Override
+	@Override
 	public void release() throws AudioException {
 		this.assertNotReleased();
 
@@ -242,11 +148,7 @@ public abstract class BaseAudioEntity implements IAudioEntity {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @throws AudioException
-         */
-        protected void assertNotReleased() throws AudioException {
+	protected void assertNotReleased() throws AudioException {
 		if(this.mReleased) {
 			this.throwOnReleased();
 		}

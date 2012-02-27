@@ -35,16 +35,7 @@ public class TickerText extends Text {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pFont
-         * @param pText
-         * @param pTickerTextOptions
-         * @param pVertexBufferObjectManager
-         */
-        public TickerText(final float pX, final float pY, final IFont pFont, final String pText, final TickerTextOptions pTickerTextOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public TickerText(final float pX, final float pY, final IFont pFont, final String pText, final TickerTextOptions pTickerTextOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pFont, pText, pTickerTextOptions, pVertexBufferObjectManager);
 
 		this.mTickerTextOptions = pTickerTextOptions;
@@ -56,54 +47,30 @@ public class TickerText extends Text {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public TickerTextOptions getTextOptions() {
 		return (TickerTextOptions) super.getTextOptions();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isReverse() {
+	public boolean isReverse() {
 		return this.getTextOptions().mReverse;
 	}
 
-        /**
-         * 
-         * @param pReverse
-         */
-        public void setReverse(final boolean pReverse) {
+	public void setReverse(final boolean pReverse) {
 		this.mTickerTextOptions.mReverse = pReverse;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getCharactersPerSecond() {
+	public float getCharactersPerSecond() {
 		return this.mTickerTextOptions.mCharactersPerSecond;
 	}
 
-        /**
-         * 
-         * @param pCharactersPerSecond
-         */
-        public void setCharactersPerSecond(final float pCharactersPerSecond) {
+	public void setCharactersPerSecond(final float pCharactersPerSecond) {
 		this.mTickerTextOptions.mCharactersPerSecond = pCharactersPerSecond;
 
 		this.mDuration = this.mCharactersToDraw * pCharactersPerSecond;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getCharactersVisible() {
+	public int getCharactersVisible() {
 		return this.mCharactersVisible;
 	}
 
@@ -111,11 +78,7 @@ public class TickerText extends Text {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		super.onManagedUpdate(pSecondsElapsed);
 		if(this.mTickerTextOptions.mReverse){
@@ -136,10 +99,7 @@ public class TickerText extends Text {
 		this.mTextVertexBufferObject.draw(GLES20.GL_TRIANGLES, this.mCharactersVisible * Text.VERTICES_PER_LETTER);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		super.reset();
 
@@ -155,10 +115,7 @@ public class TickerText extends Text {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class TickerTextOptions extends TextOptions {
+	public static class TickerTextOptions extends TextOptions {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -174,72 +131,32 @@ public class TickerText extends Text {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 */
-                public TickerTextOptions() {
+		public TickerTextOptions() {
 
 		}
 
-                /**
-                 * 
-                 * @param pCharactersPerSecond
-                 */
-                public TickerTextOptions(final float pCharactersPerSecond) {
+		public TickerTextOptions(final float pCharactersPerSecond) {
 			this(pCharactersPerSecond, false);
 		}
 
-                /**
-                 * 
-                 * @param pCharactersPerSecond
-                 * @param pReverse
-                 */
-                public TickerTextOptions(final float pCharactersPerSecond, final boolean pReverse) {
+		public TickerTextOptions(final float pCharactersPerSecond, final boolean pReverse) {
 			this(HorizontalAlign.LEFT, pCharactersPerSecond, pReverse);
 		}
 
-                /**
-                 * 
-                 * @param pHorizontalAlign
-                 * @param pCharactersPerSecond
-                 */
-                public TickerTextOptions(final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond) {
-			this(false, 0, Text.LEADING_DEFAULT, pHorizontalAlign, pCharactersPerSecond, false);
+		public TickerTextOptions(final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond) {
+			this(AutoWrap.NONE, 0, Text.LEADING_DEFAULT, pHorizontalAlign, pCharactersPerSecond, false);
 		}
 
-                /**
-                 * 
-                 * @param pHorizontalAlign
-                 * @param pCharactersPerSecond
-                 * @param pReverse
-                 */
-                public TickerTextOptions(final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond, final boolean pReverse) {
-			this(false, 0, Text.LEADING_DEFAULT, pHorizontalAlign, pCharactersPerSecond, pReverse);
+		public TickerTextOptions(final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond, final boolean pReverse) {
+			this(AutoWrap.NONE, 0, Text.LEADING_DEFAULT, pHorizontalAlign, pCharactersPerSecond, pReverse);
 		}
 
-                /**
-                 * 
-                 * @param pAutoWordWrap
-                 * @param pAutoWordWrapWidth
-                 * @param pLeading
-                 * @param pHorizontalAlign
-                 * @param pCharactersPerSecond
-                 */
-                public TickerTextOptions(final boolean pAutoWordWrap, final float pAutoWordWrapWidth, final float pLeading, final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond) {
-			this(pAutoWordWrap, pAutoWordWrapWidth, pLeading, pHorizontalAlign, pCharactersPerSecond, false);
+		public TickerTextOptions(final AutoWrap pAutoWrap, final float pAutoWrapWidth, final float pLeading, final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond) {
+			this(pAutoWrap, pAutoWrapWidth, pLeading, pHorizontalAlign, pCharactersPerSecond, false);
 		}
 
-                /**
-                 * 
-                 * @param pAutoWordWrap
-                 * @param pAutoWordWrapWidth
-                 * @param pLeading
-                 * @param pHorizontalAlign
-                 * @param pCharactersPerSecond
-                 * @param pReverse
-                 */
-                public TickerTextOptions(final boolean pAutoWordWrap, final float pAutoWordWrapWidth, final float pLeading, final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond, final boolean pReverse) {
-			super(pAutoWordWrap, pAutoWordWrapWidth, pLeading, pHorizontalAlign);
+		public TickerTextOptions(final AutoWrap pAutoWrap, final float pAutoWrapWidth, final float pLeading, final HorizontalAlign pHorizontalAlign, final float pCharactersPerSecond, final boolean pReverse) {
+			super(pAutoWrap, pAutoWrapWidth, pLeading, pHorizontalAlign);
 
 			this.mCharactersPerSecond = pCharactersPerSecond;
 			this.mReverse = pReverse;
@@ -249,35 +166,19 @@ public class TickerText extends Text {
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float getCharactersPerSecond() {
+		public float getCharactersPerSecond() {
 			return this.mCharactersPerSecond;
 		}
 
-                /**
-                 * 
-                 * @param pCharactersPerSecond
-                 */
-                public void setCharactersPerSecond(final float pCharactersPerSecond) {
+		public void setCharactersPerSecond(final float pCharactersPerSecond) {
 			this.mCharactersPerSecond = pCharactersPerSecond;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public boolean isReverse() {
+		public boolean isReverse() {
 			return this.mReverse;
 		}
 
-                /**
-                 * 
-                 * @param pReverse
-                 */
-                public void setReverse(final boolean pReverse) {
+		public void setReverse(final boolean pReverse) {
 			this.mReverse = pReverse;
 		}
 

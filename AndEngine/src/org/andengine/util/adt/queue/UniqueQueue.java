@@ -5,7 +5,6 @@ import org.andengine.util.adt.list.UniqueList;
 /**
  * (c) Zynga 2012
  *
- * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 17:17:33 PM - 03.022012
  */
@@ -22,11 +21,7 @@ public class UniqueQueue<T extends Comparable<T>> extends UniqueList<T> implemen
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pQueue
-     */
-    public UniqueQueue(final IQueue<T> pQueue) {
+	public UniqueQueue(final IQueue<T> pQueue) {
 		super(pQueue);
 	}
 
@@ -38,11 +33,7 @@ public class UniqueQueue<T extends Comparable<T>> extends UniqueList<T> implemen
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T peek() {
 		if(this.isEmpty()) {
 			return null;
@@ -51,11 +42,7 @@ public class UniqueQueue<T extends Comparable<T>> extends UniqueList<T> implemen
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T poll() {
 		if(this.isEmpty()) {
 			return null;
@@ -64,23 +51,12 @@ public class UniqueQueue<T extends Comparable<T>> extends UniqueList<T> implemen
 		}
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        @Override
+	@Override
 	public void enter(final T pItem) {
 		this.add(pItem);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         * @deprecated
-         */
-        @Deprecated
+	@Deprecated
 	@Override
 	public void enter(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.add(pIndex, pItem);

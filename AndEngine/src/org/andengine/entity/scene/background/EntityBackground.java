@@ -20,31 +20,17 @@ public class EntityBackground extends Background {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected IEntity mEntity;
+	protected IEntity mEntity;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEntity
-         */
-        public EntityBackground(final IEntity pEntity) {
+	public EntityBackground(final IEntity pEntity) {
 		this.mEntity = pEntity;
 	}
 
-        /**
-         * 
-         * @param pRed
-         * @param pGreen
-         * @param pBlue
-         * @param pEntity
-         */
-        public EntityBackground(final float pRed, final float pGreen, final float pBlue, final IEntity pEntity) {
+	public EntityBackground(final float pRed, final float pGreen, final float pBlue, final IEntity pEntity) {
 		super(pRed, pGreen, pBlue);
 		this.mEntity = pEntity;
 	}

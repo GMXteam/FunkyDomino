@@ -20,80 +20,26 @@ public interface IShape extends IEntity, ITouchArea {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int BLENDFUNCTION_SOURCE_DEFAULT = GLES20.GL_SRC_ALPHA;
-    /**
-     * 
-     */
-    public static final int BLENDFUNCTION_DESTINATION_DEFAULT = GLES20.GL_ONE_MINUS_SRC_ALPHA;
+	public static final int BLENDFUNCTION_SOURCE_DEFAULT = GLES20.GL_SRC_ALPHA;
+	public static final int BLENDFUNCTION_DESTINATION_DEFAULT = GLES20.GL_ONE_MINUS_SRC_ALPHA;
 
-    /**
-     * 
-     */
-    public static final int BLENDFUNCTION_SOURCE_PREMULTIPLYALPHA_DEFAULT = GLES20.GL_ONE;
-    /**
-     * 
-     */
-    public static final int BLENDFUNCTION_DESTINATION_PREMULTIPLYALPHA_DEFAULT = GLES20.GL_ONE_MINUS_SRC_ALPHA;
+	public static final int BLENDFUNCTION_SOURCE_PREMULTIPLYALPHA_DEFAULT = GLES20.GL_ONE;
+	public static final int BLENDFUNCTION_DESTINATION_PREMULTIPLYALPHA_DEFAULT = GLES20.GL_ONE_MINUS_SRC_ALPHA;
 
 	// ===========================================================
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pOtherShape
-         * @return
-         */
-        public boolean collidesWith(final IShape pOtherShape);
+	public boolean collidesWith(final IShape pOtherShape);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isBlendingEnabled();
-        /**
-         * 
-         * @param pBlendingEnabled
-         */
-        public void setBlendingEnabled(final boolean pBlendingEnabled);
-        /**
-         * 
-         * @return
-         */
-        public int getSourceBlendFunction();
-        /**
-         * 
-         * @return
-         */
-        public int getDestinationBlendFunction();
-        /**
-         * 
-         * @param pSourceBlendFunction
-         * @param pDestinationBlendFunction
-         */
-        public void setBlendFunction(final int pSourceBlendFunction, final int pDestinationBlendFunction);
+	public boolean isBlendingEnabled();
+	public void setBlendingEnabled(final boolean pBlendingEnabled);
+	public int getSourceBlendFunction();
+	public int getDestinationBlendFunction();
+	public void setBlendFunction(final int pSourceBlendFunction, final int pDestinationBlendFunction);
 
-        /**
-         * 
-         * @return
-         */
-        public VertexBufferObjectManager getVertexBufferObjectManager();
-        /**
-         * 
-         * @return
-         */
-        public IVertexBufferObject getVertexBufferObject();
-        /**
-         * 
-         * @return
-         */
-        public ShaderProgram getShaderProgram();
-        /**
-         * 
-         * @param pShaderProgram
-         */
-        public void setShaderProgram(final ShaderProgram pShaderProgram);
+	public VertexBufferObjectManager getVertexBufferObjectManager();
+	public IVertexBufferObject getVertexBufferObject();
+	public ShaderProgram getShaderProgram();
+	public void setShaderProgram(final ShaderProgram pShaderProgram);
 }

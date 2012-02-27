@@ -24,18 +24,11 @@ public class FontLibrary extends Library<Font> {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public FontLibrary() {
+	public FontLibrary() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pInitialCapacity
-         */
-        public FontLibrary(final int pInitialCapacity) {
+	public FontLibrary(final int pInitialCapacity) {
 		super(pInitialCapacity);
 	}
 
@@ -51,11 +44,7 @@ public class FontLibrary extends Library<Font> {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pFontManager
-         */
-        public void loadFonts(final FontManager pFontManager) {
+	public void loadFonts(final FontManager pFontManager) {
 		final SparseArray<Font> items = this.mItems;
 		for(int i = items.size() - 1; i >= 0; i--) {
 			final Font font = items.valueAt(i);

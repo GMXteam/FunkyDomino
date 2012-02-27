@@ -45,53 +45,22 @@ public class Camera implements IUpdateHandler {
 
 	private IEntity mChaseEntity;
 
-        /**
-         * 
-         */
-        protected float mRotation = 0;
-        /**
-         * 
-         */
-        protected float mCameraSceneRotation = 0;
+	protected float mRotation = 0;
+	protected float mCameraSceneRotation = 0;
 
-        /**
-         * 
-         */
-        protected int mSurfaceX;
-        /**
-         * 
-         */
-        protected int mSurfaceY;
-        /**
-         * 
-         */
-        protected int mSurfaceWidth;
-        /**
-         * 
-         */
-        protected int mSurfaceHeight;
+	protected int mSurfaceX;
+	protected int mSurfaceY;
+	protected int mSurfaceWidth;
+	protected int mSurfaceHeight;
 
-        /**
-         * 
-         */
-        protected boolean mResizeOnSurfaceSizeChanged;
-        /**
-         * 
-         */
-        protected UpdateHandlerList mUpdateHandlers;
+	protected boolean mResizeOnSurfaceSizeChanged;
+	protected UpdateHandlerList mUpdateHandlers;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         */
-        public Camera(final float pX, final float pY, final float pWidth, final float pHeight) {
+	public Camera(final float pX, final float pY, final float pWidth, final float pHeight) {
 		this.set(pX, pY, pX + pWidth, pY + pHeight);
 	}
 
@@ -99,180 +68,91 @@ public class Camera implements IUpdateHandler {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float getXMin() {
+	public float getXMin() {
 		return this.mXMin;
 	}
 
-        /**
-         * 
-         * @param pXMin
-         */
-        public void setXMin(final float pXMin) {
+	public void setXMin(final float pXMin) {
 		this.mXMin = pXMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getXMax() {
+	public float getXMax() {
 		return this.mXMax;
 	}
 
-        /**
-         * 
-         * @param pXMax
-         */
-        public void setXMax(final float pXMax) {
+	public void setXMax(final float pXMax) {
 		this.mXMax = pXMax;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getYMin() {
+	public float getYMin() {
 		return this.mYMin;
 	}
 
-        /**
-         * 
-         * @param pYMin
-         */
-        public void setYMin(final float pYMin) {
+	public void setYMin(final float pYMin) {
 		this.mYMin = pYMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getYMax() {
+	public float getYMax() {
 		return this.mYMax;
 	}
 
-        /**
-         * 
-         * @param pYMax
-         */
-        public void setYMax(final float pYMax) {
+	public void setYMax(final float pYMax) {
 		this.mYMax = pYMax;
 	}
 
-        /**
-         * 
-         * @param pXMin
-         * @param pYMin
-         * @param pXMax
-         * @param pYMax
-         */
-        public void set(final float pXMin, final float pYMin, final float pXMax, final float pYMax) {
+	public void set(final float pXMin, final float pYMin, final float pXMax, final float pYMax) {
 		this.mXMin = pXMin;
 		this.mXMax = pXMax;
 		this.mYMin = pYMin;
 		this.mYMax = pYMax;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getZNear() {
+	public float getZNear() {
 		return this.mZNear;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getZFar() {
+	public float getZFar() {
 		return this.mZFar;
 	}
 
-        /**
-         * 
-         * @param pZNear
-         */
-        public void setZNear(final float pZNear) {
+	public void setZNear(final float pZNear) {
 		this.mZNear = pZNear;
 	}
 
-        /**
-         * 
-         * @param pZFar
-         */
-        public void setZFar(final float pZFar) {
+	public void setZFar(final float pZFar) {
 		this.mZFar = pZFar;
 	}
 
-        /**
-         * 
-         * @param pNearZClippingPlane
-         * @param pFarZClippingPlane
-         */
-        public void setZClippingPlanes(final float pNearZClippingPlane, final float pFarZClippingPlane) {
+	public void setZClippingPlanes(final float pNearZClippingPlane, final float pFarZClippingPlane) {
 		this.mZNear = pNearZClippingPlane;
 		this.mZFar = pFarZClippingPlane;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getWidth() {
+	public float getWidth() {
 		return this.mXMax - this.mXMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getHeight() {
+	public float getHeight() {
 		return this.mYMax - this.mYMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getWidthRaw() {
+	public float getWidthRaw() {
 		return this.mXMax - this.mXMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getHeightRaw() {
+	public float getHeightRaw() {
 		return this.mYMax - this.mYMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getCenterX() {
+	public float getCenterX() {
 		return (this.mXMin + this.mXMax) * 0.5f;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getCenterY() {
+	public float getCenterY() {
 		return (this.mYMin + this.mYMax) * 0.5f;
 	}
 
-        /**
-         * 
-         * @param pCenterX
-         * @param pCenterY
-         */
-        public void setCenter(final float pCenterX, final float pCenterY) {
+	public void setCenter(final float pCenterX, final float pCenterY) {
 		final float dX = pCenterX - this.getCenterX();
 		final float dY = pCenterY - this.getCenterY();
 
@@ -282,130 +162,66 @@ public class Camera implements IUpdateHandler {
 		this.mYMax += dY;
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         */
-        public void offsetCenter(final float pX, final float pY) {
+	public void offsetCenter(final float pX, final float pY) {
 		this.setCenter(this.getCenterX() + pX, this.getCenterY() + pY);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public HUD getHUD() {
+	public HUD getHUD() {
 		return this.mHUD;
 	}
 
-        /**
-         * 
-         * @param pHUD
-         */
-        public void setHUD(final HUD pHUD) {
+	public void setHUD(final HUD pHUD) {
 		this.mHUD = pHUD;
 		if(pHUD != null) {
 			pHUD.setCamera(this);
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean hasHUD() {
+	public boolean hasHUD() {
 		return this.mHUD != null;
 	}
 
-        /**
-         * 
-         * @param pChaseEntity
-         */
-        public void setChaseEntity(final IEntity pChaseEntity) {
+	public void setChaseEntity(final IEntity pChaseEntity) {
 		this.mChaseEntity = pChaseEntity;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isRotated() {
+	public boolean isRotated() {
 		return this.mRotation != 0;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getRotation() {
+	public float getRotation() {
 		return this.mRotation;
 	}
 
-        /**
-         * 
-         * @param pRotation
-         */
-        public void setRotation(final float pRotation) {
+	public void setRotation(final float pRotation) {
 		this.mRotation = pRotation;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getCameraSceneRotation() {
+	public float getCameraSceneRotation() {
 		return this.mCameraSceneRotation;
 	}
 
-        /**
-         * 
-         * @param pCameraSceneRotation
-         */
-        public void setCameraSceneRotation(final float pCameraSceneRotation) {
+	public void setCameraSceneRotation(final float pCameraSceneRotation) {
 		this.mCameraSceneRotation = pCameraSceneRotation;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSurfaceX() {
+	public int getSurfaceX() {
 		return this.mSurfaceX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSurfaceY() {
+	public int getSurfaceY() {
 		return this.mSurfaceY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSurfaceWidth() {
+	public int getSurfaceWidth() {
 		return this.mSurfaceWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSurfaceHeight() {
+	public int getSurfaceHeight() {
 		return this.mSurfaceHeight;
 	}
 
-        /**
-         * 
-         * @param pSurfaceX
-         * @param pSurfaceY
-         * @param pSurfaceWidth
-         * @param pSurfaceHeight
-         */
-        public void setSurfaceSize(final int pSurfaceX, final int pSurfaceY, final int pSurfaceWidth, final int pSurfaceHeight) {
+	public void setSurfaceSize(final int pSurfaceX, final int pSurfaceY, final int pSurfaceWidth, final int pSurfaceHeight) {
 		if(this.mSurfaceHeight == 0 && this.mSurfaceWidth == 0) {
 			this.onSurfaceSizeInitialized(pSurfaceX, pSurfaceY, pSurfaceWidth, pSurfaceHeight);
 		} else if(this.mSurfaceWidth != pSurfaceWidth || this.mSurfaceHeight != pSurfaceHeight) {
@@ -413,19 +229,11 @@ public class Camera implements IUpdateHandler {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isResizeOnSurfaceSizeChanged() {
+	public boolean isResizeOnSurfaceSizeChanged() {
 		return this.mResizeOnSurfaceSizeChanged;
 	}
 
-        /**
-         * 
-         * @param pResizeOnSurfaceSizeChanged
-         */
-        public void setResizeOnSurfaceSizeChanged(final boolean pResizeOnSurfaceSizeChanged) {
+	public void setResizeOnSurfaceSizeChanged(final boolean pResizeOnSurfaceSizeChanged) {
 		this.mResizeOnSurfaceSizeChanged = pResizeOnSurfaceSizeChanged;
 	}
 
@@ -433,11 +241,7 @@ public class Camera implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 		if(this.mUpdateHandlers != null) {
 			this.mUpdateHandlers.onUpdate(pSecondsElapsed);
@@ -450,10 +254,7 @@ public class Camera implements IUpdateHandler {
 		this.updateChaseEntity();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 
 	}
@@ -462,62 +263,32 @@ public class Camera implements IUpdateHandler {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public void onDrawHUD(final GLState pGLState) {
+	public void onDrawHUD(final GLState pGLState) {
 		if(this.mHUD != null) {
 			this.mHUD.onDraw(pGLState, this);
 		}
 	}
 
-        /**
-         * 
-         */
-        public void updateChaseEntity() {
+	public void updateChaseEntity() {
 		if(this.mChaseEntity != null) {
 			final float[] centerCoordinates = this.mChaseEntity.getSceneCenterCoordinates();
 			this.setCenter(centerCoordinates[Constants.VERTEX_INDEX_X], centerCoordinates[Constants.VERTEX_INDEX_Y]);
 		}
 	}
 
-        /**
-         * 
-         * @param pLine
-         * @return
-         */
-        public boolean isLineVisible(final Line pLine) {
+	public boolean isLineVisible(final Line pLine) {
 		return RectangularShapeCollisionChecker.isVisible(this, pLine);
 	}
 
-        /**
-         * 
-         * @param pRectangularShape
-         * @return
-         */
-        public boolean isRectangularShapeVisible(final RectangularShape pRectangularShape) {
+	public boolean isRectangularShapeVisible(final RectangularShape pRectangularShape) {
 		return RectangularShapeCollisionChecker.isVisible(this, pRectangularShape);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pLocalToSceneTransformation
-         * @return
-         */
-        public boolean isRectangularShapeVisible(final float pX, final float pY, final float pWidth, final float pHeight, final Transformation pLocalToSceneTransformation) {
+	public boolean isRectangularShapeVisible(final float pX, final float pY, final float pWidth, final float pHeight, final Transformation pLocalToSceneTransformation) {
 		return RectangularShapeCollisionChecker.isVisible(this, pX, pY, pWidth, pHeight, pLocalToSceneTransformation);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public void onApplySceneMatrix(final GLState pGLState) {
+	public void onApplySceneMatrix(final GLState pGLState) {
 		pGLState.orthoProjectionGLMatrixf(this.getXMin(), this.getXMax(), this.getYMax(), this.getYMin(), this.mZNear, this.mZFar);
 
 		final float rotation = this.mRotation;
@@ -526,11 +297,7 @@ public class Camera implements IUpdateHandler {
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public void onApplySceneBackgroundMatrix(final GLState pGLState) {
+	public void onApplySceneBackgroundMatrix(final GLState pGLState) {
 		final float widthRaw = this.getWidthRaw();
 		final float heightRaw = this.getHeightRaw();
 
@@ -542,11 +309,7 @@ public class Camera implements IUpdateHandler {
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public void onApplyCameraSceneMatrix(final GLState pGLState) {
+	public void onApplyCameraSceneMatrix(final GLState pGLState) {
 		final float widthRaw = this.getWidthRaw();
 		final float heightRaw = this.getHeightRaw();
 		pGLState.orthoProjectionGLMatrixf(0, widthRaw, heightRaw, 0, this.mZNear, this.mZFar);
@@ -563,11 +326,7 @@ public class Camera implements IUpdateHandler {
 		pGLState.translateProjectionGLMatrixf(-pRotationCenterX, -pRotationCenterY, 0);
 	}
 
-        /**
-         * 
-         * @param pSceneTouchEvent
-         */
-        public void convertSceneToCameraSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
+	public void convertSceneToCameraSceneTouchEvent(final TouchEvent pSceneTouchEvent) {
 		this.unapplySceneRotation(pSceneTouchEvent);
 
 		this.applySceneToCameraSceneOffset(pSceneTouchEvent);
@@ -575,25 +334,14 @@ public class Camera implements IUpdateHandler {
 		this.applyCameraSceneRotation(pSceneTouchEvent);
 	}
 
-        /**
-         * 
-         * @param pSceneX
-         * @param pSceneY
-         * @return
-         */
-        public float[] getCameraSceneCoordinatesFromSceneCoordinates(final float pSceneX, final float pSceneY) {
+	public float[] getCameraSceneCoordinatesFromSceneCoordinates(final float pSceneX, final float pSceneY) {
 		Camera.VERTICES_TMP[Constants.VERTEX_INDEX_X] = pSceneX;
 		Camera.VERTICES_TMP[Constants.VERTEX_INDEX_Y] = pSceneY;
 
 		return this.getCameraSceneCoordinatesFromSceneCoordinates(Camera.VERTICES_TMP);
 	}
 
-        /**
-         * 
-         * @param pSceneCoordinates
-         * @return
-         */
-        public float[] getCameraSceneCoordinatesFromSceneCoordinates(final float[] pSceneCoordinates) {
+	public float[] getCameraSceneCoordinatesFromSceneCoordinates(final float[] pSceneCoordinates) {
 		this.unapplySceneRotation(pSceneCoordinates);
 
 		this.applySceneToCameraSceneOffset(pSceneCoordinates);
@@ -603,11 +351,7 @@ public class Camera implements IUpdateHandler {
 		return pSceneCoordinates;
 	}
 
-        /**
-         * 
-         * @param pCameraSceneTouchEvent
-         */
-        public void convertCameraSceneToSceneTouchEvent(final TouchEvent pCameraSceneTouchEvent) {
+	public void convertCameraSceneToSceneTouchEvent(final TouchEvent pCameraSceneTouchEvent) {
 		this.unapplyCameraSceneRotation(pCameraSceneTouchEvent);
 
 		this.unapplySceneToCameraSceneOffset(pCameraSceneTouchEvent);
@@ -615,25 +359,14 @@ public class Camera implements IUpdateHandler {
 		this.applySceneRotation(pCameraSceneTouchEvent);
 	}
 
-        /**
-         * 
-         * @param pCameraSceneX
-         * @param pCameraSceneY
-         * @return
-         */
-        public float[] getSceneCoordinatesFromCameraSceneCoordinates(final float pCameraSceneX, final float pCameraSceneY) {
+	public float[] getSceneCoordinatesFromCameraSceneCoordinates(final float pCameraSceneX, final float pCameraSceneY) {
 		Camera.VERTICES_TMP[Constants.VERTEX_INDEX_X] = pCameraSceneX;
 		Camera.VERTICES_TMP[Constants.VERTEX_INDEX_Y] = pCameraSceneY;
 
 		return this.getSceneCoordinatesFromCameraSceneCoordinates(Camera.VERTICES_TMP);
 	}
 
-        /**
-         * 
-         * @param pCameraSceneCoordinates
-         * @return
-         */
-        public float[] getSceneCoordinatesFromCameraSceneCoordinates(final float[] pCameraSceneCoordinates) {
+	public float[] getSceneCoordinatesFromCameraSceneCoordinates(final float[] pCameraSceneCoordinates) {
 		this.unapplyCameraSceneRotation(pCameraSceneCoordinates);
 
 		this.unapplySceneToCameraSceneOffset(pCameraSceneCoordinates);
@@ -643,36 +376,20 @@ public class Camera implements IUpdateHandler {
 		return pCameraSceneCoordinates;
 	}
 
-        /**
-         * 
-         * @param pSceneTouchEvent
-         */
-        protected void applySceneToCameraSceneOffset(final TouchEvent pSceneTouchEvent) {
+	protected void applySceneToCameraSceneOffset(final TouchEvent pSceneTouchEvent) {
 		pSceneTouchEvent.offset(-this.mXMin, -this.mYMin);
 	}
 
-        /**
-         * 
-         * @param pSceneCoordinates
-         */
-        protected void applySceneToCameraSceneOffset(final float[] pSceneCoordinates) {
+	protected void applySceneToCameraSceneOffset(final float[] pSceneCoordinates) {
 		pSceneCoordinates[Constants.VERTEX_INDEX_X] -= this.mXMin;
 		pSceneCoordinates[Constants.VERTEX_INDEX_Y] -= this.mYMin;
 	}
 
-        /**
-         * 
-         * @param pCameraSceneTouchEvent
-         */
-        protected void unapplySceneToCameraSceneOffset(final TouchEvent pCameraSceneTouchEvent) {
+	protected void unapplySceneToCameraSceneOffset(final TouchEvent pCameraSceneTouchEvent) {
 		pCameraSceneTouchEvent.offset(this.mXMin, this.mYMin);
 	}
 
-        /**
-         * 
-         * @param pCameraSceneCoordinates
-         */
-        protected void unapplySceneToCameraSceneOffset(final float[] pCameraSceneCoordinates) {
+	protected void unapplySceneToCameraSceneOffset(final float[] pCameraSceneCoordinates) {
 		pCameraSceneCoordinates[Constants.VERTEX_INDEX_X] += this.mXMin;
 		pCameraSceneCoordinates[Constants.VERTEX_INDEX_Y] += this.mYMin;
 	}
@@ -760,13 +477,7 @@ public class Camera implements IUpdateHandler {
 	}
 
 	// TODO Camera already knows about its surfaceWidth, is there a need to pass it in here again?
-        /**
-         * 
-         * @param pSurfaceTouchEvent
-         * @param pSurfaceWidth
-         * @param pSurfaceHeight
-         */
-        public void convertSurfaceToSceneTouchEvent(final TouchEvent pSurfaceTouchEvent, final int pSurfaceWidth, final int pSurfaceHeight) {
+	public void convertSurfaceToSceneTouchEvent(final TouchEvent pSurfaceTouchEvent, final int pSurfaceWidth, final int pSurfaceHeight) {
 		final float relativeX;
 		final float relativeY;
 
@@ -805,13 +516,7 @@ public class Camera implements IUpdateHandler {
 		pSurfaceTouchEvent.set(x, y);
 	}
 
-        /**
-         * 
-         * @param pSceneTouchEvent
-         * @param pSurfaceWidth
-         * @param pSurfaceHeight
-         */
-        public void convertSceneToSurfaceTouchEvent(final TouchEvent pSceneTouchEvent, final int pSurfaceWidth, final int pSurfaceHeight) {
+	public void convertSceneToSurfaceTouchEvent(final TouchEvent pSceneTouchEvent, final int pSurfaceWidth, final int pSurfaceHeight) {
 		this.convertAxisAlignedSceneToSurfaceTouchEvent(pSceneTouchEvent, pSurfaceWidth, pSurfaceHeight);
 
 		final float rotation = this.mRotation;
@@ -841,45 +546,28 @@ public class Camera implements IUpdateHandler {
 		pSceneTouchEvent.set(relativeX * pSurfaceWidth, relativeY * pSurfaceHeight);
 	}
 
-        /**
-         * 
-         * @param pUpdateHandler
-         */
-        public void registerUpdateHandler(final IUpdateHandler pUpdateHandler) {
+	public void registerUpdateHandler(final IUpdateHandler pUpdateHandler) {
 		if(this.mUpdateHandlers == null) {
 			this.allocateUpdateHandlers();
 		}
 		this.mUpdateHandlers.add(pUpdateHandler);
 	}
 
-        /**
-         * 
-         * @param pUpdateHandler
-         * @return
-         */
-        public boolean unregisterUpdateHandler(final IUpdateHandler pUpdateHandler) {
+	public boolean unregisterUpdateHandler(final IUpdateHandler pUpdateHandler) {
 		if(this.mUpdateHandlers == null) {
 			return false;
 		}
 		return this.mUpdateHandlers.remove(pUpdateHandler);
 	}
 
-        /**
-         * 
-         * @param pUpdateHandlerMatcher
-         * @return
-         */
-        public boolean unregisterUpdateHandlers(final IUpdateHandlerMatcher pUpdateHandlerMatcher) {
+	public boolean unregisterUpdateHandlers(final IUpdateHandlerMatcher pUpdateHandlerMatcher) {
 		if(this.mUpdateHandlers == null) {
 			return false;
 		}
 		return this.mUpdateHandlers.removeAll(pUpdateHandlerMatcher);
 	}
 
-        /**
-         * 
-         */
-        public void clearUpdateHandlers() {
+	public void clearUpdateHandlers() {
 		if(this.mUpdateHandlers == null) {
 			return;
 		}
@@ -890,32 +578,14 @@ public class Camera implements IUpdateHandler {
 		this.mUpdateHandlers = new UpdateHandlerList(Camera.UPDATEHANDLERS_CAPACITY_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pSurfaceX
-         * @param pSurfaceY
-         * @param pSurfaceWidth
-         * @param pSurfaceHeight
-         */
-        protected void onSurfaceSizeInitialized(final int pSurfaceX, final int pSurfaceY, final int pSurfaceWidth, final int pSurfaceHeight) {
+	protected void onSurfaceSizeInitialized(final int pSurfaceX, final int pSurfaceY, final int pSurfaceWidth, final int pSurfaceHeight) {
 		this.mSurfaceX = pSurfaceX;
 		this.mSurfaceY = pSurfaceY;
 		this.mSurfaceWidth = pSurfaceWidth;
 		this.mSurfaceHeight = pSurfaceHeight;
 	}
 
-        /**
-         * 
-         * @param pOldSurfaceX
-         * @param pOldSurfaceY
-         * @param pOldSurfaceWidth
-         * @param pOldSurfaceHeight
-         * @param pNewSurfaceX
-         * @param pNewSurfaceY
-         * @param pNewSurfaceWidth
-         * @param pNewSurfaceHeight
-         */
-        protected void onSurfaceSizeChanged(final int pOldSurfaceX, final int pOldSurfaceY, final int pOldSurfaceWidth, final int pOldSurfaceHeight, final int pNewSurfaceX, final int pNewSurfaceY, final int pNewSurfaceWidth, final int pNewSurfaceHeight) {
+	protected void onSurfaceSizeChanged(final int pOldSurfaceX, final int pOldSurfaceY, final int pOldSurfaceWidth, final int pOldSurfaceHeight, final int pNewSurfaceX, final int pNewSurfaceY, final int pNewSurfaceWidth, final int pNewSurfaceHeight) {
 		if(this.mResizeOnSurfaceSizeChanged) {
 			final float surfaceWidthRatio = (float)pNewSurfaceWidth / pOldSurfaceWidth;
 			final float surfaceHeightRatio = (float)pNewSurfaceHeight / pOldSurfaceHeight;

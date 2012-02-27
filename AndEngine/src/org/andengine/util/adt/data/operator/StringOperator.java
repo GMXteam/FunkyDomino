@@ -11,91 +11,61 @@ public enum StringOperator {
 	// Elements
 	// ===========================================================
 
-    /**
-     * 
-     */
-    EQUALS() {
+	EQUALS() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return pStringA.equals(pStringB);
 		}
 	},
-    /**
-     * 
-     */
-    EQUALS_IGNORE_CASE() {
+	EQUALS_IGNORE_CASE() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return pStringA.equalsIgnoreCase(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        NOT_EQUALS()  {
+	NOT_EQUALS()  {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return !pStringA.equals(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        NOT_EQUALS_IGNORE_CASE()  {
+	NOT_EQUALS_IGNORE_CASE()  {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return !pStringA.equalsIgnoreCase(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        CONTAINS() {
+	CONTAINS() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return pStringA.contains(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        NOT_CONTAINS() {
+	NOT_CONTAINS() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return !pStringA.contains(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        STARTS_WITH() {
+	STARTS_WITH() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return pStringA.startsWith(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        NOT_STARTS_WITH() {
+	NOT_STARTS_WITH() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return !pStringA.startsWith(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        ENDS_WITH() {
+	ENDS_WITH() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return pStringA.endsWith(pStringB);
 		}
 	},
-        /**
-         * 
-         */
-        NOT_ENDS_WITH() {
+	NOT_ENDS_WITH() {
 		@Override
 		public boolean check(final String pStringA, final String pStringB) {
 			return !pStringA.endsWith(pStringB);
@@ -122,13 +92,7 @@ public enum StringOperator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pStringA
-         * @param pStringB
-         * @return
-         */
-        public abstract boolean check(final String pStringA, final String pStringB);
+	public abstract boolean check(final String pStringA, final String pStringB);
 
 	// ===========================================================
 	// Methods

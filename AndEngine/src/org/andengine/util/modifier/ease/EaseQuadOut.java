@@ -27,11 +27,7 @@ public class EaseQuadOut implements IEaseFunction {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseQuadOut getInstance() {
+	public static EaseQuadOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseQuadOut();
 		}
@@ -46,13 +42,7 @@ public class EaseQuadOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseQuadOut.getValue(pSecondsElapsed / pDuration);
 	}
@@ -61,12 +51,7 @@ public class EaseQuadOut implements IEaseFunction {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pPercentage
-         * @return
-         */
-        public static float getValue(final float pPercentage) {
+	public static float getValue(final float pPercentage) {
 		return -pPercentage * (pPercentage - 2);
 	}
 

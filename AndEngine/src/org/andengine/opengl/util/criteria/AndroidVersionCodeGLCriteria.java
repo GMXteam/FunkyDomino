@@ -1,15 +1,17 @@
-package org.andengine.opengl.shader.source.criteria;
+package org.andengine.opengl.util.criteria;
 
 import org.andengine.opengl.util.GLState;
 import org.andengine.util.adt.data.operator.IntOperator;
+
+import android.os.Build;
 
 /**
  * (c) Zynga 2011
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
- * @since 16:59:32 - 10.10.2011
+ * @since 17:21:13 - 10.10.2011
  */
-public abstract class IntShaderSourceCriteria implements IShaderSourceCriteria {
+public class AndroidVersionCodeGLCriteria extends IntGLCriteria {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -18,21 +20,12 @@ public abstract class IntShaderSourceCriteria implements IShaderSourceCriteria {
 	// Fields
 	// ===========================================================
 
-	private final int mCriteria;
-	private final IntOperator mIntOperator;
-
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pIntOperator
-         * @param pCriteria
-         */
-        public IntShaderSourceCriteria(final IntOperator pIntOperator, final int pCriteria) {
-		this.mCriteria = pCriteria;
-		this.mIntOperator = pIntOperator;
+	public AndroidVersionCodeGLCriteria(final IntOperator pIntOperator, final int pAndroidVersionCode) {
+		super(pIntOperator, pAndroidVersionCode);
 	}
 
 	// ===========================================================
@@ -43,21 +36,9 @@ public abstract class IntShaderSourceCriteria implements IShaderSourceCriteria {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @return
-         */
-        protected abstract int getActualCriteria(final GLState pGLState);
-
-        /**
-         * 
-         * @param pGLState
-         * @return
-         */
-        @Override
-	public boolean isMet(final GLState pGLState) {
-		return this.mIntOperator.check(this.getActualCriteria(pGLState), this.mCriteria);
+	@Override
+	protected int getActualCriteria(final GLState pGLState) {
+		return Build.VERSION.SDK_INT;
 	}
 
 	// ===========================================================

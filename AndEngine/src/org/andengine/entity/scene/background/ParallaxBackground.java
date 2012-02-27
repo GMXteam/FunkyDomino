@@ -25,22 +25,13 @@ public class ParallaxBackground extends Background {
 	private final ArrayList<ParallaxEntity> mParallaxEntities = new ArrayList<ParallaxEntity>();
 	private int mParallaxEntityCount;
 
-        /**
-         * 
-         */
-        protected float mParallaxValue;
+	protected float mParallaxValue;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pRed
-         * @param pGreen
-         * @param pBlue
-         */
-        public ParallaxBackground(final float pRed, final float pGreen, final float pBlue) {
+	public ParallaxBackground(final float pRed, final float pGreen, final float pBlue) {
 		super(pRed, pGreen, pBlue);
 	}
 
@@ -48,11 +39,7 @@ public class ParallaxBackground extends Background {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParallaxValue
-         */
-        public void setParallaxValue(final float pParallaxValue) {
+	public void setParallaxValue(final float pParallaxValue) {
 		this.mParallaxValue = pParallaxValue;
 	}
 
@@ -76,21 +63,12 @@ public class ParallaxBackground extends Background {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParallaxEntity
-         */
-        public void attachParallaxEntity(final ParallaxEntity pParallaxEntity) {
+	public void attachParallaxEntity(final ParallaxEntity pParallaxEntity) {
 		this.mParallaxEntities.add(pParallaxEntity);
 		this.mParallaxEntityCount++;
 	}
 
-        /**
-         * 
-         * @param pParallaxEntity
-         * @return
-         */
-        public boolean detachParallaxEntity(final ParallaxEntity pParallaxEntity) {
+	public boolean detachParallaxEntity(final ParallaxEntity pParallaxEntity) {
 		this.mParallaxEntityCount--;
 		final boolean success = this.mParallaxEntities.remove(pParallaxEntity);
 		if(!success) {
@@ -103,10 +81,7 @@ public class ParallaxBackground extends Background {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class ParallaxEntity {
+	public static class ParallaxEntity {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -122,12 +97,7 @@ public class ParallaxBackground extends Background {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pParallaxFactor
-                 * @param pAreaShape
-                 */
-                public ParallaxEntity(final float pParallaxFactor, final IAreaShape pAreaShape) {
+		public ParallaxEntity(final float pParallaxFactor, final IAreaShape pAreaShape) {
 			this.mParallaxFactor = pParallaxFactor;
 			this.mAreaShape = pAreaShape;
 		}
@@ -144,13 +114,7 @@ public class ParallaxBackground extends Background {
 		// Methods
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pGLState
-                 * @param pCamera
-                 * @param pParallaxValue
-                 */
-                public void onDraw(final GLState pGLState, final Camera pCamera, final float pParallaxValue) {
+		public void onDraw(final GLState pGLState, final Camera pCamera, final float pParallaxValue) {
 			pGLState.pushModelViewGLMatrix();
 			{
 				final float cameraWidth = pCamera.getWidth();

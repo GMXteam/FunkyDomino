@@ -23,43 +23,23 @@ public abstract class Texture implements ITexture {
 	// Fields
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected final TextureManager mTextureManager;
-        /**
-         * 
-         */
-        protected final PixelFormat mPixelFormat;
-        /**
-         * 
-         */
-        protected final TextureOptions mTextureOptions;
+	protected final TextureManager mTextureManager;
+	protected final PixelFormat mPixelFormat;
+	protected final TextureOptions mTextureOptions;
 
-        /**
-         * 
-         */
-        protected int mHardwareTextureID = Texture.HARDWARE_TEXTURE_ID_INVALID;
-        /**
-         * 
-         */
-        protected boolean mUpdateOnHardwareNeeded = false;
+	protected int mHardwareTextureID = Texture.HARDWARE_TEXTURE_ID_INVALID;
+	protected boolean mUpdateOnHardwareNeeded = false;
 
-        /**
-         * 
-         */
-        protected ITextureStateListener mTextureStateListener;
+	protected ITextureStateListener mTextureStateListener;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
 	/**
-         * @param pTextureManager 
-         * @param pPixelFormat
+	 * @param pPixelFormat
 	 * @param pTextureOptions the (quality) settings of the Texture.
-         * @param pTextureStateListener to be informed when this {@link Texture} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
-         * @throws IllegalArgumentException  
+	 * @param pTextureStateListener to be informed when this {@link Texture} is loaded, unloaded or a {@link ITextureAtlasSource} failed to load.
 	 */
 	public Texture(final TextureManager pTextureManager, final PixelFormat pPixelFormat, final TextureOptions pTextureOptions, final ITextureStateListener pTextureStateListener) throws IllegalArgumentException {
 		this.mTextureManager = pTextureManager;
@@ -72,37 +52,22 @@ public abstract class Texture implements ITexture {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getHardwareTextureID() {
 		return this.mHardwareTextureID;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isLoadedToHardware() {
 		return this.mHardwareTextureID != Texture.HARDWARE_TEXTURE_ID_INVALID;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void setNotLoadedToHardware() {
 		this.mHardwareTextureID = Texture.HARDWARE_TEXTURE_ID_INVALID;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isUpdateOnHardwareNeeded() {
 		return this.mUpdateOnHardwareNeeded;
 	}
@@ -112,47 +77,27 @@ public abstract class Texture implements ITexture {
 		this.mUpdateOnHardwareNeeded = pUpdateOnHardwareNeeded;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public PixelFormat getPixelFormat() {
 		return this.mPixelFormat;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public TextureOptions getTextureOptions() {
 		return this.mTextureOptions;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public ITextureStateListener getTextureStateListener() {
 		return this.mTextureStateListener;
 	}
 
-        /**
-         * 
-         * @param pTextureStateListener
-         */
-        @Override
+	@Override
 	public void setTextureStateListener(final ITextureStateListener pTextureStateListener) {
 		this.mTextureStateListener = pTextureStateListener;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean hasTextureStateListener() {
 		return this.mTextureStateListener != null;
 	}
@@ -161,35 +106,29 @@ public abstract class Texture implements ITexture {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @throws IOException
-         */
-        protected abstract void writeTextureToHardware(final GLState pGLState) throws IOException;
+	protected abstract void writeTextureToHardware(final GLState pGLState) throws IOException;
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void load() {
 		this.mTextureManager.loadTexture(this);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
+	public void load(final GLState pGLState) throws IOException {
+		this.mTextureManager.loadTexture(pGLState, this);
+	}
+
+	@Override
 	public void unload() {
 		this.mTextureManager.unloadTexture(this);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @throws IOException
-         */
-        @Override
+	@Override
+	public void unload(final GLState pGLState) {
+		this.mTextureManager.unloadTexture(pGLState, this);
+	}
+
+	@Override
 	public void loadToHardware(final GLState pGLState) throws IOException {
 		this.mHardwareTextureID = pGLState.generateTexture();
 
@@ -206,11 +145,7 @@ public abstract class Texture implements ITexture {
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void unloadFromHardware(final GLState pGLState) {
 		pGLState.deleteTexture(this.mHardwareTextureID);
 
@@ -221,22 +156,13 @@ public abstract class Texture implements ITexture {
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public void reloadToHardware(final GLState pGLState) throws IOException {
 		this.unloadFromHardware(pGLState);
 		this.loadToHardware(pGLState);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState) {
 		pGLState.bindTexture(this.mHardwareTextureID);
 	}

@@ -17,8 +17,6 @@ import org.andengine.util.call.Callback;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
- * @param <S> 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 21:26:38 - 12.08.2010
  */
@@ -38,11 +36,7 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureAtlas
-         */
-        public BuildableTextureAtlas(final T pTextureAtlas) {
+	public BuildableTextureAtlas(final T pTextureAtlas) {
 		this.mTextureAtlas = pTextureAtlas;
 	}
 
@@ -54,55 +48,32 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getWidth() {
 		return this.mTextureAtlas.getWidth();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getHeight() {
 		return this.mTextureAtlas.getHeight();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getHardwareTextureID() {
 		return this.mTextureAtlas.getHardwareTextureID();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isLoadedToHardware() {
 		return this.mTextureAtlas.isLoadedToHardware();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void setNotLoadedToHardware() {
 		this.mTextureAtlas.setNotLoadedToHardware();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isUpdateOnHardwareNeeded() {
 		return this.mTextureAtlas.isUpdateOnHardwareNeeded();
 	}
@@ -112,56 +83,42 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 		this.mTextureAtlas.setUpdateOnHardwareNeeded(pUpdateOnHardwareNeeded);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void load() {
 		this.mTextureAtlas.load();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
+	public void load(final GLState pGLState) throws IOException {
+		this.mTextureAtlas.load(pGLState);
+	}
+
+	@Override
 	public void unload() {
 		this.mTextureAtlas.unload();
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @throws IOException
-         */
-        @Override
+	@Override
+	public void unload(final GLState pGLState) {
+		this.mTextureAtlas.unload(pGLState);
+	}
+
+	@Override
 	public void loadToHardware(final GLState pGLState) throws IOException {
 		this.mTextureAtlas.loadToHardware(pGLState);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void unloadFromHardware(final GLState pGLState) {
 		this.mTextureAtlas.unloadFromHardware(pGLState);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public void reloadToHardware(final GLState pGLState) throws IOException {
 		this.mTextureAtlas.reloadToHardware(pGLState);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState) {
 		this.mTextureAtlas.bind(pGLState);
 	}
@@ -171,20 +128,12 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 		this.mTextureAtlas.bind(pGLState, pGLActiveTexture);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public PixelFormat getPixelFormat() {
 		return this.mTextureAtlas.getPixelFormat();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public TextureOptions getTextureOptions() {
 		return this.mTextureAtlas.getTextureOptions();
 	}
@@ -206,74 +155,50 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 		this.mTextureAtlas.removeTextureAtlasSource(pTextureAtlasSource, pTextureX, pTextureY);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void clearTextureAtlasSources() {
 		this.mTextureAtlas.clearTextureAtlasSources();
 		this.mTextureAtlasSourcesToPlace.clear();
 	}
 
 	/**
-         * @return 
-         * @see {@link BuildableBitmapTextureAtlas#hasTextureAtlasStateListener()}
-         * 
-         * @deprecated 
-         */
+	 * @see {@link BuildableBitmapTextureAtlas#hasTextureAtlasStateListener()}
+	 */
 	@Deprecated
 	@Override
 	public boolean hasTextureStateListener() {
 		return this.mTextureAtlas.hasTextureStateListener();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean hasTextureAtlasStateListener() {
 		return this.mTextureAtlas.hasTextureAtlasStateListener();
 	}
 
 	/**
-         * @return 
-         * @see {@link BuildableBitmapTextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
-         * 
-         * @deprecated 
-         */
+	 * @see {@link BuildableBitmapTextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
+	 */
 	@Deprecated
 	@Override
 	public ITextureAtlasStateListener<S> getTextureStateListener() {
 		return this.mTextureAtlas.getTextureStateListener();
 	}
 	
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public ITextureAtlasStateListener<S> getTextureAtlasStateListener() {
 		return this.mTextureAtlas.getTextureAtlasStateListener();
 	}
 
 	/**
-         * @param pTextureStateListener 
-         * @see {@link BuildableBitmapTextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
-         * 
-         * @deprecated 
-         */
+	 * @see {@link BuildableBitmapTextureAtlas#setTextureStateListener(ITextureAtlasStateListener)}
+	 */
 	@Deprecated
 	@Override
 	public void setTextureStateListener(final ITextureStateListener pTextureStateListener) {
 		this.mTextureAtlas.setTextureStateListener(pTextureStateListener);
 	}
 
-        /**
-         * 
-         * @param pTextureAtlasStateListener
-         */
-        @Override
+	@Override
 	public void setTextureAtlasStateListener(final ITextureAtlasStateListener<S> pTextureAtlasStateListener) {
 		this.mTextureAtlas.setTextureAtlasStateListener(pTextureAtlasStateListener);
 	}
@@ -282,14 +207,7 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureX
-         * @param pTextureY
-         * @param pWidth
-         * @param pHeight
-         */
-        @Override
+	@Override
 	public void addEmptyTextureAtlasSource(final int pTextureX, final int pTextureY, final int pWidth, final int pHeight) {
 		this.mTextureAtlas.addEmptyTextureAtlasSource(pTextureX, pTextureY, pWidth, pHeight);
 	}
@@ -325,11 +243,7 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         * @param <T>
-         */
-        public static class TextureAtlasSourceWithWithLocationCallback<T extends ITextureAtlasSource> {
+	public static class TextureAtlasSourceWithWithLocationCallback<T extends ITextureAtlasSource> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -345,12 +259,7 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pTextureAtlasSource
-                 * @param pCallback
-                 */
-                public TextureAtlasSourceWithWithLocationCallback(final T pTextureAtlasSource, final Callback<T> pCallback) {
+		public TextureAtlasSourceWithWithLocationCallback(final T pTextureAtlasSource, final Callback<T> pCallback) {
 			this.mTextureAtlasSource = pTextureAtlasSource;
 			this.mCallback = pCallback;
 		}
@@ -359,19 +268,11 @@ public class BuildableTextureAtlas<S extends ITextureAtlasSource, T extends ITex
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public T getTextureAtlasSource() {
+		public T getTextureAtlasSource() {
 			return this.mTextureAtlasSource;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public Callback<T> getCallback() {
+		public Callback<T> getCallback() {
 			return this.mCallback;
 		}
 

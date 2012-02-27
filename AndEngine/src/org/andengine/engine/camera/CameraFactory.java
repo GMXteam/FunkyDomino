@@ -35,14 +35,7 @@ public class CameraFactory {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pContext
-     * @param pCenterX
-     * @param pCenterY
-     * @return
-     */
-    public static Camera createPixelPerfectCamera(final Context pContext, final float pCenterX, final float pCenterY) {
+	public static Camera createPixelPerfectCamera(final Context pContext, final float pCenterX, final float pCenterY) {
 		final DisplayMetrics displayMetrics = CameraFactory.getDisplayMetrics(pContext);
 
 		final float width = displayMetrics.widthPixels;

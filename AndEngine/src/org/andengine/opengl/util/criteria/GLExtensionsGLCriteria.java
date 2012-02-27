@@ -1,4 +1,4 @@
-package org.andengine.opengl.shader.source.criteria;
+package org.andengine.opengl.util.criteria;
 
 import org.andengine.opengl.util.GLState;
 import org.andengine.util.adt.data.operator.StringOperator;
@@ -9,7 +9,7 @@ import org.andengine.util.adt.data.operator.StringOperator;
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 21:02:01 - 10.10.2011
  */
-public class GLExtensionsShaderSourceCriteria extends StringShaderSourceCriteria {
+public class GLExtensionsGLCriteria extends StringGLCriteria {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -22,15 +22,10 @@ public class GLExtensionsShaderSourceCriteria extends StringShaderSourceCriteria
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pStringOperator
-     * @param pGLExtensions
-     */
-    public GLExtensionsShaderSourceCriteria(final StringOperator pStringOperator, final String pGLExtensions) {
+	public GLExtensionsGLCriteria(final StringOperator pStringOperator, final String pGLExtensions) {
 		super(pStringOperator, pGLExtensions);
 	}
-	
+
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
@@ -39,12 +34,7 @@ public class GLExtensionsShaderSourceCriteria extends StringShaderSourceCriteria
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pGLState
-     * @return
-     */
-    @Override
+	@Override
 	protected String getActualCriteria(final GLState pGLState) {
 		return pGLState.getExtensions();
 	}

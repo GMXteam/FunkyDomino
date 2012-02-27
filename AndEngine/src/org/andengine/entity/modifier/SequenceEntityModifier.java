@@ -23,52 +23,23 @@ public class SequenceEntityModifier extends SequenceModifier<IEntity> implements
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pEntityModifiers
-     * @throws IllegalArgumentException
-     */
-    public SequenceEntityModifier(final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
+	public SequenceEntityModifier(final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
 		super(pEntityModifiers);
 	}
 
-    /**
-     * 
-     * @param pSubSequenceShapeModifierListener
-     * @param pEntityModifiers
-     * @throws IllegalArgumentException
-     */
-    public SequenceEntityModifier(final ISubSequenceShapeModifierListener pSubSequenceShapeModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
+	public SequenceEntityModifier(final ISubSequenceShapeModifierListener pSubSequenceShapeModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
 		super(pSubSequenceShapeModifierListener, pEntityModifiers);
 	}
 
-    /**
-     * 
-     * @param pEntityModifierListener
-     * @param pEntityModifiers
-     * @throws IllegalArgumentException
-     */
-    public SequenceEntityModifier(final IEntityModifierListener pEntityModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
+	public SequenceEntityModifier(final IEntityModifierListener pEntityModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
 		super(pEntityModifierListener, pEntityModifiers);
 	}
 
-    /**
-     * 
-     * @param pSubSequenceShapeModifierListener
-     * @param pEntityModifierListener
-     * @param pEntityModifiers
-     * @throws IllegalArgumentException
-     */
-    public SequenceEntityModifier(final ISubSequenceShapeModifierListener pSubSequenceShapeModifierListener, final IEntityModifierListener pEntityModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
+	public SequenceEntityModifier(final ISubSequenceShapeModifierListener pSubSequenceShapeModifierListener, final IEntityModifierListener pEntityModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
 		super(pSubSequenceShapeModifierListener, pEntityModifierListener, pEntityModifiers);
 	}
 
-    /**
-     * 
-     * @param pSequenceShapeModifier
-     * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
-     */
-    protected SequenceEntityModifier(final SequenceEntityModifier pSequenceShapeModifier) throws DeepCopyNotSupportedException {
+	protected SequenceEntityModifier(final SequenceEntityModifier pSequenceShapeModifier) throws DeepCopyNotSupportedException {
 		super(pSequenceShapeModifier);
 	}
 
@@ -93,10 +64,7 @@ public class SequenceEntityModifier extends SequenceModifier<IEntity> implements
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public interface ISubSequenceShapeModifierListener extends ISubSequenceModifierListener<IEntity> {
+	public interface ISubSequenceShapeModifierListener extends ISubSequenceModifierListener<IEntity> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

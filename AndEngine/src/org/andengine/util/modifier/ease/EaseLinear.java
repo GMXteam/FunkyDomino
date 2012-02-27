@@ -27,11 +27,7 @@ public class EaseLinear implements IEaseFunction {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseLinear getInstance() {
+	public static EaseLinear getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseLinear();
 		}
@@ -46,13 +42,7 @@ public class EaseLinear implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return pSecondsElapsed / pDuration;
 	}

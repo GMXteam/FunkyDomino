@@ -46,12 +46,7 @@ public class ScreenGrabber extends Entity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @param pCamera
-         */
-        @Override
+	@Override
 	protected void onManagedDraw(final GLState pGLState, final Camera pCamera) {
 		if(this.mScreenGrabPending) {
 			try {
@@ -66,19 +61,12 @@ public class ScreenGrabber extends Entity {
 		}
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed) {
 		/* Nothing */
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		/* Nothing */
 	}
@@ -87,25 +75,11 @@ public class ScreenGrabber extends Entity {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGrabWidth
-         * @param pGrabHeight
-         * @param pScreenGrabCallback
-         */
-        public void grab(final int pGrabWidth, final int pGrabHeight, final IScreenGrabberCallback pScreenGrabCallback) {
+	public void grab(final int pGrabWidth, final int pGrabHeight, final IScreenGrabberCallback pScreenGrabCallback) {
 		this.grab(0, 0, pGrabWidth, pGrabHeight, pScreenGrabCallback);
 	}
 
-        /**
-         * 
-         * @param pGrabX
-         * @param pGrabY
-         * @param pGrabWidth
-         * @param pGrabHeight
-         * @param pScreenGrabCallback
-         */
-        public void grab(final int pGrabX, final int pGrabY, final int pGrabWidth, final int pGrabHeight, final IScreenGrabberCallback pScreenGrabCallback) {
+	public void grab(final int pGrabX, final int pGrabY, final int pGrabWidth, final int pGrabHeight, final IScreenGrabberCallback pScreenGrabCallback) {
 		this.mGrabX = pGrabX;
 		this.mGrabY = pGrabY;
 		this.mGrabWidth = pGrabWidth;
@@ -147,10 +121,7 @@ public class ScreenGrabber extends Entity {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IScreenGrabberCallback {
+	public static interface IScreenGrabberCallback {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -159,15 +130,7 @@ public class ScreenGrabber extends Entity {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pBitmap
-             */
-            public void onScreenGrabbed(final Bitmap pBitmap);
-            /**
-             * 
-             * @param pException
-             */
-            public void onScreenGrabFailed(final Exception pException);
+		public void onScreenGrabbed(final Bitmap pBitmap);
+		public void onScreenGrabFailed(final Exception pException);
 	}
 }

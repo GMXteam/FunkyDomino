@@ -32,45 +32,18 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final int mCapacity;
-        /**
-         * 
-         */
-        protected final boolean mAutoDispose;
-        /**
-         * 
-         */
-        protected final int mUsage;
-        /**
-         * 
-         */
-        protected final ByteBuffer mByteBuffer;
+	protected final int mCapacity;
+	protected final boolean mAutoDispose;
+	protected final int mUsage;
+	protected final ByteBuffer mByteBuffer;
 
-        /**
-         * 
-         */
-        protected int mHardwareBufferID = IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
-        /**
-         * 
-         */
-        protected boolean mDirtyOnHardware = true;
+	protected int mHardwareBufferID = IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
+	protected boolean mDirtyOnHardware = true;
 
-        /**
-         * 
-         */
-        protected boolean mDisposed;
+	protected boolean mDisposed;
 
-        /**
-         * 
-         */
-        protected final VertexBufferObjectManager mVertexBufferObjectManager;
-        /**
-         * 
-         */
-        protected final VertexBufferObjectAttributes mVertexBufferObjectAttributes;
+	protected final VertexBufferObjectManager mVertexBufferObjectManager;
+	protected final VertexBufferObjectAttributes mVertexBufferObjectAttributes;
 
 	// ===========================================================
 	// Constructors
@@ -104,11 +77,7 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public VertexBufferObjectManager getVertexBufferObjectManager() {
 		return this.mVertexBufferObjectManager;
 	}
@@ -118,29 +87,17 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 		return this.mDisposed;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isAutoDispose() {
 		return this.mAutoDispose;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getHardwareBufferID() {
 		return this.mHardwareBufferID;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isLoadedToHardware() {
 		return this.mHardwareBufferID != IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
 	}
@@ -151,11 +108,7 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 		this.mDirtyOnHardware = true;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isDirtyOnHardware() {
 		return this.mDirtyOnHardware;
 	}
@@ -188,16 +141,9 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected abstract void onBufferData();
+	protected abstract void onBufferData();
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState) {
 		if(this.mHardwareBufferID == IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID) {
 			this.loadToHardware(pGLState);
@@ -214,12 +160,7 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @param pShaderProgram
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState, final ShaderProgram pShaderProgram) {
 		this.bind(pGLState);
 
@@ -234,34 +175,19 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 //		pGLState.bindBuffer(0); // TODO Does this have an positive/negative impact on performance?
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void unloadFromHardware(final GLState pGLState) {
 		pGLState.deleteBuffer(this.mHardwareBufferID);
 
 		this.mHardwareBufferID = IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
 	}
 
-        /**
-         * 
-         * @param pPrimitiveType
-         * @param pCount
-         */
-        @Override
+	@Override
 	public void draw(final int pPrimitiveType, final int pCount) {
 		GLES20.glDrawArrays(pPrimitiveType, 0, pCount);
 	}
 
-        /**
-         * 
-         * @param pPrimitiveType
-         * @param pOffset
-         * @param pCount
-         */
-        @Override
+	@Override
 	public void draw(final int pPrimitiveType, final int pOffset, final int pCount) {
 		GLES20.glDrawArrays(pPrimitiveType, pOffset, pCount);
 	}
@@ -282,11 +208,7 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 		}
 	}
 
-        /**
-         * 
-         * @throws Throwable
-         */
-        @Override
+	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
 
@@ -308,26 +230,14 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static enum DrawType {
+	public static enum DrawType {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-            /**
-             * 
-             */
-            STATIC(GLES20.GL_STATIC_DRAW),
-                /**
-                 * 
-                 */
-                DYNAMIC(GLES20.GL_DYNAMIC_DRAW),
-                /**
-                 * 
-                 */
-                STREAM(GLES20.GL_STREAM_DRAW);
+		STATIC(GLES20.GL_STATIC_DRAW),
+		DYNAMIC(GLES20.GL_DYNAMIC_DRAW),
+		STREAM(GLES20.GL_STREAM_DRAW);
 
 		// ===========================================================
 		// Constants
@@ -351,11 +261,7 @@ public abstract class VertexBufferObject implements IVertexBufferObject {
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getUsage() {
+		public int getUsage() {
 			return this.mUsage;
 		}
 

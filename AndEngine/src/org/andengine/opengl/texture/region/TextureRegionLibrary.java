@@ -22,11 +22,7 @@ public class TextureRegionLibrary extends Library<ITextureRegion> {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pInitialCapacity
-     */
-    public TextureRegionLibrary(final int pInitialCapacity) {
+	public TextureRegionLibrary(final int pInitialCapacity) {
 		super(pInitialCapacity);
 	}
 
@@ -34,22 +30,12 @@ public class TextureRegionLibrary extends Library<ITextureRegion> {
 	// Getter & Setter
 	// ===========================================================
 
-    /**
-     * 
-     * @param pID
-     * @return
-     */
-    @Override
+	@Override
 	public TextureRegion get(final int pID) {
 		return (TextureRegion) super.get(pID);
 	}
 
-        /**
-         * 
-         * @param pID
-         * @return
-         */
-        public TiledTextureRegion getTiled(final int pID) {
+	public TiledTextureRegion getTiled(final int pID) {
 		return (TiledTextureRegion) this.mItems.get(pID);
 	}
 

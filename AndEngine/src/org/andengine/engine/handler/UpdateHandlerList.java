@@ -24,18 +24,11 @@ public class UpdateHandlerList extends SmartList<IUpdateHandler> implements IUpd
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public UpdateHandlerList() {
+	public UpdateHandlerList() {
 
 	}
 
-        /**
-         * 
-         * @param pCapacity
-         */
-        public UpdateHandlerList(final int pCapacity) {
+	public UpdateHandlerList(final int pCapacity) {
 		super(pCapacity);
 	}
 
@@ -47,11 +40,7 @@ public class UpdateHandlerList extends SmartList<IUpdateHandler> implements IUpd
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 		final int handlerCount = this.size();
 		for(int i = handlerCount - 1; i >= 0; i--) {
@@ -59,10 +48,7 @@ public class UpdateHandlerList extends SmartList<IUpdateHandler> implements IUpd
 		}
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		final int handlerCount = this.size();
 		for(int i = handlerCount - 1; i >= 0; i--) {

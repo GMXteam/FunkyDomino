@@ -17,10 +17,7 @@ public class SoundManager extends BaseAudioManager<Sound> {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 5;
+	public static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 5;
 
 	// ===========================================================
 	// Fields
@@ -32,18 +29,11 @@ public class SoundManager extends BaseAudioManager<Sound> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public SoundManager() {
+	public SoundManager() {
 		this(MAX_SIMULTANEOUS_STREAMS_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pMaxSimultaneousStreams
-         */
-        public SoundManager(final int pMaxSimultaneousStreams) {
+	public SoundManager(final int pMaxSimultaneousStreams) {
 		this.mSoundPool = new SoundPool(pMaxSimultaneousStreams, AudioManager.STREAM_MUSIC, 0);
 	}
 

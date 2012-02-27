@@ -35,11 +35,7 @@ public class DialogUtils {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDialog
-     */
-    public static void keepScreenOn(final Dialog pDialog) {
+	public static void keepScreenOn(final Dialog pDialog) {
 		pDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 	}
 

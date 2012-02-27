@@ -29,11 +29,7 @@ public class EaseElasticInOut implements IEaseFunction, MathConstants {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseElasticInOut getInstance() {
+	public static EaseElasticInOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseElasticInOut();
 		}
@@ -48,13 +44,7 @@ public class EaseElasticInOut implements IEaseFunction, MathConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		final float percentage = pSecondsElapsed / pDuration;
 

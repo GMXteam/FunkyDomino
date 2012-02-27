@@ -21,35 +21,19 @@ public class LetterNotFoundException extends FontException {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public LetterNotFoundException() {
+	public LetterNotFoundException() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pMessage
-         */
-        public LetterNotFoundException(final String pMessage) {
+	public LetterNotFoundException(final String pMessage) {
 		super(pMessage);
 	}
 
-        /**
-         * 
-         * @param pThrowable
-         */
-        public LetterNotFoundException(final Throwable pThrowable) {
+	public LetterNotFoundException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pThrowable
-         */
-        public LetterNotFoundException(final String pMessage, final Throwable pThrowable) {
+	public LetterNotFoundException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

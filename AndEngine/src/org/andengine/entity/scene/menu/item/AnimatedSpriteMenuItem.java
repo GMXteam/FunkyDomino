@@ -26,13 +26,7 @@ public class AnimatedSpriteMenuItem extends AnimatedSprite implements IMenuItem 
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pID
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public AnimatedSpriteMenuItem(final int pID, final TiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public AnimatedSpriteMenuItem(final int pID, final TiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(0, 0, pTiledTextureRegion, pVertexBufferObjectManager);
 		this.mID = pID;
 	}
@@ -41,11 +35,7 @@ public class AnimatedSpriteMenuItem extends AnimatedSprite implements IMenuItem 
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getID() {
 		return this.mID;
 	}
@@ -58,18 +48,12 @@ public class AnimatedSpriteMenuItem extends AnimatedSprite implements IMenuItem 
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void onSelected() {
 		/* Nothing. */
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void onUnselected() {
 		/* Nothing. */
 	}

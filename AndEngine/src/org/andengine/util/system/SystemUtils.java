@@ -27,26 +27,11 @@ public class SystemUtils {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final boolean SDK_VERSION_ECLAIR_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR;
-    /**
-     * 
-     */
-    public static final boolean SDK_VERSION_FROYO_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;
-        /**
-         * 
-         */
-        public static final boolean SDK_VERSION_GINGERBREAD_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
-        /**
-         * 
-         */
-        public static final boolean SDK_VERSION_HONEYCOMB_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
-        /**
-         * 
-         */
-        public static final boolean SDK_VERSION_ICE_CREAM_SANDWICH_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+	public static final boolean SDK_VERSION_ECLAIR_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR;
+	public static final boolean SDK_VERSION_FROYO_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO;
+	public static final boolean SDK_VERSION_GINGERBREAD_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
+	public static final boolean SDK_VERSION_HONEYCOMB_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB;
+	public static final boolean SDK_VERSION_ICE_CREAM_SANDWICH_OR_LATER = Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 
 	private static final String BOGOMIPS_PATTERN = "BogoMIPS[\\s]*:[\\s]*(\\d+\\.\\d+)[\\s]*\n";
 	private static final String MEMTOTAL_PATTERN = "MemTotal[\\s]*:[\\s]*(\\d+)[\\s]*kB\n";
@@ -72,21 +57,11 @@ public class SystemUtils {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pContext
-         * @return
-         */
-        public static int getPackageVersionCode(final Context pContext) {
+	public static int getPackageVersionCode(final Context pContext) {
 		return SystemUtils.getPackageInfo(pContext).versionCode;
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @return
-         */
-        public static String getPackageVersionName(final Context pContext) {
+	public static String getPackageVersionName(final Context pContext) {
 		return SystemUtils.getPackageInfo(pContext).versionName;
 	}
 
@@ -99,13 +74,7 @@ public class SystemUtils {
 		}
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pFeature
-         * @return
-         */
-        public static boolean hasSystemFeature(final Context pContext, final String pFeature) {
+	public static boolean hasSystemFeature(final Context pContext, final String pFeature) {
 		try {
 			final Method PackageManager_hasSystemFeatures = PackageManager.class.getMethod("hasSystemFeature", new Class[] { String.class });
 			return (PackageManager_hasSystemFeatures == null) ? false : (Boolean) PackageManager_hasSystemFeatures.invoke(pContext.getPackageManager(), pFeature);
@@ -115,16 +84,14 @@ public class SystemUtils {
 	}
 
 	/**
-         * @param pBuildVersionCode taken from {@link Build.VERSION_CODES}.
-         * @return  
+	 * @param pBuildVersionCode taken from {@link Build.VERSION_CODES}.
 	 */
 	public static boolean isAndroidVersionOrLower(final int pBuildVersionCode) {
 		return Build.VERSION.SDK_INT <= pBuildVersionCode;
 	}
 
 	/**
-         * @param pBuildVersionCode taken from {@link Build.VERSION_CODES}.
-         * @return  
+	 * @param pBuildVersionCode taken from {@link Build.VERSION_CODES}.
 	 */
 	public static boolean isAndroidVersionOrHigher(final int pBuildVersionCode) {
 		return Build.VERSION.SDK_INT >= pBuildVersionCode;
@@ -132,19 +99,13 @@ public class SystemUtils {
 
 	/**
 	 * @param pBuildVersionCodeMin taken from {@link Build.VERSION_CODES}.
-         * @param pBuildVersionCodeMax taken from {@link Build.VERSION_CODES}.
-         * @return  
+	 * @param pBuildVersionCodeMax taken from {@link Build.VERSION_CODES}.
 	 */
 	public static boolean isAndroidVersion(final int pBuildVersionCodeMin, final int pBuildVersionCodeMax) {
 		return Build.VERSION.SDK_INT >= pBuildVersionCodeMin && Build.VERSION.SDK_INT <= pBuildVersionCodeMax;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws org.andengine.util.system.SystemUtils.SystemUtilsException
-         */
-        public static float getCPUBogoMips() throws SystemUtilsException {
+	public static float getCPUBogoMips() throws SystemUtilsException {
 		final MatchResult matchResult = SystemUtils.matchSystemFile("/proc/cpuinfo", SystemUtils.BOGOMIPS_PATTERN, 1000);
 
 		try {
@@ -276,10 +237,7 @@ public class SystemUtils {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class SystemUtilsException extends Exception {
+	public static class SystemUtilsException extends Exception {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -290,18 +248,11 @@ public class SystemUtils {
 		// Methods
 		// ===========================================================
 
-                /**
-                 * 
-                 */
-                public SystemUtilsException() {
+		public SystemUtilsException() {
 
 		}
 
-                /**
-                 * 
-                 * @param pThrowable
-                 */
-                public SystemUtilsException(final Throwable pThrowable) {
+		public SystemUtilsException(final Throwable pThrowable) {
 			super(pThrowable);
 		}
 	}

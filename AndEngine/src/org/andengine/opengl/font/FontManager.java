@@ -39,17 +39,11 @@ public class FontManager {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void onCreate() {
+	public void onCreate() {
 
 	}
 
-        /**
-         * 
-         */
-        public synchronized void onDestroy() {
+	public synchronized void onDestroy() {
 		final ArrayList<Font> managedFonts = this.mFontsManaged;
 		for(int i = managedFonts.size() - 1; i >= 0; i--) {
 			managedFonts.get(i).invalidateLetters();
@@ -58,53 +52,33 @@ public class FontManager {
 		this.mFontsManaged.clear();
 	}
 
-        /**
-         * 
-         * @param pFont
-         */
-        public synchronized void loadFont(final Font pFont) {
+	public synchronized void loadFont(final Font pFont) {
 		if(pFont == null) {
 			throw new IllegalArgumentException("pFont must not be null!");
 		}
 		this.mFontsManaged.add(pFont);
 	}
 
-        /**
-         * 
-         * @param pFonts
-         */
-        public synchronized void loadFonts(final Font ...pFonts) {
+	public synchronized void loadFonts(final Font ...pFonts) {
 		for(int i = 0; i < pFonts.length; i++) {
 			this.loadFont(pFonts[i]);
 		}
 	}
 
-        /**
-         * 
-         * @param pFont
-         */
-        public synchronized void unloadFont(final Font pFont) {
+	public synchronized void unloadFont(final Font pFont) {
 		if(pFont == null) {
 			throw new IllegalArgumentException("pFont must not be null!");
 		}
 		this.mFontsManaged.remove(pFont);
 	}
 
-        /**
-         * 
-         * @param pFonts
-         */
-        public synchronized void unloadFonts(final Font ...pFonts) {
+	public synchronized void unloadFonts(final Font ...pFonts) {
 		for(int i = 0; i < pFonts.length; i++) {
 			this.unloadFont(pFonts[i]);
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        public synchronized void updateFonts(final GLState pGLState) {
+	public synchronized void updateFonts(final GLState pGLState) {
 		final ArrayList<Font> fonts = this.mFontsManaged;
 		final int fontCount = fonts.size();
 		if(fontCount > 0){
@@ -114,10 +88,7 @@ public class FontManager {
 		}
 	}
 
-        /**
-         * 
-         */
-        public synchronized void onReload() {
+	public synchronized void onReload() {
 		final ArrayList<Font> managedFonts = this.mFontsManaged;
 		for(int i = managedFonts.size() - 1; i >= 0; i--) {
 			managedFonts.get(i).invalidateLetters();

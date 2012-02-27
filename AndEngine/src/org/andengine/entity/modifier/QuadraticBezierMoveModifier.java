@@ -32,18 +32,7 @@ public class QuadraticBezierMoveModifier extends DurationEntityModifier {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDuration
-         * @param pX1
-         * @param pY1
-         * @param pX2
-         * @param pY2
-         * @param pX3
-         * @param pY3
-         * @param pEaseFunction
-         */
-        public QuadraticBezierMoveModifier(final float pDuration, final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final IEaseFunction pEaseFunction) {
+	public QuadraticBezierMoveModifier(final float pDuration, final float pX1, final float pY1, final float pX2, final float pY2, final float pX3, final float pY3, final IEaseFunction pEaseFunction) {
 		super(pDuration);
 
 		this.mX1 = pX1;
@@ -56,11 +45,7 @@ public class QuadraticBezierMoveModifier extends DurationEntityModifier {
 		this.mEaseFunction = pEaseFunction;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public QuadraticBezierMoveModifier deepCopy() {
 		return new QuadraticBezierMoveModifier(this.mDuration, this.mX1, this.mY1, this.mX2, this.mY2, this.mX3, this.mY3, this.mEaseFunction);
 	}
@@ -73,12 +58,7 @@ public class QuadraticBezierMoveModifier extends DurationEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pEntity
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed, final IEntity pEntity) {
 		final float percentageDone = this.mEaseFunction.getPercentage(this.getSecondsElapsed(), this.mDuration);
 
@@ -96,11 +76,7 @@ public class QuadraticBezierMoveModifier extends DurationEntityModifier {
 		pEntity.setPosition(x, y);
 	}
 
-        /**
-         * 
-         * @param pEntity
-         */
-        @Override
+	@Override
 	protected void onManagedInitialize(final IEntity pEntity) {
 
 	}

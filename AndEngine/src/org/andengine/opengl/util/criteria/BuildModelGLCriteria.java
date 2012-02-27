@@ -1,7 +1,7 @@
-package org.andengine.opengl.shader.source.criteria;
+package org.andengine.opengl.util.criteria;
 
 import org.andengine.opengl.util.GLState;
-import org.andengine.util.adt.data.operator.IntOperator;
+import org.andengine.util.adt.data.operator.StringOperator;
 
 import android.os.Build;
 
@@ -9,9 +9,9 @@ import android.os.Build;
  * (c) Zynga 2011
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
- * @since 17:21:13 - 10.10.2011
+ * @since 17:25:47 - 10.10.2011
  */
-public class AndroidVersionCodeShaderSourceCriteria extends IntShaderSourceCriteria {
+public class BuildModelGLCriteria extends StringGLCriteria {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -24,15 +24,10 @@ public class AndroidVersionCodeShaderSourceCriteria extends IntShaderSourceCrite
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pIntOperator
-     * @param pAndroidVersionCode
-     */
-    public AndroidVersionCodeShaderSourceCriteria(final IntOperator pIntOperator, final int pAndroidVersionCode) {
-		super(pIntOperator, pAndroidVersionCode);
+	public BuildModelGLCriteria(final StringOperator pStringOperator, final String pBuildModel) {
+		super(pStringOperator, pBuildModel);
 	}
-	
+
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
@@ -41,14 +36,9 @@ public class AndroidVersionCodeShaderSourceCriteria extends IntShaderSourceCrite
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @return
-         */
-        @Override
-	protected int getActualCriteria(final GLState pGLState) {
-		return Build.VERSION.SDK_INT;
+	@Override
+	protected String getActualCriteria(final GLState pGLState) {
+		return Build.MODEL;
 	}
 
 	// ===========================================================

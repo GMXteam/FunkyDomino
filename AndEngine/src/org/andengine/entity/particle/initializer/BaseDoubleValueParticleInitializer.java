@@ -8,7 +8,6 @@ import org.andengine.util.math.MathUtils;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 15:58:29 - 04.05.2010
  */
@@ -21,27 +20,14 @@ public abstract class BaseDoubleValueParticleInitializer<T extends IEntity> exte
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected float mMinValueB;
-        /**
-         * 
-         */
-        protected float mMaxValueB;
+	protected float mMinValueB;
+	protected float mMaxValueB;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pMinValueA
-         * @param pMaxValueA
-         * @param pMinValueB
-         * @param pMaxValueB
-         */
-        public BaseDoubleValueParticleInitializer(final float pMinValueA, final float pMaxValueA, final float pMinValueB, final float pMaxValueB) {
+	public BaseDoubleValueParticleInitializer(final float pMinValueA, final float pMaxValueA, final float pMinValueB, final float pMaxValueB) {
 		super(pMinValueA, pMaxValueA);
 		this.mMinValueB = pMinValueB;
 		this.mMaxValueB = pMaxValueB;
@@ -55,20 +41,9 @@ public abstract class BaseDoubleValueParticleInitializer<T extends IEntity> exte
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParticle
-         * @param pValueA
-         * @param pValueB
-         */
-        protected abstract void onInitializeParticle(final Particle<T> pParticle, final float pValueA, final float pValueB);
+	protected abstract void onInitializeParticle(final Particle<T> pParticle, final float pValueA, final float pValueB);
 
-        /**
-         * 
-         * @param pParticle
-         * @param pValueA
-         */
-        @Override
+	@Override
 	protected final void onInitializeParticle(final Particle<T> pParticle, final float pValueA) {
 		this.onInitializeParticle(pParticle, pValueA, this.getRandomValueB());
 	}
@@ -77,11 +52,7 @@ public abstract class BaseDoubleValueParticleInitializer<T extends IEntity> exte
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        protected float getRandomValueB() {
+	protected float getRandomValueB() {
 		if(this.mMinValueB == this.mMaxValueB) {
 			return this.mMaxValueB;
 		} else {

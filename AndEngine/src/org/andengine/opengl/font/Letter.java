@@ -18,55 +18,19 @@ public class Letter {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public final char mCharacter;
+	public final char mCharacter;
 	private final boolean mWhitespace;
-        /**
-         * 
-         */
-        public final int mTextureX;
-        /**
-         * 
-         */
-        public final int mTextureY;
-        /**
-         * 
-         */
-        public final int mWidth;
-        /**
-         * 
-         */
-        public final int mHeight;
-        /**
-         * 
-         */
-        public final float mOffsetX;
-        /**
-         * 
-         */
-        public final float mOffsetY;
-        /**
-         * 
-         */
-        public final float mAdvance;
-        /**
-         * 
-         */
-        public final float mU;
-        /**
-         * 
-         */
-        public final float mV;
-        /**
-         * 
-         */
-        public final float mU2;
-        /**
-         * 
-         */
-        public final float mV2;
+	public final int mTextureX;
+	public final int mTextureY;
+	public final int mWidth;
+	public final int mHeight;
+	public final float mOffsetX;
+	public final float mOffsetY;
+	public final float mAdvance;
+	public final float mU;
+	public final float mV;
+	public final float mU2;
+	public final float mV2;
 	private SparseIntArray mKernings;
 
 	// ===========================================================
@@ -104,23 +68,14 @@ public class Letter {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCharacter
-         * @return
-         */
-        public int getKerning(final int pCharacter) {
+	public int getKerning(final int pCharacter) {
 		if(this.mKernings == null) {
 			return 0;
 		}
 		return mKernings.get(pCharacter, 0);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isWhitespace() {
+	public boolean isWhitespace() {
 		return this.mWhitespace;
 	}
 
@@ -128,11 +83,7 @@ public class Letter {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -140,12 +91,7 @@ public class Letter {
 		return result;
 	}
 
-        /**
-         * 
-         * @param pObject
-         * @return
-         */
-        @Override
+	@Override
 	public boolean equals(final Object pObject) {
 		if(this == pObject) {
 			return true;

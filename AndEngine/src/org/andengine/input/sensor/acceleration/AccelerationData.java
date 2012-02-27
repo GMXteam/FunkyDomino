@@ -71,11 +71,7 @@ public class AccelerationData extends BaseSensorData {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDisplayOrientation
-         */
-        public AccelerationData(final int pDisplayOrientation) {
+	public AccelerationData(final int pDisplayOrientation) {
 		super(3, pDisplayOrientation);
 	}
 
@@ -83,59 +79,31 @@ public class AccelerationData extends BaseSensorData {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float getX() {
+	public float getX() {
 		return this.mValues[SensorManager.DATA_X];
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getY() {
+	public float getY() {
 		return this.mValues[SensorManager.DATA_Y];
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getZ() {
+	public float getZ() {
 		return this.mValues[SensorManager.DATA_Z];
 	}
 
-        /**
-         * 
-         * @param pX
-         */
-        public void setX(final float pX) {
+	public void setX(final float pX) {
 		this.mValues[SensorManager.DATA_X] = pX;
 	}
 
-        /**
-         * 
-         * @param pY
-         */
-        public void setY(final float pY) {
+	public void setY(final float pY) {
 		this.mValues[SensorManager.DATA_Y] = pY;
 	}
 
-        /**
-         * 
-         * @param pZ
-         */
-        public void setZ(final float pZ) {
+	public void setZ(final float pZ) {
 		this.mValues[SensorManager.DATA_Z]  = pZ;
 	}
 
-        /**
-         * 
-         * @param pValues
-         */
-        @Override
+	@Override
 	public void setValues(final float[] pValues) {
 		super.setValues(pValues);
 
@@ -146,11 +114,7 @@ public class AccelerationData extends BaseSensorData {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public String toString() {
 		return "Acceleration: " + Arrays.toString(this.mValues);
 	}

@@ -28,16 +28,7 @@ public class VertexBufferObjectAttribute {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pLocation
-         * @param pName
-         * @param pSize
-         * @param pType
-         * @param pNormalized
-         * @param pOffset
-         */
-        public VertexBufferObjectAttribute(final int pLocation, final String pName, final int pSize, final int pType, final boolean pNormalized, final int pOffset) {
+	public VertexBufferObjectAttribute(final int pLocation, final String pName, final int pSize, final int pType, final boolean pNormalized, final int pOffset) {
 		this.mLocation = pLocation;
 		this.mName = pName;
 		this.mSize = pSize;
@@ -50,51 +41,27 @@ public class VertexBufferObjectAttribute {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public int getLocation() {
+	public int getLocation() {
 		return this.mLocation;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public String getName() {
+	public String getName() {
 		return this.mName;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSize() {
+	public int getSize() {
 		return this.mSize;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getType() {
+	public int getType() {
 		return this.mType;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isNormalized() {
+	public boolean isNormalized() {
 		return this.mNormalized;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getOffset() {
+	public int getOffset() {
 		return this.mOffset;
 	}
 
@@ -102,11 +69,7 @@ public class VertexBufferObjectAttribute {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pStride
-         */
-        public void glVertexAttribPointer(final int pStride) {
+	public void glVertexAttribPointer(final int pStride) {
 		GLES20Fix.glVertexAttribPointer(this.mLocation, this.mSize, this.mType, this.mNormalized, pStride, this.mOffset);
 	}
 

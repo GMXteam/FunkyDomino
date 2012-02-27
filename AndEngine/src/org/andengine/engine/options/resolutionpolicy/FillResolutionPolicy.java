@@ -32,13 +32,7 @@ public class FillResolutionPolicy extends BaseResolutionPolicy {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pRenderSurfaceView
-     * @param pWidthMeasureSpec
-     * @param pHeightMeasureSpec
-     */
-    @Override
+	@Override
 	public void onMeasure(final RenderSurfaceView pRenderSurfaceView, final int pWidthMeasureSpec, final int pHeightMeasureSpec) {
 		BaseResolutionPolicy.throwOnNotMeasureSpecEXACTLY(pWidthMeasureSpec, pHeightMeasureSpec);
 

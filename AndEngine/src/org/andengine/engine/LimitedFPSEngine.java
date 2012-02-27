@@ -28,12 +28,7 @@ public class LimitedFPSEngine extends Engine {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEngineOptions
-         * @param pFramesPerSecond
-         */
-        public LimitedFPSEngine(final EngineOptions pEngineOptions, final int pFramesPerSecond) {
+	public LimitedFPSEngine(final EngineOptions pEngineOptions, final int pFramesPerSecond) {
 		super(pEngineOptions);
 		this.mPreferredFrameLengthNanoseconds = NANOSECONDS_PER_SECOND / pFramesPerSecond;
 	}
@@ -46,12 +41,7 @@ public class LimitedFPSEngine extends Engine {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pNanosecondsElapsed
-         * @throws InterruptedException
-         */
-        @Override
+	@Override
 	public void onUpdate(final long pNanosecondsElapsed) throws InterruptedException {
 		final long preferredFrameLengthNanoseconds = this.mPreferredFrameLengthNanoseconds;
 		final long deltaFrameLengthNanoseconds = preferredFrameLengthNanoseconds - pNanosecondsElapsed;

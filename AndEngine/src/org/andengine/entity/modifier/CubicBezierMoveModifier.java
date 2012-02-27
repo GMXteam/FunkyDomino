@@ -75,12 +75,7 @@ public class CubicBezierMoveModifier extends DurationEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pEntity
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed, final IEntity pEntity) {
 		final float percentageDone = this.mEaseFunction.getPercentage(this.getSecondsElapsed(), this.mDuration);
 
@@ -102,11 +97,7 @@ public class CubicBezierMoveModifier extends DurationEntityModifier {
 		pEntity.setPosition(x, y);
 	}
 
-        /**
-         * 
-         * @param pEntity
-         */
-        @Override
+	@Override
 	protected void onManagedInitialize(final IEntity pEntity) {
 
 	}

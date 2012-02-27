@@ -15,22 +15,10 @@ public enum SensorDelay {
 	// Elements
 	// ===========================================================
 
-    /**
-     * 
-     */
-    NORMAL(SensorManager.SENSOR_DELAY_NORMAL),
-        /**
-         * 
-         */
-        UI(SensorManager.SENSOR_DELAY_UI),
-        /**
-         * 
-         */
-        GAME(SensorManager.SENSOR_DELAY_GAME),
-        /**
-         * 
-         */
-        FASTEST(SensorManager.SENSOR_DELAY_FASTEST);
+	NORMAL(SensorManager.SENSOR_DELAY_NORMAL),
+	UI(SensorManager.SENSOR_DELAY_UI),
+	GAME(SensorManager.SENSOR_DELAY_GAME),
+	FASTEST(SensorManager.SENSOR_DELAY_FASTEST);
 
 	// ===========================================================
 	// Constants
@@ -54,11 +42,7 @@ public enum SensorDelay {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public int getDelay() {
+	public int getDelay() {
 		return this.mDelay;
 	}
 

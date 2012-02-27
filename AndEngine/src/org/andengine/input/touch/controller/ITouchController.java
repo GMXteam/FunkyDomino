@@ -21,31 +21,15 @@ public interface ITouchController extends IUpdateHandler {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pTouchEventCallback
-     */
-    public void setTouchEventCallback(final ITouchEventCallback pTouchEventCallback);
+	public void setTouchEventCallback(final ITouchEventCallback pTouchEventCallback);
 
-    /**
-     * 
-     * @param pMotionEvent
-     */
-    public void onHandleMotionEvent(final MotionEvent pMotionEvent);
+	public void onHandleMotionEvent(final MotionEvent pMotionEvent);
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        static interface ITouchEventCallback {
-            /**
-             * 
-             * @param pTouchEvent
-             * @return
-             */
-            public boolean onTouchEvent(final TouchEvent pTouchEvent);
+	static interface ITouchEventCallback {
+		public boolean onTouchEvent(final TouchEvent pTouchEvent);
 	}
 }

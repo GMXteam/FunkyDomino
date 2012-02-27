@@ -39,24 +39,8 @@ public class GLES20Fix {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pIndex
-         * @param pSize
-         * @param pType
-         * @param pNormalized
-         * @param pStride
-         * @param pOffset
-         */
-        native public static void glVertexAttribPointer(final int pIndex, final int pSize, final int pType, final boolean pNormalized, final int pStride, final int pOffset);
-        /**
-         * 
-         * @param pMode
-         * @param pCount
-         * @param pType
-         * @param pOffset
-         */
-        native public static void glDrawElements(final int pMode, final int pCount, final int pType, final int pOffset);
+	native public static void glVertexAttribPointer(final int pIndex, final int pSize, final int pType, final boolean pNormalized, final int pStride, final int pOffset);
+	native public static void glDrawElements(final int pMode, final int pCount, final int pType, final int pOffset);
 
 	// ===========================================================
 	// Inner and Anonymous Classes

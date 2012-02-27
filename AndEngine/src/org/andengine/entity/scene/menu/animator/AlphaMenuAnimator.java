@@ -30,71 +30,35 @@ public class AlphaMenuAnimator extends BaseMenuAnimator {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public AlphaMenuAnimator(){
+	public AlphaMenuAnimator(){
 		super();
 	}
 
-        /**
-         * 
-         * @param pEaseFunction
-         */
-        public AlphaMenuAnimator(final IEaseFunction pEaseFunction) {
+	public AlphaMenuAnimator(final IEaseFunction pEaseFunction) {
 		super(pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pHorizontalAlign
-         */
-        public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign) {
+	public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign) {
 		super(pHorizontalAlign);
 	}
 
-        /**
-         * 
-         * @param pHorizontalAlign
-         * @param pEaseFunction
-         */
-        public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign, final IEaseFunction pEaseFunction) {
+	public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign, final IEaseFunction pEaseFunction) {
 		super(pHorizontalAlign, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pMenuItemSpacing
-         */
-        public AlphaMenuAnimator(final float pMenuItemSpacing) {
+	public AlphaMenuAnimator(final float pMenuItemSpacing) {
 		super(pMenuItemSpacing);
 	}
 
-        /**
-         * 
-         * @param pMenuItemSpacing
-         * @param pEaseFunction
-         */
-        public AlphaMenuAnimator(final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
+	public AlphaMenuAnimator(final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
 		super(pMenuItemSpacing, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pHorizontalAlign
-         * @param pMenuItemSpacing
-         */
-        public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing) {
+	public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing) {
 		super(pHorizontalAlign, pMenuItemSpacing);
 	}
 
-        /**
-         * 
-         * @param pHorizontalAlign
-         * @param pMenuItemSpacing
-         * @param pEaseFunction
-         */
-        public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
+	public AlphaMenuAnimator(final HorizontalAlign pHorizontalAlign, final float pMenuItemSpacing, final IEaseFunction pEaseFunction) {
 		super(pHorizontalAlign, pMenuItemSpacing, pEaseFunction);
 	}
 
@@ -106,13 +70,7 @@ public class AlphaMenuAnimator extends BaseMenuAnimator {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pMenuItems
-         * @param pCameraWidth
-         * @param pCameraHeight
-         */
-        @Override
+	@Override
 	public void buildAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight) {
 		final IEaseFunction easeFunction = this.mEaseFunction;
 		final int menuItemCount = pMenuItems.size();
@@ -123,13 +81,7 @@ public class AlphaMenuAnimator extends BaseMenuAnimator {
 		}
 	}
 
-        /**
-         * 
-         * @param pMenuItems
-         * @param pCameraWidth
-         * @param pCameraHeight
-         */
-        @Override
+	@Override
 	public void prepareAnimations(final ArrayList<IMenuItem> pMenuItems, final float pCameraWidth, final float pCameraHeight) {
 		final float maximumWidth = this.getMaximumWidth(pMenuItems);
 		final float overallHeight = this.getOverallHeight(pMenuItems);

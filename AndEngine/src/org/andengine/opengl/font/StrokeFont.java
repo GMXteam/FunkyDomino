@@ -6,6 +6,7 @@ import org.andengine.util.color.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
+import android.util.FloatMath;
 
 /**
  * TODO Re-implement with Font changes.
@@ -33,65 +34,19 @@ public class StrokeFont extends Font {
 	// Constructors
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pFontManager
-         * @param pTexture
-         * @param pTypeface
-         * @param pSize
-         * @param pAntiAlias
-         * @param pColor
-         * @param pStrokeWidth
-         * @param pStrokeColor
-         */
-        public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final Color pColor, final float pStrokeWidth, final Color pStrokeColor) {
+	public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final Color pColor, final float pStrokeWidth, final Color pStrokeColor) {
 		this(pFontManager, pTexture, pTypeface, pSize, pAntiAlias, pColor.getARGBPackedInt(), pStrokeWidth, pStrokeColor.getARGBPackedInt());
 	}
 
-        /**
-         * 
-         * @param pFontManager
-         * @param pTexture
-         * @param pTypeface
-         * @param pSize
-         * @param pAntiAlias
-         * @param pColorARGBPackedInt
-         * @param pStrokeWidth
-         * @param pStrokeColorARGBPackedInt
-         */
-        public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColorARGBPackedInt, final float pStrokeWidth, final int pStrokeColorARGBPackedInt) {
+	public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColorARGBPackedInt, final float pStrokeWidth, final int pStrokeColorARGBPackedInt) {
 		this(pFontManager, pTexture, pTypeface, pSize, pAntiAlias, pColorARGBPackedInt, pStrokeWidth, pStrokeColorARGBPackedInt, false);
 	}
 
-        /**
-         * 
-         * @param pFontManager
-         * @param pTexture
-         * @param pTypeface
-         * @param pSize
-         * @param pAntiAlias
-         * @param pColor
-         * @param pStrokeWidth
-         * @param pStrokeColor
-         * @param pStrokeOnly
-         */
-        public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final Color pColor, final float pStrokeWidth, final Color pStrokeColor, final boolean pStrokeOnly) {
+	public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final Color pColor, final float pStrokeWidth, final Color pStrokeColor, final boolean pStrokeOnly) {
 		this(pFontManager, pTexture, pTypeface, pSize, pAntiAlias, pColor.getARGBPackedInt(), pStrokeWidth, pStrokeColor.getARGBPackedInt(), pStrokeOnly);
 	}
 
-        /**
-         * 
-         * @param pFontManager
-         * @param pTexture
-         * @param pTypeface
-         * @param pSize
-         * @param pAntiAlias
-         * @param pColorARGBPackedInt
-         * @param pStrokeWidth
-         * @param pStrokeColorARGBPackedInt
-         * @param pStrokeOnly
-         */
-        public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColorARGBPackedInt, final float pStrokeWidth, final int pStrokeColorARGBPackedInt, final boolean pStrokeOnly) {
+	public StrokeFont(final FontManager pFontManager, final ITexture pTexture, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColorARGBPackedInt, final float pStrokeWidth, final int pStrokeColorARGBPackedInt, final boolean pStrokeOnly) {
 		super(pFontManager, pTexture, pTypeface, pSize, pAntiAlias, pColorARGBPackedInt);
 		
 		this.mStrokeWidth = pStrokeWidth;
@@ -115,23 +70,13 @@ public class StrokeFont extends Font {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCharacterAsString
-         */
-        protected void updateTextBounds(final String pCharacterAsString) {
+	protected void updateTextBounds(final String pCharacterAsString) {
 		this.mStrokePaint.getTextBounds(pCharacterAsString, 0, 1, this.mTextBounds);
-		final int inset = -(int)Math.floor(this.mStrokeWidth * 0.5f);
+		final int inset = -(int)FloatMath.floor(this.mStrokeWidth * 0.5f);
 		this.mTextBounds.inset(inset, inset);
 	}
 
-        /**
-         * 
-         * @param pCharacterAsString
-         * @param pLeft
-         * @param pTop
-         */
-        protected void drawLetter(final String pCharacterAsString, final int pLeft, final int pTop) {
+	protected void drawLetter(final String pCharacterAsString, final int pLeft, final int pTop) {
 		if(!this.mStrokeOnly) {
 			super.drawLetter(pCharacterAsString, pLeft, pTop);
 		}

@@ -21,33 +21,17 @@ public class OutlineBitmapTextureAtlasSourceDecorator extends BaseShapeBitmapTex
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final int mOutlineColor;
+	protected final int mOutlineColor;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pBitmapTextureAtlasSource
-     * @param pBitmapTextureAtlasSourceDecoratorShape
-     * @param pOutlineColor
-     */
-    public OutlineBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pOutlineColor) {
+	public OutlineBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pOutlineColor) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pOutlineColor, null);
 	}
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pBitmapTextureAtlasSourceDecoratorShape
-         * @param pOutlineColor
-         * @param pTextureAtlasSourceDecoratorOptions
-         */
-        public OutlineBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pOutlineColor, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+	public OutlineBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pOutlineColor, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		super(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pTextureAtlasSourceDecoratorOptions);
 		this.mOutlineColor = pOutlineColor;
 

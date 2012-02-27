@@ -12,18 +12,9 @@ public enum LocationProviderStatus {
 	// Elements
 	// ===========================================================
 
-    /**
-     * 
-     */
-    AVAILABLE,
-        /**
-         * 
-         */
-        OUT_OF_SERVICE,
-        /**
-         * 
-         */
-        TEMPORARILY_UNAVAILABLE;
+	AVAILABLE,
+	OUT_OF_SERVICE,
+	TEMPORARILY_UNAVAILABLE;
 
 	// ===========================================================
 	// Constants

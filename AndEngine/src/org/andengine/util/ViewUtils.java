@@ -37,24 +37,11 @@ public final class ViewUtils {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pContext
-     * @param pLayoutID
-     * @return
-     */
-    public static final View inflate(final Context pContext, final int pLayoutID){
+	public static final View inflate(final Context pContext, final int pLayoutID){
 		return LayoutInflater.from(pContext).inflate(pLayoutID, null);
 	}
 
-    /**
-     * 
-     * @param pContext
-     * @param pLayoutID
-     * @param pViewGroup
-     * @return
-     */
-    public static final View inflate(final Context pContext, final int pLayoutID, final ViewGroup pViewGroup){
+	public static final View inflate(final Context pContext, final int pLayoutID, final ViewGroup pViewGroup){
 		return LayoutInflater.from(pContext).inflate(pLayoutID, pViewGroup, true);
 	}
 

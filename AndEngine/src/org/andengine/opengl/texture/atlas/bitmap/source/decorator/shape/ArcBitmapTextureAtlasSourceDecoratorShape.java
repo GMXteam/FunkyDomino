@@ -38,31 +38,17 @@ public class ArcBitmapTextureAtlasSourceDecoratorShape implements IBitmapTexture
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public ArcBitmapTextureAtlasSourceDecoratorShape() {
+	public ArcBitmapTextureAtlasSourceDecoratorShape() {
 		this(STARTANGLE_DEFAULT, SWEEPANGLE_DEFAULT, USECENTER_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pStartAngle
-         * @param pSweepAngle
-         * @param pUseCenter
-         */
-        public ArcBitmapTextureAtlasSourceDecoratorShape(final float pStartAngle, final float pSweepAngle, final boolean pUseCenter) {
+	public ArcBitmapTextureAtlasSourceDecoratorShape(final float pStartAngle, final float pSweepAngle, final boolean pUseCenter) {
 		this.mStartAngle = pStartAngle;
 		this.mSweepAngle = pSweepAngle;
 		this.mUseCenter = pUseCenter;
 	}
 
-        /**
-         * 
-         * @return
-         * @deprecated
-         */
-        @Deprecated
+	@Deprecated
 	public static ArcBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
 		if(sDefaultInstance == null) {
 			sDefaultInstance = new ArcBitmapTextureAtlasSourceDecoratorShape();
@@ -78,13 +64,7 @@ public class ArcBitmapTextureAtlasSourceDecoratorShape implements IBitmapTexture
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCanvas
-         * @param pPaint
-         * @param pDecoratorOptions
-         */
-        @Override
+	@Override
 	public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions) {
 		final float left = pDecoratorOptions.getInsetLeft();
 		final float top = pDecoratorOptions.getInsetTop();

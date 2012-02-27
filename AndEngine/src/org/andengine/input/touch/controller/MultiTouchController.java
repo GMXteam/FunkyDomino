@@ -30,11 +30,7 @@ public class MultiTouchController extends BaseTouchController {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pMotionEvent
-     */
-    @Override
+	@Override
 	public void onHandleMotionEvent(final MotionEvent pMotionEvent) {
 		final int action = pMotionEvent.getAction() & MotionEvent.ACTION_MASK;
 		switch(action) {

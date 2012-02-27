@@ -39,21 +39,13 @@ public final class SocketUtils {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDatagramSocket
-     */
-    public static final void closeSocket(final DatagramSocket pDatagramSocket) {
+	public static final void closeSocket(final DatagramSocket pDatagramSocket) {
 		if(pDatagramSocket != null && !pDatagramSocket.isClosed()) {
 			pDatagramSocket.close();
 		}
 	}
 
-        /**
-         * 
-         * @param pSocket
-         */
-        public static final void closeSocket(final Socket pSocket) {
+	public static final void closeSocket(final Socket pSocket) {
 		if(pSocket != null && !pSocket.isClosed()) {
 			try {
 				pSocket.close();
@@ -63,11 +55,7 @@ public final class SocketUtils {
 		}
 	}
 
-        /**
-         * 
-         * @param pServerSocket
-         */
-        public static final void closeSocket(final ServerSocket pServerSocket) {
+	public static final void closeSocket(final ServerSocket pServerSocket) {
 		if(pServerSocket != null && !pServerSocket.isClosed()) {
 			try {
 				pServerSocket.close();

@@ -21,11 +21,5 @@ public interface IBitmapTextureAtlasSourceDecoratorShape {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @param pCanvas
-     * @param pPaint
-     * @param pDecoratorOptions
-     */
-    public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions);
+	public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions);
 }

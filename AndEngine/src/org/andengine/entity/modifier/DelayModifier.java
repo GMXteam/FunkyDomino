@@ -22,28 +22,15 @@ public class DelayModifier extends DurationEntityModifier {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pDuration
-     * @param pEntityModifierListener
-     */
-    public DelayModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
+	public DelayModifier(final float pDuration, final IEntityModifierListener pEntityModifierListener) {
 		super(pDuration, pEntityModifierListener);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         */
-        public DelayModifier(final float pDuration) {
+	public DelayModifier(final float pDuration) {
 		super(pDuration);
 	}
 
-        /**
-         * 
-         * @param pDelayModifier
-         */
-        protected DelayModifier(final DelayModifier pDelayModifier) {
+	protected DelayModifier(final DelayModifier pDelayModifier) {
 		super(pDelayModifier);
 	}
 
@@ -60,21 +47,12 @@ public class DelayModifier extends DurationEntityModifier {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEntity
-         */
-        @Override
+	@Override
 	protected void onManagedInitialize(final IEntity pEntity) {
 
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pEntity
-         */
-        @Override
+	@Override
 	protected void onManagedUpdate(final float pSecondsElapsed, final IEntity pEntity) {
 
 	}

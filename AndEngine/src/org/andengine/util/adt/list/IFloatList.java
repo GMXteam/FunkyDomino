@@ -15,44 +15,11 @@ public interface IFloatList {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @return
-     */
-    public boolean isEmpty();
-    /**
-     * 
-     * @param pIndex
-     * @return
-     * @throws ArrayIndexOutOfBoundsException
-     */
-    public float get(final int pIndex) throws ArrayIndexOutOfBoundsException;
-        /**
-         * 
-         * @param pItem
-         */
-        public void add(final float pItem);
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        public void add(final int pIndex, final float pItem) throws ArrayIndexOutOfBoundsException;
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        public float remove(final int pIndex) throws ArrayIndexOutOfBoundsException;
-        /**
-         * 
-         * @return
-         */
-        public int size();
-        /**
-         * 
-         */
-        public void clear();
+	public boolean isEmpty();
+	public float get(final int pIndex) throws ArrayIndexOutOfBoundsException;
+	public void add(final float pItem);
+	public void add(final int pIndex, final float pItem) throws ArrayIndexOutOfBoundsException;
+	public float remove(final int pIndex) throws ArrayIndexOutOfBoundsException;
+	public int size();
+	public void clear();
 }

@@ -33,47 +33,24 @@ public abstract class SimpleLayoutGameActivity extends LayoutGameActivity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected abstract void onCreateResources();
-    /**
-     * 
-     * @return
-     */
-    protected abstract Scene onCreateScene();
+	protected abstract void onCreateResources();
+	protected abstract Scene onCreateScene();
 
-        /**
-         * 
-         * @param pOnCreateResourcesCallback
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public final void onCreateResources(final OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
 		this.onCreateResources();
 
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 
-        /**
-         * 
-         * @param pOnCreateSceneCallback
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public final void onCreateScene(final OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
 		final Scene scene = this.onCreateScene();
 
 		pOnCreateSceneCallback.onCreateSceneFinished(scene);
 	}
 
-        /**
-         * 
-         * @param pScene
-         * @param pOnPopulateSceneCallback
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public final void onPopulateScene(final Scene pScene, final OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 	}

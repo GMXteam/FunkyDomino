@@ -37,19 +37,11 @@ public class TransformationPool {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 	
-        /**
-         * 
-         * @return
-         */
-        public static Transformation obtain() {
+	public static Transformation obtain() {
 		return POOL.obtainPoolItem();
 	}
 	
-        /**
-         * 
-         * @param pTransformation
-         */
-        public static void recycle(final Transformation pTransformation) {
+	public static void recycle(final Transformation pTransformation) {
 		pTransformation.setToIdentity();
 		POOL.recyclePoolItem(pTransformation);
 	}
