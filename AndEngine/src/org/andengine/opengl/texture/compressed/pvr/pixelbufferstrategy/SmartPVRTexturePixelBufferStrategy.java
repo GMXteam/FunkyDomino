@@ -34,11 +34,7 @@ public class SmartPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuffe
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pAllocationSizeMaximum
-         */
-        public SmartPVRTexturePixelBufferStrategy(final int pAllocationSizeMaximum) {
+	public SmartPVRTexturePixelBufferStrategy(final int pAllocationSizeMaximum) {
 		this.mAllocationSizeMaximum = pAllocationSizeMaximum;
 	}
 
@@ -55,19 +51,7 @@ public class SmartPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuffe
 		return new SmartPVRTexturePixelBufferStrategyBufferManager(pPVRTexture);
 	}
 
-        /**
-         * 
-         * @param pPVRTexturePixelBufferStrategyManager
-         * @param pWidth
-         * @param pHeight
-         * @param pBytesPerPixel
-         * @param pPixelFormat
-         * @param pLevel
-         * @param pCurrentPixelDataOffset
-         * @param pCurrentPixelDataSize
-         * @throws IOException
-         */
-        @Override
+	@Override
 	public void loadPVRTextureData(final IPVRTexturePixelBufferStrategyBufferManager pPVRTexturePixelBufferStrategyManager, final int pWidth, final int pHeight, final int pBytesPerPixel, final PixelFormat pPixelFormat, final int pLevel, final int pCurrentPixelDataOffset, final int pCurrentPixelDataSize) throws IOException {
 		final int glFormat = pPixelFormat.getGLFormat();
 		final int glType = pPixelFormat.getGLType();
@@ -104,10 +88,7 @@ public class SmartPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuffe
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class SmartPVRTexturePixelBufferStrategyBufferManager implements IPVRTexturePixelBufferStrategyBufferManager {
+	public static class SmartPVRTexturePixelBufferStrategyBufferManager implements IPVRTexturePixelBufferStrategyBufferManager {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -125,12 +106,7 @@ public class SmartPVRTexturePixelBufferStrategy implements IPVRTexturePixelBuffe
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pPVRTexture
-                 * @throws IOException
-                 */
-                public SmartPVRTexturePixelBufferStrategyBufferManager(final PVRTexture pPVRTexture) throws IOException {
+		public SmartPVRTexturePixelBufferStrategyBufferManager(final PVRTexture pPVRTexture) throws IOException {
 			this.mInputStream = pPVRTexture.getInputStream();
 		}
 

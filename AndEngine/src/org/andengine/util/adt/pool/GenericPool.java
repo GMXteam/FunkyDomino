@@ -9,7 +9,6 @@ import org.andengine.util.debug.Debug;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Valentin Milea
  * @author Nicolas Gramlich
  * 
@@ -34,37 +33,19 @@ public abstract class GenericPool<T> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public GenericPool() {
+	public GenericPool() {
 		this(0);
 	}
 
-        /**
-         * 
-         * @param pInitialSize
-         */
-        public GenericPool(final int pInitialSize) {
+	public GenericPool(final int pInitialSize) {
 		this(pInitialSize, 1);
 	}
 
-        /**
-         * 
-         * @param pInitialSize
-         * @param pGrowth
-         */
-        public GenericPool(final int pInitialSize, final int pGrowth) {
+	public GenericPool(final int pInitialSize, final int pGrowth) {
 		this(pInitialSize, pGrowth, Integer.MAX_VALUE);
 	}
 
-        /**
-         * 
-         * @param pInitialSize
-         * @param pGrowth
-         * @param pAvailableItemsMaximum
-         */
-        public GenericPool(final int pInitialSize, final int pGrowth, final int pAvailableItemsMaximum) {
+	public GenericPool(final int pInitialSize, final int pGrowth, final int pAvailableItemsMaximum) {
 		if(pGrowth <= 0) {
 			throw new IllegalArgumentException("pGrowth must be greater than 0!");
 		}
@@ -85,27 +66,15 @@ public abstract class GenericPool<T> {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public synchronized int getUnrecycledItemCount() {
+	public synchronized int getUnrecycledItemCount() {
 		return this.mUnrecycledItemCount;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public synchronized int getAvailableItemCount() {
+	public synchronized int getAvailableItemCount() {
 		return this.mAvailableItems.size();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getAvailableItemCountMaximum() {
+	public int getAvailableItemCountMaximum() {
 		return this.mAvailableItemCountMaximum;
 	}
 
@@ -113,11 +82,7 @@ public abstract class GenericPool<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        protected abstract T onAllocatePoolItem();
+	protected abstract T onAllocatePoolItem();
 
 	// ===========================================================
 	// Methods
@@ -130,11 +95,7 @@ public abstract class GenericPool<T> {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        protected T onHandleAllocatePoolItem() {
+	protected T onHandleAllocatePoolItem() {
 		return this.onAllocatePoolItem();
 	}
 
@@ -145,11 +106,7 @@ public abstract class GenericPool<T> {
 
 	}
 
-        /**
-         * 
-         * @param pCount
-         */
-        public synchronized void batchAllocatePoolItems(final int pCount) {
+	public synchronized void batchAllocatePoolItems(final int pCount) {
 		final ArrayList<T> availableItems = this.mAvailableItems;
 
 		int allocationCount = this.mAvailableItemCountMaximum - availableItems.size();
@@ -162,11 +119,7 @@ public abstract class GenericPool<T> {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public synchronized T obtainPoolItem() {
+	public synchronized T obtainPoolItem() {
 		final T item;
 
 		if(this.mAvailableItems.size() > 0) {
@@ -188,11 +141,7 @@ public abstract class GenericPool<T> {
 		return item;
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        public synchronized void recyclePoolItem(final T pItem) {
+	public synchronized void recyclePoolItem(final T pItem) {
 		if(pItem == null) {
 			throw new IllegalArgumentException("Cannot recycle null item!");
 		}
@@ -210,10 +159,7 @@ public abstract class GenericPool<T> {
 		}
 	}
 
-        /**
-         * 
-         */
-        public synchronized void shufflePoolItems() {
+	public synchronized void shufflePoolItems() {
 		Collections.shuffle(this.mAvailableItems);
 	}
 

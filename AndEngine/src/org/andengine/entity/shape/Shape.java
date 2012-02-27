@@ -27,36 +27,18 @@ public abstract class Shape extends Entity implements IShape {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected int mSourceBlendFunction = IShape.BLENDFUNCTION_SOURCE_DEFAULT;
-        /**
-         * 
-         */
-        protected int mDestinationBlendFunction = IShape.BLENDFUNCTION_DESTINATION_DEFAULT;
+	protected int mSourceBlendFunction = IShape.BLENDFUNCTION_SOURCE_DEFAULT;
+	protected int mDestinationBlendFunction = IShape.BLENDFUNCTION_DESTINATION_DEFAULT;
 
-        /**
-         * 
-         */
-        protected boolean mBlendingEnabled = false;
+	protected boolean mBlendingEnabled = false;
 
-        /**
-         * 
-         */
-        protected ShaderProgram mShaderProgram;
+	protected ShaderProgram mShaderProgram;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pShaderProgram
-         */
-        public Shape(final float pX, final float pY, final ShaderProgram pShaderProgram) {
+	public Shape(final float pX, final float pY, final ShaderProgram pShaderProgram) {
 		super(pX, pY);
 
 		this.mShaderProgram = pShaderProgram;
@@ -71,67 +53,38 @@ public abstract class Shape extends Entity implements IShape {
 		return this.mBlendingEnabled;
 	}
 
-        /**
-         * 
-         * @param pBlendingEnabled
-         */
-        @Override
+	@Override
 	public void setBlendingEnabled(final boolean pBlendingEnabled) {
 		this.mBlendingEnabled = pBlendingEnabled;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getSourceBlendFunction() {
 		return this.mSourceBlendFunction;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getDestinationBlendFunction() {
 		return this.mDestinationBlendFunction;
 	}
 
-        /**
-         * 
-         * @param pSourceBlendFunction
-         * @param pDestinationBlendFunction
-         */
-        @Override
+	@Override
 	public void setBlendFunction(final int pSourceBlendFunction, final int pDestinationBlendFunction) {
 		this.mSourceBlendFunction = pSourceBlendFunction;
 		this.mDestinationBlendFunction = pDestinationBlendFunction;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public ShaderProgram getShaderProgram() {
 		return this.mShaderProgram;
 	}
 
-        /**
-         * 
-         * @param pShaderProgram
-         */
-        @Override
+	@Override
 	public void setShaderProgram(final ShaderProgram pShaderProgram) {
 		this.mShaderProgram = pShaderProgram;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public VertexBufferObjectManager getVertexBufferObjectManager() {
 		return getVertexBufferObject().getVertexBufferObjectManager();
 	}
@@ -140,10 +93,7 @@ public abstract class Shape extends Entity implements IShape {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected abstract void onUpdateVertices();
+	protected abstract void onUpdateVertices();
 
 	@Override
 	protected void preDraw(final GLState pGLState, final Camera pCamera) {
@@ -165,10 +115,7 @@ public abstract class Shape extends Entity implements IShape {
 		return false;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		super.reset();
 
@@ -190,27 +137,15 @@ public abstract class Shape extends Entity implements IShape {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureRegion
-         */
-        protected void initBlendFunction(final ITextureRegion pTextureRegion) {
+	protected void initBlendFunction(final ITextureRegion pTextureRegion) {
 		this.initBlendFunction(pTextureRegion.getTexture());
 	}
 
-        /**
-         * 
-         * @param pTexture
-         */
-        protected void initBlendFunction(final ITexture pTexture) {
+	protected void initBlendFunction(final ITexture pTexture) {
 		this.initBlendFunction(pTexture.getTextureOptions());
 	}
 
-        /**
-         * 
-         * @param pTextureOptions
-         */
-        protected void initBlendFunction(final TextureOptions pTextureOptions) {
+	protected void initBlendFunction(final TextureOptions pTextureOptions) {
 		if(pTextureOptions.mPreMultiplyAlpha) {
 			this.setBlendFunction(IShape.BLENDFUNCTION_SOURCE_PREMULTIPLYALPHA_DEFAULT, IShape.BLENDFUNCTION_DESTINATION_PREMULTIPLYALPHA_DEFAULT);
 		}

@@ -27,11 +27,7 @@ public class EaseBounceInOut implements IEaseFunction {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseBounceInOut getInstance() {
+	public static EaseBounceInOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseBounceInOut();
 		}
@@ -46,13 +42,7 @@ public class EaseBounceInOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		final float percentage = pSecondsElapsed / pDuration;
 

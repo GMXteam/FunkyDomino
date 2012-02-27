@@ -27,20 +27,11 @@ public class RelativeResolutionPolicy extends BaseResolutionPolicy {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pScale
-         */
-        public RelativeResolutionPolicy(final float pScale) {
+	public RelativeResolutionPolicy(final float pScale) {
 		this(pScale, pScale);
 	}
 
-        /**
-         * 
-         * @param pWidthScale
-         * @param pHeightScale
-         */
-        public RelativeResolutionPolicy(final float pWidthScale, final float pHeightScale) {
+	public RelativeResolutionPolicy(final float pWidthScale, final float pHeightScale) {
 		this.mWidthScale = pWidthScale;
 		this.mHeightScale = pHeightScale;
 	}
@@ -53,13 +44,7 @@ public class RelativeResolutionPolicy extends BaseResolutionPolicy {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pRenderSurfaceView
-         * @param pWidthMeasureSpec
-         * @param pHeightMeasureSpec
-         */
-        @Override
+	@Override
 	public void onMeasure(final RenderSurfaceView pRenderSurfaceView, final int pWidthMeasureSpec, final int pHeightMeasureSpec) {
 		BaseResolutionPolicy.throwOnNotMeasureSpecEXACTLY(pWidthMeasureSpec, pHeightMeasureSpec);
 

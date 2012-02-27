@@ -34,14 +34,7 @@ public class InsertionSorter<T> extends Sorter<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pArray
-     * @param pStart
-     * @param pEnd
-     * @param pComparator
-     */
-    @Override
+	@Override
 	public void sort(final T[] pArray, final int pStart, final int pEnd, final Comparator<T> pComparator) {
 		for(int i = pStart + 1; i < pEnd; i++) {
 			final T current = pArray[i];
@@ -73,14 +66,7 @@ public class InsertionSorter<T> extends Sorter<T> {
 		return;
 	}
 
-        /**
-         * 
-         * @param pList
-         * @param pStart
-         * @param pEnd
-         * @param pComparator
-         */
-        @Override
+	@Override
 	public void sort(final IList<T> pList, final int pStart, final int pEnd, final Comparator<T> pComparator) {
 		for(int i = pStart + 1; i < pEnd; i++) {
 			final T current = pList.get(i);

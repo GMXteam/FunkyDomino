@@ -38,101 +38,35 @@ public class ButtonSprite extends TiledSprite {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pNormalTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pNormalTextureRegion, pVertexBufferObjectManager, (OnClickListener) null);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pNormalTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pOnClickListener
-         */
-        public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
+	public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
 		this(pX, pY, new TiledTextureRegion(pNormalTextureRegion.getTexture(), pNormalTextureRegion), pVertexBufferObjectManager, pOnClickListener);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pNormalTextureRegion
-         * @param pPressedTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pNormalTextureRegion, pPressedTextureRegion, pVertexBufferObjectManager, (OnClickListener) null);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pNormalTextureRegion
-         * @param pPressedTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pOnClickListener
-         */
-        public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
+	public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
 		this(pX, pY, new TiledTextureRegion(pNormalTextureRegion.getTexture(), pNormalTextureRegion, pPressedTextureRegion), pVertexBufferObjectManager, pOnClickListener);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pNormalTextureRegion
-         * @param pPressedTextureRegion
-         * @param pDisabledTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final ITextureRegion pDisabledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final ITextureRegion pDisabledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pNormalTextureRegion, pPressedTextureRegion, pDisabledTextureRegion, pVertexBufferObjectManager, (OnClickListener) null);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pNormalTextureRegion
-         * @param pPressedTextureRegion
-         * @param pDisabledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pOnClickListener
-         */
-        public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final ITextureRegion pDisabledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
+	public ButtonSprite(final float pX, final float pY, final ITextureRegion pNormalTextureRegion, final ITextureRegion pPressedTextureRegion, final ITextureRegion pDisabledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
 		this(pX, pY, new TiledTextureRegion(pNormalTextureRegion.getTexture(), pNormalTextureRegion, pPressedTextureRegion, pDisabledTextureRegion), pVertexBufferObjectManager, pOnClickListener);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public ButtonSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public ButtonSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager, (OnClickListener) null);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTiledTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pOnClickListener
-         */
-        public ButtonSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
+	public ButtonSprite(final float pX, final float pY, final ITiledTextureRegion pTiledTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final OnClickListener pOnClickListener) {
 		super(pX, pY, pTiledTextureRegion, pVertexBufferObjectManager);
 
 		this.mOnClickListener = pOnClickListener;
@@ -157,19 +91,11 @@ public class ButtonSprite extends TiledSprite {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isEnabled() {
+	public boolean isEnabled() {
 		return this.mEnabled;
 	}
 
-        /**
-         * 
-         * @param pEnabled
-         */
-        public void setEnabled(final boolean pEnabled) {
+	public void setEnabled(final boolean pEnabled) {
 		this.mEnabled = pEnabled;
 
 		if(this.mEnabled && this.mState == State.DISABLED) {
@@ -179,19 +105,15 @@ public class ButtonSprite extends TiledSprite {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isPressed() {
+	public boolean isPressed() {
 		return this.mState == State.PRESSED;
 	}
 
-        /**
-         * 
-         * @param pOnClickListener
-         */
-        public void setOnClickListener(final OnClickListener pOnClickListener) {
+	public State getState() {
+		return this.mState;
+	}
+
+	public void setOnClickListener(final OnClickListener pOnClickListener) {
 		this.mOnClickListener = pOnClickListener;
 	}
 
@@ -218,13 +140,7 @@ public class ButtonSprite extends TiledSprite {
 		return true;
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @return
-         */
-        @Override
+	@Override
 	public boolean contains(final float pX, final float pY) {
 		if(!this.isVisible()) {
 			return false;
@@ -257,10 +173,7 @@ public class ButtonSprite extends TiledSprite {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public interface OnClickListener {
+	public interface OnClickListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -269,16 +182,10 @@ public class ButtonSprite extends TiledSprite {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pButtonSprite
-             * @param pTouchAreaLocalX
-             * @param pTouchAreaLocalY
-             */
-            public void onClick(final ButtonSprite pButtonSprite, final float pTouchAreaLocalX, final float pTouchAreaLocalY);
+		public void onClick(final ButtonSprite pButtonSprite, final float pTouchAreaLocalX, final float pTouchAreaLocalY);
 	}
 
-	private static enum State {
+	public static enum State {
 		// ===========================================================
 		// Elements
 		// ===========================================================

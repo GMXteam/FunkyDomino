@@ -23,31 +23,15 @@ public class ParallelEntityModifier extends ParallelModifier<IEntity> implements
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pEntityModifiers
-     * @throws IllegalArgumentException
-     */
-    public ParallelEntityModifier(final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
+	public ParallelEntityModifier(final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
 		super(pEntityModifiers);
 	}
 
-    /**
-     * 
-     * @param pEntityModifierListener
-     * @param pEntityModifiers
-     * @throws IllegalArgumentException
-     */
-    public ParallelEntityModifier(final IEntityModifierListener pEntityModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
+	public ParallelEntityModifier(final IEntityModifierListener pEntityModifierListener, final IEntityModifier... pEntityModifiers) throws IllegalArgumentException {
 		super(pEntityModifierListener, pEntityModifiers);
 	}
 
-        /**
-         * 
-         * @param pParallelShapeModifier
-         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
-         */
-        protected ParallelEntityModifier(final ParallelEntityModifier pParallelShapeModifier) throws DeepCopyNotSupportedException {
+	protected ParallelEntityModifier(final ParallelEntityModifier pParallelShapeModifier) throws DeepCopyNotSupportedException {
 		super(pParallelShapeModifier);
 	}
 

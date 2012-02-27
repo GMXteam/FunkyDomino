@@ -5,7 +5,6 @@ package org.andengine.util.adt.pool;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Valentin Milea
  * @author Nicolas Gramlich
  * 
@@ -24,37 +23,19 @@ public abstract class Pool<T extends PoolItem> extends GenericPool<T> {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public Pool() {
+	public Pool() {
 		super();
 	}
 
-    /**
-     * 
-     * @param pInitialSize
-     */
-    public Pool(final int pInitialSize) {
+	public Pool(final int pInitialSize) {
 		super(pInitialSize);
 	}
 
-        /**
-         * 
-         * @param pInitialSize
-         * @param pGrowth
-         */
-        public Pool(final int pInitialSize, final int pGrowth) {
+	public Pool(final int pInitialSize, final int pGrowth) {
 		super(pInitialSize, pGrowth);
 	}
 
-        /**
-         * 
-         * @param pInitialSize
-         * @param pGrowth
-         * @param pAvailableItemCountMaximum
-         */
-        public Pool(final int pInitialSize, final int pGrowth, final int pAvailableItemCountMaximum) {
+	public Pool(final int pInitialSize, final int pGrowth, final int pAvailableItemCountMaximum) {
 		super(pInitialSize, pGrowth, pAvailableItemCountMaximum);
 	}
 
@@ -66,11 +47,7 @@ public abstract class Pool<T extends PoolItem> extends GenericPool<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	protected T onHandleAllocatePoolItem() {
 		final T poolItem = super.onHandleAllocatePoolItem();
 		poolItem.mParent = this;
@@ -89,11 +66,7 @@ public abstract class Pool<T extends PoolItem> extends GenericPool<T> {
 		pPoolItem.mRecycled = true;
 	}
 
-        /**
-         * 
-         * @param pPoolItem
-         */
-        @Override
+	@Override
 	public synchronized void recyclePoolItem(final T pPoolItem) {
 		if(pPoolItem.mParent == null) {
 			throw new IllegalArgumentException("PoolItem not assigned to a pool!");
@@ -110,12 +83,7 @@ public abstract class Pool<T extends PoolItem> extends GenericPool<T> {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pPoolItem
-         * @return
-         */
-        public synchronized boolean ownsPoolItem(final T pPoolItem) {
+	public synchronized boolean ownsPoolItem(final T pPoolItem) {
 		return pPoolItem.mParent == this;
 	}
 

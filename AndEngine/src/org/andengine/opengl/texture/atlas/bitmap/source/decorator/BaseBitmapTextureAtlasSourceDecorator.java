@@ -25,37 +25,19 @@ public abstract class BaseBitmapTextureAtlasSourceDecorator extends BaseTextureA
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final IBitmapTextureAtlasSource mBitmapTextureAtlasSource;
-        /**
-         * 
-         */
-        protected TextureAtlasSourceDecoratorOptions mTextureAtlasSourceDecoratorOptions;
-        /**
-         * 
-         */
-        protected Paint mPaint = new Paint();
+	protected final IBitmapTextureAtlasSource mBitmapTextureAtlasSource;
+	protected TextureAtlasSourceDecoratorOptions mTextureAtlasSourceDecoratorOptions;
+	protected Paint mPaint = new Paint();
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         */
-        public BaseBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource) {
+	public BaseBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource) {
 		this(pBitmapTextureAtlasSource, new TextureAtlasSourceDecoratorOptions());
 	}
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pTextureAtlasSourceDecoratorOptions
-         */
-        public BaseBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+	public BaseBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		super(pBitmapTextureAtlasSource.getTextureX(), pBitmapTextureAtlasSource.getTextureY(), pBitmapTextureAtlasSource.getTextureWidth(), pBitmapTextureAtlasSource.getTextureHeight());
 
 		this.mBitmapTextureAtlasSource = pBitmapTextureAtlasSource;
@@ -70,35 +52,19 @@ public abstract class BaseBitmapTextureAtlasSourceDecorator extends BaseTextureA
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public Paint getPaint() {
+	public Paint getPaint() {
 		return this.mPaint;
 	}
 
-        /**
-         * 
-         * @param pPaint
-         */
-        public void setPaint(final Paint pPaint) {
+	public void setPaint(final Paint pPaint) {
 		this.mPaint = pPaint;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public TextureAtlasSourceDecoratorOptions getTextureAtlasSourceDecoratorOptions() {
+	public TextureAtlasSourceDecoratorOptions getTextureAtlasSourceDecoratorOptions() {
 		return this.mTextureAtlasSourceDecoratorOptions;
 	}
 
-        /**
-         * 
-         * @param pTextureAtlasSourceDecoratorOptions
-         */
-        public void setTextureAtlasSourceDecoratorOptions(final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+	public void setTextureAtlasSourceDecoratorOptions(final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		this.mTextureAtlasSourceDecoratorOptions = pTextureAtlasSourceDecoratorOptions;
 	}
 
@@ -106,37 +72,19 @@ public abstract class BaseBitmapTextureAtlasSourceDecorator extends BaseTextureA
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCanvas
-         * @throws Exception
-         */
-        protected abstract void onDecorateBitmap(final Canvas pCanvas) throws Exception;
+	protected abstract void onDecorateBitmap(final Canvas pCanvas) throws Exception;
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getTextureWidth() {
 		return this.mBitmapTextureAtlasSource.getTextureWidth();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getTextureHeight() {
 		return this.mBitmapTextureAtlasSource.getTextureHeight();
 	}
 
-        /**
-         * 
-         * @param pBitmapConfig
-         * @return
-         */
-        @Override
+	@Override
 	public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 		final Bitmap bitmap = this.ensureLoadedBitmapIsMutable(this.mBitmapTextureAtlasSource.onLoadBitmap(pBitmapConfig));
 
@@ -167,18 +115,12 @@ public abstract class BaseBitmapTextureAtlasSourceDecorator extends BaseTextureA
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static class TextureAtlasSourceDecoratorOptions {
+	public static class TextureAtlasSourceDecoratorOptions {
 		// ===========================================================
 		// Constants
 		// ===========================================================
 
-            /**
-             * 
-             */
-            public static final TextureAtlasSourceDecoratorOptions DEFAULT = new TextureAtlasSourceDecoratorOptions();
+		public static final TextureAtlasSourceDecoratorOptions DEFAULT = new TextureAtlasSourceDecoratorOptions();
 
 		// ===========================================================
 		// Fields
@@ -195,11 +137,7 @@ public abstract class BaseBitmapTextureAtlasSourceDecorator extends BaseTextureA
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                protected TextureAtlasSourceDecoratorOptions deepCopy() {
+		protected TextureAtlasSourceDecoratorOptions deepCopy() {
 			final TextureAtlasSourceDecoratorOptions textureSourceDecoratorOptions = new TextureAtlasSourceDecoratorOptions();
 			textureSourceDecoratorOptions.setInsets(this.mInsetLeft, this.mInsetTop, this.mInsetRight, this.mInsetBottom);
 			textureSourceDecoratorOptions.setAntiAliasing(this.mAntiAliasing);
@@ -210,114 +148,56 @@ public abstract class BaseBitmapTextureAtlasSourceDecorator extends BaseTextureA
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public boolean getAntiAliasing() {
+		public boolean getAntiAliasing() {
 			return this.mAntiAliasing;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float getInsetLeft() {
+		public float getInsetLeft() {
 			return this.mInsetLeft;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float getInsetRight() {
+		public float getInsetRight() {
 			return this.mInsetRight;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float getInsetTop() {
+		public float getInsetTop() {
 			return this.mInsetTop;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float getInsetBottom() {
+		public float getInsetBottom() {
 			return this.mInsetBottom;
 		}
 
-                /**
-                 * 
-                 * @param pAntiAliasing
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setAntiAliasing(final boolean pAntiAliasing) {
+		public TextureAtlasSourceDecoratorOptions setAntiAliasing(final boolean pAntiAliasing) {
 			this.mAntiAliasing = pAntiAliasing;
 			return this;
 		}
 
-                /**
-                 * 
-                 * @param pInsetLeft
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setInsetLeft(final float pInsetLeft) {
+		public TextureAtlasSourceDecoratorOptions setInsetLeft(final float pInsetLeft) {
 			this.mInsetLeft = pInsetLeft;
 			return this;
 		}
 
-                /**
-                 * 
-                 * @param pInsetRight
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setInsetRight(final float pInsetRight) {
+		public TextureAtlasSourceDecoratorOptions setInsetRight(final float pInsetRight) {
 			this.mInsetRight = pInsetRight;
 			return this;
 		}
 
-                /**
-                 * 
-                 * @param pInsetTop
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setInsetTop(final float pInsetTop) {
+		public TextureAtlasSourceDecoratorOptions setInsetTop(final float pInsetTop) {
 			this.mInsetTop = pInsetTop;
 			return this;
 		}
 
-                /**
-                 * 
-                 * @param pInsetBottom
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setInsetBottom(final float pInsetBottom) {
+		public TextureAtlasSourceDecoratorOptions setInsetBottom(final float pInsetBottom) {
 			this.mInsetBottom = pInsetBottom;
 			return this;
 		}
 
-                /**
-                 * 
-                 * @param pInsets
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setInsets(final float pInsets) {
+		public TextureAtlasSourceDecoratorOptions setInsets(final float pInsets) {
 			return this.setInsets(pInsets, pInsets, pInsets, pInsets);
 		}
 
-                /**
-                 * 
-                 * @param pInsetLeft
-                 * @param pInsetTop
-                 * @param pInsetRight
-                 * @param pInsetBottom
-                 * @return
-                 */
-                public TextureAtlasSourceDecoratorOptions setInsets(final float pInsetLeft, final float pInsetTop, final float pInsetRight, final float pInsetBottom) {
+		public TextureAtlasSourceDecoratorOptions setInsets(final float pInsetLeft, final float pInsetTop, final float pInsetRight, final float pInsetBottom) {
 			this.mInsetLeft = pInsetLeft;
 			this.mInsetTop = pInsetTop;
 			this.mInsetRight = pInsetRight;

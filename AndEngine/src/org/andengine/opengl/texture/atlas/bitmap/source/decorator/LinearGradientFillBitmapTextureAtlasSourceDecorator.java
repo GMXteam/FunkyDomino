@@ -23,70 +23,27 @@ public class LinearGradientFillBitmapTextureAtlasSourceDecorator extends BaseSha
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final LinearGradientDirection mLinearGradientDirection;
-        /**
-         * 
-         */
-        protected final int[] mColors;
-        /**
-         * 
-         */
-        protected final float[] mPositions;
+	protected final LinearGradientDirection mLinearGradientDirection;
+	protected final int[] mColors;
+	protected final float[] mPositions;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pBitmapTextureAtlasSourceDecoratorShape
-         * @param pFromColor
-         * @param pToColor
-         * @param pLinearGradientDirection
-         */
-        public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final LinearGradientDirection pLinearGradientDirection) {
+	public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final LinearGradientDirection pLinearGradientDirection) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pFromColor, pToColor, pLinearGradientDirection, null);
 	}
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pBitmapTextureAtlasSourceDecoratorShape
-         * @param pFromColor
-         * @param pToColor
-         * @param pLinearGradientDirection
-         * @param pTextureAtlasSourceDecoratorOptions
-         */
-        public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final LinearGradientDirection pLinearGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+	public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFromColor, final int pToColor, final LinearGradientDirection pLinearGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, new int[] { pFromColor, pToColor }, null, pLinearGradientDirection, pTextureAtlasSourceDecoratorOptions);
 	}
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pBitmapTextureAtlasSourceDecoratorShape
-         * @param pColors
-         * @param pPositions
-         * @param pLinearGradientDirection
-         */
-        public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int[] pColors, final float[] pPositions, final LinearGradientDirection pLinearGradientDirection) {
+	public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int[] pColors, final float[] pPositions, final LinearGradientDirection pLinearGradientDirection) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pColors, pPositions, pLinearGradientDirection, null);
 	}
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pBitmapTextureAtlasSourceDecoratorShape
-         * @param pColors
-         * @param pPositions
-         * @param pLinearGradientDirection
-         * @param pTextureAtlasSourceDecoratorOptions
-         */
-        public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int[] pColors, final float[] pPositions, final LinearGradientDirection pLinearGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+	public LinearGradientFillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int[] pColors, final float[] pPositions, final LinearGradientDirection pLinearGradientDirection, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		super(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pTextureAtlasSourceDecoratorOptions);
 		this.mColors = pColors;
 		this.mPositions = pPositions;
@@ -126,46 +83,19 @@ public class LinearGradientFillBitmapTextureAtlasSourceDecorator extends BaseSha
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static enum LinearGradientDirection {
+	public static enum LinearGradientDirection {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-            /**
-             * 
-             */
-            LEFT_TO_RIGHT(1, 0, 0, 0),
-                /**
-                 * 
-                 */
-                RIGHT_TO_LEFT(0, 0, 1, 0),
-                /**
-                 * 
-                 */
-                BOTTOM_TO_TOP(0, 1, 0, 0),
-                /**
-                 * 
-                 */
-                TOP_TO_BOTTOM(0, 0, 0, 1),
-                /**
-                 * 
-                 */
-                TOPLEFT_TO_BOTTOMRIGHT(0, 0, 1, 1),
-                /**
-                 * 
-                 */
-                BOTTOMRIGHT_TO_TOPLEFT(1, 1, 0, 0),
-                /**
-                 * 
-                 */
-                TOPRIGHT_TO_BOTTOMLEFT(1, 0, 0, 1),
-                /**
-                 * 
-                 */
-                BOTTOMLEFT_TO_TOPRIGHT(0, 1, 1, 0);
+		LEFT_TO_RIGHT(1, 0, 0, 0),
+		RIGHT_TO_LEFT(0, 0, 1, 0),
+		BOTTOM_TO_TOP(0, 1, 0, 0),
+		TOP_TO_BOTTOM(0, 0, 0, 1),
+		TOPLEFT_TO_BOTTOMRIGHT(0, 0, 1, 1),
+		BOTTOMRIGHT_TO_TOPLEFT(1, 1, 0, 0),
+		TOPRIGHT_TO_BOTTOMLEFT(1, 0, 0, 1),
+		BOTTOMLEFT_TO_TOPRIGHT(0, 1, 1, 0);
 
 		// ===========================================================
 		// Constants

@@ -28,28 +28,14 @@ public class HighPerformanceVertexBufferObject extends VertexBufferObject {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final float[] mBufferData;
-        /**
-         * 
-         */
-        protected final FloatBuffer mFloatBuffer;
+	protected final float[] mBufferData;
+	protected final FloatBuffer mFloatBuffer;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pVertexBufferObjectManager
-         * @param pCapacity
-         * @param pDrawType
-         * @param pAutoDispose
-         * @param pVertexBufferObjectAttributes
-         */
-        public HighPerformanceVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+	public HighPerformanceVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 
 		this.mBufferData = new float[pCapacity];
@@ -60,15 +46,7 @@ public class HighPerformanceVertexBufferObject extends VertexBufferObject {
 		}
 	}
 
-        /**
-         * 
-         * @param pVertexBufferObjectManager
-         * @param pBufferData
-         * @param pDrawType
-         * @param pAutoDispose
-         * @param pVertexBufferObjectAttributes
-         */
-        public HighPerformanceVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final float[] pBufferData, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+	public HighPerformanceVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final float[] pBufferData, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		super(pVertexBufferObjectManager, pBufferData.length, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		this.mBufferData = pBufferData;
 		
@@ -83,11 +61,7 @@ public class HighPerformanceVertexBufferObject extends VertexBufferObject {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float[] getBufferData() {
+	public float[] getBufferData() {
 		return this.mBufferData;
 	}
 
@@ -105,10 +79,7 @@ public class HighPerformanceVertexBufferObject extends VertexBufferObject {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	protected void onBufferData() {
 		// TODO Check if, and how mow this condition affects performance.
 		if(SystemUtils.SDK_VERSION_HONEYCOMB_OR_LATER) {

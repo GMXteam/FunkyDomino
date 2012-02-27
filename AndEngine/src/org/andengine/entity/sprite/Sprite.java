@@ -31,44 +31,17 @@ public class Sprite extends RectangularShape {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int VERTEX_INDEX_X = 0;
-    /**
-     * 
-     */
-    public static final int VERTEX_INDEX_Y = Sprite.VERTEX_INDEX_X + 1;
-        /**
-         * 
-         */
-        public static final int COLOR_INDEX = Sprite.VERTEX_INDEX_Y + 1;
-        /**
-         * 
-         */
-        public static final int TEXTURECOORDINATES_INDEX_U = Sprite.COLOR_INDEX + 1;
-        /**
-         * 
-         */
-        public static final int TEXTURECOORDINATES_INDEX_V = Sprite.TEXTURECOORDINATES_INDEX_U + 1;
+	public static final int VERTEX_INDEX_X = 0;
+	public static final int VERTEX_INDEX_Y = Sprite.VERTEX_INDEX_X + 1;
+	public static final int COLOR_INDEX = Sprite.VERTEX_INDEX_Y + 1;
+	public static final int TEXTURECOORDINATES_INDEX_U = Sprite.COLOR_INDEX + 1;
+	public static final int TEXTURECOORDINATES_INDEX_V = Sprite.TEXTURECOORDINATES_INDEX_U + 1;
 
-        /**
-         * 
-         */
-        public static final int VERTEX_SIZE = 2 + 1 + 2;
-        /**
-         * 
-         */
-        public static final int VERTICES_PER_SPRITE = 4;
-        /**
-         * 
-         */
-        public static final int SPRITE_SIZE = Sprite.VERTEX_SIZE * Sprite.VERTICES_PER_SPRITE;
+	public static final int VERTEX_SIZE = 2 + 1 + 2;
+	public static final int VERTICES_PER_SPRITE = 4;
+	public static final int SPRITE_SIZE = Sprite.VERTEX_SIZE * Sprite.VERTICES_PER_SPRITE;
 
-        /**
-         * 
-         */
-        public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(3)
+	public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(3)
 		.add(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION, ShaderProgramConstants.ATTRIBUTE_POSITION, 2, GLES20.GL_FLOAT, false)
 		.add(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION, ShaderProgramConstants.ATTRIBUTE_COLOR, 4, GLES20.GL_UNSIGNED_BYTE, true)
 		.add(ShaderProgramConstants.ATTRIBUTE_TEXTURECOORDINATES_LOCATION, ShaderProgramConstants.ATTRIBUTE_TEXTURECOORDINATES, 2, GLES20.GL_FLOAT, false)
@@ -78,179 +51,61 @@ public class Sprite extends RectangularShape {
 	// Fields
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected final ITextureRegion mTextureRegion;
-        /**
-         * 
-         */
-        protected final ISpriteVertexBufferObject mSpriteVertexBufferObject;
+	protected final ITextureRegion mTextureRegion;
+	protected final ISpriteVertexBufferObject mSpriteVertexBufferObject;
 
-        /**
-         * 
-         */
-        protected boolean mFlippedVertical;
-        /**
-         * 
-         */
-        protected boolean mFlippedHorizontal;
+	protected boolean mFlippedVertical;
+	protected boolean mFlippedHorizontal;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, pDrawType);
 	}
 	
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTextureRegion
-         * @param pVertexBufferObject
-         */
-        public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pVertexBufferObject) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pVertexBufferObject) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObject);
 	}
 	
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pTextureRegion
-         * @param pVertexBufferObject
-         * @param pShaderProgram
-         */
-        public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pVertexBufferObject, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObject, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         */
-        public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 	
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pShaderProgram
-         */
-        public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         */
-        public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, pDrawType, PositionColorTextureCoordinatesShaderProgram.getInstance());
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTextureRegion
-         * @param pVertexBufferObjectManager
-         * @param pDrawType
-         * @param pShaderProgram
-         */
-        public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, new HighPerformanceSpriteVertexBufferObject(pVertexBufferObjectManager, Sprite.SPRITE_SIZE, pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT), pShaderProgram);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTextureRegion
-         * @param pSpriteVertexBufferObject
-         */
-        public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pSpriteVertexBufferObject) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pSpriteVertexBufferObject) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pSpriteVertexBufferObject, PositionColorTextureCoordinatesShaderProgram.getInstance());
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pTextureRegion
-         * @param pSpriteVertexBufferObject
-         * @param pShaderProgram
-         */
-        public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pSpriteVertexBufferObject, final ShaderProgram pShaderProgram) {
 		super(pX, pY, pWidth, pHeight, pShaderProgram);
 		
 		this.mTextureRegion = pTextureRegion;
@@ -268,44 +123,24 @@ public class Sprite extends RectangularShape {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public ITextureRegion getTextureRegion() {
+	public ITextureRegion getTextureRegion() {
 		return this.mTextureRegion;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isFlippedHorizontal() {
+	public boolean isFlippedHorizontal() {
 		return this.mFlippedHorizontal;
 	}
 
-        /**
-         * 
-         * @param pFlippedHorizontal
-         */
-        public void setFlippedHorizontal(final boolean pFlippedHorizontal) {
+	public void setFlippedHorizontal(final boolean pFlippedHorizontal) {
 		this.mFlippedHorizontal = pFlippedHorizontal;
 		this.onUpdateTextureCoordinates();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isFlippedVertical() {
+	public boolean isFlippedVertical() {
 		return this.mFlippedVertical;
 	}
 
-        /**
-         * 
-         * @param pFlippedVertical
-         */
-        public void setFlippedVertical(final boolean pFlippedVertical) {
+	public void setFlippedVertical(final boolean pFlippedVertical) {
 		this.mFlippedVertical = pFlippedVertical;
 		this.onUpdateTextureCoordinates();
 	}
@@ -314,19 +149,12 @@ public class Sprite extends RectangularShape {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public ISpriteVertexBufferObject getVertexBufferObject() {
 		return this.mSpriteVertexBufferObject;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		super.reset();
 
@@ -354,10 +182,7 @@ public class Sprite extends RectangularShape {
 		super.postDraw(pGLState, pCamera);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	protected void onUpdateVertices() {
 		this.mSpriteVertexBufferObject.onUpdateVertices(this);
 	}
@@ -367,10 +192,7 @@ public class Sprite extends RectangularShape {
 		this.mSpriteVertexBufferObject.onUpdateColor(this);
 	}
 
-        /**
-         * 
-         */
-        protected void onUpdateTextureCoordinates() {
+	protected void onUpdateTextureCoordinates() {
 		this.mSpriteVertexBufferObject.onUpdateTextureCoordinates(this);
 	}
 
@@ -382,10 +204,7 @@ public class Sprite extends RectangularShape {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface ISpriteVertexBufferObject extends IVertexBufferObject {
+	public static interface ISpriteVertexBufferObject extends IVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -394,27 +213,12 @@ public class Sprite extends RectangularShape {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pSprite
-             */
-            public void onUpdateColor(final Sprite pSprite);
-                /**
-                 * 
-                 * @param pSprite
-                 */
-                public void onUpdateVertices(final Sprite pSprite);
-                /**
-                 * 
-                 * @param pSprite
-                 */
-                public void onUpdateTextureCoordinates(final Sprite pSprite);
+		public void onUpdateColor(final Sprite pSprite);
+		public void onUpdateVertices(final Sprite pSprite);
+		public void onUpdateTextureCoordinates(final Sprite pSprite);
 	}
 
-        /**
-         * 
-         */
-        public static class HighPerformanceSpriteVertexBufferObject extends HighPerformanceVertexBufferObject implements ISpriteVertexBufferObject {
+	public static class HighPerformanceSpriteVertexBufferObject extends HighPerformanceVertexBufferObject implements ISpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -427,15 +231,7 @@ public class Sprite extends RectangularShape {
 		// Constructors
 		// ===========================================================
 
-            /**
-             * 
-             * @param pVertexBufferObjectManager
-             * @param pCapacity
-             * @param pDrawType
-             * @param pAutoDispose
-             * @param pVertexBufferObjectAttributes
-             */
-            public HighPerformanceSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+		public HighPerformanceSpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -447,11 +243,7 @@ public class Sprite extends RectangularShape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-            /**
-             * 
-             * @param pSprite
-             */
-            @Override
+		@Override
 		public void onUpdateColor(final Sprite pSprite) {
 			final float[] bufferData = this.mBufferData;
 
@@ -564,10 +356,7 @@ public class Sprite extends RectangularShape {
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        public static class LowMemorySpriteVertexBufferObject extends LowMemoryVertexBufferObject implements ISpriteVertexBufferObject {
+	public static class LowMemorySpriteVertexBufferObject extends LowMemoryVertexBufferObject implements ISpriteVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -580,15 +369,7 @@ public class Sprite extends RectangularShape {
 		// Constructors
 		// ===========================================================
 
-            /**
-             * 
-             * @param pVertexBufferObjectManager
-             * @param pCapacity
-             * @param pDrawType
-             * @param pAutoDispose
-             * @param pVertexBufferObjectAttributes
-             */
-            public LowMemorySpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+		public LowMemorySpriteVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pCapacity, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 		}
 
@@ -600,11 +381,7 @@ public class Sprite extends RectangularShape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-            /**
-             * 
-             * @param pSprite
-             */
-            @Override
+		@Override
 		public void onUpdateColor(final Sprite pSprite) {
 			final FloatBuffer bufferData = this.mFloatBuffer;
 

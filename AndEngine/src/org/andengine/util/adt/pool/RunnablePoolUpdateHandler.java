@@ -4,7 +4,6 @@ package org.andengine.util.adt.pool;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Valentin Milea
  * @author Nicolas Gramlich
  * 
@@ -23,37 +22,19 @@ public abstract class RunnablePoolUpdateHandler<T extends RunnablePoolItem> exte
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public RunnablePoolUpdateHandler() {
+	public RunnablePoolUpdateHandler() {
 
 	}
 
-    /**
-     * 
-     * @param pInitialPoolSize
-     */
-    public RunnablePoolUpdateHandler(final int pInitialPoolSize) {
+	public RunnablePoolUpdateHandler(final int pInitialPoolSize) {
 		super(pInitialPoolSize);
 	}
 
-    /**
-     * 
-     * @param pInitialPoolSize
-     * @param pGrowth
-     */
-    public RunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth) {
+	public RunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth) {
 		super(pInitialPoolSize, pGrowth);
 	}
 
-        /**
-         * 
-         * @param pInitialPoolSize
-         * @param pGrowth
-         * @param pAvailableItemCountMaximum
-         */
-        public RunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth, final int pAvailableItemCountMaximum) {
+	public RunnablePoolUpdateHandler(final int pInitialPoolSize, final int pGrowth, final int pAvailableItemCountMaximum) {
 		super(pInitialPoolSize, pGrowth, pAvailableItemCountMaximum);
 	}
 
@@ -65,18 +46,10 @@ public abstract class RunnablePoolUpdateHandler<T extends RunnablePoolItem> exte
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	protected abstract T onAllocatePoolItem();
 
-        /**
-         * 
-         * @param pRunnablePoolItem
-         */
-        @Override
+	@Override
 	protected void onHandlePoolItem(final T pRunnablePoolItem) {
 		pRunnablePoolItem.run();
 	}

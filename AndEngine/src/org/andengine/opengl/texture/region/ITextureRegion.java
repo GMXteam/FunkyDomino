@@ -17,119 +17,38 @@ public interface ITextureRegion {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @return
-     */
-    public float getTextureX();
-    /**
-     * 
-     * @return
-     */
-    public float getTextureY();
+	public float getTextureX();
+	public float getTextureY();
 
-        /**
-         * 
-         * @param pTextureX
-         */
-        public void setTextureX(final float pTextureX);
-        /**
-         * 
-         * @param pTextureY
-         */
-        public void setTextureY(final float pTextureY);
-        /**
-         * 
-         * @param pTextureX
-         * @param pTextureY
-         */
-        public void setTexturePosition(final float pTextureX, final float pTextureY);
+	public void setTextureX(final float pTextureX);
+	public void setTextureY(final float pTextureY);
+	public void setTexturePosition(final float pTextureX, final float pTextureY);
 
 	/**
 	 * Note: Takes {@link ITextureRegion#getScale()} into account!
-         * 
-         * @return 
-         */
+	 */
 	public float getWidth();
 	/**
 	 * Note: Takes {@link ITextureRegion#getScale()} into account!
-         * 
-         * @return 
-         */
+	 */
 	public float getHeight();
 
-        /**
-         * 
-         * @param pTextureWidth
-         */
-        public void setTextureWidth(final float pTextureWidth);
-        /**
-         * 
-         * @param pTextureHeight
-         */
-        public void setTextureHeight(final float pTextureHeight);
-        /**
-         * 
-         * @param pTextureWidth
-         * @param pTextureHeight
-         */
-        public void setTextureSize(final float pTextureWidth, final float pTextureHeight);
+	public void setTextureWidth(final float pTextureWidth);
+	public void setTextureHeight(final float pTextureHeight);
+	public void setTextureSize(final float pTextureWidth, final float pTextureHeight);
 
-        /**
-         * 
-         * @param pTextureX
-         * @param pTextureY
-         * @param pTextureWidth
-         * @param pTextureHeight
-         */
-        public void set(final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight);
+	public void set(final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight);
 
-        /**
-         * 
-         * @return
-         */
-        public float getU();
-        /**
-         * 
-         * @return
-         */
-        public float getU2();
-        /**
-         * 
-         * @return
-         */
-        public float getV();
-        /**
-         * 
-         * @return
-         */
-        public float getV2();
+	public float getU();
+	public float getU2();
+	public float getV();
+	public float getV2();
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isScaled();
-        /**
-         * 
-         * @return
-         */
-        public float getScale();
-        /**
-         * 
-         * @return
-         */
-        public boolean isRotated();
+	public boolean isScaled();
+	public float getScale();
+	public boolean isRotated();
 
-        /**
-         * 
-         * @return
-         */
-        public ITexture getTexture();
+	public ITexture getTexture();
 
-        /**
-         * 
-         * @return
-         */
-        public ITextureRegion deepCopy();
+	public ITextureRegion deepCopy();
 }

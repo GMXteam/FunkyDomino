@@ -51,14 +51,7 @@ public class TSXParser extends DefaultHandler implements TMXConstants {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pAssetManager
-         * @param pTextureManager
-         * @param pTextureOptions
-         * @param pFirstGlobalTileID
-         */
-        public TSXParser(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final int pFirstGlobalTileID) {
+	public TSXParser(final AssetManager pAssetManager, final TextureManager pTextureManager, final TextureOptions pTextureOptions, final int pFirstGlobalTileID) {
 		this.mAssetManager = pAssetManager;
 		this.mTextureManager = pTextureManager;
 		this.mTextureOptions = pTextureOptions;
@@ -77,15 +70,7 @@ public class TSXParser extends DefaultHandler implements TMXConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pUri
-         * @param pLocalName
-         * @param pQualifiedName
-         * @param pAttributes
-         * @throws SAXException
-         */
-        @Override
+	@Override
 	public void startElement(final String pUri, final String pLocalName, final String pQualifiedName, final Attributes pAttributes) throws SAXException {
 		if(pLocalName.equals(TMXConstants.TAG_TILESET)){
 			this.mInTileset = true;
@@ -106,14 +91,7 @@ public class TSXParser extends DefaultHandler implements TMXConstants {
 		}
 	}
 
-        /**
-         * 
-         * @param pUri
-         * @param pLocalName
-         * @param pQualifiedName
-         * @throws SAXException
-         */
-        @Override
+	@Override
 	public void endElement(final String pUri, final String pLocalName, final String pQualifiedName) throws SAXException {
 		if(pLocalName.equals(TMXConstants.TAG_TILESET)){
 			this.mInTileset = false;

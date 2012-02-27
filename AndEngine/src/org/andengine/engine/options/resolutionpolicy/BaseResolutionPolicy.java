@@ -30,12 +30,7 @@ public abstract class BaseResolutionPolicy implements IResolutionPolicy {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pWidthMeasureSpec
-     * @param pHeightMeasureSpec
-     */
-    protected static void throwOnNotMeasureSpecEXACTLY(final int pWidthMeasureSpec, final int pHeightMeasureSpec) {
+	protected static void throwOnNotMeasureSpecEXACTLY(final int pWidthMeasureSpec, final int pHeightMeasureSpec) {
 		final int specWidthMode = MeasureSpec.getMode(pWidthMeasureSpec);
 		final int specHeightMode = MeasureSpec.getMode(pHeightMeasureSpec);
 

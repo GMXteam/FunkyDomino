@@ -31,12 +31,7 @@ public class LevelParser extends DefaultHandler implements LevelConstants {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDefaultEntityLoader
-         * @param pEntityLoaders
-         */
-        public LevelParser(final IEntityLoader pDefaultEntityLoader, final HashMap<String, IEntityLoader> pEntityLoaders) {
+	public LevelParser(final IEntityLoader pDefaultEntityLoader, final HashMap<String, IEntityLoader> pEntityLoaders) {
 		this.mDefaultEntityLoader = pDefaultEntityLoader;
 		this.mEntityLoaders = pEntityLoaders;
 	}
@@ -49,15 +44,7 @@ public class LevelParser extends DefaultHandler implements LevelConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pUri
-         * @param pLocalName
-         * @param pQualifiedName
-         * @param pAttributes
-         * @throws SAXException
-         */
-        @Override
+	@Override
 	public void startElement(final String pUri, final String pLocalName, final String pQualifiedName, final Attributes pAttributes) throws SAXException {
 		final IEntityLoader entityLoader = this.mEntityLoaders.get(pLocalName);
 		if(entityLoader != null) {

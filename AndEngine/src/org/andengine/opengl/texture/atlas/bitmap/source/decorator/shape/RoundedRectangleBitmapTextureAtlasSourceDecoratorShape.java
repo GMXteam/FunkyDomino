@@ -35,28 +35,16 @@ public class RoundedRectangleBitmapTextureAtlasSourceDecoratorShape implements I
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public RoundedRectangleBitmapTextureAtlasSourceDecoratorShape() {
+	public RoundedRectangleBitmapTextureAtlasSourceDecoratorShape() {
 		this(CORNER_RADIUS_DEFAULT, CORNER_RADIUS_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pCornerRadiusX
-         * @param pCornerRadiusY
-         */
-        public RoundedRectangleBitmapTextureAtlasSourceDecoratorShape(final float pCornerRadiusX, final float pCornerRadiusY) {
+	public RoundedRectangleBitmapTextureAtlasSourceDecoratorShape(final float pCornerRadiusX, final float pCornerRadiusY) {
 		this.mCornerRadiusX = pCornerRadiusX;
 		this.mCornerRadiusY = pCornerRadiusY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static RoundedRectangleBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
+	public static RoundedRectangleBitmapTextureAtlasSourceDecoratorShape getDefaultInstance() {
 		if(sDefaultInstance == null) {
 			sDefaultInstance = new RoundedRectangleBitmapTextureAtlasSourceDecoratorShape();
 		}
@@ -71,13 +59,7 @@ public class RoundedRectangleBitmapTextureAtlasSourceDecoratorShape implements I
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCanvas
-         * @param pPaint
-         * @param pDecoratorOptions
-         */
-        @Override
+	@Override
 	public void onDecorateBitmap(final Canvas pCanvas, final Paint pPaint, final TextureAtlasSourceDecoratorOptions pDecoratorOptions) {
 		final float left = pDecoratorOptions.getInsetLeft();
 		final float top = pDecoratorOptions.getInsetTop();

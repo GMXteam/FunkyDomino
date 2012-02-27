@@ -40,55 +40,23 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final int mCapacity;
-    /**
-     * 
-     */
-    protected final boolean mAutoDispose;
-        /**
-         * 
-         */
-        protected final int mUsage;
+	protected final int mCapacity;
+	protected final boolean mAutoDispose;
+	protected final int mUsage;
 
-        /**
-         * 
-         */
-        protected int mHardwareBufferID = IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
-        /**
-         * 
-         */
-        protected boolean mDirtyOnHardware = true;
+	protected int mHardwareBufferID = IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
+	protected boolean mDirtyOnHardware = true;
 
-        /**
-         * 
-         */
-        protected boolean mDisposed;
+	protected boolean mDisposed;
 
-        /**
-         * 
-         */
-        protected final VertexBufferObjectManager mVertexBufferObjectManager;
-        /**
-         * 
-         */
-        protected final VertexBufferObjectAttributes mVertexBufferObjectAttributes;
+	protected final VertexBufferObjectManager mVertexBufferObjectManager;
+	protected final VertexBufferObjectAttributes mVertexBufferObjectAttributes;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pVertexBufferObjectManager
-         * @param pCapacity
-         * @param pDrawType
-         * @param pAutoDispose
-         * @param pVertexBufferObjectAttributes
-         */
-        public ZeroMemoryVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+	public ZeroMemoryVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final int pCapacity, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		this.mVertexBufferObjectManager = pVertexBufferObjectManager;
 		this.mCapacity = pCapacity;
 		this.mUsage = pDrawType.getUsage();
@@ -100,11 +68,7 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public VertexBufferObjectManager getVertexBufferObjectManager() {
 		return this.mVertexBufferObjectManager;
 	}
@@ -114,29 +78,17 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 		return this.mDisposed;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isAutoDispose() {
 		return this.mAutoDispose;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int getHardwareBufferID() {
 		return this.mHardwareBufferID;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isLoadedToHardware() {
 		return this.mHardwareBufferID != IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
 	}
@@ -147,11 +99,7 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 		this.mDirtyOnHardware = true;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isDirtyOnHardware() {
 		return this.mDirtyOnHardware;
 	}
@@ -194,17 +142,9 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param byteBuffer
-         */
-        protected abstract void onPopulateBufferData(final ByteBuffer byteBuffer);
+	protected abstract void onPopulateBufferData(final ByteBuffer byteBuffer);
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState) {
 		if(this.mHardwareBufferID == IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID) {
 			this.loadToHardware(pGLState);
@@ -231,58 +171,33 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @param pShaderProgram
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState, final ShaderProgram pShaderProgram) {
 		this.bind(pGLState);
 
 		pShaderProgram.bind(pGLState, this.mVertexBufferObjectAttributes);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @param pShaderProgram
-         */
-        @Override
+	@Override
 	public void unbind(final GLState pGLState, final ShaderProgram pShaderProgram) {
 		pShaderProgram.unbind(pGLState);
 
 		// pGLState.bindBuffer(0); // TODO Does this have an positive/negative impact on performance?
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void unloadFromHardware(final GLState pGLState) {
 		pGLState.deleteBuffer(this.mHardwareBufferID);
 
 		this.mHardwareBufferID = IVertexBufferObject.HARDWARE_BUFFER_ID_INVALID;
 	}
 
-        /**
-         * 
-         * @param pPrimitiveType
-         * @param pCount
-         */
-        @Override
+	@Override
 	public void draw(final int pPrimitiveType, final int pCount) {
 		GLES20.glDrawArrays(pPrimitiveType, 0, pCount);
 	}
 
-        /**
-         * 
-         * @param pPrimitiveType
-         * @param pOffset
-         * @param pCount
-         */
-        @Override
+	@Override
 	public void draw(final int pPrimitiveType, final int pOffset, final int pCount) {
 		GLES20.glDrawArrays(pPrimitiveType, pOffset, pCount);
 	}
@@ -298,11 +213,7 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 		}
 	}
 
-        /**
-         * 
-         * @throws Throwable
-         */
-        @Override
+	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
 
@@ -337,11 +248,7 @@ public abstract class ZeroMemoryVertexBufferObject implements IVertexBufferObjec
 		return byteBuffer;
 	}
 
-        /**
-         * 
-         * @param byteBuffer
-         */
-        protected void releaseByteBuffer(final ByteBuffer byteBuffer) {
+	protected void releaseByteBuffer(final ByteBuffer byteBuffer) {
 		/* Cleanup due to 'Honeycomb workaround for issue 16941' in constructor. */
 		if(SystemUtils.isAndroidVersion(Build.VERSION_CODES.HONEYCOMB, Build.VERSION_CODES.HONEYCOMB_MR2)) {
 			BufferUtils.freeDirect(byteBuffer);

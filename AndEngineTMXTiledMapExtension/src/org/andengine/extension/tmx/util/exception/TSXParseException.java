@@ -24,35 +24,19 @@ public class TSXParseException extends SAXException {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public TSXParseException() {
+	public TSXParseException() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pDetailMessage
-         */
-        public TSXParseException(final String pDetailMessage) {
+	public TSXParseException(final String pDetailMessage) {
 		super(pDetailMessage);
 	}
 
-        /**
-         * 
-         * @param pException
-         */
-        public TSXParseException(final Exception pException) {
+	public TSXParseException(final Exception pException) {
 		super(pException);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pException
-         */
-        public TSXParseException(final String pMessage, final Exception pException) {
+	public TSXParseException(final String pMessage, final Exception pException) {
 		super(pMessage, pException);
 	}
 

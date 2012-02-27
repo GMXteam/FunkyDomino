@@ -35,343 +35,85 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	// Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @return
-     */
-    public boolean isVisible();
-        /**
-         * 
-         * @param pVisible
-         */
-        public void setVisible(final boolean pVisible);
+	public boolean isVisible();
+	public void setVisible(final boolean pVisible);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isIgnoreUpdate();
-        /**
-         * 
-         * @param pIgnoreUpdate
-         */
-        public void setIgnoreUpdate(boolean pIgnoreUpdate);
+	public boolean isIgnoreUpdate();
+	public void setIgnoreUpdate(boolean pIgnoreUpdate);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isChildrenVisible();
-        /**
-         * 
-         * @param pChildrenVisible
-         */
-        public void setChildrenVisible(final boolean pChildrenVisible);
+	public boolean isChildrenVisible();
+	public void setChildrenVisible(final boolean pChildrenVisible);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isChildrenIgnoreUpdate();
-        /**
-         * 
-         * @param pChildrenIgnoreUpdate
-         */
-        public void setChildrenIgnoreUpdate(boolean pChildrenIgnoreUpdate);
+	public boolean isChildrenIgnoreUpdate();
+	public void setChildrenIgnoreUpdate(boolean pChildrenIgnoreUpdate);
 
-        /**
-         * 
-         * @return
-         */
-        public int getZIndex();
-        /**
-         * 
-         * @param pZIndex
-         */
-        public void setZIndex(final int pZIndex);
+	public int getZIndex();
+	public void setZIndex(final int pZIndex);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean hasParent();
-        /**
-         * 
-         * @return
-         */
-        public IEntity getParent();
-        /**
-         * 
-         * @param pEntity
-         */
-        public void setParent(final IEntity pEntity);
+	public boolean hasParent();
+	public IEntity getParent();
+	public void setParent(final IEntity pEntity);
 
-        /**
-         * 
-         * @return
-         */
-        public float getX();
-        /**
-         * 
-         * @return
-         */
-        public float getY();
+	public float getX();
+	public float getY();
 
-        /**
-         * 
-         * @return
-         */
-        public float getInitialX();
-        /**
-         * 
-         * @return
-         */
-        public float getInitialY();
+	public float getInitialX();
+	public float getInitialY();
 
-        /**
-         * 
-         */
-        public void setInitialPosition();
-        /**
-         * 
-         * @param pOtherEntity
-         */
-        public void setPosition(final IEntity pOtherEntity);
-        /**
-         * 
-         * @param pX
-         * @param pY
-         */
-        public void setPosition(final float pX, final float pY);
+	public void setInitialPosition();
+	public void setPosition(final IEntity pOtherEntity);
+	public void setPosition(final float pX, final float pY);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isRotated();
-        /**
-         * 
-         * @return
-         */
-        public float getRotation();
-        /**
-         * 
-         * @param pRotation
-         */
-        public void setRotation(final float pRotation);
+	public boolean isRotated();
+	public float getRotation();
+	public void setRotation(final float pRotation);
 
-        /**
-         * 
-         * @return
-         */
-        public float getRotationCenterX();
-        /**
-         * 
-         * @return
-         */
-        public float getRotationCenterY();
-        /**
-         * 
-         * @param pRotationCenterX
-         */
-        public void setRotationCenterX(final float pRotationCenterX);
-        /**
-         * 
-         * @param pRotationCenterY
-         */
-        public void setRotationCenterY(final float pRotationCenterY);
-        /**
-         * 
-         * @param pRotationCenterX
-         * @param pRotationCenterY
-         */
-        public void setRotationCenter(final float pRotationCenterX, final float pRotationCenterY);
+	public float getRotationCenterX();
+	public float getRotationCenterY();
+	public void setRotationCenterX(final float pRotationCenterX);
+	public void setRotationCenterY(final float pRotationCenterY);
+	public void setRotationCenter(final float pRotationCenterX, final float pRotationCenterY);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isScaled();
-        /**
-         * 
-         * @return
-         */
-        public float getScaleX();
-        /**
-         * 
-         * @return
-         */
-        public float getScaleY();
-        /**
-         * 
-         * @param pScaleX
-         */
-        public void setScaleX(final float pScaleX);
-        /**
-         * 
-         * @param pScaleY
-         */
-        public void setScaleY(final float pScaleY);
-        /**
-         * 
-         * @param pScale
-         */
-        public void setScale(final float pScale);
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         */
-        public void setScale(final float pScaleX, final float pScaleY);
+	public boolean isScaled();
+	public float getScaleX();
+	public float getScaleY();
+	public void setScaleX(final float pScaleX);
+	public void setScaleY(final float pScaleY);
+	public void setScale(final float pScale);
+	public void setScale(final float pScaleX, final float pScaleY);
 
-        /**
-         * 
-         * @return
-         */
-        public float getScaleCenterX();
-        /**
-         * 
-         * @return
-         */
-        public float getScaleCenterY();
-        /**
-         * 
-         * @param pScaleCenterX
-         */
-        public void setScaleCenterX(final float pScaleCenterX);
-        /**
-         * 
-         * @param pScaleCenterY
-         */
-        public void setScaleCenterY(final float pScaleCenterY);
-        /**
-         * 
-         * @param pScaleCenterX
-         * @param pScaleCenterY
-         */
-        public void setScaleCenter(final float pScaleCenterX, final float pScaleCenterY);
+	public float getScaleCenterX();
+	public float getScaleCenterY();
+	public void setScaleCenterX(final float pScaleCenterX);
+	public void setScaleCenterY(final float pScaleCenterY);
+	public void setScaleCenter(final float pScaleCenterX, final float pScaleCenterY);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isSkewed();
-        /**
-         * 
-         * @return
-         */
-        public float getSkewX();
-        /**
-         * 
-         * @return
-         */
-        public float getSkewY();
-        /**
-         * 
-         * @param pSkewX
-         */
-        public void setSkewX(final float pSkewX);
-        /**
-         * 
-         * @param pSkewY
-         */
-        public void setSkewY(final float pSkewY);
-        /**
-         * 
-         * @param pSkew
-         */
-        public void setSkew(final float pSkew);
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         */
-        public void setSkew(final float pSkewX, final float pSkewY);
+	public boolean isSkewed();
+	public float getSkewX();
+	public float getSkewY();
+	public void setSkewX(final float pSkewX);
+	public void setSkewY(final float pSkewY);
+	public void setSkew(final float pSkew);
+	public void setSkew(final float pSkewX, final float pSkewY);
 
-        /**
-         * 
-         * @return
-         */
-        public float getSkewCenterX();
-        /**
-         * 
-         * @return
-         */
-        public float getSkewCenterY();
-        /**
-         * 
-         * @param pSkewCenterX
-         */
-        public void setSkewCenterX(final float pSkewCenterX);
-        /**
-         * 
-         * @param pSkewCenterY
-         */
-        public void setSkewCenterY(final float pSkewCenterY);
-        /**
-         * 
-         * @param pSkewCenterX
-         * @param pSkewCenterY
-         */
-        public void setSkewCenter(final float pSkewCenterX, final float pSkewCenterY);
+	public float getSkewCenterX();
+	public float getSkewCenterY();
+	public void setSkewCenterX(final float pSkewCenterX);
+	public void setSkewCenterY(final float pSkewCenterY);
+	public void setSkewCenter(final float pSkewCenterX, final float pSkewCenterY);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isRotatedOrScaledOrSkewed();
+	public boolean isRotatedOrScaledOrSkewed();
 
-        /**
-         * 
-         * @return
-         */
-        public float getRed();
-        /**
-         * 
-         * @return
-         */
-        public float getGreen();
-        /**
-         * 
-         * @return
-         */
-        public float getBlue();
-        /**
-         * 
-         * @return
-         */
-        public float getAlpha();
-        /**
-         * 
-         * @return
-         */
-        public Color getColor();
+	public float getRed();
+	public float getGreen();
+	public float getBlue();
+	public float getAlpha();
+	public Color getColor();
 
-        /**
-         * 
-         * @param pAlpha
-         */
-        public void setAlpha(final float pAlpha);
-        /**
-         * 
-         * @param pColor
-         */
-        public void setColor(final Color pColor);
-        /**
-         * 
-         * @param pRed
-         * @param pGreen
-         * @param pBlue
-         */
-        public void setColor(final float pRed, final float pGreen, final float pBlue);
-        /**
-         * 
-         * @param pRed
-         * @param pGreen
-         * @param pBlue
-         * @param pAlpha
-         */
-        public void setColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha);
+	public void setAlpha(final float pAlpha);
+	public void setColor(final Color pColor);
+	public void setColor(final float pRed, final float pGreen, final float pBlue);
+	public void setColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha);
 
 	/**
 	 * @return a shared(!) float[] of length 2.
@@ -428,91 +170,26 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 */
 	public float[] convertSceneToLocalCoordinates(final float[] pCoordinates, final float[] pReuse);
 
-        /**
-         * 
-         * @return
-         */
-        public Transformation getLocalToSceneTransformation();
-        /**
-         * 
-         * @return
-         */
-        public Transformation getSceneToLocalTransformation();
+	public Transformation getLocalToSceneTransformation();
+	public Transformation getSceneToLocalTransformation();
 
-        /**
-         * 
-         * @return
-         */
-        public Transformation getLocalToParentTransformation();
-        /**
-         * 
-         * @return
-         */
-        public Transformation getParentToLocalTransformation();
+	public Transformation getLocalToParentTransformation();
+	public Transformation getParentToLocalTransformation();
 
-        /**
-         * 
-         * @return
-         */
-        public int getChildCount();
+	public int getChildCount();
 
-        /**
-         * 
-         */
-        public void onAttached();
-        /**
-         * 
-         */
-        public void onDetached();
+	public void onAttached();
+	public void onDetached();
 
-        /**
-         * 
-         * @param pEntity
-         */
-        public void attachChild(final IEntity pEntity);
-        /**
-         * 
-         * @param pEntity
-         * @param pIndex
-         * @return
-         */
-        public boolean attachChild(final IEntity pEntity, final int pIndex);
+	public void attachChild(final IEntity pEntity);
+	public boolean attachChild(final IEntity pEntity, final int pIndex);
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         */
-        public IEntity getChild(final int pIndex);
-        /**
-         * 
-         * @param pEntityMatcher
-         * @return
-         */
-        public IEntity getChild(final IEntityMatcher pEntityMatcher);
-        /**
-         * 
-         * @return
-         */
-        public IEntity getFirstChild();
-        /**
-         * 
-         * @return
-         */
-        public IEntity getLastChild();
-        /**
-         * 
-         * @param pEntity
-         * @return
-         */
-        public int getChildIndex(final IEntity pEntity);
-        /**
-         * 
-         * @param pEntity
-         * @param pIndex
-         * @return
-         */
-        public boolean setChildIndex(final IEntity pEntity, final int pIndex);
+	public IEntity getChild(final int pIndex);
+	public IEntity getChild(final IEntityMatcher pEntityMatcher);
+	public IEntity getFirstChild();
+	public IEntity getLastChild();
+	public int getChildIndex(final IEntity pEntity);
+	public boolean setChildIndex(final IEntity pEntity, final int pIndex);
 
 	/**
 	 * @param pEntityMatcher
@@ -520,43 +197,27 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 */
 	public ArrayList<IEntity> query(final IEntityMatcher pEntityMatcher);
 	/**
-         * @param <L> 
-         * @param pEntityMatcher
+	 * @param pEntityMatcher
 	 * @param pResult the {@link List} to put the result into.
 	 * @return all children (recursively!) that match the supplied {@link IEntityMatcher}.
 	 */
 	public <L extends List<IEntity>> L query(final IEntityMatcher pEntityMatcher, final L pResult);
 	/**
-         * @param <S> 
-         * @param pEntityMatcher
+	 * @param pEntityMatcher
 	 * @return all children (recursively!) that match the supplied {@link IEntityMatcher}.
 	 * @throws ClassCastException when the supplied {@link IEntityMatcher} matched a {@link IEntity} that was not of the requested subtype.
 	 */
 	public <S extends IEntity> ArrayList<S> queryForSubclass(IEntityMatcher pEntityMatcher) throws ClassCastException;
 	/**
-         * @param <L> 
-         * @param <S> 
-         * @param pEntityMatcher
+	 * @param pEntityMatcher
 	 * @param pResult the {@link List} to put the result into.
 	 * @return all children (recursively!) that match the supplied {@link IEntityMatcher}.
 	 * @throws ClassCastException when the supplied {@link IEntityMatcher} matched a {@link IEntity} that was not of the requested subtype.
 	 */
 	public <L extends List<S>, S extends IEntity> L queryForSubclass(final IEntityMatcher pEntityMatcher, final L pResult) throws ClassCastException;
 
-        /**
-         * 
-         * @param pIndexA
-         * @param pIndexB
-         * @return
-         */
-        public boolean swapChildren(final int pIndexA, final int pIndexB);
-        /**
-         * 
-         * @param pEntityA
-         * @param pEntityB
-         * @return
-         */
-        public boolean swapChildren(final IEntity pEntityA, final IEntity pEntityB);
+	public boolean swapChildren(final int pIndexA, final int pIndexB);
+	public boolean swapChildren(final IEntity pEntityA, final IEntity pEntityB);
 
 	/**
 	 * Immediately sorts the {@link IEntity}s based on their ZIndex. Sort is stable.
@@ -575,11 +236,7 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 */
 	public void sortChildren(final Comparator<IEntity> pEntityComparator);
 
-        /**
-         * 
-         * @return
-         */
-        public boolean detachSelf();
+	public boolean detachSelf();
 
 	/**
 	 * <b><i>WARNING:</i> This function should be called from within
@@ -587,10 +244,7 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 * to a {@link Scene} or the {@link Engine} itself, because otherwise
 	 * it may throw an {@link IndexOutOfBoundsException} in the
 	 * Update-Thread or the GL-Thread!</b>
-         * 
-         * @param pEntity 
-         * @return 
-         */
+	 */
 	public boolean detachChild(final IEntity pEntity);
 	/**
 	 * <b><i>WARNING:</i> This function should be called from within
@@ -598,10 +252,7 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 * to a {@link Scene} or the {@link Engine} itself, because otherwise
 	 * it may throw an {@link IndexOutOfBoundsException} in the
 	 * Update-Thread or the GL-Thread!</b>
-         * 
-         * @param pEntityMatcher 
-         * @return 
-         */
+	 */
 	public IEntity detachChild(final IEntityMatcher pEntityMatcher);
 	/**
 	 * <b><i>WARNING:</i> This function should be called from within
@@ -609,83 +260,26 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 * to a {@link Scene} or the {@link Engine} itself, because otherwise
 	 * it may throw an {@link IndexOutOfBoundsException} in the
 	 * Update-Thread or the GL-Thread!</b>
-         * 
-         * @param pEntityMatcher 
-         * @return 
-         */
+	 */
 	public boolean detachChildren(final IEntityMatcher pEntityMatcher);
 
-        /**
-         * 
-         */
-        public void detachChildren();
+	public void detachChildren();
 
-        /**
-         * 
-         * @param pEntityParameterCallable
-         */
-        public void callOnChildren(final IEntityParameterCallable pEntityParameterCallable);
-        /**
-         * 
-         * @param pEntityParameterCallable
-         * @param pEntityMatcher
-         */
-        public void callOnChildren(final IEntityParameterCallable pEntityParameterCallable, final IEntityMatcher pEntityMatcher);
+	public void callOnChildren(final IEntityParameterCallable pEntityParameterCallable);
+	public void callOnChildren(final IEntityParameterCallable pEntityParameterCallable, final IEntityMatcher pEntityMatcher);
 
-        /**
-         * 
-         * @param pUpdateHandler
-         */
-        public void registerUpdateHandler(final IUpdateHandler pUpdateHandler);
-        /**
-         * 
-         * @param pUpdateHandler
-         * @return
-         */
-        public boolean unregisterUpdateHandler(final IUpdateHandler pUpdateHandler);
-        /**
-         * 
-         * @param pUpdateHandlerMatcher
-         * @return
-         */
-        public boolean unregisterUpdateHandlers(final IUpdateHandlerMatcher pUpdateHandlerMatcher);
-        /**
-         * 
-         */
-        public void clearUpdateHandlers();
+	public void registerUpdateHandler(final IUpdateHandler pUpdateHandler);
+	public boolean unregisterUpdateHandler(final IUpdateHandler pUpdateHandler);
+	public boolean unregisterUpdateHandlers(final IUpdateHandlerMatcher pUpdateHandlerMatcher);
+	public void clearUpdateHandlers();
 
-        /**
-         * 
-         * @param pEntityModifier
-         */
-        public void registerEntityModifier(final IEntityModifier pEntityModifier);
-        /**
-         * 
-         * @param pEntityModifier
-         * @return
-         */
-        public boolean unregisterEntityModifier(final IEntityModifier pEntityModifier);
-        /**
-         * 
-         * @param pEntityModifierMatcher
-         * @return
-         */
-        public boolean unregisterEntityModifiers(final IEntityModifierMatcher pEntityModifierMatcher);
-        /**
-         * 
-         */
-        public void clearEntityModifiers();
+	public void registerEntityModifier(final IEntityModifier pEntityModifier);
+	public boolean unregisterEntityModifier(final IEntityModifier pEntityModifier);
+	public boolean unregisterEntityModifiers(final IEntityModifierMatcher pEntityModifierMatcher);
+	public void clearEntityModifiers();
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isCullingEnabled();
-        /**
-         * 
-         * @param pCullingEnabled
-         */
-        public void setCullingEnabled(final boolean pCullingEnabled);
+	public boolean isCullingEnabled();
+	public void setCullingEnabled(final boolean pCullingEnabled);
 	/**
 	 * Will only be performed if {@link IEntity#isCullingEnabled()} is true.
 	 *
@@ -694,31 +288,16 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 	 */
 	public boolean isCulled(final Camera pCamera);
 
-        /**
-         * 
-         * @param pUserData
-         */
-        public void setUserData(final Object pUserData);
-        /**
-         * 
-         * @return
-         */
-        public Object getUserData();
+	public void setUserData(final Object pUserData);
+	public Object getUserData();
 
-        /**
-         * 
-         * @param pStringBuilder
-         */
-        public void toString(final StringBuilder pStringBuilder);
+	public void toString(final StringBuilder pStringBuilder);
 
 	// ===========================================================
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public interface IEntityMatcher extends IMatcher<IEntity> {
+	public interface IEntityMatcher extends IMatcher<IEntity> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -727,19 +306,11 @@ public interface IEntity extends IDrawHandler, IUpdateHandler, IDisposable {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pEntity
-             * @return
-             */
-            @Override
+		@Override
 		public boolean matches(final IEntity pEntity);
 	}
 
-        /**
-         * 
-         */
-        public interface IEntityParameterCallable extends ParameterCallable<IEntity> {
+	public interface IEntityParameterCallable extends ParameterCallable<IEntity> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

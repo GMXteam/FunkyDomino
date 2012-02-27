@@ -29,28 +29,13 @@ public class Mesh extends Shape {
 	// Constants
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public static final int VERTEX_INDEX_X = 0;
-    /**
-     * 
-     */
-    public static final int VERTEX_INDEX_Y = Mesh.VERTEX_INDEX_X + 1;
-        /**
-         * 
-         */
-        public static final int COLOR_INDEX = Mesh.VERTEX_INDEX_Y + 1;
+	public static final int VERTEX_INDEX_X = 0;
+	public static final int VERTEX_INDEX_Y = Mesh.VERTEX_INDEX_X + 1;
+	public static final int COLOR_INDEX = Mesh.VERTEX_INDEX_Y + 1;
 
-        /**
-         * 
-         */
-        public static final int VERTEX_SIZE = 2 + 1;
+	public static final int VERTEX_SIZE = 2 + 1;
 
-        /**
-         * 
-         */
-        public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(2)
+	public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(2)
 	.add(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION, ShaderProgramConstants.ATTRIBUTE_POSITION, 2, GLES20.GL_FLOAT, false)
 	.add(ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION, ShaderProgramConstants.ATTRIBUTE_COLOR, 4, GLES20.GL_UNSIGNED_BYTE, true)
 	.build();
@@ -59,10 +44,7 @@ public class Mesh extends Shape {
 	// Fields
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected final IMeshVertexBufferObject mMeshVertexBufferObject;
+	protected final IMeshVertexBufferObject mMeshVertexBufferObject;
 	private int mVertexCountToDraw;
 	private int mDrawMode;
 
@@ -72,42 +54,19 @@ public class Mesh extends Shape {
 
 	/**
 	 * Uses a default {@link HighPerformanceMeshVertexBufferObject} in {@link DrawType#STATIC} with the {@link VertexBufferObjectAttribute}s: {@link Mesh#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-         * 
-         * @param pX 
-         * @param pY 
-         * @param pVertexBufferObjectManager
-         * @param pBufferData 
-         * @param pDrawMode 
-         * @param pVertexCount  
-         */
+	 */
 	public Mesh(final float pX, final float pY, final float[] pBufferData, final int pVertexCount, final DrawMode pDrawMode, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pBufferData, pVertexCount, pDrawMode, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
 	/**
 	 * Uses a default {@link HighPerformanceMeshVertexBufferObject} with the {@link VertexBufferObjectAttribute}s: {@link Mesh#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
-         * 
-         * @param pX 
-         * @param pY 
-         * @param pBufferData
-         * @param pVertexCount
-         * @param pVertexBufferObjectManager
-         * @param pDrawMode 
-         * @param pDrawType  
-         */
+	 */
 	public Mesh(final float pX, final float pY, final float[] pBufferData, final int pVertexCount, final DrawMode pDrawMode, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pVertexCount, pDrawMode, new HighPerformanceMeshVertexBufferObject(pVertexBufferObjectManager, pBufferData, pVertexCount, pDrawType, true, Mesh.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pVertexCount
-         * @param pDrawMode
-         * @param pMeshVertexBufferObject
-         */
-        public Mesh(final float pX, final float pY, final int pVertexCount, final DrawMode pDrawMode, final IMeshVertexBufferObject pMeshVertexBufferObject) {
+	public Mesh(final float pX, final float pY, final int pVertexCount, final DrawMode pDrawMode, final IMeshVertexBufferObject pMeshVertexBufferObject) {
 		super(pX, pY, PositionColorShaderProgram.getInstance());
 
 		this.mDrawMode = pDrawMode.getDrawMode();
@@ -123,27 +82,15 @@ public class Mesh extends Shape {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float[] getBufferData() {
+	public float[] getBufferData() {
 		return this.mMeshVertexBufferObject.getBufferData();
 	}
 
-        /**
-         * 
-         * @param pVertexCountToDraw
-         */
-        public void setVertexCountToDraw(final int pVertexCountToDraw) {
+	public void setVertexCountToDraw(final int pVertexCountToDraw) {
 		this.mVertexCountToDraw = pVertexCountToDraw;
 	}
 
-        /**
-         * 
-         * @param pDrawMode
-         */
-        public void setDrawMode(final DrawMode pDrawMode) {
+	public void setDrawMode(final DrawMode pDrawMode) {
 		this.mDrawMode = pDrawMode.mDrawMode;
 	}
 
@@ -151,11 +98,7 @@ public class Mesh extends Shape {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public IMeshVertexBufferObject getVertexBufferObject() {
 		return this.mMeshVertexBufferObject;
 	}
@@ -184,22 +127,12 @@ public class Mesh extends Shape {
 		this.mMeshVertexBufferObject.onUpdateColor(this);
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	protected void onUpdateVertices() {
 		this.mMeshVertexBufferObject.onUpdateVertices(this);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @return
-         * @deprecated
-         */
-        @Override
+	@Override
 	@Deprecated
 	public boolean contains(final float pX, final float pY) {
 		throw new MethodNotSupportedException();
@@ -226,10 +159,7 @@ public class Mesh extends Shape {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IMeshVertexBufferObject extends IVertexBufferObject {
+	public static interface IMeshVertexBufferObject extends IVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -238,27 +168,12 @@ public class Mesh extends Shape {
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @return
-             */
-            public float[] getBufferData();
-                /**
-                 * 
-                 * @param pMesh
-                 */
-                public void onUpdateColor(final Mesh pMesh);
-                /**
-                 * 
-                 * @param pMesh
-                 */
-                public void onUpdateVertices(final Mesh pMesh);
+		public float[] getBufferData();
+		public void onUpdateColor(final Mesh pMesh);
+		public void onUpdateVertices(final Mesh pMesh);
 	}
 
-        /**
-         * 
-         */
-        public static class HighPerformanceMeshVertexBufferObject extends HighPerformanceVertexBufferObject implements IMeshVertexBufferObject {
+	public static class HighPerformanceMeshVertexBufferObject extends HighPerformanceVertexBufferObject implements IMeshVertexBufferObject {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -273,16 +188,7 @@ public class Mesh extends Shape {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pVertexBufferObjectManager
-                 * @param pBufferData
-                 * @param pVertexCount
-                 * @param pDrawType
-                 * @param pAutoDispose
-                 * @param pVertexBufferObjectAttributes
-                 */
-                public HighPerformanceMeshVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final float[] pBufferData, final int pVertexCount, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
+		public HighPerformanceMeshVertexBufferObject(final VertexBufferObjectManager pVertexBufferObjectManager, final float[] pBufferData, final int pVertexCount, final DrawType pDrawType, final boolean pAutoDispose, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 			super(pVertexBufferObjectManager, pBufferData, pDrawType, pAutoDispose, pVertexBufferObjectAttributes);
 
 			this.mVertexCount = pVertexCount;
@@ -296,11 +202,7 @@ public class Mesh extends Shape {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pMesh
-                 */
-                @Override
+		@Override
 		public void onUpdateColor(final Mesh pMesh) {
 			final float[] bufferData = this.mBufferData;
 
@@ -313,11 +215,7 @@ public class Mesh extends Shape {
 			this.setDirtyOnHardware();
 		}
 
-                /**
-                 * 
-                 * @param pMesh
-                 */
-                @Override
+		@Override
 		public void onUpdateVertices(final Mesh pMesh) {
 			/* Since the buffer data is managed from the caller, we just mark the buffer data as dirty. */
 
@@ -333,51 +231,24 @@ public class Mesh extends Shape {
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        public static enum DrawMode {
+	public static enum DrawMode {
 		// ===========================================================
 		// Elements
 		// ===========================================================
 
-            /**
-             * 
-             */
-            POINTS(GLES20.GL_POINTS),
-            /**
-             * 
-             */
-            LINE_STRIP(GLES20.GL_LINE_STRIP),
-                /**
-                 * 
-                 */
-                LINE_LOOP(GLES20.GL_LINE_LOOP),
-                /**
-                 * 
-                 */
-                LINES(GLES20.GL_LINES),
-                /**
-                 * 
-                 */
-                TRIANGLE_STRIP(GLES20.GL_TRIANGLE_STRIP),
-                /**
-                 * 
-                 */
-                TRIANGLE_FAN(GLES20.GL_TRIANGLE_FAN),
-                /**
-                 * 
-                 */
-                TRIANGLES(GLES20.GL_TRIANGLES);
+		POINTS(GLES20.GL_POINTS),
+		LINE_STRIP(GLES20.GL_LINE_STRIP),
+		LINE_LOOP(GLES20.GL_LINE_LOOP),
+		LINES(GLES20.GL_LINES),
+		TRIANGLE_STRIP(GLES20.GL_TRIANGLE_STRIP),
+		TRIANGLE_FAN(GLES20.GL_TRIANGLE_FAN),
+		TRIANGLES(GLES20.GL_TRIANGLES);
 
 		// ===========================================================
 		// Constants
 		// ===========================================================
 
-                /**
-                 * 
-                 */
-                public final int mDrawMode;
+		public final int mDrawMode;
 
 		// ===========================================================
 		// Fields
@@ -395,11 +266,7 @@ public class Mesh extends Shape {
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getDrawMode() {
+		public int getDrawMode() {
 			return this.mDrawMode;
 		}
 

@@ -22,11 +22,7 @@ public class TMXTileProperty extends TMXProperty {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pAttributes
-     */
-    public TMXTileProperty(final Attributes pAttributes) {
+	public TMXTileProperty(final Attributes pAttributes) {
 		super(pAttributes);
 	}
 

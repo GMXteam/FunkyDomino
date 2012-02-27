@@ -29,20 +29,12 @@ public class ModifierTest extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void setUp() throws Exception {
 		this.mManagedInitialize = 0;
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void tearDown() throws Exception {
 
 	}
@@ -55,11 +47,7 @@ public class ModifierTest extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public void test1() throws Exception {
 		float elapsed;
 		this.mModifier = new LoopModifier<Object>(
@@ -83,11 +71,7 @@ public class ModifierTest extends AndroidTestCase {
 		Assert.assertEquals(1, this.mManagedInitialize);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public void test2() throws Exception {
 		float elapsed;
 		this.mModifier = new LoopModifier<Object>(
@@ -126,11 +110,7 @@ public class ModifierTest extends AndroidTestCase {
 		Assert.assertEquals(2, this.mManagedInitialize);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public void test3() throws Exception {
 		float elapsed;
 		this.mModifier = new LoopModifier<Object>(
@@ -173,10 +153,7 @@ public class ModifierTest extends AndroidTestCase {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public class DummyModifier extends BaseDurationModifier<Object> {
+	public class DummyModifier extends BaseDurationModifier<Object> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -230,10 +207,7 @@ public class ModifierTest extends AndroidTestCase {
 		// ===========================================================
 	}
 	
-        /**
-         * 
-         */
-        public class CountingModifier extends BaseDurationModifier<Object> {
+	public class CountingModifier extends BaseDurationModifier<Object> {
 		// ===========================================================
 		// Constants
 		// ===========================================================

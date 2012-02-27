@@ -102,7 +102,7 @@ public class TextBreakExample extends SimpleLayoutGameActivity implements TextWa
 		scene.setBackground(new Background(0.09804f, 0.6274f, 0.8784f));
 
 		final VertexBufferObjectManager vertexBufferObjectManager = this.getVertexBufferObjectManager();
-		this.mText = new Text(50, 40, this.mFont, "", 1000, new TextOptions(true, AUTOWRAP_WIDTH, Text.LEADING_DEFAULT, HorizontalAlign.CENTER), vertexBufferObjectManager);
+		//this.mText = new Text(50, 40, this.mFont, "", 1000, new TextOptions(true, AUTOWRAP_WIDTH, Text.LEADING_DEFAULT, HorizontalAlign.CENTER), vertexBufferObjectManager);
 		scene.attachChild(this.mText);
 
 		this.mLeft = new Line(0, 0, 0, TextBreakExample.CAMERA_HEIGHT, this.getVertexBufferObjectManager());

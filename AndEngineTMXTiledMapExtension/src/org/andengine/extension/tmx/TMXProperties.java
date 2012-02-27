@@ -8,7 +8,6 @@ import org.andengine.extension.tmx.util.constants.TMXConstants;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 10:14:06 - 27.07.2010
  */
@@ -31,13 +30,7 @@ public class TMXProperties<T extends TMXProperty> extends ArrayList<T> implement
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @param pName
-         * @param pValue
-         * @return
-         */
-        public boolean containsTMXProperty(final String pName, final String pValue) {
+	public boolean containsTMXProperty(final String pName, final String pValue) {
 		for(int i = this.size() - 1; i >= 0; i--) {
 			final T tmxProperty = this.get(i);
 			if(tmxProperty.getName().equals(pName) && tmxProperty.getValue().equals(pValue)) {

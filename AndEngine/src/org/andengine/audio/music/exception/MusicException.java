@@ -23,35 +23,19 @@ public class MusicException extends AndEngineRuntimeException {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public MusicException() {
+	public MusicException() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pMessage
-         */
-        public MusicException(final String pMessage) {
+	public MusicException(final String pMessage) {
 		super(pMessage);
 	}
 
-        /**
-         * 
-         * @param pThrowable
-         */
-        public MusicException(final Throwable pThrowable) {
+	public MusicException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pThrowable
-         */
-        public MusicException(final String pMessage, final Throwable pThrowable) {
+	public MusicException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

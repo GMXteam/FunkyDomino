@@ -21,35 +21,19 @@ public class AndEngineException extends Exception {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public AndEngineException() {
+	public AndEngineException() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pMessage
-         */
-        public AndEngineException(final String pMessage) {
+	public AndEngineException(final String pMessage) {
 		super(pMessage);
 	}
 
-        /**
-         * 
-         * @param pThrowable
-         */
-        public AndEngineException(final Throwable pThrowable) {
+	public AndEngineException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pThrowable
-         */
-        public AndEngineException(final String pMessage, final Throwable pThrowable) {
+	public AndEngineException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

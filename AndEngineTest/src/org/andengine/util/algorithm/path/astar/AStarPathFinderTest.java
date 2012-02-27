@@ -30,11 +30,7 @@ public class AStarPathFinderTest extends TestCase {
 	// Test-Methods
 	// ===========================================================
 
-    /**
-     * 
-     * @throws Exception
-     */
-    public void testSimplePath() throws Exception {
+	public void testSimplePath() throws Exception {
 		final AStarPathFinder<Object> aStarPathFinder = new AStarPathFinder<Object>();
 		
 		final Path path = aStarPathFinder.findPath(new IPathFinderMap<Object>() {

@@ -42,11 +42,7 @@ public class CameraTest  extends AndroidTestCase {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void setUp() throws Exception {
 		this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
 		this.mEngine = new Engine(new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new FillResolutionPolicy(), this.mCamera));
@@ -64,11 +60,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.mEngine.start();
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	public void tearDown() throws Exception {
 		this.mEngine.stop();
 	}
@@ -77,11 +69,7 @@ public class CameraTest  extends AndroidTestCase {
 	// Test-Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSceneTouchCenter() throws Exception {
+	public void testSceneTouchCenter() throws Exception {
 		final int surfaceTouchX = 0;
 		final int surfaceTouchY = 0;
 
@@ -91,11 +79,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testLikeLevelEditorActivity() throws Exception {
+	public void testLikeLevelEditorActivity() throws Exception {
 		final int surfaceTouchX = 0;
 		final int surfaceTouchY = 0;
 
@@ -105,11 +89,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSceneTouchCenterRotated() throws Exception {
+	public void testSceneTouchCenterRotated() throws Exception {
 		this.mCamera.setRotation(90);
 		
 		final int surfaceTouchX = 0;
@@ -121,11 +101,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSceneTouchCenterRotated2() throws Exception {
+	public void testSceneTouchCenterRotated2() throws Exception {
 		this.mCamera.setRotation(90);
 		this.mCamera.setCameraSceneRotation(-90);
 		
@@ -138,11 +114,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSceneTouchCenterUncentered() throws Exception {
+	public void testSceneTouchCenterUncentered() throws Exception {
 		this.mCamera.setCenter(0, 0);
 		
 		final int surfaceTouchX = 0;
@@ -154,11 +126,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testSceneTouchCenterUncenteredRotated() throws Exception {
+	public void testSceneTouchCenterUncenteredRotated() throws Exception {
 		this.mCamera.setRotation(90);
 		this.mCamera.setCenter(45, 45);
 		
@@ -172,11 +140,7 @@ public class CameraTest  extends AndroidTestCase {
 	}
 
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchCenter() throws Exception {
+	public void testCameraSceneTouchCenter() throws Exception {
 		final int surfaceTouchX = 50;
 		final int surfaceTouchY = 50;
 
@@ -186,11 +150,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchCenterRotated() throws Exception {
+	public void testCameraSceneTouchCenterRotated() throws Exception {
 		this.mCamera.setRotation(90);
 		this.mCamera.setCameraSceneRotation(-90);
 		final int surfaceTouchX = 50;
@@ -202,11 +162,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchRotated() throws Exception {
+	public void testCameraSceneTouchRotated() throws Exception {
 		this.mCamera.setRotation(90);
 		this.mCamera.setCameraSceneRotation(-90);
 		final int surfaceTouchX = 0;
@@ -218,11 +174,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchCenterUncenteredRotated() throws Exception {
+	public void testCameraSceneTouchCenterUncenteredRotated() throws Exception {
 		this.mCamera.setCameraSceneRotation(180);
 		this.mCamera.setCenter(0, 0);
 		
@@ -235,11 +187,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 	
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchCenterUncenteredRotated4() throws Exception {
+	public void testCameraSceneTouchCenterUncenteredRotated4() throws Exception {
 		this.mCamera.setCameraSceneRotation(90);
 		this.mCamera.setCenter(0, 0);
 		
@@ -252,11 +200,7 @@ public class CameraTest  extends AndroidTestCase {
 		this.testSceneTouchWorker(this.mCameraScene, surfaceTouchX, surfaceTouchY, expectedX, expectedY);
 	}
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchCenterUncenteredRotated2() throws Exception {
+	public void testCameraSceneTouchCenterUncenteredRotated2() throws Exception {
 		this.mCamera.setCameraSceneRotation(180);
 		this.mCamera.setCenter(0, 0);
 		
@@ -270,11 +214,7 @@ public class CameraTest  extends AndroidTestCase {
 	}
 
 
-        /**
-         * 
-         * @throws Exception
-         */
-        public void testCameraSceneTouchCenterUncenteredRotated3() throws Exception {
+	public void testCameraSceneTouchCenterUncenteredRotated3() throws Exception {
 		this.mCamera.setCameraSceneRotation(180);
 		this.mCamera.setCenter(100, 100);
 		
@@ -288,10 +228,7 @@ public class CameraTest  extends AndroidTestCase {
 	}
 
 
-        /**
-         * 
-         */
-        public void testConvertSceneToSurfaceTouchEventCenter() {
+	public void testConvertSceneToSurfaceTouchEventCenter() {
 		this.mCamera.setCenter(0, 0);
 
 		final TouchEvent touchEvent = TouchEvent.obtain(0, 0, TouchEvent.ACTION_DOWN, 0, null);
@@ -305,10 +242,7 @@ public class CameraTest  extends AndroidTestCase {
 		Assert.assertEquals(50, touchEvent.getY(), DELTA);
 	}
 
-        /**
-         * 
-         */
-        public void testConvertSceneToSurfaceTouchEventCenterRotated180() {
+	public void testConvertSceneToSurfaceTouchEventCenterRotated180() {
 		this.mCamera.setCenter(0, 0);
 		this.mCamera.setRotation(180);
 		
@@ -323,10 +257,7 @@ public class CameraTest  extends AndroidTestCase {
 		Assert.assertEquals(50, touchEvent.getY(), DELTA);
 	}
 
-        /**
-         * 
-         */
-        public void testConvertSceneToSurfaceTouchEventNonCenter() {
+	public void testConvertSceneToSurfaceTouchEventNonCenter() {
 		this.mCamera.setCenter(0, 0);
 		
 		final TouchEvent touchEvent = TouchEvent.obtain(-50, -50, TouchEvent.ACTION_DOWN, 0, null);
@@ -340,10 +271,7 @@ public class CameraTest  extends AndroidTestCase {
 		Assert.assertEquals(0, touchEvent.getY(), DELTA);
 	}
 
-        /**
-         * 
-         */
-        public void testConvertSceneToSurfaceTouchEventNonCenterRotated180() {
+	public void testConvertSceneToSurfaceTouchEventNonCenterRotated180() {
 		this.mCamera.setCenter(0, 0);
 		this.mCamera.setRotation(180);
 		
@@ -358,10 +286,7 @@ public class CameraTest  extends AndroidTestCase {
 		Assert.assertEquals(100, touchEvent.getY(), DELTA);
 	}
 	
-        /**
-         * 
-         */
-        public void testConvertSceneToSurfaceTouchEventNonCenterRotated90() {
+	public void testConvertSceneToSurfaceTouchEventNonCenterRotated90() {
 		this.mCamera.setCenter(0, 0);
 		this.mCamera.setRotation(90);
 		

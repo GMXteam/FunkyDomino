@@ -27,11 +27,7 @@ public class EaseCircularInOut implements IEaseFunction {
 	private EaseCircularInOut() {
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseCircularInOut getInstance() {
+	public static EaseCircularInOut getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseCircularInOut();
 		}
@@ -46,13 +42,7 @@ public class EaseCircularInOut implements IEaseFunction {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		final float percentage = pSecondsElapsed / pDuration;
 

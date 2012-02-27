@@ -18,15 +18,9 @@ public class FPSCounter implements IUpdateHandler {
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected float mSecondsElapsed;
+	protected float mSecondsElapsed;
 
-        /**
-         * 
-         */
-        protected int mFrames;
+	protected int mFrames;
 
 	// ===========================================================
 	// Constructors
@@ -36,11 +30,7 @@ public class FPSCounter implements IUpdateHandler {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float getFPS() {
+	public float getFPS() {
 		return this.mFrames / this.mSecondsElapsed;
 	}
 
@@ -48,20 +38,13 @@ public class FPSCounter implements IUpdateHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 		this.mFrames++;
 		this.mSecondsElapsed += pSecondsElapsed;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		this.mFrames = 0;
 		this.mSecondsElapsed = 0;

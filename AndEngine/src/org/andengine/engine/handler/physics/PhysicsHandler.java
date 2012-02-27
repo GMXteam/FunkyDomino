@@ -21,38 +21,19 @@ public class PhysicsHandler extends BaseEntityUpdateHandler {
 
 	private boolean mEnabled = true;
 
-        /**
-         * 
-         */
-        protected float mAccelerationX = 0;
-        /**
-         * 
-         */
-        protected float mAccelerationY = 0;
+	protected float mAccelerationX = 0;
+	protected float mAccelerationY = 0;
 
-        /**
-         * 
-         */
-        protected float mVelocityX = 0;
-        /**
-         * 
-         */
-        protected float mVelocityY = 0;
+	protected float mVelocityX = 0;
+	protected float mVelocityY = 0;
 
-        /**
-         * 
-         */
-        protected float mAngularVelocity = 0;
+	protected float mAngularVelocity = 0;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEntity
-         */
-        public PhysicsHandler(final IEntity pEntity) {
+	public PhysicsHandler(final IEntity pEntity) {
 		super(pEntity);
 	}
 
@@ -60,147 +41,76 @@ public class PhysicsHandler extends BaseEntityUpdateHandler {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isEnabled() {
+	public boolean isEnabled() {
 		return this.mEnabled;
 	}
 
-        /**
-         * 
-         * @param pEnabled
-         */
-        public void setEnabled(final boolean pEnabled) {
+	public void setEnabled(final boolean pEnabled) {
 		this.mEnabled = pEnabled;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getVelocityX() {
+	public float getVelocityX() {
 		return this.mVelocityX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getVelocityY() {
+	public float getVelocityY() {
 		return this.mVelocityY;
 	}
 
-        /**
-         * 
-         * @param pVelocityX
-         */
-        public void setVelocityX(final float pVelocityX) {
+	public void setVelocityX(final float pVelocityX) {
 		this.mVelocityX = pVelocityX;
 	}
 
-        /**
-         * 
-         * @param pVelocityY
-         */
-        public void setVelocityY(final float pVelocityY) {
+	public void setVelocityY(final float pVelocityY) {
 		this.mVelocityY = pVelocityY;
 	}
 
-        /**
-         * 
-         * @param pVelocity
-         */
-        public void setVelocity(final float pVelocity) {
+	public void setVelocity(final float pVelocity) {
 		this.mVelocityX = pVelocity;
 		this.mVelocityY = pVelocity;
 	}
 
-        /**
-         * 
-         * @param pVelocityX
-         * @param pVelocityY
-         */
-        public void setVelocity(final float pVelocityX, final float pVelocityY) {
+	public void setVelocity(final float pVelocityX, final float pVelocityY) {
 		this.mVelocityX = pVelocityX;
 		this.mVelocityY = pVelocityY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getAccelerationX() {
+	public float getAccelerationX() {
 		return this.mAccelerationX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getAccelerationY() {
+	public float getAccelerationY() {
 		return this.mAccelerationY;
 	}
 
-        /**
-         * 
-         * @param pAccelerationX
-         */
-        public void setAccelerationX(final float pAccelerationX) {
+	public void setAccelerationX(final float pAccelerationX) {
 		this.mAccelerationX = pAccelerationX;
 	}
 
-        /**
-         * 
-         * @param pAccelerationY
-         */
-        public void setAccelerationY(final float pAccelerationY) {
+	public void setAccelerationY(final float pAccelerationY) {
 		this.mAccelerationY = pAccelerationY;
 	}
 
-        /**
-         * 
-         * @param pAccelerationX
-         * @param pAccelerationY
-         */
-        public void setAcceleration(final float pAccelerationX, final float pAccelerationY) {
+	public void setAcceleration(final float pAccelerationX, final float pAccelerationY) {
 		this.mAccelerationX = pAccelerationX;
 		this.mAccelerationY = pAccelerationY;
 	}
 
-        /**
-         * 
-         * @param pAcceleration
-         */
-        public void setAcceleration(final float pAcceleration) {
+	public void setAcceleration(final float pAcceleration) {
 		this.mAccelerationX = pAcceleration;
 		this.mAccelerationY = pAcceleration;
 	}
 
-        /**
-         * 
-         * @param pAccelerationX
-         * @param pAccelerationY
-         */
-        public void accelerate(final float pAccelerationX, final float pAccelerationY) {
+	public void accelerate(final float pAccelerationX, final float pAccelerationY) {
 		this.mAccelerationX += pAccelerationX;
 		this.mAccelerationY += pAccelerationY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getAngularVelocity() {
+	public float getAngularVelocity() {
 		return this.mAngularVelocity;
 	}
 
-        /**
-         * 
-         * @param pAngularVelocity
-         */
-        public void setAngularVelocity(final float pAngularVelocity) {
+	public void setAngularVelocity(final float pAngularVelocity) {
 		this.mAngularVelocity = pAngularVelocity;
 	}
 
@@ -234,10 +144,7 @@ public class PhysicsHandler extends BaseEntityUpdateHandler {
 		}
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		this.mAccelerationX = 0;
 		this.mAccelerationY = 0;

@@ -21,33 +21,17 @@ public class FillBitmapTextureAtlasSourceDecorator extends BaseShapeBitmapTextur
 	// Fields
 	// ===========================================================
 
-    /**
-     * 
-     */
-    protected final int mFillColor;
+	protected final int mFillColor;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pBitmapTextureAtlasSource
-     * @param pBitmapTextureAtlasSourceDecoratorShape
-     * @param pFillColor
-     */
-    public FillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFillColor) {
+	public FillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFillColor) {
 		this(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pFillColor, null);
 	}
 
-        /**
-         * 
-         * @param pBitmapTextureAtlasSource
-         * @param pBitmapTextureAtlasSourceDecoratorShape
-         * @param pFillColor
-         * @param pTextureAtlasSourceDecoratorOptions
-         */
-        public FillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFillColor, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
+	public FillBitmapTextureAtlasSourceDecorator(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final IBitmapTextureAtlasSourceDecoratorShape pBitmapTextureAtlasSourceDecoratorShape, final int pFillColor, final TextureAtlasSourceDecoratorOptions pTextureAtlasSourceDecoratorOptions) {
 		super(pBitmapTextureAtlasSource, pBitmapTextureAtlasSourceDecoratorShape, pTextureAtlasSourceDecoratorOptions);
 		this.mFillColor = pFillColor;
 

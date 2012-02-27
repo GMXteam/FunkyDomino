@@ -5,7 +5,6 @@ import org.andengine.util.adt.list.ShiftList;
 /**
  * (c) Zynga 2012
  *
- * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 17:06:49 - 03.01.2012
  */
@@ -22,18 +21,11 @@ public class ShiftQueue<T> extends ShiftList<T> implements IQueue<T> {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     */
-    public ShiftQueue() {
+	public ShiftQueue() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pInitialCapacity
-         */
-        public ShiftQueue(final int pInitialCapacity) {
+	public ShiftQueue(final int pInitialCapacity) {
 		super(pInitialCapacity);
 	}
 
@@ -54,11 +46,7 @@ public class ShiftQueue<T> extends ShiftList<T> implements IQueue<T> {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T poll() {
 		if(this.isEmpty()) {
 			return null;
@@ -67,22 +55,12 @@ public class ShiftQueue<T> extends ShiftList<T> implements IQueue<T> {
 		}
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        @Override
+	@Override
 	public void enter(final T pItem) {
 		this.add(pItem);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public void enter(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.add(pIndex, pItem);
 	}

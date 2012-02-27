@@ -21,35 +21,19 @@ public class MethodNotYetImplementedException extends AndEngineRuntimeException 
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public MethodNotYetImplementedException() {
+	public MethodNotYetImplementedException() {
 
 	}
 
-        /**
-         * 
-         * @param pMessage
-         */
-        public MethodNotYetImplementedException(final String pMessage) {
+	public MethodNotYetImplementedException(final String pMessage) {
 		super(pMessage);
 	}
 
-        /**
-         * 
-         * @param pThrowable
-         */
-        public MethodNotYetImplementedException(final Throwable pThrowable) {
+	public MethodNotYetImplementedException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pThrowable
-         */
-        public MethodNotYetImplementedException(final String pMessage, final Throwable pThrowable) {
+	public MethodNotYetImplementedException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

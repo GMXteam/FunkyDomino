@@ -26,23 +26,11 @@ public class FloatBounds implements IFloatBounds {
 	// Constructors
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pX
-         * @param pY
-         */
-        public FloatBounds(final float pX, final float pY) {
+	public FloatBounds(final float pX, final float pY) {
 		this.set(pX, pY);
 	}
 
-        /**
-         * 
-         * @param pXMin
-         * @param pYMin
-         * @param pXMax
-         * @param pYMax
-         */
-        public FloatBounds(final float pXMin, final float pYMin, final float pXMax, final float pYMax) {
+	public FloatBounds(final float pXMin, final float pYMin, final float pXMax, final float pYMax) {
 		this.set(pXMin, pYMin, pXMax, pYMax);
 	}
 
@@ -50,59 +38,31 @@ public class FloatBounds implements IFloatBounds {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getXMin() {
 		return this.mXMin;
 	}
 	
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getYMin() {
 		return this.mYMin;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getXMax() {
 		return this.mXMax;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getYMax() {
 		return this.mYMax;
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         */
-        public void set(final float pX, final float pY) {
+	public void set(final float pX, final float pY) {
 		this.set(pX, pY, pX, pY);
 	}
 
-        /**
-         * 
-         * @param pXMin
-         * @param pYMin
-         * @param pXMax
-         * @param pYMax
-         */
-        public void set(final float pXMin, final float pYMin, final float pXMax, final float pYMax) {
+	public void set(final float pXMin, final float pYMin, final float pXMax, final float pYMax) {
 		this.mXMin = pXMin;
 		this.mYMin = pYMin;
 		this.mXMax = pXMax;
@@ -120,13 +80,7 @@ public class FloatBounds implements IFloatBounds {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @return
-         */
-        public boolean contains(final float pX, final float pY) {
+	public boolean contains(final float pX, final float pY) {
 		return FloatBoundsUtils.contains(this.mXMin, this.mYMin, this.mXMax, this.mYMax, pX, pY);
 	}
 

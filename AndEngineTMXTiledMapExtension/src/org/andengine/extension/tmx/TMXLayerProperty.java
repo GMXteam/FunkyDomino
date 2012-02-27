@@ -22,11 +22,7 @@ public class TMXLayerProperty extends TMXProperty {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pAttributes
-     */
-    public TMXLayerProperty(final Attributes pAttributes) {
+	public TMXLayerProperty(final Attributes pAttributes) {
 		super(pAttributes);
 	}
 

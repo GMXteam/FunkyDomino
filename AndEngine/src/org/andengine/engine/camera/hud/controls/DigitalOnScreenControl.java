@@ -33,34 +33,11 @@ public class DigitalOnScreenControl extends BaseOnScreenControl {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pCamera
-         * @param pControlBaseTextureRegion
-         * @param pControlKnobTextureRegion
-         * @param pTimeBetweenUpdates
-         * @param pVertexBufferObjectManager
-         * @param pOnScreenControlListener
-         */
-        public DigitalOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final VertexBufferObjectManager pVertexBufferObjectManager, final IOnScreenControlListener pOnScreenControlListener) {
+	public DigitalOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final VertexBufferObjectManager pVertexBufferObjectManager, final IOnScreenControlListener pOnScreenControlListener) {
 		this(pX, pY, pCamera, pControlBaseTextureRegion, pControlKnobTextureRegion, pTimeBetweenUpdates, false, pVertexBufferObjectManager, pOnScreenControlListener);
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pCamera
-         * @param pControlBaseTextureRegion
-         * @param pControlKnobTextureRegion
-         * @param pTimeBetweenUpdates
-         * @param pAllowDiagonal
-         * @param pVertexBufferObjectManager
-         * @param pOnScreenControlListener
-         */
-        public DigitalOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final boolean pAllowDiagonal, final VertexBufferObjectManager pVertexBufferObjectManager, final IOnScreenControlListener pOnScreenControlListener) {
+	public DigitalOnScreenControl(final float pX, final float pY, final Camera pCamera, final ITextureRegion pControlBaseTextureRegion, final ITextureRegion pControlKnobTextureRegion, final float pTimeBetweenUpdates, final boolean pAllowDiagonal, final VertexBufferObjectManager pVertexBufferObjectManager, final IOnScreenControlListener pOnScreenControlListener) {
 		super(pX, pY, pCamera, pControlBaseTextureRegion, pControlKnobTextureRegion, pTimeBetweenUpdates, pVertexBufferObjectManager, pOnScreenControlListener);
 
 		this.mAllowDiagonal = pAllowDiagonal;
@@ -70,19 +47,11 @@ public class DigitalOnScreenControl extends BaseOnScreenControl {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isAllowDiagonal() {
+	public boolean isAllowDiagonal() {
 		return this.mAllowDiagonal;
 	}
 
-        /**
-         * 
-         * @param pAllowDiagonal
-         */
-        public void setAllowDiagonal(final boolean pAllowDiagonal) {
+	public void setAllowDiagonal(final boolean pAllowDiagonal) {
 		this.mAllowDiagonal = pAllowDiagonal;
 	}
 

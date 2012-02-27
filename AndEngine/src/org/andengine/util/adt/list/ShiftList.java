@@ -15,7 +15,6 @@ import org.andengine.util.adt.queue.IQueue;
  *
  * (c) Zynga 2012
  *
- * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @author Greg Haynes
  * @since 15:02:40 - 24.02.2012
@@ -32,35 +31,19 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 	// Fields
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected Object[] mItems;
-        /**
-         * 
-         */
-        protected int mHead;
-        /**
-         * 
-         */
-        protected int mTail;
+	protected Object[] mItems;
+	protected int mHead;
+	protected int mTail;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public ShiftList() {
+	public ShiftList() {
 		this(ShiftList.CAPACITY_INITIAL_DEFAULT);
 	}
 
-        /**
-         * 
-         * @param pInitialCapacity
-         */
-        public ShiftList(final int pInitialCapacity) {
+	public ShiftList(final int pInitialCapacity) {
 		this.mItems = new Object[pInitialCapacity];
 	}
 
@@ -72,44 +55,23 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public boolean isEmpty() {
 		return this.mHead == this.mTail;
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @return
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	@SuppressWarnings("unchecked")
 	public T get(final int pIndex) throws ArrayIndexOutOfBoundsException {
 		return (T) this.mItems[this.mHead + pIndex];
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws IndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public void set(final int pIndex, final T pItem) throws IndexOutOfBoundsException {
 		this.mItems[this.mHead + pIndex] = pItem;
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public int indexOf(final T pItem) {
 		if(pItem == null) {
 			for(int i = this.mHead; i < this.mTail; i++) {
@@ -137,11 +99,7 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public T poll() {
 		if(this.mHead == this.mTail) {
@@ -158,24 +116,14 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 		}
 	}
 
-        /**
-         * 
-         * @param pItem
-         */
-        @Override
+	@Override
 	public void enter(final T pItem) {
 		this.ensureShiftableRight();
 		this.mItems[this.mTail] = pItem;
 		this.mTail++;
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public void enter(final int pIndex, final T pItem) throws ArrayIndexOutOfBoundsException {
 		final int size = this.mTail - this.mHead;
 		/* Check which side to shift to is more efficient. */
@@ -228,22 +176,12 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 		this.enter(pItem);
 	}
 
-        /**
-         * 
-         * @param pIndex
-         * @param pItem
-         * @throws ArrayIndexOutOfBoundsException
-         */
-        @Override
+	@Override
 	public void add(final int pIndex, final T pItem) throws ArrayIndexOutOfBoundsException {
 		this.enter(pIndex, pItem);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public T removeFirst() {
 		return this.remove(0);
 	}
@@ -253,12 +191,7 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 		return this.remove(this.size() - 1);
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @return
-         */
-        @Override
+	@Override
 	public boolean remove(final T pItem) {
 		final int index = this.indexOf(pItem);
 		if(index >= 0) {
@@ -299,19 +232,12 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 		return removed;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public int size() {
 		return this.mTail - this.mHead;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void clear() {
 		Arrays.fill(this.mItems, this.mHead, this.mTail, null);
 		this.mHead = 0;
@@ -322,10 +248,7 @@ public class ShiftList<T> implements IQueue<T>, IList<T> {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void shift() {
+	public void shift() {
 		final int size = this.mTail - this.mHead;
 		if(size == 0) {
 			this.mHead = 0;

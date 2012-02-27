@@ -17,7 +17,6 @@ import org.andengine.util.algorithm.path.Path;
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @author Greg Haynes
  * @since 23:16:17 - 16.08.2010
@@ -43,47 +42,12 @@ public class AStarPathFinder<T> implements IPathFinder<T> {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pPathFinderMap
-     * @param pXMin
-     * @param pYMin
-     * @param pXMax
-     * @param pYMax
-     * @param pEntity
-     * @param pFromX
-     * @param pFromY
-     * @param pToX
-     * @param pToY
-     * @param pAllowDiagonal
-     * @param pAStarHeuristic
-     * @param pCostFunction
-     * @return
-     */
-    @Override
+	@Override
 	public Path findPath(final IPathFinderMap<T> pPathFinderMap, final int pXMin, final int pYMin, final int pXMax, final int pYMax, final T pEntity, final int pFromX, final int pFromY, final int pToX, final int pToY, final boolean pAllowDiagonal, final IAStarHeuristic<T> pAStarHeuristic, final ICostFunction<T> pCostFunction) {
 		return this.findPath(pPathFinderMap, pXMin, pYMin, pXMax, pYMax, pEntity, pFromX, pFromY, pToX, pToY, pAllowDiagonal, pAStarHeuristic, pCostFunction, Float.MAX_VALUE);
 	}
 
-        /**
-         * 
-         * @param pPathFinderMap
-         * @param pXMin
-         * @param pYMin
-         * @param pXMax
-         * @param pYMax
-         * @param pEntity
-         * @param pFromX
-         * @param pFromY
-         * @param pToX
-         * @param pToY
-         * @param pAllowDiagonal
-         * @param pAStarHeuristic
-         * @param pCostFunction
-         * @param pMaxCost
-         * @return
-         */
-        @Override
+	@Override
 	public Path findPath(final IPathFinderMap<T> pPathFinderMap, final int pXMin, final int pYMin, final int pXMax, final int pYMax, final T pEntity, final int pFromX, final int pFromY, final int pToX, final int pToY, final boolean pAllowDiagonal, final IAStarHeuristic<T> pAStarHeuristic, final ICostFunction<T> pCostFunction, final float pMaxCost) {
 		return this.findPath(pPathFinderMap, pXMin, pYMin, pXMax, pYMax, pEntity, pFromX, pFromY, pToX, pToY, pAllowDiagonal, pAStarHeuristic, pCostFunction, pMaxCost, null);
 	}

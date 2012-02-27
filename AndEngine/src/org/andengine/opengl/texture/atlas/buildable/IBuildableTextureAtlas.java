@@ -10,8 +10,6 @@ import org.andengine.util.call.Callback;
 /**
  * (c) Zynga 2012
  *
- * @param <S> 
- * @param <T> 
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 15:17:47 - 23.01.2012
  */
@@ -26,21 +24,14 @@ public interface IBuildableTextureAtlas<S extends ITextureAtlasSource, T extends
 
 	/**
 	 * Most likely this is not the method you'd want to be using, as the {@link ITextureAtlasSource} won't get built through this {@link BuildableTextureAtlas}.
-     * @param pTextureAtlasSource 
-     * @param pTextureX 
-     * @param pTextureY 
-     * @deprecated Use {@link BuildableTextureAtlas#addTextureAtlasSource(ITextureAtlasSource)} instead.
+	 * @deprecated Use {@link BuildableTextureAtlas#addTextureAtlasSource(ITextureAtlasSource)} instead.
 	 */
 	@Deprecated
 	public void addTextureAtlasSource(final S pTextureAtlasSource, final int pTextureX, final int pTextureY);
 
 	/**
 	 * Most likely this is not the method you'd want to be using, as the {@link ITextureAtlasSource} won't get built through this {@link BuildableTextureAtlas}.
-         * @param pTextureAtlasSource 
-         * @param pTextureX 
-         * @param pTextureY 
-         * @param pTextureAtlasSourcePadding 
-         * @deprecated Use {@link BuildableTextureAtlas#addTextureAtlasSource(ITextureAtlasSource)} instead.
+	 * @deprecated Use {@link BuildableTextureAtlas#addTextureAtlasSource(ITextureAtlasSource)} instead.
 	 */
 	@Deprecated
 	public void addTextureAtlasSource(final S pTextureAtlasSource, final int pTextureX, final int pTextureY, final int pTextureAtlasSourcePadding);
@@ -55,9 +46,8 @@ public interface IBuildableTextureAtlas<S extends ITextureAtlasSource, T extends
 
 	/**
 	 * Removes a {@link ITextureAtlasSource} before {@link BuildableBitmapTextureAtlas#build(ITextureAtlasBuilder)} is called.
-         * 
-         * @param pTextureAtlasSource 
-         */
+	 * @param pBitmapTextureAtlasSource to be removed.
+	 */
 	public void removeTextureAtlasSource(final ITextureAtlasSource pTextureAtlasSource);
 
 	/**

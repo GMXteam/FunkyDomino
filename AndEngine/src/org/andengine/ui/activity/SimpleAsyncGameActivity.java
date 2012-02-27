@@ -33,32 +33,11 @@ public abstract class SimpleAsyncGameActivity extends BaseGameActivity {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-    /**
-     * 
-     * @param pProgressListener
-     * @throws Exception
-     */
-    public abstract void onCreateResourcesAsync(final IProgressListener pProgressListener) throws Exception; // TODO Rename
-        /**
-         * 
-         * @param pProgressListener
-         * @return
-         * @throws Exception
-         */
-        public abstract Scene onCreateSceneAsync(final IProgressListener pProgressListener) throws Exception; // TODO Rename
-        /**
-         * 
-         * @param pScene
-         * @param pProgressListener
-         * @throws Exception
-         */
-        public abstract void onPopulateSceneAsync(final Scene pScene, IProgressListener pProgressListener) throws Exception; // TODO Rename
+	public abstract void onCreateResourcesAsync(final IProgressListener pProgressListener) throws Exception; // TODO Rename
+	public abstract Scene onCreateSceneAsync(final IProgressListener pProgressListener) throws Exception; // TODO Rename
+	public abstract void onPopulateSceneAsync(final Scene pScene, IProgressListener pProgressListener) throws Exception; // TODO Rename
 
-        /**
-         * 
-         * @param pOnCreateResourcesCallback
-         */
-        @Override
+	@Override
 	public void onCreateResources(final OnCreateResourcesCallback pOnCreateResourcesCallback) {
 		this.runOnUiThread(new Runnable() {
 			@Override
@@ -84,11 +63,7 @@ public abstract class SimpleAsyncGameActivity extends BaseGameActivity {
 		});
 	}
 
-        /**
-         * 
-         * @param pOnCreateSceneCallback
-         */
-        @Override
+	@Override
 	public void onCreateScene(final OnCreateSceneCallback pOnCreateSceneCallback) {
 		this.runOnUiThread(new Runnable() {
 			@Override
@@ -114,12 +89,7 @@ public abstract class SimpleAsyncGameActivity extends BaseGameActivity {
 		});
 	}
 	
-        /**
-         * 
-         * @param pScene
-         * @param pOnPopulateSceneCallback
-         */
-        @Override
+	@Override
 	public void onPopulateScene(final Scene pScene, final OnPopulateSceneCallback pOnPopulateSceneCallback) {
 		this.runOnUiThread(new Runnable() {
 			@Override

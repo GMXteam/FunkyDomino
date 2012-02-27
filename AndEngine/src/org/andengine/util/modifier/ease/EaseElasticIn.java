@@ -31,11 +31,7 @@ public class EaseElasticIn implements IEaseFunction, MathConstants {
 
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static EaseElasticIn getInstance() {
+	public static EaseElasticIn getInstance() {
 		if(INSTANCE == null) {
 			INSTANCE = new EaseElasticIn();
 		}
@@ -50,13 +46,7 @@ public class EaseElasticIn implements IEaseFunction, MathConstants {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @return
-         */
-        @Override
+	@Override
 	public float getPercentage(final float pSecondsElapsed, final float pDuration) {
 		return EaseElasticIn.getValue(pSecondsElapsed, pDuration, pSecondsElapsed / pDuration);
 	}
@@ -65,14 +55,7 @@ public class EaseElasticIn implements IEaseFunction, MathConstants {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         * @param pDuration
-         * @param pPercentage
-         * @return
-         */
-        public static float getValue(final float pSecondsElapsed, final float pDuration, final float pPercentage) {
+	public static float getValue(final float pSecondsElapsed, final float pDuration, final float pPercentage) {
 		if(pSecondsElapsed == 0) {
 			return 0;
 		}

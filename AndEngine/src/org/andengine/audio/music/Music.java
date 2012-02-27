@@ -38,23 +38,13 @@ public class Music extends BaseAudioEntity {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         * @throws MusicReleasedException
-         */
-        public boolean isPlaying() throws MusicReleasedException {
+	public boolean isPlaying() throws MusicReleasedException {
 		this.assertNotReleased();
 
 		return this.mMediaPlayer.isPlaying();
 	}
 
-        /**
-         * 
-         * @return
-         * @throws MusicReleasedException
-         */
-        public MediaPlayer getMediaPlayer() throws MusicReleasedException {
+	public MediaPlayer getMediaPlayer() throws MusicReleasedException {
 		this.assertNotReleased();
 
 		return this.mMediaPlayer;
@@ -74,11 +64,7 @@ public class Music extends BaseAudioEntity {
 		throw new MusicReleasedException();
 	}
 
-        /**
-         * 
-         * @throws MusicReleasedException
-         */
-        @Override
+	@Override
 	public void play() throws MusicReleasedException {
 		super.play();
 
@@ -92,11 +78,7 @@ public class Music extends BaseAudioEntity {
 		this.mMediaPlayer.stop();
 	}
 
-        /**
-         * 
-         * @throws MusicReleasedException
-         */
-        @Override
+	@Override
 	public void resume() throws MusicReleasedException {
 		super.resume();
 
@@ -110,12 +92,7 @@ public class Music extends BaseAudioEntity {
 		this.mMediaPlayer.pause();
 	}
 
-        /**
-         * 
-         * @param pLooping
-         * @throws MusicReleasedException
-         */
-        @Override
+	@Override
 	public void setLooping(final boolean pLooping) throws MusicReleasedException {
 		super.setLooping(pLooping);
 
@@ -138,11 +115,7 @@ public class Music extends BaseAudioEntity {
 		this.setVolume(this.mLeftVolume, this.mRightVolume);
 	}
 
-        /**
-         * 
-         * @throws MusicReleasedException
-         */
-        @Override
+	@Override
 	public void release() throws MusicReleasedException {
 		this.assertNotReleased();
 
@@ -158,23 +131,13 @@ public class Music extends BaseAudioEntity {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pMilliseconds
-         * @throws MusicReleasedException
-         */
-        public void seekTo(final int pMilliseconds) throws MusicReleasedException {
+	public void seekTo(final int pMilliseconds) throws MusicReleasedException {
 		this.assertNotReleased();
 
 		this.mMediaPlayer.seekTo(pMilliseconds);
 	}
 
-        /**
-         * 
-         * @param pOnCompletionListener
-         * @throws MusicReleasedException
-         */
-        public void setOnCompletionListener(final OnCompletionListener pOnCompletionListener) throws MusicReleasedException {
+	public void setOnCompletionListener(final OnCompletionListener pOnCompletionListener) throws MusicReleasedException {
 		this.assertNotReleased();
 
 		this.mMediaPlayer.setOnCompletionListener(pOnCompletionListener);

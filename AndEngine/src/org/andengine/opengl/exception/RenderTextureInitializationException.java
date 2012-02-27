@@ -23,35 +23,19 @@ public class RenderTextureInitializationException extends AndEngineRuntimeExcept
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public RenderTextureInitializationException() {
+	public RenderTextureInitializationException() {
 		super();
 	}
 
-        /**
-         * 
-         * @param pMessage
-         */
-        public RenderTextureInitializationException(final String pMessage) {
+	public RenderTextureInitializationException(final String pMessage) {
 		super(pMessage);
 	}
 
-        /**
-         * 
-         * @param pThrowable
-         */
-        public RenderTextureInitializationException(final Throwable pThrowable) {
+	public RenderTextureInitializationException(final Throwable pThrowable) {
 		super(pThrowable);
 	}
 
-        /**
-         * 
-         * @param pMessage
-         * @param pThrowable
-         */
-        public RenderTextureInitializationException(final String pMessage, final Throwable pThrowable) {
+	public RenderTextureInitializationException(final String pMessage, final Throwable pThrowable) {
 		super(pMessage, pThrowable);
 	}
 

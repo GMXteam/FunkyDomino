@@ -30,17 +30,7 @@ public class SmoothCamera extends ZoomCamera {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pMaxVelocityX
-         * @param pMaxVelocityY
-         * @param pMaxZoomFactorChange
-         */
-        public SmoothCamera(final float pX, final float pY, final float pWidth, final float pHeight, final float pMaxVelocityX, final float pMaxVelocityY, final float pMaxZoomFactorChange) {
+	public SmoothCamera(final float pX, final float pY, final float pWidth, final float pHeight, final float pMaxVelocityX, final float pMaxVelocityY, final float pMaxZoomFactorChange) {
 		super(pX, pY, pWidth, pHeight);
 		this.mMaxVelocityX = pMaxVelocityX;
 		this.mMaxVelocityY = pMaxVelocityY;
@@ -56,47 +46,25 @@ public class SmoothCamera extends ZoomCamera {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float getTargetCenterX() {
+	public float getTargetCenterX() {
 		return this.mTargetCenterX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getTargetCenterY() {
+	public float getTargetCenterY() {
 		return this.mTargetCenterY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getTargetZoomFactor() {
+	public float getTargetZoomFactor() {
 		return this.mTargetZoomFactor;
 	}
 
-        /**
-         * 
-         * @param pCenterX
-         * @param pCenterY
-         */
-        @Override
+	@Override
 	public void setCenter(final float pCenterX, final float pCenterY) {
 		this.mTargetCenterX = pCenterX;
 		this.mTargetCenterY = pCenterY;
 	}
 
-        /**
-         * 
-         * @param pCenterX
-         * @param pCenterY
-         */
-        public void setCenterDirect(final float pCenterX, final float pCenterY) {
+	public void setCenterDirect(final float pCenterX, final float pCenterY) {
 		super.setCenter(pCenterX, pCenterY);
 		this.mTargetCenterX = pCenterX;
 		this.mTargetCenterY = pCenterY;
@@ -115,11 +83,7 @@ public class SmoothCamera extends ZoomCamera {
 		}
 	}
 
-        /**
-         * 
-         * @param pZoomFactor
-         */
-        public void setZoomFactorDirect(final float pZoomFactor) {
+	public void setZoomFactorDirect(final float pZoomFactor) {
 		if(this.mTargetZoomFactor != this.mZoomFactor) {
 			this.mTargetZoomFactor = pZoomFactor;
 			super.setZoomFactor(pZoomFactor);
@@ -131,61 +95,32 @@ public class SmoothCamera extends ZoomCamera {
 		}
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getMaxVelocityX() {
+	public float getMaxVelocityX() {
 		return this.mMaxVelocityX;
 	}
 
-        /**
-         * 
-         * @param pMaxVelocityX
-         */
-        public void setMaxVelocityX(final float pMaxVelocityX) {
+	public void setMaxVelocityX(final float pMaxVelocityX) {
 		this.mMaxVelocityX = pMaxVelocityX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getMaxVelocityY() {
+	public float getMaxVelocityY() {
 		return this.mMaxVelocityY;
 	}
 
-        /**
-         * 
-         * @param pMaxVelocityY
-         */
-        public void setMaxVelocityY(final float pMaxVelocityY) {
+	public void setMaxVelocityY(final float pMaxVelocityY) {
 		this.mMaxVelocityY = pMaxVelocityY;
 	}
 
-        /**
-         * 
-         * @param pMaxVelocityX
-         * @param pMaxVelocityY
-         */
-        public void setMaxVelocity(final float pMaxVelocityX, final float pMaxVelocityY) {
+	public void setMaxVelocity(final float pMaxVelocityX, final float pMaxVelocityY) {
 		this.mMaxVelocityX = pMaxVelocityX;
 		this.mMaxVelocityY = pMaxVelocityY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getMaxZoomFactorChange() {
+	public float getMaxZoomFactorChange() {
 		return this.mMaxZoomFactorChange;
 	}
 
-        /**
-         * 
-         * @param pMaxZoomFactorChange
-         */
-        public void setMaxZoomFactorChange(final float pMaxZoomFactorChange) {
+	public void setMaxZoomFactorChange(final float pMaxZoomFactorChange) {
 		this.mMaxZoomFactorChange = pMaxZoomFactorChange;
 	}
 
@@ -193,25 +128,15 @@ public class SmoothCamera extends ZoomCamera {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         */
-        protected void onSmoothZoomStarted() {
+	protected void onSmoothZoomStarted() {
 
 	}
 
-        /**
-         * 
-         */
-        protected void onSmoothZoomFinished() {
+	protected void onSmoothZoomFinished() {
 
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 		super.onUpdate(pSecondsElapsed);
 		/* Update center. */

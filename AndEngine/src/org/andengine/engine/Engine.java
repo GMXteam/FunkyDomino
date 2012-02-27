@@ -91,10 +91,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	private final RunnableHandler mUpdateThreadRunnableHandler = new RunnableHandler();
 
 	private final EngineOptions mEngineOptions;
-        /**
-         * 
-         */
-        protected final Camera mCamera;
+	protected final Camera mCamera;
 
 	private ITouchController mTouchController;
 
@@ -106,10 +103,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	private final SoundManager mSoundManager;
 	private final MusicManager mMusicManager;
 
-        /**
-         * 
-         */
-        protected Scene mScene;
+	protected Scene mScene;
 
 	private Vibrator mVibrator;
 
@@ -125,24 +119,14 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	private final UpdateHandlerList mUpdateHandlers = new UpdateHandlerList(Engine.UPDATEHANDLERS_CAPACITY_DEFAULT);
 	private final DrawHandlerList mDrawHandlers = new DrawHandlerList(Engine.DRAWHANDLERS_CAPACITY_DEFAULT);
 
-        /**
-         * 
-         */
-        protected int mSurfaceWidth = 1; // 1 to prevent accidental DIV/0
-        /**
-         * 
-         */
-        protected int mSurfaceHeight = 1; // 1 to prevent accidental DIV/0
+	protected int mSurfaceWidth = 1; // 1 to prevent accidental DIV/0
+	protected int mSurfaceHeight = 1; // 1 to prevent accidental DIV/0
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pEngineOptions
-         */
-        public Engine(final EngineOptions pEngineOptions) {
+	public Engine(final EngineOptions pEngineOptions) {
 		/* Initialize Factory and Manager classes. */
 		BitmapTextureAtlasTextureRegionFactory.reset();
 		SoundFactory.onCreate();
@@ -189,28 +173,18 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public synchronized boolean isRunning() {
+	public synchronized boolean isRunning() {
 		return this.mRunning;
 	}
 
-        /**
-         * 
-         */
-        public synchronized void start() {
+	public synchronized void start() {
 		if(!this.mRunning) {
 			this.mLastTick = System.nanoTime();
 			this.mRunning = true;
 		}
 	}
 
-        /**
-         * 
-         */
-        public synchronized void stop() {
+	public synchronized void stop() {
 		if(this.mRunning) {
 			this.mRunning = false;
 		}
@@ -225,151 +199,78 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		return this.mEngineLock;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public Scene getScene() {
+	public Scene getScene() {
 		return this.mScene;
 	}
 
-        /**
-         * 
-         * @param pScene
-         */
-        public void setScene(final Scene pScene) {
+	public void setScene(final Scene pScene) {
 		this.mScene = pScene;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public EngineOptions getEngineOptions() {
+	public EngineOptions getEngineOptions() {
 		return this.mEngineOptions;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public Camera getCamera() {
+	public Camera getCamera() {
 		return this.mCamera;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getSecondsElapsedTotal() {
+	public float getSecondsElapsedTotal() {
 		return this.mSecondsElapsedTotal;
 	}
 
-        /**
-         * 
-         * @param pSurfaceWidth
-         * @param pSurfaceHeight
-         */
-        public void setSurfaceSize(final int pSurfaceWidth, final int pSurfaceHeight) {
+	public void setSurfaceSize(final int pSurfaceWidth, final int pSurfaceHeight) {
 		this.mSurfaceWidth = pSurfaceWidth;
 		this.mSurfaceHeight = pSurfaceHeight;
 		this.onUpdateCameraSurface();
 	}
 
-        /**
-         * 
-         */
-        protected void onUpdateCameraSurface() {
+	protected void onUpdateCameraSurface() {
 		this.mCamera.setSurfaceSize(0, 0, this.mSurfaceWidth, this.mSurfaceHeight);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSurfaceWidth() {
+	public int getSurfaceWidth() {
 		return this.mSurfaceWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSurfaceHeight() {
+	public int getSurfaceHeight() {
 		return this.mSurfaceHeight;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public ITouchController getTouchController() {
+	public ITouchController getTouchController() {
 		return this.mTouchController;
 	}
 
-        /**
-         * 
-         * @param pTouchController
-         */
-        public void setTouchController(final ITouchController pTouchController) {
+	public void setTouchController(final ITouchController pTouchController) {
 		this.mTouchController = pTouchController;
 		this.mTouchController.setTouchEventCallback(this);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public AccelerationData getAccelerationData() {
+	public AccelerationData getAccelerationData() {
 		return this.mAccelerationData;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public OrientationData getOrientationData() {
+	public OrientationData getOrientationData() {
 		return this.mOrientationData;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public VertexBufferObjectManager getVertexBufferObjectManager() {
+	public VertexBufferObjectManager getVertexBufferObjectManager() {
 		return this.mVertexBufferObjectManager;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public TextureManager getTextureManager() {
+	public TextureManager getTextureManager() {
 		return this.mTextureManager;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public FontManager getFontManager() {
+	public FontManager getFontManager() {
 		return this.mFontManager;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public ShaderProgramManager getShaderProgramManager() {
+	public ShaderProgramManager getShaderProgramManager() {
 		return this.mShaderProgramManager;
 	}
 
-        /**
-         * 
-         * @return
-         * @throws IllegalStateException
-         */
-        public SoundManager getSoundManager() throws IllegalStateException {
+	public SoundManager getSoundManager() throws IllegalStateException {
 		if(this.mSoundManager != null) {
 			return this.mSoundManager;
 		} else {
@@ -377,12 +278,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @return
-         * @throws IllegalStateException
-         */
-        public MusicManager getMusicManager() throws IllegalStateException {
+	public MusicManager getMusicManager() throws IllegalStateException {
 		if(this.mMusicManager != null) {
 			return this.mMusicManager;
 		} else {
@@ -390,49 +286,27 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pUpdateHandler
-         */
-        public void registerUpdateHandler(final IUpdateHandler pUpdateHandler) {
+	public void registerUpdateHandler(final IUpdateHandler pUpdateHandler) {
 		this.mUpdateHandlers.add(pUpdateHandler);
 	}
 
-        /**
-         * 
-         * @param pUpdateHandler
-         */
-        public void unregisterUpdateHandler(final IUpdateHandler pUpdateHandler) {
+	public void unregisterUpdateHandler(final IUpdateHandler pUpdateHandler) {
 		this.mUpdateHandlers.remove(pUpdateHandler);
 	}
 
-        /**
-         * 
-         */
-        public void clearUpdateHandlers() {
+	public void clearUpdateHandlers() {
 		this.mUpdateHandlers.clear();
 	}
 
-        /**
-         * 
-         * @param pDrawHandler
-         */
-        public void registerDrawHandler(final IDrawHandler pDrawHandler) {
+	public void registerDrawHandler(final IDrawHandler pDrawHandler) {
 		this.mDrawHandlers.add(pDrawHandler);
 	}
 
-        /**
-         * 
-         * @param pDrawHandler
-         */
-        public void unregisterDrawHandler(final IDrawHandler pDrawHandler) {
+	public void unregisterDrawHandler(final IDrawHandler pDrawHandler) {
 		this.mDrawHandlers.remove(pDrawHandler);
 	}
 
-        /**
-         * 
-         */
-        public void clearDrawHandlers() {
+	public void clearDrawHandlers() {
 		this.mDrawHandlers.clear();
 	}
 
@@ -440,12 +314,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSensor
-         * @param pAccuracy
-         */
-        @Override
+	@Override
 	public void onAccuracyChanged(final Sensor pSensor, final int pAccuracy) {
 		if(this.mRunning) {
 			switch(pSensor.getType()) {
@@ -466,11 +335,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pEvent
-         */
-        @Override
+	@Override
 	public void onSensorChanged(final SensorEvent pEvent) {
 		if(this.mRunning) {
 			switch(pEvent.sensor.getType()) {
@@ -491,11 +356,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pLocation
-         */
-        @Override
+	@Override
 	public void onLocationChanged(final Location pLocation) {
 		if(this.mLocation == null) {
 			this.mLocation = pLocation;
@@ -509,31 +370,17 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pProvider
-         */
-        @Override
+	@Override
 	public void onProviderDisabled(final String pProvider) {
 		this.mLocationListener.onLocationProviderDisabled();
 	}
 
-        /**
-         * 
-         * @param pProvider
-         */
-        @Override
+	@Override
 	public void onProviderEnabled(final String pProvider) {
 		this.mLocationListener.onLocationProviderEnabled();
 	}
 
-        /**
-         * 
-         * @param pProvider
-         * @param pStatus
-         * @param pExtras
-         */
-        @Override
+	@Override
 	public void onStatusChanged(final String pProvider, final int pStatus, final Bundle pExtras) {
 		switch(pStatus) {
 			case LocationProvider.AVAILABLE:
@@ -548,13 +395,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pView
-         * @param pSurfaceMotionEvent
-         * @return
-         */
-        @Override
+	@Override
 	public boolean onTouch(final View pView, final MotionEvent pSurfaceMotionEvent) {
 		if(this.mRunning) {
 			this.mTouchController.onHandleMotionEvent(pSurfaceMotionEvent);
@@ -570,12 +411,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pSurfaceTouchEvent
-         * @return
-         */
-        @Override
+	@Override
 	public boolean onTouchEvent(final TouchEvent pSurfaceTouchEvent) {
 		/*
 		 * Let the engine determine which scene and camera this event should be
@@ -594,13 +430,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pCamera
-         * @param pSceneTouchEvent
-         * @return
-         */
-        protected boolean onTouchHUD(final Camera pCamera, final TouchEvent pSceneTouchEvent) {
+	protected boolean onTouchHUD(final Camera pCamera, final TouchEvent pSceneTouchEvent) {
 		if(pCamera.hasHUD()) {
 			return pCamera.getHUD().onSceneTouchEvent(pSceneTouchEvent);
 		} else {
@@ -608,13 +438,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pScene
-         * @param pSceneTouchEvent
-         * @return
-         */
-        protected boolean onTouchScene(final Scene pScene, final TouchEvent pSceneTouchEvent) {
+	protected boolean onTouchScene(final Scene pScene, final TouchEvent pSceneTouchEvent) {
 		if(pScene != null) {
 			return pScene.onSceneTouchEvent(pSceneTouchEvent);
 		} else {
@@ -626,11 +450,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pRunnable
-         */
-        public void runOnUpdateThread(final Runnable pRunnable) {
+	public void runOnUpdateThread(final Runnable pRunnable) {
 		this.mUpdateThreadRunnableHandler.postRunnable(pRunnable);
 	}
 
@@ -648,10 +468,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         */
-        public void onDestroy() {
+	public void onDestroy() {
 		this.mEngineLock.lock();
 		try {
 			this.mDestroyed = true;
@@ -673,49 +490,26 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		this.mShaderProgramManager.onDestroy();
 	}
 
-        /**
-         * 
-         */
-        public void onReloadResources() {
+	public void onReloadResources() {
 		this.mVertexBufferObjectManager.onReload();
 		this.mTextureManager.onReload();
 		this.mFontManager.onReload();
 		this.mShaderProgramManager.onReload();
 	}
 
-        /**
-         * 
-         * @param pTouchEvent
-         * @return
-         */
-        protected Camera getCameraFromSurfaceTouchEvent(final TouchEvent pTouchEvent) {
+	protected Camera getCameraFromSurfaceTouchEvent(final TouchEvent pTouchEvent) {
 		return this.getCamera();
 	}
 
-        /**
-         * 
-         * @param pTouchEvent
-         * @return
-         */
-        protected Scene getSceneFromSurfaceTouchEvent(final TouchEvent pTouchEvent) {
+	protected Scene getSceneFromSurfaceTouchEvent(final TouchEvent pTouchEvent) {
 		return this.mScene;
 	}
 
-        /**
-         * 
-         * @param pCamera
-         * @param pSurfaceTouchEvent
-         */
-        protected void convertSurfaceToSceneTouchEvent(final Camera pCamera, final TouchEvent pSurfaceTouchEvent) {
+	protected void convertSurfaceToSceneTouchEvent(final Camera pCamera, final TouchEvent pSurfaceTouchEvent) {
 		pCamera.convertSurfaceToSceneTouchEvent(pSurfaceTouchEvent, this.mSurfaceWidth, this.mSurfaceHeight);
 	}
 
-        /**
-         * 
-         * @param pCamera
-         * @param pSurfaceTouchEvent
-         */
-        protected void convertSceneToSurfaceTouchEvent(final Camera pCamera, final TouchEvent pSurfaceTouchEvent) {
+	protected void convertSceneToSurfaceTouchEvent(final Camera pCamera, final TouchEvent pSurfaceTouchEvent) {
 		pCamera.convertSceneToSurfaceTouchEvent(pSurfaceTouchEvent, this.mSurfaceWidth, this.mSurfaceHeight);
 	}
 
@@ -757,12 +551,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pNanosecondsElapsed
-         * @throws InterruptedException
-         */
-        public void onUpdate(final long pNanosecondsElapsed) throws InterruptedException {
+	public void onUpdate(final long pNanosecondsElapsed) throws InterruptedException {
 		final float pSecondsElapsed = pNanosecondsElapsed * TimeConstants.SECONDS_PER_NANOSECOND;
 
 		this.mSecondsElapsedTotal += pSecondsElapsed;
@@ -773,41 +562,23 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		this.onUpdateScene(pSecondsElapsed);
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        protected void onUpdateScene(final float pSecondsElapsed) {
+	protected void onUpdateScene(final float pSecondsElapsed) {
 		if(this.mScene != null) {
 			this.mScene.onUpdate(pSecondsElapsed);
 		}
 	}
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        protected void onUpdateUpdateHandlers(final float pSecondsElapsed) {
+	protected void onUpdateUpdateHandlers(final float pSecondsElapsed) {
 		this.mUpdateThreadRunnableHandler.onUpdate(pSecondsElapsed);
 		this.mUpdateHandlers.onUpdate(pSecondsElapsed);
 		this.getCamera().onUpdate(pSecondsElapsed);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @param pCamera
-         */
-        protected void onUpdateDrawHandlers(final GLState pGLState, final Camera pCamera) {
+	protected void onUpdateDrawHandlers(final GLState pGLState, final Camera pCamera) {
 		this.mDrawHandlers.onDraw(pGLState, pCamera);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @throws InterruptedException
-         */
-        public void onDrawFrame(final GLState pGLState) throws InterruptedException {
+	public void onDrawFrame(final GLState pGLState) throws InterruptedException {
 		final EngineLock engineLock = this.mEngineLock;
 
 		engineLock.lock();
@@ -827,12 +598,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @param pCamera
-         */
-        protected void onDrawScene(final GLState pGLState, final Camera pCamera) {
+	protected void onDrawScene(final GLState pGLState, final Camera pCamera) {
 		if(this.mScene != null) {
 			this.mScene.onDraw(pGLState, pCamera);
 		}
@@ -846,22 +612,12 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		return now - this.mLastTick;
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @return
-         */
-        public boolean enableVibrator(final Context pContext) {
+	public boolean enableVibrator(final Context pContext) {
 		this.mVibrator = (Vibrator) pContext.getSystemService(Context.VIBRATOR_SERVICE);
 		return this.mVibrator != null;
 	}
 
-        /**
-         * 
-         * @param pMilliseconds
-         * @throws IllegalStateException
-         */
-        public void vibrate(final long pMilliseconds) throws IllegalStateException {
+	public void vibrate(final long pMilliseconds) throws IllegalStateException {
 		if(this.mVibrator != null) {
 			this.mVibrator.vibrate(pMilliseconds);
 		} else {
@@ -869,13 +625,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pPattern
-         * @param pRepeat
-         * @throws IllegalStateException
-         */
-        public void vibrate(final long[] pPattern, final int pRepeat) throws IllegalStateException {
+	public void vibrate(final long[] pPattern, final int pRepeat) throws IllegalStateException {
 		if(this.mVibrator != null) {
 			this.mVibrator.vibrate(pPattern, pRepeat);
 		} else {
@@ -883,13 +633,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		}
 	}
 
-        /**
-         * 
-         * @param pContext
-         * @param pLocationListener
-         * @param pLocationSensorOptions
-         */
-        public void enableLocationSensor(final Context pContext, final ILocationListener pLocationListener, final LocationSensorOptions pLocationSensorOptions) {
+	public void enableLocationSensor(final Context pContext, final ILocationListener pLocationListener, final LocationSensorOptions pLocationSensorOptions) {
 		this.mLocationListener = pLocationListener;
 
 		final LocationManager locationManager = (LocationManager) pContext.getSystemService(Context.LOCATION_SERVICE);
@@ -900,30 +644,20 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		this.onLocationChanged(locationManager.getLastKnownLocation(locationProvider));
 	}
 
-        /**
-         * 
-         * @param pContext
-         */
-        public void disableLocationSensor(final Context pContext) {
+	public void disableLocationSensor(final Context pContext) {
 		final LocationManager locationManager = (LocationManager) pContext.getSystemService(Context.LOCATION_SERVICE);
 		locationManager.removeUpdates(this);
 	}
 
 	/**
-         * @param pContext 
-         * @param pAccelerationListener 
-         * @return 
-         * @see {@link Engine#enableAccelerationSensor(Context, IAccelerationListener, AccelerationSensorOptions)}
+	 * @see {@link Engine#enableAccelerationSensor(Context, IAccelerationListener, AccelerationSensorOptions)}
 	 */
 	public boolean enableAccelerationSensor(final Context pContext, final IAccelerationListener pAccelerationListener) {
 		return this.enableAccelerationSensor(pContext, pAccelerationListener, new AccelerationSensorOptions(Engine.SENSORDELAY_DEFAULT));
 	}
 
 	/**
-         * @param pContext 
-         * @param pAccelerationListener 
-         * @param pAccelerationSensorOptions 
-         * @return <code>true</code> when the sensor was successfully enabled, <code>false</code> otherwise.
+	 * @return <code>true</code> when the sensor was successfully enabled, <code>false</code> otherwise.
 	 */
 	public boolean enableAccelerationSensor(final Context pContext, final IAccelerationListener pAccelerationListener, final AccelerationSensorOptions pAccelerationSensorOptions) {
 		final SensorManager sensorManager = (SensorManager) pContext.getSystemService(Context.SENSOR_SERVICE);
@@ -946,8 +680,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 
 
 	/**
-         * @param pContext 
-         * @return <code>true</code> when the sensor was successfully disabled, <code>false</code> otherwise.
+	 * @return <code>true</code> when the sensor was successfully disabled, <code>false</code> otherwise.
 	 */
 	public boolean disableAccelerationSensor(final Context pContext) {
 		final SensorManager sensorManager = (SensorManager) pContext.getSystemService(Context.SENSOR_SERVICE);
@@ -960,20 +693,14 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 	}
 
 	/**
-         * @param pContext 
-         * @param pOrientationListener 
-         * @return 
-         * @see {@link Engine#enableOrientationSensor(Context, IOrientationListener, OrientationSensorOptions)}
+	 * @see {@link Engine#enableOrientationSensor(Context, IOrientationListener, OrientationSensorOptions)}
 	 */
 	public boolean enableOrientationSensor(final Context pContext, final IOrientationListener pOrientationListener) {
 		return this.enableOrientationSensor(pContext, pOrientationListener, new OrientationSensorOptions(Engine.SENSORDELAY_DEFAULT));
 	}
 
 	/**
-         * @param pContext 
-         * @param pOrientationListener 
-         * @param pOrientationSensorOptions 
-         * @return <code>true</code> when the sensor was successfully enabled, <code>false</code> otherwise.
+	 * @return <code>true</code> when the sensor was successfully enabled, <code>false</code> otherwise.
 	 */
 	public boolean enableOrientationSensor(final Context pContext, final IOrientationListener pOrientationListener, final OrientationSensorOptions pOrientationSensorOptions) {
 		final SensorManager sensorManager = (SensorManager) pContext.getSystemService(Context.SENSOR_SERVICE);
@@ -997,8 +724,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 
 
 	/**
-         * @param pContext 
-         * @return <code>true</code> when the sensor was successfully disabled, <code>false</code> otherwise.
+	 * @return <code>true</code> when the sensor was successfully disabled, <code>false</code> otherwise.
 	 */
 	public boolean disableOrientationSensor(final Context pContext) {
 		final SensorManager sensorManager = (SensorManager) pContext.getSystemService(Context.SENSOR_SERVICE);
@@ -1076,10 +802,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        public class EngineDestroyedException extends InterruptedException {
+	public class EngineDestroyedException extends InterruptedException {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -1111,10 +834,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		// ===========================================================
 	}
 
-        /**
-         * 
-         */
-        public static class EngineLock extends ReentrantLock {
+	public static class EngineLock extends ReentrantLock {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -1132,11 +852,7 @@ public class Engine implements SensorEventListener, OnTouchListener, ITouchEvent
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pFair
-                 */
-                public EngineLock(final boolean pFair){
+		public EngineLock(final boolean pFair){
 			super(pFair);
 		}
 

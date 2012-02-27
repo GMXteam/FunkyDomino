@@ -26,45 +26,18 @@ public abstract class BaseTripleValueSpanModifier<T> extends BaseDoubleValueSpan
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromValueA
-         * @param pToValueA
-         * @param pFromValueB
-         * @param pToValueB
-         * @param pFromValueC
-         * @param pToValueC
-         * @param pEaseFunction
-         */
-        public BaseTripleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final float pFromValueC, final float pToValueC, final IEaseFunction pEaseFunction) {
+	public BaseTripleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final float pFromValueC, final float pToValueC, final IEaseFunction pEaseFunction) {
 		this(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, pFromValueC, pToValueC, null, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromValueA
-         * @param pToValueA
-         * @param pFromValueB
-         * @param pToValueB
-         * @param pFromValueC
-         * @param pToValueC
-         * @param pModifierListener
-         * @param pEaseFunction
-         */
-        public BaseTripleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final float pFromValueC, final float pToValueC, final IModifierListener<T> pModifierListener, final IEaseFunction pEaseFunction) {
+	public BaseTripleValueSpanModifier(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final float pFromValueC, final float pToValueC, final IModifierListener<T> pModifierListener, final IEaseFunction pEaseFunction) {
 		super(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB, pModifierListener, pEaseFunction);
 
 		this.mFromValueC = pFromValueC;
 		this.mValueSpanC = pToValueC - pFromValueC;
 	}
 
-        /**
-         * 
-         * @param pBaseTripleValueSpanModifier
-         */
-        protected BaseTripleValueSpanModifier(final BaseTripleValueSpanModifier<T> pBaseTripleValueSpanModifier) {
+	protected BaseTripleValueSpanModifier(final BaseTripleValueSpanModifier<T> pBaseTripleValueSpanModifier) {
 		super(pBaseTripleValueSpanModifier);
 
 		this.mFromValueC = pBaseTripleValueSpanModifier.mFromValueC;
@@ -75,19 +48,11 @@ public abstract class BaseTripleValueSpanModifier<T> extends BaseDoubleValueSpan
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public float getFromValueC() {
+	public float getFromValueC() {
 		return this.mFromValueC;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public float getToValueC() {
+	public float getToValueC() {
 		return this.mFromValueC + this.mValueSpanC;
 	}
 
@@ -95,57 +60,20 @@ public abstract class BaseTripleValueSpanModifier<T> extends BaseDoubleValueSpan
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pItem
-         * @param pValueA
-         * @param pValueB
-         * @param pValueC
-         */
-        protected abstract void onSetInitialValues(final T pItem, final float pValueA, final float pValueB, final float pValueC);
-        /**
-         * 
-         * @param pItem
-         * @param pPerctentageDone
-         * @param pValueA
-         * @param pValueB
-         * @param pValueC
-         */
-        protected abstract void onSetValues(final T pItem, final float pPerctentageDone, final float pValueA, final float pValueB, final float pValueC);
+	protected abstract void onSetInitialValues(final T pItem, final float pValueA, final float pValueB, final float pValueC);
+	protected abstract void onSetValues(final T pItem, final float pPerctentageDone, final float pValueA, final float pValueB, final float pValueC);
 
-        /**
-         * 
-         * @param pItem
-         * @param pValueA
-         * @param pValueB
-         */
-        @Override
+	@Override
 	protected void onSetInitialValues(final T pItem, final float pValueA, final float pValueB) {
 		this.onSetInitialValues(pItem, pValueA, pValueB, this.mFromValueC);
 	}
 
-        /**
-         * 
-         * @param pItem
-         * @param pPercentageDone
-         * @param pValueA
-         * @param pValueB
-         */
-        @Override
+	@Override
 	protected void onSetValues(final T pItem, final float pPercentageDone, final float pValueA, final float pValueB) {
 		this.onSetValues(pItem, pPercentageDone, pValueA, pValueB, this.mFromValueC + pPercentageDone * this.mValueSpanC);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromValueA
-         * @param pToValueA
-         * @param pFromValueB
-         * @param pToValueB
-         * @deprecated
-         */
-        @Override
+	@Override
 	@Deprecated
 	public void reset(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB) {
 		super.reset(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB);
@@ -155,17 +83,7 @@ public abstract class BaseTripleValueSpanModifier<T> extends BaseDoubleValueSpan
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDuration
-         * @param pFromValueA
-         * @param pToValueA
-         * @param pFromValueB
-         * @param pToValueB
-         * @param pFromValueC
-         * @param pToValueC
-         */
-        public void reset(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final float pFromValueC, final float pToValueC) {
+	public void reset(final float pDuration, final float pFromValueA, final float pToValueA, final float pFromValueB, final float pToValueB, final float pFromValueC, final float pToValueC) {
 		super.reset(pDuration, pFromValueA, pToValueA, pFromValueB, pToValueB);
 
 		this.mFromValueC = pFromValueC;

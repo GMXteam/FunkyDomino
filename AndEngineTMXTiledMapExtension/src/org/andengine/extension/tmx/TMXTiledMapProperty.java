@@ -22,11 +22,7 @@ public class TMXTiledMapProperty extends TMXProperty {
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pAttributes
-     */
-    public TMXTiledMapProperty(final Attributes pAttributes) {
+	public TMXTiledMapProperty(final Attributes pAttributes) {
 		super(pAttributes);
 	}
 

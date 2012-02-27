@@ -26,23 +26,11 @@ public class EmptyBitmapTextureAtlasSource extends BaseTextureAtlasSource implem
 	// Constructors
 	// ===========================================================
 	
-    /**
-     * 
-     * @param pTextureWidth
-     * @param pTextureHeight
-     */
-    public EmptyBitmapTextureAtlasSource(final int pTextureWidth, final int pTextureHeight) {
+	public EmptyBitmapTextureAtlasSource(final int pTextureWidth, final int pTextureHeight) {
 		this(0, 0, pTextureWidth, pTextureHeight);
 	}
 
-        /**
-         * 
-         * @param pTextureX
-         * @param pTextureY
-         * @param pTextureWidth
-         * @param pTextureHeight
-         */
-        public EmptyBitmapTextureAtlasSource(final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
+	public EmptyBitmapTextureAtlasSource(final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		super(pTextureX, pTextureY, pTextureWidth, pTextureHeight);
 	}
 
@@ -59,12 +47,7 @@ public class EmptyBitmapTextureAtlasSource extends BaseTextureAtlasSource implem
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pBitmapConfig
-         * @return
-         */
-        @Override
+	@Override
 	public Bitmap onLoadBitmap(final Config pBitmapConfig) {
 		return Bitmap.createBitmap(this.mTextureWidth, this.mTextureHeight, pBitmapConfig);
 	}

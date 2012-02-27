@@ -41,35 +41,19 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public MenuScene() {
+	public MenuScene() {
 		this(null, null);
 	}
 
-        /**
-         * 
-         * @param pOnMenuItemClickListener
-         */
-        public MenuScene(final IOnMenuItemClickListener pOnMenuItemClickListener) {
+	public MenuScene(final IOnMenuItemClickListener pOnMenuItemClickListener) {
 		this(null, pOnMenuItemClickListener);
 	}
 
-        /**
-         * 
-         * @param pCamera
-         */
-        public MenuScene(final Camera pCamera) {
+	public MenuScene(final Camera pCamera) {
 		this(pCamera, null);
 	}
 
-        /**
-         * 
-         * @param pCamera
-         * @param pOnMenuItemClickListener
-         */
-        public MenuScene(final Camera pCamera, final IOnMenuItemClickListener pOnMenuItemClickListener) {
+	public MenuScene(final Camera pCamera, final IOnMenuItemClickListener pOnMenuItemClickListener) {
 		super(pCamera);
 		this.mOnMenuItemClickListener = pOnMenuItemClickListener;
 		this.setOnSceneTouchListener(this);
@@ -80,45 +64,25 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public IOnMenuItemClickListener getOnMenuItemClickListener() {
+	public IOnMenuItemClickListener getOnMenuItemClickListener() {
 		return this.mOnMenuItemClickListener;
 	}
 
-        /**
-         * 
-         * @param pOnMenuItemClickListener
-         */
-        public void setOnMenuItemClickListener(final IOnMenuItemClickListener pOnMenuItemClickListener) {
+	public void setOnMenuItemClickListener(final IOnMenuItemClickListener pOnMenuItemClickListener) {
 		this.mOnMenuItemClickListener = pOnMenuItemClickListener;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getMenuItemCount() {
+	public int getMenuItemCount() {
 		return this.mMenuItems.size();
 	}
 
-        /**
-         * 
-         * @param pMenuItem
-         */
-        public void addMenuItem(final IMenuItem pMenuItem) {
+	public void addMenuItem(final IMenuItem pMenuItem) {
 		this.mMenuItems.add(pMenuItem);
 		this.attachChild(pMenuItem);
 		this.registerTouchArea(pMenuItem);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public MenuScene getChildScene() {
 		return (MenuScene)super.getChildScene();
 	}
@@ -140,11 +104,7 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 		}
 	}
 
-        /**
-         * 
-         * @param pMenuAnimator
-         */
-        public void setMenuAnimator(final IMenuAnimator pMenuAnimator) {
+	public void setMenuAnimator(final IMenuAnimator pMenuAnimator) {
 		this.mMenuAnimator = pMenuAnimator;
 	}
 
@@ -190,20 +150,14 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 		return false;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void back() {
 		super.back();
 
 		this.reset();
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		super.reset();
 
@@ -219,17 +173,11 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void closeMenuScene() {
+	public void closeMenuScene() {
 		this.back();
 	}
 
-        /**
-         * 
-         */
-        public void buildAnimations() {
+	public void buildAnimations() {
 		this.prepareAnimations();
 
 		final float cameraWidthRaw = this.mCamera.getWidthRaw();
@@ -237,10 +185,7 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 		this.mMenuAnimator.buildAnimations(this.mMenuItems, cameraWidthRaw, cameraHeightRaw);
 	}
 
-        /**
-         * 
-         */
-        public void prepareAnimations() {
+	public void prepareAnimations() {
 		final float cameraWidthRaw = this.mCamera.getWidthRaw();
 		final float cameraHeightRaw = this.mCamera.getHeightRaw();
 		this.mMenuAnimator.prepareAnimations(this.mMenuItems, cameraWidthRaw, cameraHeightRaw);
@@ -250,10 +195,7 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IOnMenuItemClickListener {
+	public static interface IOnMenuItemClickListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -262,14 +204,6 @@ public class MenuScene extends CameraScene implements IOnAreaTouchListener, IOnS
 		// Methods
 		// ===========================================================
 
-            /**
-             * 
-             * @param pMenuScene
-             * @param pMenuItem
-             * @param pMenuItemLocalX
-             * @param pMenuItemLocalY
-             * @return
-             */
-            public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pMenuItemLocalX, final float pMenuItemLocalY);
+		public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pMenuItemLocalX, final float pMenuItemLocalY);
 	}
 }

@@ -28,11 +28,7 @@ public class VertexBufferObjectAttributesBuilder {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pCount
-         */
-        public VertexBufferObjectAttributesBuilder(final int pCount) {
+	public VertexBufferObjectAttributesBuilder(final int pCount) {
 		this.mVertexBufferObjectAttributes = new VertexBufferObjectAttribute[pCount];
 	}
 
@@ -48,16 +44,7 @@ public class VertexBufferObjectAttributesBuilder {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pLocation
-         * @param pName
-         * @param pSize
-         * @param pType
-         * @param pNormalized
-         * @return
-         */
-        public VertexBufferObjectAttributesBuilder add(final int pLocation, final String pName, final int pSize, final int pType, final boolean pNormalized) {
+	public VertexBufferObjectAttributesBuilder add(final int pLocation, final String pName, final int pSize, final int pType, final boolean pNormalized) {
 		this.mVertexBufferObjectAttributes[this.mIndex] = new VertexBufferObjectAttribute(pLocation, pName, pSize, pType, pNormalized, this.mOffset);
 
 		switch(pType) {
@@ -76,11 +63,7 @@ public class VertexBufferObjectAttributesBuilder {
 		return this;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public VertexBufferObjectAttributes build() {
+	public VertexBufferObjectAttributes build() {
 		return new VertexBufferObjectAttributes(this.mOffset, this.mVertexBufferObjectAttributes);
 	}
 

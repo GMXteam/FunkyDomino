@@ -50,10 +50,7 @@ public class Transformation {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public Transformation() {
+	public Transformation() {
 
 	}
 
@@ -65,11 +62,7 @@ public class Transformation {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public String toString() {
 		return "Transformation{[" + this.a + ", " + this.c + ", " + this.tx + "][" + this.b + ", " + this.d + ", " + this.ty + "][0.0, 0.0, 1.0]}";
 	}
@@ -78,17 +71,11 @@ public class Transformation {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void reset() {
+	public void reset() {
 		this.setToIdentity();
 	}
 
-        /**
-         * 
-         */
-        public void setToIdentity() {
+	public void setToIdentity() {
 		this.a = 1.0f;
 		this.d = 1.0f;
 
@@ -98,11 +85,7 @@ public class Transformation {
 		this.ty = 0.0f;
 	}
 
-        /**
-         * 
-         * @param pTransformation
-         */
-        public void setTo(final Transformation pTransformation) {
+	public void setTo(final Transformation pTransformation) {
 		this.a = pTransformation.a;
 		this.d = pTransformation.d;
 
@@ -112,33 +95,17 @@ public class Transformation {
 		this.ty = pTransformation.ty;
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         */
-        public void preTranslate(final float pX, final float pY) {
+	public void preTranslate(final float pX, final float pY) {
 		this.tx += pX * this.a + pY * this.c;
 		this.ty += pX * this.b + pY * this.d;
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         */
-        public void postTranslate(final float pX, final float pY) {
+	public void postTranslate(final float pX, final float pY) {
 		this.tx += pX;
 		this.ty += pY;
 	}
 
-        /**
-         * 
-         * @param pX
-         * @param pY
-         * @return
-         */
-        public Transformation setToTranslate(final float pX, final float pY) {
+	public Transformation setToTranslate(final float pX, final float pY) {
 		this.a = 1.0f;
 		this.b = 0.0f;
 		this.c = 0.0f;
@@ -149,11 +116,7 @@ public class Transformation {
 		return this;
 	}
 
-        /**
-         * 
-         * @param pAngle
-         */
-        public void preRotate(final float pAngle) {
+	public void preRotate(final float pAngle) {
 		final float angleRad = MathConstants.DEG_TO_RAD * pAngle;
 
 		final float sin = FloatMath.sin(angleRad);
@@ -170,11 +133,7 @@ public class Transformation {
 		this.d = cos * d - sin * b;
 	}
 
-        /**
-         * 
-         * @param pAngle
-         */
-        public void postRotate(final float pAngle) {
+	public void postRotate(final float pAngle) {
 		final float angleRad = MathConstants.DEG_TO_RAD * pAngle;
 
 		final float sin = FloatMath.sin(angleRad);
@@ -195,12 +154,7 @@ public class Transformation {
 		this.ty = tx * sin + ty * cos;
 	}
 
-        /**
-         * 
-         * @param pAngle
-         * @return
-         */
-        public Transformation setToRotate(final float pAngle) {
+	public Transformation setToRotate(final float pAngle) {
 		final float angleRad = MathConstants.DEG_TO_RAD * pAngle;
 
 		final float sin = FloatMath.sin(angleRad);
@@ -216,24 +170,14 @@ public class Transformation {
 		return this;
 	}
 
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         */
-        public void preScale(final float pScaleX, final float pScaleY) {
+	public void preScale(final float pScaleX, final float pScaleY) {
 		this.a *= pScaleX;
 		this.b *= pScaleX;
 		this.c *= pScaleY;
 		this.d *= pScaleY;
 	}
 
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         */
-        public void postScale(final float pScaleX, final float pScaleY) {
+	public void postScale(final float pScaleX, final float pScaleY) {
 		this.a = this.a * pScaleX;
 		this.b = this.b * pScaleY;
 		this.c = this.c * pScaleX;
@@ -242,13 +186,7 @@ public class Transformation {
 		this.ty = this.ty * pScaleY;
 	}
 
-        /**
-         * 
-         * @param pScaleX
-         * @param pScaleY
-         * @return
-         */
-        public Transformation setToScale(final float pScaleX, final float pScaleY) {
+	public Transformation setToScale(final float pScaleX, final float pScaleY) {
 		this.a = pScaleX;
 		this.b = 0.0f;
 		this.c = 0.0f;
@@ -259,12 +197,7 @@ public class Transformation {
 		return this;
 	}
 
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         */
-        public void preSkew(final float pSkewX, final float pSkewY) {
+	public void preSkew(final float pSkewX, final float pSkewY) {
 		final float tanX = (float) Math.tan(-MathConstants.DEG_TO_RAD * pSkewX);
 		final float tanY = (float) Math.tan(-MathConstants.DEG_TO_RAD * pSkewY);
 
@@ -283,12 +216,7 @@ public class Transformation {
 		this.ty = ty;
 	}
 
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         */
-        public void postSkew(final float pSkewX, final float pSkewY) {
+	public void postSkew(final float pSkewX, final float pSkewY) {
 		final float tanX = (float) Math.tan(-MathConstants.DEG_TO_RAD * pSkewX);
 		final float tanY = (float) Math.tan(-MathConstants.DEG_TO_RAD * pSkewY);
 
@@ -307,13 +235,7 @@ public class Transformation {
 		this.ty = tx * tanY + ty;
 	}
 
-        /**
-         * 
-         * @param pSkewX
-         * @param pSkewY
-         * @return
-         */
-        public Transformation setToSkew(final float pSkewX, final float pSkewY) {
+	public Transformation setToSkew(final float pSkewX, final float pSkewY) {
 		this.a = 1.0f;
 		this.b = (float) Math.tan(-MathConstants.DEG_TO_RAD * pSkewY);
 		this.c = (float) Math.tan(-MathConstants.DEG_TO_RAD * pSkewX);
@@ -324,11 +246,7 @@ public class Transformation {
 		return this;
 	}
 
-        /**
-         * 
-         * @param pTransformation
-         */
-        public void postConcat(final Transformation pTransformation) {
+	public void postConcat(final Transformation pTransformation) {
 		this.postConcat(pTransformation.a, pTransformation.b, pTransformation.c, pTransformation.d, pTransformation.tx, pTransformation.ty);
 	}
 
@@ -348,11 +266,7 @@ public class Transformation {
 		this.ty = tx * pB + ty * pD + pTY;
 	}
 
-        /**
-         * 
-         * @param pTransformation
-         */
-        public void preConcat(final Transformation pTransformation) {
+	public void preConcat(final Transformation pTransformation) {
 		this.preConcat(pTransformation.a, pTransformation.b, pTransformation.c, pTransformation.d, pTransformation.tx, pTransformation.ty);
 	}
 
@@ -372,11 +286,7 @@ public class Transformation {
 		this.ty = pTX * b + pTY * d + ty;
 	}
 
-        /**
-         * 
-         * @param pVertices
-         */
-        public void transform(final float[] pVertices) {
+	public void transform(final float[] pVertices) {
 		int count = pVertices.length >> 1;
 		int i = 0;
 		int j = 0;

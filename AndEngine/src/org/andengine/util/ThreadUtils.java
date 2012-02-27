@@ -36,18 +36,11 @@ public class ThreadUtils {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static void dumpCurrentThreadInfo() {
+	public static void dumpCurrentThreadInfo() {
 		ThreadUtils.dumpCurrentThreadInfo(DebugLevel.DEBUG, Thread.currentThread().getStackTrace()[ThreadUtils.STACKTRACE_CALLER_DEPTH]);
 	}
 
-        /**
-         * 
-         * @param pDebugLevel
-         */
-        public static void dumpCurrentThreadInfo(final DebugLevel pDebugLevel) {
+	public static void dumpCurrentThreadInfo(final DebugLevel pDebugLevel) {
 		ThreadUtils.dumpCurrentThreadInfo(pDebugLevel, Thread.currentThread().getStackTrace()[ThreadUtils.STACKTRACE_CALLER_DEPTH]);
 	}
 

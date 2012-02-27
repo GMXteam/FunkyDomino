@@ -25,20 +25,11 @@ public class EntityModifierList extends ModifierList<IEntity> {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTarget
-         */
-        public EntityModifierList(final IEntity pTarget) {
+	public EntityModifierList(final IEntity pTarget) {
 		super(pTarget);
 	}
 
-        /**
-         * 
-         * @param pTarget
-         * @param pCapacity
-         */
-        public EntityModifierList(final IEntity pTarget, final int pCapacity) {
+	public EntityModifierList(final IEntity pTarget, final int pCapacity) {
 		super(pTarget, pCapacity);
 	}
 

@@ -22,11 +22,7 @@ public class UniqueListTest extends TestCase {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @throws Exception
-         */
-        @Override
+	@Override
 	protected void setUp() throws Exception {
 		this.mUniqueIntegerList = new UniqueList<UniqueInteger>(new ShiftList<UniqueInteger>(1));
 	}
@@ -43,10 +39,7 @@ public class UniqueListTest extends TestCase {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public void testUniqueDuplicateAdding() {
+	public void testUniqueDuplicateAdding() {
 		UniqueInteger zero = new UniqueInteger(0, "ZERO");
 		UniqueInteger one_1 = new UniqueInteger(1, "ONE(1)");
 		UniqueInteger one_2 = new UniqueInteger(1, "ONE(2)");
@@ -70,10 +63,7 @@ public class UniqueListTest extends TestCase {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public class UniqueInteger implements Comparable<UniqueInteger> {
+	public class UniqueInteger implements Comparable<UniqueInteger> {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -89,12 +79,7 @@ public class UniqueListTest extends TestCase {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param mValue
-                 * @param pName
-                 */
-                public UniqueInteger(final int mValue, final String pName) {
+		public UniqueInteger(final int mValue, final String pName) {
 			this.mValue = mValue;
 			this.pName = pName;
 		}
@@ -107,31 +92,17 @@ public class UniqueListTest extends TestCase {
 		// Methods for/from SuperClass/Interfaces
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pUniqueInteger
-                 * @return
-                 */
-                @Override
+		@Override
 		public int compareTo(final UniqueInteger pUniqueInteger) {
 			return this.mValue - pUniqueInteger.mValue;
 		}
 
-                /**
-                 * 
-                 * @param pObject
-                 * @return
-                 */
-                @Override
+		@Override
 		public boolean equals(final Object pObject) {
 			return this == pObject;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                @Override
+		@Override
 		public String toString() {
 			return pName;
 		}

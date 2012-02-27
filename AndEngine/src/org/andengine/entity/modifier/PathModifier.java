@@ -35,89 +35,35 @@ public class PathModifier extends EntityModifier {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         */
-        public PathModifier(final float pDuration, final Path pPath) {
+	public PathModifier(final float pDuration, final Path pPath) {
 		this(pDuration, pPath, null, null, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pEaseFunction
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IEaseFunction pEaseFunction) {
+	public PathModifier(final float pDuration, final Path pPath, final IEaseFunction pEaseFunction) {
 		this(pDuration, pPath, null, null, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pEntityModiferListener
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener) {
+	public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener) {
 		this(pDuration, pPath, pEntityModiferListener, null, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pPathModifierListener
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IPathModifierListener pPathModifierListener) {
+	public PathModifier(final float pDuration, final Path pPath, final IPathModifierListener pPathModifierListener) {
 		this(pDuration, pPath, null, pPathModifierListener, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pPathModifierListener
-         * @param pEaseFunction
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IPathModifierListener pPathModifierListener, final IEaseFunction pEaseFunction) {
+	public PathModifier(final float pDuration, final Path pPath, final IPathModifierListener pPathModifierListener, final IEaseFunction pEaseFunction) {
 		this(pDuration, pPath, null, pPathModifierListener, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pEntityModiferListener
-         * @param pEaseFunction
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener, final IEaseFunction pEaseFunction) {
+	public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener, final IEaseFunction pEaseFunction) {
 		this(pDuration, pPath, pEntityModiferListener, null, pEaseFunction);
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pEntityModiferListener
-         * @param pPathModifierListener
-         * @throws IllegalArgumentException
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener, final IPathModifierListener pPathModifierListener) throws IllegalArgumentException {
+	public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener, final IPathModifierListener pPathModifierListener) throws IllegalArgumentException {
 		this(pDuration, pPath, pEntityModiferListener, pPathModifierListener, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pDuration
-         * @param pPath
-         * @param pEntityModiferListener
-         * @param pPathModifierListener
-         * @param pEaseFunction
-         * @throws IllegalArgumentException
-         */
-        public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener, final IPathModifierListener pPathModifierListener, final IEaseFunction pEaseFunction) throws IllegalArgumentException {
+	public PathModifier(final float pDuration, final Path pPath, final IEntityModifierListener pEntityModiferListener, final IPathModifierListener pPathModifierListener, final IEaseFunction pEaseFunction) throws IllegalArgumentException {
 		super(pEntityModiferListener);
 		final int pathSize = pPath.getSize();
 
@@ -180,12 +126,7 @@ public class PathModifier extends EntityModifier {
 		);
 	}
 
-        /**
-         * 
-         * @param pPathModifier
-         * @throws org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException
-         */
-        protected PathModifier(final PathModifier pPathModifier) throws DeepCopyNotSupportedException {
+	protected PathModifier(final PathModifier pPathModifier) throws DeepCopyNotSupportedException {
 		this.mPath = pPathModifier.mPath.deepCopy();
 		this.mSequenceModifier = pPathModifier.mSequenceModifier.deepCopy();
 	}
@@ -199,11 +140,7 @@ public class PathModifier extends EntityModifier {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public Path getPath() {
+	public Path getPath() {
 		return this.mPath;
 	}
 
@@ -216,44 +153,25 @@ public class PathModifier extends EntityModifier {
 		return this.mSequenceModifier.isFinished();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getSecondsElapsed() {
 		return this.mSequenceModifier.getSecondsElapsed();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        @Override
+	@Override
 	public float getDuration() {
 		return this.mSequenceModifier.getDuration();
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public IPathModifierListener getPathModifierListener() {
+	public IPathModifierListener getPathModifierListener() {
 		return this.mPathModifierListener;
 	}
 
-        /**
-         * 
-         * @param pPathModifierListener
-         */
-        public void setPathModifierListener(final IPathModifierListener pPathModifierListener) {
+	public void setPathModifierListener(final IPathModifierListener pPathModifierListener) {
 		this.mPathModifierListener = pPathModifierListener;
 	}
 
-        /**
-         * 
-         */
-        @Override
+	@Override
 	public void reset() {
 		this.mSequenceModifier.reset();
 	}
@@ -271,10 +189,7 @@ public class PathModifier extends EntityModifier {
 	// Inner and Anonymous Classes
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static interface IPathModifierListener {
+	public static interface IPathModifierListener {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -283,38 +198,13 @@ public class PathModifier extends EntityModifier {
 		// Fields
 		// ===========================================================
 
-            /**
-             * 
-             * @param pPathModifier
-             * @param pEntity
-             */
-            public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity);
-                /**
-                 * 
-                 * @param pPathModifier
-                 * @param pEntity
-                 * @param pWaypointIndex
-                 */
-                public void onPathWaypointStarted(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex);
-                /**
-                 * 
-                 * @param pPathModifier
-                 * @param pEntity
-                 * @param pWaypointIndex
-                 */
-                public void onPathWaypointFinished(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex);
-                /**
-                 * 
-                 * @param pPathModifier
-                 * @param pEntity
-                 */
-                public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity);
+		public void onPathStarted(final PathModifier pPathModifier, final IEntity pEntity);
+		public void onPathWaypointStarted(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex);
+		public void onPathWaypointFinished(final PathModifier pPathModifier, final IEntity pEntity, final int pWaypointIndex);
+		public void onPathFinished(final PathModifier pPathModifier, final IEntity pEntity);
 	}
 
-        /**
-         * 
-         */
-        public static class Path {
+	public static class Path {
 		// ===========================================================
 		// Constants
 		// ===========================================================
@@ -334,11 +224,7 @@ public class PathModifier extends EntityModifier {
 		// Constructors
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pLength
-                 */
-                public Path(final int pLength) {
+		public Path(final int pLength) {
 			this.mCoordinatesX = new float[pLength];
 			this.mCoordinatesY = new float[pLength];
 
@@ -346,13 +232,7 @@ public class PathModifier extends EntityModifier {
 			this.mLengthChanged = false;
 		}
 
-                /**
-                 * 
-                 * @param pCoordinatesX
-                 * @param pCoordinatesY
-                 * @throws IllegalArgumentException
-                 */
-                public Path(final float[] pCoordinatesX, final float[] pCoordinatesY) throws IllegalArgumentException {
+		public Path(final float[] pCoordinatesX, final float[] pCoordinatesY) throws IllegalArgumentException {
 			if (pCoordinatesX.length != pCoordinatesY.length) {
 				throw new IllegalArgumentException("Coordinate-Arrays must have the same length.");
 			}
@@ -364,11 +244,7 @@ public class PathModifier extends EntityModifier {
 			this.mLengthChanged = true;
 		}
 
-                /**
-                 * 
-                 * @param pPath
-                 */
-                public Path(final Path pPath) {
+		public Path(final Path pPath) {
 			final int size = pPath.getSize();
 			this.mCoordinatesX = new float[size];
 			this.mCoordinatesY = new float[size];
@@ -381,11 +257,7 @@ public class PathModifier extends EntityModifier {
 			this.mLength = pPath.mLength;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public Path deepCopy() {
+		public Path deepCopy() {
 			return new Path(this);
 		}
 
@@ -393,13 +265,7 @@ public class PathModifier extends EntityModifier {
 		// Getter & Setter
 		// ===========================================================
 
-                /**
-                 * 
-                 * @param pX
-                 * @param pY
-                 * @return
-                 */
-                public Path to(final float pX, final float pY) {
+		public Path to(final float pX, final float pY) {
 			this.mCoordinatesX[this.mIndex] = pX;
 			this.mCoordinatesY[this.mIndex] = pY;
 
@@ -410,47 +276,26 @@ public class PathModifier extends EntityModifier {
 			return this;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float[] getCoordinatesX() {
+		public float[] getCoordinatesX() {
 			return this.mCoordinatesX;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float[] getCoordinatesY() {
+		public float[] getCoordinatesY() {
 			return this.mCoordinatesY;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public int getSize() {
+		public int getSize() {
 			return this.mCoordinatesX.length;
 		}
 
-                /**
-                 * 
-                 * @return
-                 */
-                public float getLength() {
+		public float getLength() {
 			if(this.mLengthChanged) {
 				this.updateLength();
 			}
 			return this.mLength;
 		}
 
-                /**
-                 * 
-                 * @param pSegmentIndex
-                 * @return
-                 */
-                public float getSegmentLength(final int pSegmentIndex) {
+		public float getSegmentLength(final int pSegmentIndex) {
 			final float[] coordinatesX = this.mCoordinatesX;
 			final float[] coordinatesY = this.mCoordinatesY;
 

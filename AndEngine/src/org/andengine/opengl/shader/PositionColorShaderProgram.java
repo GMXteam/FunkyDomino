@@ -20,10 +20,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 
 	private static PositionColorShaderProgram INSTANCE;
 
-        /**
-         * 
-         */
-        public static final String VERTEXSHADER =
+	public static final String VERTEXSHADER =
 			"uniform mat4 " + ShaderProgramConstants.UNIFORM_MODELVIEWPROJECTIONMATRIX + ";\n" +
 			"attribute vec4 " + ShaderProgramConstants.ATTRIBUTE_POSITION + ";\n" +
 			"attribute vec4 " + ShaderProgramConstants.ATTRIBUTE_COLOR + ";\n" +
@@ -33,10 +30,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 			"	" + ShaderProgramConstants.VARYING_COLOR + " = " + ShaderProgramConstants.ATTRIBUTE_COLOR + ";\n" +
 			"}";
 
-        /**
-         * 
-         */
-        public static final String FRAGMENTSHADER =
+	public static final String FRAGMENTSHADER =
 			"precision lowp float;\n" +
 			"varying vec4 " + ShaderProgramConstants.VARYING_COLOR + ";\n" +
 			"void main() {\n" +
@@ -47,10 +41,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 	// Fields
 	// ===========================================================
 
-        /**
-         * 
-         */
-        public static int sUniformModelViewPositionMatrixLocation = ShaderProgram.LOCATION_INVALID;
+	public static int sUniformModelViewPositionMatrixLocation = ShaderProgram.LOCATION_INVALID;
 
 	// ===========================================================
 	// Constructors
@@ -60,11 +51,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 		super(PositionColorShaderProgram.VERTEXSHADER, PositionColorShaderProgram.FRAGMENTSHADER);
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public static PositionColorShaderProgram getInstance() {
+	public static PositionColorShaderProgram getInstance() {
 		if(PositionColorShaderProgram.INSTANCE == null) {
 			PositionColorShaderProgram.INSTANCE = new PositionColorShaderProgram();
 		}
@@ -79,12 +66,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pGLState
-         * @throws ShaderProgramLinkException
-         */
-        @Override
+	@Override
 	protected void link(final GLState pGLState) throws ShaderProgramLinkException {
 		GLES20.glBindAttribLocation(this.mProgramID, ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION, ShaderProgramConstants.ATTRIBUTE_POSITION);
 		GLES20.glBindAttribLocation(this.mProgramID, ShaderProgramConstants.ATTRIBUTE_COLOR_LOCATION, ShaderProgramConstants.ATTRIBUTE_COLOR);
@@ -94,12 +76,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 		PositionColorShaderProgram.sUniformModelViewPositionMatrixLocation = this.getUniformLocation(ShaderProgramConstants.UNIFORM_MODELVIEWPROJECTIONMATRIX);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         * @param pVertexBufferObjectAttributes
-         */
-        @Override
+	@Override
 	public void bind(final GLState pGLState, final VertexBufferObjectAttributes pVertexBufferObjectAttributes) {
 		GLES20.glDisableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_TEXTURECOORDINATES_LOCATION);
 
@@ -108,11 +85,7 @@ public class PositionColorShaderProgram extends ShaderProgram {
 		GLES20.glUniformMatrix4fv(PositionColorShaderProgram.sUniformModelViewPositionMatrixLocation, 1, false, pGLState.getModelViewProjectionGLMatrix(), 0);
 	}
 
-        /**
-         * 
-         * @param pGLState
-         */
-        @Override
+	@Override
 	public void unbind(final GLState pGLState) {
 		GLES20.glEnableVertexAttribArray(ShaderProgramConstants.ATTRIBUTE_TEXTURECOORDINATES_LOCATION);
 		

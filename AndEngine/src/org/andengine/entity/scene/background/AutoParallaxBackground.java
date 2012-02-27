@@ -24,14 +24,7 @@ public class AutoParallaxBackground extends ParallaxBackground {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pRed
-         * @param pGreen
-         * @param pBlue
-         * @param pParallaxChangePerSecond
-         */
-        public AutoParallaxBackground(final float pRed, final float pGreen, final float pBlue, final float pParallaxChangePerSecond) {
+	public AutoParallaxBackground(final float pRed, final float pGreen, final float pBlue, final float pParallaxChangePerSecond) {
 		super(pRed, pGreen, pBlue);
 		this.mParallaxChangePerSecond = pParallaxChangePerSecond;
 	}
@@ -40,11 +33,7 @@ public class AutoParallaxBackground extends ParallaxBackground {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParallaxChangePerSecond
-         */
-        public void setParallaxChangePerSecond(final float pParallaxChangePerSecond) {
+	public void setParallaxChangePerSecond(final float pParallaxChangePerSecond) {
 		this.mParallaxChangePerSecond = pParallaxChangePerSecond;
 	}
 
@@ -52,11 +41,7 @@ public class AutoParallaxBackground extends ParallaxBackground {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pSecondsElapsed
-         */
-        @Override
+	@Override
 	public void onUpdate(final float pSecondsElapsed) {
 		super.onUpdate(pSecondsElapsed);
 

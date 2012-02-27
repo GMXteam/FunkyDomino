@@ -9,7 +9,6 @@ import org.andengine.util.modifier.ease.IEaseFunction;
  * (c) 2010 Nicolas Gramlich 
  * (c) 2011 Zynga Inc.
  * 
- * @param <T> 
  * @author Nicolas Gramlich
  * @since 10:36:18 - 29.06.2010
  */
@@ -26,26 +25,11 @@ public class RotationParticleModifier<T extends IEntity> extends BaseSingleValue
 	// Constructors
 	// ===========================================================
 
-    /**
-     * 
-     * @param pFromTime
-     * @param pToTime
-     * @param pFromRotation
-     * @param pToRotation
-     */
-    public RotationParticleModifier(final float pFromTime, final float pToTime, final float pFromRotation, final float pToRotation) {
+	public RotationParticleModifier(final float pFromTime, final float pToTime, final float pFromRotation, final float pToRotation) {
 		this(pFromTime, pToTime, pFromRotation, pToRotation, EaseLinear.getInstance());
 	}
 
-        /**
-         * 
-         * @param pFromTime
-         * @param pToTime
-         * @param pFromRotation
-         * @param pToRotation
-         * @param pEaseFunction
-         */
-        public RotationParticleModifier(final float pFromTime, final float pToTime, final float pFromRotation, final float pToRotation, final IEaseFunction pEaseFunction) {
+	public RotationParticleModifier(final float pFromTime, final float pToTime, final float pFromRotation, final float pToRotation, final IEaseFunction pEaseFunction) {
 		super(pFromTime, pToTime, pFromRotation, pToRotation, pEaseFunction);
 	}
 
@@ -57,12 +41,7 @@ public class RotationParticleModifier<T extends IEntity> extends BaseSingleValue
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-        /**
-         * 
-         * @param pParticle
-         * @param pRotation
-         */
-        @Override
+	@Override
 	protected void onSetInitialValue(final Particle<T> pParticle, final float pRotation) {
 		pParticle.getEntity().setRotation(pRotation);
 	}
