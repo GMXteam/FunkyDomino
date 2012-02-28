@@ -1,1 +1,1 @@
- : /home/guillaume-pm/Bureau/Funky-Domino/Funky Domino Project/AndEngineMultiplayerExtension/AndroidManifest.xml \
+ : /media/DATA/Funky-Domino/Funky Domino Project/AndEngineMultiplayerExtension/AndroidManifest.xml \
