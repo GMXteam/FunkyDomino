@@ -10,4 +10,4 @@ gdbserver
 .hg
 local.properties
 .settings
-AndEngineExamples.iml
+AndEngineMultiplayerExtension.iml
