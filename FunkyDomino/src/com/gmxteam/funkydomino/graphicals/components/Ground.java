@@ -16,11 +16,12 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import com.gmxteam.funkydomino.utils.xmlparser.IllegalXMLAttributeValueException;
-import org.andengine.entity.primitive.Rectangle;
+import org.andengine.entity.primitive.Line;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.color.Color;
@@ -31,6 +32,8 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Ground extends Component {
+
+    private Body[] mBodies;
 
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
@@ -85,6 +88,11 @@ public final class Ground extends Component {
      * @param y est un tableau contenant les valeurs y des points formant le sol.
      */
     public Ground(AndEngineActivity aea, float[] x, float y[]) {
+        if (x.length != y.length) {
+            throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
+                    + "\n" + x.length
+                    + "\n" + y.length);
+        }
         init(aea, x, y);
     }
 
@@ -96,25 +104,16 @@ public final class Ground extends Component {
         this.mColor = Color.BLACK;
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
 
-        final Rectangle bottomOuter = new Rectangle(0, AndEngineActivity.CAMERA_HEIGHT - 2, AndEngineActivity.CAMERA_WIDTH, 2, vertexBufferObjectManager);
-        final Rectangle topOuter = new Rectangle(0, 0, AndEngineActivity.CAMERA_WIDTH, 2, vertexBufferObjectManager);
-        final Rectangle leftOuter = new Rectangle(0, 0, 2, AndEngineActivity.CAMERA_HEIGHT, vertexBufferObjectManager);
-        final Rectangle rightOuter = new Rectangle(AndEngineActivity.CAMERA_WIDTH - 2, 0, 2, AndEngineActivity.CAMERA_HEIGHT, vertexBufferObjectManager);
-
 
         final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
-        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, bottomOuter, BodyType.StaticBody, wallFixtureDef);
-        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, topOuter, BodyType.StaticBody, wallFixtureDef);
-        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, leftOuter, BodyType.StaticBody, wallFixtureDef);
-        PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, rightOuter, BodyType.StaticBody, wallFixtureDef);
 
+        this.mBodies = new Body[x.length];
 
-        mAndEngineActivity.mScene.attachChild(bottomOuter);
-        mAndEngineActivity.mScene.attachChild(topOuter);
-        mAndEngineActivity.mScene.attachChild(leftOuter);
-        mAndEngineActivity.mScene.attachChild(rightOuter);
-
-
-
+        for (int i = 0; i < x.length - 1; i++) {
+            Line l = new Line(x[i], y[i], x[i + 1], y[i + 1], 1.0f, vertexBufferObjectManager);
+            
+            this.attachChild(l);
+            mBodies[i] = PhysicsFactory.createLineBody(aea.mPhysicsWorld, x[i], y[i], x[i + 1], y[i + 1], wallFixtureDef);
+        }
     }
 }
