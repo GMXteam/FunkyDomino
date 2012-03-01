@@ -50,4 +50,14 @@ public interface AndEngineActivityConstants {
      * 
      */
     static final String LEVEL_KEY_IN_BUNDLE = "level";
+    /**
+     * 
+     */
+    public static final float CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
+    /**
+     * 
+     */
+    public static final float CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
+    public static final float CAMERA_LEFT = 0.0f;
+    public static final float CAMERA_TOP = 0.0f;
 }

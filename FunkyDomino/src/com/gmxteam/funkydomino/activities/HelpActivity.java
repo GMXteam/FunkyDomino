@@ -36,13 +36,7 @@ public final class HelpActivity extends AndEngineActivity {
 
    
 
-    /**
-     * 
-     * @return
-     */
-    public Engine onLoadEngine() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   
 
     /**
      * 
@@ -51,13 +45,7 @@ public final class HelpActivity extends AndEngineActivity {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @return
-     */
-    public Scene onLoadScene() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+  
 
     /**
      * 
@@ -77,14 +65,7 @@ public final class HelpActivity extends AndEngineActivity {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     * 
-     * @param pOnCreateSceneCallback
-     * @throws Exception
-     */
-    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 
     /**
      * 

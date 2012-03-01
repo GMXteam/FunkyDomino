@@ -44,22 +44,31 @@ public final class Domino extends Component {
     /**
      * @see TiledTextureRegion
      */
-    private static TiledTextureRegion mVehiclesTextureRegion;
+    private static TiledTextureRegion mDominoTextureRegion;
 
     /**
      * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
-     * @param andEngineActivity
+     * @param andEngineActivity 
      */
-    public static void loadResource(AndEngineActivity andEngineActivity) {
+    public static void loadResource(AndEngineActivity andEngineActivity) {        
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         mDominoTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
-        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mDominoTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
-        mDominoTexture.load();        
+        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mDominoTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
+        mDominoTexture.load();
     }
     ////////////////////////////////////////////////////////////////////////////
-    //
-    private TiledSprite mCar;
+    // Variables locales
+    /**
+     * 
+     */
+    private TiledSprite mSprite;
+    /**
+     * 
+     */
+    private Body mBody;
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Constructeurs
     /**
      * Constructeur qui interprète des données XML. Il gère les exceptions et 
      * appelle ensuite la méthode init().
@@ -91,21 +100,24 @@ public final class Domino extends Component {
      */
     private void init(AndEngineActivity andEngineActivity, float x, float y) {
         this.mAndEngineActivity = andEngineActivity;
-        
+
         // Entité visible
-        this.mCar = new TiledSprite(x, y, 20, 20, mVehiclesTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
-        this.mCar.setCurrentTileIndex(0);
+        this.mSprite = new TiledSprite(x, y, 20, 20, mDominoTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
+        this.mSprite.setCurrentTileIndex(0);
 
         // Entité physique
-        final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(1, 0.5f, 0.5f);
-        final Body mCarBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mCar, BodyType.DynamicBody, carFixtureDef);
-        
+        final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(2.0f, 0.5f, 0.5f);
+
+        mBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mSprite, BodyType.DynamicBody, carFixtureDef);
+
         // Connexion entre la physique et le visible
-        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mCar, mCarBody, true, false));
-        
+        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mSprite, mBody, true, false));
+
         // Connexion avec la scène visible
-        mAndEngineActivity.mScene.attachChild(this.mCar);
+        mAndEngineActivity.mScene.attachChild(this.mSprite);
 
 
     }
+    ////////////////////////////////////////////////////////////////////////////
+    // Méthodes et fonctions
 }

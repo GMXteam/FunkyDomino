@@ -2,6 +2,7 @@ target/**
 bin/**
 doc/**
 gen/**
+nbandroid/**
 .DS_Store
 Thumbs.db
 gdb.setup
