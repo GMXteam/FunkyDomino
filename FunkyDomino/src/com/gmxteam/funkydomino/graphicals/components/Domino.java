@@ -40,7 +40,7 @@ public final class Domino extends Component {
     /**
      * @see BitmapTextureAtlas
      */
-    private static BitmapTextureAtlas mVehiclesTexture;
+    private static BitmapTextureAtlas mDominoTexture;
     /**
      * @see TiledTextureRegion
      */
@@ -52,10 +52,9 @@ public final class Domino extends Component {
      */
     public static void loadResource(AndEngineActivity andEngineActivity) {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-        mVehiclesTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
-        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mVehiclesTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
-        mVehiclesTexture.load();
-        
+        mDominoTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        mVehiclesTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mDominoTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
+        mDominoTexture.load();        
     }
     ////////////////////////////////////////////////////////////////////////////
     //

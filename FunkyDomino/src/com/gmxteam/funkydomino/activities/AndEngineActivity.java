@@ -111,6 +111,8 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
         this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, 0), false, 8, 1);
         this.mScene.registerUpdateHandler(this.mPhysicsWorld);
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);        
+        
+        
     }
 
     /**
