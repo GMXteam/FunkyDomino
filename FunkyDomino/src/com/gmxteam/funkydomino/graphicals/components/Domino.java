@@ -50,7 +50,7 @@ public final class Domino extends Component {
      * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
      * @param andEngineActivity 
      */
-    public static void loadResource(AndEngineActivity andEngineActivity) {
+    public static void loadResource(AndEngineActivity andEngineActivity) {        
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         mDominoTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
         mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mDominoTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);

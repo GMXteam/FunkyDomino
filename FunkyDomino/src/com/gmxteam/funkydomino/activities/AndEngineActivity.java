@@ -75,7 +75,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * @return
      */
     @Override
-    public EngineOptions onCreateEngineOptions() {
+    public final EngineOptions onCreateEngineOptions() {
         this.mCamera = new Camera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT);
         //engineOptions.getAudioOptions().setNeedsSound(true);
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
@@ -88,7 +88,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * Chargement du moteur de physique et du moteur de jeu.
      * @return
      */
-    public Engine onLoadEngine() {
+    public final Engine onLoadEngine() {
         mEngine = new Engine(mEngineOptions);
         return mEngine;
     }
@@ -98,7 +98,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * @param pOnCreateSceneCallback
      * @throws Exception 
      */
-    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+    public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
         this.mEngine.registerUpdateHandler(new FPSLogger());
         mScene = new Scene();
         mScene.setBackground(new Background(Color.RED));
@@ -113,7 +113,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * Chargement de la scène.
      * @return
      */
-    public Scene onLoadScene() {
+    public final Scene onLoadScene() {
         return mScene;
     }
 }

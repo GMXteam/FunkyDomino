@@ -17,8 +17,11 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import com.gmxteam.funkydomino.graphicals.components.Ball;
+import com.gmxteam.funkydomino.graphicals.components.Cog;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
+import com.gmxteam.funkydomino.graphicals.components.Water;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,12 +82,14 @@ public final class MainActivity extends AndEngineActivity {
         ////////////////////////////////////////////////////////////////////////
         // Code de test
 
-        float[] x = {CAMERA_LEFT, 5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
-        float[] y = {22.0f, 105.0f, 105.5f, 155.7f, 134.0f};
-        
-        pScene.attachChild(new Ground(this, x, y));
+        float[] groundX = {CAMERA_LEFT, 5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
+        float[] groundY = {22.0f, 105.0f, 105.5f, 155.7f, 134.0f};
+
+        pScene.attachChild(new Ground(this, groundX, groundY));
 
         pScene.attachChild(new Domino(this, 25.0f, 25.0f));
+        pScene.attachChild(new Domino(this, 25.0f, 10.0f));
+        pScene.attachChild(new Domino(this, 25.0f, 5.0f));
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
@@ -97,6 +102,10 @@ public final class MainActivity extends AndEngineActivity {
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
         Domino.loadResource(this);
+        Ground.loadResource(this);
+        Ball.loadResource(this);
+        Water.loadResource(this);
+        Cog.loadResource(this);
         pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 }
