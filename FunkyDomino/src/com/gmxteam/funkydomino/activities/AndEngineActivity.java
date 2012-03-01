@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.hardware.SensorManager;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
@@ -101,7 +102,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
         this.mEngine.registerUpdateHandler(new FPSLogger());
         mScene = new Scene();
         mScene.setBackground(new Background(Color.RED));
-        this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, 0), false, 8, 1);
+        this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
         this.mScene.registerUpdateHandler(this.mPhysicsWorld);
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);        
         
