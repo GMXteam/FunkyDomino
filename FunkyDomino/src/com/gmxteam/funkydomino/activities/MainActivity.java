@@ -79,8 +79,9 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-        float[] x = {};
-        float[] y = {};
+        
+        float[] x = {5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
+        float[] y = {105.0f, 105.5f, 155.7f, 134.0f};
         pScene.attachChild(new Ground(this, x, y));
 
         pScene.attachChild(new Domino(this, 25.0f,25.0f));
