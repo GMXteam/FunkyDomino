@@ -67,14 +67,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * 
      */
     private Camera mCamera;
-    /**
-     * 
-     */
-    public static final int CAMERA_WIDTH = CELLS_HORIZONTAL * CELL_WIDTH;
-    /**
-     * 
-     */
-    public static final int CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
+    
 
     /**
      * 
@@ -82,7 +75,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      */
     @Override
     public EngineOptions onCreateEngineOptions() {
-        this.mCamera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
+        this.mCamera = new Camera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT);
         //engineOptions.getAudioOptions().setNeedsSound(true);
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
 

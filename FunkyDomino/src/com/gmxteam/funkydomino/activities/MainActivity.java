@@ -17,7 +17,6 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.graphicals.Graphical;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
@@ -79,18 +78,17 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
+
+        float[] x = {CAMERA_LEFT, 5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
+        float[] y = {22.0f, 105.0f, 105.5f, 155.7f, 134.0f};
         
-        float[] x = {5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
-        float[] y = {105.0f, 105.5f, 155.7f, 134.0f};
         pScene.attachChild(new Ground(this, x, y));
 
-        pScene.attachChild(new Domino(this, 25.0f,25.0f));
-
-
+        pScene.attachChild(new Domino(this, 25.0f, 25.0f));
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
-    
+
     /**
      * Création des ressources.
      * @param pOnCreateResourcesCallback est un callback à utiliser pour avertir

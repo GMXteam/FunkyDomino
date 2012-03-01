@@ -48,7 +48,7 @@ public final class Domino extends Component {
 
     /**
      * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
-     * @param andEngineActivity
+     * @param andEngineActivity 
      */
     public static void loadResource(AndEngineActivity andEngineActivity) {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
@@ -58,7 +58,13 @@ public final class Domino extends Component {
     }
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
-    private TiledSprite mDomino;
+    /**
+     * 
+     */
+    private TiledSprite mSprite;
+    /**
+     * 
+     */
     private Body mBody;
 
     ////////////////////////////////////////////////////////////////////////////
@@ -96,19 +102,19 @@ public final class Domino extends Component {
         this.mAndEngineActivity = andEngineActivity;
 
         // Entité visible
-        this.mDomino = new TiledSprite(x, y, 20, 20, mDominoTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
-        this.mDomino.setCurrentTileIndex(0);
+        this.mSprite = new TiledSprite(x, y, 20, 20, mDominoTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
+        this.mSprite.setCurrentTileIndex(0);
 
         // Entité physique
         final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(2.0f, 0.5f, 0.5f);
 
-        mBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mDomino, BodyType.DynamicBody, carFixtureDef);
+        mBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mSprite, BodyType.DynamicBody, carFixtureDef);
 
         // Connexion entre la physique et le visible
-        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mDomino, mBody, true, false));
+        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mSprite, mBody, true, false));
 
         // Connexion avec la scène visible
-        mAndEngineActivity.mScene.attachChild(this.mDomino);
+        mAndEngineActivity.mScene.attachChild(this.mSprite);
 
 
     }
