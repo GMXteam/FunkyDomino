@@ -30,6 +30,7 @@ import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.color.Color;
 import com.badlogic.gdx.math.Vector2;
 
+
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
  * Funky Domino sera premièrement développé en canvas afin d'obtenir rapidement
