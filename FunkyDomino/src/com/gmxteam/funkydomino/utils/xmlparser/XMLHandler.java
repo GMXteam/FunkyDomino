@@ -52,7 +52,6 @@ public final class XMLHandler extends DefaultHandler {
      * @see AndEngineActivity
      */
     private AndEngineActivity mAndEngineActivity;
-    
 
     /**
      * 
@@ -112,34 +111,6 @@ public final class XMLHandler extends DefaultHandler {
      */
     @Override
     public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
-
-
-        if (localName.equals("level")) {
-            inLevel = true;
-            gameInformationData.id = atts.getValue("id");
-            gameInformationData.previousLevel = atts.getValue("previousLevel=");
-            gameInformationData.nextLevel = atts.getValue("nextLevel");
-            gameInformationData.name = atts.getValue("name");
-            gameInformationData.description = atts.getValue("description");
-        } else {
-            throw new IllegalXMLNameException("Balise inconnue " + localName);
-        }
-
-        if (inLevel) {
-            if (localName.equals("component")) {
-                gameInformationData.componentTheme = atts.getValue("theme");
-                inComponent = true;
-            } else if (localName.equals("widget")) {
-                gameInformationData.widgetTheme = atts.getValue("theme");
-                inWidget = true;
-            } else {
-
-                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans level.");
-
-            }
-        }
-
-
         if (inComponent) {
             if (mAndEngineActivity == null) {
                 return;
@@ -152,7 +123,6 @@ public final class XMLHandler extends DefaultHandler {
             } else if (localName.equals("cog")) {
                 mAndEngineActivity.mScene.attachChild(new Cog(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a cog to the scene.");
-
                 inCog = true;
             } else if (localName.equals("ball")) {
                 mAndEngineActivity.mScene.attachChild(new Ball(mAndEngineActivity, atts));
@@ -169,8 +139,6 @@ public final class XMLHandler extends DefaultHandler {
             } else {
                 throw new IllegalXMLNameException("Balise inconnue " + localName + " dans component.");
             }
-
-
         } else if (inWidget) {
             if (mAndEngineActivity.mScene == null) {
                 return;
@@ -190,6 +158,24 @@ public final class XMLHandler extends DefaultHandler {
         }
 
 
+        if (inLevel) {
+            if (localName.equals("component")) {
+                gameInformationData.componentTheme = atts.getValue("theme");
+                inComponent = true;
+            } else if (localName.equals("widget")) {
+                gameInformationData.widgetTheme = atts.getValue("theme");
+                inWidget = true;
+            }
+        }
+
+        if (localName.equals("level")) {
+            inLevel = true;
+            gameInformationData.id = atts.getValue("id");
+            gameInformationData.previousLevel = atts.getValue("previousLevel");
+            gameInformationData.nextLevel = atts.getValue("nextLevel");
+            gameInformationData.name = atts.getValue("name");
+            gameInformationData.description = atts.getValue("description");
+        }
     }
 
     /** 
@@ -209,11 +195,7 @@ public final class XMLHandler extends DefaultHandler {
         if (localName.equals("level")) {
             inLevel = false;
 
-        } else {
-            throw new IllegalXMLNameException("Balise inconnue " + localName);
-
         }
-
         if (inLevel) {
             if (localName.equals("component")) {
 
@@ -221,8 +203,6 @@ public final class XMLHandler extends DefaultHandler {
             } else if (localName.equals("widget")) {
 
                 inWidget = false;
-            } else {
-                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans level.");
             }
         }
 
@@ -237,16 +217,12 @@ public final class XMLHandler extends DefaultHandler {
                 inGround = false;
             } else if (localName.equals("water")) {
                 inWater = false;
-            } else {
-                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans les composants.");
             }
         } else if (inWidget) {
             if (localName.equals("adddomino")) {
                 inAddDomino = false;
             } else if (localName.equals("addcog")) {
                 inAddBall = false;
-            } else {
-                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans les widgets.");
             }
         }
     }
