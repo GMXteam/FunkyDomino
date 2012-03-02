@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.activities;
 
 import android.hardware.SensorManager;
 import org.andengine.engine.Engine;
-import org.andengine.engine.camera.Camera;
+import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
@@ -30,6 +30,9 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.color.Color;
 import com.badlogic.gdx.math.Vector2;
+import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 
 /**
@@ -67,7 +70,11 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     /**
      * 
      */
-    private Camera mCamera;
+    SmoothCamera mCamera;
+    
+    TiledSprite mBackground;
+    TiledTextureRegion mBackgroundTextureRegion;
+    BitmapTextureAtlas mBackgroundTexture;
     
 
     /**
@@ -76,10 +83,12 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      */
     @Override
     public final EngineOptions onCreateEngineOptions() {
-        this.mCamera = new Camera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT);
+        this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
+        this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT);
+        
         //engineOptions.getAudioOptions().setNeedsSound(true);
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
-
+        
     }
 
     
@@ -101,9 +110,13 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
         this.mEngine.registerUpdateHandler(new FPSLogger());
         mScene = new Scene();
+        
         mScene.setBackground(new Background(Color.RED));
+        
         this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
         this.mScene.registerUpdateHandler(this.mPhysicsWorld);
+        
+        
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);        
         
         

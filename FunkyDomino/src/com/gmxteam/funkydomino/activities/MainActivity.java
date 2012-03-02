@@ -17,7 +17,6 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
-import android.view.MotionEvent;
 import com.gmxteam.funkydomino.graphicals.components.Ball;
 import com.gmxteam.funkydomino.graphicals.components.Cog;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
@@ -28,7 +27,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.Scene.ITouchArea;
+import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.xml.sax.SAXException;
 
 /**
@@ -83,23 +87,39 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-        float[] squareX = {CAMERA_LEFT + 1, CAMERA_WIDTH, CAMERA_WIDTH , CAMERA_LEFT, CAMERA_LEFT+ 1};
-        float[] squareY = {CAMERA_TOP + 1, CAMERA_TOP+ 1, CAMERA_HEIGHT , CAMERA_HEIGHT, CAMERA_TOP+ 1};
-        
-        float[] groundX = {CAMERA_LEFT, 5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
-        float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
-        pScene.attachChild(new Ground(this, squareX, squareY));
-        pScene.attachChild(new Ground(this, groundX, groundY));
 
-        pScene.attachChild(new Domino(this, 25.0f, 25.0f, true));
-        pScene.attachChild(new Domino(this, 50.0f, 10.0f, false));
-        pScene.attachChild(new Domino(this, 100.0f, 5.0f, false));
+        mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
+
+            @Override
+            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+
+                mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
+
+
+                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+            }
+        };
+        pScene.attachChild(mBackground);
+        pScene.registerTouchArea(mBackground);
+
+        float[] squareX = {WORLD_LEFT + 1, WORLD_WIDTH, WORLD_WIDTH, WORLD_LEFT, WORLD_LEFT + 1};
+        float[] squareY = {WORLD_TOP + 1, WORLD_TOP + 1, WORLD_HEIGHT, WORLD_HEIGHT, WORLD_TOP + 1};
+        float[] groundX = {WORLD_LEFT, 5.0f, 22.5f, 100.0f, WORLD_WIDTH};
+        float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
+
+        pScene.attachChild(
+                new Ground(this, squareX, squareY));
+        pScene.attachChild(
+                new Ground(this, groundX, groundY));
+
+        pScene.attachChild(
+                new Domino(this, 25.0f, 25.0f, true));
+        pScene.attachChild(
+                new Domino(this, 50.0f, 10.0f, false));
+        pScene.attachChild(
+                new Domino(this, 100.0f, 5.0f, false));
         pOnPopulateSceneCallback.onPopulateSceneFinished();
-    
-    
     }
-    
- 
 
     /**
      * Création des ressources.
@@ -108,6 +128,16 @@ public final class MainActivity extends AndEngineActivity {
      * @throws Exception 
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+        ////////////////////////////////////////////////////////////////////////
+        // Loading local resources
+
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        mBackgroundTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
+        mBackgroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBackgroundTexture, this, "vehicles.png", 0, 0, 6, 1);
+        mBackgroundTexture.load();
+
+        ////////////////////////////////////////////////////////////////////////
+        // Loading other resources
         Domino.loadResource(this);
         Ground.loadResource(this);
         Ball.loadResource(this);
