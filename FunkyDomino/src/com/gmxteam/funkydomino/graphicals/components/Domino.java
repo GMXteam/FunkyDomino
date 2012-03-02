@@ -16,7 +16,6 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -68,6 +67,7 @@ public final class Domino extends Component {
      * 
      */
     private Body mBody;
+    private final float DOMINO_WEIGHT = 2.0f;
 
     ////////////////////////////////////////////////////////////////////////////
     // Constructeurs
@@ -80,7 +80,8 @@ public final class Domino extends Component {
     public Domino(AndEngineActivity andEngineActivity, Attributes atts) {
         float x = Float.parseFloat(atts.getValue("x"));
         float y = Float.parseFloat(atts.getValue("y"));
-        init(andEngineActivity, x, y);
+        boolean moveable = Boolean.parseBoolean(atts.getValue("moveable"));
+        init(andEngineActivity, x, y, moveable);
     }
 
     /** 
@@ -90,8 +91,8 @@ public final class Domino extends Component {
      * @param x 
      * @param y  
      */
-    public Domino(AndEngineActivity andEngineActivity, float x, float y) {
-        init(andEngineActivity, x, y);
+    public Domino(AndEngineActivity andEngineActivity, float x, float y, boolean moveable) {
+        init(andEngineActivity, x, y, moveable);
     }
 
     /**
@@ -100,7 +101,7 @@ public final class Domino extends Component {
      * @param x est la position initiale en x du domino.
      * @param y est la position initiale en y du domino.
      */
-    private void init(AndEngineActivity andEngineActivity, float x, float y) {
+    private void init(AndEngineActivity andEngineActivity, float x, float y, boolean moveable) {
         this.mAndEngineActivity = andEngineActivity;
 
         // Entité visible
@@ -109,7 +110,9 @@ public final class Domino extends Component {
             @Override
             public boolean onAreaTouched(TouchEvent te, float x, float y) {
 
-
+                /* TODO Appliquer une impulsion qui poussera le domino vers le
+                 * doigt de l'utilisateur.
+                 */
                 mBody.applyTorque(50.0f);
 
 
@@ -121,7 +124,7 @@ public final class Domino extends Component {
 
 
         // Entité physique
-        final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(2.0f, 0.5f, 0.5f);
+        final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(moveable ? DOMINO_WEIGHT : 0.0f, 0.5f, 0.5f);
 
         mBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mSprite, BodyType.DynamicBody, carFixtureDef);
 

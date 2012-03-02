@@ -91,9 +91,9 @@ public final class MainActivity extends AndEngineActivity {
         pScene.attachChild(new Ground(this, squareX, squareY));
         pScene.attachChild(new Ground(this, groundX, groundY));
 
-        pScene.attachChild(new Domino(this, 25.0f, 25.0f));
-        pScene.attachChild(new Domino(this, 50.0f, 10.0f));
-        pScene.attachChild(new Domino(this, 100.0f, 5.0f));
+        pScene.attachChild(new Domino(this, 25.0f, 25.0f, true));
+        pScene.attachChild(new Domino(this, 50.0f, 10.0f, false));
+        pScene.attachChild(new Domino(this, 100.0f, 5.0f, false));
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     
     
