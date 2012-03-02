@@ -108,7 +108,7 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
         
         
     }
-
+    
     /**
      * Chargement de la scène.
      * @return

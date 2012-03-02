@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
+import android.view.MotionEvent;
 import com.gmxteam.funkydomino.graphicals.components.Ball;
 import com.gmxteam.funkydomino.graphicals.components.Cog;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
@@ -27,6 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.scene.Scene.ITouchArea;
 import org.xml.sax.SAXException;
 
 /**
@@ -81,18 +83,23 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-
+        float[] squareX = {CAMERA_LEFT + 1, CAMERA_WIDTH, CAMERA_WIDTH , CAMERA_LEFT, CAMERA_LEFT+ 1};
+        float[] squareY = {CAMERA_TOP + 1, CAMERA_TOP+ 1, CAMERA_HEIGHT , CAMERA_HEIGHT, CAMERA_TOP+ 1};
+        
         float[] groundX = {CAMERA_LEFT, 5.0f, 22.5f, 100.0f, CAMERA_WIDTH};
-        float[] groundY = {22.0f, 105.0f, 105.5f, 155.7f, 134.0f};
-
+        float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
+        pScene.attachChild(new Ground(this, squareX, squareY));
         pScene.attachChild(new Ground(this, groundX, groundY));
 
         pScene.attachChild(new Domino(this, 25.0f, 25.0f));
-        pScene.attachChild(new Domino(this, 25.0f, 10.0f));
-        pScene.attachChild(new Domino(this, 25.0f, 5.0f));
-
+        pScene.attachChild(new Domino(this, 50.0f, 10.0f));
+        pScene.attachChild(new Domino(this, 100.0f, 5.0f));
         pOnPopulateSceneCallback.onPopulateSceneFinished();
+    
+    
     }
+    
+ 
 
     /**
      * Création des ressources.

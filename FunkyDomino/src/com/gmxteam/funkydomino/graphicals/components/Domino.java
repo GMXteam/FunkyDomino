@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -23,6 +24,7 @@ import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -50,7 +52,7 @@ public final class Domino extends Component {
      * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
      * @param andEngineActivity 
      */
-    public static void loadResource(AndEngineActivity andEngineActivity) {        
+    public static void loadResource(AndEngineActivity andEngineActivity) {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         mDominoTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
         mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mDominoTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
@@ -102,8 +104,21 @@ public final class Domino extends Component {
         this.mAndEngineActivity = andEngineActivity;
 
         // Entité visible
-        this.mSprite = new TiledSprite(x, y, 20, 20, mDominoTextureRegion, mAndEngineActivity.getVertexBufferObjectManager());
+        this.mSprite = new TiledSprite(x, y, 20, 100, mDominoTextureRegion, mAndEngineActivity.getVertexBufferObjectManager()) {
+
+            @Override
+            public boolean onAreaTouched(TouchEvent te, float x, float y) {
+
+
+                mBody.applyTorque(50.0f);
+
+
+
+                return true;
+            }
+        };
         this.mSprite.setCurrentTileIndex(0);
+
 
         // Entité physique
         final FixtureDef carFixtureDef = PhysicsFactory.createFixtureDef(2.0f, 0.5f, 0.5f);
@@ -111,10 +126,11 @@ public final class Domino extends Component {
         mBody = PhysicsFactory.createBoxBody(mAndEngineActivity.mPhysicsWorld, this.mSprite, BodyType.DynamicBody, carFixtureDef);
 
         // Connexion entre la physique et le visible
-        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mSprite, mBody, true, false));
+        mAndEngineActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(this.mSprite, mBody, true, true));
 
         // Connexion avec la scène visible
         mAndEngineActivity.mScene.attachChild(this.mSprite);
+        andEngineActivity.mScene.registerTouchArea(mSprite);
 
 
     }
