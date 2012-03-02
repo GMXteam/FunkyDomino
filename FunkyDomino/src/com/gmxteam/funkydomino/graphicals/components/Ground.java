@@ -21,7 +21,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import com.gmxteam.funkydomino.utils.xmlparser.IllegalXMLAttributeValueException;
 import org.andengine.entity.primitive.Line;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.color.Color;
@@ -105,7 +104,7 @@ public final class Ground extends Component {
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
 
 
-        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.5f);
+        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.0f);
 
         this.mBodies = new Body[x.length];
 
