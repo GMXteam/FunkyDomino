@@ -36,6 +36,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public final class XMLHandler extends DefaultHandler {
 
+    private long startedTime;
     // booleans that check whether it's in a specific tag or not 
     private boolean inComponent;
     private boolean inWidget, inLevel;
@@ -87,6 +88,9 @@ public final class XMLHandler extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
+        startedTime = System.currentTimeMillis();
+        Log.v("funky-domino", "Le parsing du fichier de niveau commence");
+
         gameInformationData = new GameInformation();
     }
 
@@ -97,6 +101,7 @@ public final class XMLHandler extends DefaultHandler {
      */
     @Override
     public void endDocument() throws SAXException {
+        Log.v("funky-domino", "Le parsing du fichier de niveau est terminé en " + (System.currentTimeMillis() - startedTime) + " ms.");
     }
 
     /** 
@@ -111,6 +116,7 @@ public final class XMLHandler extends DefaultHandler {
      */
     @Override
     public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
+        Log.v("funky-domino", "On entre dans la balise " + localName + ".");
         if (inComponent) {
             if (mAndEngineActivity == null) {
                 return;
@@ -136,8 +142,6 @@ public final class XMLHandler extends DefaultHandler {
                 mAndEngineActivity.mScene.attachChild(new Water(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding water to the scene.");
                 inWater = true;
-            } else {
-                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans component.");
             }
         } else if (inWidget) {
             if (mAndEngineActivity.mScene == null) {
@@ -152,8 +156,6 @@ public final class XMLHandler extends DefaultHandler {
                 mAndEngineActivity.mScene.attachChild(new AddDomino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a adddomino widget to the scene.");
                 inAddDomino = true;
-            } else {
-                throw new IllegalXMLNameException("Balise inconnue " + localName + " dans widget.");
             }
         }
 
@@ -175,6 +177,12 @@ public final class XMLHandler extends DefaultHandler {
             gameInformationData.nextLevel = atts.getValue("nextLevel");
             gameInformationData.name = atts.getValue("name");
             gameInformationData.description = atts.getValue("description");
+            Log.v("funky-domino", "Game info :"
+                    + "\n\t" + gameInformationData.id
+                    + "\n\t" + gameInformationData.previousLevel
+                    + "\n\t" + gameInformationData.nextLevel
+                    + "\n\t" + gameInformationData.name
+                    + "\n\t" + gameInformationData.description);
         }
     }
 
@@ -188,7 +196,7 @@ public final class XMLHandler extends DefaultHandler {
      */
     @Override
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
-        Log.v("endElement", localName);
+        Log.v("funky-domino", "On sort de la balise " + localName + ".");
 
 
 
@@ -208,6 +216,7 @@ public final class XMLHandler extends DefaultHandler {
 
         if (inComponent) {
             if (localName.equals("domino")) {
+
                 inDomino = false;
             } else if (localName.equals("cog")) {
                 inCog = false;

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <level id="stage1" previousLevel="null" nextLevel="stage2" name="Tutoriel" description="Premier niveau, pour apprendre à jouer.">
     <component theme="">
-        <domino x="5.0" y="4.3"  moveable="true" />  
-        <cog x="" y="" ></cog>
-        <ball x="" y=""></ball>
+        <domino x="5.0" y="4.3"  moveable="true" />
+               
+       
+       
+        
+        <cog x="" y="" r=""></cog>
+        <ball x="" y="" r=""></ball>
         <ground x="1.9 5.4 100.7"
                 y="2.6 44.3 700.6"/>                   
                          
