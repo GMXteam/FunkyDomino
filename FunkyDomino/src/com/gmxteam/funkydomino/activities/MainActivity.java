@@ -59,7 +59,7 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-
+        
         mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
 
             @Override
@@ -74,8 +74,8 @@ public final class MainActivity extends AndEngineActivity {
         pScene.attachChild(mBackground);
         pScene.registerTouchArea(mBackground);
 
-        float[] squareX = {WORLD_LEFT + 1, WORLD_WIDTH, WORLD_WIDTH, WORLD_LEFT, WORLD_LEFT + 1};
-        float[] squareY = {WORLD_TOP + 1, WORLD_TOP + 1, WORLD_HEIGHT, WORLD_HEIGHT, WORLD_TOP + 1};
+        float[] squareX = {WORLD_LEFT, WORLD_WIDTH, WORLD_WIDTH, WORLD_LEFT, WORLD_LEFT};
+        float[] squareY = {WORLD_TOP, WORLD_TOP, WORLD_HEIGHT, WORLD_HEIGHT, WORLD_TOP};
         //float[] groundX = {WORLD_LEFT, 5.0f, 22.5f, 100.0f, WORLD_WIDTH};
         //float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
 
