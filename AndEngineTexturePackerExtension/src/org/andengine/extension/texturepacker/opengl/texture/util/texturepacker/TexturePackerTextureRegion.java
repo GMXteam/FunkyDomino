@@ -31,23 +31,7 @@ public class TexturePackerTextureRegion extends TextureRegion {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTexture
-         * @param pX
-         * @param pY
-         * @param pWidth
-         * @param pHeight
-         * @param pID
-         * @param pSource
-         * @param pRotated
-         * @param pTrimmed
-         * @param pSourceX
-         * @param pSourceY
-         * @param pSourceWidth
-         * @param pSourceHeight
-         */
-        public TexturePackerTextureRegion(final ITexture pTexture, final int pX, final int pY, final int pWidth, final int pHeight, final int pID, final String pSource, final boolean pRotated, final boolean pTrimmed, final int pSourceX, final int pSourceY, final int pSourceWidth, final int pSourceHeight) {
+	public TexturePackerTextureRegion(final ITexture pTexture, final int pX, final int pY, final int pWidth, final int pHeight, final int pID, final String pSource, final boolean pRotated, final boolean pTrimmed, final int pSourceX, final int pSourceY, final int pSourceWidth, final int pSourceHeight) {
 		super(pTexture, pX, pY, pWidth, pHeight, pRotated);
 		this.mID = pID;
 		this.mSource = pSource;
@@ -62,59 +46,31 @@ public class TexturePackerTextureRegion extends TextureRegion {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public int getID() {
+	public int getID() {
 		return this.mID;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public String getSource() {
+	public String getSource() {
 		return this.mSource;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public boolean isTrimmed() {
+	public boolean isTrimmed() {
 		return this.mTrimmed;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSourceX() {
+	public int getSourceX() {
 		return this.mSourceX;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSourceY() {
+	public int getSourceY() {
 		return this.mSourceY;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSourceWidth() {
+	public int getSourceWidth() {
 		return this.mSourceWidth;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public int getSourceHeight() {
+	public int getSourceHeight() {
 		return this.mSourceHeight;
 	}
 
