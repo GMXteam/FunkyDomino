@@ -1,14 +1,17 @@
-package org.andengine.extension.texturepacker.opengl.texture.util.texturepacker;
+package org.andengine.util.adt.io.in;
 
-import org.andengine.opengl.texture.ITexture;
+import java.io.IOException;
+import java.io.InputStream;
+
+import android.content.res.Resources;
 
 /**
- * (c) Zynga 2011
+ * (c) Zynga 2012
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
- * @since 23:23:47 - 30.07.2011
+ * @since 12:07:14 - 02.03.2012
  */
-public class TexturePack {
+public class ResourceInputStreamOpener implements IInputStreamOpener {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -17,40 +20,29 @@ public class TexturePack {
 	// Fields
 	// ===========================================================
 
-	private final ITexture mTexture;
-	private final TexturePackTextureRegionLibrary mTexturePackTextureRegionLibrary;
+	private final Resources mResources;
+	private final int mResourceID;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public TexturePack(final ITexture pTexture, final TexturePackTextureRegionLibrary pTexturePackTextureRegionLibrary) {
-		this.mTexture = pTexture;
-		this.mTexturePackTextureRegionLibrary = pTexturePackTextureRegionLibrary;
+	public ResourceInputStreamOpener(final Resources pResources, final int pResourceID) {
+		this.mResources = pResources;
+		this.mResourceID = pResourceID;
 	}
 
 	// ===========================================================
 	// Getter & Setter
 	// ===========================================================
 
-	public ITexture getTexture() {
-		return this.mTexture;
-	}
-
-	public TexturePackTextureRegionLibrary getTexturePackTextureRegionLibrary() {
-		return this.mTexturePackTextureRegionLibrary;
-	}
-
 	// ===========================================================
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 
-	public void loadTexture() {
-		this.mTexture.load();
-	}
-
-	public void unloadTexture() {
-		this.mTexture.unload();
+	@Override
+	public InputStream open() throws IOException {
+		return this.mResources.openRawResource(this.mResourceID);
 	}
 
 	// ===========================================================

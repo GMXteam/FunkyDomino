@@ -26,11 +26,7 @@ public class TexturePackTextureRegionLibrary {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pInitialCapacity
-         */
-        public TexturePackTextureRegionLibrary(final int pInitialCapacity) {
+	public TexturePackTextureRegionLibrary(final int pInitialCapacity) {
 		this.mIDMapping = new SparseArray<TexturePackerTextureRegion>(pInitialCapacity);
 		this.mSourceMapping = new HashMap<String, TexturePackerTextureRegion>(pInitialCapacity);
 	}
@@ -39,19 +35,11 @@ public class TexturePackTextureRegionLibrary {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public SparseArray<TexturePackerTextureRegion> getIDMapping() {
+	public SparseArray<TexturePackerTextureRegion> getIDMapping() {
 		return this.mIDMapping;
 	}
 
-        /**
-         * 
-         * @return
-         */
-        public HashMap<String, TexturePackerTextureRegion> getSourceMapping() {
+	public HashMap<String, TexturePackerTextureRegion> getSourceMapping() {
 		return this.mSourceMapping;
 	}
 
@@ -63,50 +51,26 @@ public class TexturePackTextureRegionLibrary {
 	// Methods
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTexturePackTextureRegion
-         */
-        public void add(final TexturePackerTextureRegion pTexturePackTextureRegion) {
+	public void add(final TexturePackerTextureRegion pTexturePackTextureRegion) {
 		this.throwOnCollision(pTexturePackTextureRegion);
 
 		this.mIDMapping.put(pTexturePackTextureRegion.getID(), pTexturePackTextureRegion);
 		this.mSourceMapping.put(pTexturePackTextureRegion.getSource(), pTexturePackTextureRegion);
 	}
 
-        /**
-         * 
-         * @param pID
-         */
-        public void remove(final int pID) {
+	public void remove(final int pID) {
 		this.mIDMapping.remove(pID);
 	}
 
-        /**
-         * 
-         * @param pID
-         * @return
-         */
-        public TexturePackerTextureRegion get(final int pID) {
+	public TexturePackerTextureRegion get(final int pID) {
 		return this.mIDMapping.get(pID);
 	}
 
-        /**
-         * 
-         * @param pSource
-         * @return
-         */
-        public TexturePackerTextureRegion get(final String pSource) {
+	public TexturePackerTextureRegion get(final String pSource) {
 		return this.mSourceMapping.get(pSource);
 	}
 
-        /**
-         * 
-         * @param pSource
-         * @param pStripExtension
-         * @return
-         */
-        public TexturePackerTextureRegion get(final String pSource, final boolean pStripExtension) {
+	public TexturePackerTextureRegion get(final String pSource, final boolean pStripExtension) {
 		if(pStripExtension) {
 			final int indexOfExtension = pSource.lastIndexOf('.');
 			if(indexOfExtension == -1) {

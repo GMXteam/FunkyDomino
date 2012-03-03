@@ -91,11 +91,7 @@ public abstract class TexturePackParser extends DefaultHandler {
 	// Constructors
 	// ===========================================================
 
-        /**
-         * 
-         * @param pTextureManager
-         */
-        public TexturePackParser(final TextureManager pTextureManager) {
+	public TexturePackParser(final TextureManager pTextureManager) {
 		mTextureManager = pTextureManager;
 	}
 
@@ -103,11 +99,7 @@ public abstract class TexturePackParser extends DefaultHandler {
 	// Getter & Setter
 	// ===========================================================
 
-        /**
-         * 
-         * @return
-         */
-        public TexturePack getTexturePack() {
+	public TexturePack getTexturePack() {
 		return this.mTexturePack;
 	}
 
@@ -115,23 +107,9 @@ public abstract class TexturePackParser extends DefaultHandler {
 	// Methods for/from SuperClass/Interfaces
 	// ===========================================================
 	
-        /**
-         * 
-         * @param pFilename
-         * @return
-         * @throws IOException
-         */
-        protected abstract InputStream onGetInputStream(final String pFilename) throws IOException;
+	protected abstract InputStream onGetInputStream(final String pFilename) throws IOException;
 
-        /**
-         * 
-         * @param pUri
-         * @param pLocalName
-         * @param pQualifiedName
-         * @param pAttributes
-         * @throws SAXException
-         */
-        @Override
+	@Override
 	public void startElement(final String pUri, final String pLocalName, final String pQualifiedName, final Attributes pAttributes) throws SAXException {
 		if(pLocalName.equals(TexturePackParser.TAG_TEXTURE)) {
 			this.mVersion = SAXUtils.getIntAttributeOrThrow(pAttributes, TexturePackParser.TAG_TEXTURE_ATTRIBUTE_VERSION);

@@ -47,7 +47,7 @@ public final class AndEngineActivityXMLParser {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp = spf.newSAXParser();
         XMLReader xr = sp.getXMLReader();
-        XMLHandler xh = new XMLHandler( aea);
+        XMLHandler xh = new XMLHandler(aea);
         xr.setContentHandler(xh);
         xr.parse(new InputSource(decrypt(resourceStream, publicKey)));
     }

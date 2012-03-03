@@ -32,7 +32,6 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.xml.sax.SAXException;
 
 /**
@@ -51,18 +50,43 @@ public final class MainActivity extends AndEngineActivity {
     private InputStream levelStream;
 
     /**
-     * Chargement des ressources du programme (images, textes, etc...).
-     */
-    public void onLoadResources() {
-        levelStream = this.getResources().openRawResource(R.raw.stage1);
-    }
-
-    /**
      * 
      * @param pScene
      * @param pOnPopulateSceneCallback 
      */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+
+
+        ////////////////////////////////////////////////////////////////////////
+        // Code de test
+        
+        mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
+
+            @Override
+            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+
+                mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
+
+
+                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+            }
+        };
+        pScene.attachChild(mBackground);
+        pScene.registerTouchArea(mBackground);
+
+        float[] squareX = {WORLD_LEFT, WORLD_WIDTH, WORLD_WIDTH, WORLD_LEFT, WORLD_LEFT};
+        float[] squareY = {WORLD_TOP, WORLD_TOP, WORLD_HEIGHT, WORLD_HEIGHT, WORLD_TOP};
+        //float[] groundX = {WORLD_LEFT, 5.0f, 22.5f, 100.0f, WORLD_WIDTH};
+        //float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
+
+        pScene.attachChild(new Ground(this, squareX, squareY));
+        //pScene.attachChild(new Ground(this, groundX, groundY));
+
+        //pScene.attachChild(new Domino(this, 25.0f, 25.0f, true));
+        //pScene.attachChild(new Domino(this, 50.0f, 10.0f, false));
+        //pScene.attachChild(new Domino(this, 100.0f, 5.0f, false));
+
+
         ////////////////////////////////////////////////////////////////////////
         // Code utilisant le système XML
         String publickey = getString(R.string.key_0)
@@ -85,39 +109,7 @@ public final class MainActivity extends AndEngineActivity {
             Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
         }
 
-        ////////////////////////////////////////////////////////////////////////
-        // Code de test
 
-        mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
-
-            @Override
-            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-
-                mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
-
-
-                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
-            }
-        };
-        pScene.attachChild(mBackground);
-        pScene.registerTouchArea(mBackground);
-
-        float[] squareX = {WORLD_LEFT + 1, WORLD_WIDTH, WORLD_WIDTH, WORLD_LEFT, WORLD_LEFT + 1};
-        float[] squareY = {WORLD_TOP + 1, WORLD_TOP + 1, WORLD_HEIGHT, WORLD_HEIGHT, WORLD_TOP + 1};
-        float[] groundX = {WORLD_LEFT, 5.0f, 22.5f, 100.0f, WORLD_WIDTH};
-        float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
-
-        pScene.attachChild(
-                new Ground(this, squareX, squareY));
-        pScene.attachChild(
-                new Ground(this, groundX, groundY));
-
-        pScene.attachChild(
-                new Domino(this, 25.0f, 25.0f, true));
-        pScene.attachChild(
-                new Domino(this, 50.0f, 10.0f, false));
-        pScene.attachChild(
-                new Domino(this, 100.0f, 5.0f, false));
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
 
@@ -130,7 +122,7 @@ public final class MainActivity extends AndEngineActivity {
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
         ////////////////////////////////////////////////////////////////////////
         // Loading local resources
-
+        levelStream = this.getResources().openRawResource(R.raw.stage1);
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         mBackgroundTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
         mBackgroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBackgroundTexture, this, "vehicles.png", 0, 0, 6, 1);
