@@ -21,11 +21,13 @@ import android.util.Log;
 import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import com.gmxteam.funkydomino.graphicals.components.Ball;
 import com.gmxteam.funkydomino.graphicals.components.Cog;
+import com.gmxteam.funkydomino.graphicals.components.Component;
 import com.gmxteam.funkydomino.graphicals.components.Domino;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
 import com.gmxteam.funkydomino.graphicals.components.Water;
 import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
 import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
+import com.gmxteam.funkydomino.graphicals.widgets.Widget;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -162,9 +164,11 @@ public final class XMLHandler extends DefaultHandler {
 
         if (inLevel) {
             if (localName.equals("component")) {
+                Component.loadResource(mAndEngineActivity, atts);
                 gameInformationData.componentTheme = atts.getValue("theme");
                 inComponent = true;
             } else if (localName.equals("widget")) {
+                Widget.loadResource(mAndEngineActivity, atts);
                 gameInformationData.widgetTheme = atts.getValue("theme");
                 inWidget = true;
             }
