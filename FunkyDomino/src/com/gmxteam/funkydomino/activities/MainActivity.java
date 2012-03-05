@@ -59,7 +59,7 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-        
+
         mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
 
             @Override
@@ -107,6 +107,8 @@ public final class MainActivity extends AndEngineActivity {
             Log.e(APP_LOG_NAME, "Parser has crashed ! There's an error in the level file !", ex);
         } catch (IOException ex) {
             Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
+        } finally {
+            publickey = null;
         }
 
 

@@ -127,7 +127,6 @@ public final class XMLHandler extends DefaultHandler {
                 mAndEngineActivity.mScene.attachChild(new Domino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a domino to the scene.");
                 inDomino = true;
-
             } else if (localName.equals("cog")) {
                 mAndEngineActivity.mScene.attachChild(new Cog(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a cog to the scene.");
@@ -145,6 +144,7 @@ public final class XMLHandler extends DefaultHandler {
                 Log.v("funky-domino", "Adding water to the scene.");
                 inWater = true;
             }
+
         } else if (inWidget) {
             if (mAndEngineActivity.mScene == null) {
                 return;

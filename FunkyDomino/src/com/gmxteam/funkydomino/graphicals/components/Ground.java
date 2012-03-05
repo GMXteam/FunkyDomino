@@ -54,30 +54,57 @@ public final class Ground extends Component {
      * dans le fichier XML pour cet objet.
      */
     public Ground(AndEngineActivity aea, Attributes atts) {
-        String[] xStringList = atts.getValue("x").split(" ");
-        String[] yStringList = atts.getValue("y").split(" ");
-        if (xStringList.length != yStringList.length) {
-            throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
-                    + "\n" + atts.getValue("x")
-                    + "\n" + atts.getValue("y"));
-        }
-        float[] x = new float[xStringList.length];
-        float[] y = new float[yStringList.length];
-        for (int i = 0; i < xStringList.length; i++) {
-            try {
-                x[i] = Float.parseFloat(xStringList[i]);
-            } catch (NumberFormatException nfe) {
-                throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
-
+        if (atts.getValue("type").equals("linear")) {
+            String[] xStringList = atts.getValue("x").split(" ");
+            String[] yStringList = atts.getValue("y").split(" ");
+            if (xStringList.length != yStringList.length) {
+                throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
+                        + "\n" + atts.getValue("x")
+                        + "\n" + atts.getValue("y"));
             }
-            try {
-                y[i] = Float.parseFloat(yStringList[i]);
-            } catch (NumberFormatException nfe) {
-                throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+            float[] x = new float[xStringList.length];
+            float[] y = new float[yStringList.length];
+            for (int i = 0; i < xStringList.length; i++) {
+                try {
+                    x[i] = Float.parseFloat(xStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
 
+                }
+                try {
+                    y[i] = Float.parseFloat(yStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+                }
             }
+            initLinear(aea, x, y);
+        } else if (atts.getValue("type").equals("bezier")) {
+            String[] xStringList = atts.getValue("x").split(" ");
+            String[] yStringList = atts.getValue("y").split(" ");
+            if (xStringList.length != 4 | yStringList.length != 4) {
+                throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol avec une courbe de bézier ne possède pas exactement 4 éléments !"
+                        + "\n" + atts.getValue("x")
+                        + "\n" + atts.getValue("y"));
+            }
+            float[] x = new float[xStringList.length];
+            float[] y = new float[yStringList.length];
+            for (int i = 0; i < xStringList.length; i++) {
+                try {
+                    x[i] = Float.parseFloat(xStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+                }
+                try {
+                    y[i] = Float.parseFloat(yStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+                }
+            }
+            initBezier(aea, x, y);
         }
-        init(aea, x, y);
     }
 
     /**
@@ -92,13 +119,13 @@ public final class Ground extends Component {
                     + "\n" + x.length
                     + "\n" + y.length);
         }
-        init(aea, x, y);
+        initLinear(aea, x, y);
     }
 
     /**
      * Méthode pour unifier les appels de constructeurs.
      */
-    private void init(AndEngineActivity aea, float[] x, float y[]) {
+    private void initLinear(AndEngineActivity aea, float[] x, float y[]) {
         this.mAndEngineActivity = aea;
         this.mColor = Color.BLACK;
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
@@ -110,8 +137,33 @@ public final class Ground extends Component {
 
         for (int i = 0; i < x.length - 1; i++) {
             Line l = new Line(x[i], y[i], x[i + 1], y[i + 1], 1.0f, vertexBufferObjectManager);
-            
+
             this.attachChild(l);
+            mBodies[i] = PhysicsFactory.createLineBody(aea.mPhysicsWorld, x[i], y[i], x[i + 1], y[i + 1], wallFixtureDef);
+        }
+    }
+
+    /**
+     * Génère une courbe de bézier avec quantre points de contrôle.
+     * @param aea
+     * @param x
+     * @param y 
+     */
+    private void initBezier(AndEngineActivity aea, float[] x, float y[]) {
+        this.mAndEngineActivity = aea;
+        this.mColor = Color.BLACK;
+        final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
+
+
+        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.0f);
+
+        this.mBodies = new Body[x.length];
+
+        for (int i = 0; i < x.length - 1; i++) {
+            Line l = new Line(x[i], y[i], x[i + 1], y[i + 1], 1.0f, vertexBufferObjectManager);
+
+            this.attachChild(l);
+
             mBodies[i] = PhysicsFactory.createLineBody(aea.mPhysicsWorld, x[i], y[i], x[i + 1], y[i + 1], wallFixtureDef);
         }
     }

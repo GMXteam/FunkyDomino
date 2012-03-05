@@ -8,8 +8,12 @@
         
         <cog x="" y="" r=""></cog>
         <ball x="" y="" r=""></ball>
-        <ground x="1.9 5.4 100.7"
-                y="2.6 44.3 700.6"/>                   
+        <ground type="linear"
+                x="1.9 5.4 100.7"
+                y="2.6 44.3 700.6"/>
+        <ground type="bezier"
+                x="1.9 5.4 100.7"
+                y="2.6 44.3 700.6"/> 
                          
        
         <water x="" y=""></water>
