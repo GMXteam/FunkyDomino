@@ -16,20 +16,25 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
+import com.gmxteam.funkydomino.activities.AndEngineActivity;
 import com.gmxteam.funkydomino.graphicals.Graphical;
+import org.xml.sax.Attributes;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
 public abstract class Widget extends Graphical implements WidgetsConstants {
-    
+
+    /**
+     * Charge les ressources spécifique à tous les Widgets.
+     * @param mAndEngineActivity
+     * @param atts 
+     */
+    public static void loadResource(AndEngineActivity mAndEngineActivity, Attributes atts) {
+    }
     /**
      * 
      */
     public boolean isEnabled;
-    
-    
-    
-   
 }

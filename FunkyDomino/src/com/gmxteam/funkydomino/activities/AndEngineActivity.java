@@ -34,7 +34,6 @@ import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
-
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
  * Funky Domino sera premièrement développé en canvas afin d'obtenir rapidement
@@ -71,11 +70,9 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * 
      */
     SmoothCamera mCamera;
-    
     TiledSprite mBackground;
     TiledTextureRegion mBackgroundTextureRegion;
     BitmapTextureAtlas mBackgroundTexture;
-    
 
     /**
      * 
@@ -85,13 +82,11 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     public final EngineOptions onCreateEngineOptions() {
         this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
         this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT);
-        
+
         //engineOptions.getAudioOptions().setNeedsSound(true);
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
-        
-    }
 
-    
+    }
 
     /**
      * Chargement du moteur de physique et du moteur de jeu.
@@ -110,18 +105,18 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
         this.mEngine.registerUpdateHandler(new FPSLogger());
         mScene = new Scene();
-        
+
         mScene.setBackground(new Background(Color.RED));
-        
+
         this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
         this.mScene.registerUpdateHandler(this.mPhysicsWorld);
-        
-        
-        pOnCreateSceneCallback.onCreateSceneFinished(mScene);        
-        
-        
+
+
+        pOnCreateSceneCallback.onCreateSceneFinished(mScene);
+
+
     }
-    
+
     /**
      * Chargement de la scène.
      * @return
