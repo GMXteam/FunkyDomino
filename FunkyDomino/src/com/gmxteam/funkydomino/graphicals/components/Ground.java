@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import com.gmxteam.funkydomino.utils.xmlparser.IllegalXMLAttributeValueException;
 import org.andengine.entity.primitive.Line;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -42,7 +42,7 @@ public final class Ground extends Component {
      * toute forme de création d'objets de type Graphical.
      * @param aea 
      */
-    public static void loadResource(AndEngineActivity aea) {
+    public static void loadResource(FunkyDominoActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -53,7 +53,7 @@ public final class Ground extends Component {
      * @param atts est un attribut XML contenant tous les attributs spécifiés
      * dans le fichier XML pour cet objet.
      */
-    public Ground(AndEngineActivity aea, Attributes atts) {
+    public Ground(FunkyDominoActivity aea, Attributes atts) {
         if (atts.getValue("type").equals("linear")) {
             String[] xStringList = atts.getValue("x").split(" ");
             String[] yStringList = atts.getValue("y").split(" ");
@@ -113,7 +113,7 @@ public final class Ground extends Component {
      * @param x est un tableau contenant les valeurs x des points formant le sol.
      * @param y est un tableau contenant les valeurs y des points formant le sol.
      */
-    public Ground(AndEngineActivity aea, float[] x, float y[]) {
+    public Ground(FunkyDominoActivity aea, float[] x, float y[]) {
         if (x.length != y.length) {
             throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
                     + "\n" + x.length
@@ -125,7 +125,7 @@ public final class Ground extends Component {
     /**
      * Méthode pour unifier les appels de constructeurs.
      */
-    private void initLinear(AndEngineActivity aea, float[] x, float y[]) {
+    private void initLinear(FunkyDominoActivity aea, float[] x, float y[]) {
         this.mAndEngineActivity = aea;
         this.mColor = Color.BLACK;
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
@@ -149,7 +149,7 @@ public final class Ground extends Component {
      * @param x
      * @param y 
      */
-    private void initBezier(AndEngineActivity aea, float[] x, float y[]) {
+    private void initBezier(FunkyDominoActivity aea, float[] x, float y[]) {
         this.mAndEngineActivity = aea;
         this.mColor = Color.BLACK;
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();

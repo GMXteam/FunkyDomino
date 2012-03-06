@@ -56,7 +56,7 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
  * La physique est gérée dans un thread à part.
  * @author Guillaume Poirier-Morency
  */
-public abstract class AndEngineActivity extends BaseGameActivity implements AndEngineActivityConstants {
+public abstract class FunkyDominoActivity extends BaseGameActivity implements FunkyDominoActivityConstants {
 
     /**
      * 
@@ -70,8 +70,17 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
      * 
      */
     SmoothCamera mCamera;
+    /**
+     * 
+     */
     TiledSprite mBackground;
+    /**
+     * 
+     */
     TiledTextureRegion mBackgroundTextureRegion;
+    /**
+     * 
+     */
     BitmapTextureAtlas mBackgroundTexture;
 
     /**
@@ -81,7 +90,8 @@ public abstract class AndEngineActivity extends BaseGameActivity implements AndE
     @Override
     public final EngineOptions onCreateEngineOptions() {
         this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
-        this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT);
+        this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH - CAMERA_WIDTH, WORLD_HEIGHT);
+
 
         //engineOptions.getAudioOptions().setNeedsSound(true);
         return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);

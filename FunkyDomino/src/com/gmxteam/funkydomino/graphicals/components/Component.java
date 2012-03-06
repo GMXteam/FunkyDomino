@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 import org.xml.sax.Attributes;
 
@@ -30,7 +30,12 @@ public abstract class Component extends Graphical implements ComponentsConstants
     /* Ici, on peut mettre toutes les variables définissant généralement les
      * composants, sans toutefois définir les widgets.
      */
-    public static void loadResource(AndEngineActivity aea, Attributes a) {
+    /**
+     * 
+     * @param aea
+     * @param a
+     */
+    public static void loadResource(FunkyDominoActivity aea, Attributes a) {
     
     
     }

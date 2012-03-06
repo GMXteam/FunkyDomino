@@ -17,12 +17,16 @@ import org.xml.sax.SAXException;
  *
  * @author guillaume
  */
-public class GameActivity extends AndEngineActivity implements AndEngineActivityConstants {
+public class GameActivity extends FunkyDominoActivity implements FunkyDominoActivityConstants {
 
     
     private InputStream levelStream;
     private int levelID;
 
+    /**
+     * 
+     * @param b
+     */
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
@@ -64,6 +68,11 @@ public class GameActivity extends AndEngineActivity implements AndEngineActivity
 
     }
 
+    /**
+     * 
+     * @param pOnCreateResourcesCallback
+     * @throws Exception
+     */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
         throw new UnsupportedOperationException("Not supported yet.");
     }

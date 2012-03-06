@@ -39,7 +39,7 @@ import org.xml.sax.SAXException;
  * Elle sera construite avec AndEngine.
  * @author Guillaume Poirier-Morency
  */
-public final class MainActivity extends AndEngineActivity {
+public final class MainActivity extends FunkyDominoActivity {
 
     /**
      * InputStream contenant le niveau qui sera joué. Il est dans MainActivity
@@ -59,13 +59,17 @@ public final class MainActivity extends AndEngineActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-
+        
         mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
 
             @Override
             public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
+
                 mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
+
+
+
 
 
                 return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);

@@ -19,7 +19,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -48,10 +48,10 @@ public final class Domino extends Component {
     private static TiledTextureRegion mDominoTextureRegion;
 
     /**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity) 
      * @param andEngineActivity 
      */
-    public static void loadResource(AndEngineActivity andEngineActivity) {
+    public static void loadResource(FunkyDominoActivity andEngineActivity) {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         mDominoTexture = new BitmapTextureAtlas(andEngineActivity.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
         mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mDominoTexture, andEngineActivity, "vehicles.png", 0, 0, 6, 1);
@@ -77,7 +77,7 @@ public final class Domino extends Component {
      * @param andEngineActivity 
      * @param atts
      */
-    public Domino(AndEngineActivity andEngineActivity, Attributes atts) {
+    public Domino(FunkyDominoActivity andEngineActivity, Attributes atts) {
         float x = Float.parseFloat(atts.getValue("x"));
         float y = Float.parseFloat(atts.getValue("y"));
         boolean moveable = Boolean.parseBoolean(atts.getValue("moveable"));
@@ -89,19 +89,20 @@ public final class Domino extends Component {
      * méthode interne init().
      * @param andEngineActivity
      * @param x 
-     * @param y  
+     * @param y
+     * @param moveable  
      */
-    public Domino(AndEngineActivity andEngineActivity, float x, float y, boolean moveable) {
+    public Domino(FunkyDominoActivity andEngineActivity, float x, float y, boolean moveable) {
         init(andEngineActivity, x, y, moveable);
     }
 
     /**
-     * @see Domino#Domino(com.gmxteam.funkydomino.activities.AndEngineActivity, float, float) 
+     * @see Domino#Domino(com.gmxteam.funkydomino.activities.FunkyDominoActivity, float, float) 
      * @param andEngineActivity est l'activité sur laquelle le domino est ajouté.
      * @param x est la position initiale en x du domino.
      * @param y est la position initiale en y du domino.
      */
-    private void init(AndEngineActivity andEngineActivity, float x, float y, boolean moveable) {
+    private void init(FunkyDominoActivity andEngineActivity, float x, float y, boolean moveable) {
         this.mAndEngineActivity = andEngineActivity;
 
         // Entité visible
