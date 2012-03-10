@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.graphicals.components;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import com.gmxteam.funkydomino.utils.xmlparser.IllegalXMLAttributeValueException;
 import org.andengine.entity.primitive.Line;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -42,7 +42,7 @@ public final class Ground extends Component {
      * toute forme de création d'objets de type Graphical.
      * @param aea 
      */
-    public static void loadResource(AndEngineActivity aea) {
+    public static void loadResource(FunkyDominoActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -53,31 +53,58 @@ public final class Ground extends Component {
      * @param atts est un attribut XML contenant tous les attributs spécifiés
      * dans le fichier XML pour cet objet.
      */
-    public Ground(AndEngineActivity aea, Attributes atts) {
-        String[] xStringList = atts.getValue("x").split(" ");
-        String[] yStringList = atts.getValue("y").split(" ");
-        if (xStringList.length != yStringList.length) {
-            throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
-                    + "\n" + atts.getValue("x")
-                    + "\n" + atts.getValue("y"));
-        }
-        float[] x = new float[xStringList.length];
-        float[] y = new float[yStringList.length];
-        for (int i = 0; i < xStringList.length; i++) {
-            try {
-                x[i] = Float.parseFloat(xStringList[i]);
-            } catch (NumberFormatException nfe) {
-                throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
-
+    public Ground(FunkyDominoActivity aea, Attributes atts) {
+        if (atts.getValue("type").equals("linear")) {
+            String[] xStringList = atts.getValue("x").split(" ");
+            String[] yStringList = atts.getValue("y").split(" ");
+            if (xStringList.length != yStringList.length) {
+                throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
+                        + "\n" + atts.getValue("x")
+                        + "\n" + atts.getValue("y"));
             }
-            try {
-                y[i] = Float.parseFloat(yStringList[i]);
-            } catch (NumberFormatException nfe) {
-                throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+            float[] x = new float[xStringList.length];
+            float[] y = new float[yStringList.length];
+            for (int i = 0; i < xStringList.length; i++) {
+                try {
+                    x[i] = Float.parseFloat(xStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
 
+                }
+                try {
+                    y[i] = Float.parseFloat(yStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+                }
             }
+            initLinear(aea, x, y);
+        } else if (atts.getValue("type").equals("bezier")) {
+            String[] xStringList = atts.getValue("x").split(" ");
+            String[] yStringList = atts.getValue("y").split(" ");
+            if (xStringList.length != 4 | yStringList.length != 4) {
+                throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol avec une courbe de bézier ne possède pas exactement 4 éléments !"
+                        + "\n" + atts.getValue("x")
+                        + "\n" + atts.getValue("y"));
+            }
+            float[] x = new float[xStringList.length];
+            float[] y = new float[yStringList.length];
+            for (int i = 0; i < xStringList.length; i++) {
+                try {
+                    x[i] = Float.parseFloat(xStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur x " + xStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+                }
+                try {
+                    y[i] = Float.parseFloat(yStringList[i]);
+                } catch (NumberFormatException nfe) {
+                    throw new IllegalXMLAttributeValueException("La valeur y " + yStringList[i] + " n'a pas pu être convertie en float.", nfe);
+
+                }
+            }
+            initBezier(aea, x, y);
         }
-        init(aea, x, y);
     }
 
     /**
@@ -86,19 +113,19 @@ public final class Ground extends Component {
      * @param x est un tableau contenant les valeurs x des points formant le sol.
      * @param y est un tableau contenant les valeurs y des points formant le sol.
      */
-    public Ground(AndEngineActivity aea, float[] x, float y[]) {
+    public Ground(FunkyDominoActivity aea, float[] x, float y[]) {
         if (x.length != y.length) {
             throw new IllegalXMLAttributeValueException("La liste de floats pour construire le sol ne possède pas autant d'éléments en x qu'en y"
                     + "\n" + x.length
                     + "\n" + y.length);
         }
-        init(aea, x, y);
+        initLinear(aea, x, y);
     }
 
     /**
      * Méthode pour unifier les appels de constructeurs.
      */
-    private void init(AndEngineActivity aea, float[] x, float y[]) {
+    private void initLinear(FunkyDominoActivity aea, float[] x, float y[]) {
         this.mAndEngineActivity = aea;
         this.mColor = Color.BLACK;
         final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
@@ -110,8 +137,33 @@ public final class Ground extends Component {
 
         for (int i = 0; i < x.length - 1; i++) {
             Line l = new Line(x[i], y[i], x[i + 1], y[i + 1], 1.0f, vertexBufferObjectManager);
-            
+
             this.attachChild(l);
+            mBodies[i] = PhysicsFactory.createLineBody(aea.mPhysicsWorld, x[i], y[i], x[i + 1], y[i + 1], wallFixtureDef);
+        }
+    }
+
+    /**
+     * Génère une courbe de bézier avec quantre points de contrôle.
+     * @param aea
+     * @param x
+     * @param y 
+     */
+    private void initBezier(FunkyDominoActivity aea, float[] x, float y[]) {
+        this.mAndEngineActivity = aea;
+        this.mColor = Color.BLACK;
+        final VertexBufferObjectManager vertexBufferObjectManager = mAndEngineActivity.getVertexBufferObjectManager();
+
+
+        final FixtureDef wallFixtureDef = PhysicsFactory.createFixtureDef(0, 0.5f, 0.0f);
+
+        this.mBodies = new Body[x.length];
+
+        for (int i = 0; i < x.length - 1; i++) {
+            Line l = new Line(x[i], y[i], x[i + 1], y[i + 1], 1.0f, vertexBufferObjectManager);
+
+            this.attachChild(l);
+
             mBodies[i] = PhysicsFactory.createLineBody(aea.mPhysicsWorld, x[i], y[i], x[i + 1], y[i + 1], wallFixtureDef);
         }
     }

@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import org.xml.sax.Attributes;
 
 /**
@@ -29,17 +29,18 @@ public final class Water extends Component {
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
     /**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity) 
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity) 
      * @param aea 
      */
-    public static void loadResource(AndEngineActivity aea) {
+    public static void loadResource(FunkyDominoActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////
     /**
      * 
+     * @param aea 
      * @param atts
      */
-    public Water(AndEngineActivity aea, Attributes atts) {
+    public Water(FunkyDominoActivity aea, Attributes atts) {
         
     }
 }

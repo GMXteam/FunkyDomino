@@ -12,7 +12,6 @@ gdbserver
 .settings
 AndEngine.iml
 nbandroid/**
-*~
 
 # Local OS files
 ehthumbs.db

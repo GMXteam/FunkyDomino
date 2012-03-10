@@ -17,7 +17,7 @@
 package com.gmxteam.funkydomino.graphicals;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivityConstants;
 
 /**
  * Exception lancée lorsqu'un objet que l'on présume de type Graphical, mais 
@@ -26,10 +26,11 @@ import com.gmxteam.funkydomino.activities.AndEngineActivityConstants;
  * @deprecated Cette exception n'est plus très utile.
  */
 @Deprecated
-public final class UnknownGraphicalElementException extends Exception implements AndEngineActivityConstants {    
+public final class UnknownGraphicalElementException extends Exception implements FunkyDominoActivityConstants {    
     
     /**
      * 
+     * @param message 
      */
     public UnknownGraphicalElementException(String message) {
         super(message);
@@ -38,6 +39,8 @@ public final class UnknownGraphicalElementException extends Exception implements
     
     /**
      * 
+     * @param message 
+     * @param t 
      */
     public UnknownGraphicalElementException(String message, Throwable t) {
         super(message, t);

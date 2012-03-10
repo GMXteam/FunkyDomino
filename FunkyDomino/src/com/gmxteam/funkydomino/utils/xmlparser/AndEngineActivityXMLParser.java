@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,6 +32,8 @@ import org.xml.sax.XMLReader;
  * @author Guillaume Poirier-morency
  */
 public final class AndEngineActivityXMLParser { 
+    
+    private static DecryptedStream stdin;
 
     /**
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
@@ -43,13 +45,17 @@ public final class AndEngineActivityXMLParser {
      * @throws IOException
      * @throws SAXException  
      */
-    public static void buildGameInstance(AndEngineActivity aea, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
+    public static void buildGameInstance(FunkyDominoActivity aea, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
         SAXParserFactory spf = SAXParserFactory.newInstance();
         SAXParser sp = spf.newSAXParser();
         XMLReader xr = sp.getXMLReader();
         XMLHandler xh = new XMLHandler(aea);
         xr.setContentHandler(xh);
-        xr.parse(new InputSource(decrypt(resourceStream, publicKey)));
+        stdin = new DecryptedStream(resourceStream, publicKey);
+        xr.parse(new InputSource(stdin));
+        // Un fois parsé, il ne sert plus à rien.
+        stdin.destroyNow();
+        stdin = null;
     }
 
     /**
@@ -69,26 +75,11 @@ public final class AndEngineActivityXMLParser {
         XMLReader xr = sp.getXMLReader();
         XMLHandler xh = new XMLHandler();
         xr.setContentHandler(xh);
-        xr.parse(new InputSource(decrypt(resourceStream, publicKey)));
-        return xh.getGameInformation();
-    }
-
-    /**
-     * 
-     * @param ga
-     * @param resourceStream     
-     * @return 
-     */
-    private static InputStream decrypt(InputStream resourceStream, String publicKey) {
-        // On récupère la clé publique...
-
-        // On décrypte le niveau avec cette clé...
-
-
-        // On retourne l'inputstream du niveau décrypté
-
-        return resourceStream;
-
-
-    }
+        stdin = new DecryptedStream(resourceStream, publicKey);
+        xr.parse(new InputSource(stdin));
+        final GameInformation gi = xh.getGameInformation();
+        stdin.destroyNow();
+        stdin = null;
+        return gi;
+    }   
 }

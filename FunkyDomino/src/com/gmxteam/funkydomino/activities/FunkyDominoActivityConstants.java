@@ -17,10 +17,10 @@
 package com.gmxteam.funkydomino.activities;
 
 /**
- *
+ * Constantes pour 
  * @author guillaume
  */
-public interface AndEngineActivityConstants {
+public interface FunkyDominoActivityConstants {
 
     ////////////////////////////////////////////////////////////////////////////
     // Constantes publiques. Elles sont disponibles dans tout le projet.
@@ -58,13 +58,28 @@ public interface AndEngineActivityConstants {
      * 
      */
     public static final float CAMERA_HEIGHT = CELLS_VERTICAL * CELL_HEIGHT;
+    /**
+     * 
+     */
     public static final float CAMERA_LEFT = 0.0f;
+    /**
+     * 
+     */
     public static final float CAMERA_TOP = 0.0f;
-    
+    /**
+     * 
+     */
     public static final float WORLD_HEIGHT = CAMERA_HEIGHT;
+    /**
+     * 
+     */
     public static final float WORLD_WIDTH = 5.0f * CAMERA_WIDTH;
+    /**
+     * 
+     */
     public static final float WORLD_LEFT = 0.0f;
+    /**
+     * 
+     */
     public static final float WORLD_TOP = 0.0f;
-
-    
 }

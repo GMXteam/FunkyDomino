@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import org.xml.sax.Attributes;
 
 /**
@@ -26,15 +26,20 @@ import org.xml.sax.Attributes;
 public final class AddDomino extends Widget {
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
-    public static void loadResource(AndEngineActivity aea) {
+    /**
+     * 
+     * @param aea
+     */
+    public static void loadResource(FunkyDominoActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity)
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity)
+     * @param mAndEngineActivity 
      * @param atts
      */
-    public AddDomino(AndEngineActivity mAndEngineActivity, Attributes atts) {
+    public AddDomino(FunkyDominoActivity mAndEngineActivity, Attributes atts) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

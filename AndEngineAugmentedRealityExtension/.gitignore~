@@ -10,5 +10,5 @@ gdbserver
 .hg
 local.properties
 .settings
-AndEngine.iml
-# Adding a comment for fun
+AndEngineAugmentedRealityExtension.iml
+project.properties

@@ -18,7 +18,7 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import com.gmxteam.funkydomino.graphicals.components.Ball;
 import com.gmxteam.funkydomino.graphicals.components.Cog;
 import com.gmxteam.funkydomino.graphicals.components.Component;
@@ -52,25 +52,22 @@ public final class XMLHandler extends DefaultHandler {
      */
     private GameInformation gameInformationData;
     /**
-     * @see AndEngineActivity
+     * @see FunkyDominoActivity
      */
-    private AndEngineActivity mAndEngineActivity;
+    private FunkyDominoActivity mAndEngineActivity;
 
     /**
      * 
      */
     public XMLHandler() {
-
         mAndEngineActivity = null;
-
-
     }
 
     /**
      * 
      * @param aea 
      */
-    public XMLHandler(AndEngineActivity aea) {
+    public XMLHandler(FunkyDominoActivity aea) {
         mAndEngineActivity = aea;
     }
 
@@ -127,7 +124,6 @@ public final class XMLHandler extends DefaultHandler {
                 mAndEngineActivity.mScene.attachChild(new Domino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a domino to the scene.");
                 inDomino = true;
-
             } else if (localName.equals("cog")) {
                 mAndEngineActivity.mScene.attachChild(new Cog(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a cog to the scene.");
@@ -145,6 +141,7 @@ public final class XMLHandler extends DefaultHandler {
                 Log.v("funky-domino", "Adding water to the scene.");
                 inWater = true;
             }
+
         } else if (inWidget) {
             if (mAndEngineActivity.mScene == null) {
                 return;
@@ -201,23 +198,16 @@ public final class XMLHandler extends DefaultHandler {
     @Override
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
         Log.v("funky-domino", "On sort de la balise " + localName + ".");
-
-
-
         if (localName.equals("level")) {
             inLevel = false;
-
         }
         if (inLevel) {
             if (localName.equals("component")) {
-
                 inComponent = false;
             } else if (localName.equals("widget")) {
-
                 inWidget = false;
             }
         }
-
         if (inComponent) {
             if (localName.equals("domino")) {
 
@@ -253,6 +243,5 @@ public final class XMLHandler extends DefaultHandler {
     public void characters(char ch[], int start, int length) {
         String chars = new String(ch, start, length);
         chars = chars.trim();
-
     }
 }
