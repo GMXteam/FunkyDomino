@@ -24,7 +24,7 @@ import org.andengine.entity.scene.Scene;
  * Activité pour présenter l'aide à l'utilisateur.
  * @author Guillaume Poirier-Morency
  */
-public final class HelpActivity extends AndEngineActivity {
+public final class HelpActivity extends FunkyDominoActivity {
 
     /**
      * 

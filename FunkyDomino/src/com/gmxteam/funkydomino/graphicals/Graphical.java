@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import org.andengine.entity.Entity;
 
 /**
@@ -27,9 +27,9 @@ import org.andengine.entity.Entity;
 public abstract class Graphical extends Entity {
     
     /**
-     * @see AndEngineActivity
+     * @see FunkyDominoActivity
      */
-    protected AndEngineActivity mAndEngineActivity;
+    protected FunkyDominoActivity mAndEngineActivity;
     
 
 }

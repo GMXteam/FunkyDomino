@@ -16,30 +16,31 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
-import com.gmxteam.funkydomino.activities.AndEngineActivity;
+import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
 import com.gmxteam.funkydomino.graphicals.components.Ground;
 import org.xml.sax.Attributes;
 
 /**
- * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity)
+ * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity)
  * @author Guillaume Poirier-Morency
  */
 public final class AddBall extends Widget {
     ////////////////////////////////////////////////////////////////////////////
     // Les textures sont statiques et chargées lors
     /**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.AndEngineActivity)
+     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity)
      * @param andEngineActivity 
      */
-    public static void loadResource(AndEngineActivity andEngineActivity) {
+    public static void loadResource(FunkyDominoActivity andEngineActivity) {
     }
     ////////////////////////////////////////////////////////////////////////////
 
     /**
      * 
+     * @param mAndEngineActivity 
      * @param atts
      */
-    public AddBall(AndEngineActivity mAndEngineActivity, Attributes atts) {
+    public AddBall(FunkyDominoActivity mAndEngineActivity, Attributes atts) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

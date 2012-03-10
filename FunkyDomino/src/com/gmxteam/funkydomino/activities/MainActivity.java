@@ -39,7 +39,7 @@ import org.xml.sax.SAXException;
  * Elle sera construite avec AndEngine.
  * @author Guillaume Poirier-Morency
  */
-public final class MainActivity extends AndEngineActivity {
+public final class MainActivity extends FunkyDominoActivity {
 
     /**
      * InputStream contenant le niveau qui sera joué. Il est dans MainActivity
@@ -65,7 +65,11 @@ public final class MainActivity extends AndEngineActivity {
             @Override
             public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
+
                 mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
+
+
+
 
 
                 return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
@@ -107,6 +111,8 @@ public final class MainActivity extends AndEngineActivity {
             Log.e(APP_LOG_NAME, "Parser has crashed ! There's an error in the level file !", ex);
         } catch (IOException ex) {
             Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
+        } finally {
+            publickey = null;
         }
 
 

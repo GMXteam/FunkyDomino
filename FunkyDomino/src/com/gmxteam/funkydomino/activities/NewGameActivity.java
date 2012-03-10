@@ -25,7 +25,7 @@ import org.andengine.entity.scene.Scene;
  * niveau sélectionné, 
  * @author Guillaume Poirier-Morency
  */
-public final class NewGameActivity extends AndEngineActivity {
+public final class NewGameActivity extends FunkyDominoActivity {
      
 
     

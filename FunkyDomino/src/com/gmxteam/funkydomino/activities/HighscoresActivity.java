@@ -24,7 +24,7 @@ import org.andengine.entity.scene.Scene;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class HighscoresActivity extends AndEngineActivity {
+public final class HighscoresActivity extends FunkyDominoActivity {
 
     
 
