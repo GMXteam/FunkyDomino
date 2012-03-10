@@ -15,8 +15,8 @@ import java.util.logging.Logger;
  */
 class DecryptedStream extends InputStream {
 
-    private InputStream stdin;
-    private String publicKey;
+    private final InputStream stdin;
+    private final String publicKey;
 
     /**
      * 
@@ -33,14 +33,6 @@ class DecryptedStream extends InputStream {
     public int read() throws IOException {
         return stdin.read();
        
-    }
-    
-    /**
-     * Détruit la référence vers la clé publique.
-     */
-    void destroyNow() {
-        publicKey = null;
-        stdin = null;
     }
     
 }

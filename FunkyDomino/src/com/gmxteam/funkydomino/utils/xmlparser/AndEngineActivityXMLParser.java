@@ -31,9 +31,7 @@ import org.xml.sax.XMLReader;
  * encrypté asymétriquement en Activity.
  * @author Guillaume Poirier-morency
  */
-public final class AndEngineActivityXMLParser { 
-    
-    private static DecryptedStream stdin;
+public final class AndEngineActivityXMLParser {
 
     /**
      * Décode la ressource XML en entrée et l'interprète afin de générer le code
@@ -46,16 +44,16 @@ public final class AndEngineActivityXMLParser {
      * @throws SAXException  
      */
     public static void buildGameInstance(FunkyDominoActivity aea, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
-        SAXParserFactory spf = SAXParserFactory.newInstance();
-        SAXParser sp = spf.newSAXParser();
-        XMLReader xr = sp.getXMLReader();
-        XMLHandler xh = new XMLHandler(aea);
+        final SAXParserFactory spf = SAXParserFactory.newInstance();
+        final SAXParser sp = spf.newSAXParser();
+        final XMLReader xr = sp.getXMLReader();
+        final XMLHandler xh = new XMLHandler(aea);
         xr.setContentHandler(xh);
+        final DecryptedStream stdin;
         stdin = new DecryptedStream(resourceStream, publicKey);
         xr.parse(new InputSource(stdin));
-        // Un fois parsé, il ne sert plus à rien.
-        stdin.destroyNow();
-        stdin = null;
+        // Un fois parsé, il ne sert plus à rien.      
+
     }
 
     /**
@@ -75,11 +73,10 @@ public final class AndEngineActivityXMLParser {
         XMLReader xr = sp.getXMLReader();
         XMLHandler xh = new XMLHandler();
         xr.setContentHandler(xh);
+        final DecryptedStream stdin;
         stdin = new DecryptedStream(resourceStream, publicKey);
         xr.parse(new InputSource(stdin));
         final GameInformation gi = xh.getGameInformation();
-        stdin.destroyNow();
-        stdin = null;
         return gi;
-    }   
+    }
 }
