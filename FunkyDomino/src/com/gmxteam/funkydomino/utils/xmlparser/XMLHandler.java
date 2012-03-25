@@ -28,6 +28,7 @@ import com.gmxteam.funkydomino.graphicals.components.Water;
 import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
 import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
 import com.gmxteam.funkydomino.graphicals.widgets.Widget;
+import java.util.HashMap;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -38,14 +39,16 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public final class XMLHandler extends DefaultHandler {
 
-    private long startedTime;
-    // booleans that check whether it's in a specific tag or not 
-    private boolean inComponent;
-    private boolean inWidget, inLevel;
-    /* Ces booléens ne sont pas utilisés, car le contenu de leurs balises n'est
-     * pas encore bien défini. 
+    /**
+     * Entier contenant le temps de départ du parsing afin de mesurer le temps
+     * que l'opération va prendre.
      */
-    private boolean inDomino, inCog, inWater, inBall, inGround, inAddBall, inAddDomino;
+    private long startedTime;
+    
+    /**
+     * Dictionnaire contenant les états des balises XML.
+     */
+    private HashMap<String, Boolean> states = new HashMap<String, Boolean>(); 
     // this holds the data 
     /**
      * @see GameInformation
@@ -116,63 +119,63 @@ public final class XMLHandler extends DefaultHandler {
     @Override
     public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
         Log.v("funky-domino", "On entre dans la balise " + localName + ".");
-        if (inComponent) {
+        if (states.get("component")) {
             if (mAndEngineActivity == null) {
                 return;
             }
             if (localName.equals("domino")) {
                 mAndEngineActivity.mScene.attachChild(new Domino(mAndEngineActivity, atts));
-                Log.v("funky-domino", "Adding a domino to the scene.");
-                inDomino = true;
+                Log.v("funky-domino", "Adding a domino to the scene.");                
+                states.put(localName, true);
             } else if (localName.equals("cog")) {
                 mAndEngineActivity.mScene.attachChild(new Cog(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a cog to the scene.");
-                inCog = true;
+                states.put(localName, true);
             } else if (localName.equals("ball")) {
                 mAndEngineActivity.mScene.attachChild(new Ball(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a ball to the scene.");
-                inBall = true;
+                states.put(localName, true);
             } else if (localName.equals("ground")) {
                 mAndEngineActivity.mScene.attachChild(new Ground(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a ground to the scene.");
-                inGround = true;
+                states.put(localName, true);
             } else if (localName.equals("water")) {
                 mAndEngineActivity.mScene.attachChild(new Water(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding water to the scene.");
-                inWater = true;
+                states.put(localName, true);
             }
 
-        } else if (inWidget) {
+        } else if (states.get("widget")) {
             if (mAndEngineActivity.mScene == null) {
                 return;
             }
             if (localName.equals("addball")) {
                 mAndEngineActivity.mScene.attachChild(new AddBall(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a addball widget to the scene.");
-                inAddBall = true;
+                states.put(localName, true);
 
             } else if (localName.equals("adddomino")) {
                 mAndEngineActivity.mScene.attachChild(new AddDomino(mAndEngineActivity, atts));
                 Log.v("funky-domino", "Adding a adddomino widget to the scene.");
-                inAddDomino = true;
+                states.put(localName, true);
             }
         }
 
 
-        if (inLevel) {
+        if (states.get("level")) {
             if (localName.equals("component")) {
                 Component.loadResource(mAndEngineActivity, atts);
                 gameInformationData.componentTheme = atts.getValue("theme");
-                inComponent = true;
+                states.put(localName, true);
             } else if (localName.equals("widget")) {
                 Widget.loadResource(mAndEngineActivity, atts);
                 gameInformationData.widgetTheme = atts.getValue("theme");
-                inWidget = true;
+                states.put(localName, true);
             }
         }
 
         if (localName.equals("level")) {
-            inLevel = true;
+            states.put(localName, true);
             gameInformationData.id = atts.getValue("id");
             gameInformationData.previousLevel = atts.getValue("previousLevel");
             gameInformationData.nextLevel = atts.getValue("nextLevel");
@@ -199,33 +202,34 @@ public final class XMLHandler extends DefaultHandler {
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
         Log.v("funky-domino", "On sort de la balise " + localName + ".");
         if (localName.equals("level")) {
-            inLevel = false;
+                states.put(localName, false);
         }
-        if (inLevel) {
+        if (states.get("level")) {
             if (localName.equals("component")) {
-                inComponent = false;
+                states.put(localName, false);
             } else if (localName.equals("widget")) {
-                inWidget = false;
+                states.put(localName, false);
+                
             }
         }
-        if (inComponent) {
+        if (states.get("component")) {
             if (localName.equals("domino")) {
 
-                inDomino = false;
+                states.put(localName, false);
             } else if (localName.equals("cog")) {
-                inCog = false;
+                states.put(localName, false);
             } else if (localName.equals("ball")) {
-                inBall = false;
+                states.put(localName, false);
             } else if (localName.equals("ground")) {
-                inGround = false;
+                states.put(localName, false);
             } else if (localName.equals("water")) {
-                inWater = false;
+                states.put(localName, false);
             }
-        } else if (inWidget) {
+        } else if (states.get("widget")) {
             if (localName.equals("adddomino")) {
-                inAddDomino = false;
+                states.put(localName, false);
             } else if (localName.equals("addcog")) {
-                inAddBall = false;
+                states.put(localName, false);
             }
         }
     }
@@ -241,7 +245,7 @@ public final class XMLHandler extends DefaultHandler {
      */
     @Override
     public void characters(char ch[], int start, int length) {
-        String chars = new String(ch, start, length);
-        chars = chars.trim();
+        //String chars = new String(ch, start, length);
+        //chars = chars.trim();
     }
 }

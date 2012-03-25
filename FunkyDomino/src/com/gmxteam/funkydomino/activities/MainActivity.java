@@ -59,7 +59,7 @@ public final class MainActivity extends FunkyDominoActivity {
 
         ////////////////////////////////////////////////////////////////////////
         // Code de test
-        
+
         mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
 
             @Override
