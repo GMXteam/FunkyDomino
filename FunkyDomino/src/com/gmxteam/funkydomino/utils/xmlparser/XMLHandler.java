@@ -44,11 +44,10 @@ public final class XMLHandler extends DefaultHandler {
      * que l'opération va prendre.
      */
     private long startedTime;
-    
     /**
      * Dictionnaire contenant les états des balises XML.
      */
-    private HashMap<String, Boolean> states = new HashMap<String, Boolean>(); 
+    private HashMap<String, Boolean> states = new HashMap<String, Boolean>();
     // this holds the data 
     /**
      * @see GameInformation
@@ -125,7 +124,7 @@ public final class XMLHandler extends DefaultHandler {
             }
             if (localName.equals("domino")) {
                 mAndEngineActivity.mScene.attachChild(new Domino(mAndEngineActivity, atts));
-                Log.v("funky-domino", "Adding a domino to the scene.");                
+                Log.v("funky-domino", "Adding a domino to the scene.");
                 states.put(localName, true);
             } else if (localName.equals("cog")) {
                 mAndEngineActivity.mScene.attachChild(new Cog(mAndEngineActivity, atts));
@@ -202,14 +201,14 @@ public final class XMLHandler extends DefaultHandler {
     public void endElement(String namespaceURI, String localName, String qName) throws SAXException {
         Log.v("funky-domino", "On sort de la balise " + localName + ".");
         if (localName.equals("level")) {
-                states.put(localName, false);
+            states.put(localName, false);
         }
         if (states.get("level")) {
             if (localName.equals("component")) {
                 states.put(localName, false);
             } else if (localName.equals("widget")) {
                 states.put(localName, false);
-                
+
             }
         }
         if (states.get("component")) {
@@ -247,5 +246,5 @@ public final class XMLHandler extends DefaultHandler {
     public void characters(char ch[], int start, int length) {
         //String chars = new String(ch, start, length);
         //chars = chars.trim();
-    }
+    }    
 }
