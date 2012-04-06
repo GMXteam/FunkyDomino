@@ -152,6 +152,7 @@ public abstract class TexturePackParser extends DefaultHandler {
 		final TextureOptions textureOptions = this.parseTextureOptions(pAttributes);
 
 		if(type.equals(TexturePackParser.TAG_TEXTURE_ATTRIBUTE_TYPE_VALUE_BITMAP)) {
+                    
 			try {
 				return new BitmapTexture(this.mTextureManager, BitmapTextureFormat.fromPixelFormat(pixelFormat), textureOptions) {
 					@Override
@@ -162,6 +163,7 @@ public abstract class TexturePackParser extends DefaultHandler {
 			} catch (final IOException e) {
 				throw new TexturePackParseException(e);
 			}
+                        
 		} else if(type.equals(TexturePackParser.TAG_TEXTURE_ATTRIBUTE_TYPE_VALUE_PVR)) {
 			try {
 				return new PVRTexture(this.mTextureManager, PVRTextureFormat.fromPixelFormat(pixelFormat), new SmartPVRTexturePixelBufferStrategy(DataConstants.BYTES_PER_MEGABYTE / 8), textureOptions) {
