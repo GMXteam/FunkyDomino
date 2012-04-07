@@ -20,7 +20,6 @@ import android.hardware.SensorManager;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
-import org.andengine.engine.options.EngineOptions.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
@@ -30,61 +29,64 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.andengine.util.color.Color;
 import com.badlogic.gdx.math.Vector2;
+import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 /**
- * Classe abstraite permettant une implémentation efficace d'un interface JBox2D.
- * Funky Domino sera premièrement développé en canvas afin d'obtenir rapidement
- * des résultats. Il sera ensuite converti en OpenGL afin d'en améliorer
- * considérablement les performances.
- * 
- * Le fonctionnement est simple. On redéfinit une activité android en y intégrant
- * un moteur de physique et de rendu. On intègre aussi certaines interactions
- * avec l'utilisateur pour minimiser le code des activités.
- * 
+ * Classe abstraite permettant une implémentation efficace d'un interface
+ * JBox2D. Funky Domino sera premièrement développé en canvas afin d'obtenir
+ * rapidement des résultats. Il sera ensuite converti en OpenGL afin d'en
+ * améliorer considérablement les performances.
+ *
+ * Le fonctionnement est simple. On redéfinit une activité android en y
+ * intégrant un moteur de physique et de rendu. On intègre aussi certaines
+ * interactions avec l'utilisateur pour minimiser le code des activités.
+ *
  * Les éléments d'interfaces qui seront alors utilisés pourront être ceux de la
  * librairie standard, mais il est recommandé d'utiliser des élément de physique
  * afin de nous donner plus de liberté. Un menu animé par la physique, c'est pas
  * cool ça?
- * 
+ *
  * Le redessinage est géré dans le thread de l'utilisateur interface. Quand on
  * finit de redessiner une image, elle est automatiquement invalidée et quand le
  * thread UI sera prêt à la redessiner, le processus recommencera.
- * 
+ *
  * La physique est gérée dans un thread à part.
+ *
  * @author Guillaume Poirier-Morency
  */
 public abstract class FunkyDominoActivity extends BaseGameActivity implements FunkyDominoActivityConstants {
 
     /**
-     * 
+     *
      */
     public PhysicsWorld mPhysicsWorld;
     /**
-     * 
+     *
      */
     public Scene mScene;
     /**
-     * 
+     *
      */
     SmoothCamera mCamera;
     /**
-     * 
+     *
      */
     TiledSprite mBackground;
     /**
-     * 
+     *
      */
     TiledTextureRegion mBackgroundTextureRegion;
     /**
-     * 
+     *
      */
     BitmapTextureAtlas mBackgroundTexture;
+    private EngineOptions mEngineOptions;
 
     /**
-     * 
+     *
      * @return
      */
     @Override
@@ -92,14 +94,15 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
         this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
         this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH - CAMERA_WIDTH, WORLD_HEIGHT);
 
+        mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
 
         //engineOptions.getAudioOptions().setNeedsSound(true);
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
-
+        return mEngineOptions;
     }
 
     /**
      * Chargement du moteur de physique et du moteur de jeu.
+     *
      * @return
      */
     public final Engine onLoadEngine() {
@@ -108,9 +111,9 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
     }
 
     /**
-     * 
+     *
      * @param pOnCreateSceneCallback
-     * @throws Exception 
+     * @throws Exception
      */
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
         this.mEngine.registerUpdateHandler(new FPSLogger());
@@ -129,6 +132,7 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
 
     /**
      * Chargement de la scène.
+     *
      * @return
      */
     public final Scene onLoadScene() {
