@@ -1,14 +1,1 @@
-This repository contains sources for Funky Domino.
-
-But it contains much more than that in fact since it integrates the latest AndEngine plugins in a woking project. Since some of these plugins appeared to not compile correctly, I have made a AndEngineExampleModded project which is working without those bad plugins. I will also try to keep all them updated as they are all available on GitHub (check nicolasgramlich out !) ;)
-
-AndEngine extensions are in the repository and not forked for a stability purpose.
-
-Enabled extensions :
-    AndEngineAugmentedRealityExtension
-    AndEngineLiveWallpaperExtension
-    AndEngineMODPlayerExtension
-    AndEnginePhysicsBox2DExtension
-    AndEngineSVGTextureRegionExtension
-    AndEngineTexturePackerExtension
-    AndEngineTMXTiledMapExtension
+Here's the big boy.
