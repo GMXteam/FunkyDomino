@@ -17,14 +17,8 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
-
 import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
-import com.gmxteam.funkydomino.graphicals.components.Ball;
-import com.gmxteam.funkydomino.graphicals.components.Cog;
-import com.gmxteam.funkydomino.graphicals.components.Component;
-import com.gmxteam.funkydomino.graphicals.components.Domino;
-import com.gmxteam.funkydomino.graphicals.components.Ground;
-import com.gmxteam.funkydomino.graphicals.components.Water;
+import com.gmxteam.funkydomino.graphicals.components.*;
 import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
 import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
 import com.gmxteam.funkydomino.graphicals.widgets.Widget;
@@ -58,13 +52,21 @@ public final class XMLHandler extends DefaultHandler {
                 Log.e("funky-domino", "Balise component ou widget à l'extérieur de level.");
                 return false;
             }
+            if (!component && (domino | cog | ball | ground | water)) {
+                Log.e("funky-domino", "Balise de type component à l'extérieur de component.");
+                return false;
+            }
+            if (!widget && (addDomino | addBall)) {
+                Log.e("funky-domino", "Balise de type widget à l'extérieur de widget.");
+                return false;
+            }
 
 
             // Tout est impeccable !
             return true;
-
         }
     }
+    
     /**
      * Entier contenant le temps de départ du parsing afin de mesurer le temps
      * que l'opération va prendre.

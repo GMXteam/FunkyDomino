@@ -74,15 +74,6 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
     /**
      *
      */
-    TiledSprite mBackground;
-    /**
-     *
-     */
-    TiledTextureRegion mBackgroundTextureRegion;
-    /**
-     *
-     */
-    BitmapTextureAtlas mBackgroundTexture;
     private EngineOptions mEngineOptions;
 
     /**
