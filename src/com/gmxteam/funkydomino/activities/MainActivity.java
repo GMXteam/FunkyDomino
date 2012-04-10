@@ -77,8 +77,8 @@ public final class MainActivity extends FunkyDominoActivity {
             @Override
             public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
-
-                mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
+                
+                mCamera.setCenter(pTouchAreaLocalX, mCamera.getCenterY());
 
 
 
