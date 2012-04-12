@@ -9,6 +9,10 @@ package com.gmxteam.funkydomino.utils.xmlparser.utils;
  * @author guillaume
  */
 public class Encryptor {
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
     
     

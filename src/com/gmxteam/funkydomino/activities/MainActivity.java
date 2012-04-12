@@ -17,21 +17,21 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.graphicals.components.Ball;
-import com.gmxteam.funkydomino.graphicals.components.Cog;
-import com.gmxteam.funkydomino.graphicals.components.Domino;
-import com.gmxteam.funkydomino.graphicals.components.Ground;
-import com.gmxteam.funkydomino.graphicals.components.Water;
+import com.gmxteam.funkydomino.graphicals.components.*;
 import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
+import org.andengine.engine.Engine;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.entity.util.FPSLogger;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.util.color.Color;
 import org.xml.sax.SAXException;
 
 /**
@@ -142,5 +142,28 @@ public final class MainActivity extends FunkyDominoActivity {
         Water.loadResource(this);
         Cog.loadResource(this);
         pOnCreateResourcesCallback.onCreateResourcesFinished();
+    }
+    
+    /**
+     * Chargement du moteur de physique et du moteur de jeu.
+     *
+     * @return
+     */
+    public final Engine onLoadEngine() {
+        mEngine = new Engine(mEngineOptions);
+        mEngine.registerUpdateHandler(new FPSLogger());
+
+        return mEngine;
+    }
+    
+     /**
+     * Chargement de la scène.
+     *
+     * @return
+     */
+    public final Scene onLoadScene() {
+        mScene.setBackground(new Background(Color.RED));
+
+        return mScene;
     }
 }

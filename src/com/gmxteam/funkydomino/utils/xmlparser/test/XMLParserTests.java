@@ -11,6 +11,10 @@ package com.gmxteam.funkydomino.utils.xmlparser.test;
 public class XMLParserTests {
     
     
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         
     }
