@@ -31,6 +31,7 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.util.color.Color;
 import org.xml.sax.SAXException;
 
@@ -40,7 +41,18 @@ import org.xml.sax.SAXException;
  * @author Guillaume Poirier-Morency
  */
 public final class MainActivity extends FunkyDominoActivity {
-
+/**
+     *
+     */
+    private TiledSprite mBackground;
+    /**
+     *
+     */
+    private TiledTextureRegion mBackgroundTextureRegion;
+    /**
+     *
+     */
+    private BitmapTextureAtlas mBackgroundTexture;
     /**
      * InputStream contenant le niveau qui sera joué. Il est dans MainActivity
      * pour des raisons de tests. 
@@ -65,8 +77,8 @@ public final class MainActivity extends FunkyDominoActivity {
             @Override
             public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
-
-                mCamera.setCenter(mCamera.getCenterX() + 50.0f, mCamera.getCenterY());
+                
+                mCamera.setCenter(pTouchAreaLocalX, mCamera.getCenterY());
 
 
 

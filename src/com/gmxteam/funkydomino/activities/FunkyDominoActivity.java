@@ -30,6 +30,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 
+
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface
  * JBox2D. Funky Domino sera premièrement développé en canvas afin d'obtenir
@@ -70,6 +71,7 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
     /**
      *
      */
+
     TiledSprite mBackground;
     /**
      *
@@ -79,7 +81,12 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
      *
      */
     BitmapTextureAtlas mBackgroundTexture;
+    /**
+     * 
+     */
     EngineOptions mEngineOptions;
+
+
 
     /**
      *
