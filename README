@@ -1,5 +1,8 @@
 Here's the big boy.
 
+Il vous suffit de cloner tout dans le même répertoire et ça devrait bien fonctionner.
+
 Librairies requises :
-	AndEngine
+	AndEngine https://github.com/nicolasgramlich/AndEngine.git
+	AndEnginePhysicsBox2DExtension git://github.com/nicolasgramlich/AndEnginePhysicsBox2DExtension.git
 	

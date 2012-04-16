@@ -18,18 +18,18 @@ package com.gmxteam.funkydomino.activities;
 
 import android.hardware.SensorManager;
 import com.badlogic.gdx.math.Vector2;
-import org.andengine.engine.Engine;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.util.FPSLogger;
+import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
-import org.andengine.util.color.Color;
+
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface
@@ -71,7 +71,22 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
     /**
      *
      */
-    private EngineOptions mEngineOptions;
+
+    TiledSprite mBackground;
+    /**
+     *
+     */
+    TiledTextureRegion mBackgroundTextureRegion;
+    /**
+     *
+     */
+    BitmapTextureAtlas mBackgroundTexture;
+    /**
+     * 
+     */
+    EngineOptions mEngineOptions;
+
+
 
     /**
      *
@@ -89,41 +104,16 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
     }
 
     /**
-     * Chargement du moteur de physique et du moteur de jeu.
-     *
-     * @return
-     */
-    public final Engine onLoadEngine() {
-        mEngine = new Engine(mEngineOptions);
-        return mEngine;
-    }
-
-    /**
      *
      * @param pOnCreateSceneCallback
      * @throws Exception
      */
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
-        this.mEngine.registerUpdateHandler(new FPSLogger());
         mScene = new Scene();
 
-        mScene.setBackground(new Background(Color.RED));
-
-        this.mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
-        this.mScene.registerUpdateHandler(this.mPhysicsWorld);
-
+        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
+        mScene.registerUpdateHandler(mPhysicsWorld);
 
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);
-
-
-    }
-
-    /**
-     * Chargement de la scène.
-     *
-     * @return
-     */
-    public final Scene onLoadScene() {
-        return mScene;
     }
 }
