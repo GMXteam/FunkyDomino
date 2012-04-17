@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.utils.xmlparser.encrypt;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import java.io.InputStream;
  * 
  * @author guillaume
  */
-class DecryptedStream extends InputStream {
+public class DecryptedStream extends InputStream {
 
     private final InputStream stdin;
     private final String publicKey;
@@ -21,7 +21,7 @@ class DecryptedStream extends InputStream {
      * @param resourceStream
      * @param publicKey 
      */
-    DecryptedStream(InputStream resourceStream, String publicKey) {
+    public DecryptedStream(InputStream resourceStream, String publicKey) {
         this.publicKey = publicKey;
         stdin = resourceStream;
 
