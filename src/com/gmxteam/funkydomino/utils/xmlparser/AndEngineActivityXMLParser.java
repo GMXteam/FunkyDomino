@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.rsa.DecryptedStream;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
