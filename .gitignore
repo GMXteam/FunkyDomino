@@ -1,7 +1,21 @@
-/bin
-/gen
-
 local.properties
+target/**
+bin/**
+doc/**
+gen/**
 .DS_Store
-/XML Encryptor/nbproject/private/
-/XML Encryptor/build/
+Thumbs.db
+gdb.setup
+gdbserver
+.svn
+.hg
+.settings
+AndEngine.iml
+nbandroid/**
+*~
+
+# Local OS files
+ehthumbs.db
+Icon?
+Thumbs.db 
+*.swp
