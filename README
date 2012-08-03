@@ -4,5 +4,5 @@ Il vous suffit de cloner tout dans le même répertoire et ça devrait bien fonc
 
 Librairies requises :
 	AndEngine https://github.com/nicolasgramlich/AndEngine.git
-	AndEnginePhysicsBox2DExtension git://github.com/nicolasgramlich/AndEnginePhysicsBox2DExtension.git
+	AndEnginePhysicsBox2DExtension https://github.com/nicolasgramlich/AndEnginePhysicsBox2DExtension.git
 	
