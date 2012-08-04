@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Application and activities names -->
-    <string name="main_activity_name">Funky Domino</string> 
-    <string name="game_activity_name">Game</string>
-    <string name="help_activity_name">Help</string>
-    <string name="highscores_activity_name">Highscores</string>
-    <string name="load_game_activity_name">Load</string>
-    <string name="new_game_activity_name">New</string>
-    <string name="app_name">Funky Domino</string>
-    <!-- La clé est cassée en morceaux afin de s'assurer qu'elle soit répartie dans le package. -->
-    <string name="key_0">aushrfegio7326rt49732gerwhfe763</string>    
-    <string name="key_1">aushrfegio7326rt49732gerwhfe763</string>  
-    <string name="key_2">aushrfegio7326rt49732gerwhfe763</string>  
-    <string name="key_3">aushrfegio7326rt49732gerwhfe763</string>  
-    <string name="key_4">aushrfegio7326rt49732gerwhfe763</string>  
-    <string name="key_5">aushrfegio7326rt49732gerwhfe763</string>  
-    <string name="key_6">aushrfegio7326rt49732gerwhfe763</string>  
-    <string name="key_7">aushrfegio7326rt49732gerwhfe763</string> 
-    <!--  -->
+	<!-- Application and activities names -->
+	<string name="app_name">Funky Domino</string>
+
+	<string name="funky_domino_activity_name">FunkyDomino</string>
+	<string name="main_activity_name">FunkyDomino</string>
+
+	<string name="preferences_activity_name">Préférences</string>
+	<string name="highscores_activity_name">Highscores</string>
+	<string name="load_game_activity_name">Load</string>
+	<string name="new_game_activity_name">New</string>
+    
+	<!-- La clé est cassée en morceaux afin de s'assurer qu'elle soit répartie dans le package. -->
+	<string name="key_0">aushrfegio7326rt49732gerwhfe763</string>    
+	<string name="key_1">aushrfegio7326rt49732gerwhfe763</string>  
+	<string name="key_2">aushrfegio7326rt49732gerwhfe763</string>  
+	<string name="key_3">aushrfegio7326rt49732gerwhfe763</string>  
+	<string name="key_4">aushrfegio7326rt49732gerwhfe763</string>  
+	<string name="key_5">aushrfegio7326rt49732gerwhfe763</string>  
+	<string name="key_6">aushrfegio7326rt49732gerwhfe763</string>  
+	<string name="key_7">aushrfegio7326rt49732gerwhfe763</string> 
+	<!--  -->
 </resources>

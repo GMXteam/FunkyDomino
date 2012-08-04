@@ -17,7 +17,9 @@
 package com.gmxteam.funkydomino.activities;
 
 import android.hardware.SensorManager;
+import android.os.Bundle;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.utils.database.model.GameModel;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -29,7 +31,6 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
-
 
 /**
  * Classe abstraite permettant une implémentation efficace d'un interface
@@ -51,69 +52,77 @@ import org.andengine.ui.activity.BaseGameActivity;
  * thread UI sera prêt à la redessiner, le processus recommencera.
  *
  * La physique est gérée dans un thread à part.
+ * 
+ * Les données du jeu sont sauvegardée dans une database sqlite.
  *
  * @author Guillaume Poirier-Morency
  */
 public abstract class FunkyDominoActivity extends BaseGameActivity implements FunkyDominoActivityConstants {
 
-    /**
-     *
-     */
-    public PhysicsWorld mPhysicsWorld;
-    /**
-     *
-     */
-    public Scene mScene;
-    /**
-     *
-     */
-    SmoothCamera mCamera;
-    /**
-     *
-     */
+	private GameModel mGameData;
+	
+	/**
+	 * 
+	 */
+	public PhysicsWorld mPhysicsWorld;
+	/**
+	 *
+	 */
+	public Scene mScene;
+	/**
+	 *
+	 */
+	SmoothCamera mCamera;
+	/**
+	 *
+	 */
+	TiledSprite mBackground;
+	/**
+	 *
+	 */
+	TiledTextureRegion mBackgroundTextureRegion;
+	/**
+	 *
+	 */
+	BitmapTextureAtlas mBackgroundTexture;
+	/**
+	 *
+	 */
+	EngineOptions mEngineOptions;
+	
+	@Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		// On récupère les données de la partie à charger.
+		mGameData = (GameModel)b.get("game");
+	}
 
-    TiledSprite mBackground;
-    /**
-     *
-     */
-    TiledTextureRegion mBackgroundTextureRegion;
-    /**
-     *
-     */
-    BitmapTextureAtlas mBackgroundTexture;
-    /**
-     * 
-     */
-    EngineOptions mEngineOptions;
+	/**
+	 *
+	 * @return
+	 */
+	@Override
+	public final EngineOptions onCreateEngineOptions() {
+		this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
+		this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH - CAMERA_WIDTH, WORLD_HEIGHT);
 
+		mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
 
+		//engineOptions.getAudioOptions().setNeedsSound(true);
+		return mEngineOptions;
+	}
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public final EngineOptions onCreateEngineOptions() {
-        this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
-        this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH - CAMERA_WIDTH, WORLD_HEIGHT);
+	/**
+	 *
+	 * @param pOnCreateSceneCallback
+	 * @throws Exception
+	 */
+	public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+		mScene = new Scene();
 
-        mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+		mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
+		mScene.registerUpdateHandler(mPhysicsWorld);
 
-        //engineOptions.getAudioOptions().setNeedsSound(true);
-        return mEngineOptions;
-    }
-
-    /**
-     *
-     * @param pOnCreateSceneCallback
-     * @throws Exception
-     */
-    public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
-        mScene = new Scene();
-
-        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
-        mScene.registerUpdateHandler(mPhysicsWorld);
-
-        pOnCreateSceneCallback.onCreateSceneFinished(mScene);
-    }
+		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
+	}
 }

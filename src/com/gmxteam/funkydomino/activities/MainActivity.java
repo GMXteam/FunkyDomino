@@ -16,166 +16,74 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import android.util.Log;
-import com.gmxteam.funkydomino.graphicals.components.*;
-import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
-import java.io.IOException;
-import java.io.InputStream;
-import javax.xml.parsers.ParserConfigurationException;
-import org.andengine.engine.Engine;
-import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.sprite.TiledSprite;
-import org.andengine.entity.util.FPSLogger;
-import org.andengine.input.touch.TouchEvent;
-import org.andengine.opengl.texture.TextureOptions;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.region.TiledTextureRegion;
-import org.andengine.util.color.Color;
-import org.xml.sax.SAXException;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 /**
- * Classe principale de l'application Android.
- * Elle sera construite avec AndEngine.
+ * Activité principale de FunkyDomino. Permet d'accéder à : FunkyDominoActivity
+ * pour jouer la dernière partie sauvegardée LoadGameActivity pour charger une
+ * partie NewGameActivity pour créer une nouvelle partie PreferencesActivity
+ * pour changer les préférences de FunkyDomino
+ *
  * @author Guillaume Poirier-Morency
  */
-public final class MainActivity extends FunkyDominoActivity {
-/**
-     *
-     */
-    private TiledSprite mBackground;
-    /**
-     *
-     */
-    private TiledTextureRegion mBackgroundTextureRegion;
-    /**
-     *
-     */
-    private BitmapTextureAtlas mBackgroundTexture;
-    /**
-     * InputStream contenant le niveau qui sera joué. Il est dans MainActivity
-     * pour des raisons de tests. 
-     * TODO Il sera déplacé dans GameActivity lorsque le programme sera plus 
-     * fonctionnel.
-     */
-    private InputStream levelStream;
+public final class MainActivity extends Activity {
 
-    /**
-     * 
-     * @param pScene
-     * @param pOnPopulateSceneCallback 
-     */
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+	////////////////////////////////////////////////////////////////////////////
+	// Menus
+	public void onHighscoresMenuItemClick(MenuItem mi) {
+		startActivity(new Intent(MainActivity.this, HighscoresActivity.class));
 
+	}
 
-        ////////////////////////////////////////////////////////////////////////
-        // Code de test
+	public void onPreferencesMenuItemClick(MenuItem mi) {
+		startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
 
-        mBackground = new TiledSprite(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH, WORLD_HEIGHT, mBackgroundTextureRegion, this.getVertexBufferObjectManager()) {
+	}
 
-            @Override
-            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+	////////////////////////////////////////////////////////////////////////////
+	// Listeners
+	public void onPlayClick(View v) {
+		startActivity(new Intent(MainActivity.this, FunkyDominoActivity.class));
 
-                
-                mCamera.setCenter(pTouchAreaLocalX, mCamera.getCenterY());
+	}
+
+	public void onNewGameClick(View v) {
+		startActivity(new Intent(MainActivity.this, FunkyDominoActivity.class));
+
+	}
+
+	public void onLoadGameClick(View v) {
+		startActivity(new Intent(MainActivity.this, LoadGameActivity.class));
 
 
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+	/**
+	 *
+	 * @param b
+	 */
+	@Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		this.setContentView(R.layout.main);
 
 
 
-                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
-            }
-        };
-        pScene.attachChild(mBackground);
-        pScene.registerTouchArea(mBackground);
-
-        float[] squareX = {WORLD_LEFT, WORLD_WIDTH, WORLD_WIDTH, WORLD_LEFT, WORLD_LEFT};
-        float[] squareY = {WORLD_TOP, WORLD_TOP, WORLD_HEIGHT, WORLD_HEIGHT, WORLD_TOP};
-        //float[] groundX = {WORLD_LEFT, 5.0f, 22.5f, 100.0f, WORLD_WIDTH};
-        //float[] groundY = {122.0f, 205.0f, 205.5f, 255.7f, 120.0f};
-
-        pScene.attachChild(new Ground(this, squareX, squareY));
-        //pScene.attachChild(new Ground(this, groundX, groundY));
-
-        //pScene.attachChild(new Domino(this, 25.0f, 25.0f, true));
-        //pScene.attachChild(new Domino(this, 50.0f, 10.0f, false));
-        //pScene.attachChild(new Domino(this, 100.0f, 5.0f, false));
 
 
-        ////////////////////////////////////////////////////////////////////////
-        // Code utilisant le système XML
-        String publickey = getString(R.string.key_0)
-                + getString(R.string.key_1)
-                + getString(R.string.key_2)
-                + getString(R.string.key_3)
-                + getString(R.string.key_4)
-                + getString(R.string.key_5)
-                + getString(R.string.key_6)
-                + getString(R.string.key_7);
 
-        try {
-            AndEngineActivityXMLParser.buildGameInstance(this, levelStream, publickey);
-            levelStream.close();
-        } catch (ParserConfigurationException ex) {
-            Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);
-        } catch (SAXException ex) {
-            Log.e(APP_LOG_NAME, "Parser has crashed ! There's an error in the level file !", ex);
-        } catch (IOException ex) {
-            Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
-        } finally {
-            publickey = null;
-        }
+	}
 
-
-        pOnPopulateSceneCallback.onPopulateSceneFinished();
-    }
-
-    /**
-     * Création des ressources.
-     * @param pOnCreateResourcesCallback est un callback à utiliser pour avertir
-     * AndEngine que les ressources ont été créée.
-     * @throws Exception 
-     */
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        ////////////////////////////////////////////////////////////////////////
-        // Loading local resources
-        levelStream = this.getResources().openRawResource(R.raw.stage1);
-        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-        mBackgroundTexture = new BitmapTextureAtlas(this.getTextureManager(), 128, 16, TextureOptions.BILINEAR);
-        mBackgroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBackgroundTexture, this, "vehicles.png", 0, 0, 6, 1);
-        mBackgroundTexture.load();
-
-        ////////////////////////////////////////////////////////////////////////
-        // Loading other resources
-        Domino.loadResource(this);
-        Ground.loadResource(this);
-        Ball.loadResource(this);
-        Water.loadResource(this);
-        Cog.loadResource(this);
-        pOnCreateResourcesCallback.onCreateResourcesFinished();
-    }
-    
-    /**
-     * Chargement du moteur de physique et du moteur de jeu.
-     *
-     * @return
-     */
-    public final Engine onLoadEngine() {
-        mEngine = new Engine(mEngineOptions);
-        mEngine.registerUpdateHandler(new FPSLogger());
-
-        return mEngine;
-    }
-    
-     /**
-     * Chargement de la scène.
-     *
-     * @return
-     */
-    public final Scene onLoadScene() {
-        mScene.setBackground(new Background(Color.RED));
-
-        return mScene;
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu m) {
+		getMenuInflater().inflate(R.menu.menu, m);
+		return true;
+	}
+;
 }

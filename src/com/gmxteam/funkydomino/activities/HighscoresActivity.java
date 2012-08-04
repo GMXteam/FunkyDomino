@@ -16,56 +16,20 @@
  */
 package com.gmxteam.funkydomino.activities;
 
-import org.andengine.engine.Engine;
-import org.andengine.engine.options.EngineOptions;
-import org.andengine.entity.scene.Scene;
+import android.app.Activity;
+import android.os.Bundle;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public final class HighscoresActivity extends FunkyDominoActivity {
+public final class HighscoresActivity extends Activity {
 
-    
-
+    @Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		setContentView(R.layout.highscores);
+		
+	}
    
-
-    /**
-     * 
-     */
-    public void onLoadResources() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-  
-
-    /**
-     * 
-     */
-    public void onLoadComplete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    
-
-    /**
-     * 
-     * @param pOnCreateResourcesCallback
-     * @throws Exception
-     */
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    
-
-    /**
-     * 
-     * @param pScene
-     * @param pOnPopulateSceneCallback
-     * @throws Exception
-     */
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

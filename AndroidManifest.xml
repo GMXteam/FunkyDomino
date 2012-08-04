@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gmxteam.funkydomino.activities"
-    android:versionCode="8"
-    android:versionName="0.0.8">
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />    
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name="MainActivity" android:label="@string/main_activity_name">   
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>        
-        <activity android:name="GameActivity" android:label="@string/game_activity_name" />  
-        <activity android:name="HelpActivity" android:label="@string/help_activity_name" />   
-        <activity android:name="HighscoresActivity" android:label="@string/highscores_activity_name" />  
-        <activity android:name="LoadGameActivity" android:label="@string/load_game_activity_name" />     
-        <activity android:name="NewGameActivity" android:label="@string/new_game_activity_name" />       
-    </application>    
+		  package="com.gmxteam.funkydomino.activities"
+		  android:versionCode="8"
+		  android:versionName="0.0.8">
+	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="15">
+	</uses-sdk>
+	<uses-feature android:glEsVersion="0x00020000" android:required="true" />    
+	<application android:icon="@drawable/icon" 
+				 android:label="@string/app_name" 
+				 android:hardwareAccelerated="true" 
+				 android:theme="@style/MainTheme">
+
+		<activity android:name="MainActivity" android:label="@string/main_activity_name" >   
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>  
+
+		<activity android:name="FunkyDominoActivity" android:label="@string/funky_domino_activity_name" />       
+		<activity android:name="HighscoresActivity" android:label="@string/highscores_activity_name" />  
+		<activity android:name="PreferencesActivity" android:label="@string/preferences_activity_name" />  
+
+
+		<activity android:name="LoadGameActivity" android:label="@string/load_game_activity_name" />     
+	</application>    
 </manifest> 

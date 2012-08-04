@@ -16,62 +16,21 @@
  */
 package com.gmxteam.funkydomino.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
-import org.andengine.engine.Engine;
-import org.andengine.entity.scene.Scene;
 
 /**
- *
+ * Activité pour charger une partie.
+ * Affiche une liste de parties.
  * @author Guillaume Poirier-Morency
  */
-public final class LoadGameActivity extends FunkyDominoActivity {
+public final class LoadGameActivity extends Activity {
+	@Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		setContentView(R.layout.load_game);
+		
 
-    /**
-     * 
-     * @param ressources
-     */
-    @Override
-    public void onCreate(Bundle ressources) {
-        super.onCreate(ressources);
-
-    }
-
+}
    
-
-  
-
-    /**
-     * 
-     */
-    public void onLoadResources() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-  
-
-    /**
-     * 
-     */
-    public void onLoadComplete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     * 
-     * @param pOnCreateResourcesCallback
-     * @throws Exception
-     */
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }    
-
-    /**
-     * 
-     * @param pScene
-     * @param pOnPopulateSceneCallback
-     * @throws Exception
-     */
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
