@@ -17,13 +17,13 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.FunkyDominoActivityConstants;
+import com.gmxteam.funkydomino.activities.GameActivityConstants;
 
 /**
  * Exception lancée lorsqu'un attribut est invalide.
  * @author guillaume
  */
-public final class IllegalXMLAttributeException extends RuntimeException implements FunkyDominoActivityConstants {
+public final class IllegalXMLAttributeException extends RuntimeException implements GameActivityConstants {
 
     /**
      * 

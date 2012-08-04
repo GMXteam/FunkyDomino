@@ -17,7 +17,7 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activities.GameActivity;
 import com.gmxteam.funkydomino.graphicals.components.*;
 import com.gmxteam.funkydomino.graphicals.widgets.AddBall;
 import com.gmxteam.funkydomino.graphicals.widgets.AddDomino;
@@ -84,7 +84,7 @@ public final class XMLHandler extends DefaultHandler {
     /**
      * @see FunkyDominoActivity
      */
-    private FunkyDominoActivity mAndEngineActivity;
+    private GameActivity mAndEngineActivity;
 
     /**
      *
@@ -97,7 +97,7 @@ public final class XMLHandler extends DefaultHandler {
      *
      * @param aea
      */
-    public XMLHandler(FunkyDominoActivity aea) {
+    public XMLHandler(GameActivity aea) {
         mAndEngineActivity = aea;
     }
 
@@ -196,6 +196,7 @@ public final class XMLHandler extends DefaultHandler {
         if (states.level) {
             if (localName.equals("component")) {
                 states.component = true;
+				
                 Component.loadResource(mAndEngineActivity, atts);
                 gameInformationData.componentTheme = atts.getValue("theme");
             } else if (localName.equals("widget")) {

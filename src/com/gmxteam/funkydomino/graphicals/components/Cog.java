@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activities.GameActivity;
 import org.xml.sax.Attributes;
 
 /**
@@ -31,7 +31,7 @@ public final class Cog extends Component {
      * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity) 
      * @param aea 
      */
-    public static void loadResource(FunkyDominoActivity aea) {
+    public static void loadResource(GameActivity aea) {
     }
     ////////////////////////////////////////////////////////////////////////////
 
@@ -40,6 +40,6 @@ public final class Cog extends Component {
      * @param mAndEngineActivity 
      * @param atts
      */ 
-    public Cog(FunkyDominoActivity mAndEngineActivity, Attributes atts) {
+    public Cog(GameActivity mAndEngineActivity, Attributes atts) {
     }
 }

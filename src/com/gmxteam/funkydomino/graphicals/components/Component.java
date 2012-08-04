@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.components;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activities.GameActivity;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 import org.xml.sax.Attributes;
 
@@ -35,7 +35,7 @@ public abstract class Component extends Graphical implements ComponentsConstants
      * @param aea
      * @param a
      */
-    public static void loadResource(FunkyDominoActivity aea, Attributes a) {
+    public static void loadResource(GameActivity aea, Attributes a) {
     
     
     }

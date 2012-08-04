@@ -21,8 +21,16 @@ package com.gmxteam.funkydomino.activities;
  *
  * @author guillaume
  */
-public interface FunkyDominoActivityConstants {
+public interface GameActivityConstants {
 
+	// Bundle Keys
+	public static String STARTUP_STATE = "startup_state",
+			GAME_DATA = "game_data";
+	
+	public static int STARTUP_STATE_NEW_GAME = 0,
+			STARTUP_STATE_LOADGAME = 1;
+	
+	
     ////////////////////////////////////////////////////////////////////////////
     // Constantes publiques. Elles sont disponibles dans tout le projet.
     /**

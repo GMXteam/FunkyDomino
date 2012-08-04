@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activities.GameActivity;
 import com.gmxteam.rsa.DecryptedStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +44,7 @@ public final class AndEngineActivityXMLParser {
      * @throws IOException
      * @throws SAXException  
      */
-    public static void buildGameInstance(FunkyDominoActivity aea, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
+    public static void buildGameInstance(GameActivity aea, InputStream resourceStream, String publicKey) throws ParserConfigurationException, SAXException, IOException {
         final SAXParserFactory spf = SAXParserFactory.newInstance();
         final SAXParser sp = spf.newSAXParser();
         final XMLReader xr = sp.getXMLReader();

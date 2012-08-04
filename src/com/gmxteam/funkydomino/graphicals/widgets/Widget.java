@@ -16,7 +16,7 @@
  */
 package com.gmxteam.funkydomino.graphicals.widgets;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activities.GameActivity;
 import com.gmxteam.funkydomino.graphicals.Graphical;
 import org.xml.sax.Attributes;
 
@@ -31,7 +31,7 @@ public abstract class Widget extends Graphical implements WidgetsConstants {
      * @param mAndEngineActivity
      * @param atts 
      */
-    public static void loadResource(FunkyDominoActivity mAndEngineActivity, Attributes atts) {
+    public static void loadResource(GameActivity mAndEngineActivity, Attributes atts) {
     }
     /**
      * 

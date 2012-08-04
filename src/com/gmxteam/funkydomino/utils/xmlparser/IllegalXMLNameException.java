@@ -17,13 +17,13 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.FunkyDominoActivityConstants;
+import com.gmxteam.funkydomino.activities.GameActivityConstants;
 
 /**
  * Exception lancée lorsqu'un nom de balise est invalide.
  * @author guillaume
  */
-public final class IllegalXMLNameException extends RuntimeException implements FunkyDominoActivityConstants {
+public final class IllegalXMLNameException extends RuntimeException implements GameActivityConstants {
 
     /**
      * 

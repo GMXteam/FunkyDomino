@@ -1,25 +1,18 @@
 /*
- *   This file is part of Funky Domino.
- *
- *   Funky Domino is free software: you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation, either version 3 of the License, or
- *   (at your option) any later version.
- *
- *   Funky Domino is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *   GNU General Public License for more details.
- *
- *   You should have received a copy of the GNU General Public License
- *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package com.gmxteam.funkydomino.activities;
 
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.utils.database.model.GameModel;
+import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -31,38 +24,19 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
+import org.xml.sax.SAXException;
 
 /**
- * Classe abstraite permettant une implémentation efficace d'un interface
- * JBox2D. Funky Domino sera premièrement développé en canvas afin d'obtenir
- * rapidement des résultats. Il sera ensuite converti en OpenGL afin d'en
- * améliorer considérablement les performances.
  *
- * Le fonctionnement est simple. On redéfinit une activité android en y
- * intégrant un moteur de physique et de rendu. On intègre aussi certaines
- * interactions avec l'utilisateur pour minimiser le code des activités.
- *
- * Les éléments d'interfaces qui seront alors utilisés pourront être ceux de la
- * librairie standard, mais il est recommandé d'utiliser des élément de physique
- * afin de nous donner plus de liberté. Un menu animé par la physique, c'est pas
- * cool ça?
- *
- * Le redessinage est géré dans le thread de l'utilisateur interface. Quand on
- * finit de redessiner une image, elle est automatiquement invalidée et quand le
- * thread UI sera prêt à la redessiner, le processus recommencera.
- *
- * La physique est gérée dans un thread à part.
- * 
- * Les données du jeu sont sauvegardée dans une database sqlite.
- *
- * @author Guillaume Poirier-Morency
+ * @author guillaume
  */
-public abstract class FunkyDominoActivity extends BaseGameActivity implements FunkyDominoActivityConstants {
+public class GameActivity extends BaseGameActivity implements GameActivityConstants {
 
+	private InputStream levelStream;
+	private int levelID;
 	private GameModel mGameData;
-	
 	/**
-	 * 
+	 *
 	 */
 	public PhysicsWorld mPhysicsWorld;
 	/**
@@ -89,12 +63,29 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
 	 *
 	 */
 	EngineOptions mEngineOptions;
-	
+
+	/**
+	 * Gère les différents états de démarrage et charge les ressources de base.
+	 *
+	 * @param b
+	 */
 	@Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
-		// On récupère les données de la partie à charger.
-		mGameData = (GameModel)b.get("game");
+		switch (b.getInt(STARTUP_STATE)) {
+			case STARTUP_STATE_NEW_GAME:
+				break;
+
+			case STARTUP_STATE_LOADGAME:
+				mGameData = (GameModel) b.getParcelable(GAME_DATA);
+				break;
+
+
+		}
+		
+		// Tests de base
+		assert mGameData != null;
+
 	}
 
 	/**
@@ -124,5 +115,48 @@ public abstract class FunkyDominoActivity extends BaseGameActivity implements Fu
 		mScene.registerUpdateHandler(mPhysicsWorld);
 
 		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
+	}
+
+	/**
+	 * Chargement des ressources du programme (images, textes, etc...).
+	 */
+	public void onLoadResources() {
+		levelStream = this.getResources().openRawResource(levelID);
+	}
+
+	/**
+	 *
+	 * @param pScene
+	 * @param pOnPopulateSceneCallback
+	 */
+	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+		String publickey = getString(R.string.key_0)
+				+ getString(R.string.key_1)
+				+ getString(R.string.key_2)
+				+ getString(R.string.key_3)
+				+ getString(R.string.key_4)
+				+ getString(R.string.key_5)
+				+ getString(R.string.key_6)
+				+ getString(R.string.key_7);
+		try {
+			AndEngineActivityXMLParser.buildGameInstance(this, levelStream, publickey);
+			levelStream.close();
+		} catch (ParserConfigurationException ex) {
+			Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);
+		} catch (SAXException ex) {
+			Log.e(APP_LOG_NAME, "Parser has crashed !", ex);
+		} catch (IOException ex) {
+			Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
+		}
+
+	}
+
+	/**
+	 *
+	 * @param pOnCreateResourcesCallback
+	 * @throws Exception
+	 */
+	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 }
