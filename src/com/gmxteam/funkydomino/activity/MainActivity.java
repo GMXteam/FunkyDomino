@@ -22,8 +22,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import com.gmxteam.funkydomino.activities.R;
-import com.gmxteam.funkydomino.core.model.GameModel;
 
 /**
  * Activité principale de FunkyDomino. Permet d'accéder à : FunkyDominoActivity

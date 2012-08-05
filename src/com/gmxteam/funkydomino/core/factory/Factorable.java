@@ -5,6 +5,7 @@
 package com.gmxteam.funkydomino.core.factory;
 
 import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.Attributes;
 
 /**
@@ -24,5 +25,7 @@ public interface Factorable {
 	 * Inflate the selected Factorable object on the specified Scene.
 	 * @param ga 
 	 */
-	public Factorable inflate(Scene ga);
+	public Factorable inflateOnScene(Scene ga);
+	
+	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw);
 }

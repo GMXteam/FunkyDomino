@@ -70,7 +70,7 @@ final class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		try {
-			FactorableEnum.valueOf(localName).getFactorableNode().factory(atts).inflate(mScene);
+			FactorableEnum.valueOf(localName).getFactorableNode().factory(atts).inflateOnScene(mScene);
 
 		} catch (InstantiationException ex) {
 			Logger.getLogger(XMLHandler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);

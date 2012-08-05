@@ -18,7 +18,6 @@ package com.gmxteam.funkydomino.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.gmxteam.funkydomino.activities.R;
 
 /**
  * Activité pour charger une partie.

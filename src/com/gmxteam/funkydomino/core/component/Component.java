@@ -16,29 +16,42 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.shape.IAreaShape;
+import org.andengine.entity.shape.Shape;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 
 /**
  * Classe abstraite définissant les composants. Les composants sont des éléments
  * affectés par la physique. On parle du sol, des dominos, des billes et autres
- * objets.
+ * objets. Dans leurs méthodes Factory, ils peuvent altérer comme bon leur
+ * semble les variables mAreaShape (état graphique) et mBody (état physique).
+ *
  * @author Guillaume Poirier-Morency
  */
 public abstract class Component extends Entity implements Factorable, ComponentsConstants {
-    /* Ici, on peut mettre toutes les variables définissant généralement les
-     * composants, sans toutefois définir les widgets.
-     */
-	
-	public Component inflate(Scene ga) {
+	/* Ici, on peut mettre toutes les variables définissant généralement les
+	 * composants, sans toutefois définir les widgets.
+	 */
+
+	protected IAreaShape mAreaShape;
+	protected Body mBody;
+
+	public Component inflateOnScene(Scene ga) {
+
 		ga.attachChild(this);
 		return this;
 	}
-   
-	
-	
-	
-	
-   
+
+	public Component inflateOnPhysicsWorld(PhysicsWorld pw) {
+
+		pw.registerPhysicsConnector(new PhysicsConnector(mAreaShape, mBody, true, true));
+
+
+		return this;
+	}
 }

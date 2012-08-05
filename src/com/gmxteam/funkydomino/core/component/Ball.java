@@ -16,9 +16,7 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.factory.Factorable;
-import org.andengine.entity.scene.Scene;
 import org.xml.sax.Attributes;
 
 /**
@@ -28,16 +26,8 @@ import org.xml.sax.Attributes;
  */
 public final class Ball extends Component {
 
-
-	
-
 	public Factorable factory(Attributes att) {
-		
+
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
-
-
-	
-	
-	
 }
