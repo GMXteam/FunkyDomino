@@ -23,7 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.gmxteam.funkydomino.activities.R;
-import com.gmxteam.funkydomino.utils.database.model.GameModel;
+import com.gmxteam.funkydomino.core.model.GameModel;
 
 /**
  * Activité principale de FunkyDomino. Permet d'accéder à : FunkyDominoActivity
@@ -51,15 +51,11 @@ public final class MainActivity extends Activity {
 	// Listeners
 	public void onPlayClick(View v) {
 
+		
+		
 		Intent i = new Intent(MainActivity.this, GameActivity.class);
-		i.getExtras().putInt(GameActivityConstants.STARTUP_STATE, GameActivityConstants.STARTUP_STATE_LOADGAME);
-
-		GameModel gm = new GameModel();
-
-		i.getExtras().putParcelable(GameActivityConstants.GAME_DATA, gm);
 		startActivity(i);
 
-		startActivity(new Intent(MainActivity.this, GameActivity.class));
 
 	}
 

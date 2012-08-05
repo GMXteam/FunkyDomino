@@ -6,13 +6,10 @@ package com.gmxteam.funkydomino.activity;
 
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.activities.R;
-import com.gmxteam.funkydomino.utils.database.model.GameModel;
+import com.gmxteam.funkydomino.core.model.GameModel;
 import com.gmxteam.funkydomino.utils.xmlparser.XMLParser;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,17 +32,18 @@ import org.xml.sax.SAXException;
  */
 public class GameActivity extends BaseGameActivity implements GameActivityConstants {
 
-	private InputStream levelStream;
-	private int levelID;
+	/**
+	 * Structure orm contenant les paramètres de la partie.
+	 */
 	private GameModel mGameData;
 	/**
 	 *
 	 */
-	public PhysicsWorld mPhysicsWorld;
+	private PhysicsWorld mPhysicsWorld;
 	/**
 	 *
 	 */
-	public Scene mScene;
+	private Scene mScene;
 	/**
 	 *
 	 */
@@ -72,19 +70,20 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 *
 	 * @param b
 	 */
-	@Override
-	public void onCreate(Bundle b) {
+	public void onCreate2(Bundle b) {
 		super.onCreate(b);
 		switch (b.getInt(STARTUP_STATE)) {
 			case STARTUP_STATE_NEW_GAME:
 				break;
 
 			case STARTUP_STATE_LOADGAME:
+				
 				mGameData = (GameModel) b.getParcelable(GAME_DATA);
 				break;
 
 
 		}
+
 
 		// Tests de base
 		assert mGameData != null;
@@ -124,7 +123,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * Chargement des ressources du programme (images, textes, etc...).
 	 */
 	public void onLoadResources() {
-		levelStream = this.getResources().openRawResource(levelID);
 	}
 
 	/**
@@ -135,7 +133,10 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
 
 		try {
-			XMLParser.inflate(pScene, this.getResources().openRawResource(mGameData.stage));
+			XMLParser xp = new XMLParser();
+
+			xp.inflate(pScene, this.getResources().openRawResource(mGameData.stage));
+
 		} catch (ParserConfigurationException ex) {
 			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SAXException ex) {
@@ -143,6 +144,8 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		} catch (IOException ex) {
 			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
+		pOnPopulateSceneCallback.onPopulateSceneFinished();
 
 
 	}
@@ -153,6 +156,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * @throws Exception
 	 */
 	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
-		throw new UnsupportedOperationException("Not supported yet.");
+		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 }

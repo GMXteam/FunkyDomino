@@ -1,20 +1,21 @@
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.core.factory;
 
+import com.gmxteam.funkydomino.core.component.Level;
 import com.gmxteam.funkydomino.core.factory.Factorable;
-import com.gmxteam.funkydomino.graphical.component.Ball;
-import com.gmxteam.funkydomino.graphical.component.Cog;
-import com.gmxteam.funkydomino.graphical.component.Component;
-import com.gmxteam.funkydomino.graphical.component.Domino;
-import com.gmxteam.funkydomino.graphical.component.Ground;
-import com.gmxteam.funkydomino.graphical.component.Water;
+import com.gmxteam.funkydomino.core.component.Ball;
+import com.gmxteam.funkydomino.core.component.Cog;
+import com.gmxteam.funkydomino.core.component.Component;
+import com.gmxteam.funkydomino.core.component.Domino;
+import com.gmxteam.funkydomino.core.component.Ground;
+import com.gmxteam.funkydomino.core.component.Water;
 
 /**
- * Énumération des éléments XML que l'on peut retrouver dans un fichier de jeu.
+ * Énumération des éléments Factorable que l'on peut retrouver dans FunkyDomino.
  * Il permet entre autre de récupéré une version Factorable pour pouvoir
  * l'implémenter de façon générique.
  * @author guillaume
  */
-public enum FactorableXMLNodes {
+public enum FactorableEnum {
 
 	level(Level.class),
 	ground(Ground.class),
@@ -25,7 +26,7 @@ public enum FactorableXMLNodes {
 	cog(Cog.class);
 	private Class mClass;
 
-	FactorableXMLNodes(Class f) {
+	FactorableEnum(Class f) {
 		mClass = f;
 	}
 

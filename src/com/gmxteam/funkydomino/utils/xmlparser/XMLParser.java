@@ -16,20 +16,17 @@
  */
 package com.gmxteam.funkydomino.utils.xmlparser;
 
-import android.app.Activity;
-import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.andengine.entity.scene.Scene;
-import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Classe statique contenant les fonctions utiles pour convertir les niveaux
@@ -39,20 +36,20 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public final class XMLParser {
 
-	public static void inflate(Scene ga, InputStream ressource) throws ParserConfigurationException, SAXException, IOException {
-
+	public void inflate(Scene ga, InputStream ressource) throws SAXException, ParserConfigurationException, IOException {
 		final SAXParserFactory spf = SAXParserFactory.newInstance();
 		final SAXParser sp = spf.newSAXParser();
 		final XMLReader xr = sp.getXMLReader();
 		final XMLHandler xh = new XMLHandler(ga);
 		xr.setContentHandler(xh);
 
-		// On parse le fichier de jeu directement dans l'activité
-		xr.parse(new InputSource(ressource));
+		// On essai au moins une autre fois si il y a une IOException.
+		try {
+			// On parse le fichier de jeu directement dans l'activité
+			xr.parse(new InputSource(ressource));
+		} catch (IOException ex) {
+			xr.parse(new InputSource(ressource));
+		}
 
 	}
-	
-
-	
-	
 }

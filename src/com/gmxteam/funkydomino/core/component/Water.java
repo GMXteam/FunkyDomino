@@ -14,25 +14,26 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphical.component;
+package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.scene.Scene;
 import org.xml.sax.Attributes;
 
 /**
- *
+ * Objet pour générer de l'eau. Cela risque plus d'être un champ de force 
+ * qu'autre chose par contre.
+ * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class Domino extends Component {
-
-	
+public final class Water extends Component {
+    
+   
 
 	public Factorable factory(Attributes att) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	public void inflate(Scene ga) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+	
 }

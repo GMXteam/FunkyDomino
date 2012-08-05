@@ -14,19 +14,23 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphical.component;
+package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.scene.Scene;
 import org.xml.sax.Attributes;
 
 /**
- * Objet générant une roue dentée.
+ * Objet définissant le sol.
  *
- * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class Cog extends Component {
+public final class Ground extends Component {
+
+	private Body[] mBodies;
+
+	
 
 	
 
@@ -34,7 +38,5 @@ public final class Cog extends Component {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	public void inflate(Scene ga) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+
 }

@@ -24,5 +24,5 @@ public interface Factorable {
 	 * Inflate the selected Factorable object on the specified Scene.
 	 * @param ga 
 	 */
-	public void inflate(Scene ga);
+	public Factorable inflate(Scene ga);
 }

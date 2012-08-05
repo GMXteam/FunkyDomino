@@ -2,6 +2,7 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 
 import android.util.Log;
+import com.gmxteam.funkydomino.core.factory.FactorableEnum;
 import java.util.logging.Logger;
 import org.andengine.entity.scene.Scene;
 import org.xml.sax.Attributes;
@@ -13,7 +14,7 @@ import org.xml.sax.helpers.DefaultHandler;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class XMLHandler extends DefaultHandler {
+final class XMLHandler extends DefaultHandler {
 
 	/**
 	 * Entier contenant le temps de départ du parsing afin de mesurer le temps
@@ -69,7 +70,7 @@ public final class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		try {
-			FactorableXMLNodes.valueOf(localName).getFactorableNode().factory(atts).inflate(mScene);
+			FactorableEnum.valueOf(localName).getFactorableNode().factory(atts).inflate(mScene);
 
 		} catch (InstantiationException ex) {
 			Logger.getLogger(XMLHandler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
