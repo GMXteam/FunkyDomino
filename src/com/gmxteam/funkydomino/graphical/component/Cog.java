@@ -14,40 +14,27 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.graphical.component;
+
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import org.andengine.entity.scene.Scene;
+import org.xml.sax.Attributes;
 
 /**
+ * Objet générant une roue dentée.
  *
- * @author guillaume
+ * @see Component
+ * @author Guillaume Poirier-Morency
  */
-public final class GameInformation {
+public final class Cog extends Component {
 
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    public String id,
-            previousLevel,
-            nextLevel,
-            name,
-            description,
-            componentTheme,
-            widgetTheme;
+	
+
+	public Factorable factory(Attributes att) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	public void inflate(Scene ga) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }

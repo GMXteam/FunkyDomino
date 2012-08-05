@@ -14,12 +14,26 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals.widgets;
+package com.gmxteam.funkydomino.graphical.component;
+
+import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.graphical.Graphical;
+import org.xml.sax.Attributes;
 
 /**
- * @see Widget
+ * Classe abstraite définissant les composants. Les composants sont des éléments
+ * affectés par la physique. On parle du sol, des dominos, des billes et autres
+ * objets.
  * @author Guillaume Poirier-Morency
  */
-interface WidgetsConstants {
-    
+public abstract class Component<T> extends Graphical implements ComponentsConstants {
+    /* Ici, on peut mettre toutes les variables définissant généralement les
+     * composants, sans toutefois définir les widgets.
+     */
+   
+	
+	
+	
+	
+   
 }

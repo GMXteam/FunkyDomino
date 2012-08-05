@@ -14,36 +14,35 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals;
+package com.gmxteam.funkydomino.utils.xmlparser.exception;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.GameActivityConstants;
+import com.gmxteam.funkydomino.activity.GameActivityConstants;
 
 /**
- * Exception lancée lorsqu'un objet que l'on présume de type Graphical, mais 
- * s'avère être autre chose.
+ * Exception lancée lorsqu'un nom de balise est invalide.
  * @author guillaume
- * @deprecated Cette exception n'est plus très utile.
  */
-@Deprecated
-public final class UnknownGraphicalElementException extends Exception implements GameActivityConstants {    
-    
+public final class IllegalXMLNameException extends RuntimeException implements GameActivityConstants {
+
     /**
      * 
-     * @param message 
+     * @param message
      */
-    public UnknownGraphicalElementException(String message) {
+    public IllegalXMLNameException(String message) {
         super(message);
         Log.e(APP_LOG_NAME, message);
+        
+
     }
     
     /**
      * 
-     * @param message 
-     * @param t 
+     * @param message
+     * @param t
      */
-    public UnknownGraphicalElementException(String message, Throwable t) {
-        super(message, t);
+    public IllegalXMLNameException(String message, Throwable t) {
+        super(message);
         Log.e(APP_LOG_NAME, message, t);
     }
 }

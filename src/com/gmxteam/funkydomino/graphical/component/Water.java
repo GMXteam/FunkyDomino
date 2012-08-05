@@ -14,9 +14,11 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals.components;
+package com.gmxteam.funkydomino.graphical.component;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import org.andengine.entity.scene.Scene;
 import org.xml.sax.Attributes;
 
 /**
@@ -26,21 +28,14 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Water extends Component {
-    ////////////////////////////////////////////////////////////////////////////
-    // Les textures sont statiques et chargées lors
-    /**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity) 
-     * @param aea 
-     */
-    public static void loadResource(FunkyDominoActivity aea) {
-    }
-    ////////////////////////////////////////////////////////////////////////////
-    /**
-     * 
-     * @param aea 
-     * @param atts
-     */
-    public Water(FunkyDominoActivity aea, Attributes atts) {
-        
-    }
+    
+   
+
+	public Factorable factory(Attributes att) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	public void inflate(Scene ga) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }

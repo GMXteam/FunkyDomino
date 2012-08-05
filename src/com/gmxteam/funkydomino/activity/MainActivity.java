@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.activities;
+package com.gmxteam.funkydomino.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import com.gmxteam.funkydomino.activities.R;
 import com.gmxteam.funkydomino.utils.database.model.GameModel;
 
 /**

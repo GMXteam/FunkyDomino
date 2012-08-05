@@ -14,31 +14,20 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals.components;
+package com.gmxteam.funkydomino.graphical;
 
-import com.gmxteam.funkydomino.activities.GameActivity;
-import com.gmxteam.funkydomino.graphicals.Graphical;
-import org.xml.sax.Attributes;
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import org.andengine.entity.Entity;
 
 /**
- * Classe abstraite définissant les composants. Les composants sont des éléments
- * affectés par la physique. On parle du sol, des dominos, des billes et autres
- * objets.
+ * Objet de base pour construire un élément graphique (widgets et composants).
+ * Cet objet fournit toutes les méthodes nécéssaire pour le draw.
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Graphical implements ComponentsConstants {
-    /* Ici, on peut mettre toutes les variables définissant généralement les
-     * composants, sans toutefois définir les widgets.
-     */
-    /**
-     * 
-     * @param aea
-     * @param a
-     */
-    public static void loadResource(GameActivity aea, Attributes a) {
+public abstract class Graphical extends Entity implements Factorable  {
     
-    
-    }
-    
-   
+	
+	
+	
+
 }

@@ -14,32 +14,33 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals.components;
+package com.gmxteam.funkydomino.utils.xmlparser.exception;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
-import org.xml.sax.Attributes;
+import android.util.Log;
+import com.gmxteam.funkydomino.activity.GameActivityConstants;
 
 /**
- *
- * @see Component
- * @author Guillaume Poirier-Morency
+ * Exception lancée lorsqu'un attribut est invalide.
+ * @author guillaume
  */
-public final class Ball extends Component {
-    ////////////////////////////////////////////////////////////////////////////
-    // Les textures sont statiques et chargées lors
-    /**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity) 
-     * @param aea 
-     */
-    public static void loadResource(FunkyDominoActivity aea) {
-    }
-    ////////////////////////////////////////////////////////////////////////////
+public final class IllegalXMLAttributeException extends RuntimeException implements GameActivityConstants {
+
     /**
      * 
-     * @param andEngineActivity
-     * @param atts
+     * @param message
      */
-    public Ball(FunkyDominoActivity andEngineActivity, Attributes atts) {
-        
+    public IllegalXMLAttributeException(String message) {
+        super(message);
+        Log.e(APP_LOG_NAME, message);
+    }
+    
+    /**
+     * 
+     * @param message
+     * @param t  
+     */
+    public IllegalXMLAttributeException(String message, Throwable t) {
+        super(message, t);
+        Log.e(APP_LOG_NAME, message, t);
     }
 }

@@ -14,33 +14,24 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.activity;
 
-import android.util.Log;
-import com.gmxteam.funkydomino.activities.GameActivityConstants;
+import android.app.Activity;
+import android.os.Bundle;
+import com.gmxteam.funkydomino.activities.R;
 
 /**
- * Exception lancée lorsqu'un attribut est invalide.
- * @author guillaume
+ * Activité pour charger une partie.
+ * Affiche une liste de parties.
+ * @author Guillaume Poirier-Morency
  */
-public final class IllegalXMLAttributeException extends RuntimeException implements GameActivityConstants {
+public final class LoadGameActivity extends Activity {
+	@Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		setContentView(R.layout.load_game);
+		
 
-    /**
-     * 
-     * @param message
-     */
-    public IllegalXMLAttributeException(String message) {
-        super(message);
-        Log.e(APP_LOG_NAME, message);
-    }
-    
-    /**
-     * 
-     * @param message
-     * @param t  
-     */
-    public IllegalXMLAttributeException(String message, Throwable t) {
-        super(message, t);
-        Log.e(APP_LOG_NAME, message, t);
-    }
+}
+   
 }

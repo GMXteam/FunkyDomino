@@ -12,6 +12,14 @@ import android.os.Parcelable;
  * @author guillaume
  */
 public class GameModel implements Parcelable {
+	
+	public int stage = 1;
+	
+	
+	
+	public void find() {
+	
+	};
 
 	public int describeContents() {
 		throw new UnsupportedOperationException("Not supported yet.");

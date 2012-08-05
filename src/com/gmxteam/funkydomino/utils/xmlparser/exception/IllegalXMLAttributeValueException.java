@@ -14,10 +14,10 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.utils.xmlparser.exception;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activities.GameActivityConstants;
+import com.gmxteam.funkydomino.activity.GameActivityConstants;
 
 /**
  * Exception utilisée lorsque la valeur d'un attribut est invalide.

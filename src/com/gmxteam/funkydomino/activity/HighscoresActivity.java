@@ -14,27 +14,23 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals.widgets;
+package com.gmxteam.funkydomino.activity;
 
-import com.gmxteam.funkydomino.activities.GameActivity;
-import com.gmxteam.funkydomino.graphicals.Graphical;
-import org.xml.sax.Attributes;
+import android.app.Activity;
+import android.os.Bundle;
+import com.gmxteam.funkydomino.activities.R;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Widget extends Graphical implements WidgetsConstants {
+public final class HighscoresActivity extends Activity {
 
-    /**
-     * Charge les ressources spécifique à tous les Widgets.
-     * @param mAndEngineActivity
-     * @param atts 
-     */
-    public static void loadResource(GameActivity mAndEngineActivity, Attributes atts) {
-    }
-    /**
-     * 
-     */
-    public boolean isEnabled;
+    @Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		setContentView(R.layout.highscores);
+		
+	}
+   
 }

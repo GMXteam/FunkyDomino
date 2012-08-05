@@ -14,22 +14,31 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.activities;
+package com.gmxteam.funkydomino.graphical.component;
 
-import android.app.Activity;
-import android.os.Bundle;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import org.andengine.entity.scene.Scene;
+import org.xml.sax.Attributes;
 
 /**
+ * Objet définissant le sol.
  *
  * @author Guillaume Poirier-Morency
  */
-public final class HighscoresActivity extends Activity {
+public final class Ground extends Component {
 
-    @Override
-	public void onCreate(Bundle b) {
-		super.onCreate(b);
-		setContentView(R.layout.highscores);
-		
+	private Body[] mBodies;
+
+	
+
+	
+
+	public Factorable factory(Attributes att) {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
-   
+
+	public void inflate(Scene ga) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }

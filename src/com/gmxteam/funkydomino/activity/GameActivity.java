@@ -2,16 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmxteam.funkydomino.activities;
+package com.gmxteam.funkydomino.activity;
 
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.activities.R;
 import com.gmxteam.funkydomino.utils.database.model.GameModel;
-import com.gmxteam.funkydomino.utils.xmlparser.AndEngineActivityXMLParser;
+import com.gmxteam.funkydomino.utils.xmlparser.XMLParser;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
@@ -82,7 +85,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
 		}
-		
+
 		// Tests de base
 		assert mGameData != null;
 
@@ -130,24 +133,17 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * @param pOnPopulateSceneCallback
 	 */
 	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
-		String publickey = getString(R.string.key_0)
-				+ getString(R.string.key_1)
-				+ getString(R.string.key_2)
-				+ getString(R.string.key_3)
-				+ getString(R.string.key_4)
-				+ getString(R.string.key_5)
-				+ getString(R.string.key_6)
-				+ getString(R.string.key_7);
+
 		try {
-			AndEngineActivityXMLParser.buildGameInstance(this, levelStream, publickey);
-			levelStream.close();
+			XMLParser.inflate(pScene, this.getResources().openRawResource(mGameData.stage));
 		} catch (ParserConfigurationException ex) {
-			Log.e(APP_LOG_NAME, "Parser configuration has crashed !", ex);
+			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (SAXException ex) {
-			Log.e(APP_LOG_NAME, "Parser has crashed !", ex);
+			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
-			Log.e(APP_LOG_NAME, "May be due to closing the stream or accessing it !", ex);
+			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
 
 	}
 

@@ -14,32 +14,27 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals.components;
+package com.gmxteam.funkydomino.activity;
 
-import com.gmxteam.funkydomino.activities.GameActivity;
-import org.xml.sax.Attributes;
+import android.app.Activity;
+import android.os.Bundle;
+import com.gmxteam.funkydomino.activities.R;
 
 /**
- * Objet générant une roue dentée.
- * @see Component
+ * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
+ * activité de type liste.
  * @author Guillaume Poirier-Morency
  */
-public final class Cog extends Component {
-    ////////////////////////////////////////////////////////////////////////////
-    // Les textures sont statiques et chargées lors
-/**
-     * @see Ground#loadResource(com.gmxteam.funkydomino.activities.FunkyDominoActivity) 
-     * @param aea 
-     */
-    public static void loadResource(GameActivity aea) {
-    }
-    ////////////////////////////////////////////////////////////////////////////
+public final class PreferencesActivity extends Activity {
 
     /**
      * 
-     * @param mAndEngineActivity 
-     * @param atts
-     */ 
-    public Cog(GameActivity mAndEngineActivity, Attributes atts) {
+     * @param b
+     */
+    @Override
+    public void onCreate(Bundle b) {
+		super.onCreate(b);
+        setContentView(R.layout.preferences);
+
     }
 }

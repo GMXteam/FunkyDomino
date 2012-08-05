@@ -14,26 +14,33 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.activities;
+package com.gmxteam.funkydomino.graphical.component;
 
-import android.app.Activity;
-import android.os.Bundle;
+import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import org.andengine.entity.scene.Scene;
+import org.xml.sax.Attributes;
 
 /**
- * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
- * activité de type liste.
+ *
+ * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class PreferencesActivity extends Activity {
+public final class Ball extends Component {
 
-    /**
-     * 
-     * @param b
-     */
-    @Override
-    public void onCreate(Bundle b) {
-		super.onCreate(b);
-        setContentView(R.layout.preferences);
 
-    }
+	
+
+	public Factorable factory(Attributes att) {
+		
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	public void inflate(Scene ga) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	
+	
+	
 }

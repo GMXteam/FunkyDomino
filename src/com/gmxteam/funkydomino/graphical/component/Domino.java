@@ -14,22 +14,25 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.graphicals;
+package com.gmxteam.funkydomino.graphical.component;
 
-import com.gmxteam.funkydomino.activities.FunkyDominoActivity;
-import org.andengine.entity.Entity;
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import org.andengine.entity.scene.Scene;
+import org.xml.sax.Attributes;
 
 /**
- * Objet de base pour construire un élément graphique (widgets et composants).
- * Cet objet fournit toutes les méthodes nécéssaire pour le draw.
+ *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Graphical extends Entity {
-    
-    /**
-     * @see FunkyDominoActivity
-     */
-    protected FunkyDominoActivity mAndEngineActivity;
-    
+public final class Domino extends Component {
 
+	
+
+	public Factorable factory(Attributes att) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	public void inflate(Scene ga) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }
