@@ -17,15 +17,19 @@
 package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.app.Activity;
+import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import org.andengine.entity.scene.Scene;
+import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * Classe statique contenant les fonctions utiles pour convertir les niveaux
@@ -47,4 +51,8 @@ public final class XMLParser {
 		xr.parse(new InputSource(ressource));
 
 	}
+	
+
+	
+	
 }

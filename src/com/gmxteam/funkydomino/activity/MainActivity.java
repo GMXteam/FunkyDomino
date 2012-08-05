@@ -50,15 +50,15 @@ public final class MainActivity extends Activity {
 	////////////////////////////////////////////////////////////////////////////
 	// Listeners
 	public void onPlayClick(View v) {
-		
+
 		Intent i = new Intent(MainActivity.this, GameActivity.class);
 		i.getExtras().putInt(GameActivityConstants.STARTUP_STATE, GameActivityConstants.STARTUP_STATE_LOADGAME);
-		
+
 		GameModel gm = new GameModel();
-		
+
 		i.getExtras().putParcelable(GameActivityConstants.GAME_DATA, gm);
 		startActivity(i);
-		
+
 		startActivity(new Intent(MainActivity.this, GameActivity.class));
 
 	}
