@@ -1,8 +1,8 @@
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.xml;
 
 
 import android.util.Log;
-import com.gmxteam.funkydomino.core.factory.FactorableEnum;
+import com.gmxteam.funkydomino.core.component.Components;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.Attributes;
@@ -72,7 +72,7 @@ final class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		try {		
-			FactorableEnum.valueOf(localName).getFactorableNode()
+			Components.valueOf(localName).getComponent()
 					.factory(atts)
 					.inflateOnScene(mScene)
 					.inflateOnPhysicsWorld(mPhysicsWorld);

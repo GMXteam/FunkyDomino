@@ -9,7 +9,7 @@ import android.os.Bundle;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.model.GameModel;
-import com.gmxteam.funkydomino.utils.xmlparser.XMLParser;
+import com.gmxteam.funkydomino.xml.XMLParser;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -79,7 +79,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		mGameData = new GameModel();
 		mGameData.stage = R.raw.stage1;
 
-
+		Component.mGameActivity = this;
 
 	}
 
@@ -119,7 +119,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		
 		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
 		
-		Component.loadTextureManager(this.getTextureManager(), this.getAssets());
 		
 		
 		

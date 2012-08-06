@@ -14,34 +14,35 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.utils.xmlparser.exception;
+package com.gmxteam.funkydomino.xml.exception;
 
 import android.util.Log;
 import com.gmxteam.funkydomino.activity.GameActivityConstants;
 
 /**
- * Exception utilisée lorsque la valeur d'un attribut est invalide.
+ * Exception lancée lorsqu'un nom de balise est invalide.
  * @author guillaume
  */
-public final class IllegalXMLAttributeValueException extends RuntimeException implements GameActivityConstants {
+public final class IllegalXMLNameException extends RuntimeException implements GameActivityConstants {
 
     /**
      * 
      * @param message
      */
-    public IllegalXMLAttributeValueException(String message) {
+    public IllegalXMLNameException(String message) {
         super(message);
         Log.e(APP_LOG_NAME, message);
-    }
+        
 
+    }
+    
     /**
-     * Constructeur acceptant les throwables lorsque l'on veut convertir une 
-     * exception standard.
+     * 
      * @param message
-     * @param nfe 
+     * @param t
      */
-    public IllegalXMLAttributeValueException(String message, Throwable nfe) {
-        super(message, nfe);
-        Log.e(APP_LOG_NAME, message, nfe);
+    public IllegalXMLNameException(String message, Throwable t) {
+        super(message);
+        Log.e(APP_LOG_NAME, message, t);
     }
 }

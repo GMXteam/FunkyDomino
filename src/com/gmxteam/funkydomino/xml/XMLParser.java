@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.utils.xmlparser;
+package com.gmxteam.funkydomino.xml;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -16,12 +16,9 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import android.content.res.AssetManager;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gmxteam.funkydomino.core.factory.Factorable;
-import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.TextureManager;
 import org.xml.sax.Attributes;
 
 /**
@@ -47,10 +44,7 @@ public class Ground extends Component {
 	}
 
 
-	@Override
-	void onLoadResources() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+	
 
 
 }

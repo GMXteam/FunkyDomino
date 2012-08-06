@@ -16,17 +16,16 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import android.content.res.AssetManager;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.xml.sax.Attributes;
 
@@ -35,15 +34,20 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Domino extends Component {
-	
-	
-	
-    
+
+	TextureRegion mDominoTextureRegion;
 
 	public Factorable factory(Attributes att) {
-		
-		mAreaShape = new Sprite(mX, mY, getTextureRegion(), new VertexBufferObjectManager());
-		
+
+		BitmapTextureAtlas mBitmapTextureAtlas;
+		mBitmapTextureAtlas = new BitmapTextureAtlas(mGameActivity.getTextureManager(), 32, 32, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, mGameActivity, "badge.png", 0, 0);
+
+		mGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
+
+		mAreaShape = new Sprite(mX, mY, mDominoTextureRegion, new VertexBufferObjectManager());
+
 		return this;
 	}
 
@@ -56,12 +60,4 @@ public final class Domino extends Component {
 	}
 
 	
-	void onLoadResources() {
-		 BitmapTextureAtlas mBitmapTextureAtlas;
-		mBitmapTextureAtlas = new BitmapTextureAtlas(mTextureManager, 32, 32, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-                
-                setTextureRegion(BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas,mAssetManager, "badge.png", 0, 0));
-
-                mTextureManager.loadTexture(mBitmapTextureAtlas);
-	}
 }

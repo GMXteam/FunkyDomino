@@ -16,14 +16,12 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import android.content.res.AssetManager;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IAreaShape;
-import org.andengine.opengl.texture.TextureManager;
-import org.andengine.opengl.texture.region.TextureRegion;
 
 /**
  * Classe abstraite définissant les composants. Les composants sont des éléments
@@ -38,37 +36,9 @@ public abstract class Component extends Entity implements Factorable, Components
 	 * composants, sans toutefois définir les widgets.
 	 */
 
-	static TextureManager mTextureManager;
-	static AssetManager mAssetManager;
-	
-	public static void loadTextureManager(TextureManager tm, AssetManager am) {
-		mTextureManager = tm;
-		mAssetManager = am;
-	}
-	
+	public static GameActivity mGameActivity;
 	protected IAreaShape mAreaShape;
 	protected Body mBody;
-	
-	/**
-	 * Accessed through get and set.
-	 */
-	private TextureRegion mTextureRegion;
-
-	
-	TextureRegion getTextureRegion() {
-		if (mTextureRegion == null) {
-			onLoadResources();
-		}
-		assert mTextureRegion != null;
-		return mTextureRegion;
-
-	}
-	
-	void setTextureRegion(TextureRegion tr) {
-		mTextureRegion = tr;
-	}
-
-	abstract void onLoadResources();
 
 	/**
 	 *

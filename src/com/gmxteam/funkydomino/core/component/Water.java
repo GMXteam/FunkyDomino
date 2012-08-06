@@ -16,10 +16,8 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import android.content.res.AssetManager;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.TextureManager;
 import org.xml.sax.Attributes;
 
 /**
@@ -42,10 +40,7 @@ public final class Water extends Component {
 
 	
 
-	@Override
-	void onLoadResources() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+
 
 	
 }
