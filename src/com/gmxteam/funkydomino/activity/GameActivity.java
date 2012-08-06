@@ -11,8 +11,6 @@ import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.model.GameModel;
 import com.gmxteam.funkydomino.xml.XMLParser;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.ParserConfigurationException;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
@@ -41,7 +39,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	/**
 	 *
 	 */
-	private PhysicsWorld mPhysicsWorld;
+	public PhysicsWorld mPhysicsWorld;
 	/**
 	 *
 	 */
@@ -78,7 +76,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 		mGameData = new GameModel();
 		mGameData.stage = R.raw.stage1;
-				BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
 
 		Component.mGameActivity = this;
 
@@ -117,11 +114,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * Chargement des ressources du programme (images, textes, etc...).
 	 */
 	public void onLoadResources() {
-		
-		
-		
-		
-		
 	}
 
 	/**
@@ -129,20 +121,13 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * @param pScene
 	 * @param pOnPopulateSceneCallback
 	 */
-	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
+	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws SAXException, ParserConfigurationException, IOException {
 
-		try {
-			XMLParser xp = new XMLParser();
 
-			xp.inflate(pScene, mPhysicsWorld, this.getResources().openRawResource(mGameData.stage));
+		XMLParser xp = new XMLParser();
 
-		} catch (ParserConfigurationException ex) {
-			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (SAXException ex) {
-			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (IOException ex) {
-			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		xp.inflate(pScene, mPhysicsWorld, this.getResources().openRawResource(mGameData.stage));
+
 
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 

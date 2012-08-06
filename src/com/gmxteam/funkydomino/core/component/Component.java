@@ -17,11 +17,14 @@
 package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IAreaShape;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 
 /**
  * Classe abstraite définissant les composants. Les composants sont des éléments
@@ -36,11 +39,9 @@ public abstract class Component extends Entity implements Factorable, Components
 	 * composants, sans toutefois définir les widgets.
 	 */
 
+
 	public static GameActivity mGameActivity;
 	protected IAreaShape mAreaShape;
-	protected Body mBody;
-	
-	
 
 	/**
 	 *

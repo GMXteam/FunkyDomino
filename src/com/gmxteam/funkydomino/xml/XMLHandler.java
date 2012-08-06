@@ -74,8 +74,9 @@ final class XMLHandler extends DefaultHandler {
 		try {		
 			Components.valueOf(localName).getComponent()
 					.factory(atts)
-					.inflateOnScene(mScene)
-					.inflateOnPhysicsWorld(mPhysicsWorld);
+					.inflateOnPhysicsWorld(mPhysicsWorld)
+					.inflateOnScene(mScene);
+					
 			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");
 		} catch (InstantiationException ex) {
 			Log.e("FunkyDomino", "La classe " + localName + " n'a pas pu être instanciée.", ex);
