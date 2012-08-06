@@ -78,6 +78,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 		mGameData = new GameModel();
 		mGameData.stage = R.raw.stage1;
+				BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
 
 		Component.mGameActivity = this;
 
@@ -117,7 +118,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 */
 	public void onLoadResources() {
 		
-		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
 		
 		
 		

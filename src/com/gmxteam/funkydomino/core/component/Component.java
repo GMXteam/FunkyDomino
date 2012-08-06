@@ -39,13 +39,15 @@ public abstract class Component extends Entity implements Factorable, Components
 	public static GameActivity mGameActivity;
 	protected IAreaShape mAreaShape;
 	protected Body mBody;
+	
+	
 
 	/**
 	 *
 	 * @param ga
 	 * @return
 	 */
-	public Component inflateOnScene(Scene ga) {
+	public final Component inflateOnScene(Scene ga) {
 		ga.attachChild(this);
 		return this;
 

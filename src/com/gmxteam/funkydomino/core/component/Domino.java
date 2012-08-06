@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
@@ -35,29 +36,32 @@ import org.xml.sax.Attributes;
  */
 public final class Domino extends Component {
 
-	TextureRegion mDominoTextureRegion;
+	private TextureRegion mDominoTextureRegion;
 
 	public Factorable factory(Attributes att) {
 
 		BitmapTextureAtlas mBitmapTextureAtlas;
-		mBitmapTextureAtlas = new BitmapTextureAtlas(mGameActivity.getTextureManager(), 32, 32, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		mBitmapTextureAtlas = new BitmapTextureAtlas(mGameActivity.getTextureManager(), 64, 64, TextureOptions.BILINEAR);
 
 		mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, mGameActivity, "badge.png", 0, 0);
 
 		mGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-		mAreaShape = new Sprite(mX, mY, mDominoTextureRegion, new VertexBufferObjectManager());
+		mAreaShape = new Sprite(40, 40, mDominoTextureRegion, new VertexBufferObjectManager());
 
 		return this;
 	}
 
 	public Domino inflateOnPhysicsWorld(PhysicsWorld pw) {
-		mBody = PhysicsFactory.createBoxBody(pw, mSkewCenterX, mSkewCenterY, mX, mX, mRotation, BodyDef.BodyType.StaticBody, null, mRotation);
+
+		FixtureDef fd = new FixtureDef();
+
+
+
+		mBody = PhysicsFactory.createBoxBody(pw, mAreaShape, BodyDef.BodyType.StaticBody, fd);
 		pw.registerPhysicsConnector(new PhysicsConnector(mAreaShape, mBody, true, true));
 
 
 		return this;
 	}
-
-	
 }
