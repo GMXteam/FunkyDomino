@@ -16,8 +16,18 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import android.content.res.AssetManager;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.gmxteam.funkydomino.core.factory.Factorable;
-import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.Sprite;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.TextureManager;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.xml.sax.Attributes;
 
 /**
@@ -25,12 +35,33 @@ import org.xml.sax.Attributes;
  * @author Guillaume Poirier-Morency
  */
 public final class Domino extends Component {
-
 	
+	
+	
+    
 
 	public Factorable factory(Attributes att) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		
+		mAreaShape = new Sprite(mX, mY, getTextureRegion(), new VertexBufferObjectManager());
+		
+		return this;
+	}
+
+	public Domino inflateOnPhysicsWorld(PhysicsWorld pw) {
+		mBody = PhysicsFactory.createBoxBody(pw, mSkewCenterX, mSkewCenterY, mX, mX, mRotation, BodyDef.BodyType.StaticBody, null, mRotation);
+		pw.registerPhysicsConnector(new PhysicsConnector(mAreaShape, mBody, true, true));
+
+
+		return this;
 	}
 
 	
+	void onLoadResources() {
+		 BitmapTextureAtlas mBitmapTextureAtlas;
+		mBitmapTextureAtlas = new BitmapTextureAtlas(mTextureManager, 32, 32, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+                
+                setTextureRegion(BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas,mAssetManager, "badge.png", 0, 0));
+
+                mTextureManager.loadTexture(mBitmapTextureAtlas);
+	}
 }

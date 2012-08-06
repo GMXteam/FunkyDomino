@@ -11,14 +11,6 @@
 	<string name="load_game_activity_name">Load</string>
 	<string name="new_game_activity_name">New</string>
     
-	<!-- La clé est cassée en morceaux afin de s'assurer qu'elle soit répartie dans le package. -->
-	<string name="key_0">aushrfegio7326rt49732gerwhfe763</string>    
-	<string name="key_1">aushrfegio7326rt49732gerwhfe763</string>  
-	<string name="key_2">aushrfegio7326rt49732gerwhfe763</string>  
-	<string name="key_3">aushrfegio7326rt49732gerwhfe763</string>  
-	<string name="key_4">aushrfegio7326rt49732gerwhfe763</string>  
-	<string name="key_5">aushrfegio7326rt49732gerwhfe763</string>  
-	<string name="key_6">aushrfegio7326rt49732gerwhfe763</string>  
-	<string name="key_7">aushrfegio7326rt49732gerwhfe763</string> 
+
 	<!--  -->
 </resources>

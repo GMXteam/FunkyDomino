@@ -3,8 +3,8 @@ package com.gmxteam.funkydomino.utils.xmlparser;
 
 import android.util.Log;
 import com.gmxteam.funkydomino.core.factory.FactorableEnum;
-import java.util.logging.Logger;
 import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -26,13 +26,15 @@ final class XMLHandler extends DefaultHandler {
 	 * @see FunkyDominoActivity
 	 */
 	private Scene mScene;
+	private PhysicsWorld mPhysicsWorld;
 
 	/**
 	 *
 	 * @param aea
 	 */
-	public XMLHandler(Scene aea) {
+	public XMLHandler(Scene aea, PhysicsWorld pw) {
 		mScene = aea;
+		mPhysicsWorld = pw;
 	}
 
 	/**
@@ -43,7 +45,7 @@ final class XMLHandler extends DefaultHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		startedTime = System.currentTimeMillis();
-		Log.v("funky-domino", "Le parsing du fichier de niveau commence");
+		Log.v("FunkyDomino", "Le parsing du fichier de niveau commence");
 
 	}
 
@@ -54,7 +56,7 @@ final class XMLHandler extends DefaultHandler {
 	 */
 	@Override
 	public void endDocument() throws SAXException {
-		Log.v("funky-domino", "Le parsing du fichier de niveau est terminé en " + (System.currentTimeMillis() - startedTime) + " ms.");
+		Log.v("FunkyDomino", "Le parsing du fichier de niveau est terminé en " + (System.currentTimeMillis() - startedTime) + " ms.");
 	}
 
 	/**
@@ -69,14 +71,19 @@ final class XMLHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
-		try {
-			FactorableEnum.valueOf(localName).getFactorableNode().factory(atts).inflateOnScene(mScene);
-
+		try {		
+			FactorableEnum.valueOf(localName).getFactorableNode()
+					.factory(atts)
+					.inflateOnScene(mScene)
+					.inflateOnPhysicsWorld(mPhysicsWorld);
+			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");
 		} catch (InstantiationException ex) {
-			Logger.getLogger(XMLHandler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			Log.e("FunkyDomino", "La classe " + localName + " n'a pas pu être instanciée.", ex);
 		} catch (IllegalAccessException ex) {
-			Logger.getLogger(XMLHandler.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			Log.e("FunkyDomino", "La classe " + localName + " n'est pas accessible.", ex);
+
 		}
+
 
 
 	}

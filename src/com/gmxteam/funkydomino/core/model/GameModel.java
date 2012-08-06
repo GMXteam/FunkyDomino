@@ -6,11 +6,8 @@ package com.gmxteam.funkydomino.core.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.gmxteam.funkydomino.core.factory.Factorable;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-import org.andengine.entity.scene.Scene;
-import org.xml.sax.Attributes;
 
 /**
  * Modèle ORM pour récupérer une partie de FunkyDomino depuis la base de

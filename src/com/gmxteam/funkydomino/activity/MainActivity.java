@@ -59,7 +59,6 @@ public final class MainActivity extends Activity {
 
 	public void onNewGameClick(View v) {
 		Intent i = new Intent(MainActivity.this, GameActivity.class);
-		i.getExtras().putInt(GameActivityConstants.STARTUP_STATE, GameActivityConstants.STARTUP_STATE_NEW_GAME);
 		startActivity(i);
 
 	}
@@ -79,6 +78,8 @@ public final class MainActivity extends Activity {
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		this.setContentView(R.layout.main);
+		
+		
 
 
 

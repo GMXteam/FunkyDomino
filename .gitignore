@@ -13,7 +13,7 @@ gdbserver
 AndEngine.iml
 nbandroid/**
 *~
-
+*.log
 # Local OS files
 ehthumbs.db
 Icon?

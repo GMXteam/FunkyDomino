@@ -16,15 +16,15 @@
  */
 package com.gmxteam.funkydomino.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
 /**
  * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
  * activité de type liste.
  * @author Guillaume Poirier-Morency
  */
-public final class PreferencesActivity extends Activity {
+public final class PreferencesActivity extends PreferenceActivity {
 
     /**
      * 
@@ -33,7 +33,7 @@ public final class PreferencesActivity extends Activity {
     @Override
     public void onCreate(Bundle b) {
 		super.onCreate(b);
-        setContentView(R.layout.preferences);
+       // setContentView(R.layout.preferences);
 
     }
 }

@@ -7,6 +7,7 @@ package com.gmxteam.funkydomino.activity;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.model.GameModel;
 import com.gmxteam.funkydomino.utils.xmlparser.XMLParser;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.SAXException;
@@ -70,23 +72,14 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 *
 	 * @param b
 	 */
-	public void onCreate2(Bundle b) {
+	@Override
+	public void onCreate(Bundle b) {
 		super.onCreate(b);
-		switch (b.getInt(STARTUP_STATE)) {
-			case STARTUP_STATE_NEW_GAME:
-				break;
 
-			case STARTUP_STATE_LOADGAME:
-				
-				mGameData = (GameModel) b.getParcelable(GAME_DATA);
-				break;
+		mGameData = new GameModel();
+		mGameData.stage = R.raw.stage1;
 
 
-		}
-
-
-		// Tests de base
-		assert mGameData != null;
 
 	}
 
@@ -123,6 +116,13 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * Chargement des ressources du programme (images, textes, etc...).
 	 */
 	public void onLoadResources() {
+		
+		BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+		
+		Component.loadTextureManager(this.getTextureManager(), this.getAssets());
+		
+		
+		
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		try {
 			XMLParser xp = new XMLParser();
 
-			xp.inflate(pScene, this.getResources().openRawResource(mGameData.stage));
+			xp.inflate(pScene, mPhysicsWorld, this.getResources().openRawResource(mGameData.stage));
 
 		} catch (ParserConfigurationException ex) {
 			Logger.getLogger(GameActivity.class.getName()).log(Level.SEVERE, null, ex);

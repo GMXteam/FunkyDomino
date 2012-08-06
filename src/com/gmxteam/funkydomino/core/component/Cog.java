@@ -16,8 +16,10 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import android.content.res.AssetManager;
 import com.gmxteam.funkydomino.core.factory.Factorable;
-import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.TextureManager;
 import org.xml.sax.Attributes;
 
 /**
@@ -31,6 +33,17 @@ public final class Cog extends Component {
 	
 
 	public Factorable factory(Attributes att) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	
+
+	@Override
+	void onLoadResources() {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
