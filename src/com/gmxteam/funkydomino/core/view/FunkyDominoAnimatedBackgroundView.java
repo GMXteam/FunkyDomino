@@ -14,31 +14,12 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.factory;
-
-import com.gmxteam.funkydomino.xml.AttributesExtended;
-import org.andengine.entity.scene.Scene;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
+package com.gmxteam.funkydomino.core.view;
 
 /**
  *
  * @author guillaume
  */
-public interface Factorable {
+public class FunkyDominoAnimatedBackgroundView {
 	
-
-	/**
-	 * Initialize Factorable object properties based on XML attributes.
-	 * @param att
-	 * @return 
-	 */
-	public Factorable factory(AttributesExtended att);
-
-	/**
-	 * Inflate the selected Factorable object on the specified Scene.
-	 * @param ga 
-	 */
-	public Factorable inflateOnScene(Scene ga);
-	
-	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw);
 }

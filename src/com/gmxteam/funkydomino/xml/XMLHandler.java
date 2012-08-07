@@ -1,21 +1,38 @@
+/*
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package com.gmxteam.funkydomino.xml;
 
 import android.util.Log;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.component.Components;
-import org.andengine.entity.scene.Scene;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
+import com.gmxteam.funkydomino.core.factory.Factorable;
+import java.util.LinkedList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * TODO Réécrire ce parser, il est crasse.
+ * 
  *
  * @author Guillaume Poirier-Morency
  */
-final class XMLHandler extends DefaultHandler {
-
+final public class XMLHandler extends DefaultHandler {
+	public LinkedList<Factorable> cachedComponents = new LinkedList<Factorable>();
 	/**
 	 * Entier contenant le temps de départ du parsing afin de mesurer le temps
 	 * que l'opération va prendre.
@@ -72,11 +89,11 @@ final class XMLHandler extends DefaultHandler {
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		try {
 			AttributesExtended atts2 = new AttributesExtended(atts);
-			Components.valueOf(localName).getComponent()
+			cachedComponents.add(Components.valueOf(localName).getComponent()
 					.init(mGameActivity, atts2)
-					.factory(atts2)
-					.inflateOnPhysicsWorld(mGameActivity.mPhysicsWorld)
-					.inflateOnScene(mGameActivity.mScene);
+					.factory(atts2));
+			
+					
 
 			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");
 		} catch (InstantiationException ex) {

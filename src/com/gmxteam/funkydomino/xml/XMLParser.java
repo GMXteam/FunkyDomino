@@ -17,8 +17,10 @@
 package com.gmxteam.funkydomino.xml;
 
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.factory.Factorable;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -33,12 +35,18 @@ import org.xml.sax.XMLReader;
  * @author Guillaume Poirier-morency
  */
 public final class XMLParser {
+	
+	private XMLHandler xh;
+	
+	public synchronized LinkedList<Factorable> getCachedComponents() {
+		return xh.cachedComponents;
+	}
 
 	public void inflate(GameActivity ga,  InputStream ressource) throws SAXException, ParserConfigurationException, IOException {
 		final SAXParserFactory spf = SAXParserFactory.newInstance();
 		final SAXParser sp = spf.newSAXParser();
 		final XMLReader xr = sp.getXMLReader();
-		final XMLHandler xh = new XMLHandler(ga);
+		xh = new XMLHandler(ga);
 		xr.setContentHandler(xh);
 
 		// On essai au moins une autre fois si il y a une IOException.

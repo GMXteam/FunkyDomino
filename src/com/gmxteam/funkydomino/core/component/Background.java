@@ -18,27 +18,39 @@ package com.gmxteam.funkydomino.core.component;
 
 import com.gmxteam.funkydomino.core.factory.Factorable;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
+import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 /**
- *
+ * Contiens les paramètres de la partie ainsi que le background.
+ *     Niveau actuel
+ *     Niveau suivant
+ *     Nom du niveau
+ *     Description du niveau
  * @author guillaume
  */
-public class Level extends Component {
+public class Background extends Component {
+	
+	/**
+	 *
+	 */
+	TiledSprite mBackground;
+	/**
+	 *
+	 */
+	TiledTextureRegion mBackgroundTextureRegion;
+	/**
+	 *
+	 */
+	BitmapTextureAtlas mBackgroundTexture;
 
 	public Factorable factory(AttributesExtended att) {
-			return this;
+		return this;
 	}
 
 	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw) {
 		return this;
 	}
-
-	
-	void onLoadResources() {
-	}
-
-	
-
-	
 }

@@ -7,6 +7,7 @@ package com.gmxteam.funkydomino.activity;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.core.factory.Factorable;
 import com.gmxteam.funkydomino.core.model.GameModel;
 import com.gmxteam.funkydomino.xml.XMLParser;
 import java.io.IOException;
@@ -31,9 +32,10 @@ import org.xml.sax.SAXException;
 public class GameActivity extends BaseGameActivity implements GameActivityConstants {
 
 	/**
-	 * Structure orm contenant les paramètres de la partie.
+	 * Structure orm contenant les paramètres sauvegardés de la partie.
 	 */
 	private GameModel mGameData;
+	private XMLParser mParser = new XMLParser();
 	/**
 	 *
 	 */
@@ -46,18 +48,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 *
 	 */
 	SmoothCamera mCamera;
-	/**
-	 *
-	 */
-	TiledSprite mBackground;
-	/**
-	 *
-	 */
-	TiledTextureRegion mBackgroundTextureRegion;
-	/**
-	 *
-	 */
-	BitmapTextureAtlas mBackgroundTexture;
+	
 	/**
 	 *
 	 */
@@ -99,7 +90,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * @param pOnCreateSceneCallback
 	 * @throws Exception
 	 */
-	public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws Exception {
+	public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 		mScene = new Scene();
 
 		mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
@@ -109,23 +100,18 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	}
 
 	/**
-	 * Chargement des ressources du programme (images, textes, etc...).
-	 */
-	public void onLoadResources() {
-	}
-
-	/**
 	 *
 	 * @param pScene
 	 * @param pOnPopulateSceneCallback
 	 */
-	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws SAXException, ParserConfigurationException, IOException {
+	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
 
+		// Components should have been loaded in the onLoadResources method.
+		for (Factorable f : mParser.getCachedComponents()) {
+			f.inflateOnPhysicsWorld(mPhysicsWorld)
+					.inflateOnScene(pScene);
 
-		XMLParser xp = new XMLParser();
-
-		xp.inflate(this, this.getResources().openRawResource(mGameData.stage));
-
+		}
 
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 
@@ -137,7 +123,11 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * @param pOnCreateResourcesCallback
 	 * @throws Exception
 	 */
-	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws Exception {
+	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws SAXException, ParserConfigurationException, IOException {
+
+		mParser.inflate(this, this.getResources().openRawResource(mGameData.stage));
+
+
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 }

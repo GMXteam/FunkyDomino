@@ -18,9 +18,7 @@ package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.R;
-import com.gmxteam.funkydomino.core.factory.Factorable;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
@@ -37,35 +35,30 @@ import org.andengine.opengl.texture.region.TextureRegion;
  */
 public final class Domino extends Component {
 	
-	private Body mBody;
+	private Body mDominoBody;
+	private Sprite mDominoSprite;
 	
 	@Override
-	public Domino factory(AttributesExtended att) {
+	public Domino factory(AttributesExtended att) {		
 		
+		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 128, TextureOptions.BILINEAR);
 		
-		BitmapTextureAtlas mBitmapTextureAtlas;
-		mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 128, TextureOptions.BILINEAR);
 		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.icon, 0, 0);
 		
 		getTextureManager().loadTexture(mBitmapTextureAtlas);
-		mAreaShape = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager());
+		mDominoSprite = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager());
 		
-		this.attachChild(mAreaShape);
+		this.attachChild(mDominoSprite);
 		
 		return this;
 	}
 	
-	public Domino inflateOnPhysicsWorld(PhysicsWorld pw) {
+	public Domino inflateOnPhysicsWorld(PhysicsWorld pw) {	
 		
 		
+		mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
 		
-		
-		
-		
-		mBody = PhysicsFactory.createBoxBody(pw, mAreaShape, BodyDef.BodyType.DynamicBody, mFixtureDef);
-		
-		pw.registerPhysicsConnector(new PhysicsConnector(mAreaShape, mBody, true, true));
-		
+		pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));	
 		
 		
 		return this;

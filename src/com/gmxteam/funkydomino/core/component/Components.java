@@ -8,7 +8,7 @@ package com.gmxteam.funkydomino.core.component;
  */
 public enum Components {
 
-	level(Level.class),
+	level(Background.class),
 	ground(Ground.class),
 	water(Water.class),
 	domino(Domino.class),

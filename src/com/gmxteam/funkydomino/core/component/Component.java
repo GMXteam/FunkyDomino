@@ -23,7 +23,6 @@ import com.gmxteam.funkydomino.core.factory.Factorable;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.shape.IAreaShape;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
@@ -41,7 +40,7 @@ public abstract class Component extends Entity implements Factorable, Components
 	 */
 
 	// public static GameActivity mGameActivity;
-	protected IAreaShape mAreaShape;
+	
 	protected FixtureDef mFixtureDef = new FixtureDef();
 	private GameActivity mGameActivity;
 
