@@ -16,15 +16,16 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.badlogic.gdx.physics.box2d.Body;
+import android.content.Context;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.factory.Factorable;
+import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IAreaShape;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.TextureManager;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 /**
  * Classe abstraite définissant les composants. Les composants sont des éléments
@@ -39,9 +40,39 @@ public abstract class Component extends Entity implements Factorable, Components
 	 * composants, sans toutefois définir les widgets.
 	 */
 
-
-	public static GameActivity mGameActivity;
+	// public static GameActivity mGameActivity;
 	protected IAreaShape mAreaShape;
+	protected FixtureDef mFixtureDef = new FixtureDef();
+	private GameActivity mGameActivity;
+
+	public final Component init(GameActivity ga, AttributesExtended att) {
+		mGameActivity = ga;
+		this.mX = att.getFloatValue("left", 0.0f);
+		this.mY = att.getFloatValue("top", 0.0f);
+
+		mFixtureDef.density = att.getFloatValue("density", 5.0f);
+		mFixtureDef.friction = att.getFloatValue("friction", 5.0f);
+		
+		return this;
+	}
+
+	/////////////////////////
+	// Accessible resources from the GameActivity
+	
+	protected final TextureManager getTextureManager() {
+		return mGameActivity.getTextureManager();
+	}
+
+	protected final VertexBufferObjectManager getVertexBufferObjectManager() {
+		return mGameActivity.getVertexBufferObjectManager();
+	}
+
+	protected final Context getContext() {
+		return (Context) mGameActivity;
+	}
+
+	
+	
 
 	/**
 	 *

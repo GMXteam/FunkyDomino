@@ -1,7 +1,7 @@
 package com.gmxteam.funkydomino.xml;
 
-
 import android.util.Log;
+import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.component.Components;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -9,7 +9,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-	/**
+/**
  * TODO Réécrire ce parser, il est crasse.
  *
  * @author Guillaume Poirier-Morency
@@ -25,16 +25,15 @@ final class XMLHandler extends DefaultHandler {
 	/**
 	 * @see FunkyDominoActivity
 	 */
-	private Scene mScene;
-	private PhysicsWorld mPhysicsWorld;
+	private GameActivity mGameActivity;
 
 	/**
 	 *
 	 * @param aea
 	 */
-	public XMLHandler(Scene aea, PhysicsWorld pw) {
-		mScene = aea;
-		mPhysicsWorld = pw;
+	public XMLHandler(GameActivity ga) {
+		mGameActivity = ga;
+
 	}
 
 	/**
@@ -71,12 +70,14 @@ final class XMLHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
-		try {		
+		try {
+			AttributesExtended atts2 = new AttributesExtended(atts);
 			Components.valueOf(localName).getComponent()
-					.factory(atts)
-					.inflateOnPhysicsWorld(mPhysicsWorld)
-					.inflateOnScene(mScene);
-					
+					.init(mGameActivity, atts2)
+					.factory(atts2)
+					.inflateOnPhysicsWorld(mGameActivity.mPhysicsWorld)
+					.inflateOnScene(mGameActivity.mScene);
+
 			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");
 		} catch (InstantiationException ex) {
 			Log.e("FunkyDomino", "La classe " + localName + " n'a pas pu être instanciée.", ex);
@@ -117,4 +118,3 @@ final class XMLHandler extends DefaultHandler {
 		//chars = chars.trim();
 	}
 }
-	

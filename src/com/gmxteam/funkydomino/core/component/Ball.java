@@ -17,8 +17,8 @@
 package com.gmxteam.funkydomino.core.component;
 
 import com.gmxteam.funkydomino.core.factory.Factorable;
+import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.xml.sax.Attributes;
 
 /**
  *
@@ -27,7 +27,8 @@ import org.xml.sax.Attributes;
  */
 public final class Ball extends Component {
 
-	public Factorable factory(Attributes att) {
+	public Factorable factory(AttributesExtended att) {
+		
 
 		throw new UnsupportedOperationException("Not supported yet.");
 	}

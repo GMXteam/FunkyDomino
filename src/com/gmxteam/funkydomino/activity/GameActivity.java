@@ -7,7 +7,6 @@ package com.gmxteam.funkydomino.activity;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.model.GameModel;
 import com.gmxteam.funkydomino.xml.XMLParser;
 import java.io.IOException;
@@ -21,7 +20,6 @@ import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.SAXException;
@@ -43,7 +41,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	/**
 	 *
 	 */
-	private Scene mScene;
+	public Scene mScene;
 	/**
 	 *
 	 */
@@ -77,7 +75,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		mGameData = new GameModel();
 		mGameData.stage = R.raw.stage1;
 
-		Component.mGameActivity = this;
+
 
 	}
 
@@ -126,7 +124,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 		XMLParser xp = new XMLParser();
 
-		xp.inflate(pScene, mPhysicsWorld, this.getResources().openRawResource(mGameData.stage));
+		xp.inflate(this, this.getResources().openRawResource(mGameData.stage));
 
 
 		pOnPopulateSceneCallback.onPopulateSceneFinished();

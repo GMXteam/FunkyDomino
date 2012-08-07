@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <level id="stage1" previousLevel="null" nextLevel="stage2" name="Tutoriel" description="Premier niveau, pour apprendre à jouer.">
-        <domino x="100.1" y="20.6" moveable="true" />
+        <domino left="100.1" top="20.6" moveable="true" />
+		<domino left="100.1" top="20.6" moveable="true" />
+	    <domino left="100.1" top="20.6" moveable="true" />
+        <domino left="100.1" top="20.6" moveable="true" />
         
 </level>

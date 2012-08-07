@@ -16,13 +16,12 @@
  */
 package com.gmxteam.funkydomino.xml;
 
+import com.gmxteam.funkydomino.activity.GameActivity;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.andengine.entity.scene.Scene;
-import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -35,11 +34,11 @@ import org.xml.sax.XMLReader;
  */
 public final class XMLParser {
 
-	public void inflate(Scene ga, PhysicsWorld pw,  InputStream ressource) throws SAXException, ParserConfigurationException, IOException {
+	public void inflate(GameActivity ga,  InputStream ressource) throws SAXException, ParserConfigurationException, IOException {
 		final SAXParserFactory spf = SAXParserFactory.newInstance();
 		final SAXParser sp = spf.newSAXParser();
 		final XMLReader xr = sp.getXMLReader();
-		final XMLHandler xh = new XMLHandler(ga, pw);
+		final XMLHandler xh = new XMLHandler(ga);
 		xr.setContentHandler(xh);
 
 		// On essai au moins une autre fois si il y a une IOException.
@@ -48,6 +47,7 @@ public final class XMLParser {
 			xr.parse(new InputSource(ressource));
 		} catch (IOException ex) {
 			xr.parse(new InputSource(ressource));
+			
 		}
 
 	}

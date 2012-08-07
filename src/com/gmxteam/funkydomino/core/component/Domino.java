@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.R;
 import com.gmxteam.funkydomino.core.factory.Factorable;
-import org.andengine.entity.shape.IAreaShape;
+import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -30,7 +30,6 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
-import org.xml.sax.Attributes;
 
 /**
  *
@@ -38,45 +37,37 @@ import org.xml.sax.Attributes;
  */
 public final class Domino extends Component {
 	
-	
-
 	private Body mBody;
-	private FixtureDef mFixtureDef;
-
-	public Factorable factory(Attributes att) {
-
+	
+	@Override
+	public Domino factory(AttributesExtended att) {
+		
+		
 		BitmapTextureAtlas mBitmapTextureAtlas;
-		mBitmapTextureAtlas = new BitmapTextureAtlas(mGameActivity.getTextureManager(), 128, 128, TextureOptions.BILINEAR);
-		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, mGameActivity, R.drawable.icon, 0, 0);
-
-
-
-		mGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
-		mAreaShape = new Sprite(40, 40, mDominoTextureRegion, mGameActivity.getVertexBufferObjectManager());
-
-
-
-
-
+		mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 128, TextureOptions.BILINEAR);
+		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.icon, 0, 0);
+		
+		getTextureManager().loadTexture(mBitmapTextureAtlas);
+		mAreaShape = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager());
+		
 		this.attachChild(mAreaShape);
-
+		
 		return this;
 	}
-
+	
 	public Domino inflateOnPhysicsWorld(PhysicsWorld pw) {
-
-
-
-
-		mFixtureDef.density = 5;
-
-
+		
+		
+		
+		
+		
+		
 		mBody = PhysicsFactory.createBoxBody(pw, mAreaShape, BodyDef.BodyType.DynamicBody, mFixtureDef);
-
+		
 		pw.registerPhysicsConnector(new PhysicsConnector(mAreaShape, mBody, true, true));
-
-
-
+		
+		
+		
 		return this;
 	}
 }

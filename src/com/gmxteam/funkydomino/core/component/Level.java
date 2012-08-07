@@ -16,11 +16,9 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import android.content.res.AssetManager;
 import com.gmxteam.funkydomino.core.factory.Factorable;
+import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.TextureManager;
-import org.xml.sax.Attributes;
 
 /**
  *
@@ -28,8 +26,8 @@ import org.xml.sax.Attributes;
  */
 public class Level extends Component {
 
-	public Factorable factory(Attributes att) {
-		return this;
+	public Factorable factory(AttributesExtended att) {
+			return this;
 	}
 
 	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw) {
@@ -38,7 +36,6 @@ public class Level extends Component {
 
 	
 	void onLoadResources() {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	
