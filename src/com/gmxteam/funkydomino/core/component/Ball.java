@@ -16,8 +16,8 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.core.factory.Factorable;
-import com.gmxteam.funkydomino.xml.AttributesExtended;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import org.andengine.entity.Entity;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 
 /**
@@ -27,13 +27,25 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
  */
 public final class Ball extends Component {
 
-	public Factorable factory(AttributesExtended att) {
-		
+	
 
+	@Override
+	protected void onLoadResource() {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw) {
+	@Override
+	protected void onCreateFixtureDef(FixtureDef fd) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	protected void onPopulateEntity(Entity e) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

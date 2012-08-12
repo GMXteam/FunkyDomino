@@ -17,7 +17,7 @@
 package com.gmxteam.funkydomino.xml;
 
 import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.factory.Factorable;
+import com.gmxteam.funkydomino.core.component.Component;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -38,7 +38,8 @@ public final class XMLParser {
 	
 	private XMLHandler xh;
 	
-	public synchronized LinkedList<Factorable> getCachedComponents() {
+	public synchronized LinkedList<Component> getCachedComponents() {
+		assert xh.cachedComponents != null;
 		return xh.cachedComponents;
 	}
 
@@ -57,6 +58,7 @@ public final class XMLParser {
 			xr.parse(new InputSource(ressource));
 			
 		}
+		
 
 	}
 }

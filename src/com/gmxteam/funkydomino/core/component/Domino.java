@@ -18,8 +18,9 @@ package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.R;
-import com.gmxteam.funkydomino.xml.AttributesExtended;
+import org.andengine.entity.Entity;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -34,33 +35,36 @@ import org.andengine.opengl.texture.region.TextureRegion;
  * @author Guillaume Poirier-Morency
  */
 public final class Domino extends Component {
-	
+
 	private Body mDominoBody;
 	private Sprite mDominoSprite;
-	
+
 	@Override
-	public Domino factory(AttributesExtended att) {		
-		
-		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 128, TextureOptions.BILINEAR);
-		
-		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.icon, 0, 0);
-		
+	protected void onLoadResource() {
+		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0);
+
 		getTextureManager().loadTexture(mBitmapTextureAtlas);
+
 		mDominoSprite = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager());
-		
-		this.attachChild(mDominoSprite);
-		
-		return this;
+
+
 	}
-	
-	public Domino inflateOnPhysicsWorld(PhysicsWorld pw) {	
-		
-		
+
+	@Override
+	protected void onCreateFixtureDef(FixtureDef fd) {
+	}
+
+	@Override
+	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
 		mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
-		
-		pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));	
-		
-		
-		return this;
+
+		pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
+	}
+
+	@Override
+	protected void onPopulateEntity(Entity e) {
+		e.attachChild(mDominoSprite);
 	}
 }

@@ -14,28 +14,28 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package com.gmxteam.funkydomino.xml;
 
 import android.util.Log;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.component.Components;
-import com.gmxteam.funkydomino.core.factory.Factorable;
 import java.util.LinkedList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * 
+ *
  *
  * @author Guillaume Poirier-Morency
  */
 final public class XMLHandler extends DefaultHandler {
-	public LinkedList<Factorable> cachedComponents = new LinkedList<Factorable>();
+
+	public LinkedList<Component> cachedComponents;
 	/**
-	 * Entier contenant le temps de départ du parsing afin de mesurer le temps
-	 * que l'opération va prendre.
+	 * Entier contenant le temps de départ du parsing afin de mesurer le
+	 * temps que l'opération va prendre.
 	 */
 	private long startedTime;
 	// this holds the data 
@@ -49,6 +49,7 @@ final public class XMLHandler extends DefaultHandler {
 	 * @param aea
 	 */
 	public XMLHandler(GameActivity ga) {
+		cachedComponents = new LinkedList<Component>();
 		mGameActivity = ga;
 
 	}
@@ -76,8 +77,9 @@ final public class XMLHandler extends DefaultHandler {
 	}
 
 	/**
-	 * This gets called at the start of an element. Here we're also setting the
-	 * booleans to true if it's at that specific tag. (so we know where we are)
+	 * This gets called at the start of an element. Here we're also setting
+	 * the booleans to true if it's at that specific tag. (so we know where
+	 * we are)
 	 *
 	 * @param namespaceURI
 	 * @param localName
@@ -89,11 +91,9 @@ final public class XMLHandler extends DefaultHandler {
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		try {
 			AttributesExtended atts2 = new AttributesExtended(atts);
-			cachedComponents.add(Components.valueOf(localName).getComponent()
-					.init(mGameActivity, atts2)
-					.factory(atts2));
-			
-					
+			cachedComponents.add((Component) Components.valueOf(localName).getComponent()
+				.init(mGameActivity, atts2));
+
 
 			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");
 		} catch (InstantiationException ex) {
@@ -108,8 +108,8 @@ final public class XMLHandler extends DefaultHandler {
 	}
 
 	/**
-	 * Called at the end of the element. Setting the booleans to false, so we
-	 * know that we've just left that tag.
+	 * Called at the end of the element. Setting the booleans to false, so
+	 * we know that we've just left that tag.
 	 *
 	 * @param namespaceURI
 	 * @param localName
@@ -121,9 +121,10 @@ final public class XMLHandler extends DefaultHandler {
 	}
 
 	/**
-	 * Calling when we're within an element. Here we're checking to see if there
-	 * is any content in the tags that we're interested in and populating it in
-	 * the Config object. <p> On ne devrait pas avoir à utiliser cette section.
+	 * Calling when we're within an element. Here we're checking to see if
+	 * there is any content in the tags that we're interested in and
+	 * populating it in the Config object. <p> On ne devrait pas avoir à
+	 * utiliser cette section.
 	 *
 	 * @param ch
 	 * @param start

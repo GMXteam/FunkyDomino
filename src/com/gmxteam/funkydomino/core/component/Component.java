@@ -19,10 +19,9 @@ package com.gmxteam.funkydomino.core.component;
 import android.content.Context;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.factory.Factorable;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
-import org.andengine.entity.scene.Scene;
+import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
@@ -31,16 +30,14 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
  * affectés par la physique. On parle du sol, des dominos, des billes et autres
  * objets. Dans leurs méthodes Factory, ils peuvent altérer comme bon leur
  * semble les variables mAreaShape (état graphique) et mBody (état physique).
+ * 
+ * Le système de génération des composants est basé sur des événements.
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Entity implements Factorable, ComponentsConstants {
-	/* Ici, on peut mettre toutes les variables définissant généralement les
-	 * composants, sans toutefois définir les widgets.
-	 */
+public abstract class Component extends Entity implements ComponentsConstants {
 
 	// public static GameActivity mGameActivity;
-	
 	protected FixtureDef mFixtureDef = new FixtureDef();
 	private GameActivity mGameActivity;
 
@@ -51,13 +48,28 @@ public abstract class Component extends Entity implements Factorable, Components
 
 		mFixtureDef.density = att.getFloatValue("density", 5.0f);
 		mFixtureDef.friction = att.getFloatValue("friction", 5.0f);
-		
+
+		onLoadResource();
+
+		onCreateFixtureDef(mFixtureDef);
+
+		onPopulatePhysicsWorld(mGameActivity.mPhysicsWorld);
+
+		onPopulateEntity(this);
+
 		return this;
 	}
 
+	protected abstract void onLoadResource();
+
+	protected abstract void onCreateFixtureDef(FixtureDef fd);
+
+	protected abstract void onPopulatePhysicsWorld(PhysicsWorld pw);
+
+	protected abstract void onPopulateEntity(Entity e);
+
 	/////////////////////////
 	// Accessible resources from the GameActivity
-	
 	protected final TextureManager getTextureManager() {
 		return mGameActivity.getTextureManager();
 	}
@@ -68,19 +80,5 @@ public abstract class Component extends Entity implements Factorable, Components
 
 	protected final Context getContext() {
 		return (Context) mGameActivity;
-	}
-
-	
-	
-
-	/**
-	 *
-	 * @param ga
-	 * @return
-	 */
-	public final Component inflateOnScene(Scene ga) {
-		ga.attachChild(this);
-		return this;
-
 	}
 }

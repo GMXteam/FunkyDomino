@@ -16,8 +16,8 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.core.factory.Factorable;
-import com.gmxteam.funkydomino.xml.AttributesExtended;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import org.andengine.entity.Entity;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -46,11 +46,21 @@ public class Background extends Component {
 	 */
 	BitmapTextureAtlas mBackgroundTexture;
 
-	public Factorable factory(AttributesExtended att) {
-		return this;
+	
+
+	@Override
+	protected void onCreateFixtureDef(FixtureDef fd) {
 	}
 
-	public Factorable inflateOnPhysicsWorld(PhysicsWorld pw) {
-		return this;
+	@Override
+	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+	}
+
+	@Override
+	protected void onPopulateEntity(Entity e) {
+	}
+
+	@Override
+	protected void onLoadResource() {
 	}
 }
