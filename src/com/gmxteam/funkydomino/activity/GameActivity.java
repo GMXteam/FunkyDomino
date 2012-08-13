@@ -76,7 +76,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	public final EngineOptions onCreateEngineOptions() {
 		this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
 		this.mCamera.setBounds(WORLD_LEFT, WORLD_TOP, WORLD_WIDTH - CAMERA_WIDTH, WORLD_HEIGHT);
-
+		
 		mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
 
 		//engineOptions.getAudioOptions().setNeedsSound(true);
@@ -125,7 +125,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 * @throws Exception
 	 */
 	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
-
 
 
 		pOnCreateResourcesCallback.onCreateResourcesFinished();

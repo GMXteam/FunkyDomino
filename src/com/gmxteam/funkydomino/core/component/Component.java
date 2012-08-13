@@ -38,14 +38,19 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 public abstract class Component extends Entity implements ComponentsConstants {
 
 	// public static GameActivity mGameActivity;
-	protected FixtureDef mFixtureDef = new FixtureDef();
+	protected FixtureDef mFixtureDef;
+	protected AttributesExtended mAttributes;
 	private GameActivity mGameActivity;
 
 	public final Component init(GameActivity ga, AttributesExtended att) {
 		mGameActivity = ga;
-		this.mX = att.getFloatValue("left", 0.0f);
-		this.mY = att.getFloatValue("top", 0.0f);
+		mAttributes = att;
+		
+		this.mX = mAttributes.getFloatValue("left", 0.0f);
+		this.mY = mAttributes.getFloatValue("top", 0.0f);
 
+		mFixtureDef = new FixtureDef();
+		
 		mFixtureDef.density = att.getFloatValue("density", 5.0f);
 		mFixtureDef.friction = att.getFloatValue("friction", 5.0f);
 
@@ -72,6 +77,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
 	// Accessible resources from the GameActivity
 	protected final TextureManager getTextureManager() {
 		return mGameActivity.getTextureManager();
+		
 	}
 
 	protected final VertexBufferObjectManager getVertexBufferObjectManager() {

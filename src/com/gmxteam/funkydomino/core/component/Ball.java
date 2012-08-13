@@ -16,9 +16,19 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activity.R;
 import org.andengine.entity.Entity;
+import org.andengine.entity.sprite.Sprite;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TextureRegion;
 
 /**
  *
@@ -27,29 +37,32 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
  */
 public final class Ball extends Component {
 
-	
+	private Body mBallBody;
+	private Sprite mBallSprite;
 
 	@Override
 	protected void onLoadResource() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 128, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.ball, 0, 0);
+
+		getTextureManager().loadTexture(mBitmapTextureAtlas);
+
+		mBallSprite = new Sprite(0, 0, mBallTextureRegion, getVertexBufferObjectManager());
 	}
 
 	@Override
 	protected void onCreateFixtureDef(FixtureDef fd) {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
 	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		mBallBody = PhysicsFactory.createCircleBody(pw, mBallSprite, BodyDef.BodyType.StaticBody, mFixtureDef);
+		pw.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
 	}
 
 	@Override
 	protected void onPopulateEntity(Entity e) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		e.attachChild(mBallSprite);
 	}
-
-
-
-	
 }
