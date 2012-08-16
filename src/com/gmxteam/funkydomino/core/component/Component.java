@@ -21,6 +21,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
+import org.andengine.entity.scene.IOnAreaTouchListener;
+import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -35,12 +38,14 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Entity implements ComponentsConstants {
+public abstract class Component extends Entity implements ComponentsConstants, IOnAreaTouchListener {
 
 	// public static GameActivity mGameActivity;
 	protected FixtureDef mFixtureDef;
 	protected AttributesExtended mAttributes;
 	private GameActivity mGameActivity;
+	
+	
 
 	public final Component init(GameActivity ga, AttributesExtended att) {
 		mGameActivity = ga;
@@ -64,6 +69,8 @@ public abstract class Component extends Entity implements ComponentsConstants {
 
 		return this;
 	}
+	
+	public abstract ITouchArea getTouchArea();
 
 	protected abstract void onLoadResource();
 
@@ -75,6 +82,12 @@ public abstract class Component extends Entity implements ComponentsConstants {
 
 	/////////////////////////
 	// Accessible resources from the GameActivity
+	
+	protected final void addComponentToScene(Component c, AttributesExtended atts) {
+		mGameActivity.addComponentToScene(c.init(mGameActivity, mAttributes));
+	}
+	
+	
 	protected final TextureManager getTextureManager() {
 		return mGameActivity.getTextureManager();
 		

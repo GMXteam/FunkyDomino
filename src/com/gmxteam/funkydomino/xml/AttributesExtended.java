@@ -22,9 +22,11 @@ import org.xml.sax.Attributes;
  * Méthodes additionnelles pour la classe Attributes de SAX.
  * @author guillaume
  */
-public class AttributesExtended {
+public abstract class AttributesExtended implements Attributes {
 
 	private Attributes mAttributes;
+	
+	
 
 	public AttributesExtended(Attributes att) {
 		mAttributes = att;

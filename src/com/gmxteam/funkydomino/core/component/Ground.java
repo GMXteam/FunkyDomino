@@ -19,7 +19,10 @@ package com.gmxteam.funkydomino.core.component;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.andengine.entity.Entity;
+import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.TouchEvent;
 
 /**
  * Objet définissant le sol.
@@ -29,6 +32,11 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 public class Ground extends Component {
 
 	private Body[] mBodies;
+	private TiledSprite mGround;
+	
+	public ITouchArea getTouchArea() {
+		return mGround;
+	}
 
 	
 
@@ -54,6 +62,10 @@ public class Ground extends Component {
 	@Override
 	protected void onPopulateEntity(Entity e) {
 		
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

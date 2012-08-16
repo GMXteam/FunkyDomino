@@ -18,21 +18,29 @@ package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.andengine.entity.Entity;
+import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.TouchEvent;
 
 /**
- * Objet pour générer de l'eau. Cela risque plus d'être un champ de force 
+ * Objet pour générer de l'eau. Cela risque plus d'être un champ de force
  * qu'autre chose par contre.
+ *
  * @see Component
  * @author Guillaume Poirier-Morency
  */
 public class Water extends Component {
-    
-   
 
+	private TiledSprite mWater;
+
+	public ITouchArea getTouchArea() {
+		return mWater;
+	}
 
 	@Override
 	protected void onLoadResource() {
+		
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
@@ -51,9 +59,7 @@ public class Water extends Component {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	
-
-
-
-	
+	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }

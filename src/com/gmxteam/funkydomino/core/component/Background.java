@@ -20,11 +20,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivityConstants;
 import com.gmxteam.funkydomino.activity.R;
+import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
+import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -51,6 +54,11 @@ public class Background extends Component {
 	 *
 	 */
 	BitmapTextureAtlas mBackgroundTexture;
+	
+	public ITouchArea getTouchArea() {
+		
+		return mBackground;
+	}
 
 	@Override
 	protected void onCreateFixtureDef(FixtureDef fd) {
@@ -87,5 +95,11 @@ public class Background extends Component {
 		getTextureManager().loadTexture(mBackgroundTexture);
 
 		mBackground = new TiledSprite(0, 0, mBackgroundTextureRegion, getVertexBufferObjectManager());
+	}
+
+	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+		Ball b = new Ball();
+		// this.addComponentToScene(b, new AttributesExtended());
+		return true;
 	}
 }

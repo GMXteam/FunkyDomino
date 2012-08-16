@@ -90,9 +90,9 @@ final public class XMLHandler extends DefaultHandler {
 	@Override
 	public void startElement(String namespaceURI, String localName, String qName, Attributes atts) throws SAXException {
 		try {
-			AttributesExtended atts2 = new AttributesExtended(atts);
+			// AttributesExtended atts2 = new AttributesExtended(atts);
 			cachedComponents.add((Component) Components.valueOf(localName).getComponent()
-				.init(mGameActivity, atts2));
+				.init(mGameActivity, (AttributesExtended)atts));
 
 
 			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");
