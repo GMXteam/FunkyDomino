@@ -20,12 +20,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activity.R;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 /**
  * Objet définissant le sol.
@@ -35,6 +41,7 @@ import org.andengine.input.touch.TouchEvent;
 public class Ground extends Component {
 
     private Body mGroundBody;
+    private TiledTextureRegion mGroundTextureRegion;
     private TiledSprite mGround;
     private Vector2 mVertex[];
 
@@ -44,7 +51,11 @@ public class Ground extends Component {
 
     @Override
     protected void onLoadResource() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0, 10, 10);
+        mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
+
     }
 
     @Override
@@ -54,16 +65,16 @@ public class Ground extends Component {
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-        mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.DynamicBody, mFixtureDef);
+        mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.StaticBody, mFixtureDef);
+        pw.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
     }
 
     @Override
     protected void onPopulateEntity(Entity e) {
-
-        throw new UnsupportedOperationException("Not supported yet.");
+        e.attachChild(mGround);
     }
 
     public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return false;
     }
 }

@@ -75,6 +75,6 @@ public final class Ball extends Component {
 	}
 
 	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return false;
 	}
 }

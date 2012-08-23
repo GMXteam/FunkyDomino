@@ -24,7 +24,7 @@ import org.xml.sax.Attributes;
  *
  * @author guillaume
  */
-public abstract class AttributesExtended implements Attributes {
+public class AttributesExtended  {
 
     private Attributes mAttributes;
 
