@@ -16,11 +16,14 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
 
@@ -31,46 +34,36 @@ import org.andengine.input.touch.TouchEvent;
  */
 public class Ground extends Component {
 
-	private Body[] mBodies;
-	private TiledSprite mGround;
-	
-	public ITouchArea getTouchArea() {
-		return mGround;
-	}
+    private Body mGroundBody;
+    private TiledSprite mGround;
+    private Vector2 mVertex[];
 
-	
+    public ITouchArea getTouchArea() {
+        return mGround;
+    }
 
-	
+    @Override
+    protected void onLoadResource() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
+    @Override
+    protected void onCreateFixtureDef(FixtureDef fd) {
+        this.mVertex = mAttributes.getVector2Value("vector", null);
+    }
 
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+        mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.DynamicBody, mFixtureDef);
+    }
 
-	@Override
-	protected void onLoadResource() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    @Override
+    protected void onPopulateEntity(Entity e) {
 
-	@Override
-	protected void onCreateFixtureDef(FixtureDef fd) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	protected void onPopulateEntity(Entity e) {
-		
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-
-	
-
-
+    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

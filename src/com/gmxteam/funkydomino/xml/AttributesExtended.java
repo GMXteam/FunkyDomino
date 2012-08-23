@@ -16,27 +16,47 @@
  */
 package com.gmxteam.funkydomino.xml;
 
+import com.badlogic.gdx.math.Vector2;
 import org.xml.sax.Attributes;
 
 /**
  * Méthodes additionnelles pour la classe Attributes de SAX.
+ *
  * @author guillaume
  */
 public abstract class AttributesExtended implements Attributes {
 
-	private Attributes mAttributes;
-	
-	
+    private Attributes mAttributes;
 
-	public AttributesExtended(Attributes att) {
-		mAttributes = att;
-	}
+    public Vector2[] getVector2Value(String qName, Vector2[] defaultValue) {
 
-	public int getIntegerValue(String qName, int defaultValue) {
-		return mAttributes.getValue(qName) == null ? defaultValue : Integer.parseInt(mAttributes.getValue(qName));
-	}
+        String stringVector = mAttributes.getValue(qName);
 
-	public float getFloatValue(String qName, float defaultValue) {
-		return mAttributes.getValue(qName) == null ? defaultValue : Float.parseFloat(mAttributes.getValue(qName));
-	}
+
+        String[] stringVectors = stringVector.split(";");
+
+
+        Vector2[] vectors = new Vector2[stringVectors.length];
+
+
+
+        for (int i = 0; i < stringVectors.length; i++) {
+            String[] components = stringVectors[i].split(",");
+            vectors[i] = new Vector2(Float.parseFloat(components[0]), Float.parseFloat(components[1]));
+
+        }
+        return vectors;
+    }
+
+    public AttributesExtended(Attributes att) {
+        mAttributes = att;
+    }
+
+    public int getIntegerValue(String qName, int defaultValue) {
+        return mAttributes.getValue(qName) == null ? defaultValue : Integer.parseInt(mAttributes.getValue(qName));
+    }
+
+    public float getFloatValue(String qName, float defaultValue) {
+        return mAttributes.getValue(qName) == null ? defaultValue : Float.parseFloat(mAttributes.getValue(qName));
+    }
 }
