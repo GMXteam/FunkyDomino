@@ -22,9 +22,6 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.EntityBackground;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.detector.ScrollDetector;
-import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
-import org.andengine.input.touch.detector.SurfaceScrollDetector;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.SAXException;
 
@@ -50,11 +47,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	/**
 	 *
 	 */
-	SmoothCamera mCamera;
-	/**
-	 *
-	 */
-	EngineOptions mEngineOptions;
+	private SmoothCamera mCamera;
 
 	/**
 	 * Gère les différents états de démarrage et charge les ressources de
@@ -80,15 +73,9 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	@Override
 	public final EngineOptions onCreateEngineOptions() {
 		this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
-		this.mCamera.setYMin(0.0f);
-		this.mCamera.setYMax(CAMERA_HEIGHT);
 
 
-
-
-		this.mCamera.setBounds(WORLD_LEFT, 0.0f, WORLD_WIDTH - CAMERA_WIDTH, CAMERA_HEIGHT);
-
-		mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+		EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
 
 		//engineOptions.getAudioOptions().setNeedsSound(true);
 		return mEngineOptions;
@@ -102,23 +89,23 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
 		mScene = new Scene();
+		/*
+		 mScene.setOnSceneTouchListener(new SurfaceScrollDetector(new IScrollDetectorListener() {
+		 private float[] init = {0.0f, 0.0f};
 
-		mScene.setOnSceneTouchListener(new SurfaceScrollDetector(new IScrollDetectorListener() {
-			private float[] init = {0.0f, 0.0f};
-
-			public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-				init = mCamera.getCameraSceneCoordinatesFromSceneCoordinates(f, f1);
+		 public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+		 init = mCamera.getCameraSceneCoordinatesFromSceneCoordinates(f, f1);
 				
-			}
+		 }
 
-			public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-				float[] delta = {f - init[0], f1 - init[1]};
-				mCamera.setCenter(mCamera.getCenterX() - delta[0], mCamera.getCenterY() - delta[1]);
-			}
+		 public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+		 float[] delta = {f - init[0], f1 - init[1]};
+		 mCamera.setCenter(mCamera.getCenterX() - delta[0], mCamera.getCenterY() - delta[1]);
+		 }
 
-			public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-			}
-		}));
+		 public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+		 }
+		 }));*/
 
 
 
@@ -130,8 +117,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 	}
-
-	
 
 	/**
 	 *

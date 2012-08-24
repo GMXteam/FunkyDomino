@@ -43,14 +43,16 @@ public final class Ball extends Component {
 	private Body mBallBody;
 	private Sprite mBallSprite;
 	
+	public final int BALL_RADIUS = 32;
+
 	public ITouchArea getTouchArea() {
 		return mBallSprite;
 	}
 
 	@Override
 	protected void onLoadResource() {
-		
-		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 128, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
 		TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.ball, 0, 0);
 
@@ -71,7 +73,7 @@ public final class Ball extends Component {
 
 	@Override
 	protected void onPopulateEntity(Entity e) {
-		
+
 		e.attachChild(mBallSprite);
 	}
 
@@ -81,6 +83,6 @@ public final class Ball extends Component {
 
 	@Override
 	protected void onRegisterTouchAreas(Scene pScene) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		pScene.registerTouchArea(mBallSprite);
 	}
 }

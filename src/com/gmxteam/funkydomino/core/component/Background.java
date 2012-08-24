@@ -105,6 +105,6 @@ public class Background extends Component {
 
 	@Override
 	protected void onRegisterTouchAreas(Scene pScene) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		pScene.registerTouchArea(mBackground);
 	}
 }

@@ -72,7 +72,6 @@ public abstract class Component extends Entity implements ComponentsConstants, I
 	}
 
 	
-	public abstract ITouchArea getTouchArea();       
         
 
 

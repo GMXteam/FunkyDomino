@@ -39,12 +39,14 @@ import org.andengine.opengl.texture.region.TextureRegion;
  */
 public final class Domino extends Component {
 
+	public static final int DOMINO_HEIGHT = 64,
+		DOMINO_WIDTH = 32;
 	private Body mDominoBody;
 	private Sprite mDominoSprite;
 
 	@Override
 	protected void onLoadResource() {
-		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
 		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0);
 
@@ -72,17 +74,12 @@ public final class Domino extends Component {
 	}
 
 	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		return false;
 	}
 
 	@Override
 	protected void onRegisterTouchAreas(Scene pScene) {
 		pScene.registerTouchArea(mDominoSprite);
-		
-	}
 
-	@Override
-	public ITouchArea getTouchArea() {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 }

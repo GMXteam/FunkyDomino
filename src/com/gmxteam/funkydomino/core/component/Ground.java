@@ -22,7 +22,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import com.gmxteam.funkydomino.activity.R;
-import java.util.LinkedList;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
@@ -45,48 +44,45 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
  */
 public class Ground extends Component {
 
+	private Body mGroundBody;
+	private TiledTextureRegion mGroundTextureRegion;
+	private TiledSprite mGround;
+	private Vector2 mVertex[];
+	public static final int GROUND_TEXTURE_HEIGHT = 38,
+		GROUND_TEXTURE_WIDTH = 50;
 
-	
-    private Body mGroundBody;
-    private TiledTextureRegion mGroundTextureRegion;
-    private TiledSprite mGround;
-    private Vector2 mVertex[];
+	@Override
+	protected void onLoadResource() {
 
-    public ITouchArea getTouchArea() {
-        return mGround;
-    }
+		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), GROUND_TEXTURE_WIDTH, GROUND_TEXTURE_HEIGHT);
+		mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromResource(mBitmapTextureAtlas, getContext(), R.drawable.background, 0, 0, 10, 10);
+		mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
 
-    @Override
-    protected void onLoadResource() {
+	}
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
-        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0, 10, 10);
-        mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
+	@Override
+	protected void onCreateFixtureDef(FixtureDef fd) {
+		this.mVertex = mAttributes.getVector2Value("vector", null);
+	}
 
-    }
+	@Override
+	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef fd) {
-        this.mVertex = mAttributes.getVector2Value("vector", null);
-    }
+		mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.StaticBody, mFixtureDef);
+		pw.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
+	}
 
-    @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-        mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.StaticBody, mFixtureDef);
-        pw.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
-    }
+	@Override
+	protected void onPopulateEntity(Entity e) {
+		e.attachChild(mGround);
+	}
 
-    @Override
-    protected void onPopulateEntity(Entity e) {
-        e.attachChild(mGround);
-    }
-
-    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-        return false;
-    }
+	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+		return false;
+	}
 
 	@Override
 	protected void onRegisterTouchAreas(Scene pScene) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		pScene.registerTouchArea(mGround);
 	}
 }
