@@ -16,9 +16,12 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+
+import com.gmxteam.funkydomino.activity.R;
 import java.util.LinkedList;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
@@ -28,6 +31,10 @@ import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 
 /**
  * Objet définissant le sol. Méta-entité, soit une entité contenant plusieurs
@@ -38,46 +45,48 @@ import org.andengine.input.touch.TouchEvent;
  */
 public class Ground extends Component {
 
-	private LinkedList<Component> mComponents;
-	private TiledSprite mGround;
 
-	public ITouchArea getTouchArea() {
-		return mGround;
-	}
+	
+    private Body mGroundBody;
+    private TiledTextureRegion mGroundTextureRegion;
+    private TiledSprite mGround;
+    private Vector2 mVertex[];
 
-	@Override
-	protected void onLoadResource() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    public ITouchArea getTouchArea() {
+        return mGround;
+    }
 
-	@Override
-	protected void onCreateFixtureDef(FixtureDef fd) {
-	}
+    @Override
+    protected void onLoadResource() {
 
-	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0, 10, 10);
+        mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
 
+    }
 
-		Body pBody = PhysicsFactory.createPolygonBody(pw, mGround, pVertices, BodyDef.BodyType.StaticBody, mFixtureDef);
-		pw.registerPhysicsConnector(new PhysicsConnector(mGround, pBody));
+    @Override
+    protected void onCreateFixtureDef(FixtureDef fd) {
+        this.mVertex = mAttributes.getVector2Value("vector", null);
+    }
 
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+        mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.StaticBody, mFixtureDef);
+        pw.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
+    }
 
-	}
+    @Override
+    protected void onPopulateEntity(Entity e) {
+        e.attachChild(mGround);
+    }
 
-	@Override
-	protected void onPopulateEntity(Entity e) {
-		for (Component c : mComponents) {
-			e.attachChild(c);
-		}
-	}
-
-	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		// Le sol ne réagit pas au toucher.
-		return false;
-	}
+    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+        return false;
+    }
 
 	@Override
 	protected void onRegisterTouchAreas(Scene pScene) {
-		// Le sol ne réagit pas au toucher
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 }

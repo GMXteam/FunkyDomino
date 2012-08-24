@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.xml;
 
+import com.badlogic.gdx.math.Vector2;
 import org.xml.sax.Attributes;
 
 /**
@@ -25,12 +26,29 @@ import org.xml.sax.Attributes;
  */
 public class AttributesExtended {
 
-	public static AttributesExtended parseAttributes(Attributes atts) {
-		return new AttributesExtended(atts);
-	}
 	private Attributes mAttributes;
 
-	private AttributesExtended(Attributes att) {
+	public Vector2[] getVector2Value(String qName, Vector2[] defaultValue) {
+
+		String stringVector = mAttributes.getValue(qName);
+
+
+		String[] stringVectors = stringVector.split(";");
+
+
+		Vector2[] vectors = new Vector2[stringVectors.length];
+
+
+
+		for (int i = 0; i < stringVectors.length; i++) {
+			String[] components = stringVectors[i].split(",");
+			vectors[i] = new Vector2(Float.parseFloat(components[0]), Float.parseFloat(components[1]));
+
+		}
+		return vectors;
+	}
+
+	public AttributesExtended(Attributes att) {
 		mAttributes = att;
 	}
 

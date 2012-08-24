@@ -22,7 +22,9 @@ import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.IOnAreaTouchListener;
+import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
+
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -68,6 +70,10 @@ public abstract class Component extends Entity implements ComponentsConstants, I
 		
 		return this;
 	}
+
+	
+	public abstract ITouchArea getTouchArea();       
+        
 
 
 	////////////////////////////////////////////////////////////////////////

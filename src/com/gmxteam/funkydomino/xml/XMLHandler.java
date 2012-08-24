@@ -92,7 +92,8 @@ final public class XMLHandler extends DefaultHandler {
 		try {
 			// AttributesExtended atts2 = new AttributesExtended(atts);
 			cachedComponents.add((Component) Components.valueOf(localName).getComponent()
-				.init(mGameActivity, (AttributesExtended.parseAttributes(atts))));
+
+				.init(mGameActivity, new AttributesExtended(atts)));
 
 
 			Log.d("FunkyDomino", "On rajoute un élément de type " + localName + " dans la scène et le monde physique.");

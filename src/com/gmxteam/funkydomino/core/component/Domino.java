@@ -80,4 +80,9 @@ public final class Domino extends Component {
 		pScene.registerTouchArea(mDominoSprite);
 		
 	}
+
+	@Override
+	public ITouchArea getTouchArea() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 }
