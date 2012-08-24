@@ -19,6 +19,7 @@ package com.gmxteam.funkydomino.core.component;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
@@ -59,6 +60,11 @@ public final class Cog extends Component {
 	}
 
 	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	protected void onRegisterTouchAreas(Scene pScene) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 }

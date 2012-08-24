@@ -18,13 +18,14 @@ import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
-import org.andengine.entity.Entity;
-import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.EntityBackground;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.input.touch.detector.ScrollDetector;
+import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
+import org.andengine.input.touch.detector.SurfaceScrollDetector;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.SAXException;
 
@@ -103,19 +104,25 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 		mScene = new Scene();
 
-		mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
-			public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
-				if (te.getAction() != TouchEvent.ACTION_MOVE) {
-					return false;
-				}
-				float[] coordinates = mCamera.getCameraSceneCoordinatesFromSceneCoordinates(te.getX(), te.getY());
-				mCamera.setCenterDirect(CAMERA_WIDTH - coordinates[0], mCamera.getCenterY());
-				//mCamera.setCenter(te.getX(), mCamera.getCenterY());
+		mScene.setOnSceneTouchListener(new SurfaceScrollDetector(new IScrollDetectorListener() {
+			private float[] init = {0.0f, 0.0f};
 
-
-				return false;
+			public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+				init = mCamera.getCameraSceneCoordinatesFromSceneCoordinates(f, f1);
+				
 			}
-		});
+
+			public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+				float[] delta = {f - init[0], f1 - init[1]};
+				mCamera.setCenter(mCamera.getCenterX() - delta[0], mCamera.getCenterY() - delta[1]);
+			}
+
+			public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+			}
+		}));
+
+
+
 
 
 
@@ -125,11 +132,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 	}
 
-	public void addComponentToScene(Component e) {
-		mScene.registerTouchArea(e.getTouchArea());
-		mScene.attachChild(e);
-
-	}
+	
 
 	/**
 	 *
@@ -148,12 +151,11 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 				pScene.setBackgroundEnabled(true);
 			}
 
-			pScene.registerTouchArea(c.getTouchArea());
+			// pScene.registerTouchArea(c.getTouchArea());
 			pScene.attachChild(c);
 
 		}
 		gameResource.close();
-
 
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
 
@@ -167,7 +169,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 */
 	public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
 
-		
+
 		pOnCreateResourcesCallback.onCreateResourcesFinished();
 	}
 }

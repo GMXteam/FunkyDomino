@@ -17,32 +17,33 @@
 package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import java.util.LinkedList;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
 
 /**
- * Objet définissant le sol.
+ * Objet définissant le sol. Méta-entité, soit une entité contenant plusieurs
+ * entités. Chaque body est assemblé avec celui qui le suit (d'où la
+ * LinkedList).
  *
  * @author Guillaume Poirier-Morency
  */
 public class Ground extends Component {
 
-	private Body[] mBodies;
+	private LinkedList<Component> mComponents;
 	private TiledSprite mGround;
-	
+
 	public ITouchArea getTouchArea() {
 		return mGround;
 	}
-
-	
-
-	
-
-
 
 	@Override
 	protected void onLoadResource() {
@@ -51,26 +52,32 @@ public class Ground extends Component {
 
 	@Override
 	protected void onCreateFixtureDef(FixtureDef fd) {
-		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
 	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-		throw new UnsupportedOperationException("Not supported yet.");
+
+
+		Body pBody = PhysicsFactory.createPolygonBody(pw, mGround, pVertices, BodyDef.BodyType.StaticBody, mFixtureDef);
+		pw.registerPhysicsConnector(new PhysicsConnector(mGround, pBody));
+
+
 	}
 
 	@Override
 	protected void onPopulateEntity(Entity e) {
-		
-		throw new UnsupportedOperationException("Not supported yet.");
+		for (Component c : mComponents) {
+			e.attachChild(c);
+		}
 	}
 
 	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		// Le sol ne réagit pas au toucher.
+		return false;
 	}
 
-
-	
-
-
+	@Override
+	protected void onRegisterTouchAreas(Scene pScene) {
+		// Le sol ne réagit pas au toucher
+	}
 }

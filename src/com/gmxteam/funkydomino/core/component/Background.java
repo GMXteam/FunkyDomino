@@ -20,9 +20,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivityConstants;
 import com.gmxteam.funkydomino.activity.R;
-import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -101,5 +101,10 @@ public class Background extends Component {
 		Ball b = new Ball();
 		// this.addComponentToScene(b, new AttributesExtended());
 		return true;
+	}
+
+	@Override
+	protected void onRegisterTouchAreas(Scene pScene) {
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 }

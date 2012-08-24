@@ -22,6 +22,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.R;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -53,10 +54,6 @@ public final class Domino extends Component {
 
 
 	}
-	
-	public ITouchArea getTouchArea() {
-		return mDominoSprite;
-	}
 
 	@Override
 	protected void onCreateFixtureDef(FixtureDef fd) {
@@ -76,5 +73,11 @@ public final class Domino extends Component {
 
 	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
 		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	protected void onRegisterTouchAreas(Scene pScene) {
+		pScene.registerTouchArea(mDominoSprite);
+		
 	}
 }
