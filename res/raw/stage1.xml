@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<level id="stage1" previousLevel="null" nextLevel="stage2" name="Tutoriel" description="Premier niveau, pour apprendre à jouer.">
     
-    <ground vector="2.54,3.4;2.53,3.4;2.5,3.4" left="0" top="300" />
-    <domino left="100.1" top="20.6"  />
+    <domino left="100.1" top="200.6"  />
     <ball left="400.1" top="20.6"  />
     
 	    
         
-</level>

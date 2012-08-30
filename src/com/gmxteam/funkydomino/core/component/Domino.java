@@ -38,43 +38,43 @@ import org.andengine.opengl.texture.region.TextureRegion;
  */
 public final class Domino extends Component {
 
-	private Body mDominoBody;
-	private Sprite mDominoSprite;
+    private Body mDominoBody;
+    private Sprite mDominoSprite;
 
-	@Override
-	protected void onLoadResource() {
-		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+    @Override
+    protected void onLoadResource() {
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), 128, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
-		TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0);
+        TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.domino, 0, 0);
 
-		getTextureManager().loadTexture(mBitmapTextureAtlas);
+        getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-		mDominoSprite = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager());
+        mDominoSprite = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager());
 
 
-	}
-	
-	public ITouchArea getTouchArea() {
-		return mDominoSprite;
-	}
+    }
 
-	@Override
-	protected void onCreateFixtureDef(FixtureDef fd) {
-	}
+    public ITouchArea getTouchArea() {
+        return mDominoSprite;
+    }
 
-	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-		mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
+    @Override
+    protected void onCreateFixtureDef(FixtureDef fd) {
+    }
 
-		pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
-	}
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+        mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.StaticBody, mFixtureDef);
 
-	@Override
-	protected void onPopulateEntity(Entity e) {
-		e.attachChild(mDominoSprite);
-	}
+        pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
+    }
 
-	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    @Override
+    protected void onPopulateEntity(Entity e) {
+        e.attachChild(mDominoSprite);
+    }
+
+    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+        return true;
+    }
 }
