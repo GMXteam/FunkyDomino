@@ -4,10 +4,14 @@
  */
 package com.gmxteam.funkydomino.activity;
 
+import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.core.component.Background;
+import com.gmxteam.funkydomino.activity.GameActivityConstants;
+import com.gmxteam.funkydomino.activity.R;
+import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.model.GameModel;
 import com.gmxteam.funkydomino.xml.XMLParser;
@@ -19,9 +23,14 @@ import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.EntityBackground;
+import org.andengine.entity.scene.background.Background;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.detector.ScrollDetector;
+import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
+import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
+import org.andengine.ui.IGameInterface.OnCreateSceneCallback;
+import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
 import org.andengine.ui.activity.BaseGameActivity;
 import org.xml.sax.SAXException;
 
@@ -47,7 +56,11 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	/**
 	 *
 	 */
-	private SmoothCamera mCamera;
+	SmoothCamera mCamera;
+	/**
+	 *
+	 */
+	EngineOptions mEngineOptions;
 
 	/**
 	 * Gère les différents états de démarrage et charge les ressources de
@@ -62,8 +75,13 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		mGameData = new GameModel();
 		mGameData.stage = R.raw.stage1;
 
+	}
 
+	public final Point getSize() {
+		Point p = new Point();
+		this.getWindowManager().getDefaultDisplay().getSize(p);
 
+		return p;
 	}
 
 	/**
@@ -72,10 +90,14 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	 */
 	@Override
 	public final EngineOptions onCreateEngineOptions() {
-		this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, CAMERA_WIDTH, CAMERA_HEIGHT, 500.0f, 0.0f, 1.0f);
 
 
-		EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(CAMERA_WIDTH, CAMERA_HEIGHT), this.mCamera);
+		Log.v(APP_LOG_NAME, "Largeur : " + getSize().x + " Hauteur : " + getSize().y);
+		this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getSize().x, getSize().y, 500.0f, 0.0f, 1.0f);
+
+
+
+		mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getSize().x, getSize().y), this.mCamera);
 
 		//engineOptions.getAudioOptions().setNeedsSound(true);
 		return mEngineOptions;
@@ -89,24 +111,32 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 	public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
 		mScene = new Scene();
-		/*
-		 mScene.setOnSceneTouchListener(new SurfaceScrollDetector(new IScrollDetectorListener() {
-		 private float[] init = {0.0f, 0.0f};
 
-		 public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-		 init = mCamera.getCameraSceneCoordinatesFromSceneCoordinates(f, f1);
-				
-		 }
 
-		 public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-		 float[] delta = {f - init[0], f1 - init[1]};
-		 mCamera.setCenter(mCamera.getCenterX() - delta[0], mCamera.getCenterY() - delta[1]);
-		 }
+		ScrollDetector sd = new ScrollDetector(new IScrollDetectorListener() {
+			public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+			}
 
-		 public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-		 }
-		 }));*/
+			public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+				mCamera.setCenter(mCamera.getCenterX() + f, mCamera.getCenterY() + f1);
 
+			}
+
+			public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+			}
+		});
+
+
+
+
+		mScene.setOnSceneTouchListener(sd);
+
+
+
+
+		//RepeatingSpriteBackground b = new RepeatingSpriteBackground(getSize().x, getSize().y, this.getTextureManager(), ResourceBitmapTextureAtlasSource.create(this.getResources(), R.drawable.background), this.getVertexBufferObjectManager());
+
+		mScene.setBackground(new Background(1, 1, 1));
 
 
 
@@ -118,30 +148,37 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 		pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 	}
 
+	
+
 	/**
 	 *
 	 * @param pScene
 	 * @param pOnPopulateSceneCallback
 	 */
 	public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws SAXException, ParserConfigurationException, IOException {
+
+
+
+		pOnCreateResourcesCallback.onCreateResourcesFinished();
+
+
 		InputStream gameResource = this.getResources().openRawResource(mGameData.stage);
 		mParser.inflate(this, gameResource);
 
 		// Components should have been loaded in the onLoadResources method.
 		for (Component c : mParser.getCachedComponents()) {
-			if (c instanceof Background) {
-				// Special treatment for background entity
-				pScene.setBackground(new EntityBackground(c));
-				pScene.setBackgroundEnabled(true);
-			}
 
-			// pScene.registerTouchArea(c.getTouchArea());
+
 			pScene.attachChild(c);
 
 		}
 		gameResource.close();
 
+
 		pOnPopulateSceneCallback.onPopulateSceneFinished();
+
+
+
 
 
 	}

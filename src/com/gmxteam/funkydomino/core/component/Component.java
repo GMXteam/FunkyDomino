@@ -16,9 +16,9 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.activity.GameActivity;
 import android.content.Context;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.xml.AttributesExtended;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.IOnAreaTouchListener;
