@@ -26,6 +26,7 @@ import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.component.ComponentFactory;
 import com.gmxteam.funkydomino.entity.primitive.Line;
 import java.io.IOException;
+import java.util.Arrays;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
@@ -98,15 +99,18 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     public final EngineOptions onCreateEngineOptions() {
 
 
-        Log.v(LOG_TAG, "Largeur : " + getCameraDimensions().x + " Hauteur : " + getCameraDimensions().y);
-        mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, 1.0f);
-
-
-
+        Log.v(LOG_TAG, "Dimensions initiales de la caméra : " + getCameraDimensions());
+        
+        
+        mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
 
         mCamera.setBounds(0.0f, 0.0f, WORLD_WIDTH, WORLD_HEIGHT);
         mCamera.setBoundsEnabled(true);
+
+        mCamera.setZNear(CAMERA_Z_NEAR);
+        mCamera.setZFar(CAMERA_Z_FAR);
+
 
 
         mHUD = new HUD();
@@ -147,11 +151,14 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
             public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
             }
 
-            public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float f) {
-                mCamera.setZoomFactor(mCamera.getZoomFactor() + f);
+            public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float pZoomFactor) {
+
+                mCamera.setZoomFactor(pZoomFactor);
             }
 
             public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
+                Log.v(LOG_TAG, "Nouveau facteur de zoom de la caméra : " + f + "x");
+
             }
         });
 

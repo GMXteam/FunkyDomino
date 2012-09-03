@@ -42,6 +42,8 @@ public interface GameActivityConstants {
     public static final float CAMERA_TOP = 0.0f;
     public static final float CAMERA_MAX_VELOCITY_X =  500.0f;
     public static final float CAMERA_MAX_VELOCITY_Y =  CAMERA_MAX_VELOCITY_X;
+    public static final float CAMERA_MAX_ZOOM_FACTOR_CHANGE = 2.0f;
+    public static final float CAMERA_Z_NEAR = 10.0f, CAMERA_Z_FAR = 20.0f;
     /**
      *
      */
