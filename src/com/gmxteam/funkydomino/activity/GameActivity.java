@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.gmxteam.funkydomino.activity;
 
@@ -19,12 +31,16 @@ import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.TouchEvent;
+import org.andengine.input.touch.detector.PinchZoomDetector;
+import org.andengine.input.touch.detector.PinchZoomDetector.IPinchZoomDetectorListener;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -83,10 +99,18 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
         Log.v(LOG_TAG, "Largeur : " + getCameraDimensions().x + " Hauteur : " + getCameraDimensions().y);
-        this.mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, 500.0f, 0.0f, 1.0f);
+        mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, 1.0f);
 
-        this.mHUD = new HUD();
-        this.mHUD.setCamera(mCamera);
+
+
+
+
+        mCamera.setBounds(0.0f, 0.0f, WORLD_WIDTH, WORLD_HEIGHT);
+        mCamera.setBoundsEnabled(true);
+
+
+        mHUD = new HUD();
+        mHUD.setCamera(mCamera);
 
         mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
 
@@ -104,21 +128,40 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mScene = new Scene();
 
 
-        ScrollDetector sd = new ScrollDetector(new IScrollDetectorListener() {
+        final ScrollDetector sd = new ScrollDetector(new IScrollDetectorListener() {
             public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
             }
 
             public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-                mCamera.setCenter(mCamera.getTargetCenterX() + f, mCamera.getTargetCenterY() + f1);
+
+                mCamera.setCenter(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
 
             }
 
             public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+                Log.v(LOG_TAG, "Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
+            }
+        });
+
+        final PinchZoomDetector pzd = new PinchZoomDetector(new IPinchZoomDetectorListener() {
+            public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
+            }
+
+            public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float f) {
+                mCamera.setZoomFactor(mCamera.getZoomFactor() + f);
+            }
+
+            public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
             }
         });
 
 
-        mScene.setOnSceneTouchListener(sd);
+        mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
+            public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
+                return pzd.onManagedTouchEvent(te) | sd.onManagedTouchEvent(te);
+            }
+        });
+
 
         mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
 
@@ -139,21 +182,18 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         // Boxing the scene
 
-        FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(0.0f, 0.0f, 0.0f);
+        FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
         float[][] lines = {
             {0.0f, 0.0f, WORLD_WIDTH, 0.0f},
             {WORLD_WIDTH, 0.0f, WORLD_WIDTH, WORLD_HEIGHT},
-            { WORLD_WIDTH, WORLD_HEIGHT, 0.0f, WORLD_HEIGHT},
+            {WORLD_WIDTH, WORLD_HEIGHT, 0.0f, WORLD_HEIGHT},
             {0.0f, WORLD_HEIGHT, 0.0f, 0.0f}
         };
-        
-        
-        
 
         for (float[] points : lines) {
-            
-            Body lineBody = PhysicsFactory.createLineBody(mPhysicsWorld, points[0],points[1], points[2], points[3], limitsFixtureDef);
-            Line lineShape = new Line(points[0], points[1], points[2],points[3], this.getVertexBufferObjectManager());
+
+            Body lineBody = PhysicsFactory.createLineBody(mPhysicsWorld, points[0], points[1], points[2], points[3], limitsFixtureDef);
+            Line lineShape = new Line(points[0], points[1], points[2], points[3], this.getVertexBufferObjectManager());
             mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
 
         }
@@ -164,16 +204,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
         if (DEBUG) {
-            // Do some shits..
-            Vector2[] vertex = {
-                new Vector2(-1.5f, -0.5f),
-                new Vector2(0.5f, -1f),
-                new Vector2(1f, -0.5f),
-                new Vector2(1f, 1.5f),
-                new Vector2(0.5f, 1.5f),
-                new Vector2(1f, 0.5f)
-            };
-            pScene.attachChild(ComponentFactory.createGround(0.0f, 0.0f, vertex));
+
             pScene.attachChild(ComponentFactory.createDomino(5, 5));
             pScene.attachChild(ComponentFactory.createBall(5, 25));
 

@@ -40,10 +40,12 @@ public interface GameActivityConstants {
      *
      */
     public static final float CAMERA_TOP = 0.0f;
+    public static final float CAMERA_MAX_VELOCITY_X =  500.0f;
+    public static final float CAMERA_MAX_VELOCITY_Y =  CAMERA_MAX_VELOCITY_X;
     /**
      *
      */
-    public static final float WORLD_HEIGHT = 5000.0f;
+    public static final float WORLD_HEIGHT = 800.0f;
     /**
      *
      */
