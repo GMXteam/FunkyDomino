@@ -22,16 +22,19 @@ import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.component.ComponentFactory;
+import com.gmxteam.funkydomino.core.component.Components;
+import com.gmxteam.funkydomino.core.component.EntityAttributes;
 import com.gmxteam.funkydomino.entity.primitive.Line;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
@@ -50,6 +53,9 @@ import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
 import org.andengine.ui.IGameInterface.OnCreateSceneCallback;
 import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
 import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.util.level.IEntityLoader;
+import org.andengine.util.level.LevelLoader;
+import org.xml.sax.Attributes;
 import org.xmlpull.v1.XmlPullParserException;
 
 /**
@@ -59,7 +65,7 @@ import org.xmlpull.v1.XmlPullParserException;
 public class GameActivity extends BaseGameActivity implements GameActivityConstants {
 
     /**
-     * Structure orm contenant les paramètres sauvegardés de la partie.
+     *
      */
     private RepeatingSpriteBackground mBackground;
     /**
@@ -70,15 +76,15 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      *
      */
     public Scene mScene;
-    public HUD mHUD;
     /**
      *
      */
-    SmoothCamera mCamera;
+    private HUD mHUD;
     /**
      *
      */
-    EngineOptions mEngineOptions;
+    private SmoothCamera mCamera;
+    private LevelLoader mLevelLoader;
 
     /**
      *
@@ -100,26 +106,26 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
         Log.v(LOG_TAG, "Dimensions initiales de la caméra : " + getCameraDimensions());
-        
-        
+
+
         mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
 
         mCamera.setBounds(0.0f, 0.0f, WORLD_WIDTH, WORLD_HEIGHT);
         mCamera.setBoundsEnabled(true);
 
-        mCamera.setZNear(CAMERA_Z_NEAR);
-        mCamera.setZFar(CAMERA_Z_FAR);
+        //mCamera.setZNear(CAMERA_Z_NEAR);
+        //mCamera.setZFar(CAMERA_Z_FAR);
 
 
 
         mHUD = new HUD();
         mHUD.setCamera(mCamera);
 
-        mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
+
 
         //engineOptions.getAudioOptions().setNeedsSound(true);
-        return mEngineOptions;
+        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
     }
 
     /**
@@ -129,7 +135,70 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
+
+
         mScene = new Scene();
+
+
+        mLevelLoader = new LevelLoader("level/");
+
+        mLevelLoader.registerEntityLoader("level", new IEntityLoader() {
+            public IEntity onLoadEntity(String string, Attributes atts) {
+
+                EntityAttributes ea = new EntityAttributes(atts);
+
+
+
+
+                // Boxing the scene
+
+                FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
+
+                float[][] lines = {
+                    {0.0f, 0.0f, ea.getFloat("width", WORLD_WIDTH), 0.0f},
+                    {ea.getFloat("width", WORLD_WIDTH), 0.0f, ea.getFloat("width", WORLD_WIDTH), ea.getFloat("height", WORLD_HEIGHT)},
+                    {ea.getFloat("width", WORLD_WIDTH), ea.getFloat("height", WORLD_HEIGHT), 0.0f, ea.getFloat("height", WORLD_HEIGHT)},
+                    {0.0f, ea.getFloat("height", WORLD_HEIGHT), 0.0f, 0.0f}
+                };
+
+                for (float[] points : lines) {
+
+                    Body lineBody = PhysicsFactory.createLineBody(mPhysicsWorld, points[0], points[1], points[2], points[3], limitsFixtureDef);
+                    Line lineShape = new Line(points[0], points[1], points[2], points[3], GameActivity.this.getVertexBufferObjectManager());
+                    mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
+                    mScene.attachChild(lineShape);
+                    
+                }
+                
+                // Refresh camera bounds
+                mCamera.setBounds(0.0f, 0.0f, ea.getFloat("width", WORLD_WIDTH), ea.getFloat("height", WORLD_HEIGHT));
+
+
+
+                return mScene;
+            }
+        });
+
+        // On enregistre toutes les entités supportées.
+        mLevelLoader.registerEntityLoader(Components.strings(), new IEntityLoader() {
+            public IEntity onLoadEntity(String string, Attributes atts) {
+                IEntity currentEntity = null;
+
+                try {
+                    currentEntity = Components.valueOf(string).getComponent().factory(GameActivity.this, new EntityAttributes(atts));
+                } catch (InstantiationException ex) {
+                    Log.e(LOG_TAG, ex.getMessage(), ex);
+                } catch (IllegalAccessException ex) {
+                    Log.e(LOG_TAG, ex.getMessage(), ex);
+                }
+
+                return currentEntity;
+
+
+
+            }
+        });
+
 
 
         final ScrollDetector sd = new ScrollDetector(new IScrollDetectorListener() {
@@ -187,48 +256,8 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         pScene.setBackground(mBackground);
 
-        // Boxing the scene
 
-        FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
-        float[][] lines = {
-            {0.0f, 0.0f, WORLD_WIDTH, 0.0f},
-            {WORLD_WIDTH, 0.0f, WORLD_WIDTH, WORLD_HEIGHT},
-            {WORLD_WIDTH, WORLD_HEIGHT, 0.0f, WORLD_HEIGHT},
-            {0.0f, WORLD_HEIGHT, 0.0f, 0.0f}
-        };
-
-        for (float[] points : lines) {
-
-            Body lineBody = PhysicsFactory.createLineBody(mPhysicsWorld, points[0], points[1], points[2], points[3], limitsFixtureDef);
-            Line lineShape = new Line(points[0], points[1], points[2], points[3], this.getVertexBufferObjectManager());
-            mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
-
-        }
-
-
-
-
-
-
-        if (DEBUG) {
-
-            pScene.attachChild(ComponentFactory.createDomino(5, 5));
-            pScene.attachChild(ComponentFactory.createBall(5, 25));
-
-
-        } else {
-            // Call the parser           
-
-
-            for (Component c : ComponentFactory.extractComponentsFromAsset("stage1.lvl")) {
-                pScene.attachChild(c);
-            }
-
-
-        }
-
-
-
+        mLevelLoader.loadLevelFromAsset(getAssets(), "stage1.lvl");
 
 
 

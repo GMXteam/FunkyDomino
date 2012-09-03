@@ -63,12 +63,12 @@ public class Ground extends Component {
     }
 
     @Override
-    protected void onCreateFixtureDef(FixtureDef fd, Attributes pAttributes) {
+    protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
         //this.mVertex = mAttributes.getVector2Value("vector", null);
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, EntityAttributes pAttributes) {
         Vector2[] defaultVectors = {};
 
         Log.v(GameActivity.LOG_TAG, Arrays.toString(pAttributes.getVector2Array("vector", defaultVectors)));

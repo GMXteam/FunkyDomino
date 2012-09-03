@@ -60,11 +60,11 @@ public final class Ball extends Component {
     }
 
     @Override
-    protected void onCreateFixtureDef(FixtureDef fd, Attributes pAttributes) {
+    protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, EntityAttributes pAttributes) {
         mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mBallSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
     }

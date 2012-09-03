@@ -18,12 +18,31 @@ package com.gmxteam.funkydomino.core.component;
 
 import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
+import org.xml.sax.Attributes;
 
 /**
  *
  * @author guillaume
  */
-public class Attributes extends HashMap<String, Object> {
+public class EntityAttributes extends HashMap<String, Object> {
+
+    /**
+     * Constructeur utilisé par ComponentFactory.
+     */
+    public EntityAttributes() {
+    }
+
+    /**
+     * Constructeur avec copie des attributs.
+     * @param atts 
+     */
+    public EntityAttributes(Attributes atts) {
+        for (int i = 0; i < atts.getLength(); i++) {
+            put(atts.getLocalName(i), atts.getValue(i));
+        }
+
+        // Copie des attributs dans le dictionnaire
+    }
 
     public float getFloat(String key, float defaultValue) {
         Object o = get(key);

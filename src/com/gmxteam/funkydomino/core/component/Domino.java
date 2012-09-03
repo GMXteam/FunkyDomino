@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import android.util.Log;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -26,6 +27,7 @@ import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
@@ -52,6 +54,21 @@ public final class Domino extends Component {
         TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
 
 
+        final ScrollDetector sd = new ScrollDetector(new ScrollDetector.IScrollDetectorListener() {
+            public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+            }
+
+            public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+                mDominoBody.applyLinearImpulse(f, f1, mDominoBody.getLocalCenter().x, mDominoBody.getLocalCenter().y);
+
+            }
+
+            public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+            }
+        });
+
+
+
         mDominoSprite = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager()) {
             /**
              * Gestion manuelle de l'événement.
@@ -59,7 +76,7 @@ public final class Domino extends Component {
             @Override
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
 
-                return false;
+                return sd.onManagedTouchEvent(te) && mDominoBody != null;
             }
         };
 
@@ -67,11 +84,11 @@ public final class Domino extends Component {
     }
 
     @Override
-    protected void onCreateFixtureDef(FixtureDef fd, Attributes pAttributes) {
+    protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pw, Attributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw, EntityAttributes pAttributes) {
         mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
 
         pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));

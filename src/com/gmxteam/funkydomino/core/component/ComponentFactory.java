@@ -21,6 +21,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import java.io.IOException;
 import java.util.LinkedList;
+import org.andengine.entity.IEntity;
+import org.andengine.util.level.IEntityLoader;
 import org.xmlpull.v1.XmlPullParserException;
 
 /**
@@ -37,38 +39,6 @@ public class ComponentFactory {
     }
 
     /**
-     * Extracts all the components found in the specified XML asset and return a
-     * LinkedList of them.
-     *
-     * @param pGameActivity
-     * @param assetPath
-     * @return
-     * @throws IOException
-     * @throws XmlPullParserException
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     */
-    public static LinkedList<Component> extractComponentsFromAsset(String assetPath) throws IOException, XmlPullParserException, InstantiationException, IllegalAccessException {
-        XmlResourceParser xrp = mGameActivity.getAssets().openXmlResourceParser(assetPath);
-
-        LinkedList<Component> components = new LinkedList<Component>();
-        while (xrp.next() != XmlResourceParser.END_DOCUMENT) {
-
-            Attributes att = new Attributes();
-
-            for (int i = 0; i < xrp.getAttributeCount(); i++) {
-                att.put(xrp.getAttributeName(i), xrp.getAttributeValue(i));
-            }
-
-            components.add(Components.valueOf(xrp.getName()).getComponent().factory(mGameActivity, att));
-
-
-        }
-        xrp.close();
-        return components;
-    }
-
-    /**
      * Creates a domino.
      *
      * @param x
@@ -79,7 +49,7 @@ public class ComponentFactory {
      */
     public static Domino createDomino(float x, float y) throws InstantiationException, IllegalAccessException {
 
-        Attributes attributes = new Attributes();
+        EntityAttributes attributes = new EntityAttributes();
         attributes.put("x", x);
         attributes.put("y", y);
 
@@ -95,11 +65,11 @@ public class ComponentFactory {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public static Ball createBall(float x, float y) throws InstantiationException, IllegalAccessException {
-
-        Attributes attributes = new Attributes();
+    public static Ball createBall(float x, float y, float radius) throws InstantiationException, IllegalAccessException {
+        EntityAttributes attributes = new EntityAttributes();
         attributes.put("x", x);
         attributes.put("y", y);
+        attributes.put("radius", radius);
 
         return (Ball) Components.ball.getComponent().factory(mGameActivity, attributes);
     }
@@ -115,7 +85,7 @@ public class ComponentFactory {
      */
     public static Ground createGround(float x, float y, Vector2[] vertex) throws InstantiationException, IllegalAccessException {
 
-        Attributes attributes = new Attributes();
+        EntityAttributes attributes = new EntityAttributes();
         attributes.put("vector", vertex);
 
         return (Ground) Components.ground.getComponent().factory(mGameActivity, attributes);

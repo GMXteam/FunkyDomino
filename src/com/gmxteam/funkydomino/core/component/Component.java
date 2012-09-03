@@ -41,7 +41,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
     protected FixtureDef mFixtureDef;
     private GameActivity mGameActivity;
 
-    public final Component factory(GameActivity ga, Attributes att) {
+    public final Component factory(GameActivity ga, EntityAttributes att) {
 
         mGameActivity = ga;
 
@@ -79,14 +79,14 @@ public abstract class Component extends Entity implements ComponentsConstants {
      *
      * @param fd
      */
-    protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, Attributes pAttributes);
+    protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, EntityAttributes pAttributes);
 
     /**
      * Binding de l'entité avec le monde physique.
      *
      * @param pw
      */
-    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes);
+    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, EntityAttributes pAttributes);
 
     /**
      * Binding des sous-entités avec l'entité qui reçoit l'événement.
