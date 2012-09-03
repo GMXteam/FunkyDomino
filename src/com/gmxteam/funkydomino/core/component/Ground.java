@@ -16,10 +16,13 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activity.GameActivity;
+import java.util.Arrays;
 
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
@@ -45,15 +48,16 @@ public class Ground extends Component {
     private Body mGroundBody;
     private TiledTextureRegion mGroundTextureRegion;
     private TiledSprite mGround;
-    private Vector2 mVertex[];
-    public static final int GROUND_TEXTURE_HEIGHT = 38,
-            GROUND_TEXTURE_WIDTH = 50,
+    public static final int GROUND_TEXTURE_HEIGHT = 32,
+            GROUND_TEXTURE_WIDTH = 32,
             GROUND_COLUMNS = 10, GROUND_ROWS = 10;
 
     @Override
     protected void onLoadResource() {
         BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), GROUND_TEXTURE_WIDTH, GROUND_TEXTURE_HEIGHT);
         mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, getContext(), "background_grass.png", 0, 0, GROUND_COLUMNS, GROUND_ROWS);
+
+
         mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
 
     }
@@ -66,7 +70,11 @@ public class Ground extends Component {
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes) {
         Vector2[] defaultVectors = {};
-        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, pAttributes.getVector2Array("vector", defaultVectors), BodyDef.BodyType.StaticBody, mFixtureDef);
+
+        Log.v(GameActivity.LOG_TAG, Arrays.toString(pAttributes.getVector2Array("vector", defaultVectors)));
+
+        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround,pAttributes.getVector2Array("vector", defaultVectors), BodyDef.BodyType.StaticBody, mFixtureDef);
+
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
     }
 
@@ -75,9 +83,7 @@ public class Ground extends Component {
         e.attachChild(mGround);
     }
 
-    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-        return false;
-    }
+    
 
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {

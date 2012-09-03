@@ -8,8 +8,11 @@ import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.core.component.Component;
 import com.gmxteam.funkydomino.core.component.ComponentFactory;
+import com.gmxteam.funkydomino.entity.primitive.Line;
 import java.io.IOException;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
@@ -19,6 +22,8 @@ import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
@@ -104,7 +109,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
             }
 
             public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-                mCamera.setCenter(mCamera.getCenterX() + f, mCamera.getCenterY() + f1);
+                mCamera.setCenter(mCamera.getTargetCenterX() + f, mCamera.getTargetCenterY() + f1);
 
             }
 
@@ -132,25 +137,52 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         pScene.setBackground(mBackground);
 
+        // Boxing the scene
+
+        FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(0.0f, 0.0f, 0.0f);
+        float[][] lines = {
+            {0.0f, 0.0f, WORLD_WIDTH, 0.0f},
+            {WORLD_WIDTH, 0.0f, WORLD_WIDTH, WORLD_HEIGHT},
+            { WORLD_WIDTH, WORLD_HEIGHT, 0.0f, WORLD_HEIGHT},
+            {0.0f, WORLD_HEIGHT, 0.0f, 0.0f}
+        };
+        
+        
+        
+
+        for (float[] points : lines) {
+            
+            Body lineBody = PhysicsFactory.createLineBody(mPhysicsWorld, points[0],points[1], points[2], points[3], limitsFixtureDef);
+            Line lineShape = new Line(points[0], points[1], points[2],points[3], this.getVertexBufferObjectManager());
+            mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
+
+        }
+
+
+
+
+
+
         if (DEBUG) {
             // Do some shits..
-            final int TOP = getCameraDimensions().y / 2;
             Vector2[] vertex = {
-                new Vector2(getCameraDimensions().x, TOP),
-                new Vector2(0.0f, getCameraDimensions().y),
-                new Vector2(-getCameraDimensions().x, TOP),
-                new Vector2(0.0f, -getCameraDimensions().y)
+                new Vector2(-1.5f, -0.5f),
+                new Vector2(0.5f, -1f),
+                new Vector2(1f, -0.5f),
+                new Vector2(1f, 1.5f),
+                new Vector2(0.5f, 1.5f),
+                new Vector2(1f, 0.5f)
             };
-            pScene.attachChild(ComponentFactory.createGround(vertex));
-            //pScene.attachChild(ComponentFactory.createDomino(5, 5));
-            //pScene.attachChild(ComponentFactory.createBall(5, 25));
+            pScene.attachChild(ComponentFactory.createGround(0.0f, 0.0f, vertex));
+            pScene.attachChild(ComponentFactory.createDomino(5, 5));
+            pScene.attachChild(ComponentFactory.createBall(5, 25));
 
 
         } else {
             // Call the parser           
 
 
-            for (Component c : ComponentFactory.extractComponentsFromAsset("stage1.xml")) {
+            for (Component c : ComponentFactory.extractComponentsFromAsset("stage1.lvl")) {
                 pScene.attachChild(c);
             }
 

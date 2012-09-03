@@ -33,64 +33,49 @@ import android.view.View;
  */
 public final class MainActivity extends Activity {
 
-	////////////////////////////////////////////////////////////////////////////
-	// Menus
-	public void onHighscoresMenuItemClick(MenuItem mi) {
-		startActivity(new Intent(MainActivity.this, HighscoresActivity.class));
+    ////////////////////////////////////////////////////////////////////////////
+    // Menus
+    public void onHighscoresMenuItemClick(MenuItem mi) {
+        startActivity(new Intent(MainActivity.this, HighscoresActivity.class));
+    }
 
-	}
+    public void onPreferencesMenuItemClick(MenuItem mi) {
+        startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
+    }
 
-	public void onPreferencesMenuItemClick(MenuItem mi) {
-		startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
+    ////////////////////////////////////////////////////////////////////////////
+    // Listeners
+    public void onPlayClick(View v) {
+        Intent i = new Intent(MainActivity.this, GameActivity.class);
+        startActivity(i);
 
-	}
+    }
 
-	////////////////////////////////////////////////////////////////////////////
-	// Listeners
-	public void onPlayClick(View v) {
+    public void onNewGameClick(View v) {
+        Intent i = new Intent(MainActivity.this, GameActivity.class);
+        startActivity(i);
+    }
 
-		
-		
-		Intent i = new Intent(MainActivity.this, GameActivity.class);
-		startActivity(i);
+    public void onLoadGameClick(View v) {
+        startActivity(new Intent(MainActivity.this, LoadGameActivity.class));
 
+    }
 
-	}
+    ////////////////////////////////////////////////////////////////////////////
+    /**
+     *
+     * @param b
+     */
+    @Override
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+        this.setContentView(R.layout.main);
+    }
 
-	public void onNewGameClick(View v) {
-		Intent i = new Intent(MainActivity.this, GameActivity.class);
-		startActivity(i);
-
-	}
-
-	public void onLoadGameClick(View v) {
-		startActivity(new Intent(MainActivity.this, LoadGameActivity.class));
-
-
-	}
-
-	////////////////////////////////////////////////////////////////////////////
-	/**
-	 *
-	 * @param b
-	 */
-	@Override
-	public void onCreate(Bundle b) {
-		super.onCreate(b);
-		this.setContentView(R.layout.main);
-		
-		
-
-
-
-
-
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu m) {
-		getMenuInflater().inflate(R.menu.menu, m);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu m) {
+        getMenuInflater().inflate(R.menu.menu, m);
+        return true;
+    }
 ;
 }

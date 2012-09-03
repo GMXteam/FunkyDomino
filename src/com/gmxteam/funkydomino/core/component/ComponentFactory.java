@@ -113,7 +113,7 @@ public class ComponentFactory {
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
-    public static Ground createGround(Vector2[] vertex) throws InstantiationException, IllegalAccessException {
+    public static Ground createGround(float x, float y, Vector2[] vertex) throws InstantiationException, IllegalAccessException {
 
         Attributes attributes = new Attributes();
         attributes.put("vector", vertex);
