@@ -45,12 +45,12 @@ public final class Cog extends Component {
 	}
 
 	@Override
-	protected void onCreateFixtureDef(FixtureDef fd) {
+	protected void onCreateFixtureDef(FixtureDef fd, Attributes pAttributes) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+	protected void onPopulatePhysicsWorld(PhysicsWorld pw, Attributes pAttributes) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 

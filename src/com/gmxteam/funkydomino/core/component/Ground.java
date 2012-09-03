@@ -21,7 +21,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
-import com.gmxteam.funkydomino.activity.R;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
@@ -30,7 +29,6 @@ import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
@@ -44,45 +42,45 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
  */
 public class Ground extends Component {
 
-	private Body mGroundBody;
-	private TiledTextureRegion mGroundTextureRegion;
-	private TiledSprite mGround;
-	private Vector2 mVertex[];
-	public static final int GROUND_TEXTURE_HEIGHT = 38,
-		GROUND_TEXTURE_WIDTH = 50;
+    private Body mGroundBody;
+    private TiledTextureRegion mGroundTextureRegion;
+    private TiledSprite mGround;
+    private Vector2 mVertex[];
+    public static final int GROUND_TEXTURE_HEIGHT = 38,
+            GROUND_TEXTURE_WIDTH = 50,
+            GROUND_COLUMNS = 10, GROUND_ROWS = 10;
 
-	@Override
-	protected void onLoadResource() {
+    @Override
+    protected void onLoadResource() {
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), GROUND_TEXTURE_WIDTH, GROUND_TEXTURE_HEIGHT);
+        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, getContext(), "background_grass.png", 0, 0, GROUND_COLUMNS, GROUND_ROWS);
+        mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
 
-		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), GROUND_TEXTURE_WIDTH, GROUND_TEXTURE_HEIGHT);
-		mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromResource(mBitmapTextureAtlas, getContext(), R.drawable.background, 0, 0, 10, 10);
-		mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
+    }
 
-	}
+    @Override
+    protected void onCreateFixtureDef(FixtureDef fd, Attributes pAttributes) {
+        //this.mVertex = mAttributes.getVector2Value("vector", null);
+    }
 
-	@Override
-	protected void onCreateFixtureDef(FixtureDef fd) {
-		this.mVertex = mAttributes.getVector2Value("vector", null);
-	}
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes) {
+        Vector2[] defaultVectors = {};
+        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, pAttributes.getVector2Array("vector", defaultVectors), BodyDef.BodyType.StaticBody, mFixtureDef);
+        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
+    }
 
-	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+    @Override
+    protected void onPopulateEntity(Entity e) {
+        e.attachChild(mGround);
+    }
 
-		mGroundBody = PhysicsFactory.createPolygonBody(pw, mGround, mVertex, BodyDef.BodyType.StaticBody, mFixtureDef);
-		pw.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
-	}
+    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+        return false;
+    }
 
-	@Override
-	protected void onPopulateEntity(Entity e) {
-		e.attachChild(mGround);
-	}
-
-	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		return false;
-	}
-
-	@Override
-	protected void onRegisterTouchAreas(Scene pScene) {
-		pScene.registerTouchArea(mGround);
-	}
+    @Override
+    protected void onRegisterTouchAreas(Scene pScene) {
+        pScene.registerTouchArea(mGround);
+    }
 }

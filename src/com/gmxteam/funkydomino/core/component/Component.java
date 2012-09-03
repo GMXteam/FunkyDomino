@@ -16,15 +16,12 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.activity.GameActivity;
 import android.content.Context;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.xml.AttributesExtended;
+import com.gmxteam.funkydomino.activity.GameActivity;
+import org.andengine.audio.music.MusicManager;
 import org.andengine.entity.Entity;
-import org.andengine.entity.scene.IOnAreaTouchListener;
-import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
-
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -39,79 +36,89 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Entity implements ComponentsConstants, IOnAreaTouchListener {
+public abstract class Component extends Entity implements ComponentsConstants {
 
-	protected FixtureDef mFixtureDef;
-	protected AttributesExtended mAttributes;
-	private GameActivity mGameActivity;
-	
+    protected FixtureDef mFixtureDef;
+    private GameActivity mGameActivity;
 
-	public final Component init(GameActivity ga, AttributesExtended att) {
-		mGameActivity = ga;
-		mAttributes = att;
+    public final Component factory(GameActivity ga, Attributes att) {
 
-		this.mX = mAttributes.getFloatValue("left", 0.0f);
-		this.mY = mAttributes.getFloatValue("top", 0.0f);
-
-		mFixtureDef = new FixtureDef();
-
-		mFixtureDef.density = att.getFloatValue("density", 5.0f);
-		mFixtureDef.friction = att.getFloatValue("friction", 5.0f);
-
-		onLoadResource();
-
-		onCreateFixtureDef(mFixtureDef);
-
-		onPopulatePhysicsWorld(mGameActivity.mPhysicsWorld);
-
-		onPopulateEntity(this);
-		
-		onRegisterTouchAreas(mGameActivity.mScene);
-		
-		return this;
-	}
-
-	
-        
+        mGameActivity = ga;
 
 
-	////////////////////////////////////////////////////////////////////////
-	// Events
-	protected abstract void onLoadResource();
+        this.setX(att.getFloat("x", 0.0f));
+        this.setY(att.getFloat("y", 0.0f));
 
-	/**
-	 * Altération du FixtureDef (propriétés physiques initiales et fondamentales)
-	 * @param fd 
-	 */
-	protected abstract void onCreateFixtureDef(FixtureDef fd);
 
-	/**
-	 * Binding de l'entité avec le monde physique.
-	 *
-	 * @param pw
-	 */
-	protected abstract void onPopulatePhysicsWorld(PhysicsWorld pw);
+        mFixtureDef = new FixtureDef();
 
-	/**
-	 * Binding des sous-entités avec l'entité qui reçoit l'événement.
-	 * @param e Év
-	 */
-	protected abstract void onPopulateEntity(Entity e);
+        mFixtureDef.density = att.getFloat("density", 5.0f);
+        mFixtureDef.friction = att.getFloat("friction", 5.0f);
 
-	
-	protected abstract void onRegisterTouchAreas(Scene pScene);
-	/////////////////////////
-	// Accessible resources from the GameActivity
-	protected final TextureManager getTextureManager() {
-		return mGameActivity.getTextureManager();
 
-	}
+        onLoadResource();
 
-	protected final VertexBufferObjectManager getVertexBufferObjectManager() {
-		return mGameActivity.getVertexBufferObjectManager();
-	}
+        onCreateFixtureDef(mFixtureDef, att);
 
-	protected final Context getContext() {
-		return (Context) mGameActivity;
-	}
+        onPopulatePhysicsWorld(mGameActivity.mPhysicsWorld, att);
+
+        onPopulateEntity(this);
+
+        onRegisterTouchAreas(mGameActivity.mScene);
+
+        return this;
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    // Events
+    protected abstract void onLoadResource();
+
+    /**
+     * Altération du FixtureDef (propriétés physiques initiales et
+     * fondamentales)
+     *
+     * @param fd
+     */
+    protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, Attributes pAttributes);
+
+    /**
+     * Binding de l'entité avec le monde physique.
+     *
+     * @param pw
+     */
+    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes);
+
+    /**
+     * Binding des sous-entités avec l'entité qui reçoit l'événement.
+     *
+     * @param e Év
+     */
+    protected abstract void onPopulateEntity(Entity e);
+
+    /**
+     * L'entité enregistre ses surfaces qui peuvent recevoir des événements de
+     * type touch ainsi que la gestion de ces événements.
+     *
+     * @param pScene
+     */
+    protected abstract void onRegisterTouchAreas(Scene pScene);
+
+    /////////////////////////
+    // Accessible resources from the GameActivity
+    protected final TextureManager getTextureManager() {
+        return mGameActivity.getTextureManager();
+
+    }
+
+    protected final VertexBufferObjectManager getVertexBufferObjectManager() {
+        return mGameActivity.getVertexBufferObjectManager();
+    }
+
+    protected final MusicManager getMusicManager() {
+        return mGameActivity.getMusicManager();
+    }
+
+    protected final Context getContext() {
+        return (Context) mGameActivity;
+    }
 }

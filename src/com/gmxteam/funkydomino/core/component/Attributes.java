@@ -14,33 +14,29 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.xml.exception;
+package com.gmxteam.funkydomino.core.component;
 
-import android.util.Log;
-import com.gmxteam.funkydomino.activity.GameActivityConstants;
+import com.badlogic.gdx.math.Vector2;
+import java.util.HashMap;
 
 /**
- * Exception lancée lorsqu'un attribut est invalide.
+ *
  * @author guillaume
  */
-public final class IllegalXMLAttributeException extends RuntimeException implements GameActivityConstants {
+public class Attributes extends HashMap<String, Object> {
 
-    /**
-     * 
-     * @param message
-     */
-    public IllegalXMLAttributeException(String message) {
-        super(message);
-        Log.e(APP_LOG_NAME, message);
+    public float getFloat(String key, float defaultValue) {
+        Object o = get(key);
+        return o != null && o instanceof Float ? ((Float) o).floatValue() : defaultValue;
     }
-    
-    /**
-     * 
-     * @param message
-     * @param t  
-     */
-    public IllegalXMLAttributeException(String message, Throwable t) {
-        super(message, t);
-        Log.e(APP_LOG_NAME, message, t);
+
+    public int getInteger(String key, int defaultValue) {
+        Object o = get(key);
+        return o != null && o instanceof Integer ? ((Integer) o).intValue() : defaultValue;
+    }
+
+    public Vector2[] getVector2Array(String key, Vector2[] defaultValue) {
+        Object o = get(key);
+        return o != null && o instanceof Vector2[] ? (Vector2[]) o : defaultValue;
     }
 }

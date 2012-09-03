@@ -28,7 +28,6 @@ import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
@@ -40,49 +39,44 @@ import org.andengine.opengl.texture.region.TextureRegion;
  */
 public final class Ball extends Component {
 
-	private Body mBallBody;
-	private Sprite mBallSprite;
-	
-	public final int BALL_RADIUS = 32;
+    private Body mBallBody;
+    private Sprite mBallSprite;
+    public final int BALL_RADIUS = 32;
 
-	public ITouchArea getTouchArea() {
-		return mBallSprite;
-	}
+    public ITouchArea getTouchArea() {
+        return mBallSprite;
+    }
 
-	@Override
-	protected void onLoadResource() {
+    @Override
+    protected void onLoadResource() {
 
-		BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2);
+        getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-		TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromResource(mBitmapTextureAtlas, getContext(), R.drawable.ball, 0, 0);
+        TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
 
-		getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-		mBallSprite = new Sprite(0, 0, mBallTextureRegion, getVertexBufferObjectManager());
-	}
+        mBallSprite = new Sprite(0, 0, mBallTextureRegion, getVertexBufferObjectManager());
+    }
 
-	@Override
-	protected void onCreateFixtureDef(FixtureDef fd) {
-	}
+    @Override
+    protected void onCreateFixtureDef(FixtureDef fd, Attributes pAttributes) {
+    }
 
-	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-		mBallBody = PhysicsFactory.createCircleBody(pw, mBallSprite, BodyDef.BodyType.StaticBody, mFixtureDef);
-		pw.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
-	}
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, Attributes pAttributes) {
+        mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mBallSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
+        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
+    }
 
-	@Override
-	protected void onPopulateEntity(Entity e) {
+    @Override
+    protected void onPopulateEntity(Entity e) {
 
-		e.attachChild(mBallSprite);
-	}
+        e.attachChild(mBallSprite);
+    }
 
-	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		return false;
-	}
-
-	@Override
-	protected void onRegisterTouchAreas(Scene pScene) {
-		pScene.registerTouchArea(mBallSprite);
-	}
+    @Override
+    protected void onRegisterTouchAreas(Scene pScene) {
+        pScene.registerTouchArea(mBallSprite);
+    }
 }

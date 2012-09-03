@@ -23,46 +23,37 @@ package com.gmxteam.funkydomino.activity;
  */
 public interface GameActivityConstants {
 
-	
-	////////////////////////////////////////////////////////////////////////////
-	// Constantes publiques. Elles sont disponibles dans tout le projet.
-	/**
-	 *
-	 */
-	public static final String APP_LOG_NAME = "funky-domino";
-	////////////////////////////////////////////////////////////////////////////
-	// Constantes spécifiques aux activités
-	
-	/**
-	 * Largeur de la caméra (correspond à l'écran)
-	 */
-	public static final float CAMERA_WIDTH = 800;
-	/**
-	 * Hauteur de la caméra (correspond à la hauteur de l'écran)
-	 */
-	public static final float CAMERA_HEIGHT = 480;
-	/**
-	 *
-	 */
-	public static final float CAMERA_LEFT = 0.0f;
-	/**
-	 *
-	 */
-	public static final float CAMERA_TOP = 0.0f;
-	/**
-	 *
-	 */
-	public static final float WORLD_HEIGHT = CAMERA_HEIGHT;
-	/**
-	 *
-	 */
-	public static final float WORLD_WIDTH =  CAMERA_WIDTH;
-	/**
-	 *
-	 */
-	public static final float WORLD_LEFT = 0.0f;
-	/**
-	 *
-	 */
-	public static final float WORLD_TOP = 0.0f;
+    ////////////////////////////////////////////////////////////////////////////
+    // Constantes publiques. Elles sont disponibles dans tout le projet.
+    /**
+     *
+     */
+    public static final String LOG_TAG = "FunkyDomino";
+    public static final boolean DEBUG = true;
+    ////////////////////////////////////////////////////////////////////////////
+    // Constantes spécifiques aux activités
+    /**
+     *
+     */
+    public static final float CAMERA_LEFT = 0.0f;
+    /**
+     *
+     */
+    public static final float CAMERA_TOP = 0.0f;
+    /**
+     *
+     */
+    public static final float WORLD_HEIGHT = 5000.0f;
+    /**
+     *
+     */
+    public static final float WORLD_WIDTH = 5000.0f;
+    /**
+     *
+     */
+    public static final float WORLD_LEFT = 0.0f;
+    /**
+     *
+     */
+    public static final float WORLD_TOP = 0.0f;
 }

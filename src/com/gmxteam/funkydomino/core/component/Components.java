@@ -1,5 +1,8 @@
 package com.gmxteam.funkydomino.core.component;
 
+import android.util.Log;
+import com.gmxteam.funkydomino.activity.GameActivity;
+
 /**
  * Énumération des éléments Factorable que l'on peut retrouver dans FunkyDomino.
  * Il permet entre autre de récupéré une version Factorable pour pouvoir
@@ -20,7 +23,8 @@ public enum Components {
 	}
 
 	public Component getComponent() throws InstantiationException, IllegalAccessException {	
-
+            Log.v(GameActivity.LOG_TAG, "Création d'une instance de type " + this.name());
+            
 		return (Component) mClass.newInstance();
 	}
 }
