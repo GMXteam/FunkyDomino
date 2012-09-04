@@ -131,6 +131,7 @@ public final class Domino extends Component implements ContactListener {
     }
 
     public void beginContact(Contact cntct) {
+        mCollisionSound.play();
         Log.v(GameActivity.LOG_TAG, "Collision !");
     }
 

@@ -32,6 +32,7 @@ import com.gmxteam.funkydomino.core.component.factory.Components;
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.gmxteam.funkydomino.entity.primitive.Line;
 import java.io.IOException;
+import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
@@ -126,9 +127,10 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mHUD.setCamera(mCamera);
 
 
-
-        //engineOptions.getAudioOptions().setNeedsSound(true);
-        return new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
+        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
+        mEngineOptions.getAudioOptions().setNeedsSound(true);
+        mEngineOptions.getAudioOptions().setNeedsMusic(true);
+        return mEngineOptions;
     }
 
     /**
@@ -280,6 +282,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
 
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        SoundFactory.setAssetBasePath("mfx/");
         ComponentFactory.setGameActivity(this);
 
 
