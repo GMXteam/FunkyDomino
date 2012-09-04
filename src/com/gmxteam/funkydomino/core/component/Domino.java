@@ -20,6 +20,7 @@ import android.util.Log;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activity.GameActivity;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -56,14 +57,19 @@ public final class Domino extends Component {
 
         final ScrollDetector sd = new ScrollDetector(new ScrollDetector.IScrollDetectorListener() {
             public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+                mDominoBody.setActive(false);
             }
 
             public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-                mDominoBody.applyLinearImpulse(f, f1, mDominoBody.getLocalCenter().x, mDominoBody.getLocalCenter().y);
-
+                // Make the domino follows the finger.
+                mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
+                
+                Log.v(GameActivity.LOG_TAG, "Domino position : " + mDominoBody.getPosition());
             }
 
             public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+                mDominoBody.setActive(true);
+
             }
         });
 
@@ -75,7 +81,8 @@ public final class Domino extends Component {
              */
             @Override
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
-
+                
+                
                 return sd.onManagedTouchEvent(te) && mDominoBody != null;
             }
         };
