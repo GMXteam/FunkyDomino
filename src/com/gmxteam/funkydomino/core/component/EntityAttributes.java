@@ -27,18 +27,56 @@ import org.xml.sax.Attributes;
 public class EntityAttributes extends HashMap<String, Object> {
 
     /**
-     * Constructeur utilisé par ComponentFactory.
+     * Constructeur utilisé par ComponentFactory pour les tests.
      */
     public EntityAttributes() {
     }
 
     /**
+     * Convertit une chaîne de caractères en tableau de vecteurs.
+     * Le caractère ; est utilisé pour séparer les vecteurs et le caractère ,
+     * est utilisé pour séparer les composants x et y.
+     * @param source
+     * @return 
+     */
+    public static Vector2[] parseVector2Array(String source) {
+        
+        if(source.equals("")) {
+            // Avoid parsing empty attribute
+            return new Vector2[0];
+        }
+        
+        String stringVector = source;
+
+
+        String[] stringVectors = stringVector.split(";");
+
+
+        Vector2[] vectors = new Vector2[stringVectors.length];
+
+
+
+        for (int i = 0; i < stringVectors.length; i++) {
+            String[] components = stringVectors[i].split(",");
+            vectors[i] = new Vector2(Float.parseFloat(components[0]), Float.parseFloat(components[1]));
+
+        }
+        return vectors;
+    }
+
+    /**
      * Constructeur avec copie des attributs.
-     * @param atts 
+     *
+     * @param atts
      */
     public EntityAttributes(Attributes atts) {
         for (int i = 0; i < atts.getLength(); i++) {
+
+
             put(atts.getLocalName(i), atts.getValue(i));
+
+
+
         }
 
         // Copie des attributs dans le dictionnaire
@@ -56,6 +94,6 @@ public class EntityAttributes extends HashMap<String, Object> {
 
     public Vector2[] getVector2Array(String key, Vector2[] defaultValue) {
         Object o = get(key);
-        return o != null && o instanceof Vector2[] ? (Vector2[]) o : defaultValue;
+        return o != null ? parseVector2Array((String) o) : defaultValue;
     }
 }

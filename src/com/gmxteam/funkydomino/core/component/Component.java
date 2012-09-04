@@ -53,6 +53,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
         mFixtureDef = new FixtureDef();
 
         mFixtureDef.density = att.getFloat("density", 5.0f);
+        
         mFixtureDef.friction = att.getFloat("friction", 5.0f);
 
 

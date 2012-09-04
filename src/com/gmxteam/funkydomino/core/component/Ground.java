@@ -23,18 +23,16 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import java.util.Arrays;
-
 import org.andengine.entity.Entity;
-import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.sprite.TiledSprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.region.TiledTextureRegion;
+import org.andengine.opengl.texture.region.TextureRegion;
 
 /**
  * Objet définissant le sol. Méta-entité, soit une entité contenant plusieurs
@@ -46,8 +44,8 @@ import org.andengine.opengl.texture.region.TiledTextureRegion;
 public class Ground extends Component {
 
     private Body mGroundBody;
-    private TiledTextureRegion mGroundTextureRegion;
-    private TiledSprite mGround;
+    private TextureRegion mGroundTextureRegion;
+    private Sprite mGround;
     public static final int GROUND_TEXTURE_HEIGHT = 32,
             GROUND_TEXTURE_WIDTH = 32,
             GROUND_COLUMNS = 10, GROUND_ROWS = 10;
@@ -55,10 +53,10 @@ public class Ground extends Component {
     @Override
     protected void onLoadResource() {
         BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), GROUND_TEXTURE_WIDTH, GROUND_TEXTURE_HEIGHT);
-        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, getContext(), "background_grass.png", 0, 0, GROUND_COLUMNS, GROUND_ROWS);
+        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "background_grass.png", 0, 0);
+        this.getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-
-        mGround = new TiledSprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
+        mGround = new Sprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
 
     }
 
