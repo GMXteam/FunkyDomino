@@ -21,14 +21,17 @@ import android.hardware.SensorManager;
 import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.core.component.ComponentFactory;
-import com.gmxteam.funkydomino.core.component.Components;
-import com.gmxteam.funkydomino.core.component.EntityAttributes;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
+import com.gmxteam.funkydomino.core.component.factory.Components;
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.gmxteam.funkydomino.entity.primitive.Line;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
@@ -85,6 +88,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     private SmoothCamera mCamera;
     private LevelLoader mLevelLoader;
+    public ContactManager mContactManager;
 
     /**
      *
@@ -93,7 +97,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     public final Point getCameraDimensions() {
         Point p = new Point();
         this.getWindowManager().getDefaultDisplay().getSize(p);
-
         return p;
     }
 
@@ -135,8 +138,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
-
-
         mScene = new Scene();
 
 
@@ -145,7 +146,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mLevelLoader.registerEntityLoader("level", new IEntityLoader() {
             public IEntity onLoadEntity(String string, Attributes atts) {
 
-                EntityAttributes ea = new EntityAttributes(atts);
+                ComponentAttributes ea = new ComponentAttributes(atts);
 
 
 
@@ -167,9 +168,9 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
                     Line lineShape = new Line(points[0], points[1], points[2], points[3], GameActivity.this.getVertexBufferObjectManager());
                     mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
                     mScene.attachChild(lineShape);
-                    
+
                 }
-                
+
                 // Refresh camera bounds
                 mCamera.setBounds(0.0f, 0.0f, ea.getFloat("width", WORLD_WIDTH), ea.getFloat("height", WORLD_HEIGHT));
 
@@ -185,7 +186,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
                 IEntity currentEntity = null;
 
                 try {
-                    currentEntity = Components.valueOf(string).getComponent().factory(GameActivity.this, new EntityAttributes(atts));
+                    currentEntity = Components.valueOf(string).getComponent().factory(GameActivity.this, new ComponentAttributes(atts));
                 } catch (InstantiationException ex) {
                     Log.e(LOG_TAG, ex.getMessage(), ex);
                 } catch (IllegalAccessException ex) {
@@ -239,7 +240,11 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         });
 
 
-        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false, 8, 1);
+        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
+
+        mContactManager = new ContactManager();
+
+        mPhysicsWorld.setContactListener(mContactManager.getContactListener());
 
         mScene.registerUpdateHandler(mPhysicsWorld);
 
@@ -258,6 +263,8 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
         mLevelLoader.loadLevelFromAsset(getAssets(), "stage1.lvl");
+
+
 
 
 

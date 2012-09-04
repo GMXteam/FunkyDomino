@@ -16,10 +16,16 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activity.R;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
@@ -27,7 +33,6 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
@@ -37,20 +42,16 @@ import org.andengine.opengl.texture.region.TextureRegion;
  * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class Ball extends Component {
+public final class Ball extends Component implements ContactListener {
 
     private Body mBallBody;
     private Sprite mBallSprite;
-    public final int BALL_RADIUS = 32;
-
-    public ITouchArea getTouchArea() {
-        return mBallSprite;
-    }
+    public static final int BALL_RADIUS = 32;    
 
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, GameActivity.TEXTURE_OPTION);
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
         TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
@@ -60,11 +61,11 @@ public final class Ball extends Component {
     }
 
     @Override
-    protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
+    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, EntityAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes) {
         mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mBallSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
     }
@@ -78,5 +79,23 @@ public final class Ball extends Component {
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
         pScene.registerTouchArea(mBallSprite);
+    }
+
+    @Override
+    protected void onRegisterContactListener(ContactManager pContactManager) {
+        pContactManager.registerContactListener(mBallBody, this);
+    }
+
+    public void beginContact(Contact cntct) {
+    }
+
+    public void endContact(Contact cntct) {
+    }
+
+    public void preSolve(Contact cntct, Manifold mnfld) {
+    }
+
+    public void postSolve(Contact cntct, ContactImpulse ci) {
+    
     }
 }

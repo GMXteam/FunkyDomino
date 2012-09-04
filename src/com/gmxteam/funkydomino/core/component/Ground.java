@@ -16,12 +16,14 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.ContactManager;
 import java.util.Arrays;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
@@ -61,12 +63,12 @@ public class Ground extends Component {
     }
 
     @Override
-    protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
+    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
         //this.mVertex = mAttributes.getVector2Value("vector", null);
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, EntityAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes) {
         Vector2[] defaultVectors = {};
 
         Log.v(GameActivity.LOG_TAG, Arrays.toString(pAttributes.getVector2Array("vector", defaultVectors)));
@@ -86,5 +88,9 @@ public class Ground extends Component {
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
         pScene.registerTouchArea(mGround);
+    }
+
+    @Override
+    protected void onRegisterContactListener(ContactManager pContactManager) {
     }
 }

@@ -16,11 +16,18 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.util.Log;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.ContactManager;
+import org.andengine.audio.music.Music;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -37,7 +44,7 @@ import org.andengine.opengl.texture.region.TextureRegion;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Domino extends Component {
+public final class Domino extends Component implements ContactListener {
 
     public static final int DOMINO_HEIGHT = 64,
             DOMINO_WIDTH = 32;
@@ -46,7 +53,7 @@ public final class Domino extends Component {
 
     @Override
     protected void onLoadResource() {
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, GameActivity.TEXTURE_OPTION);
 
 
         getTextureManager().loadTexture(mBitmapTextureAtlas);
@@ -63,7 +70,7 @@ public final class Domino extends Component {
             public void onScroll(ScrollDetector sd, int i, float f, float f1) {
                 // Make the domino follows the finger.
                 mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
-                
+
                 Log.v(GameActivity.LOG_TAG, "Domino position : " + mDominoBody.getPosition());
             }
 
@@ -81,8 +88,8 @@ public final class Domino extends Component {
              */
             @Override
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
-                
-                
+
+
                 return sd.onManagedTouchEvent(te) && mDominoBody != null;
             }
         };
@@ -91,13 +98,12 @@ public final class Domino extends Component {
     }
 
     @Override
-    protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
+    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pw, EntityAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw, ComponentAttributes pAttributes) {
         mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
-
         pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
     }
 
@@ -115,5 +121,25 @@ public final class Domino extends Component {
 
 
 
+    }
+
+    ////////////////////////////////////
+    // Collisions
+    @Override
+    protected void onRegisterContactListener(ContactManager pContactManager) {
+        pContactManager.registerContactListener(mDominoBody, this);
+    }
+
+    public void beginContact(Contact cntct) {
+        Log.v(GameActivity.LOG_TAG, "Collision !");
+    }
+
+    public void endContact(Contact cntct) {
+    }
+
+    public void preSolve(Contact cntct, Manifold mnfld) {
+    }
+
+    public void postSolve(Contact cntct, ContactImpulse ci) {
     }
 }

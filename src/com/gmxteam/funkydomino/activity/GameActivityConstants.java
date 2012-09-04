@@ -16,6 +16,8 @@
  */
 package com.gmxteam.funkydomino.activity;
 
+import org.andengine.opengl.texture.TextureOptions;
+
 /**
  * Constantes pour
  *
@@ -60,4 +62,6 @@ public interface GameActivityConstants {
      *
      */
     public static final float WORLD_TOP = 0.0f;
+    
+    public static final TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
 }

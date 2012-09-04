@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.core.component.factory;
 
 import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
@@ -24,12 +24,12 @@ import org.xml.sax.Attributes;
  *
  * @author guillaume
  */
-public class EntityAttributes extends HashMap<String, Object> {
+public class ComponentAttributes extends HashMap<String, Object> {
 
     /**
      * Constructeur utilisé par ComponentFactory pour les tests.
      */
-    public EntityAttributes() {
+    public ComponentAttributes() {
     }
 
     /**
@@ -69,7 +69,7 @@ public class EntityAttributes extends HashMap<String, Object> {
      *
      * @param atts
      */
-    public EntityAttributes(Attributes atts) {
+    public ComponentAttributes(Attributes atts) {
         for (int i = 0; i < atts.getLength(); i++) {
 
 

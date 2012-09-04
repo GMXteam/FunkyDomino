@@ -16,7 +16,9 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.core.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;
@@ -46,12 +48,12 @@ public class Water extends Component {
 	}
 
 	@Override
-	protected void onCreateFixtureDef(FixtureDef fd, EntityAttributes pAttributes) {
+	protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
 	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw, EntityAttributes pAttributes) {
+	protected void onPopulatePhysicsWorld(PhysicsWorld pw, ComponentAttributes pAttributes) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
@@ -68,4 +70,9 @@ public class Water extends Component {
 	protected void onRegisterTouchAreas(Scene pScene) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
+
+    @Override
+    protected void onRegisterContactListener(ContactManager pContactManager) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

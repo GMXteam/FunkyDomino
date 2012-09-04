@@ -1,7 +1,13 @@
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.core.component.factory;
 
 import android.util.Log;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.component.Ball;
+import com.gmxteam.funkydomino.core.component.Cog;
+import com.gmxteam.funkydomino.core.component.Component;
+import com.gmxteam.funkydomino.core.component.Domino;
+import com.gmxteam.funkydomino.core.component.Ground;
+import com.gmxteam.funkydomino.core.component.Water;
 
 /**
  * Énumération des éléments Factorable que l'on peut retrouver dans FunkyDomino.

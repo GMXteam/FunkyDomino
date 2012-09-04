@@ -14,16 +14,14 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.core.component.factory;
 
-import android.content.res.XmlResourceParser;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.activity.GameActivity;
-import java.io.IOException;
-import java.util.LinkedList;
-import org.andengine.entity.IEntity;
-import org.andengine.util.level.IEntityLoader;
-import org.xmlpull.v1.XmlPullParserException;
+import com.gmxteam.funkydomino.core.component.Ball;
+import com.gmxteam.funkydomino.core.component.Cog;
+import com.gmxteam.funkydomino.core.component.Domino;
+import com.gmxteam.funkydomino.core.component.Ground;
 
 /**
  * Utility class containing methods to create and extract components.
@@ -49,7 +47,7 @@ public class ComponentFactory {
      */
     public static Domino createDomino(float x, float y) throws InstantiationException, IllegalAccessException {
 
-        EntityAttributes attributes = new EntityAttributes();
+        ComponentAttributes attributes = new ComponentAttributes();
         attributes.put("x", x);
         attributes.put("y", y);
 
@@ -66,7 +64,7 @@ public class ComponentFactory {
      * @throws IllegalAccessException
      */
     public static Ball createBall(float x, float y, float radius) throws InstantiationException, IllegalAccessException {
-        EntityAttributes attributes = new EntityAttributes();
+        ComponentAttributes attributes = new ComponentAttributes();
         attributes.put("x", x);
         attributes.put("y", y);
         attributes.put("radius", radius);
@@ -85,9 +83,27 @@ public class ComponentFactory {
      */
     public static Ground createGround(float x, float y, Vector2[] vertex) throws InstantiationException, IllegalAccessException {
 
-        EntityAttributes attributes = new EntityAttributes();
+        ComponentAttributes attributes = new ComponentAttributes();
         attributes.put("vector", vertex);
 
         return (Ground) Components.ground.getComponent().factory(mGameActivity, attributes);
+    }
+
+    /**
+     * Creates a cog.
+     *
+     * @param x
+     * @param y
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
+    public static Cog createCog(float x, float y) throws InstantiationException, IllegalAccessException {
+
+        ComponentAttributes attributes = new ComponentAttributes();
+        attributes.put("x", x);
+        attributes.put("y", y);
+
+        return (Cog) Components.ground.getComponent().factory(mGameActivity, attributes);
     }
 }

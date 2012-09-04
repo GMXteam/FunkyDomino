@@ -16,9 +16,12 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.content.Context;
+import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.ContactManager;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
@@ -41,7 +44,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
     protected FixtureDef mFixtureDef;
     private GameActivity mGameActivity;
 
-    public final Component factory(GameActivity ga, EntityAttributes att) {
+    public final Component factory(GameActivity ga, ComponentAttributes att) {
 
         mGameActivity = ga;
 
@@ -54,7 +57,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
 
         mFixtureDef.density = att.getFloat("density", 5.0f);
         
-        mFixtureDef.friction = att.getFloat("friction", 5.0f);
+        mFixtureDef.friction = att.getFloat("friction", 1.0f);
 
 
         onLoadResource();
@@ -66,6 +69,8 @@ public abstract class Component extends Entity implements ComponentsConstants {
         onPopulateEntity(this);
 
         onRegisterTouchAreas(mGameActivity.mScene);
+        
+        onRegisterContactListener(mGameActivity.mContactManager);
 
         return this;
     }
@@ -80,14 +85,14 @@ public abstract class Component extends Entity implements ComponentsConstants {
      *
      * @param fd
      */
-    protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, EntityAttributes pAttributes);
+    protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, ComponentAttributes pAttributes);
 
     /**
      * Binding de l'entité avec le monde physique.
      *
      * @param pw
      */
-    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, EntityAttributes pAttributes);
+    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes);
 
     /**
      * Binding des sous-entités avec l'entité qui reçoit l'événement.
@@ -103,6 +108,8 @@ public abstract class Component extends Entity implements ComponentsConstants {
      * @param pScene
      */
     protected abstract void onRegisterTouchAreas(Scene pScene);
+    
+    protected abstract void onRegisterContactListener(ContactManager pContactManager);
 
     /////////////////////////
     // Accessible resources from the GameActivity
