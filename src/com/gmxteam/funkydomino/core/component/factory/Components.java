@@ -2,6 +2,7 @@ package com.gmxteam.funkydomino.core.component.factory;
 
 import android.util.Log;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.component.AddDominoButton;
 import com.gmxteam.funkydomino.core.component.Ball;
 import com.gmxteam.funkydomino.core.component.Cog;
 import com.gmxteam.funkydomino.core.component.Component;
@@ -17,12 +18,14 @@ import com.gmxteam.funkydomino.core.component.Water;
  * @author guillaume
  */
 public enum Components {
-
+add_domino_button(AddDominoButton.class),
     ground(Ground.class),
     water(Water.class),
     domino(Domino.class),
     ball(Ball.class),
     cog(Cog.class);
+    
+    
     private Class mClass;
 
     Components(Class c) {

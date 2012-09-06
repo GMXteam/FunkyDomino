@@ -237,7 +237,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
             public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
-                return pzd.onManagedTouchEvent(te) | sd.onManagedTouchEvent(te);
+                return pzd.onManagedTouchEvent(te) || sd.onManagedTouchEvent(te);
             }
         });
 
@@ -246,7 +246,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         mContactManager = new ContactManager();
 
-        mPhysicsWorld.setContactListener(mContactManager.getContactListener());
+        mPhysicsWorld.setContactListener(mContactManager);
 
         mScene.registerUpdateHandler(mPhysicsWorld);
 
@@ -262,7 +262,12 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
         pScene.setBackground(mBackground);
-
+        
+        pScene.attachChild(mHUD);
+        
+        
+        mHUD.attachChild(ComponentFactory.createAddDominoButton(0.0f, 0.0f));
+        
 
         mLevelLoader.loadLevelFromAsset(getAssets(), "stage1.lvl");
 
@@ -284,7 +289,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         SoundFactory.setAssetBasePath("mfx/");
         ComponentFactory.setGameActivity(this);
-
 
         AssetBitmapTextureAtlasSource mBackgroundBaseTextureAtlasSource = AssetBitmapTextureAtlasSource.create(this.getAssets(), "gfx/background.png");
 

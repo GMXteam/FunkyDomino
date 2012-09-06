@@ -27,7 +27,6 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.ContactManager;
-import org.andengine.audio.music.Music;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -39,6 +38,7 @@ import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.util.debug.Debug;
 
 /**
  *
@@ -90,7 +90,7 @@ public final class Domino extends Component implements ContactListener {
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
 
 
-                return sd.onManagedTouchEvent(te) && mDominoBody != null;
+                return sd.onManagedTouchEvent(te);
             }
         };
 
@@ -130,9 +130,7 @@ public final class Domino extends Component implements ContactListener {
         pContactManager.registerContactListener(mDominoBody, this);
     }
 
-    public void beginContact(Contact cntct) {
-        mCollisionSound.play();
-        Log.v(GameActivity.LOG_TAG, "Collision !");
+    public void beginContact(Contact cntct) {        
     }
 
     public void endContact(Contact cntct) {
