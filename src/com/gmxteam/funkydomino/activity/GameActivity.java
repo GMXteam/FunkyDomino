@@ -89,6 +89,8 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     private SmoothCamera mCamera;
     private LevelLoader mLevelLoader;
+    private float oriX;
+    private float oriY;
     public ContactManager mContactManager;
 
     /**
@@ -210,7 +212,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
             public void onScroll(ScrollDetector sd, int i, float f, float f1) {
 
-                mCamera.setCenter(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
+                mCamera.setCenterDirect(oriX - f, oriY - f1);
 
             }
 
@@ -237,9 +239,15 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
             public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
-                return pzd.onManagedTouchEvent(te) || sd.onManagedTouchEvent(te);
+                oriX = mCamera.getCenterX(); //with float oriX; in fields
+                oriY = mCamera.getCenterY(); //with float oriY; in fields
+                sd.onTouchEvent(te);
+                return true;
+                //return pzd.onManagedTouchEvent(te) || sd.onManagedTouchEvent(te);
             }
         });
+        
+        
 
 
         mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
