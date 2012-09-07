@@ -28,65 +28,60 @@ import org.andengine.util.debug.Debug;
  *
  * @author guillaume
  */
-public class ContactManager extends HashMap<Body, ContactListener> {
-
-    public ContactListener getContactListener() {
-        return mContactListener;
-
-    }
+public class ContactManager extends HashMap<Body, ContactListener> implements ContactListener {
 
     public void registerContactListener(Body b, ContactListener pContactListener) {
         put(b, pContactListener);
 
     }
-    private ContactListener mContactListener = new ContactListener() {
-        public void beginContact(Contact cntct) {
-
-            Debug.v("Contact entre " + cntct.getFixtureA().getBody() + " et " + cntct.getFixtureA().getBody());
-
-            ContactListener cl;
-
-            if ((cl = get(cntct.getFixtureA().getBody())) != null) {
-                cl.beginContact(cntct);
-            }
 
 
+    public void beginContact(Contact cntct) {
 
+        Debug.v("Contact entre le body " + cntct.getFixtureA().getBody()
+                + " et " + cntct.getFixtureB().getBody());
 
+        ContactListener cl;
+
+        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+            cl.beginContact(cntct);
         }
 
-        public void endContact(Contact cntct) {
-
-            ContactListener cl;
-
-            if ((cl = get(cntct.getFixtureA().getBody())) != null) {
-                cl.endContact(cntct);
-            }
 
 
+    }
 
+    public void endContact(Contact cntct) {
+
+        ContactListener cl;
+
+        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+            cl.endContact(cntct);
         }
 
-        public void preSolve(Contact cntct, Manifold mnfld) {
-
-            ContactListener cl;
-
-            if ((cl = get(cntct.getFixtureA().getBody())) != null) {
-                cl.preSolve(cntct, mnfld);
-            }
 
 
+    }
 
+    public void preSolve(Contact cntct, Manifold mnfld) {
 
+        ContactListener cl;
+
+        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+            cl.preSolve(cntct, mnfld);
         }
 
-        public void postSolve(Contact cntct, ContactImpulse ci) {
 
-            ContactListener cl;
 
-            if ((cl = get(cntct.getFixtureA().getBody())) != null) {
-                cl.postSolve(cntct, ci);
-            }
+
+    }
+
+    public void postSolve(Contact cntct, ContactImpulse ci) {
+
+        ContactListener cl;
+
+        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+            cl.postSolve(cntct, ci);
         }
-    };
+    }
 }

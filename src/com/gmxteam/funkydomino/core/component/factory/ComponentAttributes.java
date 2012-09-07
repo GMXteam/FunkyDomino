@@ -31,6 +31,24 @@ public class ComponentAttributes extends HashMap<String, Object> {
      */
     public ComponentAttributes() {
     }
+    
+    /**
+     * Constructeur avec copie des attributs.
+     *
+     * @param atts
+     */
+    public ComponentAttributes(Attributes atts) {
+        for (int i = 0; i < atts.getLength(); i++) {
+
+
+            put(atts.getLocalName(i), atts.getValue(i));
+
+
+
+        }
+
+        // Copie des attributs dans le dictionnaire
+    }
 
     /**
      * Convertit une chaîne de caractères en tableau de vecteurs.
@@ -64,23 +82,7 @@ public class ComponentAttributes extends HashMap<String, Object> {
         return vectors;
     }
 
-    /**
-     * Constructeur avec copie des attributs.
-     *
-     * @param atts
-     */
-    public ComponentAttributes(Attributes atts) {
-        for (int i = 0; i < atts.getLength(); i++) {
-
-
-            put(atts.getLocalName(i), atts.getValue(i));
-
-
-
-        }
-
-        // Copie des attributs dans le dictionnaire
-    }
+    
 
     public float getFloat(String key, float defaultValue) {
         Object o = get(key);

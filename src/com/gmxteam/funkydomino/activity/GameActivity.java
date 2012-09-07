@@ -16,54 +16,50 @@
  */
 package com.gmxteam.funkydomino.activity;
 
-import android.content.Intent;
 import android.graphics.Point;
 import android.hardware.SensorManager;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.core.ContactManager;
-import com.gmxteam.funkydomino.core.SceneLoader;
-import com.gmxteam.funkydomino.core.component.Domino;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.component.factory.ComponentLoader;
 import com.gmxteam.funkydomino.core.component.factory.Components;
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
+import com.gmxteam.funkydomino.entity.primitive.Line;
 import java.io.IOException;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
-import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
-import org.andengine.engine.camera.hud.controls.DigitalOnScreenControl;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
-import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.sensor.orientation.IOrientationListener;
-import org.andengine.input.sensor.orientation.OrientationData;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.PinchZoomDetector.IPinchZoomDetectorListener;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
-import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
 import org.andengine.ui.IGameInterface.OnCreateSceneCallback;
 import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
 import org.andengine.ui.activity.BaseGameActivity;
-import org.andengine.util.debug.Debug;
-import org.andengine.util.debug.Debug.DebugLevel;
+import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.level.LevelLoader;
-import org.andengine.util.preferences.SimplePreferences;
+import org.xml.sax.Attributes;
 import org.xmlpull.v1.XmlPullParserException;
 
 /**
@@ -102,18 +98,18 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     /**
      *
      */
+    public Scene mScene;
+    /**
+     *
+     */
     private HUD mHUD;
     /**
      *
      */
-    private DigitalOnScreenControl mAddDominoButton;
-    /**
-     *
-     */
+    private SmoothCamera mCamera;
     private LevelLoader mLevelLoader;
-    /**
-     *
-     */
+    private float oriX;
+    private float oriY;
     public ContactManager mContactManager;
     /**
      *
@@ -126,7 +122,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     public final Point getCameraDimensions() {
         Point p = new Point();
-
         this.getWindowManager().getDefaultDisplay().getSize(p);
         return p;
     }
@@ -147,16 +142,19 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
 
+        mCamera.setBounds(0.0f, 0.0f, WORLD_WIDTH, WORLD_HEIGHT);
         mCamera.setBoundsEnabled(true);
 
         //mCamera.setZNear(CAMERA_Z_NEAR);
         //mCamera.setZFar(CAMERA_Z_FAR);
 
+
+
         mHUD = new HUD();
         mHUD.setCamera(mCamera);
 
 
-        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
+        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
         mEngineOptions.getAudioOptions().setNeedsSound(true);
         mEngineOptions.getAudioOptions().setNeedsMusic(true);
 
@@ -172,6 +170,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     /**
      *
      * @param pOnCreateSceneCallback
+     * @throws Exception
      */
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
@@ -192,14 +191,14 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
             public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
             }
 
-            public synchronized void onScroll(ScrollDetector sd, int i, float f, float f1) {
-                // Le scrolling s'ajuste en fonction du zoom.
-                mEngine.getCamera().setCenter((mEngine.getCamera().getCenterX() - f) / ((SmoothCamera) mEngine.getCamera()).getZoomFactor(), (mEngine.getCamera().getCenterY() - f1) / ((SmoothCamera) mEngine.getCamera()).getZoomFactor());
+            public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+
+                mCamera.setCenterDirect(oriX - f, oriY - f1);
 
             }
 
             public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-                Log.v(LOG_TAG, "Nouveau centre de la caméra : [" + mEngine.getCamera().getCenterX() + ", " + mEngine.getCamera().getCenterY() + "]");
+                Log.v(LOG_TAG, "Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
             }
         });
 
@@ -209,7 +208,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
             public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float pZoomFactor) {
 
-                ((SmoothCamera) mEngine.getCamera()).setZoomFactor(pZoomFactor);
+                mCamera.setZoomFactor(pZoomFactor);
             }
 
             public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
@@ -221,9 +220,14 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
             public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
-                return pzd.onManagedTouchEvent(te) || sd.onManagedTouchEvent(te);
+                oriX = mCamera.getCenterX(); //with float oriX; in fields
+                oriY = mCamera.getCenterY(); //with float oriY; in fields
+                sd.onTouchEvent(te);
+                return true;
+                //return pzd.onManagedTouchEvent(te) || sd.onManagedTouchEvent(te);
             }
         });
+
 
         mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
 
@@ -232,30 +236,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mPhysicsWorld.setContactListener(mContactManager.getContactListener());
 
         mScene.registerUpdateHandler(mPhysicsWorld);
-
-        mFPSLogger = new FPSLogger();
-
-
-        mScene.registerUpdateHandler(mFPSLogger);
-
-        // On bind le l'accéléromètre avec la gravité du monde physique
-        mEngine.enableOrientationSensor(this, new IOrientationListener() {
-            private Vector2 mGravity = mPhysicsWorld.getGravity();
-
-            public void onOrientationAccuracyChanged(OrientationData od) {
-            }
-
-            public void onOrientationChanged(OrientationData od) {
-
-                mGravity.x = mEngine.getOrientationData().getRoll();
-                mPhysicsWorld.setGravity(mGravity);
-
-            }
-        });
-
-
-
-
 
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);
     }
@@ -269,7 +249,12 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
 
         pScene.setBackground(mBackground);
-
+        
+        pScene.attachChild(mHUD);
+        
+        
+        mHUD.attachChild(ComponentFactory.createAddDominoButton(0.0f, 0.0f));
+        
 
         mLevelLoader.loadLevelFromAsset(getAssets(), "stage1.lvl");
 

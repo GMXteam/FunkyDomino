@@ -18,10 +18,12 @@ package com.gmxteam.funkydomino.core.component.factory;
 
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.core.component.AddDominoButton;
 import com.gmxteam.funkydomino.core.component.Ball;
 import com.gmxteam.funkydomino.core.component.Cog;
 import com.gmxteam.funkydomino.core.component.Domino;
 import com.gmxteam.funkydomino.core.component.Ground;
+import org.andengine.entity.sprite.ButtonSprite;
 
 /**
  * Utility class containing methods to create and extract components.
@@ -52,6 +54,15 @@ public class ComponentFactory {
         attributes.put("y", y);
 
         return (Domino) Components.domino.getComponent().factory(mGameActivity, attributes);
+    }
+
+    public static AddDominoButton createAddDominoButton(float x, float y) throws InstantiationException, IllegalAccessException {
+        ComponentAttributes attributes = new ComponentAttributes();
+        attributes.put("x", x);
+        attributes.put("y", y);
+
+        return (AddDominoButton) Components.add_domino_button.getComponent().factory(mGameActivity, attributes);
+
     }
 
     /**

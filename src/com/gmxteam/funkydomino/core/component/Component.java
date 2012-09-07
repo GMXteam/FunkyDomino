@@ -47,7 +47,7 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 public abstract class Component extends Entity implements ComponentsConstants {
 
     protected FixtureDef mFixtureDef;
-    private GameActivity mGameActivity;
+    protected GameActivity mGameActivity;
     protected Sound mCollisionSound;
 
     public final Component factory(GameActivity ga, ComponentAttributes att) {

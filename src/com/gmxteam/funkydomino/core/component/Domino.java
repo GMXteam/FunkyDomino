@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.util.Log;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -26,8 +27,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.ContactManager;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
-import java.util.Arrays;
+import org.andengine.audio.music.Music;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -39,7 +39,6 @@ import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
-import org.andengine.util.debug.Debug;
 
 /**
  *
@@ -91,7 +90,7 @@ public final class Domino extends Component implements ContactListener {
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
 
 
-                return mDominoBody == null | sd.onManagedTouchEvent(te);
+                return sd.onManagedTouchEvent(te);
             }
         };
 
