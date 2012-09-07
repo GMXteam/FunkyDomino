@@ -22,6 +22,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import java.util.HashMap;
+import org.andengine.util.debug.Debug;
 
 /**
  *
@@ -40,6 +41,8 @@ public class ContactManager extends HashMap<Body, ContactListener> {
     }
     private ContactListener mContactListener = new ContactListener() {
         public void beginContact(Contact cntct) {
+
+            Debug.v("Contact entre " + cntct.getFixtureA().getBody() + " et " + cntct.getFixtureA().getBody());
 
             ContactListener cl;
 

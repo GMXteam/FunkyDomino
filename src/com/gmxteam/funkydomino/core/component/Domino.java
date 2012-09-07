@@ -16,7 +16,6 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.util.Log;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -27,7 +26,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.ContactManager;
-import org.andengine.audio.music.Music;
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
+import java.util.Arrays;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -39,6 +39,7 @@ import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.util.debug.Debug;
 
 /**
  *
@@ -71,7 +72,7 @@ public final class Domino extends Component implements ContactListener {
                 // Make the domino follows the finger.
                 mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
 
-                Log.v(GameActivity.LOG_TAG, "Domino position : " + mDominoBody.getPosition());
+                Debug.v("Domino position : " + mDominoBody.getPosition());
             }
 
             public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
@@ -90,7 +91,7 @@ public final class Domino extends Component implements ContactListener {
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
 
 
-                return sd.onManagedTouchEvent(te) && mDominoBody != null;
+                return mDominoBody == null | sd.onManagedTouchEvent(te);
             }
         };
 
@@ -131,8 +132,7 @@ public final class Domino extends Component implements ContactListener {
     }
 
     public void beginContact(Contact cntct) {
-        mCollisionSound.play();
-        Log.v(GameActivity.LOG_TAG, "Collision !");
+        // mCollisionSound.play();
     }
 
     public void endContact(Contact cntct) {

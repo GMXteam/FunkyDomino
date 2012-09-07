@@ -22,18 +22,19 @@ import android.preference.PreferenceActivity;
 /**
  * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
  * activité de type liste.
+ *
  * @author Guillaume Poirier-Morency
  */
 public final class PreferencesActivity extends PreferenceActivity {
 
     /**
-     * 
+     *
      * @param b
      */
     @Override
     public void onCreate(Bundle b) {
-		super.onCreate(b);
-       // setContentView(R.layout.preferences);
+        super.onCreate(b);
+        addPreferencesFromResource(R.layout.preferences);
 
     }
 }

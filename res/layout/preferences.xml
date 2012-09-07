@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				android:layout_width="fill_parent" 
-				android:layout_height="fill_parent" 
-				android:orientation="vertical" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"> 
+    <PreferenceCategory android:title="Graphics">
+        <CheckBoxPreference android:title="Max FPS" ></CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Audio">
+        <CheckBoxPreference android:title="Enable sound" ></CheckBoxPreference>
+        <CheckBoxPreference android:title="Enable music" ></CheckBoxPreference>
+    </PreferenceCategory>
     
-	
-</LinearLayout>
+    
+</PreferenceScreen>

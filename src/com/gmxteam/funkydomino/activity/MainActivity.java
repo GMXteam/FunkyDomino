@@ -77,5 +77,5 @@ public final class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.menu, m);
         return true;
     }
-;
+
 }
