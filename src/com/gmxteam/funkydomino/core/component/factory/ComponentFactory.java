@@ -23,7 +23,6 @@ import com.gmxteam.funkydomino.core.component.Ball;
 import com.gmxteam.funkydomino.core.component.Cog;
 import com.gmxteam.funkydomino.core.component.Domino;
 import com.gmxteam.funkydomino.core.component.Ground;
-import org.andengine.entity.sprite.ButtonSprite;
 
 /**
  * Utility class containing methods to create and extract components.
