@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				android:layout_width="fill_parent" 
-				android:layout_height="fill_parent" 
-				android:orientation="vertical">
+                android:layout_width="fill_parent" 
+                android:layout_height="fill_parent" 
+                android:orientation="vertical">
 				
 	
 
-	<Button android:id="@+id/new_game_button"
+    <Button android:id="@+id/new_game_button"
 		
-			android:layout_centerVertical="true"
-			android:layout_centerHorizontal="true"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="onNewGameClick"
-			android:text="New game" />
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onNewGameClick"
+                android:text="New game" />
 
-<Button android:id="@+id/funky_domino_button"			
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_above="@id/new_game_button"
-			android:layout_centerHorizontal="true"
+    <Button android:id="@+id/funky_domino_button"			
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/new_game_button"
+        android:layout_centerHorizontal="true"
 
-			android:onClick="onPlayClick"
-			android:text="Jouer" />
+        android:onClick="onPlayClick"
+        android:text="Jouer" />
 
-	<Button android:id="@+id/load_game_button"
-			android:layout_centerHorizontal="true"
+    <Button android:id="@+id/load_game_button"
+                android:layout_centerHorizontal="true"
 	
-			android:layout_below="@id/new_game_button"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:onClick="onLoadGameClick"
-			android:text="Load game" />
+                android:layout_below="@id/new_game_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onLoadGameClick"
+                android:text="Load game" />
 	
 </RelativeLayout>

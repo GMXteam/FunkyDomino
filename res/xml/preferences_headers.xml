@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preference-headers
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header android:fragment="com.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoGraphicsPreferenceFragment"
+            android:title="Graphics"
+            android:summary="Set up the graphical parameters."
+             />
+    
+    <header android:fragment="com.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoAudioPreferenceFragment"
+            android:title="Audio"
+            android:summary="Change the audio configuration."
+             />
+    
+    <header android:fragment="com.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoAboutPreferenceFragment"
+            android:title="About"
+            android:summary="The development team and license information."
+             />
+    
+</preference-headers>

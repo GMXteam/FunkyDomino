@@ -130,10 +130,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     @Override
     public final EngineOptions onCreateEngineOptions() {
 
-
-        Debug.v("Dimensions initiales de la caméra : " + getCameraDimensions());
-
-
         mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
 
@@ -149,14 +145,17 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mHUD.setCamera(mCamera);
 
 
-        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), this.mCamera);
+        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
         mEngineOptions.getAudioOptions().setNeedsSound(true);
         mEngineOptions.getAudioOptions().setNeedsMusic(true);
 
         // Write engine option to preferences
         SimplePreferences.getEditorInstance(this)
+                // Audio options
                 .putBoolean("engine.audio.sound.enabled", mEngineOptions.getAudioOptions().needsSound())
                 .putBoolean("engine.audio.music.enabled", mEngineOptions.getAudioOptions().needsMusic())
+                // Graphic options
+                .putString("engine.graphic.antialiasing", GameActivity.TEXTURE_OPTION.toString())
                 .apply();
 
         return mEngineOptions;

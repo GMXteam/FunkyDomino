@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <array
+        name="antialiasing_option_values">
+        <item>Bilinear</item>
+        <item>Trilinear</item>
+    </array>
+    <array
+        name="antialiasing_option_names">
+        <item>Bilinear</item>
+        <item>Trilinear</item>
+    </array>
+</resources>

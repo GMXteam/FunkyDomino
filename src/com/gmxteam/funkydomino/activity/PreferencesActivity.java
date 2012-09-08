@@ -18,6 +18,8 @@ package com.gmxteam.funkydomino.activity;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
+import java.util.List;
 
 /**
  * Activité utilisée pour configurer Funky Domino. Il s'agit d'une simple
@@ -26,15 +28,61 @@ import android.preference.PreferenceActivity;
  * @author Guillaume Poirier-Morency
  */
 public final class PreferencesActivity extends PreferenceActivity {
-
+    
     /**
-     *
-     * @param b
+     * Populate the activity with the top-level headers.
      */
     @Override
-    public void onCreate(Bundle b) {
-        super.onCreate(b);
-        addPreferencesFromResource(R.layout.preferences);
+    public void onBuildHeaders(List<Header> target) {
+        loadHeadersFromResource(R.xml.preferences_headers, target);
+        
+    }
 
+    public static class FunkyDominoGraphicsPreferenceFragment extends PreferenceFragment {
+    
+    
+
+        /**
+         *
+         * @param b
+         */
+        @Override
+        public void onCreate(Bundle b) {
+            super.onCreate(b);
+            addPreferencesFromResource(R.layout.preference_graphic);
+
+        }
+    }
+    
+    public static class FunkyDominoAudioPreferenceFragment extends PreferenceFragment {
+    
+    
+
+        /**
+         *
+         * @param b
+         */
+        @Override
+        public void onCreate(Bundle b) {
+            super.onCreate(b);
+            addPreferencesFromResource(R.layout.preference_audio);
+
+        }
+    }
+    
+    public static class FunkyDominoAboutPreferenceFragment extends PreferenceFragment {
+    
+    
+
+        /**
+         *
+         * @param b
+         */
+        @Override
+        public void onCreate(Bundle b) {
+            super.onCreate(b);
+            addPreferencesFromResource(R.layout.preference_about);
+
+        }
     }
 }

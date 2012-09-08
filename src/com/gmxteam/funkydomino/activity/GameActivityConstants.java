@@ -63,5 +63,5 @@ public interface GameActivityConstants {
      */
     public static final float WORLD_TOP = 0.0f;
     
-    public static final TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
+    public static TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
 }
