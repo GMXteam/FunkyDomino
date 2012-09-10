@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	
+        
+        <item android:id="@+id/pause_menuitem"
+		  android:title="Pause"
+		  android:onClick="onPauseGameMenuItemClick"
+		  android:titleCondensed="string">
+	</item>
+        
+        <item android:id="@+id/continuer_menuitem"
+		  android:title="Continuer"
+		  android:onClick="onResumeGameMenuItemClick"
+		  android:titleCondensed="string">
+	</item>
+        
+         <item android:id="@+id/quitter_la_partie_menuitem"
+		  android:title="Quitter la partie"
+		  android:onClick="onQuitterMenuItemClick"
+		  android:titleCondensed="string">
+	</item>
+
+</menu>

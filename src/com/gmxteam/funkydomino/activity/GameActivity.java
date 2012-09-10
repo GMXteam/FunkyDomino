@@ -19,10 +19,13 @@ package com.gmxteam.funkydomino.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
@@ -67,7 +70,11 @@ import org.xmlpull.v1.XmlPullParserException;
  *
  * @author guillaume
  */
-public class GameActivity extends BaseGameActivity implements GameActivityConstants {
+public class GameActivity extends BaseGameActivity implements GameActivityConstants, OnSharedPreferenceChangeListener {
+
+    private AlertDialog.Builder mResumeGameDialog;
+    private AlertDialog.Builder mQuitGameDialog;
+    private boolean mResumeDialogMayShow = false;
 
     @Override
     public void onCreate(Bundle b) {
@@ -92,19 +99,24 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
             }
         });
 
+        mQuitGameDialog = new AlertDialog.Builder(this)
+                .setTitle("Quitter la partie ?")
+                .setMessage("Quitter la partie ?")
+                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        })
+                .setPositiveButton("Quitter", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GameActivity.super.onBackPressed();
+            }
+        });
+
 
         // Configs de déboguage
         Debug.setDebugLevel(DebugLevel.ALL);
         Debug.setTag(LOG_TAG);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        this.onConfigureEngineOptions(mEngine.getEngineOptions());
-    }
-    private AlertDialog.Builder mResumeGameDialog;
-    private boolean mResumeDialogMayShow = false;
 
     @Override
     public void onResumeGame() {
@@ -115,10 +127,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         } else {
             super.onResumeGame();
         }
-
-
-
-
     }
 
     @Override
@@ -130,12 +138,36 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     ////////////////////////////////////////////////////////////////////////////
     // Menus
     public void onHighscoresMenuItemClick(MenuItem mi) {
+        mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, HighscoresActivity.class));
 
     }
 
     public void onPreferencesMenuItemClick(MenuItem mi) {
+        mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, PreferencesActivity.class));
+    }
+
+    public void onPauseGameMenuItemClick(MenuItem v) {        
+        mResumeDialogMayShow = false;
+        onPauseGame();
+    }
+    
+    public void onResumeGameMenuItemClick(MenuItem v) {
+        mResumeDialogMayShow = false;
+        onPauseGame();
+    }
+
+    public void onQuitterMenuItemClick(MenuItem v) {
+        onBackPressed();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    @Override
+    public void onBackPressed() {
+        mQuitGameDialog.show();
+        onPauseGame();
+        mResumeDialogMayShow = false;
     }
     /**
      *
@@ -161,6 +193,9 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      *
      */
     private LevelLoader mLevelLoader;
+    /**
+     *
+     */
     public ContactManager mContactManager;
 
     /**
@@ -201,13 +236,26 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         }
     });
 
+    
+
     @Override
     public boolean onCreateOptionsMenu(Menu m) {
-        onPauseGame();
-        
-        mResumeDialogMayShow = false;
+
         getMenuInflater().inflate(R.menu.menu, m);
+        getMenuInflater().inflate(R.menu.game_menu, m);
         return true;
+    }
+    
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            onPauseGame();
+
+            mResumeDialogMayShow = false;
+
+        }
+       
+        return super.onKeyUp(keyCode, event);
     }
 
     @Override
@@ -235,6 +283,10 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
     }
 
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        onConfigureEngineOptions(mEngine.getEngineOptions());
+    }
+
     @Override
     public final EngineOptions onCreateEngineOptions() {
 
@@ -251,8 +303,8 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         mHUD.setCamera(mCamera);
 
         EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
-
-        this.onConfigureEngineOptions(mEngineOptions);
+        SimplePreferences.getInstance(this).registerOnSharedPreferenceChangeListener(this);
+        onConfigureEngineOptions(mEngineOptions);
 
 
 
