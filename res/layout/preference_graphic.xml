@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"> 
-    <PreferenceCategory android:title="Graphics">
-        <CheckBoxPreference android:title="Max FPS" 
-            
-/>
-        <ListPreference 
-            android:title="Antialiasing"
-            android:entries="@array/antialiasing_option_values"
-            android:entryValues="@array/antialiasing_option_names"
-            android:summary="Alter texture definition."
-
- />
-
+    <PreferenceCategory android:title="Graphic">
+        <EditTextPreference android:name="engine.graphic.fps.max"
+                            android:inputType="number"
+                            android:defaultValue="30"
+                            android:title="Maximum FPS"
+                            android:summary="Maximum frame per seconds." />
+        <ListPreference android:name="engine.graphic.antialiasing" android:title="Antialiasing"
+                        android:entries="@array/antialiasing_option_names"
+                        android:entryValues="@array/antialiasing_option_values"
+                        android:defaultValue="DEFAULT"
+                        android:summary="Alter texture definition." />
     </PreferenceCategory>
 </PreferenceScreen>

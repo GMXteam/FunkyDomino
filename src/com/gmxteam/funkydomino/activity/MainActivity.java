@@ -19,6 +19,7 @@ package com.gmxteam.funkydomino.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -70,6 +71,10 @@ public final class MainActivity extends Activity {
     public void onCreate(Bundle b) {
         super.onCreate(b);
         this.setContentView(R.layout.main);
+
+       
+
+
     }
 
     @Override
@@ -77,5 +82,4 @@ public final class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.menu, m);
         return true;
     }
-
 }

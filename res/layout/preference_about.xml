@@ -5,8 +5,5 @@
             android:title="License information" 
             android:dialogMessage="Blabla de la license"
             />       
-    </PreferenceCategory>
-    
-    
-    
+    </PreferenceCategory>    
 </PreferenceScreen>

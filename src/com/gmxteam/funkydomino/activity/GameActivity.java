@@ -16,15 +16,18 @@
  */
 package com.gmxteam.funkydomino.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.Levels;
 import com.gmxteam.funkydomino.core.SceneLoader;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
 import com.gmxteam.funkydomino.core.component.factory.ComponentLoader;
@@ -47,6 +50,7 @@ import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.PinchZoomDetector.IPinchZoomDetectorListener;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
+import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
@@ -68,8 +72,59 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
+
+        // On écrit les préférences par défaut si c'est le premier lancement.
+        PreferenceManager.setDefaultValues(this,
+                R.layout.preference_graphic, false);
+
+        PreferenceManager.setDefaultValues(this,
+                R.layout.preference_audio, false);
+
+        PreferenceManager.setDefaultValues(this,
+                R.layout.preference_about, false);
+
+        mResumeGameDialog = new AlertDialog.Builder(this)
+                .setTitle("Continuer la partie ?")
+                .setMessage("Continuer la partie ?")
+                .setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GameActivity.super.onResumeGame();
+            }
+        });
+
+
+        // Configs de déboguage
         Debug.setDebugLevel(DebugLevel.ALL);
         Debug.setTag(LOG_TAG);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.onConfigureEngineOptions(mEngine.getEngineOptions());
+    }
+    private AlertDialog.Builder mResumeGameDialog;
+    private boolean mResumeDialogMayShow = false;
+
+    @Override
+    public void onResumeGame() {
+
+        if (mResumeDialogMayShow) {
+            mResumeGameDialog.show();
+            mResumeDialogMayShow = false;
+        } else {
+            super.onResumeGame();
+        }
+
+
+
+
+    }
+
+    @Override
+    public void onPauseGame() {
+        super.onPauseGame();
+        mResumeDialogMayShow = true;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -82,7 +137,13 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     public void onPreferencesMenuItemClick(MenuItem mi) {
         startActivity(new Intent(GameActivity.this, PreferencesActivity.class));
     }
+    /**
+     *
+     */
     public Scene mScene;
+    /**
+     *
+     */
     public SmoothCamera mCamera;
     /**
      *
@@ -95,21 +156,12 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     /**
      *
      */
-    /**
-     *
-     */
     private HUD mHUD;
     /**
      *
      */
     private LevelLoader mLevelLoader;
-    private float oriX;
-    private float oriY;
     public ContactManager mContactManager;
-    /**
-     *
-     */
-    private FPSLogger mFPSLogger;
 
     /**
      *
@@ -120,11 +172,67 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         this.getWindowManager().getDefaultDisplay().getSize(p);
         return p;
     }
+    private final ScrollDetector mScrollDetector = new ScrollDetector(new IScrollDetectorListener() {
+        public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+        }
+
+        public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+
+            mCamera.setCenterDirect(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
+
+        }
+
+        public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+            Debug.v("Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
+        }
+    });
+    private final PinchZoomDetector mPinchZoomDetector = new PinchZoomDetector(new IPinchZoomDetectorListener() {
+        public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
+        }
+
+        public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float pZoomFactor) {
+
+            mCamera.setZoomFactor(pZoomFactor);
+        }
+
+        public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
+            Debug.v("Nouveau facteur de zoom de la caméra : " + f + "x");
+
+        }
+    });
 
     @Override
     public boolean onCreateOptionsMenu(Menu m) {
+        onPauseGame();
+        
+        mResumeDialogMayShow = false;
         getMenuInflater().inflate(R.menu.menu, m);
         return true;
+    }
+
+    @Override
+    public void onOptionsMenuClosed(Menu m) {
+        onResumeGame();
+    }
+
+    public void onConfigureEngineOptions(EngineOptions pEngineOptions) {
+        // On récupère les settings depuis les préférences partagées.
+        pEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
+        Debug.v("Le son est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+
+        pEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
+        Debug.v("La musique est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+
+        try {
+            TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
+            Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
+
+        } catch (NoSuchFieldException ex) {
+            Debug.e(ex);
+        }
+
     }
 
     @Override
@@ -139,24 +247,16 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         //mCamera.setZNear(CAMERA_Z_NEAR);
         //mCamera.setZFar(CAMERA_Z_FAR);
 
-
-
         mHUD = new HUD();
         mHUD.setCamera(mCamera);
 
-
         EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
-        mEngineOptions.getAudioOptions().setNeedsSound(true);
-        mEngineOptions.getAudioOptions().setNeedsMusic(true);
 
-        // Write engine option to preferences
-        SimplePreferences.getEditorInstance(this)
-                // Audio options
-                .putBoolean("engine.audio.sound.enabled", mEngineOptions.getAudioOptions().needsSound())
-                .putBoolean("engine.audio.music.enabled", mEngineOptions.getAudioOptions().needsMusic())
-                // Graphic options
-                .putString("engine.graphic.antialiasing", GameActivity.TEXTURE_OPTION.toString())
-                .apply();
+        this.onConfigureEngineOptions(mEngineOptions);
+
+
+
+
 
         return mEngineOptions;
     }
@@ -170,58 +270,11 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         mScene = new Scene();
 
-
-        mLevelLoader = new LevelLoader("level/");
-
-        // On bind le chargeur de la scène avec l'entité scène.
-        mLevelLoader.registerEntityLoader("scene", new SceneLoader(this));
-
-        // On enregistre toutes les entités supportées.
-        mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
-
-
-
-        final ScrollDetector sd = new ScrollDetector(new IScrollDetectorListener() {
-            public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-            }
-
-            public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-
-                mCamera.setCenterDirect(oriX - f, oriY - f1);
-
-            }
-
-            public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-                Debug.v("Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
-            }
-        });
-
-        final PinchZoomDetector pzd = new PinchZoomDetector(new IPinchZoomDetectorListener() {
-            public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
-            }
-
-            public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float pZoomFactor) {
-
-                mCamera.setZoomFactor(pZoomFactor);
-            }
-
-            public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
-                Log.v(LOG_TAG, "Nouveau facteur de zoom de la caméra : " + f + "x");
-
-            }
-        });
-
-
         mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
             public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
-                oriX = mCamera.getCenterX(); //with float oriX; in fields
-                oriY = mCamera.getCenterY(); //with float oriY; in fields
-                sd.onTouchEvent(te);
-                return true;
-                //return pzd.onManagedTouchEvent(te) || sd.onManagedTouchEvent(te);
+                return mScrollDetector.onManagedTouchEvent(te) || mPinchZoomDetector.onManagedTouchEvent(te);
             }
         });
-
 
         mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
 
@@ -231,7 +284,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         mScene.registerUpdateHandler(mPhysicsWorld);
 
-        mScene.registerUpdateHandler(mFPSLogger);
+        mScene.registerUpdateHandler(new FPSLogger());
 
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);
     }
@@ -253,7 +306,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même.
          */
-        mLevelLoader.loadLevelFromAsset(getAssets(), "stage1.lvl");
+        mLevelLoader.loadLevelFromAsset(getAssets(), Levels.LEVEL_1.toString());
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
@@ -269,8 +322,13 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         SoundFactory.setAssetBasePath("mfx/");
         ComponentFactory.setGameActivity(this);
 
+        mLevelLoader = new LevelLoader("level/");
 
+        // On bind le chargeur de la scène avec l'entité scène.
+        mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
 
+        // On enregistre toutes les entités supportées.
+        mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
 
 
 

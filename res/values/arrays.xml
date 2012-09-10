@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <!-- Values here matches TextureOptions (org.andengine.opengl.texture.TextureOptions) -->
     <array
         name="antialiasing_option_values">
-        <item>Bilinear</item>
-        <item>Trilinear</item>
+        <item>DEFAULT</item>
+        <item>NEAREST</item>
+        <item>BILINEAR</item>
+        <item>REPEATING_NEAREST</item>
+        <item>REPEATING_BILINEAR</item>
+        <item>NEAREST_PREMULTIPLYALPHA</item>
+        <item>BILINEAR_PREMULTIPLYALPHA</item>
+        <item>REPEATING_NEAREST_PREMULTIPLYALPHA</item>
+        <item>REPEATING_BILINEAR_PREMULTIPLYALPHA</item>
+        
     </array>
     <array
         name="antialiasing_option_names">
+        <item>Default</item>
+        <item>Nearest</item>
         <item>Bilinear</item>
-        <item>Trilinear</item>
+        <item>Repeating nearest</item>
+        <item>Repeating bilinear</item>
+        <item>Nearest premultiply alpha</item>
+        <item>Bilinear premultiply alpha</item>
+        <item>Repeating nearest premultiply alpha</item>
+        <item>Repeating bilinear premultiply alpha</item>
     </array>
 </resources>

@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"> 
-    <PreferenceCategory android:title="Graphics">
-        <CheckBoxPreference android:title="Max FPS" ></CheckBoxPreference>
-    </PreferenceCategory>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Audio">
-        <CheckBoxPreference android:title="Enable sound" ></CheckBoxPreference>
-        <CheckBoxPreference android:title="Enable music" ></CheckBoxPreference>
-    </PreferenceCategory>
-    
-    
+        <CheckBoxPreference android:name="engine.audio.sound.enabled" android:title="Enable sound" ></CheckBoxPreference>
+        <CheckBoxPreference android:name="engine.audio.music.enabled" android:title="Enable music" ></CheckBoxPreference>
+    </PreferenceCategory>   
 </PreferenceScreen>

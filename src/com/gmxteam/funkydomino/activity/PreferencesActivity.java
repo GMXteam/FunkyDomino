@@ -16,9 +16,12 @@
  */
 package com.gmxteam.funkydomino.activity;
 
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import java.util.List;
 
 /**
@@ -28,19 +31,17 @@ import java.util.List;
  * @author Guillaume Poirier-Morency
  */
 public final class PreferencesActivity extends PreferenceActivity {
-    
+
     /**
      * Populate the activity with the top-level headers.
      */
     @Override
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.preferences_headers, target);
-        
+
     }
 
     public static class FunkyDominoGraphicsPreferenceFragment extends PreferenceFragment {
-    
-    
 
         /**
          *
@@ -49,14 +50,16 @@ public final class PreferencesActivity extends PreferenceActivity {
         @Override
         public void onCreate(Bundle b) {
             super.onCreate(b);
+
+            
+
             addPreferencesFromResource(R.layout.preference_graphic);
+
 
         }
     }
-    
+
     public static class FunkyDominoAudioPreferenceFragment extends PreferenceFragment {
-    
-    
 
         /**
          *
@@ -65,14 +68,15 @@ public final class PreferencesActivity extends PreferenceActivity {
         @Override
         public void onCreate(Bundle b) {
             super.onCreate(b);
+
+            
+
             addPreferencesFromResource(R.layout.preference_audio);
 
         }
     }
-    
+
     public static class FunkyDominoAboutPreferenceFragment extends PreferenceFragment {
-    
-    
 
         /**
          *
@@ -81,6 +85,10 @@ public final class PreferencesActivity extends PreferenceActivity {
         @Override
         public void onCreate(Bundle b) {
             super.onCreate(b);
+            
+
+
+
             addPreferencesFromResource(R.layout.preference_about);
 
         }
