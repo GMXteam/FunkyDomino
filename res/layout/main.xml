@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"                
                 android:layout_width="fill_parent" 
                 android:layout_height="fill_parent" 
-                android:orientation="vertical">	
+                android:orientation="vertical">
+    
+    <org.andengine.opengl.view.RenderSurfaceView 
+        android:id="@+id/render_surface_view"
+        
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
     
     <Button android:id="@+id/new_game_button"		
             android:layout_centerVertical="true"

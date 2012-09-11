@@ -7,6 +7,7 @@ package com.gmxteam.funkydomino.core;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.gmxteam.funkydomino.entity.primitive.Line;
 import org.andengine.entity.IEntity;
@@ -21,11 +22,11 @@ import org.xml.sax.Attributes;
  */
 public class SceneLoader implements IEntityLoader {
     
-    public SceneLoader(GameActivity pGameActivity) {
+    public SceneLoader(IFunkyDominoBaseActivity pGameActivity) {
         mGameActivity = pGameActivity;
         
     }
-    private GameActivity mGameActivity;
+    private IFunkyDominoBaseActivity mGameActivity;
     
     public IEntity onLoadEntity(String string, Attributes atts) {
 
@@ -36,27 +37,27 @@ public class SceneLoader implements IEntityLoader {
             FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
 
             float[][] lines = {
-                {0.0f, 0.0f, ea.getFloat("width", GameActivity.WORLD_WIDTH), 0.0f},
-                {ea.getFloat("width",  GameActivity.WORLD_WIDTH), 0.0f, ea.getFloat("width",  GameActivity.WORLD_WIDTH), ea.getFloat("height", GameActivity.WORLD_HEIGHT)},
-                {ea.getFloat("width",  GameActivity.WORLD_WIDTH), ea.getFloat("height",  GameActivity.WORLD_HEIGHT), 0.0f, ea.getFloat("height", GameActivity.WORLD_HEIGHT)},
-                {0.0f, ea.getFloat("height",  GameActivity.WORLD_HEIGHT), 0.0f, 0.0f}
+                {0.0f, 0.0f, ea.getFloat("width", mGameActivity.getCameraDimensions().x), 0.0f},
+                {ea.getFloat("width",  mGameActivity.getCameraDimensions().x), 0.0f, ea.getFloat("width",  mGameActivity.getCameraDimensions().x), ea.getFloat("height", mGameActivity.getCameraDimensions().y)},
+                {ea.getFloat("width",  mGameActivity.getCameraDimensions().x), ea.getFloat("height",  mGameActivity.getCameraDimensions().y), 0.0f, ea.getFloat("height", mGameActivity.getCameraDimensions().y)},
+                {0.0f, ea.getFloat("height",  mGameActivity.getCameraDimensions().y), 0.0f, 0.0f}
             };
 
             for (float[] points : lines) {
  
-                Body lineBody = PhysicsFactory.createLineBody(mGameActivity.mPhysicsWorld, points[0], points[1], points[2], points[3], limitsFixtureDef);
+                Body lineBody = PhysicsFactory.createLineBody(mGameActivity.getPhysicsWorld(), points[0], points[1], points[2], points[3], limitsFixtureDef);
                 Line lineShape = new Line(points[0], points[1], points[2], points[3], mGameActivity.getVertexBufferObjectManager());
-                mGameActivity.mPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
-                mGameActivity.mScene.attachChild(lineShape);
+                mGameActivity.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
+                mGameActivity.getScene().attachChild(lineShape);
 
             }
 
             // Refresh camera bounds
-            mGameActivity.mCamera.setBounds(0.0f, 0.0f, ea.getFloat("width", GameActivity.WORLD_WIDTH), ea.getFloat("height", GameActivity.WORLD_HEIGHT));
+            mGameActivity.getCamera().setBounds(0.0f, 0.0f, ea.getFloat("width", mGameActivity.getCameraDimensions().x), ea.getFloat("height", mGameActivity.getCameraDimensions().y));
 
 
 
-            return  mGameActivity.mScene;
+            return  mGameActivity.getScene();
         }
     
 }

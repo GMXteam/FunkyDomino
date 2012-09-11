@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,7 @@ import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
 import com.gmxteam.funkydomino.core.component.factory.ComponentLoader;
 import com.gmxteam.funkydomino.core.component.factory.Components;
 import java.io.IOException;
+import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.camera.hud.HUD;
@@ -70,12 +72,12 @@ import org.xmlpull.v1.XmlPullParserException;
  *
  * @author guillaume
  */
-public class GameActivity extends BaseGameActivity implements GameActivityConstants, OnSharedPreferenceChangeListener {
+public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseActivity {
 
-    private AlertDialog.Builder mResumeGameDialog;
-    private AlertDialog.Builder mQuitGameDialog;
     private boolean mResumeDialogMayShow = false;
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Events
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
@@ -90,27 +92,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         PreferenceManager.setDefaultValues(this,
                 R.layout.preference_about, false);
 
-        mResumeGameDialog = new AlertDialog.Builder(this)
-                .setTitle("Continuer la partie ?")
-                .setMessage("Continuer la partie ?")
-                .setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                GameActivity.super.onResumeGame();
-            }
-        });
 
-        mQuitGameDialog = new AlertDialog.Builder(this)
-                .setTitle("Quitter la partie ?")
-                .setMessage("Quitter la partie ?")
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        })
-                .setPositiveButton("Quitter", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                GameActivity.super.onBackPressed();
-            }
-        });
 
 
         // Configs de déboguage
@@ -122,7 +104,16 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     public void onResumeGame() {
 
         if (mResumeDialogMayShow) {
-            mResumeGameDialog.show();
+            new AlertDialog.Builder(this)
+                    .setTitle("Continuer la partie ?")
+                    .setMessage("Continuer la partie ?")
+                    .setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    GameActivity.super.onResumeGame();
+                }
+            }).show();
+
+
             mResumeDialogMayShow = false;
         } else {
             super.onResumeGame();
@@ -136,7 +127,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // Menus
+    // Menus actions
     public void onHighscoresMenuItemClick(MenuItem mi) {
         mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, HighscoresActivity.class));
@@ -148,11 +139,11 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         startActivity(new Intent(GameActivity.this, PreferencesActivity.class));
     }
 
-    public void onPauseGameMenuItemClick(MenuItem v) {        
+    public void onPauseGameMenuItemClick(MenuItem v) {
         mResumeDialogMayShow = false;
         onPauseGame();
     }
-    
+
     public void onResumeGameMenuItemClick(MenuItem v) {
         mResumeDialogMayShow = false;
         onPauseGame();
@@ -164,11 +155,59 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
     ////////////////////////////////////////////////////////////////////////////
     @Override
+    public boolean onCreateOptionsMenu(Menu m) {
+
+        getMenuInflater().inflate(R.menu.menu, m);
+        getMenuInflater().inflate(R.menu.game_menu, m);
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+            onPauseGame();
+
+            mResumeDialogMayShow = false;
+
+        }
+
+        return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public void onOptionsMenuClosed(Menu m) {
+        onResumeGame();
+    }
+
+    @Override
     public void onBackPressed() {
-        mQuitGameDialog.show();
+        new AlertDialog.Builder(this)
+                .setTitle("Quitter la partie ?")
+                .setMessage("Quitter la partie ?")
+                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        })
+                .setPositiveButton("Quitter", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GameActivity.super.onBackPressed();
+            }
+        }).show();
         onPauseGame();
         mResumeDialogMayShow = false;
     }
+
+    /**
+     *
+     * @param sharedPreferences
+     * @param key
+     */
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        // Update engine options
+        onEngineOptionsChanged(getEngine().getEngineOptions());
+    }
+    ////////////////////////////////////////////////////////////////////////////
+    // Game setup
     /**
      *
      */
@@ -204,7 +243,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     public final Point getCameraDimensions() {
         Point p = new Point();
-        this.getWindowManager().getDefaultDisplay().getSize(p);
+        getWindowManager().getDefaultDisplay().getSize(p);
         return p;
     }
     private final ScrollDetector mScrollDetector = new ScrollDetector(new IScrollDetectorListener() {
@@ -213,7 +252,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         public void onScroll(ScrollDetector sd, int i, float f, float f1) {
 
-            mCamera.setCenterDirect(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
+            mCamera.setCenter(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
 
         }
 
@@ -236,41 +275,23 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         }
     });
 
-    
+    public void onEngineOptionsChanged(EngineOptions pEngineOptions) {
+        // On récupère les settings depuis les préférences partagées.       
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu m) {
 
-        getMenuInflater().inflate(R.menu.menu, m);
-        getMenuInflater().inflate(R.menu.game_menu, m);
-        return true;
-    }
-    
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_MENU) {
-            onPauseGame();
-
-            mResumeDialogMayShow = false;
-
-        }
-       
-        return super.onKeyUp(keyCode, event);
-    }
-
-    @Override
-    public void onOptionsMenuClosed(Menu m) {
-        onResumeGame();
-    }
-
-    public void onConfigureEngineOptions(EngineOptions pEngineOptions) {
-        // On récupère les settings depuis les préférences partagées.
         pEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
         Debug.v("Le son est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
 
 
         pEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
         Debug.v("La musique est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+        pEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
+        Debug.v("Le dithering est " + (pEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
+
+
+        pEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        Debug.v("L'échantillonage multiple est " + (pEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
 
 
         try {
@@ -281,10 +302,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
             Debug.e(ex);
         }
 
-    }
-
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        onConfigureEngineOptions(mEngine.getEngineOptions());
     }
 
     @Override
@@ -304,7 +321,7 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
         SimplePreferences.getInstance(this).registerOnSharedPreferenceChangeListener(this);
-        onConfigureEngineOptions(mEngineOptions);
+        onEngineOptionsChanged(mEngineOptions);
 
 
 
@@ -348,7 +365,6 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
      */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws InstantiationException, IllegalAccessException, IOException, XmlPullParserException {
 
-
         pScene.setBackground(mBackground);
 
         pScene.attachChild(mHUD);
@@ -359,6 +375,9 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
          * elle même.
          */
         mLevelLoader.loadLevelFromAsset(getAssets(), Levels.LEVEL_1.toString());
+
+        MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
+
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
@@ -372,6 +391,8 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
 
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         SoundFactory.setAssetBasePath("mfx/");
+        MusicFactory.setAssetBasePath("mfx/");
+
         ComponentFactory.setGameActivity(this);
 
         mLevelLoader = new LevelLoader("level/");
@@ -382,13 +403,30 @@ public class GameActivity extends BaseGameActivity implements GameActivityConsta
         // On enregistre toutes les entités supportées.
         mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
 
-
-
         AssetBitmapTextureAtlasSource mBackgroundBaseTextureAtlasSource = AssetBitmapTextureAtlasSource.create(this.getAssets(), "gfx/background.png");
 
         mBackground = new RepeatingSpriteBackground(getCameraDimensions().x, getCameraDimensions().y, this.getTextureManager(), mBackgroundBaseTextureAtlasSource, this.getVertexBufferObjectManager());
 
-
         pOnCreateResourcesCallback.onCreateResourcesFinished();
+    }
+
+    public Context getContext() {
+        return this;
+    }
+
+    public PhysicsWorld getPhysicsWorld() {
+        return mPhysicsWorld;
+    }
+
+    public Scene getScene() {
+        return mScene;
+    }
+
+    public ContactManager getContactManager() {
+        return mContactManager;
+    }
+
+    public SmoothCamera getCamera() {
+        return mCamera;
     }
 }

@@ -3,11 +3,9 @@
     <PreferenceCategory android:title="Audio">
         <CheckBoxPreference android:key="engine.audio.sound.enabled"
                             android:defaultValue="true"
-                            android:title="Enable sound" >
-        </CheckBoxPreference>
+                            android:title="Enable sound" />        
         <CheckBoxPreference android:name="engine.audio.music.enabled" 
                             android:defaultValue="true"
-                            android:title="Enable music" >
-        </CheckBoxPreference>
+                            android:title="Enable music" />        
     </PreferenceCategory>   
 </PreferenceScreen>

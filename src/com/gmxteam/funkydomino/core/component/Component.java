@@ -21,6 +21,7 @@ import android.content.Context;
 import android.provider.MediaStore.Audio;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
 import com.gmxteam.funkydomino.core.ContactManager;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -47,15 +48,15 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 public abstract class Component extends Entity implements ComponentsConstants {
 
     protected FixtureDef mFixtureDef;
-    protected GameActivity mGameActivity;
+    protected IFunkyDominoBaseActivity mGameActivity;
     protected Sound mCollisionSound;
 
-    public final Component factory(GameActivity ga, ComponentAttributes att) {
+    public final Component factory(IFunkyDominoBaseActivity ga, ComponentAttributes att) {
 
         mGameActivity = ga;
         
         try {
-            mCollisionSound = SoundFactory.createSoundFromAsset(mGameActivity.getSoundManager(), ga, "explosion.ogg");
+            mCollisionSound = SoundFactory.createSoundFromAsset(mGameActivity.getSoundManager(), ga.getContext(), "explosion.ogg");
         } catch (IOException ex) {
             Logger.getLogger(Component.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,13 +77,13 @@ public abstract class Component extends Entity implements ComponentsConstants {
 
         onCreateFixtureDef(mFixtureDef, att);
 
-        onPopulatePhysicsWorld(mGameActivity.mPhysicsWorld, att);
+        onPopulatePhysicsWorld(mGameActivity.getPhysicsWorld(), att);
 
         onPopulateEntity(this);
 
-        onRegisterTouchAreas(mGameActivity.mScene);
+        onRegisterTouchAreas(mGameActivity.getScene());
         
-        onRegisterContactListener(mGameActivity.mContactManager);
+        onRegisterContactListener(mGameActivity.getContactManager());
 
         return this;
     }

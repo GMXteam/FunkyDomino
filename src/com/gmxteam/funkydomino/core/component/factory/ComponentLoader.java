@@ -5,6 +5,7 @@
 package com.gmxteam.funkydomino.core.component.factory;
 
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
 import org.andengine.entity.IEntity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
@@ -16,10 +17,10 @@ import org.xml.sax.Attributes;
  */
 public class ComponentLoader implements IEntityLoader {
 
-    public ComponentLoader(GameActivity pGameActivity) {
+    public ComponentLoader(IFunkyDominoBaseActivity pGameActivity) {
         mGameActivity = pGameActivity;
     }
-    private GameActivity mGameActivity;
+    private IFunkyDominoBaseActivity mGameActivity;
 
     public IEntity onLoadEntity(String string, Attributes atts) {
         IEntity currentEntity = null;

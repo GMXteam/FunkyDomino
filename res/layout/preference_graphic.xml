@@ -2,14 +2,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"> 
     <PreferenceCategory android:title="Graphic">
         <EditTextPreference android:key="engine.graphic.fps.max"
-                            android:inputType="number"
+                            android:inputType="numberSigned"
                             android:defaultValue="30"
                             android:title="Maximum FPS"
                             android:summary="Maximum frame per seconds." />
         <ListPreference android:key="engine.graphic.antialiasing" android:title="Antialiasing"
                         android:entries="@array/antialiasing_option_names"
                         android:entryValues="@array/antialiasing_option_values"
-                        android:defaultValue="DEFAULT"
+                        android:defaultValue="DEFAULT"                        
                         android:summary="Alter texture definition." />
+        
+        <CheckBoxPreference android:key="engine.graphic.dithering" 
+                            android:title="Dithering"                        
+                            android:defaultValue="true" />
+        
+        <CheckBoxPreference android:key="engine.graphic.multisampling" 
+                            android:title="Antialiasing"                        
+                            android:defaultValue="true" />
+        
     </PreferenceCategory>
 </PreferenceScreen>

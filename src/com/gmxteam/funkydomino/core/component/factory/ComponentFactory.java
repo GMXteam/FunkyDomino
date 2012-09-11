@@ -18,6 +18,7 @@ package com.gmxteam.funkydomino.core.component.factory;
 
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.activity.GameActivity;
+import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
 import com.gmxteam.funkydomino.core.component.AddDominoButton;
 import com.gmxteam.funkydomino.core.component.Ball;
 import com.gmxteam.funkydomino.core.component.Cog;
@@ -31,9 +32,9 @@ import com.gmxteam.funkydomino.core.component.Ground;
  */
 public class ComponentFactory {
 
-    private static GameActivity mGameActivity;
+    private static IFunkyDominoBaseActivity mGameActivity;
 
-    public static void setGameActivity(GameActivity pGameActivity) {
+    public static void setGameActivity(IFunkyDominoBaseActivity pGameActivity) {
         mGameActivity = pGameActivity;
     }
 

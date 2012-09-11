@@ -73,7 +73,7 @@ public class AddDominoButton extends Component implements OnClickListener {
 
     public void onClick(ButtonSprite bs, float f, float f1) {
         try {
-            mGameActivity.mScene.attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
+            mGameActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
         } catch (InstantiationException ex) {
             Logger.getLogger(AddDominoButton.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

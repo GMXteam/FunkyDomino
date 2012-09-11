@@ -10,6 +10,7 @@ package com.gmxteam.funkydomino.core;
  */
 public enum Levels {
 
+    MAIN("main"),
     LEVEL_1("stage1"),
     LEVEL_2("stage2"),
     LEVEL_3("stage3"),
