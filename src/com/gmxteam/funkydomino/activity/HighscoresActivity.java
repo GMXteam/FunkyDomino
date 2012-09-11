@@ -25,6 +25,10 @@ import android.os.Bundle;
  */
 public final class HighscoresActivity extends Activity {
 
+    /**
+     *
+     * @param b
+     */
     @Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);

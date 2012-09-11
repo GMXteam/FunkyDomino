@@ -34,6 +34,10 @@ public class ComponentFactory {
 
     private static IFunkyDominoBaseActivity mGameActivity;
 
+    /**
+     *
+     * @param pGameActivity
+     */
     public static void setGameActivity(IFunkyDominoBaseActivity pGameActivity) {
         mGameActivity = pGameActivity;
     }
@@ -56,6 +60,14 @@ public class ComponentFactory {
         return (Domino) Components.domino.getComponent().factory(mGameActivity, attributes);
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public static AddDominoButton createAddDominoButton(float x, float y) throws InstantiationException, IllegalAccessException {
         ComponentAttributes attributes = new ComponentAttributes();
         attributes.put("x", x);
@@ -70,6 +82,7 @@ public class ComponentFactory {
      *
      * @param x
      * @param y
+     * @param radius 
      * @return
      * @throws InstantiationException
      * @throws IllegalAccessException
@@ -88,6 +101,7 @@ public class ComponentFactory {
      *
      * @param x
      * @param y
+     * @param vertex 
      * @return
      * @throws InstantiationException
      * @throws IllegalAccessException

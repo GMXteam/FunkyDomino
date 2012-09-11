@@ -20,8 +20,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -31,6 +29,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.HUDLoader;
 import com.gmxteam.funkydomino.core.Levels;
 import com.gmxteam.funkydomino.core.SceneLoader;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
@@ -46,7 +45,6 @@ import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -57,7 +55,6 @@ import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
 import org.andengine.ui.IGameInterface.OnCreateSceneCallback;
 import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
@@ -78,6 +75,10 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
     ////////////////////////////////////////////////////////////////////////////
     // Events
+    /**
+     *
+     * @param b
+     */
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
@@ -100,6 +101,9 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         Debug.setTag(LOG_TAG);
     }
 
+    /**
+     *
+     */
     @Override
     public void onResumeGame() {
 
@@ -120,6 +124,9 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         }
     }
 
+    /**
+     *
+     */
     @Override
     public void onPauseGame() {
         super.onPauseGame();
@@ -128,32 +135,57 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
     ////////////////////////////////////////////////////////////////////////////
     // Menus actions
+    /**
+     *
+     * @param mi
+     */
     public void onHighscoresMenuItemClick(MenuItem mi) {
         mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, HighscoresActivity.class));
 
     }
 
+    /**
+     *
+     * @param mi
+     */
     public void onPreferencesMenuItemClick(MenuItem mi) {
         mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, PreferencesActivity.class));
     }
 
+    /**
+     *
+     * @param v
+     */
     public void onPauseGameMenuItemClick(MenuItem v) {
         mResumeDialogMayShow = false;
         onPauseGame();
     }
 
+    /**
+     *
+     * @param v
+     */
     public void onResumeGameMenuItemClick(MenuItem v) {
         mResumeDialogMayShow = false;
         onPauseGame();
     }
 
+    /**
+     *
+     * @param v
+     */
     public void onQuitterMenuItemClick(MenuItem v) {
         onBackPressed();
     }
 
     ////////////////////////////////////////////////////////////////////////////
+    /**
+     *
+     * @param m
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu m) {
 
@@ -174,6 +206,10 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         return super.onKeyUp(keyCode, event);
     }
 
+    /**
+     *
+     * @param m
+     */
     @Override
     public void onOptionsMenuClosed(Menu m) {
         onResumeGame();
@@ -196,16 +232,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         onPauseGame();
         mResumeDialogMayShow = false;
     }
-
-    /**
-     *
-     * @param sharedPreferences
-     * @param key
-     */
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        // Update engine options
-        onEngineOptionsChanged(getEngine().getEngineOptions());
-    }
     ////////////////////////////////////////////////////////////////////////////
     // Game setup
     /**
@@ -219,15 +245,8 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
     /**
      *
      */
-    private RepeatingSpriteBackground mBackground;
-    /**
-     *
-     */
     public PhysicsWorld mPhysicsWorld;
-    /**
-     *
-     */
-    private HUD mHUD;
+  
     /**
      *
      */
@@ -275,35 +294,10 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         }
     });
 
-    public void onEngineOptionsChanged(EngineOptions pEngineOptions) {
-        // On récupère les settings depuis les préférences partagées.       
-
-
-        pEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
-        Debug.v("Le son est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
-
-
-        pEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
-        Debug.v("La musique est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
-
-        pEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
-        Debug.v("Le dithering est " + (pEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
-
-
-        pEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
-        Debug.v("L'échantillonage multiple est " + (pEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
-
-
-        try {
-            TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
-            Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
-
-        } catch (NoSuchFieldException ex) {
-            Debug.e(ex);
-        }
-
-    }
-
+    /**
+     *
+     * @return
+     */
     @Override
     public final EngineOptions onCreateEngineOptions() {
 
@@ -313,15 +307,34 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         mCamera.setBounds(0.0f, 0.0f, WORLD_WIDTH, WORLD_HEIGHT);
         mCamera.setBoundsEnabled(true);
 
-        //mCamera.setZNear(CAMERA_Z_NEAR);
-        //mCamera.setZFar(CAMERA_Z_FAR);
-
-        mHUD = new HUD();
-        mHUD.setCamera(mCamera);
 
         EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
-        SimplePreferences.getInstance(this).registerOnSharedPreferenceChangeListener(this);
-        onEngineOptionsChanged(mEngineOptions);
+
+        // On récupère les settings depuis les préférences partagées.       
+
+
+        mEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
+        Debug.v("Le son est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+
+        mEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
+        Debug.v("La musique est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+        mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
+        Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
+
+
+        mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
+
+
+        try {
+            TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
+            Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
+
+        } catch (NoSuchFieldException ex) {
+            Debug.e(ex);
+        }
 
 
 
@@ -333,7 +346,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
     /**
      *
      * @param pOnCreateSceneCallback
-     * @throws Exception
      */
     public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
@@ -362,17 +374,16 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      *
      * @param pScene
      * @param pOnPopulateSceneCallback
+     * @throws InstantiationException 
+     * @throws IllegalAccessException
+     * @throws IOException 
+     * @throws XmlPullParserException  
      */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws InstantiationException, IllegalAccessException, IOException, XmlPullParserException {
-
-        pScene.setBackground(mBackground);
-
-        pScene.attachChild(mHUD);
-
-        mHUD.attachChild(ComponentFactory.createAddDominoButton(0.0f, 0.0f));
+  
 
         /* Le levelloader va charger les éléments dans la scène et la scène
-         * elle même.
+         * elle même ainsi que le HUD.
          */
         mLevelLoader.loadLevelFromAsset(getAssets(), Levels.LEVEL_1.toString());
 
@@ -385,7 +396,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
     /**
      *
      * @param pOnCreateResourcesCallback
-     * @throws Exception
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
 
@@ -399,33 +409,51 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
         // On bind le chargeur de la scène avec l'entité scène.
         mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
-
+        // On bind le hud
+        mLevelLoader.registerEntityLoader("hud", new HUDLoader(this));
         // On enregistre toutes les entités supportées.
         mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
 
-        AssetBitmapTextureAtlasSource mBackgroundBaseTextureAtlasSource = AssetBitmapTextureAtlasSource.create(this.getAssets(), "gfx/background.png");
-
-        mBackground = new RepeatingSpriteBackground(getCameraDimensions().x, getCameraDimensions().y, this.getTextureManager(), mBackgroundBaseTextureAtlasSource, this.getVertexBufferObjectManager());
 
         pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 
+    /**
+     *
+     * @return
+     */
     public Context getContext() {
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public PhysicsWorld getPhysicsWorld() {
         return mPhysicsWorld;
     }
 
+    /**
+     *
+     * @return
+     */
     public Scene getScene() {
         return mScene;
     }
 
+    /**
+     *
+     * @return
+     */
     public ContactManager getContactManager() {
         return mContactManager;
     }
 
+    /**
+     *
+     * @return
+     */
     public SmoothCamera getCamera() {
         return mCamera;
     }

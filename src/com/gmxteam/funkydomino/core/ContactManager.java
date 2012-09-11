@@ -21,29 +21,41 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import org.andengine.util.debug.Debug;
 
 /**
- *
- * @author guillaume
+ * Permet de binder le ContactListener provenant de PhysicsWorld à plusieurs 
+ * ContactListener afin de pouvoir gérer les événements de collisions depuis
+ * plusieurs endroits en même temps.
+ * @author Guillaume Poirier-Morency
  */
-public class ContactManager extends HashMap<Body, ContactListener> implements ContactListener {
+public class ContactManager implements ContactListener {
 
+    private ConcurrentHashMap<Body, ContactListener> mBodies = new ConcurrentHashMap<Body, ContactListener>();
+
+    /**
+     *
+     * @param b
+     * @param pContactListener
+     */
     public void registerContactListener(Body b, ContactListener pContactListener) {
-        put(b, pContactListener);
+        mBodies.put(b, pContactListener);
 
     }
 
-
+    /**
+     *
+     * @param cntct
+     */
     public void beginContact(Contact cntct) {
 
         Debug.v("Contact entre le body " + cntct.getFixtureA().getBody()
                 + " et " + cntct.getFixtureB().getBody());
 
-        ContactListener cl;
+        final ContactListener cl = mBodies.get(cntct.getFixtureA().getBody());
 
-        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+        if (cl != null) {
             cl.beginContact(cntct);
         }
 
@@ -51,11 +63,15 @@ public class ContactManager extends HashMap<Body, ContactListener> implements Co
 
     }
 
+    /**
+     *
+     * @param cntct
+     */
     public void endContact(Contact cntct) {
 
-        ContactListener cl;
+        final ContactListener cl = mBodies.get(cntct.getFixtureA().getBody());
 
-        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+        if (cl != null) {
             cl.endContact(cntct);
         }
 
@@ -63,11 +79,16 @@ public class ContactManager extends HashMap<Body, ContactListener> implements Co
 
     }
 
+    /**
+     *
+     * @param cntct
+     * @param mnfld
+     */
     public void preSolve(Contact cntct, Manifold mnfld) {
 
-        ContactListener cl;
+        final ContactListener cl = mBodies.get(cntct.getFixtureA().getBody());
 
-        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+        if (cl != null) {
             cl.preSolve(cntct, mnfld);
         }
 
@@ -76,11 +97,16 @@ public class ContactManager extends HashMap<Body, ContactListener> implements Co
 
     }
 
+    /**
+     *
+     * @param cntct
+     * @param ci
+     */
     public void postSolve(Contact cntct, ContactImpulse ci) {
 
-        ContactListener cl;
+        final ContactListener cl = mBodies.get(cntct.getFixtureA().getBody());
 
-        if ((cl = get(cntct.getFixtureA().getBody())) != null) {
+        if (cl != null) {
             cl.postSolve(cntct, ci);
         }
     }

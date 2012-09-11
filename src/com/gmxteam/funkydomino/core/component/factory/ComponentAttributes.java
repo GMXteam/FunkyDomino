@@ -84,18 +84,47 @@ public class ComponentAttributes extends HashMap<String, Object> {
 
     
 
+    /**
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     */
     public float getFloat(String key, float defaultValue) {
         Object o = get(key);
         return o != null && o instanceof Float ? ((Float) o).floatValue() : defaultValue;
     }
 
+    /**
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     */
     public int getInteger(String key, int defaultValue) {
         Object o = get(key);
         return o != null && o instanceof Integer ? ((Integer) o).intValue() : defaultValue;
     }
 
+    /**
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     */
     public Vector2[] getVector2Array(String key, Vector2[] defaultValue) {
         Object o = get(key);
         return o != null ? parseVector2Array((String) o) : defaultValue;
+    }
+
+    /**
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     */
+    public String getString(String key, String defaultValue) {        
+        Object o = get(key);
+        return o != null && o instanceof String ? (String) o : defaultValue;
     }
 }

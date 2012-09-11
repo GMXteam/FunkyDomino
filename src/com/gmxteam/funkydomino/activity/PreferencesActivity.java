@@ -41,6 +41,9 @@ public final class PreferencesActivity extends PreferenceActivity {
 
     }
 
+    /**
+     *
+     */
     public static class FunkyDominoGraphicsPreferenceFragment extends PreferenceFragment {
 
         /**
@@ -59,6 +62,9 @@ public final class PreferencesActivity extends PreferenceActivity {
         }
     }
 
+    /**
+     *
+     */
     public static class FunkyDominoAudioPreferenceFragment extends PreferenceFragment {
 
         /**
@@ -76,6 +82,9 @@ public final class PreferencesActivity extends PreferenceActivity {
         }
     }
 
+    /**
+     *
+     */
     public static class FunkyDominoAboutPreferenceFragment extends PreferenceFragment {
 
         /**

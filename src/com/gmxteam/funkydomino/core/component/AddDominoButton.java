@@ -27,8 +27,18 @@ import org.andengine.opengl.texture.region.TextureRegion;
 public class AddDominoButton extends Component implements OnClickListener {
 
     ButtonSprite mAddDominoButtonSprite;
-    public final int DOMINO_WIDTH = 32, DOMINO_HEIGHT = 64;
+    /**
+     *
+     */
+    public final int DOMINO_WIDTH = 32,
+    /**
+     *
+     */
+    DOMINO_HEIGHT = 64;
 
+    /**
+     *
+     */
     @Override
     protected void onLoadResource() {
 
@@ -45,6 +55,10 @@ public class AddDominoButton extends Component implements OnClickListener {
         mAddDominoButtonSprite.setOnClickListener(this);
     }
 
+    /**
+     *
+     * @param ocl
+     */
     public void setOnClickListener(OnClickListener ocl) {
         mAddDominoButtonSprite.setOnClickListener(ocl);
     }
@@ -67,10 +81,20 @@ public class AddDominoButton extends Component implements OnClickListener {
         pScene.registerTouchArea(mAddDominoButtonSprite);
     }
 
+    /**
+     *
+     * @param pContactManager
+     */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
     }
 
+    /**
+     *
+     * @param bs
+     * @param f
+     * @param f1
+     */
     public void onClick(ButtonSprite bs, float f, float f1) {
         try {
             mGameActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));

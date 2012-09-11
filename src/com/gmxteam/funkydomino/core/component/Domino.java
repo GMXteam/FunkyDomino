@@ -45,11 +45,20 @@ import org.andengine.util.debug.Debug;
  */
 public final class Domino extends Component implements ContactListener {
 
+    /**
+     *
+     */
     public static final int DOMINO_HEIGHT = 64,
+            /**
+             *
+             */
             DOMINO_WIDTH = 32;
     private Body mDominoBody;
     private Sprite mDominoSprite;
 
+    /**
+     *
+     */
     @Override
     protected void onLoadResource() {
         BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, GameActivity.TEXTURE_OPTION);
@@ -124,21 +133,43 @@ public final class Domino extends Component implements ContactListener {
 
     ////////////////////////////////////
     // Collisions
+    /**
+     *
+     * @param pContactManager
+     */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
         pContactManager.registerContactListener(mDominoBody, this);
     }
 
+    /**
+     *
+     * @param cntct
+     */
     public void beginContact(Contact cntct) {
         // mCollisionSound.play();
     }
 
+    /**
+     *
+     * @param cntct
+     */
     public void endContact(Contact cntct) {
     }
 
+    /**
+     *
+     * @param cntct
+     * @param mnfld
+     */
     public void preSolve(Contact cntct, Manifold mnfld) {
     }
 
+    /**
+     *
+     * @param cntct
+     * @param ci
+     */
     public void postSolve(Contact cntct, ContactImpulse ci) {
     }
 }

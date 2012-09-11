@@ -47,10 +47,25 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
  */
 public abstract class Component extends Entity implements ComponentsConstants {
 
+    /**
+     *
+     */
     protected FixtureDef mFixtureDef;
+    /**
+     *
+     */
     protected IFunkyDominoBaseActivity mGameActivity;
+    /**
+     *
+     */
     protected Sound mCollisionSound;
 
+    /**
+     *
+     * @param ga
+     * @param att
+     * @return
+     */
     public final Component factory(IFunkyDominoBaseActivity ga, ComponentAttributes att) {
 
         mGameActivity = ga;
@@ -90,20 +105,25 @@ public abstract class Component extends Entity implements ComponentsConstants {
 
     ////////////////////////////////////////////////////////////////////////
     // Events
+    /**
+     *
+     */
     protected abstract void onLoadResource();
 
     /**
      * Altération du FixtureDef (propriétés physiques initiales et
      * fondamentales)
      *
-     * @param fd
+     * @param pFixtureDef
+     * @param pAttributes  
      */
     protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, ComponentAttributes pAttributes);
 
     /**
      * Binding de l'entité avec le monde physique.
      *
-     * @param pw
+     * @param pPhysicsWorld 
+     * @param pAttributes  
      */
     protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes);
 
@@ -122,23 +142,43 @@ public abstract class Component extends Entity implements ComponentsConstants {
      */
     protected abstract void onRegisterTouchAreas(Scene pScene);
     
+    /**
+     *
+     * @param pContactManager
+     */
     protected abstract void onRegisterContactListener(ContactManager pContactManager);
 
     /////////////////////////
     // Accessible resources from the GameActivity
+    /**
+     *
+     * @return
+     */
     protected final TextureManager getTextureManager() {
         return mGameActivity.getTextureManager();
 
     }
 
+    /**
+     *
+     * @return
+     */
     protected final VertexBufferObjectManager getVertexBufferObjectManager() {
         return mGameActivity.getVertexBufferObjectManager();
     }
 
+    /**
+     *
+     * @return
+     */
     protected final MusicManager getMusicManager() {
         return mGameActivity.getMusicManager();
     }
 
+    /**
+     *
+     * @return
+     */
     protected final Context getContext() {
         return (Context) mGameActivity;
     }

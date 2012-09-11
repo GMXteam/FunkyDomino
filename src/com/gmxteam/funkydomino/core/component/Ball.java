@@ -46,15 +46,21 @@ public final class Ball extends Component implements ContactListener {
 
     private Body mBallBody;
     private Sprite mBallSprite;
+    /**
+     *
+     */
     public static final int BALL_RADIUS = 32;    
 
+    /**
+     *
+     */
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, GameActivity.TEXTURE_OPTION);
+        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, GameActivity.TEXTURE_OPTION);
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-        TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
+        final TextureRegion mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
 
 
         mBallSprite = new Sprite(0, 0, mBallTextureRegion, getVertexBufferObjectManager());
@@ -81,20 +87,42 @@ public final class Ball extends Component implements ContactListener {
         pScene.registerTouchArea(mBallSprite);
     }
 
+    /**
+     *
+     * @param pContactManager
+     */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
         pContactManager.registerContactListener(mBallBody, this);
     }
 
+    /**
+     *
+     * @param cntct
+     */
     public void beginContact(Contact cntct) {
     }
 
+    /**
+     *
+     * @param cntct
+     */
     public void endContact(Contact cntct) {
     }
 
+    /**
+     *
+     * @param cntct
+     * @param mnfld
+     */
     public void preSolve(Contact cntct, Manifold mnfld) {
     }
 
+    /**
+     *
+     * @param cntct
+     * @param ci
+     */
     public void postSolve(Contact cntct, ContactImpulse ci) {
     
     }

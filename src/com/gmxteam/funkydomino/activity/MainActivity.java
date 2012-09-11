@@ -71,38 +71,66 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
 
     ////////////////////////////////////////////////////////////////////////////
     // Menus
+    /**
+     *
+     * @param mi
+     */
     public void onHighscoresMenuItemClick(MenuItem mi) {
         startActivity(new Intent(MainActivity.this, HighscoresActivity.class));
     }
 
+    /**
+     *
+     * @param mi
+     */
     public void onPreferencesMenuItemClick(MenuItem mi) {
         startActivity(new Intent(MainActivity.this, PreferencesActivity.class));
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // Listeners
+    /**
+     *
+     * @param v
+     */
     public void onPlayClick(View v) {
         Intent i = new Intent(MainActivity.this, GameActivity.class);
         startActivity(i);
 
     }
 
+    /**
+     *
+     * @param v
+     */
     public void onNewGameClick(View v) {
         Intent i = new Intent(MainActivity.this, GameActivity.class);
         startActivity(i);
     }
 
+    /**
+     *
+     * @param v
+     */
     public void onLoadGameClick(View v) {
         startActivity(new Intent(MainActivity.this, LoadGameActivity.class));
 
     }
 
+    /**
+     *
+     * @param m
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu m) {
         getMenuInflater().inflate(R.menu.menu, m);
         return true;
     }
 
+    /**
+     *
+     */
     @Override
     protected void onCreateResources() {
 
@@ -127,6 +155,10 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected Scene onCreateScene() {
         mScene = new Scene();
@@ -152,44 +184,23 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         return mScene;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected int getLayoutID() {
         return R.layout.main;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected int getRenderSurfaceViewID() {
         return R.id.render_surface_view;
-    }
-
-    public void onEngineOptionsChanged(EngineOptions pEngineOptions) {
-        // On récupère les settings depuis les préférences partagées.       
-
-
-        pEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
-        Debug.v("Le son est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
-
-
-        pEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
-        Debug.v("La musique est " + (pEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
-
-        pEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
-        Debug.v("Le dithering est " + (pEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
-
-
-        pEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
-        Debug.v("L'échantillonage multiple est " + (pEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
-
-
-        try {
-            TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
-            Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
-
-        } catch (NoSuchFieldException ex) {
-            Debug.e(ex);
-        }
-
-    }
+    }   
 
     /**
      *
@@ -201,6 +212,10 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         return p;
     }
 
+    /**
+     *
+     * @return
+     */
     public EngineOptions onCreateEngineOptions() {
 
 
@@ -213,10 +228,32 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
 
 
 
-        SimplePreferences.getInstance(this).registerOnSharedPreferenceChangeListener(this);
+        // On récupère les settings depuis les préférences partagées.       
 
 
-        onEngineOptionsChanged(mEngineOptions);
+        mEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
+        Debug.v("Le son est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+
+        mEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
+        Debug.v("La musique est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+
+        mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
+        Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
+
+
+        mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
+
+
+        try {
+            TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
+            Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
+
+        } catch (NoSuchFieldException ex) {
+            Debug.e(ex);
+        }
+
 
 
 
@@ -225,26 +262,44 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         return mEngineOptions;
     }
 
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        this.onEngineOptionsChanged(mEngine.getEngineOptions());
-    }
+   
 
+    /**
+     *
+     * @return
+     */
     public Context getContext() {
         return this;
     }
 
+    /**
+     *
+     * @return
+     */
     public PhysicsWorld getPhysicsWorld() {
         return mPhysicsWorld;
     }
 
+    /**
+     *
+     * @return
+     */
     public Scene getScene() {
         return mScene;
     }
 
+    /**
+     *
+     * @return
+     */
     public ContactManager getContactManager() {
         return mContactManager;
     }
 
+    /**
+     *
+     * @return
+     */
     public SmoothCamera getCamera() {
         return mCamera;
     }

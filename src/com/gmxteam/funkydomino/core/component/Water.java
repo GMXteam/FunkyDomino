@@ -37,11 +37,18 @@ public class Water extends Component {
 
 	private TiledSprite mWater;
 
-	public ITouchArea getTouchArea() {
+	/**
+     *
+     * @return
+     */
+    public ITouchArea getTouchArea() {
 		return mWater;
 	}
 
-	@Override
+	/**
+     *
+     */
+    @Override
 	protected void onLoadResource() {
 		
 		throw new UnsupportedOperationException("Not supported yet.");
@@ -62,7 +69,15 @@ public class Water extends Component {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
+	/**
+     *
+     * @param te
+     * @param ita
+     * @param f
+     * @param f1
+     * @return
+     */
+    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
@@ -71,6 +86,10 @@ public class Water extends Component {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
+    /**
+     *
+     * @param pContactManager
+     */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
         throw new UnsupportedOperationException("Not supported yet.");

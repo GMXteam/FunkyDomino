@@ -31,7 +31,11 @@ import java.util.Map;
  */
 public final class LoadGameActivity extends ExpandableListActivity {
 
-	@Override
+	/**
+     *
+     * @param b
+     */
+    @Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
 		setContentView(R.layout.load_game);

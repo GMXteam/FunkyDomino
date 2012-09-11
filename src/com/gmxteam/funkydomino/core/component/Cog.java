@@ -44,16 +44,38 @@ import org.andengine.opengl.texture.region.TextureRegion;
  */
 public final class Cog extends Component {
 
+    /**
+     *
+     */
     public static final int COG_RADIUS = 64,
+            /**
+             *
+             */
             COG_TEETH_HEIGHT = 10,
+            /**
+             *
+             */
             COG_TEETH_WIDTH = 20,
+            /**
+             *
+             */
             COG_TEETH_COUNT = 8;
-    public static final float COG_MOTOR_SPEED = 300.0f,  COG_MOTOR_MAX_TORQUE = 1000.0f;
+    /**
+     *
+     */
+    public static final float COG_MOTOR_SPEED = 300.0f,
+    /**
+     *
+     */
+    COG_MOTOR_MAX_TORQUE = 1000.0f;
     private Body mCogBody;
     private Body[] mCogToothBodies = new Body[COG_TEETH_COUNT];
     private Rectangle[] mCogToothRectangles = new Rectangle[COG_TEETH_COUNT];
     private Sprite mCogSprite;
 
+    /**
+     *
+     */
     @Override
     protected void onLoadResource() {
 
@@ -162,6 +184,10 @@ public final class Cog extends Component {
 
     }
 
+    /**
+     *
+     * @param pContactManager
+     */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
     }

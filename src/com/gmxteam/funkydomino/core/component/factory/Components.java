@@ -18,11 +18,29 @@ import com.gmxteam.funkydomino.core.component.Water;
  * @author guillaume
  */
 public enum Components {
-add_domino_button(AddDominoButton.class),
+    /**
+     *
+     */
+    add_domino_button(AddDominoButton.class),
+    /**
+     *
+     */
     ground(Ground.class),
+    /**
+     *
+     */
     water(Water.class),
+    /**
+     *
+     */
     domino(Domino.class),
+    /**
+     *
+     */
     ball(Ball.class),
+    /**
+     *
+     */
     cog(Cog.class);
     
     
@@ -32,6 +50,10 @@ add_domino_button(AddDominoButton.class),
         mClass = c;
     }
 
+    /**
+     *
+     * @return
+     */
     public static String[] strings() {
         String[] names = new String[values().length];
         int i = 0;
@@ -42,6 +64,12 @@ add_domino_button(AddDominoButton.class),
         return names;
     }
 
+    /**
+     *
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public Component getComponent() throws InstantiationException, IllegalAccessException {
         Log.v(GameActivity.LOG_TAG, "Création d'une instance de type " + this.name());
 

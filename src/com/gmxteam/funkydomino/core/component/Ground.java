@@ -48,10 +48,26 @@ public class Ground extends Component {
     private Body mGroundBody;
     private TextureRegion mGroundTextureRegion;
     private Sprite mGround;
+    /**
+     *
+     */
     public static final int GROUND_TEXTURE_HEIGHT = 32,
+            /**
+             *
+             */
             GROUND_TEXTURE_WIDTH = 32,
-            GROUND_COLUMNS = 10, GROUND_ROWS = 10;
+            /**
+             *
+             */
+            GROUND_COLUMNS = 10,
+    /**
+     *
+     */
+    GROUND_ROWS = 10;
 
+    /**
+     *
+     */
     @Override
     protected void onLoadResource() {
         BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), GROUND_TEXTURE_WIDTH, GROUND_TEXTURE_HEIGHT);
@@ -90,6 +106,10 @@ public class Ground extends Component {
         pScene.registerTouchArea(mGround);
     }
 
+    /**
+     *
+     * @param pContactManager
+     */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
     }
