@@ -54,8 +54,8 @@ public class ComponentFactory {
     public static Domino createDomino(float x, float y) throws InstantiationException, IllegalAccessException {
 
         ComponentAttributes attributes = new ComponentAttributes();
-        attributes.put("x", x);
-        attributes.put("y", y);
+        attributes.put("x", String.valueOf(x));
+        attributes.put("y",String.valueOf( y));
 
         return (Domino) Components.domino.getComponent().factory(mGameActivity, attributes);
     }
@@ -70,8 +70,8 @@ public class ComponentFactory {
      */
     public static AddDominoButton createAddDominoButton(float x, float y) throws InstantiationException, IllegalAccessException {
         ComponentAttributes attributes = new ComponentAttributes();
-        attributes.put("x", x);
-        attributes.put("y", y);
+        attributes.put("x", String.valueOf(x));
+        attributes.put("y",String.valueOf( y));
 
         return (AddDominoButton) Components.add_domino_button.getComponent().factory(mGameActivity, attributes);
 
@@ -89,9 +89,9 @@ public class ComponentFactory {
      */
     public static Ball createBall(float x, float y, float radius) throws InstantiationException, IllegalAccessException {
         ComponentAttributes attributes = new ComponentAttributes();
-        attributes.put("x", x);
-        attributes.put("y", y);
-        attributes.put("radius", radius);
+        attributes.put("x", String.valueOf(x)); 
+        attributes.put("y", String.valueOf(y));
+        attributes.put("radius", String.valueOf(radius));
 
         return (Ball) Components.ball.getComponent().factory(mGameActivity, attributes);
     }
@@ -109,7 +109,7 @@ public class ComponentFactory {
     public static Ground createGround(float x, float y, Vector2[] vertex) throws InstantiationException, IllegalAccessException {
 
         ComponentAttributes attributes = new ComponentAttributes();
-        attributes.put("vector", vertex);
+        attributes.put("vector", ComponentAttributes.vector2ArrayToString(vertex));
 
         return (Ground) Components.ground.getComponent().factory(mGameActivity, attributes);
     }
@@ -126,8 +126,8 @@ public class ComponentFactory {
     public static Cog createCog(float x, float y) throws InstantiationException, IllegalAccessException {
 
         ComponentAttributes attributes = new ComponentAttributes();
-        attributes.put("x", x);
-        attributes.put("y", y);
+        attributes.put("x", String.valueOf(x));
+        attributes.put("y", String.valueOf(y));
 
         return (Cog) Components.ground.getComponent().factory(mGameActivity, attributes);
     }

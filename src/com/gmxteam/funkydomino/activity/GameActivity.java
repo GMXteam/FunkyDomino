@@ -29,17 +29,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.core.ContactManager;
-import com.gmxteam.funkydomino.core.HUDLoader;
+import com.gmxteam.funkydomino.core.loader.HUDLoader;
 import com.gmxteam.funkydomino.core.Levels;
-import com.gmxteam.funkydomino.core.SceneLoader;
+import com.gmxteam.funkydomino.core.loader.SceneLoader;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.component.factory.ComponentLoader;
+import com.gmxteam.funkydomino.core.loader.ComponentLoader;
 import com.gmxteam.funkydomino.core.component.factory.Components;
 import java.io.IOException;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
-import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
@@ -303,8 +302,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
         mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
-
-        mCamera.setBounds(0.0f, 0.0f, WORLD_WIDTH, WORLD_HEIGHT);
         mCamera.setBoundsEnabled(true);
 
 

@@ -17,15 +17,37 @@
 package com.gmxteam.funkydomino.core.component.factory;
 
 import com.badlogic.gdx.math.Vector2;
+import java.util.Arrays;
 import java.util.HashMap;
+import org.andengine.util.debug.Debug;
 import org.xml.sax.Attributes;
 
 /**
  *
  * @author guillaume
  */
-public class ComponentAttributes extends HashMap<String, Object> {
+public class ComponentAttributes extends HashMap<String, String> {
 
+    public static boolean isFloat(String s) {
+     try {
+         Float.parseFloat(s);
+         return true;
+     } catch(NumberFormatException ffe) {
+          Debug.e(ffe);
+         return false;
+     }
+    }
+    
+    public static boolean isInteger(String s) {
+     try {
+         Integer.parseInt(s);
+         return true;
+     } catch(NumberFormatException ffe) {
+         Debug.e(ffe);
+         return false;
+     }
+    }
+    
     /**
      * Constructeur utilisé par ComponentFactory pour les tests.
      */
@@ -48,6 +70,12 @@ public class ComponentAttributes extends HashMap<String, Object> {
         }
 
         // Copie des attributs dans le dictionnaire
+    }
+    
+    public static String vector2ArrayToString (Vector2[] source) {
+    
+        return Arrays.toString(source);
+        
     }
 
     /**
@@ -91,8 +119,9 @@ public class ComponentAttributes extends HashMap<String, Object> {
      * @return
      */
     public float getFloat(String key, float defaultValue) {
-        Object o = get(key);
-        return o != null && o instanceof Float ? ((Float) o).floatValue() : defaultValue;
+        final String o = get(key);
+        
+        return o != null && isFloat(o) ? Float.parseFloat(o) : defaultValue;
     }
 
     /**
@@ -102,8 +131,8 @@ public class ComponentAttributes extends HashMap<String, Object> {
      * @return
      */
     public int getInteger(String key, int defaultValue) {
-        Object o = get(key);
-        return o != null && o instanceof Integer ? ((Integer) o).intValue() : defaultValue;
+        final String o = get(key);
+        return o != null && isInteger(o) ? Integer.parseInt(o) : defaultValue;
     }
 
     /**
@@ -124,7 +153,7 @@ public class ComponentAttributes extends HashMap<String, Object> {
      * @return
      */
     public String getString(String key, String defaultValue) {        
-        Object o = get(key);
-        return o != null && o instanceof String ? (String) o : defaultValue;
+        String o = get(key);
+        return o != null ? (String) o : defaultValue;
     }
 }

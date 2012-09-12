@@ -18,9 +18,8 @@ package com.gmxteam.funkydomino.core.component;
 
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.content.Context;
-import android.provider.MediaStore.Audio;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
 import com.gmxteam.funkydomino.core.ContactManager;
 import java.io.IOException;
@@ -34,6 +33,7 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.debug.Debug;
 
 /**
  * Classe abstraite définissant les composants. Les composants sont des éléments
@@ -59,6 +59,8 @@ public abstract class Component extends Entity implements ComponentsConstants {
      *
      */
     protected Sound mCollisionSound;
+    
+    protected ComponentAttributes mComponentAttributes;
 
     /**
      *
@@ -70,6 +72,8 @@ public abstract class Component extends Entity implements ComponentsConstants {
 
         mGameActivity = ga;
         
+        mComponentAttributes = att;
+
         try {
             mCollisionSound = SoundFactory.createSoundFromAsset(mGameActivity.getSoundManager(), ga.getContext(), "explosion.ogg");
         } catch (IOException ex) {
@@ -77,28 +81,36 @@ public abstract class Component extends Entity implements ComponentsConstants {
         }
 
 
-        this.setX(att.getFloat("x", 0.0f));
-        this.setY(att.getFloat("y", 0.0f));
+
+
+
 
 
         mFixtureDef = new FixtureDef();
 
         mFixtureDef.density = att.getFloat("density", 1.0f);
-        
+
         mFixtureDef.friction = att.getFloat("friction", 1.0f);
 
 
         onLoadResource();
+        
+        onCreateSprite(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
 
         onCreateFixtureDef(mFixtureDef, att);
 
-        onPopulatePhysicsWorld(mGameActivity.getPhysicsWorld(), att);
+        onPopulatePhysicsWorld(mGameActivity.getPhysicsWorld());
+                //.setTransform(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
 
         onPopulateEntity(this);
 
         onRegisterTouchAreas(mGameActivity.getScene());
-        
+
         onRegisterContactListener(mGameActivity.getContactManager());
+
+        Debug.v("Un nouveau composant est créé ["
+                + this.getX() + "," + this.getY() + "]");
+
 
         return this;
     }
@@ -109,23 +121,25 @@ public abstract class Component extends Entity implements ComponentsConstants {
      *
      */
     protected abstract void onLoadResource();
+    
+    protected abstract void onCreateSprite(float pX, float pY, float angle);
 
     /**
      * Altération du FixtureDef (propriétés physiques initiales et
      * fondamentales)
      *
      * @param pFixtureDef
-     * @param pAttributes  
+     * @param pAttributes
      */
     protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, ComponentAttributes pAttributes);
 
     /**
      * Binding de l'entité avec le monde physique.
      *
-     * @param pPhysicsWorld 
-     * @param pAttributes  
+     * @param pPhysicsWorld
+     * @param pAttributes
      */
-    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes);
+    protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld);
 
     /**
      * Binding des sous-entités avec l'entité qui reçoit l'événement.
@@ -141,7 +155,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
      * @param pScene
      */
     protected abstract void onRegisterTouchAreas(Scene pScene);
-    
+
     /**
      *
      * @param pContactManager
@@ -182,4 +196,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
     protected final Context getContext() {
         return (Context) mGameActivity;
     }
+    
+   
+    
 }

@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.core.ContactManager;
@@ -35,41 +36,46 @@ import org.andengine.input.touch.TouchEvent;
  */
 public class Water extends Component {
 
-	private TiledSprite mWater;
+    private TiledSprite mWater;
 
-	/**
+    /**
      *
      * @return
      */
     public ITouchArea getTouchArea() {
-		return mWater;
-	}
+        return mWater;
+    }
 
-	/**
+    /**
      *
      */
     @Override
-	protected void onLoadResource() {
-		
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    protected void onLoadResource() {
 
-	@Override
-	protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-	@Override
-	protected void onPopulatePhysicsWorld(PhysicsWorld pw, ComponentAttributes pAttributes) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    @Override
+    protected void onCreateSprite(float pX, float pY, float angle) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-	@Override
-	protected void onPopulateEntity(Entity e) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    @Override
+    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-	/**
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    protected void onPopulateEntity(Entity e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
      *
      * @param te
      * @param ita
@@ -78,13 +84,13 @@ public class Water extends Component {
      * @return
      */
     public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
-	@Override
-	protected void onRegisterTouchAreas(Scene pScene) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
+    @Override
+    protected void onRegisterTouchAreas(Scene pScene) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     /**
      *

@@ -34,6 +34,7 @@ import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.ScrollDetector;
+import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
@@ -43,7 +44,7 @@ import org.andengine.util.debug.Debug;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Domino extends Component implements ContactListener {
+public final class Domino extends Component implements ContactListener, IScrollDetectorListener {
 
     /**
      *
@@ -55,6 +56,8 @@ public final class Domino extends Component implements ContactListener {
             DOMINO_WIDTH = 32;
     private Body mDominoBody;
     private Sprite mDominoSprite;
+    private ScrollDetector mScrollDetector;
+    private TextureRegion mDominoTextureRegion;
 
     /**
      *
@@ -67,30 +70,24 @@ public final class Domino extends Component implements ContactListener {
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
 
-        TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
-
-
-        final ScrollDetector sd = new ScrollDetector(new ScrollDetector.IScrollDetectorListener() {
-            public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-                mDominoBody.setActive(false);
-            }
-
-            public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-                // Make the domino follows the finger.
-                mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
-
-                Debug.v("Domino position : " + mDominoBody.getPosition());
-            }
-
-            public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-                mDominoBody.setActive(true);
-
-            }
-        });
+        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
 
 
 
-        mDominoSprite = new Sprite(0, 0, mDominoTextureRegion, getVertexBufferObjectManager()) {
+
+
+
+
+
+    }
+
+    @Override
+    protected void onCreateSprite(float pX, float pY, float angle) {
+        mScrollDetector = new ScrollDetector(this);
+
+
+
+        mDominoSprite = new Sprite(pX, pY, mDominoTextureRegion, getVertexBufferObjectManager()) {
             /**
              * Gestion manuelle de l'événement.
              */
@@ -98,11 +95,12 @@ public final class Domino extends Component implements ContactListener {
             public boolean onAreaTouched(TouchEvent te, float f, float f1) {
 
 
-                return sd.onManagedTouchEvent(te);
+                return mScrollDetector.onManagedTouchEvent(te);
             }
         };
-
-
+        
+        mDominoSprite.setRotation(angle);
+        
     }
 
     @Override
@@ -110,7 +108,7 @@ public final class Domino extends Component implements ContactListener {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pw, ComponentAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
         mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
         pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
     }
@@ -171,5 +169,21 @@ public final class Domino extends Component implements ContactListener {
      * @param ci
      */
     public void postSolve(Contact cntct, ContactImpulse ci) {
+    }
+
+    public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+        mDominoBody.setActive(false);
+    }
+
+    public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+        // Make the domino follows the finger.
+        mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
+
+        Debug.v("Domino position : " + mDominoBody.getPosition());
+    }
+
+    public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+        mDominoBody.setActive(true);
+
     }
 }

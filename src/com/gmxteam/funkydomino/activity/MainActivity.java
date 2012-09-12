@@ -18,8 +18,6 @@ package com.gmxteam.funkydomino.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.view.Menu;
@@ -28,10 +26,10 @@ import android.view.View;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.core.ContactManager;
 import com.gmxteam.funkydomino.core.Levels;
-import com.gmxteam.funkydomino.core.SceneLoader;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.component.factory.ComponentLoader;
 import com.gmxteam.funkydomino.core.component.factory.Components;
+import com.gmxteam.funkydomino.core.loader.ComponentLoader;
+import com.gmxteam.funkydomino.core.loader.SceneLoader;
 import java.io.IOException;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
@@ -40,13 +38,13 @@ import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.sensor.orientation.IOrientationListener;
+import org.andengine.input.sensor.orientation.OrientationData;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
 import org.andengine.ui.activity.SimpleLayoutGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.LevelLoader;
@@ -67,7 +65,6 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
     private ContactManager mContactManager;
     private LevelLoader mLevelLoader;
     private SmoothCamera mCamera;
-    private RepeatingSpriteBackground mBackground;
 
     ////////////////////////////////////////////////////////////////////////////
     // Menus
@@ -148,9 +145,7 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         // On enregistre toutes les entités supportées.
         mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
 
-        AssetBitmapTextureAtlasSource mBackgroundBaseTextureAtlasSource = AssetBitmapTextureAtlasSource.create(this.getAssets(), "gfx/background.png");
 
-        mBackground = new RepeatingSpriteBackground(getCameraDimensions().x, getCameraDimensions().y, this.getTextureManager(), mBackgroundBaseTextureAtlasSource, this.getVertexBufferObjectManager());
 
 
     }
@@ -161,7 +156,9 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
      */
     @Override
     protected Scene onCreateScene() {
+
         mScene = new Scene();
+
         mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
 
         mContactManager = new ContactManager();
@@ -169,8 +166,6 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         mScene.registerUpdateHandler(mPhysicsWorld);
 
         mScene.registerUpdateHandler(new FPSLogger());
-
-        mScene.setBackground(mBackground);
 
         try {
             /* Le levelloader va charger les éléments dans la scène et la scène
@@ -180,6 +175,22 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         } catch (IOException ex) {
             Debug.e(ex);
         }
+
+
+        mEngine.enableOrientationSensor(this, new IOrientationListener() {
+            private Vector2 mGravity = mPhysicsWorld.getGravity();
+
+            public void onOrientationAccuracyChanged(OrientationData pOrientationData) {
+            }
+
+            public void onOrientationChanged(OrientationData pOrientationData) {
+
+                this.mGravity.x = pOrientationData.getRoll();
+                this.mGravity.y = pOrientationData.getYaw();
+                //Debug.v("Gravity has changed " + mGravity);
+                //mPhysicsWorld.setGravity(this.mGravity);
+            }
+        });
 
         return mScene;
     }
@@ -200,7 +211,7 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
     @Override
     protected int getRenderSurfaceViewID() {
         return R.id.render_surface_view;
-    }   
+    }
 
     /**
      *
@@ -261,8 +272,6 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
 
         return mEngineOptions;
     }
-
-   
 
     /**
      *

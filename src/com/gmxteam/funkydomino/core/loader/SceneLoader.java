@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmxteam.funkydomino.core;
+package com.gmxteam.funkydomino.core.loader;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -14,6 +14,7 @@ import org.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
+import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
 import org.xml.sax.Attributes;
 
@@ -41,7 +42,15 @@ public class SceneLoader implements IEntityLoader {
      */
     public IEntity onLoadEntity(String string, Attributes atts) {
 
+
         ComponentAttributes ea = new ComponentAttributes(atts);
+
+        Debug.v("La scène est de dimension "
+                + ea.getFloat("width", mGameActivity.getCameraDimensions().x)
+                + " de largeur par "
+                + ea.getFloat("width", mGameActivity.getCameraDimensions().y)
+                + " de hauteur.");
+
 
         // Background
 
@@ -52,21 +61,27 @@ public class SceneLoader implements IEntityLoader {
         mGameActivity.getScene().setBackground(mBackground);
         // Boxing the scene
 
-        FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
+        final FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);       
+        
+        
+        final float HEIGHT = ea.getFloat("height", mGameActivity.getCameraDimensions().y),
+                WIDTH = ea.getFloat("width", mGameActivity.getCameraDimensions().x);
 
         float[][] lines = {
-            {0.0f, 0.0f, ea.getFloat("width", mGameActivity.getCameraDimensions().x), 0.0f},
-            {ea.getFloat("width", mGameActivity.getCameraDimensions().x), 0.0f, ea.getFloat("width", mGameActivity.getCameraDimensions().x), ea.getFloat("height", mGameActivity.getCameraDimensions().y)},
-            {ea.getFloat("width", mGameActivity.getCameraDimensions().x), ea.getFloat("height", mGameActivity.getCameraDimensions().y), 0.0f, ea.getFloat("height", mGameActivity.getCameraDimensions().y)},
-            {0.0f, ea.getFloat("height", mGameActivity.getCameraDimensions().y), 0.0f, 0.0f}
+            {0.0f, 0.0f, WIDTH, 0.0f},
+            {WIDTH, 0.0f, WIDTH, HEIGHT},
+            {WIDTH, HEIGHT, 0.0f, HEIGHT},
+            {0.0f, HEIGHT, 0.0f, 0.0f}
         };
 
         for (float[] points : lines) {
 
-            Body lineBody = PhysicsFactory.createLineBody(mGameActivity.getPhysicsWorld(), points[0], points[1], points[2], points[3], limitsFixtureDef);
-            Line lineShape = new Line(points[0], points[1], points[2], points[3], mGameActivity.getVertexBufferObjectManager());
-            mGameActivity.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, false, false));
-            //mGameActivity.getScene().attachChild(lineShape);
+            final Line lineShape = new Line(points[0], points[1], points[2], points[3], mGameActivity.getVertexBufferObjectManager());
+
+            final Body lineBody = PhysicsFactory.createLineBody(mGameActivity.getPhysicsWorld(), lineShape, limitsFixtureDef);
+
+            mGameActivity.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, true, true));
+            mGameActivity.getScene().attachChild(lineShape);
 
         }
 

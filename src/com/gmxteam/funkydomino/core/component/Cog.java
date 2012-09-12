@@ -64,14 +64,15 @@ public final class Cog extends Component {
      *
      */
     public static final float COG_MOTOR_SPEED = 300.0f,
-    /**
-     *
-     */
-    COG_MOTOR_MAX_TORQUE = 1000.0f;
+            /**
+             *
+             */
+            COG_MOTOR_MAX_TORQUE = 1000.0f;
     private Body mCogBody;
     private Body[] mCogToothBodies = new Body[COG_TEETH_COUNT];
     private Rectangle[] mCogToothRectangles = new Rectangle[COG_TEETH_COUNT];
     private Sprite mCogSprite;
+    private TextureRegion mCogTextureRegion;
 
     /**
      *
@@ -82,18 +83,24 @@ public final class Cog extends Component {
         BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), COG_RADIUS * 2, COG_RADIUS * 2, GameActivity.TEXTURE_OPTION);
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-        TextureRegion mCogTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "cog.png", 0, 0);
+        mCogTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "cog.png", 0, 0);
 
 
-        mCogSprite = new Sprite(0, 0, mCogTextureRegion, getVertexBufferObjectManager());
 
+
+    }
+
+    @Override
+    protected void onCreateSprite(float pX, float pY, float angle) {
+
+        mCogSprite = new Sprite(pX, pY, mCogTextureRegion, getVertexBufferObjectManager());
+        mCogSprite.setRotation(angle);
 
         for (int i = 0; i < mCogToothRectangles.length; i++) {
             mCogToothRectangles[i] = new Rectangle(0.0f, 0.0f, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getVertexBufferObjectManager());
 
-
+            mCogToothRectangles[i].setRotation(angle);
         }
-
     }
 
     @Override
@@ -101,7 +108,7 @@ public final class Cog extends Component {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
 
 
         mCogBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mCogSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
@@ -139,22 +146,24 @@ public final class Cog extends Component {
                     toothAnchor2 = new Vector2(mCogToothBodies[i].localVector.add(mCogToothBodies[i].getLocalCenter().mul(2f)));
             jd2.initialize(mCogBody, mCogToothBodies[i], cogAnchor2, toothAnchor2);
             pPhysicsWorld.createJoint(jd2);
-            
+
             // On créé un moteur pour faire tourner le cog.
 
-        RevoluteJointDef rjd = new RevoluteJointDef();
+            RevoluteJointDef rjd = new RevoluteJointDef();
 
-        rjd.initialize(mCogToothBodies[i],mCogBody, mCogBody.getLocalCenter());
-        rjd.maxMotorTorque = COG_MOTOR_MAX_TORQUE;
-        rjd.motorSpeed = COG_MOTOR_SPEED;
-        
+            rjd.initialize(mCogToothBodies[i], mCogBody, mCogBody.getLocalCenter());
+            rjd.maxMotorTorque = COG_MOTOR_MAX_TORQUE;
+            rjd.motorSpeed = COG_MOTOR_SPEED;
 
-        pPhysicsWorld.createJoint(rjd);
+
+            pPhysicsWorld.createJoint(rjd);
 
 
         }
-        
-        
+
+
+
+
 
 
 

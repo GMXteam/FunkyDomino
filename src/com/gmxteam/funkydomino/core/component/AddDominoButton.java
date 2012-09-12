@@ -4,6 +4,8 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.ContactManager;
@@ -15,6 +17,7 @@ import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.ButtonSprite.OnClickListener;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -35,6 +38,7 @@ public class AddDominoButton extends Component implements OnClickListener {
      *
      */
     DOMINO_HEIGHT = 64;
+    private TextureRegion mDominoTextureRegion;
 
     /**
      *
@@ -48,10 +52,17 @@ public class AddDominoButton extends Component implements OnClickListener {
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
 
-        TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
+         mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
 
 
-        mAddDominoButtonSprite = new ButtonSprite(0.0f, 0.0f, mDominoTextureRegion, this.getVertexBufferObjectManager());
+       
+    }
+    
+    
+    @Override
+    protected void onCreateSprite(float pX, float pY, float angle) {
+       mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
+       mAddDominoButtonSprite.setRotation(angle);
         mAddDominoButtonSprite.setOnClickListener(this);
     }
 
@@ -68,7 +79,7 @@ public class AddDominoButton extends Component implements OnClickListener {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
     }
 
     @Override
@@ -106,4 +117,6 @@ public class AddDominoButton extends Component implements OnClickListener {
 
 
     }
+
+
 }

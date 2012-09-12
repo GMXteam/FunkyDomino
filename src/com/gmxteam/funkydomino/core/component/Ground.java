@@ -74,8 +74,13 @@ public class Ground extends Component {
         mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "background_grass.png", 0, 0);
         this.getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-        mGround = new Sprite(0.0f, 0.0f, mGroundTextureRegion, getVertexBufferObjectManager());
 
+    }
+    
+    @Override
+    protected void onCreateSprite(float pX, float pY, float angle) {
+        mGround = new Sprite(pX, pY, mGroundTextureRegion, getVertexBufferObjectManager());
+        mGround.setRotation(angle);
     }
 
     @Override
@@ -84,14 +89,16 @@ public class Ground extends Component {
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld, ComponentAttributes pAttributes) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
         Vector2[] defaultVectors = {};
 
-        Log.v(GameActivity.LOG_TAG, Arrays.toString(pAttributes.getVector2Array("vector", defaultVectors)));
+        Log.v(GameActivity.LOG_TAG, Arrays.toString(mComponentAttributes.getVector2Array("vector", defaultVectors)));
 
-        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround,pAttributes.getVector2Array("vector", defaultVectors), BodyDef.BodyType.StaticBody, mFixtureDef);
+        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround,mComponentAttributes.getVector2Array("vector", defaultVectors), BodyDef.BodyType.StaticBody, mFixtureDef);
 
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
+        
+        
     }
 
     @Override
@@ -113,4 +120,8 @@ public class Ground extends Component {
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
     }
+
+    
+
+   
 }

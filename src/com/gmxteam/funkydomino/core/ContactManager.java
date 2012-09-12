@@ -22,12 +22,12 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import java.util.concurrent.ConcurrentHashMap;
-import org.andengine.util.debug.Debug;
 
 /**
- * Permet de binder le ContactListener provenant de PhysicsWorld à plusieurs 
+ * Permet de binder le ContactListener provenant de PhysicsWorld à plusieurs
  * ContactListener afin de pouvoir gérer les événements de collisions depuis
  * plusieurs endroits en même temps.
+ *
  * @author Guillaume Poirier-Morency
  */
 public class ContactManager implements ContactListener {
@@ -50,9 +50,9 @@ public class ContactManager implements ContactListener {
      */
     public void beginContact(Contact cntct) {
 
-        Debug.v("Contact entre le body " + cntct.getFixtureA().getBody()
-                + " et " + cntct.getFixtureB().getBody());
-
+        /*Debug.v("Contact entre le body " + cntct.getFixtureA().getBody()
+         + " et " + cntct.getFixtureB().getBody());
+         */
         final ContactListener cl = mBodies.get(cntct.getFixtureA().getBody());
 
         if (cl != null) {
