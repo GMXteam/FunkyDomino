@@ -7,7 +7,7 @@ package com.gmxteam.funkydomino.activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Point;
-import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.SoundManager;
 import org.andengine.engine.camera.SmoothCamera;

@@ -107,6 +107,8 @@ public class ComponentAttributes extends HashMap<String, String> {
             return new Vector2[0];
         }
         
+        source = source.replaceAll("\\s", "");
+        
         String stringVector = source;
 
 

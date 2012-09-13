@@ -25,7 +25,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;

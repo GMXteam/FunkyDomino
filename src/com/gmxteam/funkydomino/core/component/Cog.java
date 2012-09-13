@@ -23,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.Rectangle;

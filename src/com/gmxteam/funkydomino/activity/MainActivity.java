@@ -24,7 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import com.gmxteam.funkydomino.core.Levels;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
 import com.gmxteam.funkydomino.core.component.factory.Components;

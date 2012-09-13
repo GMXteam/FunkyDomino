@@ -19,7 +19,7 @@ package com.gmxteam.funkydomino.core.component;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.ITouchArea;
 import org.andengine.entity.scene.Scene;

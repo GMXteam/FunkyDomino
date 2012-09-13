@@ -21,7 +21,7 @@ import android.content.Context;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
-import com.gmxteam.funkydomino.core.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <level width="5000.0" >
-    
+    <ground vector="
+        0.0,0.0;
+        1.0,0.0;
+        0.0,1.0;
+       
+        " />
     <cog x="100.1" y="200.6" />    
     <domino x="100.1" y="200.6" />
     <ball x="400.1" y="200.6" />    
