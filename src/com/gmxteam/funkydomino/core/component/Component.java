@@ -45,8 +45,13 @@ import org.andengine.util.debug.Debug;
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Entity implements ComponentsConstants {
+public abstract class Component extends Entity {
 
+    final float DEFAULT_FRICTION = 1.0f,
+            DEFAULT_DENSITY = 1.0f,
+            DEFAULT_X = 0.0f,
+            DEFAULT_Y = 0.0f,
+            DEFAULT_ANGLE = 0.0f;
     /**
      *
      */
@@ -54,12 +59,14 @@ public abstract class Component extends Entity implements ComponentsConstants {
     /**
      *
      */
-    protected IFunkyDominoBaseActivity mGameActivity;
+    protected IFunkyDominoBaseActivity mFunkyDominoBaseActivity;
     /**
      *
      */
     protected Sound mCollisionSound;
-    
+    /**
+     *
+     */
     protected ComponentAttributes mComponentAttributes;
 
     /**
@@ -70,43 +77,34 @@ public abstract class Component extends Entity implements ComponentsConstants {
      */
     public final Component factory(IFunkyDominoBaseActivity ga, ComponentAttributes att) {
 
-        mGameActivity = ga;
-        
+        mFunkyDominoBaseActivity = ga;
+
         mComponentAttributes = att;
 
         try {
-            mCollisionSound = SoundFactory.createSoundFromAsset(mGameActivity.getSoundManager(), ga.getContext(), "explosion.ogg");
+            mCollisionSound = SoundFactory.createSoundFromAsset(mFunkyDominoBaseActivity.getSoundManager(), ga.getContext(), "explosion.ogg");
         } catch (IOException ex) {
-            Logger.getLogger(Component.class.getName()).log(Level.SEVERE, null, ex);
+            Debug.e(ex);
         }
-
-
-
-
-
-
 
         mFixtureDef = new FixtureDef();
 
-        mFixtureDef.density = att.getFloat("density", 1.0f);
+        mFixtureDef.density = att.getFloat("density", DEFAULT_DENSITY);
 
-        mFixtureDef.friction = att.getFloat("friction", 1.0f);
-
+        mFixtureDef.friction = att.getFloat("friction", DEFAULT_FRICTION);
 
         onLoadResource();
-        
-        onCreateSprite(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
 
-        onCreateFixtureDef(mFixtureDef, att);
+        onCreateSprite(att.getFloat("x", DEFAULT_X), att.getFloat("y", DEFAULT_Y), att.getFloat("angle", DEFAULT_ANGLE));
 
-        onPopulatePhysicsWorld(mGameActivity.getPhysicsWorld());
-                //.setTransform(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
+        onPopulatePhysicsWorld(mFunkyDominoBaseActivity.getPhysicsWorld());
+        //.setTransform(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
 
         onPopulateEntity(this);
 
-        onRegisterTouchAreas(mGameActivity.getScene());
+        onRegisterTouchAreas(mFunkyDominoBaseActivity.getScene());
 
-        onRegisterContactListener(mGameActivity.getContactManager());
+        onRegisterContactListener(mFunkyDominoBaseActivity.getContactManager());
 
         Debug.v("Un nouveau composant est créé ["
                 + this.getX() + "," + this.getY() + "]");
@@ -121,23 +119,19 @@ public abstract class Component extends Entity implements ComponentsConstants {
      *
      */
     protected abstract void onLoadResource();
-    
-    protected abstract void onCreateSprite(float pX, float pY, float angle);
 
     /**
-     * Altération du FixtureDef (propriétés physiques initiales et
-     * fondamentales)
      *
-     * @param pFixtureDef
-     * @param pAttributes
+     * @param pX
+     * @param pY
+     * @param angle
      */
-    protected abstract void onCreateFixtureDef(FixtureDef pFixtureDef, ComponentAttributes pAttributes);
+    protected abstract void onCreateSprite(float pX, float pY, float angle);
 
     /**
      * Binding de l'entité avec le monde physique.
      *
      * @param pPhysicsWorld
-     * @param pAttributes
      */
     protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld);
 
@@ -169,7 +163,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
      * @return
      */
     protected final TextureManager getTextureManager() {
-        return mGameActivity.getTextureManager();
+        return mFunkyDominoBaseActivity.getTextureManager();
 
     }
 
@@ -178,7 +172,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
      * @return
      */
     protected final VertexBufferObjectManager getVertexBufferObjectManager() {
-        return mGameActivity.getVertexBufferObjectManager();
+        return mFunkyDominoBaseActivity.getVertexBufferObjectManager();
     }
 
     /**
@@ -186,7 +180,7 @@ public abstract class Component extends Entity implements ComponentsConstants {
      * @return
      */
     protected final MusicManager getMusicManager() {
-        return mGameActivity.getMusicManager();
+        return mFunkyDominoBaseActivity.getMusicManager();
     }
 
     /**
@@ -194,9 +188,6 @@ public abstract class Component extends Entity implements ComponentsConstants {
      * @return
      */
     protected final Context getContext() {
-        return (Context) mGameActivity;
+        return (Context) mFunkyDominoBaseActivity;
     }
-    
-   
-    
 }

@@ -59,6 +59,12 @@ public class AddDominoButton extends Component implements OnClickListener {
     }
     
     
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
        mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
@@ -74,9 +80,7 @@ public class AddDominoButton extends Component implements OnClickListener {
         mAddDominoButtonSprite.setOnClickListener(ocl);
     }
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef pFixtureDef, ComponentAttributes pAttributes) {
-    }
+    
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
@@ -108,7 +112,7 @@ public class AddDominoButton extends Component implements OnClickListener {
      */
     public void onClick(ButtonSprite bs, float f, float f1) {
         try {
-            mGameActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
+            mFunkyDominoBaseActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
         } catch (InstantiationException ex) {
             Logger.getLogger(AddDominoButton.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {

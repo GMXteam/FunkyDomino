@@ -13,6 +13,8 @@ import org.andengine.audio.sound.SoundManager;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.detector.PinchZoomDetector;
+import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -22,9 +24,9 @@ import org.andengine.ui.IGameInterface;
  *
  * @author guillaume
  */
-public interface IFunkyDominoBaseActivity extends IGameInterface {
-    
-      ////////////////////////////////////////////////////////////////////////////
+public interface IFunkyDominoBaseActivity extends IGameInterface, ScrollDetector.IScrollDetectorListener, PinchZoomDetector.IPinchZoomDetectorListener {
+
+    ////////////////////////////////////////////////////////////////////////////
     // Constantes publiques. Elles sont disponibles dans tout le projet.
     /**
      *
@@ -36,7 +38,6 @@ public interface IFunkyDominoBaseActivity extends IGameInterface {
     public static final boolean DEBUG = true;
     ////////////////////////////////////////////////////////////////////////////
     // Constantes spécifiques aux activités
-    public static final float SCROLL_SPEED_MULTIPLIER = 4.0f;
     /**
      *
      */
@@ -48,11 +49,11 @@ public interface IFunkyDominoBaseActivity extends IGameInterface {
     /**
      *
      */
-    public static final float CAMERA_MAX_VELOCITY_X =  20.0f;
+    public static final float CAMERA_MAX_VELOCITY_X = 20.0f;
     /**
      *
      */
-    public static final float CAMERA_MAX_VELOCITY_Y =  CAMERA_MAX_VELOCITY_X;
+    public static final float CAMERA_MAX_VELOCITY_Y = CAMERA_MAX_VELOCITY_X;
     /**
      *
      */
@@ -61,10 +62,10 @@ public interface IFunkyDominoBaseActivity extends IGameInterface {
      *
      */
     public static final float CAMERA_Z_NEAR = 10.0f,
-    /**
-     *
-     */
-    CAMERA_Z_FAR = 20.0f;
+            /**
+             *
+             */
+            CAMERA_Z_FAR = 20.0f;
     /**
      *
      */
@@ -81,79 +82,74 @@ public interface IFunkyDominoBaseActivity extends IGameInterface {
      *
      */
     public static final float WORLD_TOP = 0.0f;
-    
     /**
      *
      */
     public static TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
-    
-    
-    
-    
+
     /**
      *
      * @return
      */
     public AssetManager getAssets();
-    
+
     /**
      *
      * @return
      */
     public SoundManager getSoundManager();
-    
+
     /**
      *
      * @return
      */
     public SmoothCamera getCamera();
-    
+
     /**
      *
      * @return
      */
     public MusicManager getMusicManager();
-    
+
     /**
      *
      * @return
      */
     public Context getContext();
-    
+
     /**
      *
      * @return
      */
     public PhysicsWorld getPhysicsWorld();
-    
+
     /**
      *
      * @return
      */
     public Scene getScene();
-    
+
     /**
      *
      * @return
      */
     public ContactManager getContactManager();
-    
+
     /**
      *
      * @return
      */
     public TextureManager getTextureManager();
-    
+
     /**
      *
      * @return
      */
     public Point getCameraDimensions();
-    
+
     /**
      *
      * @return
      */
     public VertexBufferObjectManager getVertexBufferObjectManager();
-    
 }

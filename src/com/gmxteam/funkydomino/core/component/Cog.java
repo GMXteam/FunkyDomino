@@ -90,6 +90,12 @@ public final class Cog extends Component {
 
     }
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
 
@@ -103,9 +109,6 @@ public final class Cog extends Component {
         }
     }
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
-    }
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {

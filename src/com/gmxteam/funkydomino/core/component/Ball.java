@@ -65,6 +65,12 @@ public final class Ball extends Component implements ContactListener {
 
     }
     
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
         mBallSprite = new Sprite(pX, pY, mBallTextureRegion, getVertexBufferObjectManager());
@@ -72,9 +78,7 @@ public final class Ball extends Component implements ContactListener {
     }
 
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
-    }
+   
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {

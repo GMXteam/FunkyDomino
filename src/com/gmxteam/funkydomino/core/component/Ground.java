@@ -77,16 +77,19 @@ public class Ground extends Component {
 
     }
     
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
         mGround = new Sprite(pX, pY, mGroundTextureRegion, getVertexBufferObjectManager());
         mGround.setRotation(angle);
     }
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
-        //this.mVertex = mAttributes.getVector2Value("vector", null);
-    }
+   
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {

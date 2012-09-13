@@ -43,6 +43,9 @@ import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.sensor.orientation.IOrientationListener;
 import org.andengine.input.sensor.orientation.OrientationData;
+import org.andengine.input.touch.TouchEvent;
+import org.andengine.input.touch.detector.PinchZoomDetector;
+import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.SimpleLayoutGameActivity;
@@ -92,6 +95,7 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
      */
     public void onPlayClick(View v) {
         Intent i = new Intent(MainActivity.this, GameActivity.class);
+        i.putExtra("bundle.level", Levels.LEVEL_1.name());
         startActivity(i);
 
     }
@@ -102,6 +106,7 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
      */
     public void onNewGameClick(View v) {
         Intent i = new Intent(MainActivity.this, GameActivity.class);
+        i.putExtra("bundle.level", Levels.LEVEL_1.name());
         startActivity(i);
     }
 
@@ -311,5 +316,67 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
      */
     public SmoothCamera getCamera() {
         return mCamera;
+    }
+
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
+    public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
+    public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
+    public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     * @param pzd
+     * @param te
+     */
+    public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     * @param pzd
+     * @param te
+     * @param f
+     */
+    public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float f) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     *
+     * @param pzd
+     * @param te
+     * @param f
+     */
+    public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

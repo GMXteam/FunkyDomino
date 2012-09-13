@@ -29,15 +29,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.core.ContactManager;
-import com.gmxteam.funkydomino.core.loader.HUDLoader;
 import com.gmxteam.funkydomino.core.Levels;
-import com.gmxteam.funkydomino.core.loader.SceneLoader;
+import com.gmxteam.funkydomino.core.TimeCounterHandler;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.loader.ComponentLoader;
 import com.gmxteam.funkydomino.core.component.factory.Components;
+import com.gmxteam.funkydomino.core.loader.ComponentLoader;
+import com.gmxteam.funkydomino.core.loader.HUDLoader;
+import com.gmxteam.funkydomino.core.loader.SceneLoader;
 import java.io.IOException;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
+import org.andengine.engine.Engine;
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -49,9 +51,7 @@ import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.PinchZoomDetector;
-import org.andengine.input.touch.detector.PinchZoomDetector.IPinchZoomDetectorListener;
 import org.andengine.input.touch.detector.ScrollDetector;
-import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
@@ -70,11 +70,13 @@ import org.xmlpull.v1.XmlPullParserException;
  */
 public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseActivity {
 
-    private boolean mResumeDialogMayShow = false;
+    private Levels mGameToLoad;
+    private TimeCounterHandler mTimeCounterHandler = new TimeCounterHandler();
 
     ////////////////////////////////////////////////////////////////////////////
     // Events
     /**
+     * <p> Bundle keys : bundle.game Name of the game to load.
      *
      * @param b
      */
@@ -92,13 +94,19 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         PreferenceManager.setDefaultValues(this,
                 R.layout.preference_about, false);
 
+        b = b == null ? getIntent().getExtras() : b;
 
+        assert b != null;
 
+        mGameToLoad = Levels.valueOf(b.getString("bundle.level", Levels.LEVEL_1.name()));
 
         // Configs de déboguage
         Debug.setDebugLevel(DebugLevel.ALL);
         Debug.setTag(LOG_TAG);
+
+        Debug.v("Partie à charger : " + mGameToLoad);
     }
+    private boolean showResumeDialog = false;
 
     /**
      *
@@ -106,30 +114,32 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
     @Override
     public void onResumeGame() {
 
-        if (mResumeDialogMayShow) {
+        if (showResumeDialog) {
             new AlertDialog.Builder(this)
                     .setTitle("Continuer la partie ?")
                     .setMessage("Continuer la partie ?")
                     .setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     GameActivity.super.onResumeGame();
+                    mTimeCounterHandler.resume();
+                    showResumeDialog = false;
+
                 }
             }).show();
-
-
-            mResumeDialogMayShow = false;
         } else {
-            super.onResumeGame();
+            GameActivity.super.onResumeGame();
+            mTimeCounterHandler.resume();
         }
+
+
+
     }
 
-    /**
-     *
-     */
     @Override
     public void onPauseGame() {
+        showResumeDialog = true;
+        mTimeCounterHandler.pause();
         super.onPauseGame();
-        mResumeDialogMayShow = true;
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -139,9 +149,7 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      * @param mi
      */
     public void onHighscoresMenuItemClick(MenuItem mi) {
-        mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, HighscoresActivity.class));
-
     }
 
     /**
@@ -149,7 +157,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      * @param mi
      */
     public void onPreferencesMenuItemClick(MenuItem mi) {
-        mResumeDialogMayShow = true;
         startActivity(new Intent(GameActivity.this, PreferencesActivity.class));
     }
 
@@ -158,16 +165,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      * @param v
      */
     public void onPauseGameMenuItemClick(MenuItem v) {
-        mResumeDialogMayShow = false;
-        onPauseGame();
-    }
-
-    /**
-     *
-     * @param v
-     */
-    public void onResumeGameMenuItemClick(MenuItem v) {
-        mResumeDialogMayShow = false;
         onPauseGame();
     }
 
@@ -194,15 +191,34 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_MENU) {
+    public void onBackPressed() {
+        onPauseGame();
+
+        new AlertDialog.Builder(this)
+                .setTitle("Quitter la partie ?")
+                .setMessage("Quitter la partie ?")
+                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                onResumeGame();
+            }
+        })
+                .setPositiveButton("Quitter", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                GameActivity.super.onBackPressed();
+            }
+        }).show();
+
+
+    }
+
+    @Override
+    public boolean onKeyUp(int i, KeyEvent ke) {
+
+        if (i == KeyEvent.KEYCODE_MENU) {
             onPauseGame();
-
-            mResumeDialogMayShow = false;
-
         }
 
-        return super.onKeyUp(keyCode, event);
+        return super.onKeyUp(i, ke);
     }
 
     /**
@@ -211,25 +227,8 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      */
     @Override
     public void onOptionsMenuClosed(Menu m) {
+        showResumeDialog = false;
         onResumeGame();
-    }
-
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle("Quitter la partie ?")
-                .setMessage("Quitter la partie ?")
-                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        })
-                .setPositiveButton("Quitter", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                GameActivity.super.onBackPressed();
-            }
-        }).show();
-        onPauseGame();
-        mResumeDialogMayShow = false;
     }
     ////////////////////////////////////////////////////////////////////////////
     // Game setup
@@ -263,34 +262,77 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         getWindowManager().getDefaultDisplay().getSize(p);
         return p;
     }
-    private final ScrollDetector mScrollDetector = new ScrollDetector(new IScrollDetectorListener() {
-        public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-        }
 
-        public void onScroll(ScrollDetector sd, int i, float f, float f1) {
+    /**
+     *
+     * @param pzd
+     * @param te
+     */
+    public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
+    }
 
-            mCamera.setCenter(mCamera.getCenterX() - f * SCROLL_SPEED_MULTIPLIER, mCamera.getCenterY() - f1 * SCROLL_SPEED_MULTIPLIER);
+    /**
+     *
+     * @param pzd
+     * @param te
+     * @param pZoomFactor
+     */
+    public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float pZoomFactor) {
 
-        }
+        mCamera.setZoomFactor(pZoomFactor);
+    }
 
-        public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-            Debug.v("Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
-        }
-    });
-    private final PinchZoomDetector mPinchZoomDetector = new PinchZoomDetector(new IPinchZoomDetectorListener() {
-        public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
-        }
+    /**
+     *
+     * @param pzd
+     * @param te
+     * @param f
+     */
+    public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
+        Debug.v("Nouveau facteur de zoom de la caméra : " + f + "x");
 
-        public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float pZoomFactor) {
+    }
 
-            mCamera.setZoomFactor(pZoomFactor);
-        }
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
+    public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
+    }
 
-        public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
-            Debug.v("Nouveau facteur de zoom de la caméra : " + f + "x");
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
+    public void onScroll(ScrollDetector sd, int i, float f, float f1) {
 
-        }
-    });
+        mCamera.setCenter(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
+
+    }
+
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
+    public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
+        Debug.v("Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
+    }
+
+    @Override
+    public Engine onCreateEngine(EngineOptions pEngineOptions) {
+        Engine pEngine = super.onCreateEngine(pEngineOptions);
+        pEngine.registerUpdateHandler(mTimeCounterHandler);
+        return pEngine;
+    }
 
     /**
      *
@@ -347,6 +389,9 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
         mScene = new Scene();
 
+        final ScrollDetector mScrollDetector = new ScrollDetector(this);
+        final PinchZoomDetector mPinchZoomDetector = new PinchZoomDetector(this);
+
         mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
             public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
                 return mScrollDetector.onManagedTouchEvent(te) || mPinchZoomDetector.onManagedTouchEvent(te);
@@ -381,10 +426,9 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même ainsi que le HUD.
          */
-        mLevelLoader.loadLevelFromAsset(getAssets(), Levels.LEVEL_1.toString());
+        mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.toString());
 
         MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
-
 
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }

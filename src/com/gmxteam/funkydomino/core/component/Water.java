@@ -55,15 +55,18 @@ public class Water extends Component {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pw) {

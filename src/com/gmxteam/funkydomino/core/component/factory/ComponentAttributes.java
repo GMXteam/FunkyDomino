@@ -28,6 +28,11 @@ import org.xml.sax.Attributes;
  */
 public class ComponentAttributes extends HashMap<String, String> {
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     public static boolean isFloat(String s) {
      try {
          Float.parseFloat(s);
@@ -38,6 +43,11 @@ public class ComponentAttributes extends HashMap<String, String> {
      }
     }
     
+    /**
+     *
+     * @param s
+     * @return
+     */
     public static boolean isInteger(String s) {
      try {
          Integer.parseInt(s);
@@ -72,6 +82,11 @@ public class ComponentAttributes extends HashMap<String, String> {
         // Copie des attributs dans le dictionnaire
     }
     
+    /**
+     *
+     * @param source
+     * @return
+     */
     public static String vector2ArrayToString (Vector2[] source) {
     
         return Arrays.toString(source);

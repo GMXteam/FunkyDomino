@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.gmxteam.funkydomino.core.Levels;
 
 /**
@@ -52,10 +53,17 @@ public final class LoadGameActivity extends ListActivity {
 
     }
 
+    /**
+     *
+     * @param lv
+     * @param v
+     * @param x
+     * @param y
+     */
     @Override
     public void onListItemClick(ListView lv, View v, int x, long y) {
         Intent i = new Intent(this, GameActivity.class);
-
+        i.putExtra("bundle.level", ((TextView) v).getText());
         startActivity(i);
     }
 }

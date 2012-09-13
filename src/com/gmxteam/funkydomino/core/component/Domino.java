@@ -81,6 +81,12 @@ public final class Domino extends Component implements ContactListener, IScrollD
 
     }
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
         mScrollDetector = new ScrollDetector(this);
@@ -103,9 +109,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
 
     }
 
-    @Override
-    protected void onCreateFixtureDef(FixtureDef fd, ComponentAttributes pAttributes) {
-    }
+ 
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
@@ -171,10 +175,24 @@ public final class Domino extends Component implements ContactListener, IScrollD
     public void postSolve(Contact cntct, ContactImpulse ci) {
     }
 
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
     public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
         mDominoBody.setActive(false);
     }
 
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
     public void onScroll(ScrollDetector sd, int i, float f, float f1) {
         // Make the domino follows the finger.
         mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
@@ -182,6 +200,13 @@ public final class Domino extends Component implements ContactListener, IScrollD
         Debug.v("Domino position : " + mDominoBody.getPosition());
     }
 
+    /**
+     *
+     * @param sd
+     * @param i
+     * @param f
+     * @param f1
+     */
     public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
         mDominoBody.setActive(true);
 
