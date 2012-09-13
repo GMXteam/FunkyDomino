@@ -21,6 +21,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import com.gmxteam.funkydomino.core.Levels;
 
 /**
  * Activité pour charger une partie. Affiche une liste de parties.
@@ -38,17 +40,22 @@ public final class LoadGameActivity extends ListActivity {
         super.onCreate(b);
 
 
-        String[] listItems = {"item 1", "item 2 ", "list", "android", "item 3", "foobar", "bar",};
+        String[] listItems = new String[Levels.values().length];
 
-        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_2, listItems));
+        int i = 0;
+        for (Levels l : Levels.values()) {
+            listItems[i] = l.name();
+            i++;
+        }
+        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems));
 
 
     }
-    
-    
-    public void onChildClick(View v) {
-        Intent i = new Intent(this, GameActivity.class);  
-        
-        startActivity(i);    
+
+    @Override
+    public void onListItemClick(ListView lv, View v, int x, long y) {
+        Intent i = new Intent(this, GameActivity.class);
+
+        startActivity(i);
     }
 }
