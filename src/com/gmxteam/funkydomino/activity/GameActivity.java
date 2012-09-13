@@ -135,6 +135,9 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
     }
 
+    /**
+     *
+     */
     @Override
     public void onPauseGame() {
         showResumeDialog = true;
@@ -327,6 +330,11 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
         Debug.v("Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
     }
 
+    /**
+     *
+     * @param pEngineOptions
+     * @return
+     */
     @Override
     public Engine onCreateEngine(EngineOptions pEngineOptions) {
         Engine pEngine = super.onCreateEngine(pEngineOptions);

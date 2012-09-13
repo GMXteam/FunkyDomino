@@ -16,40 +16,71 @@ public class TimeCounterHandler implements IUpdateHandler {
     private float mElapsedTime;
     private boolean mIsPaused = true;
 
+    /**
+     *
+     * @param initTime
+     */
     public TimeCounterHandler(float initTime) {
         mElapsedTime = initTime;
     }
 
+    /**
+     *
+     */
     public TimeCounterHandler() {
         mElapsedTime = 0l;
     }
 
+    /**
+     *
+     */
     public void pause() {
         mIsPaused = true;
     }
 
+    /**
+     *
+     */
     public void resume() {
         mIsPaused = false;
     }
 
+    /**
+     *
+     */
     public void start() {
 
         reset();
         mIsPaused = false;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isPaused() {
         return mIsPaused;
     }
 
+    /**
+     *
+     * @return
+     */
     public float getElapsedTime() {
         return mElapsedTime;
     }
 
+    /**
+     *
+     * @param f
+     */
     public void onUpdate(float f) {
         mElapsedTime += f;
     }
 
+    /**
+     *
+     */
     public void reset() {
         mElapsedTime = 0.0f;
     }

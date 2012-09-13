@@ -90,7 +90,9 @@ public class Ground extends Component {
 
         @Override
         public boolean contains(final float pX, final float pY) {
-            return ShapeCollisionChecker.checkContains(mVertices, mVertices.length, pX, pY);
+            // TODO: Collision checking
+            return false;
+            // return ShapeCollisionChecker.checkContains(mVertices, mVertices.length , pX, pY);
         }
 
         public float getWidth() {
@@ -174,7 +176,7 @@ public class Ground extends Component {
 
         mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, getVertices(), BodyDef.BodyType.StaticBody, mFixtureDef);
 
-        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, false, false));
+        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
 
 
     }
