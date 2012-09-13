@@ -98,9 +98,9 @@ public final class Domino extends Component implements ContactListener, IScrollD
                 return mScrollDetector.onManagedTouchEvent(te);
             }
         };
-        
+
         mDominoSprite.setRotation(angle);
-        
+
     }
 
     @Override

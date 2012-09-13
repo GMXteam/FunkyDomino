@@ -17,7 +17,7 @@
                             android:defaultValue="true" />
         
         <CheckBoxPreference android:key="engine.graphic.multisampling" 
-                            android:title="Antialiasing"                        
+                            android:title="Multisampling"                        
                             android:defaultValue="true" />
         
     </PreferenceCategory>

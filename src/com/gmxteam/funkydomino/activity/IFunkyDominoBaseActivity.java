@@ -36,6 +36,7 @@ public interface IFunkyDominoBaseActivity extends IGameInterface {
     public static final boolean DEBUG = true;
     ////////////////////////////////////////////////////////////////////////////
     // Constantes spécifiques aux activités
+    public static final float SCROLL_SPEED_MULTIPLIER = 4.0f;
     /**
      *
      */
@@ -47,7 +48,7 @@ public interface IFunkyDominoBaseActivity extends IGameInterface {
     /**
      *
      */
-    public static final float CAMERA_MAX_VELOCITY_X =  500.0f;
+    public static final float CAMERA_MAX_VELOCITY_X =  20.0f;
     /**
      *
      */

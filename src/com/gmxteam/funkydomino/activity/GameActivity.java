@@ -245,7 +245,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      *
      */
     public PhysicsWorld mPhysicsWorld;
-  
     /**
      *
      */
@@ -270,7 +269,7 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
         public void onScroll(ScrollDetector sd, int i, float f, float f1) {
 
-            mCamera.setCenter(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
+            mCamera.setCenter(mCamera.getCenterX() - f * SCROLL_SPEED_MULTIPLIER, mCamera.getCenterY() - f1 * SCROLL_SPEED_MULTIPLIER);
 
         }
 
@@ -371,13 +370,13 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      *
      * @param pScene
      * @param pOnPopulateSceneCallback
-     * @throws InstantiationException 
+     * @throws InstantiationException
      * @throws IllegalAccessException
-     * @throws IOException 
-     * @throws XmlPullParserException  
+     * @throws IOException
+     * @throws XmlPullParserException
      */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws InstantiationException, IllegalAccessException, IOException, XmlPullParserException {
-  
+
 
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même ainsi que le HUD.

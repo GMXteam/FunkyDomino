@@ -16,55 +16,39 @@
  */
 package com.gmxteam.funkydomino.activity;
 
-import android.app.ExpandableListActivity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.SimpleExpandableListAdapter;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import android.view.View;
+import android.widget.ArrayAdapter;
 
 /**
  * Activité pour charger une partie. Affiche une liste de parties.
  *
  * @author Guillaume Poirier-Morency
  */
-public final class LoadGameActivity extends ExpandableListActivity {
+public final class LoadGameActivity extends ListActivity {
 
-	/**
+    /**
      *
      * @param b
      */
     @Override
-	public void onCreate(Bundle b) {
-		super.onCreate(b);
-		setContentView(R.layout.load_game);
-
-		List<Map<String, String>> groupData = new LinkedList<Map<String, String>>();
-		String[] groupFrom = new String[0];
-		int[] groupTo = new int[0];
-		List<List<Map<String, String>>> childData = new LinkedList<List<Map<String, String>>>();
-		
-		List<Map<String, String>> rowData = new LinkedList<Map<String, String>>();
-		Map<String, String> data = new HashMap<String, String>();
-		data.put("saved_game_1", "Some shits");
-		rowData.add(data);
-		childData.add(rowData);
-		
-		
-		String[] childFrom = new String[0];
-		int[] childTo = new int[0];
-
-		SimpleExpandableListAdapter sela = new SimpleExpandableListAdapter(
-			this,
-			groupData, R.id.list_group,
-			groupFrom, groupTo,
-			childData,
-			R.id.list_child, childFrom, childTo);
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
 
 
-		this.setListAdapter(sela);
+        String[] listItems = {"item 1", "item 2 ", "list", "android", "item 3", "foobar", "bar",};
+
+        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_2, listItems));
 
 
-	}
+    }
+    
+    
+    public void onChildClick(View v) {
+        Intent i = new Intent(this, GameActivity.class);  
+        
+        startActivity(i);    
+    }
 }

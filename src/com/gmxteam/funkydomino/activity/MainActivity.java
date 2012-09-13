@@ -187,8 +187,8 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
 
                 this.mGravity.x = pOrientationData.getRoll();
                 this.mGravity.y = pOrientationData.getYaw();
-                //Debug.v("Gravity has changed " + mGravity);
-                //mPhysicsWorld.setGravity(this.mGravity);
+                Debug.v("Gravity has changed " + mGravity);
+                mPhysicsWorld.setGravity(this.mGravity);
             }
         });
 
