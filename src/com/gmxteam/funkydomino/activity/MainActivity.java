@@ -24,12 +24,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import com.gmxteam.funkydomino.core.Levels;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
 import com.gmxteam.funkydomino.core.component.factory.Components;
 import com.gmxteam.funkydomino.core.loader.ComponentLoader;
 import com.gmxteam.funkydomino.core.loader.SceneLoader;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import java.io.IOException;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
@@ -189,10 +189,8 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
             }
 
             public void onOrientationChanged(OrientationData pOrientationData) {
-
                 this.mGravity.x = pOrientationData.getRoll();
                 this.mGravity.y = pOrientationData.getYaw();
-                Debug.v("Gravity has changed " + mGravity);
                 mPhysicsWorld.setGravity(this.mGravity);
             }
         });

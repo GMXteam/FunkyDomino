@@ -16,11 +16,9 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import android.util.Log;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import java.util.Arrays;
 import org.andengine.entity.Entity;
@@ -35,7 +33,6 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttribute;
-import org.andengine.util.algorithm.collision.ShapeCollisionChecker;
 import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
 
@@ -60,10 +57,14 @@ public class Ground extends Component {
             bufferDataIndex += GroundMesh.VERTEX_SIZE;
         }
 
-        Debug.v("Nombre de données dans le buffer" + bufferData.length);
-        Debug.v("Nombre de vecteurs dans le buffer" + vectors.length * GroundMesh.VERTEX_SIZE);
+        Debug.v("Nombre de données dans le buffer " + bufferData.length);
+        Debug.v("Nombre de vecteurs dans le buffer " + vectors.length);
 
         return bufferData;
+    }
+
+    @Override
+    protected void onRegisterTouchAreas(Scene pScene) {
     }
 
     class GroundMesh extends Mesh implements IAreaShape {
@@ -86,13 +87,6 @@ public class Ground extends Component {
                 mVertices[vectorIndex + GroundMesh.VERTEX_INDEX_Y] = v.y;
                 vectorIndex += 2;
             }
-        }
-
-        @Override
-        public boolean contains(final float pX, final float pY) {
-            // TODO: Collision checking
-            return false;
-            // return ShapeCollisionChecker.checkContains(mVertices, mVertices.length , pX, pY);
         }
 
         public float getWidth() {
@@ -122,22 +116,6 @@ public class Ground extends Component {
     }
     private Body mGroundBody;
     private GroundMesh mGround;
-    /**
-     *
-     */
-    public static final int GROUND_TEXTURE_HEIGHT = 32,
-            /**
-             *
-             */
-            GROUND_TEXTURE_WIDTH = 32,
-            /**
-             *
-             */
-            GROUND_COLUMNS = 10,
-            /**
-             *
-             */
-            GROUND_ROWS = 10;
     private Vector2[] defaultVectors = {};
 
     /**
@@ -172,9 +150,9 @@ public class Ground extends Component {
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
 
-        Log.v(GameActivity.LOG_TAG, Arrays.toString(getVertices()));
+        Debug.v(Arrays.toString(getVertices()));
 
-        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, getVertices(), BodyDef.BodyType.StaticBody, mFixtureDef);
+        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, getVertices(), BodyDef.BodyType.DynamicBody, mFixtureDef);
 
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
 
@@ -184,11 +162,6 @@ public class Ground extends Component {
     @Override
     protected void onPopulateEntity(Entity e) {
         e.attachChild(mGround);
-    }
-
-    @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
-        pScene.registerTouchArea(mGround);
     }
 
     /**

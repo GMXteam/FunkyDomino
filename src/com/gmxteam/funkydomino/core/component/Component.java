@@ -16,15 +16,12 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import android.content.Context;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
+import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
@@ -47,7 +44,7 @@ import org.andengine.util.debug.Debug;
  */
 public abstract class Component extends Entity {
 
-    final float DEFAULT_FRICTION = 1.0f,
+    final static float DEFAULT_FRICTION = 1.0f,
             DEFAULT_DENSITY = 1.0f,
             DEFAULT_X = 0.0f,
             DEFAULT_Y = 0.0f,
