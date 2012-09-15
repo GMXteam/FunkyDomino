@@ -21,17 +21,16 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
@@ -64,6 +63,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
      */
     @Override
     protected void onLoadResource() {
+
         BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, GameActivity.TEXTURE_OPTION);
 
 
@@ -89,7 +89,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
      */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
-        mScrollDetector = new ScrollDetector(this);
+        mScrollDetector = new ScrollDetector(1.0f, this);
 
 
 
@@ -109,8 +109,6 @@ public final class Domino extends Component implements ContactListener, IScrollD
 
     }
 
- 
-
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
         mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
@@ -124,13 +122,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
 
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
-
-
         pScene.registerTouchArea(mDominoSprite);
-
-
-
-
     }
 
     ////////////////////////////////////
@@ -183,7 +175,6 @@ public final class Domino extends Component implements ContactListener, IScrollD
      * @param f1
      */
     public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-        mDominoBody.setActive(false);
     }
 
     /**
@@ -195,9 +186,9 @@ public final class Domino extends Component implements ContactListener, IScrollD
      */
     public void onScroll(ScrollDetector sd, int i, float f, float f1) {
         // Make the domino follows the finger.
-        mDominoBody.setTransform(f, f1, mDominoBody.getAngle());
-
-        Debug.v("Domino position : " + mDominoBody.getPosition());
+        f = f / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+        f1 = f1 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+        mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
     }
 
     /**
@@ -208,7 +199,8 @@ public final class Domino extends Component implements ContactListener, IScrollD
      * @param f1
      */
     public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-        mDominoBody.setActive(true);
-
+        f = f / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+        f1 = f1 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
+        mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
     }
 }

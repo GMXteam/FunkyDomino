@@ -16,16 +16,25 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.PhysicsFactory;
+import java.util.Arrays;
 import org.andengine.entity.Entity;
-import org.andengine.entity.scene.ITouchArea;
+import org.andengine.entity.primitive.DrawMode;
+import org.andengine.entity.primitive.Mesh;
+import org.andengine.entity.primitive.vbo.HighPerformanceMeshVertexBufferObject;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.entity.shape.IAreaShape;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.vbo.DrawType;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttribute;
+import org.andengine.util.color.Color;
+import org.andengine.util.debug.Debug;
 
 /**
  * Objet pour générer de l'eau. Cela risque plus d'être un champ de force
@@ -36,23 +45,14 @@ import org.andengine.input.touch.TouchEvent;
  */
 public class Water extends Component {
 
-    private TiledSprite mWater;
-
-    /**
-     *
-     * @return
-     */
-    public ITouchArea getTouchArea() {
-        return mWater;
-    }
+    private Body mWaterBody;
+    private WaterMesh mWater;
 
     /**
      *
      */
     @Override
     protected void onLoadResource() {
-
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -63,36 +63,30 @@ public class Water extends Component {
      */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        mWater = new WaterMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
+        mWater.setRotation(angle);
+        mWater.setColor(Color.BLUE);
     }
-
-    
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+
+        Debug.v(Arrays.toString(getVertices()));
+
+        mWaterBody = PhysicsFactory.createPolygonBody(pw, mWater, BodyDef.BodyType.DynamicBody, mFixtureDef);
+
+        pw.registerPhysicsConnector(new PhysicsConnector(mWater, mWaterBody, true, true));
+
     }
 
     @Override
     protected void onPopulateEntity(Entity e) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     *
-     * @param te
-     * @param ita
-     * @param f
-     * @param f1
-     * @return
-     */
-    public boolean onAreaTouched(TouchEvent te, ITouchArea ita, float f, float f1) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        e.attachChild(mWater);
     }
 
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -101,6 +95,44 @@ public class Water extends Component {
      */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    class WaterMesh extends Mesh implements IAreaShape {
+
+        /**
+         * Uses a default {@link HighPerformanceMeshVertexBufferObject} in
+         * {@link DrawType#STATIC} with the
+         * {@link VertexBufferObjectAttribute}s:
+         * {@link Mesh#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
+         */
+        public WaterMesh(final float pX, final float pY, final Vector2[] vertices, final VertexBufferObjectManager pVertexBufferObjectManager) {
+            super(pX, pY, vector2ArrayToBufferData(vertices), vertices.length, DrawMode.TRIANGLES, pVertexBufferObjectManager);
+
+        }
+
+        public float getWidth() {
+            return 0.0f;
+        }
+
+        public float getHeight() {
+            return 0.0f;
+        }
+
+        public float getWidthScaled() {
+            return 0.0f;
+        }
+
+        public float getHeightScaled() {
+            return 0.0f;
+        }
+
+        public void setHeight(float f) {
+        }
+
+        public void setWidth(float f) {
+        }
+
+        public void setSize(float f, float f1) {
+        }
     }
 }

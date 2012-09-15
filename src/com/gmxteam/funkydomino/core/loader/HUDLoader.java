@@ -38,13 +38,8 @@ public class HUDLoader implements IEntityLoader {
 
         final HUD mHUD = new HUD();
         mHUD.setCamera(mGameActivity.getCamera());
-        try {
-            mHUD.attachChild(ComponentFactory.createAddDominoButton(0.0f, 0.0f));
-        } catch (InstantiationException ex) {
-            Debug.e(ex);
-        } catch (IllegalAccessException ex) {
-            Debug.e(ex);
-        }
+
+
         return mHUD;
 
     }

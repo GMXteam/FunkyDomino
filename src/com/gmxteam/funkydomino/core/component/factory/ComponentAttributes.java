@@ -43,6 +43,22 @@ public class ComponentAttributes extends HashMap<String, String> {
      }
     }
     
+    
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isBoolean(String s) {
+     try {         
+         Boolean.parseBoolean(s);
+         return true;
+     } catch(Exception ffe) {
+          Debug.e(ffe);
+         return false;
+     }
+    }
+    
     /**
      *
      * @param s
@@ -172,5 +188,10 @@ public class ComponentAttributes extends HashMap<String, String> {
     public String getString(String key, String defaultValue) {        
         String o = get(key);
         return o != null ? (String) o : defaultValue;
+    }
+
+    public boolean getBoolean(String key, boolean defaultValue) {
+        final String o = get(key);
+        return o != null && isBoolean(o) ? Boolean.parseBoolean(o) : defaultValue;
     }
 }

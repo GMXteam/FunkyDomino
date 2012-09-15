@@ -24,13 +24,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.core.GravityUpdateHandler;
+import com.gmxteam.funkydomino.core.GravityUpdateHandler.GravityUpdateMode;
 import com.gmxteam.funkydomino.core.Levels;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
 import com.gmxteam.funkydomino.core.component.factory.Components;
 import com.gmxteam.funkydomino.core.loader.ComponentLoader;
 import com.gmxteam.funkydomino.core.loader.SceneLoader;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
-import java.io.IOException;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
@@ -41,14 +42,12 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.sensor.orientation.IOrientationListener;
-import org.andengine.input.sensor.orientation.OrientationData;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.ui.activity.SimpleLayoutGameActivity;
+import org.andengine.ui.activity.LayoutGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
@@ -61,7 +60,7 @@ import org.andengine.util.preferences.SimplePreferences;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class MainActivity extends SimpleLayoutGameActivity implements IFunkyDominoBaseActivity {
+public final class MainActivity extends LayoutGameActivity implements IFunkyDominoBaseActivity {
 
     private Scene mScene;
     private FixedStepPhysicsWorld mPhysicsWorld;
@@ -134,7 +133,7 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
      *
      */
     @Override
-    protected void onCreateResources() {
+    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
 
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         SoundFactory.setAssetBasePath("mfx/");
@@ -150,9 +149,20 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
         // On enregistre toutes les entités supportées.
         mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
 
+        pOnCreateResourcesCallback.onCreateResourcesFinished();
 
 
+    }
 
+    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
+
+        /* Le levelloader va charger les éléments dans la scène et la scène
+         * elle même.
+         */
+        mLevelLoader.loadLevelFromAsset(getAssets(), Levels.MAIN.toString());
+
+
+        pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
 
     /**
@@ -160,7 +170,7 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
      * @return
      */
     @Override
-    protected Scene onCreateScene() {
+    public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
 
         mScene = new Scene();
 
@@ -170,32 +180,12 @@ public final class MainActivity extends SimpleLayoutGameActivity implements IFun
 
         mScene.registerUpdateHandler(mPhysicsWorld);
 
-        mScene.registerUpdateHandler(new FPSLogger());
+        mScene.registerUpdateHandler(new FPSLogger());        
 
-        try {
-            /* Le levelloader va charger les éléments dans la scène et la scène
-             * elle même.
-             */
-            mLevelLoader.loadLevelFromAsset(getAssets(), Levels.MAIN.toString());
-        } catch (IOException ex) {
-            Debug.e(ex);
-        }
+        mEngine.enableOrientationSensor(this, new GravityUpdateHandler(mPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL));
+        
+        pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 
-
-        mEngine.enableOrientationSensor(this, new IOrientationListener() {
-            private Vector2 mGravity = mPhysicsWorld.getGravity();
-
-            public void onOrientationAccuracyChanged(OrientationData pOrientationData) {
-            }
-
-            public void onOrientationChanged(OrientationData pOrientationData) {
-                this.mGravity.x = pOrientationData.getRoll();
-                this.mGravity.y = pOrientationData.getYaw();
-                mPhysicsWorld.setGravity(this.mGravity);
-            }
-        });
-
-        return mScene;
     }
 
     /**

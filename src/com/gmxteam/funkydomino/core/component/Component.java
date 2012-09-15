@@ -17,6 +17,7 @@
 package com.gmxteam.funkydomino.core.component;
 
 import android.content.Context;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
 import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
@@ -49,6 +50,34 @@ public abstract class Component extends Entity {
             DEFAULT_X = 0.0f,
             DEFAULT_Y = 0.0f,
             DEFAULT_ANGLE = 0.0f;
+    public final static Vector2[] DEFAULT_VECTORS = {};
+
+    static float[] vector2ArrayToBufferData(Vector2[] vectors) {
+
+        final float[] bufferData = new float[vectors.length * Ground.GroundMesh.VERTEX_SIZE];
+
+        int bufferDataIndex = 0;
+
+        for (Vector2 v : vectors) {
+            bufferData[bufferDataIndex + Ground.GroundMesh.VERTEX_INDEX_X] = v.x;
+            bufferData[bufferDataIndex + Ground.GroundMesh.VERTEX_INDEX_Y] = v.y;
+            bufferDataIndex += Ground.GroundMesh.VERTEX_SIZE;
+        }
+
+        Debug.v("Nombre de données dans le buffer " + bufferData.length);
+        Debug.v("Nombre de vecteurs dans le buffer " + vectors.length);
+
+        return bufferData;
+    }
+
+    /**
+     * Retourne le tableau de vecteurs qui forme le polygone du sol.
+     *
+     * @return
+     */
+    public Vector2[] getVertices() {
+        return mComponentAttributes.getVector2Array("vector", DEFAULT_VECTORS);
+    }
     /**
      *
      */
@@ -99,7 +128,11 @@ public abstract class Component extends Entity {
 
         onPopulateEntity(this);
 
-        onRegisterTouchAreas(mFunkyDominoBaseActivity.getScene());
+        
+        if(att.getBoolean("touchable", true)) {
+                onRegisterTouchAreas(mFunkyDominoBaseActivity.getScene());
+
+        }
 
         onRegisterContactListener(mFunkyDominoBaseActivity.getContactManager());
 
@@ -161,7 +194,6 @@ public abstract class Component extends Entity {
      */
     protected final TextureManager getTextureManager() {
         return mFunkyDominoBaseActivity.getTextureManager();
-
     }
 
     /**

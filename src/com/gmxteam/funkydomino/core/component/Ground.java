@@ -19,7 +19,12 @@ package com.gmxteam.funkydomino.core.component;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.core.physics.box2d.PhysicsFactory;
 import java.util.Arrays;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.DrawMode;
@@ -28,7 +33,6 @@ import org.andengine.entity.primitive.vbo.HighPerformanceMeshVertexBufferObject;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IAreaShape;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
-import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -43,33 +47,74 @@ import org.andengine.util.debug.Debug;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Ground extends Component {
+public class Ground extends Component implements ContactListener {
 
-    static float[] vector2ArrayToBufferData(Vector2[] vectors) {
+    private Body mGroundBody;
+    private GroundMesh mGround;
 
-        final float[] bufferData = new float[vectors.length * GroundMesh.VERTEX_SIZE];
+    /**
+     *
+     */
+    @Override
+    protected void onLoadResource() {
+    }
 
-        int bufferDataIndex = 0;
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param angle
+     */
+    @Override
+    protected void onCreateSprite(float pX, float pY, float angle) {
+        mGround = new GroundMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
+        mGround.setRotation(angle);
+        mGround.setColor(Color.GREEN);
+    }
 
-        for (Vector2 v : vectors) {
-            bufferData[bufferDataIndex + GroundMesh.VERTEX_INDEX_X] = v.x;
-            bufferData[bufferDataIndex + GroundMesh.VERTEX_INDEX_Y] = v.y;
-            bufferDataIndex += GroundMesh.VERTEX_SIZE;
-        }
+    @Override
+    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
 
-        Debug.v("Nombre de données dans le buffer " + bufferData.length);
-        Debug.v("Nombre de vecteurs dans le buffer " + vectors.length);
+        Debug.v(Arrays.toString(getVertices()));
 
-        return bufferData;
+        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, BodyDef.BodyType.DynamicBody, mFixtureDef);
+
+        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
+
+
+    }
+
+    @Override
+    protected void onPopulateEntity(Entity e) {
+        e.attachChild(mGround);
+    }
+
+    /**
+     *
+     * @param pContactManager
+     */
+    @Override
+    protected void onRegisterContactListener(ContactManager pContactManager) {
+        pContactManager.registerContactListener(mGroundBody, this);
     }
 
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
     }
 
-    class GroundMesh extends Mesh implements IAreaShape {
+    public void beginContact(Contact contact) {
+    }
 
-        private float[] mVertices;
+    public void endContact(Contact contact) {
+    }
+
+    public void preSolve(Contact contact, Manifold oldManifold) {
+    }
+
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+    }
+
+    class GroundMesh extends Mesh implements IAreaShape {
 
         /**
          * Uses a default {@link HighPerformanceMeshVertexBufferObject} in
@@ -80,13 +125,6 @@ public class Ground extends Component {
         public GroundMesh(final float pX, final float pY, final Vector2[] vertices, final VertexBufferObjectManager pVertexBufferObjectManager) {
             super(pX, pY, vector2ArrayToBufferData(vertices), vertices.length, DrawMode.TRIANGLES, pVertexBufferObjectManager);
 
-            mVertices = new float[vertices.length * (GroundMesh.VERTEX_SIZE - 1)];
-            int vectorIndex = 0;
-            for (Vector2 v : vertices) {
-                mVertices[vectorIndex + GroundMesh.VERTEX_INDEX_X] = v.x;
-                mVertices[vectorIndex + GroundMesh.VERTEX_INDEX_Y] = v.y;
-                vectorIndex += 2;
-            }
         }
 
         public float getWidth() {
@@ -113,62 +151,5 @@ public class Ground extends Component {
 
         public void setSize(float f, float f1) {
         }
-    }
-    private Body mGroundBody;
-    private GroundMesh mGround;
-    private Vector2[] defaultVectors = {};
-
-    /**
-     *
-     */
-    @Override
-    protected void onLoadResource() {
-    }
-
-    /**
-     * Retourne le tableau de vecteurs qui forme le polygone du sol.
-     *
-     * @return
-     */
-    public Vector2[] getVertices() {
-        return mComponentAttributes.getVector2Array("vector", defaultVectors);
-    }
-
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param angle
-     */
-    @Override
-    protected void onCreateSprite(float pX, float pY, float angle) {
-        mGround = new GroundMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
-        mGround.setRotation(angle);
-        mGround.setColor(Color.GREEN);
-    }
-
-    @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
-
-        Debug.v(Arrays.toString(getVertices()));
-
-        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, getVertices(), BodyDef.BodyType.DynamicBody, mFixtureDef);
-
-        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
-
-
-    }
-
-    @Override
-    protected void onPopulateEntity(Entity e) {
-        e.attachChild(mGround);
-    }
-
-    /**
-     *
-     * @param pContactManager
-     */
-    @Override
-    protected void onRegisterContactListener(ContactManager pContactManager) {
     }
 }

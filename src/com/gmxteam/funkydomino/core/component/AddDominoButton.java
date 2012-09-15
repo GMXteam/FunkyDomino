@@ -1,27 +1,33 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.ButtonSprite.OnClickListener;
-import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.util.debug.Debug;
 
 /**
  *
@@ -34,10 +40,10 @@ public class AddDominoButton extends Component implements OnClickListener {
      *
      */
     public final int DOMINO_WIDTH = 32,
-    /**
-     *
-     */
-    DOMINO_HEIGHT = 64;
+            /**
+             *
+             */
+            DOMINO_HEIGHT = 64;
     private TextureRegion mDominoTextureRegion;
 
     /**
@@ -52,13 +58,12 @@ public class AddDominoButton extends Component implements OnClickListener {
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
 
-         mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
+        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
 
 
-       
+
     }
-    
-    
+
     /**
      *
      * @param pX
@@ -67,8 +72,8 @@ public class AddDominoButton extends Component implements OnClickListener {
      */
     @Override
     protected void onCreateSprite(float pX, float pY, float angle) {
-       mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
-       mAddDominoButtonSprite.setRotation(angle);
+        mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
+        mAddDominoButtonSprite.setRotation(angle);
         mAddDominoButtonSprite.setOnClickListener(this);
     }
 
@@ -79,8 +84,6 @@ public class AddDominoButton extends Component implements OnClickListener {
     public void setOnClickListener(OnClickListener ocl) {
         mAddDominoButtonSprite.setOnClickListener(ocl);
     }
-
-    
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
@@ -114,13 +117,11 @@ public class AddDominoButton extends Component implements OnClickListener {
         try {
             mFunkyDominoBaseActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
         } catch (InstantiationException ex) {
-            Logger.getLogger(AddDominoButton.class.getName()).log(Level.SEVERE, null, ex);
+            Debug.e(ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(AddDominoButton.class.getName()).log(Level.SEVERE, null, ex);
+            Debug.e(ex);
         }
 
 
     }
-
-
 }

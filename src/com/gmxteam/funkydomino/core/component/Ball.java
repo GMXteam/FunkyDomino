@@ -16,13 +16,11 @@
  */
 package com.gmxteam.funkydomino.core.component;
 
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.gmxteam.funkydomino.activity.GameActivity;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
@@ -48,7 +46,7 @@ public final class Ball extends Component implements ContactListener {
     /**
      *
      */
-    public static final int BALL_RADIUS = 32;    
+    public static final int BALL_RADIUS = 32;
     private TextureRegion mBallTextureRegion;
 
     /**
@@ -60,11 +58,11 @@ public final class Ball extends Component implements ContactListener {
         final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, GameActivity.TEXTURE_OPTION);
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-         mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
+        mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
 
 
     }
-    
+
     /**
      *
      * @param pX
@@ -77,15 +75,12 @@ public final class Ball extends Component implements ContactListener {
         mBallSprite.setRotation(angle);
     }
 
-
-   
-
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
         mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mBallSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
-        
+
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
-        
+
     }
 
     @Override
@@ -136,9 +131,5 @@ public final class Ball extends Component implements ContactListener {
      * @param ci
      */
     public void postSolve(Contact cntct, ContactImpulse ci) {
-    
     }
-
-    
-    
 }

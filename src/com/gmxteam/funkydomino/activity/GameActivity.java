@@ -28,6 +28,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
+import com.gmxteam.funkydomino.core.GravityUpdateHandler;
 import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
 import com.gmxteam.funkydomino.core.Levels;
 import com.gmxteam.funkydomino.core.TimeCounterHandler;
@@ -36,7 +37,6 @@ import com.gmxteam.funkydomino.core.component.factory.Components;
 import com.gmxteam.funkydomino.core.loader.ComponentLoader;
 import com.gmxteam.funkydomino.core.loader.HUDLoader;
 import com.gmxteam.funkydomino.core.loader.SceneLoader;
-import java.io.IOException;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
@@ -54,21 +54,18 @@ import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.ui.IGameInterface.OnCreateResourcesCallback;
-import org.andengine.ui.IGameInterface.OnCreateSceneCallback;
-import org.andengine.ui.IGameInterface.OnPopulateSceneCallback;
-import org.andengine.ui.activity.BaseGameActivity;
+import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.debug.Debug.DebugLevel;
 import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
-import org.xmlpull.v1.XmlPullParserException;
+import org.andengine.util.progress.IProgressListener;
 
 /**
  *
  * @author guillaume
  */
-public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseActivity {
+public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDominoBaseActivity {
 
     private Levels mGameToLoad;
     private TimeCounterHandler mTimeCounterHandler = new TimeCounterHandler();
@@ -202,6 +199,7 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
                 .setMessage("Quitter la partie ?")
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+                showResumeDialog = false;
                 onResumeGame();
             }
         })
@@ -391,83 +389,6 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
 
     /**
      *
-     * @param pOnCreateSceneCallback
-     */
-    public final void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
-
-        mScene = new Scene();
-
-        final ScrollDetector mScrollDetector = new ScrollDetector(this);
-        final PinchZoomDetector mPinchZoomDetector = new PinchZoomDetector(this);
-
-        mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
-            public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
-                return mScrollDetector.onManagedTouchEvent(te) || mPinchZoomDetector.onManagedTouchEvent(te);
-            }
-        });
-
-        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
-
-        mContactManager = new ContactManager();
-
-        mPhysicsWorld.setContactListener(mContactManager);
-
-        mScene.registerUpdateHandler(mPhysicsWorld);
-
-        mScene.registerUpdateHandler(new FPSLogger());
-
-        pOnCreateSceneCallback.onCreateSceneFinished(mScene);
-    }
-
-    /**
-     *
-     * @param pScene
-     * @param pOnPopulateSceneCallback
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     * @throws IOException
-     * @throws XmlPullParserException
-     */
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws InstantiationException, IllegalAccessException, IOException, XmlPullParserException {
-
-
-        /* Le levelloader va charger les éléments dans la scène et la scène
-         * elle même ainsi que le HUD.
-         */
-        mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.toString());
-
-        MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
-
-        pOnPopulateSceneCallback.onPopulateSceneFinished();
-    }
-
-    /**
-     *
-     * @param pOnCreateResourcesCallback
-     */
-    public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
-
-        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
-        SoundFactory.setAssetBasePath("mfx/");
-        MusicFactory.setAssetBasePath("mfx/");
-
-        ComponentFactory.setGameActivity(this);
-
-        mLevelLoader = new LevelLoader("level/");
-
-        // On bind le chargeur de la scène avec l'entité scène.
-        mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
-        // On bind le hud
-        mLevelLoader.registerEntityLoader("hud", new HUDLoader(this));
-        // On enregistre toutes les entités supportées.
-        mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
-
-
-        pOnCreateResourcesCallback.onCreateResourcesFinished();
-    }
-
-    /**
-     *
      * @return
      */
     public Context getContext() {
@@ -504,5 +425,70 @@ public class GameActivity extends BaseGameActivity implements IFunkyDominoBaseAc
      */
     public SmoothCamera getCamera() {
         return mCamera;
+    }
+
+    @Override
+    public void onCreateResourcesAsync(IProgressListener pProgressListener) throws Exception {
+
+        BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        SoundFactory.setAssetBasePath("mfx/");
+        MusicFactory.setAssetBasePath("mfx/");
+
+        ComponentFactory.setGameActivity(this);
+
+        mLevelLoader = new LevelLoader("level/");
+
+        // On bind le chargeur de la scène avec l'entité scène.
+        mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
+        // On bind le hud
+        mLevelLoader.registerEntityLoader("hud", new HUDLoader(this));
+        // On enregistre toutes les entités supportées.
+        mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
+
+
+
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
+    }
+
+    @Override
+    public Scene onCreateSceneAsync(IProgressListener pProgressListener) throws Exception {
+
+        mScene = new Scene();
+
+        final ScrollDetector mScrollDetector = new ScrollDetector(this);
+        final PinchZoomDetector mPinchZoomDetector = new PinchZoomDetector(this);
+
+        mScene.setOnSceneTouchListener(new IOnSceneTouchListener() {
+            public boolean onSceneTouchEvent(Scene scene, TouchEvent te) {
+                return mScrollDetector.onManagedTouchEvent(te) || mPinchZoomDetector.onManagedTouchEvent(te);
+            }
+        });
+
+        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
+
+        mEngine.enableOrientationSensor(this, new GravityUpdateHandler(mPhysicsWorld));
+
+        mContactManager = new ContactManager();
+
+        mPhysicsWorld.setContactListener(mContactManager);
+
+        mScene.registerUpdateHandler(mPhysicsWorld);
+
+        mScene.registerUpdateHandler(new FPSLogger());
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
+
+
+        return mScene;
+    }
+
+    @Override
+    public void onPopulateSceneAsync(Scene pScene, IProgressListener pProgressListener) throws Exception {
+        /* Le levelloader va charger les éléments dans la scène et la scène
+         * elle même ainsi que le HUD.
+         */
+        mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.toString());
+
+        MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
     }
 }

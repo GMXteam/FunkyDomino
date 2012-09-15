@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <level background="background_grass.png">    
-    <domino x="0.0" y="0.0" />
-    <domino x="100.1" y="200.6" />     
+    <domino touchable="false" x="0.0" y="0.0" angle="20.2"/>
+    <domino touchable="false" x="100.1" y="200.6" />    
+    <domino touchable="false" x="120.1" y="230.6" />     
+    <domino touchable="false" x="20.1" y="200.6" />     
+    <domino touchable="false" x="50.1" y="204.6" />     
+    <domino touchable="false" x="120.1" y="200.6" />     
+    <domino touchable="false" x="110.1" y="22.6" />      
 </level>
