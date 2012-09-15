@@ -7,9 +7,11 @@ package com.gmxteam.funkydomino.component;
 import com.gmxteam.funkydomino.activity.IBaseGameActivity;
 import com.gmxteam.funkydomino.component.ComponentAttributes;
 import com.gmxteam.funkydomino.component.Components;
+import java.io.IOException;
 import org.andengine.entity.IEntity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
+import org.andengine.util.level.IEntityLoaderData;
 import org.xml.sax.Attributes;
 
 /**
@@ -27,17 +29,16 @@ public class ComponentLoader implements IEntityLoader {
     }
     private final IBaseGameActivity mGameActivity;
 
-    /**
-     *
-     * @param string
-     * @param atts
-     * @return
-     */
-    public IEntity onLoadEntity(String string, Attributes atts) {
-        IEntity currentEntity = null;
+
+    public String[] getEntityNames() {
+        return Components.strings();
+    }
+
+    public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, IEntityLoaderData pEntityLoaderData) throws IOException {
+         IEntity currentEntity = null;
 
         try {
-            currentEntity = Components.valueOf(string).getComponent().factory(mGameActivity, new ComponentAttributes(atts)).getEntity();
+            currentEntity = Components.valueOf(pEntityName).getComponent().factory(mGameActivity, new ComponentAttributes(pAttributes)).getEntity();
         } catch (InstantiationException ex) {
 
             Debug.e(ex.getMessage(), ex);
@@ -46,8 +47,5 @@ public class ComponentLoader implements IEntityLoader {
         }
 
         return currentEntity;
-
-
-
     }
 }

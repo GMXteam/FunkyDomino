@@ -16,16 +16,15 @@
  */
 package com.gmxteam.funkydomino.component.entity;
 
+import android.util.FloatMath;
 import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
 import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import com.gmxteam.funkydomino.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.component.ComponentAttributes;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
@@ -36,6 +35,8 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.util.debug.Debug;
+import org.andengine.util.math.MathUtils;
 
 /**
  * Objet générant une roue dentée.
@@ -98,16 +99,32 @@ public final class Cog extends Component {
      * @param angle
      */
     @Override
-    protected void onCreateEntity(float pX, float pY, float angle) {
+    protected Entity onCreateEntity(float pX, float pY, float angle) {
 
         mCogSprite = new Sprite(pX, pY, mCogTextureRegion, getVertexBufferObjectManager());
         mCogSprite.setRotation(angle);
 
         for (int i = 0; i < mCogToothRectangles.length; i++) {
-            mCogToothRectangles[i] = new Rectangle(0.0f, 0.0f, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getVertexBufferObjectManager());
 
-            mCogToothRectangles[i].setRotation(angle);
+            final float theta = ((2 * (float) Math.PI) / COG_TEETH_COUNT) * (i);
+            final float hypothenuse = COG_RADIUS;
+            
+            final float toothX = (hypothenuse *  FloatMath.cos(theta)) + COG_RADIUS;
+            final float toothY = (hypothenuse *  FloatMath.sin(theta)) + COG_RADIUS;
+
+            Debug.v("Teeth position : [" + toothX + ",", +toothY + "] with initial rotation " + theta + " rad.");
+
+            mCogToothRectangles[i] = new Rectangle(toothX, toothY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getVertexBufferObjectManager());
+
+            // On définit le centre de rotation au centre du rectangle.
+            mCogToothRectangles[i].setRotation(MathUtils.radToDeg(theta + ((float)Math.PI / 2.0f)));            
+
+            mCogSprite.attachChild(mCogToothRectangles[i]);
+
         }
+
+        return mCogSprite;
+
     }
 
     @Override
@@ -121,7 +138,7 @@ public final class Cog extends Component {
         for (int i = 0; i < mCogToothRectangles.length; i++) {
 
             mCogToothBodies[i] = PhysicsFactory.createBoxBody(pPhysicsWorld, mCogToothRectangles[i], BodyDef.BodyType.DynamicBody, mFixtureDef);
-            pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogToothRectangles[i], mCogToothBodies[i], true, true));
+            //pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogToothRectangles[i], mCogToothBodies[i], true, true));
 
 
 
@@ -161,22 +178,6 @@ public final class Cog extends Component {
 
             pPhysicsWorld.createJoint(rjd);
 
-
-        }
-
-
-
-
-
-
-
-    }
-
-    @Override
-    protected void onPopulateEntity(Entity e) {
-
-        for (Rectangle rectangleIterator : mCogToothRectangles) {
-            e.attachChild(rectangleIterator);
         }
 
     }
@@ -200,10 +201,5 @@ public final class Cog extends Component {
      */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
-    }
-
-    @Override
-    public Entity getEntity() {
-        return mCogSprite;
     }
 }

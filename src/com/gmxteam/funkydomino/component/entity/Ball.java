@@ -71,9 +71,10 @@ public final class Ball extends Component implements ContactListener {
      * @param angle
      */
     @Override
-    protected void onCreateEntity(float pX, float pY, float angle) {
+    protected Entity onCreateEntity(float pX, float pY, float angle) {
         mBallSprite = new Sprite(pX, pY, mBallTextureRegion, getVertexBufferObjectManager());
-        mBallSprite.setRotation(angle);
+        mBallSprite.setRotation(angle);        
+        return mBallSprite;
     }
 
     @Override
@@ -84,10 +85,7 @@ public final class Ball extends Component implements ContactListener {
 
     }
 
-    @Override
-    protected void onPopulateEntity(Entity e) {
-    }
-
+  
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
         pScene.registerTouchArea(mBallSprite);
@@ -132,8 +130,5 @@ public final class Ball extends Component implements ContactListener {
     public void postSolve(Contact cntct, ContactImpulse ci) {
     }
 
-    @Override
-    public Entity getEntity() {
-        return mBallSprite;
-    }
+  
 }

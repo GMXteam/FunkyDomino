@@ -72,10 +72,12 @@ public class AddDominoButton extends Component implements OnClickListener {
      * @param angle
      */
     @Override
-    protected void onCreateEntity(float pX, float pY, float angle) {
+    protected Entity onCreateEntity(float pX, float pY, float angle) {
         mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
         mAddDominoButtonSprite.setRotation(angle);
         mAddDominoButtonSprite.setOnClickListener(this);
+
+        return mAddDominoButtonSprite;
     }
 
     /**
@@ -88,11 +90,6 @@ public class AddDominoButton extends Component implements OnClickListener {
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
-    }
-
-    @Override
-    protected void onPopulateEntity(Entity e) {
-        e.attachChild(mAddDominoButtonSprite);
     }
 
     @Override
@@ -124,10 +121,5 @@ public class AddDominoButton extends Component implements OnClickListener {
         }
 
 
-    }
-
-    @Override
-    public Entity getEntity() {
-        return mAddDominoButtonSprite;
     }
 }

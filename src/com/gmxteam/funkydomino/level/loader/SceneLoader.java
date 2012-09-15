@@ -6,16 +6,22 @@ package com.gmxteam.funkydomino.level.loader;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import com.gmxteam.funkydomino.activity.IBaseGameActivity;
 import com.gmxteam.funkydomino.component.ComponentAttributes;
-import com.gmxteam.funkydomino.entity.primitive.Line;
+import java.io.IOException;
 import org.andengine.entity.IEntity;
+import org.andengine.entity.primitive.Line;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.atlas.bitmap.source.AssetBitmapTextureAtlasSource;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
+import org.andengine.util.level.IEntityLoaderData;
 import org.xml.sax.Attributes;
 
 /**
@@ -33,17 +39,17 @@ public class SceneLoader implements IEntityLoader {
 
     }
     private final IBaseGameActivity mGameActivity;
+    
+    private final static String[] ENTITY_NAMES = {"level"};
 
-    /**
-     *
-     * @param string
-     * @param atts
-     * @return
-     */
-    public IEntity onLoadEntity(String string, Attributes atts) {
+    public String[] getEntityNames() {
+        return ENTITY_NAMES;
+    }
+
+    public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, IEntityLoaderData pEntityLoaderData) throws IOException {
 
 
-        ComponentAttributes ea = new ComponentAttributes(atts);
+        ComponentAttributes ea = new ComponentAttributes(pAttributes);
 
         Debug.v("La scène est de dimension "
                 + ea.getFloat("width", mGameActivity.getCameraDimensions().x)
@@ -53,17 +59,26 @@ public class SceneLoader implements IEntityLoader {
 
 
         // Background
+        
+        
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(mGameActivity.getTextureManager(), ea.getInteger("background_width", 32), ea.getInteger("background_height", 32), FunkyDominoActivity.TEXTURE_OPTION);
 
-        final AssetBitmapTextureAtlasSource mBackgroundBaseTextureAtlasSource = AssetBitmapTextureAtlasSource.create(mGameActivity.getAssets(), "gfx/" + ea.getString("background", "background.png"));
+        mGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-        final RepeatingSpriteBackground mBackground = new RepeatingSpriteBackground(mGameActivity.getCameraDimensions().x, mGameActivity.getCameraDimensions().y, mGameActivity.getTextureManager(), mBackgroundBaseTextureAtlasSource, mGameActivity.getVertexBufferObjectManager());
+        final TextureRegion mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, mGameActivity.getContext(), ea.getString("background", "background.png"), 0, 0);
 
+
+        
+        final RepeatingSpriteBackground mBackground = new RepeatingSpriteBackground(mGameActivity.getCameraDimensions().x, mGameActivity.getCameraDimensions().y,  mDominoTextureRegion, mGameActivity.getVertexBufferObjectManager());
+
+        
+        
         mGameActivity.getScene().setBackground(mBackground);
         // Boxing the scene
 
-        final FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);       
-        
-        
+        final FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
+
+
         final float HEIGHT = ea.getFloat("height", mGameActivity.getCameraDimensions().y),
                 WIDTH = ea.getFloat("width", mGameActivity.getCameraDimensions().x);
 

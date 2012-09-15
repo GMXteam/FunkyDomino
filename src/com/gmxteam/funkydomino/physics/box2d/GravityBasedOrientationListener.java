@@ -63,9 +63,7 @@ public class GravityBasedOrientationListener implements IOrientationListener {
                 this.mGravity.y = pOrientationData.getPitch();
                 break;
 
-        }
-        
-        Debug.v("New gravity : " + mGravity);
+        }        
 
         mPhysicsWorld.setGravity(this.mGravity);
     }

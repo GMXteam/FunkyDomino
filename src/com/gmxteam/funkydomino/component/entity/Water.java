@@ -28,13 +28,12 @@ import org.andengine.entity.primitive.DrawMode;
 import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.primitive.vbo.HighPerformanceMeshVertexBufferObject;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.shape.IAreaShape;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttribute;
-import org.andengine.util.color.Color;
+import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 
 /**
@@ -63,10 +62,11 @@ public class Water extends Component {
      * @param angle
      */
     @Override
-    protected void onCreateEntity(float pX, float pY, float angle) {
+    protected Entity onCreateEntity(float pX, float pY, float angle) {
         mWater = new WaterMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
         mWater.setRotation(angle);
         mWater.setColor(Color.BLUE);
+        return mWater;
     }
 
     @Override
@@ -93,12 +93,9 @@ public class Water extends Component {
     protected void onRegisterContactListener(ContactManager pContactManager) {
     }
 
-    @Override
-    public Entity getEntity() {
-        return mWater;
-    }
+   
 
-    class WaterMesh extends Mesh implements IAreaShape {
+    class WaterMesh extends Mesh {
 
         /**
          * Uses a default {@link HighPerformanceMeshVertexBufferObject} in
@@ -111,29 +108,6 @@ public class Water extends Component {
 
         }
 
-        public float getWidth() {
-            return 0.0f;
-        }
-
-        public float getHeight() {
-            return 0.0f;
-        }
-
-        public float getWidthScaled() {
-            return 0.0f;
-        }
-
-        public float getHeightScaled() {
-            return 0.0f;
-        }
-
-        public void setHeight(float f) {
-        }
-
-        public void setWidth(float f) {
-        }
-
-        public void setSize(float f, float f1) {
-        }
+       
     }
 }

@@ -58,6 +58,7 @@ import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.debug.Debug.DebugLevel;
 import org.andengine.util.level.LevelLoader;
+import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
 
@@ -326,7 +327,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
      * @param f1
      */
     public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-        Debug.v("Nouveau centre de la caméra : [" + mCamera.getCenterX() + ", " + mCamera.getCenterY() + "]");
     }
 
     /**
@@ -369,8 +369,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
 
 
-        mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
-        Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
+        //mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        //Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
 
 
         try {
@@ -440,18 +440,19 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         ComponentFactory.setGameActivity(this);
 
-        mLevelLoader = new LevelLoader("level/");
+        mLevelLoader = new SimpleLevelLoader(getVertexBufferObjectManager());
+        
 
         // On bind le chargeur de la scène avec l'entité scène.
-        mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
+        mLevelLoader.registerEntityLoader(new SceneLoader(this));
         // On bind le hud
-        mLevelLoader.registerEntityLoader("hud", new HUDLoader(this));
+        mLevelLoader.registerEntityLoader(new HUDLoader(this));
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 2);
 
 
         // On enregistre toutes les entités supportées.
-        mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
+        mLevelLoader.registerEntityLoader(new ComponentLoader(this));
 
 
 

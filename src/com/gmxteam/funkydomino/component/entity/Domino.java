@@ -38,7 +38,6 @@ import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
-import org.andengine.util.debug.Debug;
 
 /**
  *
@@ -89,7 +88,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
      * @param angle
      */
     @Override
-    protected void onCreateEntity(float pX, float pY, float angle) {
+    protected Entity onCreateEntity(float pX, float pY, float angle) {
         mScrollDetector = new ScrollDetector(1.0f, this);
 
 
@@ -107,6 +106,8 @@ public final class Domino extends Component implements ContactListener, IScrollD
         };
 
         mDominoSprite.setRotation(angle);
+        
+        return mDominoSprite;
 
     }
 
@@ -200,8 +201,4 @@ public final class Domino extends Component implements ContactListener, IScrollD
         mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
     }
 
-    @Override
-    public Entity getEntity() {
-        return mDominoSprite;
-    }
 }

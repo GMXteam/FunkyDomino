@@ -28,7 +28,6 @@ import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
 import com.gmxteam.funkydomino.level.Levels;
 import com.gmxteam.funkydomino.component.ComponentFactory;
-import com.gmxteam.funkydomino.component.Components;
 import com.gmxteam.funkydomino.component.ComponentLoader;
 import com.gmxteam.funkydomino.level.loader.SceneLoader;
 import com.gmxteam.funkydomino.physics.box2d.ContactManager;
@@ -50,6 +49,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.ui.activity.LayoutGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.LevelLoader;
+import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 
 /**
@@ -141,20 +141,20 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
         ComponentFactory.setGameActivity(this);
 
-        mLevelLoader = new LevelLoader("level/");
-
+        mLevelLoader = new SimpleLevelLoader(getVertexBufferObjectManager());
+        
         // On bind le chargeur de la scène avec l'entité scène.
-        mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
+        mLevelLoader.registerEntityLoader(new SceneLoader(this));
 
         // On enregistre toutes les entités supportées.
-        mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
+        mLevelLoader.registerEntityLoader(new ComponentLoader(this));
 
         pOnCreateResourcesCallback.onCreateResourcesFinished();
 
 
     }
 
-    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws Exception {
+    public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) {
 
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même.
@@ -245,9 +245,9 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
         mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
 
-
-        mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
-        Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
+        
+        //mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        //Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
 
 
         try {

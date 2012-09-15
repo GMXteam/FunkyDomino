@@ -37,7 +37,7 @@ public interface IFunkyDominoActivity extends IBaseGameActivity, ScrollDetector.
     /**
      *
      */
-    public static final float CAMERA_MAX_VELOCITY_X = 20.0f;
+    public static final float CAMERA_MAX_VELOCITY_X = 500.0f;
     /**
      *
      */

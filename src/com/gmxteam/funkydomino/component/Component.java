@@ -26,7 +26,6 @@ import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.entity.Entity;
-import org.andengine.entity.IEntity;
 import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -44,8 +43,9 @@ import org.andengine.util.debug.Debug;
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component {
+public abstract class Component implements IComponent {
 
+    private Entity mEntity;
     public final static float DEFAULT_FRICTION = 1.0f,
             DEFAULT_DENSITY = 1.0f,
             DEFAULT_X = 0.0f,
@@ -122,13 +122,9 @@ public abstract class Component {
 
         onLoadResource();
 
-        onCreateEntity(att.getFloat("x", DEFAULT_X), att.getFloat("y", DEFAULT_Y), att.getFloat("angle", DEFAULT_ANGLE));
+        mEntity = onCreateEntity(att.getFloat("x", DEFAULT_X), att.getFloat("y", DEFAULT_Y), att.getFloat("angle", DEFAULT_ANGLE));
 
         onPopulatePhysicsWorld(mFunkyDominoBaseActivity.getPhysicsWorld());
-        //.setTransform(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
-
-        onPopulateEntity(getEntity());
-
 
         if (att.getBoolean("touchable", true)) {
             onRegisterTouchAreas(mFunkyDominoBaseActivity.getScene());
@@ -144,12 +140,6 @@ public abstract class Component {
         return this;
     }
 
-    /**
-     * 
-     * @return 
-     */
-    public abstract Entity getEntity();
-
     ////////////////////////////////////////////////////////////////////////
     // Events
     /**
@@ -163,7 +153,7 @@ public abstract class Component {
      * @param pY
      * @param angle
      */
-    protected abstract void onCreateEntity(float pX, float pY, float angle);
+    protected abstract Entity onCreateEntity(float pX, float pY, float angle);
 
     /**
      * Binding de l'entité avec le monde physique.
@@ -171,13 +161,6 @@ public abstract class Component {
      * @param pPhysicsWorld
      */
     protected abstract void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld);
-
-    /**
-     * Binding des sous-entités avec l'entité qui reçoit l'événement.
-     *
-     * @param e Év
-     */
-    protected void onPopulateEntity(Entity e) {};
 
     /**
      * L'entité enregistre ses surfaces qui peuvent recevoir des événements de
@@ -192,6 +175,14 @@ public abstract class Component {
      * @param pContactManager
      */
     protected abstract void onRegisterContactListener(ContactManager pContactManager);
+
+    /**
+     *
+     * @return
+     */
+    public final Entity getEntity() {
+        return mEntity;
+    }
 
     /////////////////////////
     // Accessible resources from the GameActivity

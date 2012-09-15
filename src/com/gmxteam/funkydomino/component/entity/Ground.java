@@ -32,13 +32,12 @@ import org.andengine.entity.primitive.DrawMode;
 import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.primitive.vbo.HighPerformanceMeshVertexBufferObject;
 import org.andengine.entity.scene.Scene;
-import org.andengine.entity.shape.IAreaShape;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttribute;
-import org.andengine.util.color.Color;
+import org.andengine.util.adt.color.Color;
 import org.andengine.util.debug.Debug;
 
 /**
@@ -67,10 +66,11 @@ public class Ground extends Component implements ContactListener {
      * @param angle
      */
     @Override
-    protected void onCreateEntity(float pX, float pY, float angle) {
+    protected Entity onCreateEntity(float pX, float pY, float angle) {
         mGround = new GroundMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
         mGround.setRotation(angle);
         mGround.setColor(Color.GREEN);
+        return mGround;
     }
 
     @Override
@@ -83,12 +83,7 @@ public class Ground extends Component implements ContactListener {
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
 
 
-    }
-
-    @Override
-    protected void onPopulateEntity(Entity e) {
-        e.attachChild(mGround);
-    }
+    }   
 
     /**
      *
@@ -113,14 +108,9 @@ public class Ground extends Component implements ContactListener {
     }
 
     public void postSolve(Contact contact, ContactImpulse impulse) {
-    }
+    }   
 
-    @Override
-    public Entity getEntity() {
-        return mGround;
-    }
-
-    class GroundMesh extends Mesh implements IAreaShape {
+    class GroundMesh extends Mesh {
 
         /**
          * Uses a default {@link HighPerformanceMeshVertexBufferObject} in
