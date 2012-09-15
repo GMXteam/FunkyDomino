@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- Application and activities names -->
-	<string name="app_name">Funky Domino</string>
+    <!-- Application and activities names -->
+    <string name="app_name">FunkyDomino</string>
+    <string name="preferences_activity_name">Préférences</string>
+    <string name="highscores_activity_name">Highscores</string>
+    <string name="load_game_activity_name">Chargement d\'une partie</string>
+    <string name="new_game_activity_name">Nouvelle partie</string>
+        
+    <!-- MainActivity -->
+        
+    <string name="play">Jouer</string>
+    
+     
 
-	<string name="funky_domino_activity_name">FunkyDomino</string>
-	<string name="main_activity_name">FunkyDomino</string>
-
-	<string name="preferences_activity_name">Préférences</string>
-	<string name="highscores_activity_name">Highscores</string>
-	<string name="load_game_activity_name">Chargement</string>
-	<string name="new_game_activity_name">Nouvelle partie</string>
+        
+        
+        
+    <!-- PreferenceActivity -->
+    
+    <string name="audio">Audio</string>
+    <string name="sound_enabled">Son activé</string>
+    <string name="music_enabled">Musique activée</string>
+    
+    <string name="graphic">Graphique</string>
+    <string name="maximum_fps">Maximum FPS</string>
+    <string name="maximum_fps_summary">Maximum frame per seconds.</string>
+    
+    <string name="antialiasing">Anticrénaléage</string>
+    <string name="antialiasing_summary">Alter texture definition.</string>
+    
+    <string name="multisampling">Échantillonage multiple</string>
+    
+    <string name="dithering">Dithering</string>
+    
+    <string name="music_enabled">Musique activée</string>
+    
+    <string name="licence_information">License information</string>
+    <string name="licence_information_text">Blabla de license...</string>
+        
+        
+        
+        
         
         
         
     
 
-	<!--  -->
+    <!--  -->
 </resources>

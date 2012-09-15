@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onNewGameClick"
-            android:text="Nouvelle partie" />
+            android:text="@string/new_game_activity_name" />
 
     <Button android:id="@+id/funky_domino_button"			
             android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
             android:layout_above="@id/new_game_button"
             android:layout_centerHorizontal="true"
             android:onClick="onPlayClick"
-            android:text="Jouer" />
+            android:text="@string/play" />
 
     <Button android:id="@+id/load_game_button"
             android:layout_centerHorizontal="true"	
@@ -32,6 +32,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onLoadGameClick"
-            android:text="Charger une partie" />
+            android:text="@string/load_game_activity_name" />
 	
 </RelativeLayout>

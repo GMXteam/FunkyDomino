@@ -2,8 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"> 
     <PreferenceCategory android:title="About">
         <EditTextPreference 
-            android:title="License information" 
-            android:dialogMessage="Blabla de la license"
-            />       
+            android:title="@string/licence_information" 
+            android:dialogMessage="@string/licence_information_text" />       
     </PreferenceCategory>    
 </PreferenceScreen>

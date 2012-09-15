@@ -16,24 +16,35 @@
  */
 package com.gmxteam.funkydomino.activity;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import com.gmxteam.funkydomino.core.Levels;
+import java.util.HashSet;
+import org.andengine.util.preferences.SimplePreferences;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public final class HighscoresActivity extends Activity {
+public final class HighscoresActivity extends ListActivity {
 
     /**
      *
      * @param b
      */
     @Override
-	public void onCreate(Bundle b) {
-		super.onCreate(b);
-		setContentView(R.layout.highscores);
-		
-	}
-   
+    public void onCreate(Bundle b) {
+        super.onCreate(b);
+
+        HashSet<String> mDefaultData = new HashSet<String>();
+        mDefaultData.add("Test");
+        
+
+        String[] listItems = (String[]) SimplePreferences.getInstance(this).getStringSet("highscores.values", mDefaultData).toArray();
+
+        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems));
+
+
+    }
 }
