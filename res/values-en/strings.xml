@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Application and activities names -->
+    <string name="app_name">Funky Domino</string>
+    <string name="preferences_activity_name">Preferences</string>
+    <string name="highscores_activity_name">Highscores</string>
+    <string name="load_game_activity_name">Load a game</string>
+    <string name="new_game_activity_name">New game</string>
+        
+    <!-- MainActivity -->
+        
+    <string name="play">Play</string>  
+     
+
+        
+        
+        
+    <!-- PreferenceActivity -->
+    
+    <string name="audio">Audio</string>
+    <string name="sound_enabled">Sound enabled</string>
+    <string name="music_enabled">Music enabled</string>
+    
+    <string name="graphic">Graphic</string>
+    <string name="maximum_fps">Maximum FPS</string>
+    <string name="maximum_fps_summary">Maximum frame per seconds.</string>
+    
+    <string name="antialiasing">Antialiasing</string>
+    <string name="antialiasing_summary">Alter texture definition.</string>
+    
+    <string name="multisampling">Multisampling</string>
+    
+    <string name="dithering">Dithering</string>   
+    
+    <string name="licence_information">License information</string>
+    <string name="licence_information_text">Blabla de license...</string>
+        
+        
+        
+        
+        
+        
+        
+    
+
+    <!--  -->
+</resources>

@@ -56,7 +56,7 @@ public class GravityBasedOrientationListener implements IOrientationListener {
         switch (mGravityUpdateMode) {
             case SCREEN_IS_VERTICAL:
                 this.mGravity.x = pOrientationData.getRoll();
-                this.mGravity.y = - pOrientationData.getPitch();
+                this.mGravity.y = pOrientationData.getPitch();
                 break;
             case SCREEN_IS_HORIZONTAL:
                 this.mGravity.x = pOrientationData.getYaw();

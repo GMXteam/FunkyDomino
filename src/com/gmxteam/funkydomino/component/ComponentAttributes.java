@@ -34,52 +34,51 @@ public class ComponentAttributes extends HashMap<String, String> {
      * @return
      */
     public static boolean isFloat(String s) {
-     try {
-         Float.parseFloat(s);
-         return true;
-     } catch(NumberFormatException ffe) {
-          Debug.e(ffe);
-         return false;
-     }
+        try {
+            Float.parseFloat(s);
+            return true;
+        } catch (NumberFormatException ffe) {
+            Debug.e(ffe);
+            return false;
+        }
     }
-    
-    
+
     /**
      *
      * @param s
      * @return
      */
     public static boolean isBoolean(String s) {
-     try {         
-         Boolean.parseBoolean(s);
-         return true;
-     } catch(Exception ffe) {
-          Debug.e(ffe);
-         return false;
-     }
+        try {
+            Boolean.parseBoolean(s);
+            return true;
+        } catch (Exception ffe) {
+            Debug.e(ffe);
+            return false;
+        }
     }
-    
+
     /**
      *
      * @param s
      * @return
      */
     public static boolean isInteger(String s) {
-     try {
-         Integer.parseInt(s);
-         return true;
-     } catch(NumberFormatException ffe) {
-         Debug.e(ffe);
-         return false;
-     }
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException ffe) {
+            Debug.e(ffe);
+            return false;
+        }
     }
-    
+
     /**
      * Constructeur utilisé par ComponentFactory pour les tests.
      */
     public ComponentAttributes() {
     }
-    
+
     /**
      * Constructeur avec copie des attributs.
      *
@@ -97,34 +96,35 @@ public class ComponentAttributes extends HashMap<String, String> {
 
         // Copie des attributs dans le dictionnaire
     }
-    
+
     /**
      *
      * @param source
      * @return
      */
-    public static String vector2ArrayToString (Vector2[] source) {
-    
+    public static String vector2ArrayToString(Vector2[] source) {
+
         return Arrays.toString(source);
-        
+
     }
 
     /**
-     * Convertit une chaîne de caractères en tableau de vecteurs.
-     * Le caractère ; est utilisé pour séparer les vecteurs et le caractère ,
-     * est utilisé pour séparer les composants x et y.
+     * Convertit une chaîne de caractères en tableau de vecteurs. Le caractère ;
+     * est utilisé pour séparer les vecteurs et le caractère , est utilisé pour
+     * séparer les composants x et y.
+     *
      * @param source
-     * @return 
+     * @return
      */
     public static Vector2[] parseVector2Array(String source) {
-        
-        if(source.equals("")) {
+
+        if (source.equals("")) {
             // Avoid parsing empty attribute
             return new Vector2[0];
         }
-        
+
         source = source.replaceAll("\\s", "");
-        
+
         String stringVector = source;
 
 
@@ -143,8 +143,6 @@ public class ComponentAttributes extends HashMap<String, String> {
         return vectors;
     }
 
-    
-
     /**
      *
      * @param key
@@ -153,7 +151,6 @@ public class ComponentAttributes extends HashMap<String, String> {
      */
     public float getFloat(String key, float defaultValue) {
         final String o = get(key);
-        
         return o != null && isFloat(o) ? Float.parseFloat(o) : defaultValue;
     }
 
@@ -185,7 +182,7 @@ public class ComponentAttributes extends HashMap<String, String> {
      * @param defaultValue
      * @return
      */
-    public String getString(String key, String defaultValue) {        
+    public String getString(String key, String defaultValue) {
         String o = get(key);
         return o != null ? (String) o : defaultValue;
     }

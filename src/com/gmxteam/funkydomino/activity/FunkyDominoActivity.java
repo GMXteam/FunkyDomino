@@ -30,7 +30,6 @@ import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.component.ComponentFactory;
 import com.gmxteam.funkydomino.component.ComponentLoader;
-import com.gmxteam.funkydomino.component.Components;
 import com.gmxteam.funkydomino.level.Levels;
 import com.gmxteam.funkydomino.level.loader.HUDLoader;
 import com.gmxteam.funkydomino.level.loader.SceneLoader;
