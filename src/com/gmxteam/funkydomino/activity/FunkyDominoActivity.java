@@ -28,15 +28,15 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.core.GravityUpdateHandler;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.core.Levels;
-import com.gmxteam.funkydomino.core.TimeCounterHandler;
-import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.component.factory.Components;
-import com.gmxteam.funkydomino.core.loader.ComponentLoader;
-import com.gmxteam.funkydomino.core.loader.HUDLoader;
-import com.gmxteam.funkydomino.core.loader.SceneLoader;
+import com.gmxteam.funkydomino.component.ComponentFactory;
+import com.gmxteam.funkydomino.component.ComponentLoader;
+import com.gmxteam.funkydomino.component.Components;
+import com.gmxteam.funkydomino.level.Levels;
+import com.gmxteam.funkydomino.level.loader.HUDLoader;
+import com.gmxteam.funkydomino.level.loader.SceneLoader;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
+import com.gmxteam.funkydomino.util.TimeCounterHandler;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
@@ -65,7 +65,7 @@ import org.andengine.util.progress.IProgressListener;
  *
  * @author guillaume
  */
-public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDominoBaseActivity {
+public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFunkyDominoActivity {
 
     private Levels mGameToLoad;
     private TimeCounterHandler mTimeCounterHandler = new TimeCounterHandler();
@@ -117,14 +117,14 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
                     .setMessage("Continuer la partie ?")
                     .setPositiveButton("Continuer", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    GameActivity.super.onResumeGame();
+                    FunkyDominoActivity.super.onResumeGame();
                     mTimeCounterHandler.resume();
                     showResumeDialog = false;
 
                 }
             }).show();
         } else {
-            GameActivity.super.onResumeGame();
+            FunkyDominoActivity.super.onResumeGame();
             mTimeCounterHandler.resume();
         }
 
@@ -149,7 +149,7 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
      * @param mi
      */
     public void onHighscoresMenuItemClick(MenuItem mi) {
-        startActivity(new Intent(GameActivity.this, HighscoresActivity.class));
+        startActivity(new Intent(FunkyDominoActivity.this, HighscoresActivity.class));
     }
 
     /**
@@ -157,7 +157,7 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
      * @param mi
      */
     public void onPreferencesMenuItemClick(MenuItem mi) {
-        startActivity(new Intent(GameActivity.this, PreferencesActivity.class));
+        startActivity(new Intent(FunkyDominoActivity.this, PreferencesActivity.class));
     }
 
     /**
@@ -194,18 +194,19 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
     public void onBackPressed() {
         onPauseGame();
 
+        showResumeDialog = false;
+
         new AlertDialog.Builder(this)
                 .setTitle("Quitter la partie ?")
                 .setMessage("Quitter la partie ?")
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                showResumeDialog = false;
                 onResumeGame();
             }
         })
                 .setPositiveButton("Quitter", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                GameActivity.super.onBackPressed();
+                FunkyDominoActivity.super.onBackPressed();
             }
         }).show();
 
@@ -429,10 +430,13 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
 
     @Override
     public void onCreateResourcesAsync(IProgressListener pProgressListener) throws Exception {
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
 
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         SoundFactory.setAssetBasePath("mfx/");
         MusicFactory.setAssetBasePath("mfx/");
+
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 4);
 
         ComponentFactory.setGameActivity(this);
 
@@ -442,6 +446,10 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
         mLevelLoader.registerEntityLoader("level", new SceneLoader(this));
         // On bind le hud
         mLevelLoader.registerEntityLoader("hud", new HUDLoader(this));
+
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 2);
+
+
         // On enregistre toutes les entités supportées.
         mLevelLoader.registerEntityLoader(Components.strings(), new ComponentLoader(this));
 
@@ -452,6 +460,7 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
 
     @Override
     public Scene onCreateSceneAsync(IProgressListener pProgressListener) throws Exception {
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
 
         mScene = new Scene();
 
@@ -466,7 +475,7 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
 
         mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
 
-        mEngine.enableOrientationSensor(this, new GravityUpdateHandler(mPhysicsWorld));
+        mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
 
         mContactManager = new ContactManager();
 
@@ -483,12 +492,15 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
 
     @Override
     public void onPopulateSceneAsync(Scene pScene, IProgressListener pProgressListener) throws Exception {
+        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
+
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même ainsi que le HUD.
          */
         mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.toString());
 
-        MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
+
+        //MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
     }
 }

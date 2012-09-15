@@ -1,14 +1,13 @@
-package com.gmxteam.funkydomino.core.component.factory;
+package com.gmxteam.funkydomino.component;
 
 import android.util.Log;
-import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.component.AddDominoButton;
-import com.gmxteam.funkydomino.core.component.Ball;
-import com.gmxteam.funkydomino.core.component.Cog;
-import com.gmxteam.funkydomino.core.component.Component;
-import com.gmxteam.funkydomino.core.component.Domino;
-import com.gmxteam.funkydomino.core.component.Ground;
-import com.gmxteam.funkydomino.core.component.Water;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.gmxteam.funkydomino.component.entity.AddDominoButton;
+import com.gmxteam.funkydomino.component.entity.Ball;
+import com.gmxteam.funkydomino.component.entity.Cog;
+import com.gmxteam.funkydomino.component.entity.Domino;
+import com.gmxteam.funkydomino.component.entity.Ground;
+import com.gmxteam.funkydomino.component.entity.Water;
 
 /**
  * Énumération des éléments Factorable que l'on peut retrouver dans FunkyDomino.
@@ -71,7 +70,7 @@ public enum Components {
      * @throws IllegalAccessException
      */
     public Component getComponent() throws InstantiationException, IllegalAccessException {
-        Log.v(GameActivity.LOG_TAG, "Création d'une instance de type " + this.name());
+        Log.v(FunkyDominoActivity.LOG_TAG, "Création d'une instance de type " + this.name());
 
         return (Component) mClass.newInstance();
     }

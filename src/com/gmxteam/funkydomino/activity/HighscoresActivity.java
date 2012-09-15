@@ -19,8 +19,11 @@ package com.gmxteam.funkydomino.activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import com.gmxteam.funkydomino.core.Levels;
-import java.util.HashSet;
+import com.gmxteam.funkydomino.util.Serialization;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import org.andengine.util.preferences.SimplePreferences;
 
 /**
@@ -28,6 +31,23 @@ import org.andengine.util.preferences.SimplePreferences;
  * @author Guillaume Poirier-Morency
  */
 public final class HighscoresActivity extends ListActivity {
+
+    public final class Highscore implements Serializable {
+        
+        private static final long serialVersionUID = 148303765L;
+
+        public Highscore(String pName, long pPoints) {
+            NAME = pName;
+            POINTS = pPoints;
+        }
+        public final String NAME;
+        public final long POINTS;
+        
+        @Override
+        public String toString() {
+            return NAME + " " + POINTS;
+        }
+    }
 
     /**
      *
@@ -37,13 +57,18 @@ public final class HighscoresActivity extends ListActivity {
     public void onCreate(Bundle b) {
         super.onCreate(b);
 
-        HashSet<String> mDefaultData = new HashSet<String>();
-        mDefaultData.add("Test");
+        ArrayList<Highscore> mDefault = new ArrayList<Highscore>();
+
+
+
+        String serializedData = SimplePreferences.getInstance(this).getString("highscores.values", Serialization.serialize(mDefault));
+
+
+        ArrayList<Highscore> data = (ArrayList<Highscore>) Serialization.unserialize(serializedData);
+
         
 
-        String[] listItems = (String[]) SimplePreferences.getInstance(this).getStringSet("highscores.values", mDefaultData).toArray();
-
-        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems));
+        setListAdapter(new ArrayAdapter<Highscore>(this, android.R.layout.simple_list_item_1, data));
 
 
     }

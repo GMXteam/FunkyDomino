@@ -14,17 +14,14 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.component.entity;
 
+import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.core.physics.box2d.PhysicsFactory;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.physics.box2d.PhysicsFactory;
 import java.util.Arrays;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.DrawMode;
@@ -41,16 +38,16 @@ import org.andengine.util.color.Color;
 import org.andengine.util.debug.Debug;
 
 /**
- * Objet définissant le sol. Méta-entité, soit une entité contenant plusieurs
- * entités. Chaque body est assemblé avec celui qui le suit (d'où la
- * LinkedList).
+ * Objet pour générer de l'eau. Cela risque plus d'être un champ de force
+ * qu'autre chose par contre.
  *
+ * @see Component
  * @author Guillaume Poirier-Morency
  */
-public class Ground extends Component implements ContactListener {
+public class Water extends Component {
 
-    private Body mGroundBody;
-    private GroundMesh mGround;
+    private Body mWaterBody;
+    private WaterMesh mWater;
 
     /**
      *
@@ -66,27 +63,26 @@ public class Ground extends Component implements ContactListener {
      * @param angle
      */
     @Override
-    protected void onCreateSprite(float pX, float pY, float angle) {
-        mGround = new GroundMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
-        mGround.setRotation(angle);
-        mGround.setColor(Color.GREEN);
+    protected void onCreateEntity(float pX, float pY, float angle) {
+        mWater = new WaterMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
+        mWater.setRotation(angle);
+        mWater.setColor(Color.BLUE);
     }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
+    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
+
 
         Debug.v(Arrays.toString(getVertices()));
 
-        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, BodyDef.BodyType.DynamicBody, mFixtureDef);
+        mWaterBody = PhysicsFactory.createPolygonBody(pw, mWater, BodyDef.BodyType.DynamicBody, mFixtureDef);
 
-        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
+        pw.registerPhysicsConnector(new PhysicsConnector(mWater, mWaterBody, true, true));
 
-
-    }
+    }   
 
     @Override
-    protected void onPopulateEntity(Entity e) {
-        e.attachChild(mGround);
+    protected void onRegisterTouchAreas(Scene pScene) {
     }
 
     /**
@@ -95,26 +91,14 @@ public class Ground extends Component implements ContactListener {
      */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
-        pContactManager.registerContactListener(mGroundBody, this);
     }
 
     @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
+    public Entity getEntity() {
+        return mWater;
     }
 
-    public void beginContact(Contact contact) {
-    }
-
-    public void endContact(Contact contact) {
-    }
-
-    public void preSolve(Contact contact, Manifold oldManifold) {
-    }
-
-    public void postSolve(Contact contact, ContactImpulse impulse) {
-    }
-
-    class GroundMesh extends Mesh implements IAreaShape {
+    class WaterMesh extends Mesh implements IAreaShape {
 
         /**
          * Uses a default {@link HighPerformanceMeshVertexBufferObject} in
@@ -122,7 +106,7 @@ public class Ground extends Component implements ContactListener {
          * {@link VertexBufferObjectAttribute}s:
          * {@link Mesh#VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT}.
          */
-        public GroundMesh(final float pX, final float pY, final Vector2[] vertices, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        public WaterMesh(final float pX, final float pY, final Vector2[] vertices, final VertexBufferObjectManager pVertexBufferObjectManager) {
             super(pX, pY, vector2ArrayToBufferData(vertices), vertices.length, DrawMode.TRIANGLES, pVertexBufferObjectManager);
 
         }

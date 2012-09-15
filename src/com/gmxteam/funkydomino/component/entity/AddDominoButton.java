@@ -14,11 +14,12 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.component.entity;
 
-import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.component.Component;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.gmxteam.funkydomino.component.ComponentFactory;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.ButtonSprite;
@@ -52,7 +53,7 @@ public class AddDominoButton extends Component implements OnClickListener {
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, GameActivity.TEXTURE_OPTION);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
 
 
         getTextureManager().loadTexture(mBitmapTextureAtlas);
@@ -71,7 +72,7 @@ public class AddDominoButton extends Component implements OnClickListener {
      * @param angle
      */
     @Override
-    protected void onCreateSprite(float pX, float pY, float angle) {
+    protected void onCreateEntity(float pX, float pY, float angle) {
         mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
         mAddDominoButtonSprite.setRotation(angle);
         mAddDominoButtonSprite.setOnClickListener(this);
@@ -115,7 +116,7 @@ public class AddDominoButton extends Component implements OnClickListener {
      */
     public void onClick(ButtonSprite bs, float f, float f1) {
         try {
-            mFunkyDominoBaseActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
+            mFunkyDominoBaseActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f).getEntity());
         } catch (InstantiationException ex) {
             Debug.e(ex);
         } catch (IllegalAccessException ex) {
@@ -123,5 +124,10 @@ public class AddDominoButton extends Component implements OnClickListener {
         }
 
 
+    }
+
+    @Override
+    public Entity getEntity() {
+        return mAddDominoButtonSprite;
     }
 }

@@ -14,16 +14,16 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component.factory;
+package com.gmxteam.funkydomino.component;
 
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
-import com.gmxteam.funkydomino.core.component.AddDominoButton;
-import com.gmxteam.funkydomino.core.component.Ball;
-import com.gmxteam.funkydomino.core.component.Cog;
-import com.gmxteam.funkydomino.core.component.Domino;
-import com.gmxteam.funkydomino.core.component.Ground;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.gmxteam.funkydomino.activity.IBaseGameActivity;
+import com.gmxteam.funkydomino.component.entity.AddDominoButton;
+import com.gmxteam.funkydomino.component.entity.Ball;
+import com.gmxteam.funkydomino.component.entity.Cog;
+import com.gmxteam.funkydomino.component.entity.Domino;
+import com.gmxteam.funkydomino.component.entity.Ground;
 
 /**
  * Utility class containing methods to create and extract components.
@@ -32,13 +32,13 @@ import com.gmxteam.funkydomino.core.component.Ground;
  */
 public class ComponentFactory {
 
-    private static IFunkyDominoBaseActivity mGameActivity;
+    private static IBaseGameActivity mGameActivity;
 
     /**
      *
      * @param pGameActivity
      */
-    public static void setGameActivity(IFunkyDominoBaseActivity pGameActivity) {
+    public static void setGameActivity(IBaseGameActivity pGameActivity) {
         mGameActivity = pGameActivity;
     }
 

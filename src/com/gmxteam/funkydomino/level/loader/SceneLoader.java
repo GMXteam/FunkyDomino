@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmxteam.funkydomino.core.loader;
+package com.gmxteam.funkydomino.level.loader;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
+import com.gmxteam.funkydomino.activity.IBaseGameActivity;
+import com.gmxteam.funkydomino.component.ComponentAttributes;
 import com.gmxteam.funkydomino.entity.primitive.Line;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
@@ -28,11 +28,11 @@ public class SceneLoader implements IEntityLoader {
      *
      * @param pGameActivity
      */
-    public SceneLoader(IFunkyDominoBaseActivity pGameActivity) {
+    public SceneLoader(IBaseGameActivity pGameActivity) {
         mGameActivity = pGameActivity;
 
     }
-    private final IFunkyDominoBaseActivity mGameActivity;
+    private final IBaseGameActivity mGameActivity;
 
     /**
      *

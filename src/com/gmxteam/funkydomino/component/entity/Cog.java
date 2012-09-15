@@ -14,17 +14,18 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.component.entity;
 
+import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
-import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.component.ComponentAttributes;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
@@ -80,7 +81,7 @@ public final class Cog extends Component {
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), COG_RADIUS * 2, COG_RADIUS * 2, GameActivity.TEXTURE_OPTION);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), COG_RADIUS * 2, COG_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
         mCogTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "cog.png", 0, 0);
@@ -97,7 +98,7 @@ public final class Cog extends Component {
      * @param angle
      */
     @Override
-    protected void onCreateSprite(float pX, float pY, float angle) {
+    protected void onCreateEntity(float pX, float pY, float angle) {
 
         mCogSprite = new Sprite(pX, pY, mCogTextureRegion, getVertexBufferObjectManager());
         mCogSprite.setRotation(angle);
@@ -108,7 +109,6 @@ public final class Cog extends Component {
             mCogToothRectangles[i].setRotation(angle);
         }
     }
-
 
     @Override
     protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
@@ -175,8 +175,6 @@ public final class Cog extends Component {
     @Override
     protected void onPopulateEntity(Entity e) {
 
-        e.attachChild(mCogSprite);
-
         for (Rectangle rectangleIterator : mCogToothRectangles) {
             e.attachChild(rectangleIterator);
         }
@@ -202,5 +200,10 @@ public final class Cog extends Component {
      */
     @Override
     protected void onRegisterContactListener(ContactManager pContactManager) {
+    }
+
+    @Override
+    public Entity getEntity() {
+        return mCogSprite;
     }
 }

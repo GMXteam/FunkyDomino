@@ -14,16 +14,17 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.component.entity;
 
+import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -64,7 +65,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, GameActivity.TEXTURE_OPTION);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
 
 
         getTextureManager().loadTexture(mBitmapTextureAtlas);
@@ -88,7 +89,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
      * @param angle
      */
     @Override
-    protected void onCreateSprite(float pX, float pY, float angle) {
+    protected void onCreateEntity(float pX, float pY, float angle) {
         mScrollDetector = new ScrollDetector(1.0f, this);
 
 
@@ -113,11 +114,6 @@ public final class Domino extends Component implements ContactListener, IScrollD
     protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
         mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
         pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
-    }
-
-    @Override
-    protected void onPopulateEntity(Entity e) {
-        e.attachChild(mDominoSprite);
     }
 
     @Override
@@ -202,5 +198,10 @@ public final class Domino extends Component implements ContactListener, IScrollD
         f = f / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
         f1 = f1 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
         mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
+    }
+
+    @Override
+    public Entity getEntity() {
+        return mDominoSprite;
     }
 }

@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.gmxteam.funkydomino.core.Levels;
+import com.gmxteam.funkydomino.level.Levels;
 
 /**
  * Activité pour charger une partie. Affiche une liste de parties.
@@ -62,7 +62,7 @@ public final class LoadGameActivity extends ListActivity {
      */
     @Override
     public void onListItemClick(ListView lv, View v, int x, long y) {
-        Intent i = new Intent(this, GameActivity.class);
+        Intent i = new Intent(this, FunkyDominoActivity.class);
         i.putExtra("bundle.level", ((TextView) v).getText());
         startActivity(i);
     }

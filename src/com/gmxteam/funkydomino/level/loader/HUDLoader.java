@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.gmxteam.funkydomino.core.loader;
+package com.gmxteam.funkydomino.level.loader;
 
-import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
-import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
+import com.gmxteam.funkydomino.activity.IBaseGameActivity;
+import com.gmxteam.funkydomino.component.ComponentFactory;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.IEntity;
 import org.andengine.util.debug.Debug;
@@ -22,11 +22,11 @@ public class HUDLoader implements IEntityLoader {
      *
      * @param pGameActivity
      */
-    public HUDLoader(IFunkyDominoBaseActivity pGameActivity) {
+    public HUDLoader(IBaseGameActivity pGameActivity) {
         mGameActivity = pGameActivity;
 
     }
-    private final IFunkyDominoBaseActivity mGameActivity;
+    private final IBaseGameActivity mGameActivity;
 
     /**
      *

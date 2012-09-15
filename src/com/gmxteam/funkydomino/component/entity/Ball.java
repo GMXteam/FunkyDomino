@@ -14,16 +14,17 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.component.entity;
 
+import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.gmxteam.funkydomino.activity.GameActivity;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -55,7 +56,7 @@ public final class Ball extends Component implements ContactListener {
     @Override
     protected void onLoadResource() {
 
-        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, GameActivity.TEXTURE_OPTION);
+        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
         getTextureManager().loadTexture(mBitmapTextureAtlas);
 
         mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
@@ -70,7 +71,7 @@ public final class Ball extends Component implements ContactListener {
      * @param angle
      */
     @Override
-    protected void onCreateSprite(float pX, float pY, float angle) {
+    protected void onCreateEntity(float pX, float pY, float angle) {
         mBallSprite = new Sprite(pX, pY, mBallTextureRegion, getVertexBufferObjectManager());
         mBallSprite.setRotation(angle);
     }
@@ -85,8 +86,6 @@ public final class Ball extends Component implements ContactListener {
 
     @Override
     protected void onPopulateEntity(Entity e) {
-
-        e.attachChild(mBallSprite);
     }
 
     @Override
@@ -131,5 +130,10 @@ public final class Ball extends Component implements ContactListener {
      * @param ci
      */
     public void postSolve(Contact cntct, ContactImpulse ci) {
+    }
+
+    @Override
+    public Entity getEntity() {
+        return mBallSprite;
     }
 }

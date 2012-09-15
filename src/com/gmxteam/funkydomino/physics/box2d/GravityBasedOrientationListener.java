@@ -1,8 +1,20 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core;
+package com.gmxteam.funkydomino.physics.box2d;
 
 import com.badlogic.gdx.math.Vector2;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -14,7 +26,7 @@ import org.andengine.util.debug.Debug;
  *
  * @author guillaume
  */
-public class GravityUpdateHandler implements IOrientationListener {
+public class GravityBasedOrientationListener implements IOrientationListener {
 
     private final GravityUpdateMode mGravityUpdateMode;
 
@@ -25,11 +37,11 @@ public class GravityUpdateHandler implements IOrientationListener {
     }
     private PhysicsWorld mPhysicsWorld;
 
-    public GravityUpdateHandler(PhysicsWorld pPhysicsWorld) {
+    public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld) {
         this(pPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL);
     }
 
-    public GravityUpdateHandler(PhysicsWorld pPhysicsWorld, GravityUpdateMode pGravityUpdateMode) {
+    public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld, GravityUpdateMode pGravityUpdateMode) {
         mGravityUpdateMode = pGravityUpdateMode;
         mPhysicsWorld = pPhysicsWorld;
         mGravity = pPhysicsWorld.getGravity();

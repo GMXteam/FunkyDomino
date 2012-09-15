@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component.factory;
+package com.gmxteam.funkydomino.component;
 
 import com.badlogic.gdx.math.Vector2;
 import java.util.Arrays;

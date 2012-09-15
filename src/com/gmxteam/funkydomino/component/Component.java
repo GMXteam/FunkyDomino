@@ -14,19 +14,20 @@
  *   You should have received a copy of the GNU General Public License
  *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.gmxteam.funkydomino.core.component;
+package com.gmxteam.funkydomino.component;
 
 import android.content.Context;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.gmxteam.funkydomino.activity.IFunkyDominoBaseActivity;
-import com.gmxteam.funkydomino.core.component.factory.ComponentAttributes;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.activity.IBaseGameActivity;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
 import java.io.IOException;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.entity.Entity;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
@@ -43,25 +44,25 @@ import org.andengine.util.debug.Debug;
  *
  * @author Guillaume Poirier-Morency
  */
-public abstract class Component extends Entity {
+public abstract class Component {
 
-    final static float DEFAULT_FRICTION = 1.0f,
+    public final static float DEFAULT_FRICTION = 1.0f,
             DEFAULT_DENSITY = 1.0f,
             DEFAULT_X = 0.0f,
             DEFAULT_Y = 0.0f,
             DEFAULT_ANGLE = 0.0f;
     public final static Vector2[] DEFAULT_VECTORS = {};
 
-    static float[] vector2ArrayToBufferData(Vector2[] vectors) {
+    public static float[] vector2ArrayToBufferData(Vector2[] vectors) {
 
-        final float[] bufferData = new float[vectors.length * Ground.GroundMesh.VERTEX_SIZE];
+        final float[] bufferData = new float[vectors.length * Mesh.VERTEX_SIZE];
 
         int bufferDataIndex = 0;
 
         for (Vector2 v : vectors) {
-            bufferData[bufferDataIndex + Ground.GroundMesh.VERTEX_INDEX_X] = v.x;
-            bufferData[bufferDataIndex + Ground.GroundMesh.VERTEX_INDEX_Y] = v.y;
-            bufferDataIndex += Ground.GroundMesh.VERTEX_SIZE;
+            bufferData[bufferDataIndex + Mesh.VERTEX_INDEX_X] = v.x;
+            bufferData[bufferDataIndex + Mesh.VERTEX_INDEX_Y] = v.y;
+            bufferDataIndex += Mesh.VERTEX_SIZE;
         }
 
         Debug.v("Nombre de données dans le buffer " + bufferData.length);
@@ -85,7 +86,7 @@ public abstract class Component extends Entity {
     /**
      *
      */
-    protected IFunkyDominoBaseActivity mFunkyDominoBaseActivity;
+    protected IBaseGameActivity mFunkyDominoBaseActivity;
     /**
      *
      */
@@ -101,7 +102,7 @@ public abstract class Component extends Entity {
      * @param att
      * @return
      */
-    public final Component factory(IFunkyDominoBaseActivity ga, ComponentAttributes att) {
+    public final Component factory(IBaseGameActivity ga, ComponentAttributes att) {
 
         mFunkyDominoBaseActivity = ga;
 
@@ -121,27 +122,33 @@ public abstract class Component extends Entity {
 
         onLoadResource();
 
-        onCreateSprite(att.getFloat("x", DEFAULT_X), att.getFloat("y", DEFAULT_Y), att.getFloat("angle", DEFAULT_ANGLE));
+        onCreateEntity(att.getFloat("x", DEFAULT_X), att.getFloat("y", DEFAULT_Y), att.getFloat("angle", DEFAULT_ANGLE));
 
         onPopulatePhysicsWorld(mFunkyDominoBaseActivity.getPhysicsWorld());
         //.setTransform(att.getFloat("x", 0.0f), att.getFloat("y", 0.0f), att.getFloat("angle", 0.0f));
 
-        onPopulateEntity(this);
+        onPopulateEntity(getEntity());
 
-        
-        if(att.getBoolean("touchable", true)) {
-                onRegisterTouchAreas(mFunkyDominoBaseActivity.getScene());
+
+        if (att.getBoolean("touchable", true)) {
+            onRegisterTouchAreas(mFunkyDominoBaseActivity.getScene());
 
         }
 
         onRegisterContactListener(mFunkyDominoBaseActivity.getContactManager());
 
         Debug.v("Un nouveau composant est créé ["
-                + this.getX() + "," + this.getY() + "]");
+                + getEntity().getX() + "," + getEntity().getY() + "]");
 
 
         return this;
     }
+
+    /**
+     * 
+     * @return 
+     */
+    public abstract Entity getEntity();
 
     ////////////////////////////////////////////////////////////////////////
     // Events
@@ -156,7 +163,7 @@ public abstract class Component extends Entity {
      * @param pY
      * @param angle
      */
-    protected abstract void onCreateSprite(float pX, float pY, float angle);
+    protected abstract void onCreateEntity(float pX, float pY, float angle);
 
     /**
      * Binding de l'entité avec le monde physique.
@@ -170,7 +177,7 @@ public abstract class Component extends Entity {
      *
      * @param e Év
      */
-    protected abstract void onPopulateEntity(Entity e);
+    protected void onPopulateEntity(Entity e) {};
 
     /**
      * L'entité enregistre ses surfaces qui peuvent recevoir des événements de

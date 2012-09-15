@@ -24,14 +24,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.core.GravityUpdateHandler;
-import com.gmxteam.funkydomino.core.GravityUpdateHandler.GravityUpdateMode;
-import com.gmxteam.funkydomino.core.Levels;
-import com.gmxteam.funkydomino.core.component.factory.ComponentFactory;
-import com.gmxteam.funkydomino.core.component.factory.Components;
-import com.gmxteam.funkydomino.core.loader.ComponentLoader;
-import com.gmxteam.funkydomino.core.loader.SceneLoader;
-import com.gmxteam.funkydomino.core.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
+import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
+import com.gmxteam.funkydomino.level.Levels;
+import com.gmxteam.funkydomino.component.ComponentFactory;
+import com.gmxteam.funkydomino.component.Components;
+import com.gmxteam.funkydomino.component.ComponentLoader;
+import com.gmxteam.funkydomino.level.loader.SceneLoader;
+import com.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
@@ -60,7 +60,7 @@ import org.andengine.util.preferences.SimplePreferences;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class MainActivity extends LayoutGameActivity implements IFunkyDominoBaseActivity {
+public final class MainActivity extends LayoutGameActivity implements IMainActivity {
 
     private Scene mScene;
     private FixedStepPhysicsWorld mPhysicsWorld;
@@ -93,7 +93,7 @@ public final class MainActivity extends LayoutGameActivity implements IFunkyDomi
      * @param v
      */
     public void onPlayClick(View v) {
-        Intent i = new Intent(MainActivity.this, GameActivity.class);
+        Intent i = new Intent(MainActivity.this, FunkyDominoActivity.class);
         i.putExtra("bundle.level", Levels.LEVEL_1.name());
         startActivity(i);
 
@@ -104,7 +104,7 @@ public final class MainActivity extends LayoutGameActivity implements IFunkyDomi
      * @param v
      */
     public void onNewGameClick(View v) {
-        Intent i = new Intent(MainActivity.this, GameActivity.class);
+        Intent i = new Intent(MainActivity.this, FunkyDominoActivity.class);
         i.putExtra("bundle.level", Levels.LEVEL_1.name());
         startActivity(i);
     }
@@ -182,7 +182,7 @@ public final class MainActivity extends LayoutGameActivity implements IFunkyDomi
 
         mScene.registerUpdateHandler(new FPSLogger());        
 
-        mEngine.enableOrientationSensor(this, new GravityUpdateHandler(mPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL));
+        mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL));
         
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 
