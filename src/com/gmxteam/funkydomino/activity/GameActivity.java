@@ -194,12 +194,13 @@ public class GameActivity extends SimpleAsyncGameActivity implements IFunkyDomin
     public void onBackPressed() {
         onPauseGame();
 
+        showResumeDialog = false;
+
         new AlertDialog.Builder(this)
                 .setTitle("Quitter la partie ?")
                 .setMessage("Quitter la partie ?")
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                showResumeDialog = false;
                 onResumeGame();
             }
         })
