@@ -244,12 +244,14 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
         mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
+        
+        mEngineOptions.getRenderOptions().getConfigChooserOptions().setRequestedMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().getConfigChooserOptions().isRequestedMultiSampling() ? "requise" : "non requise"));
+
+       
 
         
-        //mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
-        //Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
-
-
+        
         try {
             TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
             Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));

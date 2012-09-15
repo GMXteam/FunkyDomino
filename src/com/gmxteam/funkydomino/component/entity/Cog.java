@@ -106,18 +106,18 @@ public final class Cog extends Component {
 
         for (int i = 0; i < mCogToothRectangles.length; i++) {
 
-            final float theta = ((2 * (float) Math.PI) / COG_TEETH_COUNT) * (i);
-            final float hypothenuse = COG_RADIUS;
-            
-            final float toothX = (hypothenuse *  FloatMath.cos(theta)) + COG_RADIUS;
-            final float toothY = (hypothenuse *  FloatMath.sin(theta)) + COG_RADIUS;
+            final float theta = (360.0f / COG_TEETH_COUNT) * (i);
+            final float hypothenuse = COG_RADIUS - (0.5f * COG_TEETH_HEIGHT);
+
+            final float toothX = (hypothenuse * FloatMath.cos(MathUtils.degToRad(theta))) + COG_RADIUS;
+            final float toothY = (hypothenuse * FloatMath.sin(MathUtils.degToRad(theta))) + COG_RADIUS;
 
             Debug.v("Teeth position : [" + toothX + ",", +toothY + "] with initial rotation " + theta + " rad.");
 
             mCogToothRectangles[i] = new Rectangle(toothX, toothY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getVertexBufferObjectManager());
 
-            // On définit le centre de rotation au centre du rectangle.
-            mCogToothRectangles[i].setRotation(MathUtils.radToDeg(theta + ((float)Math.PI / 2.0f)));            
+            mCogToothRectangles[i].setRotation(theta + (i % 2 == 0 ? 90.0f : 0.0f));
+
 
             mCogSprite.attachChild(mCogToothRectangles[i]);
 
@@ -132,51 +132,15 @@ public final class Cog extends Component {
 
 
         mCogBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mCogSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
-        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogSprite, mCogBody, true, true));
+        // pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogSprite, mCogBody, true, true));
 
 
         for (int i = 0; i < mCogToothRectangles.length; i++) {
 
             mCogToothBodies[i] = PhysicsFactory.createBoxBody(pPhysicsWorld, mCogToothRectangles[i], BodyDef.BodyType.DynamicBody, mFixtureDef);
-            //pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogToothRectangles[i], mCogToothBodies[i], true, true));
+            pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogToothRectangles[i], mCogToothBodies[i], true, true));
 
 
-
-            /*
-             * |-----|
-             * |  +  |
-             * *------
-             * 
-             */
-            // On lie le corps avec la dent en deux points...
-            DistanceJointDef jd1 = new DistanceJointDef();
-            Vector2 cogAnchor1 = mCogBody.getLocalCenter(),
-                    toothAnchor1 = new Vector2(mCogToothBodies[i].localVector);
-            jd1.initialize(mCogBody, mCogToothBodies[i], cogAnchor1, toothAnchor1);
-            pPhysicsWorld.createJoint(jd1);
-
-            /*
-             * |-----|
-             * |  +  |
-             * ------*
-             * 
-             */
-            DistanceJointDef jd2 = new DistanceJointDef();
-            Vector2 cogAnchor2 = mCogBody.getLocalCenter(),
-                    toothAnchor2 = new Vector2(mCogToothBodies[i].localVector.add(mCogToothBodies[i].getLocalCenter().mul(2f)));
-            jd2.initialize(mCogBody, mCogToothBodies[i], cogAnchor2, toothAnchor2);
-            pPhysicsWorld.createJoint(jd2);
-
-            // On créé un moteur pour faire tourner le cog.
-
-            RevoluteJointDef rjd = new RevoluteJointDef();
-
-            rjd.initialize(mCogToothBodies[i], mCogBody, mCogBody.getLocalCenter());
-            rjd.maxMotorTorque = COG_MOTOR_MAX_TORQUE;
-            rjd.motorSpeed = COG_MOTOR_SPEED;
-
-
-            pPhysicsWorld.createJoint(rjd);
 
         }
 

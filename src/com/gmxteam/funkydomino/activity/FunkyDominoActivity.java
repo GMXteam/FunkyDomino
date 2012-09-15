@@ -80,7 +80,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
      */
     @Override
     public void onCreate(Bundle b) {
-        super.onCreate(b);
+        super.onCreate(b);      
+        
 
         // On écrit les préférences par défaut si c'est le premier lancement.
         PreferenceManager.setDefaultValues(this,
@@ -369,8 +370,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
 
 
-        //mEngineOptions.getRenderOptions().setMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
-        //Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().isMultiSampling() ? "activé" : "désactivé"));
+        mEngineOptions.getRenderOptions().getConfigChooserOptions().setRequestedMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
+        Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().getConfigChooserOptions().isRequestedMultiSampling() ? "activé" : "désactivé"));
 
 
         try {
@@ -441,7 +442,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         ComponentFactory.setGameActivity(this);
 
         mLevelLoader = new SimpleLevelLoader(getVertexBufferObjectManager());
-        
+
 
         // On bind le chargeur de la scène avec l'entité scène.
         mLevelLoader.registerEntityLoader(new SceneLoader(this));
