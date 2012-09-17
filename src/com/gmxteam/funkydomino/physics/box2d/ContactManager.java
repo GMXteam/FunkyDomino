@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ContactManager implements ContactListener {
 
-    private ConcurrentHashMap<Body, ContactListener> mBodies = new ConcurrentHashMap<Body, ContactListener>();
+    private final ConcurrentHashMap<Body, ContactListener> mBodies = new ConcurrentHashMap<Body, ContactListener>();
 
     /**
      *

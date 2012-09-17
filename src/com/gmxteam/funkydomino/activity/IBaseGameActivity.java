@@ -26,6 +26,7 @@ import org.andengine.ui.IGameInterface;
 public interface IBaseGameActivity extends IGameInterface {
 
     
+    
     /**
      *
      * @return
@@ -84,7 +85,7 @@ public interface IBaseGameActivity extends IGameInterface {
      *
      * @return
      */
-    public Point getCameraDimensions();
+    public Point getDrawableSurfaceDimensions();
 
     /**
      *

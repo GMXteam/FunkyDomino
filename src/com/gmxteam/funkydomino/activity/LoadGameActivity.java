@@ -61,7 +61,7 @@ public final class LoadGameActivity extends ListActivity {
      * @param y
      */
     @Override
-    public void onListItemClick(ListView lv, View v, int x, long y) {
+    public void onListItemClick(ListView lv, View v, int x, long y) {        
         Intent i = new Intent(this, FunkyDominoActivity.class);
         i.putExtra("bundle.level", ((TextView) v).getText());
         startActivity(i);

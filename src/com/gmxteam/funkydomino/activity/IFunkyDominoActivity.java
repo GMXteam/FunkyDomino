@@ -4,6 +4,7 @@
  */
 package com.gmxteam.funkydomino.activity;
 
+import org.andengine.engine.camera.hud.HUD;
 import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureOptions;
@@ -13,6 +14,8 @@ import org.andengine.opengl.texture.TextureOptions;
  * @author guillaume
  */
 public interface IFunkyDominoActivity extends IBaseGameActivity, ScrollDetector.IScrollDetectorListener, PinchZoomDetector.IPinchZoomDetectorListener {
+    
+    
     
     ////////////////////////////////////////////////////////////////////////////
     // Constantes publiques. Elles sont disponibles dans tout le projet.
@@ -26,6 +29,8 @@ public interface IFunkyDominoActivity extends IBaseGameActivity, ScrollDetector.
     public static final boolean DEBUG = true;
     ////////////////////////////////////////////////////////////////////////////
     // Constantes spécifiques aux activités
+        public static final int PHYSIC_STEPS_PER_SECONDS = 30;
+
     /**
      *
      */
@@ -74,6 +79,10 @@ public interface IFunkyDominoActivity extends IBaseGameActivity, ScrollDetector.
      *
      */
     public static TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
+    
+    
+    public void setHUD(HUD pHUD);
+    public HUD getHUD();
 
     
 }

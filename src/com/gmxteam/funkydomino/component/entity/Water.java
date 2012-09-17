@@ -16,12 +16,11 @@
  */
 package com.gmxteam.funkydomino.component.entity;
 
-import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.gmxteam.funkydomino.component.Component;
 import com.gmxteam.funkydomino.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.physics.box2d.PhysicsFactory;
 import java.util.Arrays;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.DrawMode;
@@ -29,6 +28,7 @@ import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.primitive.vbo.HighPerformanceMeshVertexBufferObject;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -63,7 +63,7 @@ public class Water extends Component {
      */
     @Override
     protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mWater = new WaterMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
+        mWater = new WaterMesh(pX, pY, getVertices(), getBaseGameActivity().getVertexBufferObjectManager());
         mWater.setRotation(angle);
         mWater.setColor(Color.BLUE);
         return mWater;
@@ -75,11 +75,11 @@ public class Water extends Component {
 
         Debug.v(Arrays.toString(getVertices()));
 
-        mWaterBody = PhysicsFactory.createPolygonBody(pw, mWater, BodyDef.BodyType.DynamicBody, mFixtureDef);
+        mWaterBody = PhysicsFactory.createPolygonBody(pw, mWater, getVertices(), BodyDef.BodyType.DynamicBody, mFixtureDef);
 
         pw.registerPhysicsConnector(new PhysicsConnector(mWater, mWaterBody, true, true));
 
-    }   
+    }
 
     @Override
     protected void onRegisterTouchAreas(Scene pScene) {
@@ -93,8 +93,6 @@ public class Water extends Component {
     protected void onRegisterContactListener(ContactManager pContactManager) {
     }
 
-   
-
     class WaterMesh extends Mesh {
 
         /**
@@ -107,7 +105,5 @@ public class Water extends Component {
             super(pX, pY, vector2ArrayToBufferData(vertices), vertices.length, DrawMode.TRIANGLES, pVertexBufferObjectManager);
 
         }
-
-       
     }
 }

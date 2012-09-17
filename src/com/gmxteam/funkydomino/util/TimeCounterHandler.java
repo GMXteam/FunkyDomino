@@ -5,7 +5,6 @@
 package com.gmxteam.funkydomino.util;
 
 import org.andengine.engine.handler.IUpdateHandler;
-import org.andengine.engine.handler.timer.TimerHandler;
 
 /**
  *
@@ -13,22 +12,35 @@ import org.andengine.engine.handler.timer.TimerHandler;
  */
 public class TimeCounterHandler implements IUpdateHandler {
 
+    private final float CALL_AFTER;
+    /**
+     * Last time onTimeChange was called.
+     */
+    private float mLastTime = 0.0f;
+
+    public interface IOnTimeChangeListener {
+
+        public void onTimeChange(float newTime);
+    }
     private float mElapsedTime;
     private boolean mIsPaused = true;
+    private IOnTimeChangeListener mOnTimeChangeListener;
 
     /**
      *
      * @param initTime
      */
-    public TimeCounterHandler(float initTime) {
+    public TimeCounterHandler(float initTime, IOnTimeChangeListener pOnTimeChangeListener, float pCallAfter) {
         mElapsedTime = initTime;
+        CALL_AFTER = pCallAfter;
+        mOnTimeChangeListener = pOnTimeChangeListener;
     }
 
     /**
      *
      */
-    public TimeCounterHandler() {
-        mElapsedTime = 0l;
+    public TimeCounterHandler(IOnTimeChangeListener pOnTimeChangeListener) {
+        this(0.0f, pOnTimeChangeListener, 0.5f);
     }
 
     /**
@@ -76,6 +88,10 @@ public class TimeCounterHandler implements IUpdateHandler {
      */
     public void onUpdate(float f) {
         mElapsedTime += f;
+        if (Math.abs(mElapsedTime - mLastTime) >= CALL_AFTER) {
+            mOnTimeChangeListener.onTimeChange(mElapsedTime);
+            mLastTime = mElapsedTime;
+        }
     }
 
     /**
@@ -83,5 +99,6 @@ public class TimeCounterHandler implements IUpdateHandler {
      */
     public void reset() {
         mElapsedTime = 0.0f;
+        mLastTime = 0.0f;
     }
 }

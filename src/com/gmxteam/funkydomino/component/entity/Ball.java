@@ -56,10 +56,10 @@ public final class Ball extends Component implements ContactListener {
     @Override
     protected void onLoadResource() {
 
-        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
-        getTextureManager().loadTexture(mBitmapTextureAtlas);
+        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
+        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-        mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "ball.png", 0, 0);
+        mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "ball.png", 0, 0);
 
 
     }
@@ -72,7 +72,7 @@ public final class Ball extends Component implements ContactListener {
      */
     @Override
     protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mBallSprite = new Sprite(pX, pY, mBallTextureRegion, getVertexBufferObjectManager());
+        mBallSprite = new Sprite(pX, pY, mBallTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
         mBallSprite.setRotation(angle);        
         return mBallSprite;
     }

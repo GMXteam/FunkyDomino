@@ -36,22 +36,28 @@ import com.gmxteam.funkydomino.level.loader.SceneLoader;
 import com.gmxteam.funkydomino.physics.box2d.ContactManager;
 import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import com.gmxteam.funkydomino.util.TimeCounterHandler;
+import com.gmxteam.funkydomino.util.TimeCounterHandler.IOnTimeChangeListener;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.SmoothCamera;
+import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.text.Text;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.ScrollDetector;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.texture.TextureOptions;
+import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
@@ -68,7 +74,8 @@ import org.andengine.util.progress.IProgressListener;
 public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFunkyDominoActivity {
 
     private Levels mGameToLoad;
-    private TimeCounterHandler mTimeCounterHandler = new TimeCounterHandler();
+    private TimeCounterHandler mTimeCounterHandler;
+    private HUD mHUD;
 
     ////////////////////////////////////////////////////////////////////////////
     // Events
@@ -79,8 +86,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
      */
     @Override
     public void onCreate(Bundle b) {
-        super.onCreate(b);      
-        
+        super.onCreate(b);
+
 
         // On écrit les préférences par défaut si c'est le premier lancement.
         PreferenceManager.setDefaultValues(this,
@@ -260,7 +267,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
      *
      * @return
      */
-    public final Point getCameraDimensions() {
+    public final Point getDrawableSurfaceDimensions() {
         Point p = new Point();
         getWindowManager().getDefaultDisplay().getSize(p);
         return p;
@@ -329,18 +336,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
     }
 
-    /**
-     *
-     * @param pEngineOptions
-     * @return
-     */
-    @Override
-    public Engine onCreateEngine(EngineOptions pEngineOptions) {
-        Engine pEngine = super.onCreateEngine(pEngineOptions);
-        pEngine.registerUpdateHandler(mTimeCounterHandler);
-        return pEngine;
-    }
-
+  
     /**
      *
      * @return
@@ -348,12 +344,12 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     @Override
     public final EngineOptions onCreateEngineOptions() {
 
-        mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getCameraDimensions().x, getCameraDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
+        mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
         mCamera.setBoundsEnabled(true);
 
 
-        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
+        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y), mCamera);
 
         // On récupère les settings depuis les préférences partagées.       
 
@@ -455,6 +451,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         mLevelLoader.registerEntityLoader(new ComponentLoader(this));
 
 
+        final BitmapTextureAtlas mFontTexture = new BitmapTextureAtlas(getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+
+        mFont = FontFactory.create(getFontManager(), mFontTexture, WORLD_TOP);
+        getTextureManager().loadTexture(mFontTexture);
+        getFontManager().loadFont(mFont);
+
+
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
     }
@@ -474,7 +477,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
             }
         });
 
-        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
+        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
 
         mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
 
@@ -485,6 +488,10 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         mScene.registerUpdateHandler(mPhysicsWorld);
 
         mScene.registerUpdateHandler(new FPSLogger());
+        
+        
+        
+        
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
 
 
@@ -501,7 +508,31 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.toString());
 
 
+        // HUD should have been created, let's populate it
+        mElapsedTimeText = new Text(30.0f, 10.0f, mFont, Float.toString(0.0f), getVertexBufferObjectManager());
+        mHUD.attachChild(mElapsedTimeText);
+        
+        mTimeCounterHandler = new TimeCounterHandler(new IOnTimeChangeListener() {
+
+            public void onTimeChange(float newTime) {
+                
+                //mElapsedTimeText.setText(Float.toString(newTime));
+            }
+        });
+        
+        getEngine().registerUpdateHandler(mTimeCounterHandler);
+
         //MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg").play();
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
+    }
+    private Text mElapsedTimeText;
+    private Font mFont;
+
+    public void setHUD(HUD pHUD) {
+        mHUD = pHUD;
+    }
+
+    public HUD getHUD() {
+        return mHUD;
     }
 }

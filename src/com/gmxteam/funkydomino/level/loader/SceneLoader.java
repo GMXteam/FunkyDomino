@@ -52,9 +52,9 @@ public class SceneLoader implements IEntityLoader {
         ComponentAttributes ea = new ComponentAttributes(pAttributes);
 
         Debug.v("La scène est de dimension "
-                + ea.getFloat("width", mGameActivity.getCameraDimensions().x)
+                + ea.getFloat("width", mGameActivity.getDrawableSurfaceDimensions().x)
                 + " de largeur par "
-                + ea.getFloat("width", mGameActivity.getCameraDimensions().y)
+                + ea.getFloat("width", mGameActivity.getDrawableSurfaceDimensions().y)
                 + " de hauteur.");
 
 
@@ -69,7 +69,7 @@ public class SceneLoader implements IEntityLoader {
 
 
         
-        final RepeatingSpriteBackground mBackground = new RepeatingSpriteBackground(mGameActivity.getCameraDimensions().x, mGameActivity.getCameraDimensions().y,  mDominoTextureRegion, mGameActivity.getVertexBufferObjectManager());
+        final RepeatingSpriteBackground mBackground = new RepeatingSpriteBackground(mGameActivity.getDrawableSurfaceDimensions().x, mGameActivity.getDrawableSurfaceDimensions().y,  mDominoTextureRegion, mGameActivity.getVertexBufferObjectManager());
 
         
         
@@ -79,8 +79,8 @@ public class SceneLoader implements IEntityLoader {
         final FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
 
 
-        final float HEIGHT = ea.getFloat("height", mGameActivity.getCameraDimensions().y),
-                WIDTH = ea.getFloat("width", mGameActivity.getCameraDimensions().x);
+        final float HEIGHT = ea.getFloat("height", mGameActivity.getDrawableSurfaceDimensions().y),
+                WIDTH = ea.getFloat("width", mGameActivity.getDrawableSurfaceDimensions().x);
 
         float[][] lines = {
             {0.0f, 0.0f, WIDTH, 0.0f},
@@ -101,7 +101,7 @@ public class SceneLoader implements IEntityLoader {
         }
 
         // Refresh camera bounds
-        mGameActivity.getCamera().setBounds(0.0f, 0.0f, ea.getFloat("width", mGameActivity.getCameraDimensions().x), ea.getFloat("height", mGameActivity.getCameraDimensions().y));
+        mGameActivity.getCamera().setBounds(0.0f, 0.0f, ea.getFloat("width", mGameActivity.getDrawableSurfaceDimensions().x), ea.getFloat("height", mGameActivity.getDrawableSurfaceDimensions().y));
 
 
 

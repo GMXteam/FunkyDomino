@@ -16,7 +16,6 @@
  */
 package com.gmxteam.funkydomino.component.entity;
 
-import com.gmxteam.funkydomino.component.Component;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -24,8 +23,8 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.gmxteam.funkydomino.component.Component;
 import com.gmxteam.funkydomino.physics.box2d.ContactManager;
-import com.gmxteam.funkydomino.physics.box2d.PhysicsFactory;
 import java.util.Arrays;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.DrawMode;
@@ -33,6 +32,7 @@ import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.primitive.vbo.HighPerformanceMeshVertexBufferObject;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
+import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -67,7 +67,7 @@ public class Ground extends Component implements ContactListener {
      */
     @Override
     protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mGround = new GroundMesh(pX, pY, getVertices(), getVertexBufferObjectManager());
+        mGround = new GroundMesh(pX, pY, getVertices(), getBaseGameActivity().getVertexBufferObjectManager());
         mGround.setRotation(angle);
         mGround.setColor(Color.GREEN);
         return mGround;
@@ -78,7 +78,7 @@ public class Ground extends Component implements ContactListener {
 
         Debug.v(Arrays.toString(getVertices()));
 
-        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround, BodyDef.BodyType.DynamicBody, mFixtureDef);
+        mGroundBody = PhysicsFactory.createPolygonBody(pPhysicsWorld, mGround,getVertices(), BodyDef.BodyType.DynamicBody, mFixtureDef);
 
         pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mGround, mGroundBody, true, true));
 
@@ -123,29 +123,6 @@ public class Ground extends Component implements ContactListener {
 
         }
 
-        public float getWidth() {
-            return 0.0f;
-        }
-
-        public float getHeight() {
-            return 0.0f;
-        }
-
-        public float getWidthScaled() {
-            return 0.0f;
-        }
-
-        public float getHeightScaled() {
-            return 0.0f;
-        }
-
-        public void setHeight(float f) {
-        }
-
-        public void setWidth(float f) {
-        }
-
-        public void setSize(float f, float f1) {
-        }
+        
     }
 }

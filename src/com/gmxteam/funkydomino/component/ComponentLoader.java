@@ -36,7 +36,7 @@ public class ComponentLoader implements IEntityLoader {
 
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, IEntityLoaderData pEntityLoaderData) throws IOException {
          IEntity currentEntity = null;
-
+         
         try {
             currentEntity = Components.valueOf(pEntityName).getComponent().factory(mGameActivity, new ComponentAttributes(pAttributes)).getEntity();
         } catch (InstantiationException ex) {

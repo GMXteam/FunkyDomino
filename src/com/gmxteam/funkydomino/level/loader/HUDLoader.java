@@ -4,12 +4,10 @@
  */
 package com.gmxteam.funkydomino.level.loader;
 
-import com.gmxteam.funkydomino.activity.IBaseGameActivity;
-import com.gmxteam.funkydomino.component.ComponentFactory;
+import com.gmxteam.funkydomino.activity.IFunkyDominoActivity;
 import java.io.IOException;
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.IEntity;
-import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.level.IEntityLoaderData;
 import org.xml.sax.Attributes;
@@ -24,11 +22,11 @@ public class HUDLoader implements IEntityLoader {
      *
      * @param pGameActivity
      */
-    public HUDLoader(IBaseGameActivity pGameActivity) {
+    public HUDLoader(IFunkyDominoActivity pGameActivity) {
         mGameActivity = pGameActivity;
 
     }
-    private final IBaseGameActivity mGameActivity;
+    private final IFunkyDominoActivity mGameActivity;
     
     private final static String[] ENTITY_NAMES = {"hud"};
 
@@ -38,8 +36,10 @@ public class HUDLoader implements IEntityLoader {
 
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, IEntityLoaderData pEntityLoaderData) throws IOException {
         final HUD mHUD = new HUD();
-        mHUD.setCamera(mGameActivity.getCamera());
-
+        mHUD.setCamera(mGameActivity.getCamera());  
+        
+        mGameActivity.setHUD(mHUD);
+        
 
         return mHUD;
     }

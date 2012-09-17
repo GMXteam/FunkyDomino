@@ -16,55 +16,91 @@
  */
 package com.gmxteam.funkydomino.physics.box2d;
 
+import android.hardware.SensorManager;
 import com.badlogic.gdx.math.Vector2;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.input.sensor.orientation.IOrientationListener;
 import org.andengine.input.sensor.orientation.OrientationData;
-import org.andengine.util.debug.Debug;
 
 /**
+ * Listener pour actualiser la gravité du monde physique par rapport aux données
+ * du senseur d'orientation.
  *
- * @author guillaume
+ * @author Guillaume Poirier-Morency
  */
 public class GravityBasedOrientationListener implements IOrientationListener {
 
     private final GravityUpdateMode mGravityUpdateMode;
-
-    public enum GravityUpdateMode {
-
-        SCREEN_IS_VERTICAL,
-        SCREEN_IS_HORIZONTAL;
-    }
+    private final float MAX_GRAVITY;
+    private static final float MAX_PITCH = 90.0f,
+            MAX_ROLL = 90.0f,
+            MAX_YAW = 90.0f;
+    /**
+     * Sensitivité minimale.
+     */
+    private final int mSensitivity;
+    /**
+     * Gravité initiale.
+     */
+    private Vector2 mGravity;
+    /**
+     *
+     */
     private PhysicsWorld mPhysicsWorld;
 
     public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld) {
-        this(pPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL);
+        this(pPhysicsWorld, SensorManager.GRAVITY_EARTH, SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM, GravityUpdateMode.SCREEN_IS_VERTICAL);
     }
 
     public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld, GravityUpdateMode pGravityUpdateMode) {
+        this(pPhysicsWorld, SensorManager.GRAVITY_EARTH, SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM, pGravityUpdateMode);
+    }
+
+    public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld, int pSensitivity) {
+        this(pPhysicsWorld, SensorManager.GRAVITY_EARTH, pSensitivity, GravityUpdateMode.SCREEN_IS_VERTICAL);
+    }
+
+    public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld, float pMaxGravity) {
+        this(pPhysicsWorld, pMaxGravity, SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM, GravityUpdateMode.SCREEN_IS_VERTICAL);
+    }
+
+    public GravityBasedOrientationListener(PhysicsWorld pPhysicsWorld, float pMaxGravity, int pSensitivity, GravityUpdateMode pGravityUpdateMode) {
+
+        MAX_GRAVITY = pMaxGravity;
+        mSensitivity = pSensitivity;
         mGravityUpdateMode = pGravityUpdateMode;
         mPhysicsWorld = pPhysicsWorld;
         mGravity = pPhysicsWorld.getGravity();
-        
+
     }
-    private Vector2 mGravity;
 
     public void onOrientationAccuracyChanged(OrientationData pOrientationData) {
     }
 
     public void onOrientationChanged(OrientationData pOrientationData) {
+
+        if (pOrientationData.getAccelerationAccuracy() < mSensitivity) {
+            // Data not reliable
+            return;
+        }
+
         switch (mGravityUpdateMode) {
             case SCREEN_IS_VERTICAL:
-                this.mGravity.x = pOrientationData.getRoll();
-                this.mGravity.y = pOrientationData.getPitch();
+                this.mGravity.x = MAX_GRAVITY * pOrientationData.getRoll() / MAX_ROLL;
+                this.mGravity.y = MAX_GRAVITY * pOrientationData.getPitch() / MAX_PITCH;
                 break;
             case SCREEN_IS_HORIZONTAL:
-                this.mGravity.x = pOrientationData.getYaw();
-                this.mGravity.y = pOrientationData.getPitch();
+                this.mGravity.x = MAX_GRAVITY * pOrientationData.getYaw() / MAX_YAW;
+                this.mGravity.y = MAX_GRAVITY * pOrientationData.getPitch() / MAX_PITCH;
                 break;
-
-        }        
+        }
 
         mPhysicsWorld.setGravity(this.mGravity);
+    }
+
+    public enum GravityUpdateMode {
+
+        SCREEN_IS_VERTICAL,
+        SCREEN_IS_HORIZONTAL;
     }
 }

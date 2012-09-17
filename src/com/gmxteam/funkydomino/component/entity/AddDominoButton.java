@@ -53,13 +53,13 @@ public class AddDominoButton extends Component implements OnClickListener {
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
 
 
-        getTextureManager().loadTexture(mBitmapTextureAtlas);
+        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
 
 
-        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
+        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "domino.png", 0, 0);
 
 
 
@@ -73,7 +73,7 @@ public class AddDominoButton extends Component implements OnClickListener {
      */
     @Override
     protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, this.getVertexBufferObjectManager());
+        mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
         mAddDominoButtonSprite.setRotation(angle);
         mAddDominoButtonSprite.setOnClickListener(this);
 

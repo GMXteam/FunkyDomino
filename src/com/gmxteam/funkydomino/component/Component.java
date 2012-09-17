@@ -17,6 +17,8 @@
 package com.gmxteam.funkydomino.component;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Point;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.gmxteam.funkydomino.activity.IBaseGameActivity;
@@ -25,6 +27,8 @@ import java.io.IOException;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
+import org.andengine.audio.sound.SoundManager;
+import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.entity.Entity;
 import org.andengine.entity.primitive.Mesh;
 import org.andengine.entity.scene.Scene;
@@ -143,11 +147,12 @@ public abstract class Component implements IComponent {
     ////////////////////////////////////////////////////////////////////////
     // Events
     /**
-     *
+     * Chargement des ressources.
      */
     protected abstract void onLoadResource();
 
     /**
+     * Création de l'entité.
      *
      * @param pX
      * @param pY
@@ -171,50 +176,23 @@ public abstract class Component implements IComponent {
     protected abstract void onRegisterTouchAreas(Scene pScene);
 
     /**
+     * Le component enregistre des listeners pour écouter les collisions de ses
+     * bodies.
      *
      * @param pContactManager
      */
     protected abstract void onRegisterContactListener(ContactManager pContactManager);
 
     /**
+     * Retourne l'entité la plus générale.
      *
      * @return
      */
     public final Entity getEntity() {
         return mEntity;
     }
-
-    /////////////////////////
-    // Accessible resources from the GameActivity
-    /**
-     *
-     * @return
-     */
-    protected final TextureManager getTextureManager() {
-        return mFunkyDominoBaseActivity.getTextureManager();
-    }
-
-    /**
-     *
-     * @return
-     */
-    protected final VertexBufferObjectManager getVertexBufferObjectManager() {
-        return mFunkyDominoBaseActivity.getVertexBufferObjectManager();
-    }
-
-    /**
-     *
-     * @return
-     */
-    protected final MusicManager getMusicManager() {
-        return mFunkyDominoBaseActivity.getMusicManager();
-    }
-
-    /**
-     *
-     * @return
-     */
-    protected final Context getContext() {
-        return (Context) mFunkyDominoBaseActivity;
+   
+    public final IBaseGameActivity getBaseGameActivity() {
+        return mFunkyDominoBaseActivity;
     }
 }

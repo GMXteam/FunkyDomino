@@ -16,6 +16,7 @@
  */
 package com.gmxteam.funkydomino.activity;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -24,13 +25,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
-import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
-import com.gmxteam.funkydomino.level.Levels;
 import com.gmxteam.funkydomino.component.ComponentFactory;
 import com.gmxteam.funkydomino.component.ComponentLoader;
+import com.gmxteam.funkydomino.level.Levels;
 import com.gmxteam.funkydomino.level.loader.SceneLoader;
 import com.gmxteam.funkydomino.physics.box2d.ContactManager;
+import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
+import com.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
@@ -142,7 +143,7 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
         ComponentFactory.setGameActivity(this);
 
         mLevelLoader = new SimpleLevelLoader(getVertexBufferObjectManager());
-        
+
         // On bind le chargeur de la scène avec l'entité scène.
         mLevelLoader.registerEntityLoader(new SceneLoader(this));
 
@@ -174,16 +175,16 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
         mScene = new Scene();
 
-        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), true, 8, 1);
+        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, SensorManager.GRAVITY_EARTH), false);
 
         mContactManager = new ContactManager();
 
         mScene.registerUpdateHandler(mPhysicsWorld);
 
-        mScene.registerUpdateHandler(new FPSLogger());        
+        mScene.registerUpdateHandler(new FPSLogger());
 
         mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL));
-        
+
         pOnCreateSceneCallback.onCreateSceneFinished(mScene);
 
     }
@@ -210,10 +211,22 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
      *
      * @return
      */
-    public final Point getCameraDimensions() {
-        Point p = new Point();
-        getWindowManager().getDefaultDisplay().getSize(p);
-        return p;
+    public final Point getDrawableSurfaceDimensions() {
+
+        if (mRenderSurfaceView != null) {
+
+            return new Point(mRenderSurfaceView.getWidth(), mRenderSurfaceView.getHeight());
+        }
+
+
+        Point size = new Point();
+
+        getWindowManager().getDefaultDisplay().getSize(size);
+        
+        return size;
+
+
+
     }
 
     /**
@@ -223,13 +236,10 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
     public EngineOptions onCreateEngineOptions() {
 
 
-        mCamera = new SmoothCamera(0.0f, 0.0f, getCameraDimensions().x, getCameraDimensions().y, 0.0f, 0.0f, 0.0f);
+        mCamera = new SmoothCamera(0.0f, 0.0f, getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y, 0.0f, 0.0f, 0.0f);
 
 
-
-
-        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.PORTRAIT_SENSOR, new RatioResolutionPolicy(getCameraDimensions().x, getCameraDimensions().y), mCamera);
-
+        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, new RatioResolutionPolicy(getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y), mCamera);
 
 
         // On récupère les settings depuis les préférences partagées.       
@@ -244,14 +254,14 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
         mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
-        
+
         mEngineOptions.getRenderOptions().getConfigChooserOptions().setRequestedMultiSampling(SimplePreferences.getInstance(this).getBoolean("engine.audio.multisampling.enabled", true));
         Debug.v("L'échantillonage multiple est " + (mEngineOptions.getRenderOptions().getConfigChooserOptions().isRequestedMultiSampling() ? "requise" : "non requise"));
 
-       
 
-        
-        
+
+
+
         try {
             TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
             Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));

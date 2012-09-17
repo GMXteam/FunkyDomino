@@ -64,13 +64,13 @@ public final class Domino extends Component implements ContactListener, IScrollD
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
 
 
-        getTextureManager().loadTexture(mBitmapTextureAtlas);
+        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
 
 
-        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "domino.png", 0, 0);
+        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "domino.png", 0, 0);
 
 
 
@@ -93,7 +93,7 @@ public final class Domino extends Component implements ContactListener, IScrollD
 
 
 
-        mDominoSprite = new Sprite(pX, pY, mDominoTextureRegion, getVertexBufferObjectManager()) {
+        mDominoSprite = new Sprite(pX, pY, mDominoTextureRegion, getBaseGameActivity().getVertexBufferObjectManager()) {
             /**
              * Gestion manuelle de l'événement.
              */

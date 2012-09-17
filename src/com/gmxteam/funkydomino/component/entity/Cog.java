@@ -82,10 +82,10 @@ public final class Cog extends Component {
     @Override
     protected void onLoadResource() {
 
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getTextureManager(), COG_RADIUS * 2, COG_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
-        getTextureManager().loadTexture(mBitmapTextureAtlas);
+        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), COG_RADIUS * 2, COG_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
+        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
 
-        mCogTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getContext(), "cog.png", 0, 0);
+        mCogTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "cog.png", 0, 0);
 
 
 
@@ -101,7 +101,7 @@ public final class Cog extends Component {
     @Override
     protected Entity onCreateEntity(float pX, float pY, float angle) {
 
-        mCogSprite = new Sprite(pX, pY, mCogTextureRegion, getVertexBufferObjectManager());
+        mCogSprite = new Sprite(pX, pY, mCogTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
         mCogSprite.setRotation(angle);
 
         for (int i = 0; i < mCogToothRectangles.length; i++) {
@@ -114,7 +114,7 @@ public final class Cog extends Component {
 
             Debug.v("Teeth position : [" + toothX + ",", +toothY + "] with initial rotation " + theta + " rad.");
 
-            mCogToothRectangles[i] = new Rectangle(toothX, toothY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getVertexBufferObjectManager());
+            mCogToothRectangles[i] = new Rectangle(toothX, toothY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getBaseGameActivity().getVertexBufferObjectManager());
 
             mCogToothRectangles[i].setRotation(theta + (i % 2 == 0 ? 90.0f : 0.0f));
 
