@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Niveau de référence. Affiche tous les attributs possibles.
+-->
+
+
+<level background="" width="" height="" music="">
+    <!-- Tout objet qui extends Component -->
+    <component x="" y="" angle="" />    
+    
+    <hud>
+        
+        
+    </hud>
+    
+    <ground x="" y="" vector="">
+        <!-- Not implemented yet ! -->
+        <vector2 x="" y="" />
+        <vector2 x="" y="" />
+        <vector2 x="" y="" />        
+    </ground>
+    
+</level>
