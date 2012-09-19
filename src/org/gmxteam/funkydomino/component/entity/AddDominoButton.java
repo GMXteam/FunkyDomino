@@ -32,8 +32,6 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
-import org.gmxteam.funkydomino.component.ComponentAttributes;
-import org.gmxteam.funkydomino.component.ComponentFactory;
 import org.gmxteam.funkydomino.component.IComponent;
 
 /**

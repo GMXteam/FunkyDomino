@@ -50,18 +50,14 @@ import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.debug.Debug.DebugLevel;
 import org.andengine.util.level.IEntityLoader;
-import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
-import org.gmxteam.funkydomino.level.Levels;
-import org.gmxteam.funkydomino.component.ComponentFactory;
 import org.gmxteam.funkydomino.component.loader.Loaders;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
-import org.gmxteam.funkydomino.component.loader.HUDLoader;
-import org.gmxteam.funkydomino.util.PinchZoomAndScrollOnSceneTouchListener;
-import org.gmxteam.funkydomino.component.loader.SceneLoader;
+import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
+import org.gmxteam.funkydomino.util.PinchZoomAndScrollOnSceneTouchListener;
 import org.gmxteam.funkydomino.util.TimeCounterHandler;
 import org.gmxteam.funkydomino.util.TimeCounterHandler.IOnTimeChangeListener;
 
@@ -340,10 +336,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 4);
 
-        ComponentFactory.setGameActivity(this);
-
         mLevelLoader = new FunkyDominoLevelLoader(this);
-
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 2);
 
@@ -396,9 +389,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         mScene.registerUpdateHandler(mPhysicsWorld);
 
         mScene.registerUpdateHandler(new FPSLogger());
-
-
-
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
 

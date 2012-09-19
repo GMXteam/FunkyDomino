@@ -17,7 +17,6 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.util.debug.Debug;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
-import org.gmxteam.funkydomino.component.loader.ComponentLoader;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 
 /**

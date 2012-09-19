@@ -14,9 +14,7 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
-import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.IComponent;
 
 public class CogCore extends Sprite implements IComponent {
@@ -24,10 +22,11 @@ public class CogCore extends Sprite implements IComponent {
     public static final int /**
              *
              */
-            COG_CORE_RADIUS = 10;
+            COG_CORE_RADIUS = 64 - 20,
+            COG_IMAGE_RADIUS = 64;
 
     public CogCore(final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(0.0f, 0.0f, COG_CORE_RADIUS * 2, COG_CORE_RADIUS * 2, pTextureRegion, pVertexBufferObjectManager);
+        super(Cog.COG_TOTAL_RADIUS, Cog.COG_TOTAL_RADIUS, COG_IMAGE_RADIUS * 2, COG_IMAGE_RADIUS * 2, pTextureRegion, pVertexBufferObjectManager);
     }
 
   

@@ -28,10 +28,7 @@ import com.gmxteam.funkydomino.activity.R;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.gmxteam.funkydomino.component.ComponentFactory;
-import org.gmxteam.funkydomino.component.loader.ComponentLoader;
 import org.gmxteam.funkydomino.level.Levels;
-import org.gmxteam.funkydomino.component.loader.SceneLoader;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
@@ -54,7 +51,6 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.ui.activity.LayoutGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
-import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.gmxteam.funkydomino.component.loader.Loaders;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
@@ -146,8 +142,6 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         SoundFactory.setAssetBasePath("mfx/");
         MusicFactory.setAssetBasePath("mfx/");
-
-        ComponentFactory.setGameActivity(this);
 
         mLevelLoader = new FunkyDominoLevelLoader(this);
 

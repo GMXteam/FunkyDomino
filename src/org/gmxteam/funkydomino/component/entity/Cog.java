@@ -16,7 +16,6 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
-import android.util.FloatMath;
 import org.gmxteam.funkydomino.component.IComponent;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -24,35 +23,12 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import java.util.ArrayList;
-import java.util.List;
-import org.andengine.engine.camera.Camera;
-import org.andengine.engine.handler.IUpdateHandler;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
-import org.andengine.entity.Entity;
-import org.andengine.entity.IEntity;
-import org.andengine.entity.IEntityComparator;
-import org.andengine.entity.IEntityMatcher;
-import org.andengine.entity.IEntityParameterCallable;
-import org.andengine.entity.modifier.IEntityModifier;
-import org.andengine.entity.modifier.IEntityModifier.IEntityModifierMatcher;
-import org.andengine.entity.primitive.Rectangle;
-import org.andengine.entity.scene.Scene;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.sprite.batch.SpriteBatch;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.region.TextureRegion;
-import org.andengine.opengl.util.GLState;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
-import org.andengine.util.adt.color.Color;
-import org.andengine.util.adt.transformation.Transformation;
-import org.andengine.util.debug.Debug;
-import org.andengine.util.math.MathUtils;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
 
 /**
@@ -66,11 +42,8 @@ public final class Cog extends SpriteBatch implements IComponent {
     /**
      *
      */
-    public static final int COG_RADIUS = 64,
-            /**
-             *
-             */
-            COG_TEETH_COUNT = 8;
+    public static final int COG_TEETH_COUNT = 8,
+            COG_TOTAL_RADIUS = CogCore.COG_CORE_RADIUS + CogTeeth.COG_TEETH_HEIGHT + 10;
     /**
      *
      */
@@ -93,7 +66,7 @@ public final class Cog extends SpriteBatch implements IComponent {
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
-        return PhysicsFactory.createCircleBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void beginContact(Contact contact) {

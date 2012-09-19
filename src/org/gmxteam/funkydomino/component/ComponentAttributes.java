@@ -30,11 +30,11 @@ import org.xml.sax.Attributes;
 public class ComponentAttributes extends HashMap<String, String> {
 
     public float getFriction() {
-        return getFloat("friction", 1.0f);
+        return getFloat("friction", 0.0f);
     }
 
     public float getDensity() {
-        return getFloat("friction", 1.0f);
+        return getFloat("density", 5.0f);
     }
 
     public float getX() {
@@ -49,32 +49,7 @@ public class ComponentAttributes extends HashMap<String, String> {
         return getFloat("angle", 0.0f);
     }
 
-    /**
-     *
-     * @param x
-     * @param y
-     * @return
-     */
-    public static ComponentAttributes createBaseAttributes(float x, float y) {
-        return createBaseAttributes(x, y, IComponent.DEFAULT_ANGLE);
-    }
-
-    /**
-     *
-     * @param x
-     * @param y
-     * @param angle
-     * @return
-     */
-    public static ComponentAttributes createBaseAttributes(float x, float y, float angle) {
-        ComponentAttributes attributes = new ComponentAttributes();
-        attributes.put("x", String.valueOf(x));
-        attributes.put("y", String.valueOf(y));
-        attributes.put("angle", String.valueOf(angle));
-
-
-        return attributes;
-    }
+    
 
     /**
      *
