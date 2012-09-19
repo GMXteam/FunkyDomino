@@ -16,110 +16,94 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
-import org.andengine.entity.Entity;
-import org.andengine.entity.scene.Scene;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import org.andengine.entity.IEntity;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.ButtonSprite.OnClickListener;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TextureRegion;
-import org.andengine.util.debug.Debug;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
-import org.gmxteam.funkydomino.component.Component;
-import org.gmxteam.funkydomino.level.loader.ComponentFactory;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
+import org.gmxteam.funkydomino.activity.IBaseGameActivity;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.ComponentFactory;
+import org.gmxteam.funkydomino.component.IComponent;
 
 /**
  *
  * @author Usager
  */
-public class AddDominoButton extends Component implements OnClickListener {
+public class AddDominoButton extends ButtonSprite implements IComponent, OnClickListener {
 
-    ButtonSprite mAddDominoButtonSprite;
+    private static BitmapTextureAtlas mBitmapTextureAtlas;
+    private static TextureRegion mTextureRegion;
+
+    public static void loadResources(IBaseGameActivity pGameActivity) {
+        mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), AddDominoButton.DOMINO_WIDTH, AddDominoButton.DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+        mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pGameActivity.getContext(), "domino.png", 0, 0);
+        pGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
+    public static IEntity createAddDominoButton(float x, float y) {
+        throw new UnsupportedOperationException("Not supported yet.");
+//
+//        final AddDominoButton d = new AddDominoButton(x, y, mTextureRegion, mGameActivity.getVertexBufferObjectManager());
+//        ComponentAttributes ca = ComponentAttributes.createBaseAttributes(x, y);
+//        ca.putFloat("friction", 1.0f);
+//        ca.putFloat("density", 1.0f);
+//        return ComponentFactory.factory(d, ca);
+
+    }
+
+    ////////////////////////////////////////////////////////////////////////
+    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
+    }
     /**
      *
      */
-    public final int DOMINO_WIDTH = 32,
+    public static final int DOMINO_WIDTH = 32,
             /**
              *
              */
             DOMINO_HEIGHT = 64;
-    private TextureRegion mDominoTextureRegion;
 
-    /**
-     *
-     */
-    @Override
-    protected void onLoadResource() {
-
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
-
-
-        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
-
-
-        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "domino.png", 0, 0);
-
-
-
+    public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param angle
-     * @return  
-     */
-    @Override
-    protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mAddDominoButtonSprite = new ButtonSprite(pX, pY, mDominoTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
-        mAddDominoButtonSprite.setRotation(angle);
-        mAddDominoButtonSprite.setOnClickListener(this);
-        return mAddDominoButtonSprite;
+    public void beginContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     *
-     * @param ocl
-     */
-    public void setOnClickListener(OnClickListener ocl) {
-        mAddDominoButtonSprite.setOnClickListener(ocl);
+    public void endContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
+    public void preSolve(Contact contact, Manifold oldManifold) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
-        pScene.registerTouchArea(mAddDominoButtonSprite);
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     *
-     * @param pContactManager
-     */
-    @Override
-    protected void onRegisterContactListener(ContactManager pContactManager) {
-    }
-
-    /**
-     *
-     * @param bs
-     * @param f
-     * @param f1
-     */
-    public void onClick(ButtonSprite bs, float f, float f1) {
-        try {
-            mFunkyDominoBaseActivity.getScene().attachChild(ComponentFactory.createDomino(0.0f, 0.0f));
-        } catch (InstantiationException ex) {
-            Debug.e(ex);
-        } catch (IllegalAccessException ex) {
-            Debug.e(ex);
-        }
-
-
+    public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

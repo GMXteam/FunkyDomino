@@ -16,16 +16,18 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
-import org.andengine.entity.Entity;
-import org.andengine.entity.scene.Scene;
-import org.andengine.entity.sprite.Sprite;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import org.andengine.entity.sprite.batch.SpriteBatch;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.region.TextureRegion;
-import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
-import org.gmxteam.funkydomino.component.Component;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 
 /**
  * Objet définissant le sol. Il est composé de deux entités. Un sprite png pour
@@ -35,58 +37,38 @@ import org.gmxteam.funkydomino.physics.box2d.ContactManager;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Ground extends Component {
+public class Ground extends SpriteBatch implements IComponent {
+    
+    
 
-    private Sprite mGround;
-    private TextureRegion mGroundTextureRegion;
     public static final int GROUND_WIDTH = 128, GROUND_HEIGHT = 128;
 
-    /**
-     *
-     */
-    @Override
-    protected void onLoadResource() {
-        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), GROUND_WIDTH,GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+    public Ground(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager);
+    }
 
+    public Ground(ComponentAttributes pAttributes, BitmapTextureAtlas pTexture, int pCapacity, VertexBufferObjectManager pVertexBufferObjectManager) {
+        this(pAttributes.getX(), pAttributes.getY(), pTexture, pCapacity, pVertexBufferObjectManager);
+    }
 
-        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
-
-
-        mGroundTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "ground/ground1.png", 0, 0);
-
+    public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
+        throw new UnsupportedOperationException("Not supported yet.");
 
     }
 
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param angle
-     * @return
-     */
-    @Override
-    protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mGround = new Sprite(pX, pY, GROUND_WIDTH, GROUND_HEIGHT, mGroundTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
-
-
-
-
-        return mGround;
+    public void beginContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
+    public void endContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     *
-     * @param pContactManager
-     */
-    @Override
-    protected void onRegisterContactListener(ContactManager pContactManager) {
+    public void preSolve(Contact contact, Manifold oldManifold) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

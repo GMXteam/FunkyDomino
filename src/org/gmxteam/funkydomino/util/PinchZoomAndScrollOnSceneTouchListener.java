@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.gmxteam.funkydomino.level.loader;
+package org.gmxteam.funkydomino.util;
 
 import org.andengine.engine.camera.SmoothCamera;
 import org.andengine.entity.scene.IOnSceneTouchListener;

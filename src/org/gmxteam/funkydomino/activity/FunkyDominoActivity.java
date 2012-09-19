@@ -49,16 +49,17 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.debug.Debug.DebugLevel;
+import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.level.LevelLoader;
-import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
-import org.gmxteam.funkydomino.component.ComponentLoader;
 import org.gmxteam.funkydomino.level.Levels;
-import org.gmxteam.funkydomino.level.loader.ComponentFactory;
-import org.gmxteam.funkydomino.level.loader.HUDLoader;
-import org.gmxteam.funkydomino.level.loader.PinchZoomAndScrollOnSceneTouchListener;
-import org.gmxteam.funkydomino.level.loader.SceneLoader;
+import org.gmxteam.funkydomino.component.ComponentFactory;
+import org.gmxteam.funkydomino.component.loader.Loaders;
+import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
+import org.gmxteam.funkydomino.component.loader.HUDLoader;
+import org.gmxteam.funkydomino.util.PinchZoomAndScrollOnSceneTouchListener;
+import org.gmxteam.funkydomino.component.loader.SceneLoader;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import org.gmxteam.funkydomino.util.TimeCounterHandler;
@@ -261,7 +262,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     /**
      * Chargeur de niveau.
      */
-    private LevelLoader mLevelLoader;
+    private FunkyDominoLevelLoader mLevelLoader;
     /**
      * Gestionnaire de contact.
      */
@@ -341,19 +342,19 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         ComponentFactory.setGameActivity(this);
 
-        mLevelLoader = new SimpleLevelLoader(getVertexBufferObjectManager());
+        mLevelLoader = new FunkyDominoLevelLoader(this);
 
-
-        // On bind le chargeur de la scène avec l'entité scène.
-        mLevelLoader.registerEntityLoader(new SceneLoader(this));
-        // On bind le hud
-        mLevelLoader.registerEntityLoader(new HUDLoader(this));
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 2);
 
 
-        // On enregistre toutes les entités supportées.
-        mLevelLoader.registerEntityLoader(new ComponentLoader(this));
+        // On enregistre toutes les entités supportées
+        for (Loaders c : Loaders.values()) {
+            Debug.v("Création du loader " + c.name());
+
+            mLevelLoader.registerEntityLoader((IEntityLoader) c.getLoaderClass().getConstructor(IBaseGameActivity.class).newInstance(this));
+
+        }
 
 
         final BitmapTextureAtlas mFontTexture = new BitmapTextureAtlas(getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
@@ -423,7 +424,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         // HUD should have been created, let's populate it
         mElapsedTimeText = new Text(30.0f, 10.0f, mFont, Float.toString(0.0f), getVertexBufferObjectManager());
-        mHUD.attachChild(mElapsedTimeText);
+//        mHUD.attachChild(mElapsedTimeText);
 
         mTimeCounterHandler = new TimeCounterHandler(new IOnTimeChangeListener() {
             public void onTimeChange(float newTime) {

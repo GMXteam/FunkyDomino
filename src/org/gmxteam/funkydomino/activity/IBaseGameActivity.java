@@ -11,10 +11,9 @@ import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.SoundManager;
 import org.andengine.engine.camera.SmoothCamera;
+import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.detector.PinchZoomDetector;
-import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.ui.IGameInterface;
@@ -25,7 +24,7 @@ import org.andengine.ui.IGameInterface;
  */
 public interface IBaseGameActivity extends IGameInterface {
 
-    
+    public void setHUD(HUD pHUD);
     
     /**
      *

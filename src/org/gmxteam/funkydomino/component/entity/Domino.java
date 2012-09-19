@@ -16,35 +16,40 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
-import org.gmxteam.funkydomino.component.Component;
+import org.gmxteam.funkydomino.component.IComponent;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
-import org.andengine.entity.Entity;
-import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
-import org.andengine.input.touch.TouchEvent;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
-import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.vbo.DrawType;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
+
+
+
+
+
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Domino extends Component implements ContactListener, IScrollDetectorListener {
+public final class Domino extends Sprite implements IComponent,  IScrollDetectorListener {
+    private Body mDominoBody;
 
+    public Domino(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pComponentAttributes.getFloat("x", 0.0f), pComponentAttributes.getFloat("y", 0.0f), pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
+        
+    }
     /**
      *
      */
@@ -53,86 +58,16 @@ public final class Domino extends Component implements ContactListener, IScrollD
              *
              */
             DOMINO_WIDTH = 32;
-    private Body mDominoBody;
-    private Sprite mDominoSprite;
-    private ScrollDetector mScrollDetector;
-    private TextureRegion mDominoTextureRegion;
-
-    /**
-     *
-     */
+    
     @Override
-    protected void onLoadResource() {
-
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), DOMINO_WIDTH, DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
-
-
-        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
-
-
-        mDominoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "domino.png", 0, 0);
-
-
-
-
-
-
-
-
-    }
-
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param angle
-     * @return  
-     */
-    @Override
-    protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mScrollDetector = new ScrollDetector(1.0f, this);
-
-
-
-        mDominoSprite = new Sprite(pX, pY, mDominoTextureRegion, getBaseGameActivity().getVertexBufferObjectManager()) {
-            /**
-             * Gestion manuelle de l'événement.
-             */
-            @Override
-            public boolean onAreaTouched(TouchEvent te, float f, float f1) {
-
-
-                return mScrollDetector.onManagedTouchEvent(te);
-            }
-        };
-
-        mDominoSprite.setRotation(angle);
-        
-        return mDominoSprite;
-
-    }
-
-    @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pw) {
-        mDominoBody = PhysicsFactory.createBoxBody(pw, mDominoSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
-        pw.registerPhysicsConnector(new PhysicsConnector(mDominoSprite, mDominoBody, true, true));
-    }
-
-    @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
-        pScene.registerTouchArea(mDominoSprite);
-    }
+    public Body onCreateBody(PhysicsWorld pw, FixtureDef pFixtureDef) {        
+        mDominoBody = PhysicsFactory.createBoxBody(pw, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
+        return mDominoBody;
+    }   
 
     ////////////////////////////////////
     // Collisions
-    /**
-     *
-     * @param pContactManager
-     */
-    @Override
-    protected void onRegisterContactListener(ContactManager pContactManager) {
-        pContactManager.registerContactListener(mDominoBody, this);
-    }
+    
 
     /**
      *
@@ -202,4 +137,5 @@ public final class Domino extends Component implements ContactListener, IScrollD
         mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
     }
 
+   
 }

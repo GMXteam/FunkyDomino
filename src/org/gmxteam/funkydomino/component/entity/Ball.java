@@ -16,12 +16,13 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
-import org.gmxteam.funkydomino.component.Component;
+import org.gmxteam.funkydomino.component.IComponent;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
@@ -33,72 +34,36 @@ import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.vbo.DrawType;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
 
 /**
  *
  * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class Ball extends Component implements ContactListener {
+public final class Ball extends Sprite implements IComponent, ContactListener {
 
-    private Body mBallBody;
-    private Sprite mBallSprite;
+    public Ball(ComponentAttributes pAttributes, TextureRegion mTextureRegion, VertexBufferObjectManager vertexBufferObjectManager) {
+        this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), mTextureRegion, vertexBufferObjectManager);
+    }
+
+    public Ball(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
+    }
     /**
      *
      */
     public static final int BALL_RADIUS = 32;
-    private TextureRegion mBallTextureRegion;
-
-    /**
-     *
-     */
-    @Override
-    protected void onLoadResource() {
-
-        final BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), BALL_RADIUS * 2, BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
-        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
-
-        mBallTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "ball.png", 0, 0);
-
-
-    }
-
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param angle
-     * @return  
-     */
-    @Override
-    protected Entity onCreateEntity(float pX, float pY, float angle) {
-        mBallSprite = new Sprite(pX, pY, mBallTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
-        mBallSprite.setRotation(angle);        
-        return mBallSprite;
-    }
 
     @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
-        mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mBallSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
+    public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
+        final Body mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
+        return mBallBody;
 
-        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mBallSprite, mBallBody, true, true));
-
-    }
-
-  
-    @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
-        pScene.registerTouchArea(mBallSprite);
-    }
-
-    /**
-     *
-     * @param pContactManager
-     */
-    @Override
-    protected void onRegisterContactListener(ContactManager pContactManager) {
-        pContactManager.registerContactListener(mBallBody, this);
     }
 
     /**
@@ -130,6 +95,4 @@ public final class Ball extends Component implements ContactListener {
      */
     public void postSolve(Contact cntct, ContactImpulse ci) {
     }
-
-  
 }

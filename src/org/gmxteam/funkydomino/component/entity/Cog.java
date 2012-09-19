@@ -17,26 +17,43 @@
 package org.gmxteam.funkydomino.component.entity;
 
 import android.util.FloatMath;
-import org.gmxteam.funkydomino.component.Component;
-import com.badlogic.gdx.math.Vector2;
+import org.gmxteam.funkydomino.component.IComponent;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
-import com.badlogic.gdx.physics.box2d.joints.RevoluteJointDef;
-import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import java.util.ArrayList;
+import java.util.List;
+import org.andengine.engine.camera.Camera;
+import org.andengine.engine.handler.IUpdateHandler;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.entity.Entity;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.IEntityComparator;
+import org.andengine.entity.IEntityMatcher;
+import org.andengine.entity.IEntityParameterCallable;
+import org.andengine.entity.modifier.IEntityModifier;
+import org.andengine.entity.modifier.IEntityModifier.IEntityModifierMatcher;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.entity.sprite.batch.SpriteBatch;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.input.touch.TouchEvent;
+import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.util.GLState;
+import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.transformation.Transformation;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.math.MathUtils;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
 
 /**
  * Objet générant une roue dentée.
@@ -44,20 +61,12 @@ import org.andengine.util.math.MathUtils;
  * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class Cog extends Component {
+public final class Cog extends SpriteBatch implements IComponent {
 
     /**
      *
      */
     public static final int COG_RADIUS = 64,
-            /**
-             *
-             */
-            COG_TEETH_HEIGHT = 10,
-            /**
-             *
-             */
-            COG_TEETH_WIDTH = 20,
             /**
              *
              */
@@ -70,101 +79,36 @@ public final class Cog extends Component {
              *
              */
             COG_MOTOR_MAX_TORQUE = 1000.0f;
-    private Body mCogBody;
-    private Body[] mCogToothBodies = new Body[COG_TEETH_COUNT];
-    private Rectangle[] mCogToothRectangles = new Rectangle[COG_TEETH_COUNT];
-    private Sprite mCogSprite;
-    private TextureRegion mCogTextureRegion;
 
-    /**
-     *
-     */
-    @Override
-    protected void onLoadResource() {
-
-        BitmapTextureAtlas mBitmapTextureAtlas = new BitmapTextureAtlas(getBaseGameActivity().getTextureManager(), COG_RADIUS * 2, COG_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
-        getBaseGameActivity().getTextureManager().loadTexture(mBitmapTextureAtlas);
-
-        mCogTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, getBaseGameActivity().getContext(), "cog.png", 0, 0);
-
+    public Cog(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager);
 
 
 
     }
 
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param angle
-     * @return  
-     */
-    @Override
-    protected Entity onCreateEntity(float pX, float pY, float angle) {
-
-        mCogSprite = new Sprite(pX, pY, mCogTextureRegion, getBaseGameActivity().getVertexBufferObjectManager());
-        mCogSprite.setRotation(angle);
-
-        for (int i = 0; i < mCogToothRectangles.length; i++) {
-
-            final float theta = (360.0f / COG_TEETH_COUNT) * (i);
-            final float hypothenuse = COG_RADIUS - (0.5f * COG_TEETH_HEIGHT);
-
-            final float toothX = (hypothenuse * FloatMath.cos(MathUtils.degToRad(theta))) + COG_RADIUS;
-            final float toothY = (hypothenuse * FloatMath.sin(MathUtils.degToRad(theta))) + COG_RADIUS;
-
-            Debug.v("Teeth position : [" + toothX + ",", +toothY + "] with initial rotation " + theta + " rad.");
-
-            mCogToothRectangles[i] = new Rectangle(toothX, toothY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, getBaseGameActivity().getVertexBufferObjectManager());
-
-            mCogToothRectangles[i].setRotation(theta + (i % 2 == 0 ? 90.0f : 0.0f));
-
-
-            mCogSprite.attachChild(mCogToothRectangles[i]);
-
-        }
-
-        return mCogSprite;
+    public Cog(ComponentAttributes pAttributes, BitmapTextureAtlas mBitmapTextureAtlas, int i, VertexBufferObjectManager vertexBufferObjectManager) {
+        this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), mBitmapTextureAtlas, i, vertexBufferObjectManager);
 
     }
 
-    @Override
-    protected void onPopulatePhysicsWorld(PhysicsWorld pPhysicsWorld) {
-
-
-        mCogBody = PhysicsFactory.createCircleBody(pPhysicsWorld, mCogSprite, BodyDef.BodyType.DynamicBody, mFixtureDef);
-        pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogSprite, mCogBody, true, true));
-
-
-        for (int i = 0; i < mCogToothRectangles.length; i++) {
-
-            mCogToothBodies[i] = PhysicsFactory.createBoxBody(pPhysicsWorld, mCogToothRectangles[i], BodyDef.BodyType.DynamicBody, mFixtureDef);
-            //pPhysicsWorld.registerPhysicsConnector(new PhysicsConnector(mCogToothRectangles[i], mCogToothBodies[i], true, true));
-
-
-
-        }
-
+    public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
+        return PhysicsFactory.createCircleBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
     }
 
-    @Override
-    protected void onRegisterTouchAreas(Scene pScene) {
-
-        pScene.registerTouchArea(mCogSprite);
-
-        for (Rectangle rectangleIterator : mCogToothRectangles) {
-            pScene.registerTouchArea(rectangleIterator);
-        }
-
-
-
+    public void beginContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    /**
-     *
-     * @param pContactManager
-     */
-    @Override
-    protected void onRegisterContactListener(ContactManager pContactManager) {
+    public void endContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void preSolve(Contact contact, Manifold oldManifold) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

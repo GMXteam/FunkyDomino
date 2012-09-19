@@ -16,7 +16,6 @@
  */
 package org.gmxteam.funkydomino.activity;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
@@ -26,16 +25,20 @@ import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
 import com.gmxteam.funkydomino.activity.R;
-import org.gmxteam.funkydomino.level.loader.ComponentFactory;
-import org.gmxteam.funkydomino.component.ComponentLoader;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.gmxteam.funkydomino.component.ComponentFactory;
+import org.gmxteam.funkydomino.component.loader.ComponentLoader;
 import org.gmxteam.funkydomino.level.Levels;
-import org.gmxteam.funkydomino.level.loader.SceneLoader;
+import org.gmxteam.funkydomino.component.loader.SceneLoader;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
+import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
@@ -50,9 +53,11 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.LayoutGameActivity;
 import org.andengine.util.debug.Debug;
-import org.andengine.util.level.LevelLoader;
+import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.level.simple.SimpleLevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
+import org.gmxteam.funkydomino.component.loader.Loaders;
+import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 
 /**
  * Activité principale de FunkyDomino. Permet d'accéder à : FunkyDominoActivity
@@ -67,7 +72,7 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
     private Scene mScene;
     private FixedStepPhysicsWorld mPhysicsWorld;
     private ContactManager mContactManager;
-    private LevelLoader mLevelLoader;
+    private FunkyDominoLevelLoader mLevelLoader;
     private SmoothCamera mCamera;
 
     ////////////////////////////////////////////////////////////////////////////
@@ -133,7 +138,7 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
     /**
      *
-     * @param pOnCreateResourcesCallback 
+     * @param pOnCreateResourcesCallback
      */
     @Override
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) {
@@ -144,13 +149,28 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
         ComponentFactory.setGameActivity(this);
 
-        mLevelLoader = new SimpleLevelLoader(getVertexBufferObjectManager());
+        mLevelLoader = new FunkyDominoLevelLoader(this);
 
-        // On bind le chargeur de la scène avec l'entité scène.
-        mLevelLoader.registerEntityLoader(new SceneLoader(this));
+        // On enregistre toutes les entités supportées
+        for (Loaders c : Loaders.values()) {
+            try {
+                Debug.v("Création du loader " + c.name());
+                mLevelLoader.registerEntityLoader((IEntityLoader) c.getLoaderClass().getConstructor(IBaseGameActivity.class).newInstance(this));
 
-        // On enregistre toutes les entités supportées.
-        mLevelLoader.registerEntityLoader(new ComponentLoader(this));
+            } catch (NoSuchMethodException ex) {
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
 
         pOnCreateResourcesCallback.onCreateResourcesFinished();
 
@@ -175,7 +195,7 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
     /**
      *
-     * @param pOnCreateSceneCallback 
+     * @param pOnCreateSceneCallback
      */
     @Override
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) {
@@ -229,7 +249,7 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
         Point size = new Point();
 
         getWindowManager().getDefaultDisplay().getSize(size);
-        
+
         return size;
 
 
@@ -384,6 +404,10 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
      * @param f
      */
     public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setHUD(HUD pHUD) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

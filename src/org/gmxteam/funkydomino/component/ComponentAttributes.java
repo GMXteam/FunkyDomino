@@ -19,6 +19,7 @@ package org.gmxteam.funkydomino.component;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Arrays;
 import java.util.HashMap;
+import org.andengine.entity.primitive.Mesh;
 import org.andengine.util.debug.Debug;
 import org.xml.sax.Attributes;
 
@@ -27,6 +28,76 @@ import org.xml.sax.Attributes;
  * @author guillaume
  */
 public class ComponentAttributes extends HashMap<String, String> {
+
+    public float getFriction() {
+        return getFloat("friction", 1.0f);
+    }
+
+    public float getDensity() {
+        return getFloat("friction", 1.0f);
+    }
+
+    public float getX() {
+        return getFloat("x", 0.0f);
+    }
+
+    public float getY() {
+        return getFloat("y", 0.0f);
+    }
+
+    public float getAngle() {
+        return getFloat("angle", 0.0f);
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public static ComponentAttributes createBaseAttributes(float x, float y) {
+        return createBaseAttributes(x, y, IComponent.DEFAULT_ANGLE);
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param angle
+     * @return
+     */
+    public static ComponentAttributes createBaseAttributes(float x, float y, float angle) {
+        ComponentAttributes attributes = new ComponentAttributes();
+        attributes.put("x", String.valueOf(x));
+        attributes.put("y", String.valueOf(y));
+        attributes.put("angle", String.valueOf(angle));
+
+
+        return attributes;
+    }
+
+    /**
+     *
+     * @param vectors
+     * @return
+     */
+    public static float[] vector2ArrayToBufferData(Vector2[] vectors) {
+
+        final float[] bufferData = new float[vectors.length * Mesh.VERTEX_SIZE];
+
+        int bufferDataIndex = 0;
+
+        for (Vector2 v : vectors) {
+            bufferData[bufferDataIndex + Mesh.VERTEX_INDEX_X] = v.x;
+            bufferData[bufferDataIndex + Mesh.VERTEX_INDEX_Y] = v.y;
+            bufferDataIndex += Mesh.VERTEX_SIZE;
+        }
+
+        Debug.v("Nombre de données dans le buffer " + bufferData.length);
+        Debug.v("Nombre de vecteurs dans le buffer " + vectors.length);
+
+        return bufferData;
+    }
 
     /**
      *
@@ -196,5 +267,9 @@ public class ComponentAttributes extends HashMap<String, String> {
     public boolean getBoolean(String key, boolean defaultValue) {
         final String o = get(key);
         return o != null && isBoolean(o) ? Boolean.parseBoolean(o) : defaultValue;
+    }
+
+    public void putFloat(String friction, float f) {
+        put(friction, String.valueOf(f));
     }
 }
