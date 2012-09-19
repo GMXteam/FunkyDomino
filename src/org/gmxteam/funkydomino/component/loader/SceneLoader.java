@@ -99,7 +99,7 @@ public class SceneLoader extends ComponentLoader {
                     .getPhysicsWorld(), lineShape, limitsFixtureDef);
 
             pEntityLoaderData.getBaseGameActivity()
-                    .getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody, true, true));
+                    .getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody));
             pEntityLoaderData.getBaseGameActivity()
                     .getScene().attachChild(lineShape);
 

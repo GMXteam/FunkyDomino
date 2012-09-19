@@ -23,11 +23,11 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.andengine.entity.sprite.batch.SpriteBatch;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
+import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
 
@@ -37,13 +37,13 @@ import org.gmxteam.funkydomino.component.ComponentAttributes;
  * @see Component
  * @author Guillaume Poirier-Morency
  */
-public final class Cog extends SpriteBatch implements IComponent {
+public final class Cog extends Sprite implements IComponent {
 
     /**
      *
      */
     public static final int COG_TEETH_COUNT = 8,
-            COG_TOTAL_RADIUS = CogCore.COG_CORE_RADIUS + CogTeeth.COG_TEETH_HEIGHT + 10;
+            COG_TOTAL_RADIUS = 54 + CogTeeth.COG_TEETH_HEIGHT;
     /**
      *
      */
@@ -53,20 +53,20 @@ public final class Cog extends SpriteBatch implements IComponent {
              */
             COG_MOTOR_MAX_TORQUE = 1000.0f;
 
-    public Cog(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager);
+    public Cog(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTextureRegion, pVertexBufferObjectManager);
 
 
 
     }
 
-    public Cog(ComponentAttributes pAttributes, BitmapTextureAtlas mBitmapTextureAtlas, int i, VertexBufferObjectManager vertexBufferObjectManager) {
-        this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), mBitmapTextureAtlas, i, vertexBufferObjectManager);
+    public Cog(ComponentAttributes pAttributes, ITextureRegion pTextureRegion, int i, VertexBufferObjectManager vertexBufferObjectManager) {
+        this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), pTextureRegion, vertexBufferObjectManager);
 
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return PhysicsFactory.createCircleBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
     }
 
     public void beginContact(Contact contact) {

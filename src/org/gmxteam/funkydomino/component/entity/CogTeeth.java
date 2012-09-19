@@ -16,40 +16,39 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.component.IComponent;
 
+public class CogTeeth extends Rectangle implements IComponent {
 
-    public class CogTeeth extends Rectangle implements IComponent {
+    public static final int /**
+             *
+             */
+            COG_TEETH_HEIGHT = 10,
+            /**
+             *
+             */
+            COG_TEETH_WIDTH = 20;
 
-        public static final int /**
-                 *
-                 */
-                COG_TEETH_HEIGHT = 10,
-                /**
-                 *
-                 */
-                COG_TEETH_WIDTH = 20;
-
-        public CogTeeth(final float pX, final float pY, final VertexBufferObjectManager pVertexBufferObjectManager) {
-            super(pX, pY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, pVertexBufferObjectManager);
-        }
-
-        public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
-            return PhysicsFactory.createBoxBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
-
-        }
-
-        public void beginContact(Contact contact) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void endContact(Contact contact) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void preSolve(Contact contact, Manifold oldManifold) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        public void postSolve(Contact contact, ContactImpulse impulse) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+    public CogTeeth(final float pX, final float pY, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, pVertexBufferObjectManager);
     }
+
+    public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
+        return PhysicsFactory.createBoxBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
+
+    }
+
+    public void beginContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void endContact(Contact contact) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void preSolve(Contact contact, Manifold oldManifold) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void postSolve(Contact contact, ContactImpulse impulse) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+}

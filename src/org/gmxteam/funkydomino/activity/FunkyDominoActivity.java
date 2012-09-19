@@ -330,27 +330,30 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     public void onCreateResourcesAsync(IProgressListener pProgressListener) throws Exception {
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
 
+        int progress = IProgressListener.PROGRESS_MIN;
+
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
         SoundFactory.setAssetBasePath("mfx/");
         MusicFactory.setAssetBasePath("mfx/");
 
-        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 4);
+        pProgressListener.onProgressChanged(progress += 5);
 
         mLevelLoader = new FunkyDominoLevelLoader(this);
 
-        pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX / 2);
+        pProgressListener.onProgressChanged(progress += 5);
 
-
+        float progressionByLoader = 75.0f / Loaders.values().length;
         // On enregistre toutes les entités supportées
         for (Loaders c : Loaders.values()) {
             Debug.v("Création du loader " + c.name());
 
             mLevelLoader.registerEntityLoader((IEntityLoader) c.getLoaderClass().getConstructor(IBaseGameActivity.class).newInstance(this));
-
+            pProgressListener.onProgressChanged(progress += progressionByLoader);
         }
 
 
         final BitmapTextureAtlas mFontTexture = new BitmapTextureAtlas(getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+        pProgressListener.onProgressChanged(progress += 5);
 
         mFont = FontFactory.create(getFontManager(), mFontTexture, WORLD_TOP);
         getTextureManager().loadTexture(mFontTexture);
@@ -378,9 +381,9 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         mScene.setOnSceneTouchListener(new PinchZoomAndScrollOnSceneTouchListener(mCamera));
 
 
-        mPhysicsWorld = new FixedStepPhysicsWorld(30, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
-
-        mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
+        mPhysicsWorld = new FixedStepPhysicsWorld(FixedStepPhysicsWorld.STEPSPERSECOND_DEFAULT, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
+        
+        // mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
 
         mContactManager = new ContactManager();
 
