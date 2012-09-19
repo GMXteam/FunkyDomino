@@ -85,6 +85,7 @@ public class SceneLoader implements IEntityLoader {
 
         final float HEIGHT = ea.getFloat("height", mGameActivity.getDrawableSurfaceDimensions().y),
                 WIDTH = ea.getFloat("width", mGameActivity.getDrawableSurfaceDimensions().x);
+        
 
         float[][] lines = {
             {0.0f, 0.0f, WIDTH, 0.0f},

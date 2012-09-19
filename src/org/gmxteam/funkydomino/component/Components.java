@@ -41,6 +41,9 @@ public enum Components {
      *
      */
     cog(Cog.class);
+    /**
+     * 
+     */
     
     
     private Class mClass;
