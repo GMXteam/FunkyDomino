@@ -20,7 +20,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.andengine.entity.IEntity;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 
@@ -34,7 +33,7 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
  *
  * @author Guillaume Poirier-Morency
  */
-public interface IComponent extends  IEntity, ContactListener {
+public interface IComponent extends  IEntity {
 
     
     /**

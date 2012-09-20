@@ -60,7 +60,7 @@ public class GroundLoader extends ComponentLoader {
 
         } else {
             // Must be a parcel
-            e = new GroundParcel(pAttributes, mTextureRegion, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
+            e = new GroundParcel(pAttributes, mTextureRegion, pEntityLoaderData.getVertexBufferObjectManager());
 
         }
 

@@ -385,8 +385,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
 
         mPhysicsWorld = new FixedStepPhysicsWorld(FixedStepPhysicsWorld.STEPSPERSECOND_DEFAULT, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
-        
-        // mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
+
+        //mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
 
         mContactManager = new ContactManager();
 
@@ -493,12 +493,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *
+     * Récupère la surface dessinable.
      * @return
      */
     public Point getDrawableSurfaceDimensions() {
         Point p = new Point();
         getWindowManager().getDefaultDisplay().getSize(p);
+        
         return p;
     }
 }

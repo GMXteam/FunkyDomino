@@ -18,6 +18,9 @@ package org.gmxteam.funkydomino.component.loader;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import java.io.IOException;
+import org.andengine.audio.sound.Sound;
+import org.andengine.audio.sound.SoundFactory;
 import org.andengine.entity.IEntity;
 import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
@@ -35,15 +38,15 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class BallLoader extends ComponentLoader {
 
-    /**
-     *
-     * @param pBaseGameActivity
-     */
-    public BallLoader(IBaseGameActivity pBaseGameActivity) {
+
+    private final Sound mSound;
+
+    public BallLoader(IBaseGameActivity pBaseGameActivity) throws IOException {
         super(pBaseGameActivity);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pBaseGameActivity.getTextureManager(), Ball.BALL_RADIUS * 2, Ball.BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pBaseGameActivity.getContext(), "ball.png", 0, 0);
         pBaseGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
+        mSound = SoundFactory.createSoundFromAsset(pBaseGameActivity.getSoundManager(), pBaseGameActivity.getContext(), "explosion.ogg");
     }
 
     /**
@@ -56,10 +59,12 @@ public class BallLoader extends ComponentLoader {
      */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
-        final Ball d = new Ball(pAttributes, mTextureRegion, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
-        final Body b = PhysicsFactory.createCircleBody(pEntityLoaderData.getBaseGameActivity().getPhysicsWorld(), d, BodyType.DynamicBody, mFixtureDef);
-        pEntityLoaderData.getBaseGameActivity().getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(d,b));
-        return d;
+
+        final Ball ball = new Ball(pAttributes, mTextureRegion, pEntityLoaderData.getVertexBufferObjectManager(), mSound);
+        final Body body = PhysicsFactory.createCircleBody(pEntityLoaderData.getBaseGameActivity().getPhysicsWorld(), ball, BodyType.DynamicBody, mFixtureDef);
+        pEntityLoaderData.getBaseGameActivity().getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(ball, body));
+        pEntityLoaderData.getContactManager().registerContactListener(body, ball);
+        return ball;
     }
 
     /**

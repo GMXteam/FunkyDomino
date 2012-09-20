@@ -1,4 +1,4 @@
-/*
+ /*
  *   This file is part of Funky Domino.
  *
  *   Funky Domino is free software: you can redistribute it and/or modify
@@ -16,7 +16,6 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
-import org.gmxteam.funkydomino.component.IComponent;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -24,21 +23,16 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
-import org.andengine.entity.Entity;
-import org.andengine.entity.scene.Scene;
+import org.andengine.audio.sound.Sound;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 
 /**
  *
@@ -47,36 +41,26 @@ import org.gmxteam.funkydomino.component.ComponentAttributes;
  */
 public final class Ball extends Sprite implements IComponent, ContactListener {
 
-    /**
-     *
-     * @param pAttributes
-     * @param mTextureRegion
-     * @param vertexBufferObjectManager
-     */
-    public Ball(ComponentAttributes pAttributes, TextureRegion mTextureRegion, VertexBufferObjectManager vertexBufferObjectManager) {
-        this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), mTextureRegion, vertexBufferObjectManager);
-    }
 
-    /**
-     *
-     * @param pX
-     * @param pY
-     * @param pTextureRegion
-     * @param pVertexBufferObjectManager
-     */
-    public Ball(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
-    }
     /**
      *
      */
     public static final int BALL_RADIUS = 32;
+    private final Sound mCollisionSound;
+
+    public Ball(ComponentAttributes pAttributes, TextureRegion mTextureRegion, VertexBufferObjectManager vertexBufferObjectManager, Sound mCollisionSound) {
+        this(pAttributes.getX(), pAttributes.getY(), mTextureRegion, vertexBufferObjectManager, mCollisionSound);
+    }
+
+    public Ball(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, Sound pCollisionSound) {
+        super(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
+        mCollisionSound = pCollisionSound;
+    }
 
     @Override
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
         final Body mBallBody = PhysicsFactory.createCircleBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
         return mBallBody;
-
     }
 
     /**
@@ -84,6 +68,7 @@ public final class Ball extends Sprite implements IComponent, ContactListener {
      * @param cntct
      */
     public void beginContact(Contact cntct) {
+        mCollisionSound.play();
     }
 
     /**

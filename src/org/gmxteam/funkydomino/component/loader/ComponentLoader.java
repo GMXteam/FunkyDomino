@@ -61,7 +61,7 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
      */
     public abstract IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData);
 
- 
+
     
     /**
      *
@@ -71,12 +71,14 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
      * @param pEntityLoaderData
      * @return
      */
+
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final ComponentAttributes componentAttributes = new ComponentAttributes(pAttributes);
         // Base loading...
-        mFixtureDef.density = componentAttributes.getDensity();        
+        mFixtureDef.density = componentAttributes.getDensity();
         mFixtureDef.friction = componentAttributes.getFriction();
 
         return onLoadEntity(pEntityName, pParent, componentAttributes, pEntityLoaderData);
+
     }
 }
