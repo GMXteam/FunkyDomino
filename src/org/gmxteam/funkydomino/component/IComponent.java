@@ -69,6 +69,8 @@ public interface IComponent extends  IEntity, ContactListener {
      * Binding de l'entité avec le monde physique.
      *
      * @param pPhysicsWorld est le monde physique qui doit être populé.
+     * @param pFixtureDef
+     * @return  
      */
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef);
 

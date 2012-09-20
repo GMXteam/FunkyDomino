@@ -32,6 +32,10 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class GroundLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param pba
+     */
     public GroundLoader(IBaseGameActivity pba) {
         super(pba);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), Ground.GROUND_WIDTH, Ground.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
@@ -39,6 +43,14 @@ public class GroundLoader extends ComponentLoader {
         pba.getTextureManager().loadTexture(mBitmapTextureAtlas);
     }
 
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final IEntity e;
@@ -57,6 +69,10 @@ public class GroundLoader extends ComponentLoader {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getEntityNames() {
         final String[] names = {"ground", "parcel"};
         return names;

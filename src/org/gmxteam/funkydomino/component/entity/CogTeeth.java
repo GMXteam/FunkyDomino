@@ -16,8 +16,15 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.component.IComponent;
 
+/**
+ *
+ * @author Usager
+ */
 public class CogTeeth extends Rectangle implements IComponent {
 
+    /**
+     *
+     */
     public static final int /**
              *
              */
@@ -25,8 +32,17 @@ public class CogTeeth extends Rectangle implements IComponent {
             /**
              *
              */
+            /**
+             *
+             */
             COG_TEETH_WIDTH = 20;
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pVertexBufferObjectManager
+     */
     public CogTeeth(final float pX, final float pY, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, COG_TEETH_WIDTH, COG_TEETH_HEIGHT, pVertexBufferObjectManager);
     }
@@ -36,18 +52,36 @@ public class CogTeeth extends Rectangle implements IComponent {
 
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void beginContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void endContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param oldManifold
+     */
     public void preSolve(Contact contact, Manifold oldManifold) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param impulse
+     */
     public void postSolve(Contact contact, ContactImpulse impulse) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

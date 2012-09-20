@@ -7,6 +7,9 @@ package org.gmxteam.funkydomino.component.loader;
  */
 public enum Loaders {
 
+    /**
+     *
+     */
     level(SceneLoader.class),   
     /**
      *
@@ -35,7 +38,6 @@ public enum Loaders {
 
     /**
      *
-     * @return @throws InstantiationException
      * @throws IllegalAccessException
      */
     public Class getLoaderClass() {

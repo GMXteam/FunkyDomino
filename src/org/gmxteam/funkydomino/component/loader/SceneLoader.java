@@ -25,6 +25,10 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class SceneLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param pBaseGameActivity
+     */
     public SceneLoader(IBaseGameActivity pBaseGameActivity) {
         super(pBaseGameActivity);
     }
@@ -38,6 +42,14 @@ public class SceneLoader extends ComponentLoader {
         return ENTITY_NAMES;
     }
 
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         Debug.v("La scène est de dimension "

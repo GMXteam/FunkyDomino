@@ -24,6 +24,10 @@ import org.andengine.ui.IGameInterface;
  */
 public interface IBaseGameActivity extends IGameInterface {
 
+    /**
+     *
+     * @param pHUD
+     */
     public void setHUD(HUD pHUD);
     
     /**

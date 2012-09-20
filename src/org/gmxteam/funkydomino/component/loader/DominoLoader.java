@@ -15,8 +15,16 @@ import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.entity.Domino;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 
+/**
+ *
+ * @author Usager
+ */
 public class DominoLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param pGameActivity
+     */
     public DominoLoader(IBaseGameActivity pGameActivity) {
         super(pGameActivity);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), Domino.DOMINO_WIDTH, Domino.DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
@@ -25,11 +33,23 @@ public class DominoLoader extends ComponentLoader {
         pGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getEntityNames() {
         final String[] mNames = {"domino"};
         return mNames;
     }
 
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final Domino domino = new Domino(pAttributes, mTextureRegion, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());

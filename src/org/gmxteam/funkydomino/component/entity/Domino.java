@@ -46,6 +46,12 @@ import org.gmxteam.funkydomino.component.ComponentAttributes;
 public final class Domino extends Sprite implements IComponent,  IScrollDetectorListener {
     private Body mDominoBody;
 
+    /**
+     *
+     * @param pComponentAttributes
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public Domino(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pComponentAttributes.getFloat("x", 0.0f), pComponentAttributes.getFloat("y", 0.0f), pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
         

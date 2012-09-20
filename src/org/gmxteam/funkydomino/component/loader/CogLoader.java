@@ -25,6 +25,10 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class CogLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param ga
+     */
     public CogLoader(IBaseGameActivity ga) {
         super(ga);
         mBitmapTextureAtlas = new BitmapTextureAtlas(ga.getTextureManager(), Cog.COG_TOTAL_RADIUS * 2, Cog.COG_TOTAL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
@@ -32,6 +36,14 @@ public class CogLoader extends ComponentLoader {
         ga.getTextureManager().loadTexture(mBitmapTextureAtlas);
     }
 
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final Cog d = new Cog(pAttributes, mTextureRegion, Cog.COG_TEETH_COUNT + 1, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
@@ -63,6 +75,10 @@ public class CogLoader extends ComponentLoader {
         return d;
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getEntityNames() {
         final String[] names = {"cog"};
         return names;

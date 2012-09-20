@@ -16,10 +16,20 @@ import org.andengine.util.level.LevelLoaderContentHandler;
  */
 public class FunkyDominoLoaderContentHandler extends LevelLoaderContentHandler<FunkyDominoEntityLoaderData, IEntityLoaderListener, FunkyDominoLoaderResult>{
 
+    /**
+     *
+     * @param pDefaultEntityLoader
+     * @param pEntityLoaders
+     * @param pEntityLoaderData
+     */
     public FunkyDominoLoaderContentHandler(final IEntityLoader<FunkyDominoEntityLoaderData> pDefaultEntityLoader, final HashMap<String, IEntityLoader<FunkyDominoEntityLoaderData>> pEntityLoaders, FunkyDominoEntityLoaderData pEntityLoaderData) {
         super(pDefaultEntityLoader, pEntityLoaders, pEntityLoaderData);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public  FunkyDominoLoaderResult getLevelLoaderResult() {
         return new FunkyDominoLoaderResult((Scene) this.mRootEntity);

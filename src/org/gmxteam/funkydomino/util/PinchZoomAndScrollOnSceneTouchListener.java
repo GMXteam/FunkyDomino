@@ -32,6 +32,12 @@ public class PinchZoomAndScrollOnSceneTouchListener implements IOnSceneTouchList
         mScrollDetector = new ScrollDetector(this);
     }
 
+    /**
+     *
+     * @param pScene
+     * @param pSceneTouchEvent
+     * @return
+     */
     public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
         return mScrollDetector.onManagedTouchEvent(pSceneTouchEvent) ^ mPinchZoomDetector.onManagedTouchEvent(pSceneTouchEvent);
 

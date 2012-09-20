@@ -36,6 +36,14 @@ public class HUDLoader extends ComponentLoader {
         return ENTITY_NAMES;
     }
     
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final HUD mHUD = new HUD();

@@ -41,12 +41,34 @@ public class Ground extends SpriteBatch implements IComponent {
     
     
 
-    public static final int GROUND_WIDTH = 128, GROUND_HEIGHT = 128;
+    /**
+     *
+     */
+    public static final int GROUND_WIDTH = 128,
+    /**
+     *
+     */
+    GROUND_HEIGHT = 128;
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pTexture
+     * @param pCapacity
+     * @param pVertexBufferObjectManager
+     */
     public Ground(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager);
     }
 
+    /**
+     *
+     * @param pAttributes
+     * @param pTexture
+     * @param pCapacity
+     * @param pVertexBufferObjectManager
+     */
     public Ground(ComponentAttributes pAttributes, BitmapTextureAtlas pTexture, int pCapacity, VertexBufferObjectManager pVertexBufferObjectManager) {
         this(pAttributes.getX(), pAttributes.getY(), pTexture, pCapacity, pVertexBufferObjectManager);
     }
@@ -56,18 +78,36 @@ public class Ground extends SpriteBatch implements IComponent {
 
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void beginContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void endContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param oldManifold
+     */
     public void preSolve(Contact contact, Manifold oldManifold) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param impulse
+     */
     public void postSolve(Contact contact, ContactImpulse impulse) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

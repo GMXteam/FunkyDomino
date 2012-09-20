@@ -19,6 +19,10 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData {
     // ===========================================================
     // Constructors
     // ===========================================================
+    /**
+     *
+     * @param pBaseGameActivity
+     */
     public FunkyDominoEntityLoaderData(final IBaseGameActivity pBaseGameActivity) {
         this.mBaseGameActivity = pBaseGameActivity;
     }
@@ -26,6 +30,10 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData {
     // ===========================================================
     // Getter & Setter
     // ===========================================================
+    /**
+     *
+     * @return
+     */
     public IBaseGameActivity getBaseGameActivity() {
         return this.mBaseGameActivity;
     }

@@ -24,7 +24,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.activity.R;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -401,6 +400,10 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param pHUD
+     */
     public void setHUD(HUD pHUD) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

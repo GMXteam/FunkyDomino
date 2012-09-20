@@ -53,6 +53,13 @@ public final class Cog extends Sprite implements IComponent {
              */
             COG_MOTOR_MAX_TORQUE = 1000.0f;
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public Cog(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion, pVertexBufferObjectManager);
 
@@ -60,6 +67,13 @@ public final class Cog extends Sprite implements IComponent {
 
     }
 
+    /**
+     *
+     * @param pAttributes
+     * @param pTextureRegion
+     * @param i
+     * @param vertexBufferObjectManager
+     */
     public Cog(ComponentAttributes pAttributes, ITextureRegion pTextureRegion, int i, VertexBufferObjectManager vertexBufferObjectManager) {
         this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), pTextureRegion, vertexBufferObjectManager);
 
@@ -69,18 +83,36 @@ public final class Cog extends Sprite implements IComponent {
         return PhysicsFactory.createCircleBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void beginContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void endContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param oldManifold
+     */
     public void preSolve(Contact contact, Manifold oldManifold) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param impulse
+     */
     public void postSolve(Contact contact, ContactImpulse impulse) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

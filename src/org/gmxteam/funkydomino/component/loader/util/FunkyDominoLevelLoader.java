@@ -30,16 +30,32 @@ public class FunkyDominoLevelLoader extends LevelLoader<FunkyDominoEntityLoaderD
 
     private final IBaseGameActivity mBaseGameActivity;
     
+    /**
+     *
+     * @param pBaseGameActivity
+     */
     public FunkyDominoLevelLoader(IBaseGameActivity pBaseGameActivity) {
         mBaseGameActivity = pBaseGameActivity;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected FunkyDominoEntityLoaderData onCreateEntityLoaderData() {
         return new FunkyDominoEntityLoaderData(mBaseGameActivity);
 
     }
 
+    /**
+     *
+     * @param pEntityLoaders
+     * @param pDefaultEntityLoader
+     * @param pEntityLoaderData
+     * @param pEntityLoaderListener
+     * @return
+     */
     @Override
     protected FunkyDominoLoaderContentHandler onCreateLevelLoaderContentHandler(HashMap<String, IEntityLoader<FunkyDominoEntityLoaderData>> pEntityLoaders, IEntityLoader<FunkyDominoEntityLoaderData> pDefaultEntityLoader, FunkyDominoEntityLoaderData pEntityLoaderData, IEntityLoaderListener pEntityLoaderListener) {
         return new FunkyDominoLoaderContentHandler(pDefaultEntityLoader, pEntityLoaders, pEntityLoaderData);

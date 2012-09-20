@@ -23,10 +23,23 @@ import org.gmxteam.funkydomino.component.IComponent;
  */
 public class GroundParcel extends Sprite implements IComponent {
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public GroundParcel(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
     }
 
+    /**
+     *
+     * @param pComponentAttributes
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public GroundParcel(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
     }
@@ -35,18 +48,36 @@ public class GroundParcel extends Sprite implements IComponent {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void beginContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void endContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param oldManifold
+     */
     public void preSolve(Contact contact, Manifold oldManifold) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param impulse
+     */
     public void postSolve(Contact contact, ContactImpulse impulse) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

@@ -32,16 +32,45 @@ import org.xml.sax.Attributes;
  */
 public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntityLoaderData> {
 
+    /**
+     *
+     * @param pBaseGameActivity
+     */
     public ComponentLoader(IBaseGameActivity pBaseGameActivity) {
     }
+    /**
+     *
+     */
     protected BitmapTextureAtlas mBitmapTextureAtlas;
+    /**
+     *
+     */
     protected TextureRegion mTextureRegion;
+    /**
+     *
+     */
     protected FixtureDef mFixtureDef = new FixtureDef();
 
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     public abstract IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData);
 
  
     
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final ComponentAttributes componentAttributes = new ComponentAttributes(pAttributes);
         // Base loading...

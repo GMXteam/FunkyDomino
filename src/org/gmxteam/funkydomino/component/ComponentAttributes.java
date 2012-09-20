@@ -29,22 +29,42 @@ import org.xml.sax.Attributes;
  */
 public class ComponentAttributes extends HashMap<String, String> {
 
+    /**
+     *
+     * @return
+     */
     public float getFriction() {
         return getFloat("friction", 0.0f);
     }
 
+    /**
+     *
+     * @return
+     */
     public float getDensity() {
         return getFloat("density", 5.0f);
     }
 
+    /**
+     *
+     * @return
+     */
     public float getX() {
         return getFloat("x", 0.0f);
     }
 
+    /**
+     *
+     * @return
+     */
     public float getY() {
         return getFloat("y", 0.0f);
     }
 
+    /**
+     *
+     * @return
+     */
     public float getAngle() {
         return getFloat("angle", 0.0f);
     }
@@ -244,6 +264,11 @@ public class ComponentAttributes extends HashMap<String, String> {
         return o != null && isBoolean(o) ? Boolean.parseBoolean(o) : defaultValue;
     }
 
+    /**
+     *
+     * @param friction
+     * @param f
+     */
     public void putFloat(String friction, float f) {
         put(friction, String.valueOf(f));
     }

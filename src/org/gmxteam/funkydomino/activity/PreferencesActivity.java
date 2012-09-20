@@ -16,13 +16,9 @@
  */
 package org.gmxteam.funkydomino.activity;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import com.gmxteam.funkydomino.activity.R;
 import java.util.List;
 
 /**
@@ -39,7 +35,6 @@ public final class PreferencesActivity extends PreferenceActivity {
     @Override
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.preferences_headers, target);
-
     }
 
     /**
@@ -56,7 +51,6 @@ public final class PreferencesActivity extends PreferenceActivity {
             super.onCreate(b);
 
             
-
             addPreferencesFromResource(R.layout.preference_graphic);
 
 

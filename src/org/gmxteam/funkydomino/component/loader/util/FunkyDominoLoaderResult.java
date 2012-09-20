@@ -13,6 +13,10 @@ import org.andengine.util.level.simple.SimpleLevelLoaderResult;
  */
 public class FunkyDominoLoaderResult extends SimpleLevelLoaderResult {
 
+    /**
+     *
+     * @param pScene
+     */
     public FunkyDominoLoaderResult(final Scene pScene) {
         super(pScene);
     }

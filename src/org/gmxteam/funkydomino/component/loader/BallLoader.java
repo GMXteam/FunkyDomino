@@ -35,6 +35,10 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class BallLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param pBaseGameActivity
+     */
     public BallLoader(IBaseGameActivity pBaseGameActivity) {
         super(pBaseGameActivity);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pBaseGameActivity.getTextureManager(), Ball.BALL_RADIUS * 2, Ball.BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
@@ -42,6 +46,14 @@ public class BallLoader extends ComponentLoader {
         pBaseGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
     }
 
+    /**
+     *
+     * @param pEntityName
+     * @param pParent
+     * @param pAttributes
+     * @param pEntityLoaderData
+     * @return
+     */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final Ball d = new Ball(pAttributes, mTextureRegion, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
@@ -50,6 +62,10 @@ public class BallLoader extends ComponentLoader {
         return d;
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getEntityNames() {
         final String[] names = {"ball"};
         return names;

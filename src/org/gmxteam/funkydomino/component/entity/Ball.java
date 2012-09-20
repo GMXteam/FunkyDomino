@@ -47,10 +47,23 @@ import org.gmxteam.funkydomino.component.ComponentAttributes;
  */
 public final class Ball extends Sprite implements IComponent, ContactListener {
 
+    /**
+     *
+     * @param pAttributes
+     * @param mTextureRegion
+     * @param vertexBufferObjectManager
+     */
     public Ball(ComponentAttributes pAttributes, TextureRegion mTextureRegion, VertexBufferObjectManager vertexBufferObjectManager) {
         this(pAttributes.getFloat("x", 0.0f), pAttributes.getFloat("x", 0.0f), mTextureRegion, vertexBufferObjectManager);
     }
 
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public Ball(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
     }

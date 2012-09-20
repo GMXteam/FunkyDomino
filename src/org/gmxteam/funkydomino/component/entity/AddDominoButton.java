@@ -43,6 +43,10 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
     private static BitmapTextureAtlas mBitmapTextureAtlas;
     private static TextureRegion mTextureRegion;
 
+    /**
+     *
+     * @param pGameActivity
+     */
     public static void loadResources(IBaseGameActivity pGameActivity) {
         mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), AddDominoButton.DOMINO_WIDTH, AddDominoButton.DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pGameActivity.getContext(), "domino.png", 0, 0);
@@ -54,8 +58,6 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param x
      * @param y
      * @return
-     * @throws InstantiationException
-     * @throws IllegalAccessException
      */
     public static IEntity createAddDominoButton(float x, float y) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -69,6 +71,13 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
     }
 
     ////////////////////////////////////////////////////////////////////////
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
     }
@@ -85,22 +94,46 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void beginContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void endContact(Contact contact) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param oldManifold
+     */
     public void preSolve(Contact contact, Manifold oldManifold) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param contact
+     * @param impulse
+     */
     public void postSolve(Contact contact, ContactImpulse impulse) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     *
+     * @param pButtonSprite
+     * @param pTouchAreaLocalX
+     * @param pTouchAreaLocalY
+     */
     public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
