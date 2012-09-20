@@ -28,7 +28,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.activity.R;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
@@ -56,7 +55,6 @@ import org.gmxteam.funkydomino.component.loader.Loaders;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
-import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import org.gmxteam.funkydomino.util.PinchZoomAndScrollOnSceneTouchListener;
 import org.gmxteam.funkydomino.util.TimeCounterHandler;
 import org.gmxteam.funkydomino.util.TimeCounterHandler.IOnTimeChangeListener;
@@ -382,8 +380,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
 
         mPhysicsWorld = new FixedStepPhysicsWorld(FixedStepPhysicsWorld.STEPSPERSECOND_DEFAULT, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
-        
-        // mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
+
+        //mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
 
         mContactManager = new ContactManager();
 
@@ -490,12 +488,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *
+     * Récupère la surface dessinable.
      * @return
      */
     public Point getDrawableSurfaceDimensions() {
         Point p = new Point();
         getWindowManager().getDefaultDisplay().getSize(p);
+        
         return p;
     }
 }

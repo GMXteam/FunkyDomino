@@ -16,13 +16,9 @@
  */
 package org.gmxteam.funkydomino.activity;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import com.gmxteam.funkydomino.activity.R;
 import java.util.List;
 
 /**
@@ -43,7 +39,7 @@ public final class PreferencesActivity extends PreferenceActivity {
     }
 
     /**
-     *
+     * Fragment pour les préférences graphiques.
      */
     public static class FunkyDominoGraphicsPreferenceFragment extends PreferenceFragment {
 
@@ -55,7 +51,7 @@ public final class PreferencesActivity extends PreferenceActivity {
         public void onCreate(Bundle b) {
             super.onCreate(b);
 
-            
+
 
             addPreferencesFromResource(R.layout.preference_graphic);
 
@@ -64,7 +60,7 @@ public final class PreferencesActivity extends PreferenceActivity {
     }
 
     /**
-     *
+     * Fragment pour les préférences audio.
      */
     public static class FunkyDominoAudioPreferenceFragment extends PreferenceFragment {
 
@@ -76,7 +72,7 @@ public final class PreferencesActivity extends PreferenceActivity {
         public void onCreate(Bundle b) {
             super.onCreate(b);
 
-            
+
 
             addPreferencesFromResource(R.layout.preference_audio);
 
@@ -84,7 +80,7 @@ public final class PreferencesActivity extends PreferenceActivity {
     }
 
     /**
-     *
+     * Fragment pour la section à propos.
      */
     public static class FunkyDominoAboutPreferenceFragment extends PreferenceFragment {
 
@@ -95,7 +91,7 @@ public final class PreferencesActivity extends PreferenceActivity {
         @Override
         public void onCreate(Bundle b) {
             super.onCreate(b);
-            
+
 
 
 

@@ -21,17 +21,12 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.andengine.entity.IEntity;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.ButtonSprite.OnClickListener;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
-import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
-import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
-import org.gmxteam.funkydomino.activity.IBaseGameActivity;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.IComponent;
 
 /**
@@ -40,38 +35,6 @@ import org.gmxteam.funkydomino.component.IComponent;
  */
 public class AddDominoButton extends ButtonSprite implements IComponent, OnClickListener {
 
-    private static BitmapTextureAtlas mBitmapTextureAtlas;
-    private static TextureRegion mTextureRegion;
-
-    public static void loadResources(IBaseGameActivity pGameActivity) {
-        mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), AddDominoButton.DOMINO_WIDTH, AddDominoButton.DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
-        mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pGameActivity.getContext(), "domino.png", 0, 0);
-        pGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
-    }
-
-    /**
-     *
-     * @param x
-     * @param y
-     * @return
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     */
-    public static IEntity createAddDominoButton(float x, float y) {
-        throw new UnsupportedOperationException("Not supported yet.");
-//
-//        final AddDominoButton d = new AddDominoButton(x, y, mTextureRegion, mGameActivity.getVertexBufferObjectManager());
-//        ComponentAttributes ca = ComponentAttributes.createBaseAttributes(x, y);
-//        ca.putFloat("friction", 1.0f);
-//        ca.putFloat("density", 1.0f);
-//        return ComponentFactory.factory(d, ca);
-
-    }
-
-    ////////////////////////////////////////////////////////////////////////
-    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
-    }
     /**
      *
      */
@@ -80,6 +43,15 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
              *
              */
             DOMINO_HEIGHT = 64;
+
+    ////////////////////////////////////////////////////////////////////////
+    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
+    }
+    
+      public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
+    }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
         throw new UnsupportedOperationException("Not supported yet.");

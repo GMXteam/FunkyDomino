@@ -24,14 +24,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
-import com.gmxteam.funkydomino.activity.R;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.gmxteam.funkydomino.level.Levels;
-import org.gmxteam.funkydomino.physics.box2d.ContactManager;
-import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
-import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
+import org.andengine.audio.music.Music;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.camera.SmoothCamera;
@@ -43,8 +40,6 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.TouchEvent;
-import org.andengine.input.touch.detector.PinchZoomDetector;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
@@ -54,6 +49,10 @@ import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.gmxteam.funkydomino.component.loader.Loaders;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
+import org.gmxteam.funkydomino.level.Levels;
+import org.gmxteam.funkydomino.physics.box2d.ContactManager;
+import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
+import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
 
 /**
  * Activité principale de FunkyDomino. Permet d'accéder à : FunkyDominoActivity
@@ -63,13 +62,20 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class MainActivity extends LayoutGameActivity implements IMainActivity {
+public final class MainActivity extends LayoutGameActivity implements IBaseGameActivity {
 
     private Scene mScene;
     private FixedStepPhysicsWorld mPhysicsWorld;
     private ContactManager mContactManager;
     private FunkyDominoLevelLoader mLevelLoader;
     private SmoothCamera mCamera;
+    private Music mBackgroundMusic;
+
+    @Override
+    public void onResumeGame() {
+        super.onResumeGame();
+        mBackgroundMusic.play();
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     // Menus
@@ -143,6 +149,13 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
         SoundFactory.setAssetBasePath("mfx/");
         MusicFactory.setAssetBasePath("mfx/");
 
+        try {
+            mBackgroundMusic = MusicFactory.createMusicFromAsset(getMusicManager(), this, "winslow.ogg");
+        } catch (IOException ex) {
+            Debug.e(ex);
+        }
+
+
         mLevelLoader = new FunkyDominoLevelLoader(this);
 
         // On enregistre toutes les entités supportées
@@ -210,19 +223,11 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
 
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     protected int getLayoutID() {
         return R.layout.main;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     protected int getRenderSurfaceViewID() {
         return R.id.render_surface_view;
@@ -234,19 +239,11 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
      */
     public final Point getDrawableSurfaceDimensions() {
 
-        if (mRenderSurfaceView != null) {
-
-            return new Point(mRenderSurfaceView.getWidth(), mRenderSurfaceView.getHeight());
-        }
-
-
         Point size = new Point();
 
         getWindowManager().getDefaultDisplay().getSize(size);
 
         return size;
-
-
 
     }
 
@@ -347,57 +344,6 @@ public final class MainActivity extends LayoutGameActivity implements IMainActiv
      * @param f1
      */
     public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     *
-     * @param sd
-     * @param i
-     * @param f
-     * @param f1
-     */
-    public void onScroll(ScrollDetector sd, int i, float f, float f1) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     *
-     * @param sd
-     * @param i
-     * @param f
-     * @param f1
-     */
-    public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     *
-     * @param pzd
-     * @param te
-     */
-    public void onPinchZoomStarted(PinchZoomDetector pzd, TouchEvent te) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     *
-     * @param pzd
-     * @param te
-     * @param f
-     */
-    public void onPinchZoom(PinchZoomDetector pzd, TouchEvent te, float f) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    /**
-     *
-     * @param pzd
-     * @param te
-     * @param f
-     */
-    public void onPinchZoomFinished(PinchZoomDetector pzd, TouchEvent te, float f) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
