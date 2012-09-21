@@ -26,9 +26,6 @@ import android.view.View;
 import com.badlogic.gdx.math.Vector2;
 import java.io.IOException;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.andengine.audio.music.Music;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
@@ -46,9 +43,7 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.LayoutGameActivity;
 import org.andengine.util.debug.Debug;
-import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.preferences.SimplePreferences;
-import org.gmxteam.funkydomino.component.loader.Loaders;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
@@ -155,28 +150,11 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
         } catch (IOException ex) {
             Debug.e(ex);
         }
-
-
-        mLevelLoader = new FunkyDominoLevelLoader(this);
-
-        // On enregistre toutes les entités supportées
-        for (Loaders c : Loaders.values()) {
-            try {
-                Debug.v("Création du loader " + c.name());
-                mLevelLoader.registerEntityLoader((IEntityLoader) c.getLoaderClass().getConstructor(IBaseGameActivity.class).newInstance(this));
-
-            } catch (NoSuchMethodException ex) {
-                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalArgumentException ex) {
-                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvocationTargetException ex) {
-                Logger.getLogger(MainActivity.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+        
+        try {
+            mLevelLoader = new FunkyDominoLevelLoader(this);
+        } catch (Exception ex) {
+            Debug.e(ex);
         }
 
 

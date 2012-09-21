@@ -16,11 +16,17 @@
  */
 package org.gmxteam.funkydomino.component.loader.util;
 
+import java.io.IOException;
 import java.util.HashMap;
 import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.level.IEntityLoaderListener;
 import org.andengine.util.level.LevelLoader;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
+import org.gmxteam.funkydomino.component.loader.BallLoader;
+import org.gmxteam.funkydomino.component.loader.CogLoader;
+import org.gmxteam.funkydomino.component.loader.DominoLoader;
+import org.gmxteam.funkydomino.component.loader.HUDLoader;
+import org.gmxteam.funkydomino.component.loader.SceneLoader;
 
 /**
  *
@@ -29,13 +35,26 @@ import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 public class FunkyDominoLevelLoader extends LevelLoader<FunkyDominoEntityLoaderData, IEntityLoaderListener, FunkyDominoLoaderResult> {
 
     private final IBaseGameActivity mBaseGameActivity;
-    
+
     /**
      *
      * @param pBaseGameActivity
      */
-    public FunkyDominoLevelLoader(IBaseGameActivity pBaseGameActivity) {
+    public FunkyDominoLevelLoader(IBaseGameActivity pBaseGameActivity) throws Exception {
         mBaseGameActivity = pBaseGameActivity;
+
+        // Chargement des loaders par défaut
+
+        registerEntityLoader(new DominoLoader(pBaseGameActivity));
+
+        registerEntityLoader(new BallLoader(pBaseGameActivity));
+
+        registerEntityLoader(new SceneLoader(pBaseGameActivity));
+
+        registerEntityLoader(new HUDLoader(pBaseGameActivity));
+
+        registerEntityLoader(new CogLoader(pBaseGameActivity));
+
     }
 
     /**

@@ -19,12 +19,10 @@ package org.gmxteam.funkydomino.activity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import org.gmxteam.funkydomino.util.Serialization;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import org.andengine.util.preferences.SimplePreferences;
+import org.gmxteam.funkydomino.util.Serialization;
 
 /**
  *

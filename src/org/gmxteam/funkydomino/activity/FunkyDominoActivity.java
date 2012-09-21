@@ -48,10 +48,8 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.debug.Debug.DebugLevel;
-import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
-import org.gmxteam.funkydomino.component.loader.Loaders;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
@@ -61,6 +59,7 @@ import org.gmxteam.funkydomino.util.TimeCounterHandler.IOnTimeChangeListener;
 
 /**
  * Ceci est l'activité principale du jeu.
+ *
  * @author guillaume
  */
 public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFunkyDominoActivity {
@@ -108,11 +107,10 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *Cette méthode est appelée par le moteur AndEngine quand la partie 
-     * est redémarrée. 
-     * Un AlertDialog est affiché pour demander à l'utilisateur si il veut
-     * continuer la partie. Le cas échéant, la méthode onResumeGame du parent
-     * est appelée.
+     * Cette méthode est appelée par le moteur AndEngine quand la partie est
+     * redémarrée. Un AlertDialog est affiché pour demander à l'utilisateur si
+     * il veut continuer la partie. Le cas échéant, la méthode onResumeGame du
+     * parent est appelée.
      */
     @Override
     public void onResumeGame() {
@@ -139,7 +137,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *Cette méthode est appelée quand le moteur AndEngine ce met en pause.
+     * Cette méthode est appelée quand le moteur AndEngine ce met en pause.
      * Quand cela arrive, le compteur de temps est mit en pause.
      */
     @Override
@@ -152,8 +150,9 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     ////////////////////////////////////////////////////////////////////////////
     // Action des boutons et menus.
     /**
-     * Cette méthode démarre l'activité de HighScore quand l'item du menu 
-     * est cliqué.
+     * Cette méthode démarre l'activité de HighScore quand l'item du menu est
+     * cliqué.
+     *
      * @param mi
      */
     public void onHighscoresMenuItemClick(MenuItem mi) {
@@ -161,8 +160,9 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     * Cette méthode démarre l'activité des Préférences quand l'item du menu 
-     * est cliqué.
+     * Cette méthode démarre l'activité des Préférences quand l'item du menu est
+     * cliqué.
+     *
      * @param mi
      */
     public void onPreferencesMenuItemClick(MenuItem mi) {
@@ -170,8 +170,9 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     * Cette méthode appelle la méthode onPauseGame quand l'item du menu 
-     * est cliqué.
+     * Cette méthode appelle la méthode onPauseGame quand l'item du menu est
+     * cliqué.
+     *
      * @param v
      */
     public void onPauseGameMenuItemClick(MenuItem v) {
@@ -179,8 +180,9 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     * Cette méthode appelle la méthode onBackPressed quand l'item du menu est 
+     * Cette méthode appelle la méthode onBackPressed quand l'item du menu est
      * cliqué.
+     *
      * @param v
      */
     public void onQuitterMenuItemClick(MenuItem v) {
@@ -189,7 +191,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     ////////////////////////////////////////////////////////////////////////////
     // Action diverses.
-    
     @Override
     public boolean onCreateOptionsMenu(Menu m) {
 
@@ -345,15 +346,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         pProgressListener.onProgressChanged(progress += 5);
 
-        float progressionByLoader = 75.0f / Loaders.values().length;
-        // On enregistre toutes les entités supportées
-        for (Loaders c : Loaders.values()) {
-            Debug.v("Création du loader " + c.name());
-
-            mLevelLoader.registerEntityLoader((IEntityLoader) c.getLoaderClass().getConstructor(IBaseGameActivity.class).newInstance(this));
-            pProgressListener.onProgressChanged(progress += progressionByLoader);
-        }
-
 
         final BitmapTextureAtlas mFontTexture = new BitmapTextureAtlas(getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
         pProgressListener.onProgressChanged(progress += 5);
@@ -494,12 +486,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     /**
      * Récupère la surface dessinable.
+     *
      * @return
      */
     public Point getDrawableSurfaceDimensions() {
         Point p = new Point();
         getWindowManager().getDefaultDisplay().getSize(p);
-        
+
         return p;
     }
 }
