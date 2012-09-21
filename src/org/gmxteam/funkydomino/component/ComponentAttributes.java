@@ -34,7 +34,7 @@ public class ComponentAttributes extends HashMap<String, String> {
      * @return
      */
     public float getFriction() {
-        return getFloat("friction", 0.0f);
+        return getFloat("friction", 1.0f);
     }
 
     /**
@@ -68,8 +68,6 @@ public class ComponentAttributes extends HashMap<String, String> {
     public float getAngle() {
         return getFloat("angle", 0.0f);
     }
-
-    
 
     /**
      *
@@ -240,6 +238,12 @@ public class ComponentAttributes extends HashMap<String, String> {
     public Vector2[] getVector2Array(String key, Vector2[] defaultValue) {
         Object o = get(key);
         return o != null ? parseVector2Array((String) o) : defaultValue;
+    }
+
+    public float[] getBufferData(String key, float[] defaultValue) {
+        Object o = get(key);
+        final Vector2[] defaultV2 = {};
+        return o != null ? ComponentAttributes.vector2ArrayToBufferData(getVector2Array(key, defaultV2)) : defaultValue;
     }
 
     /**
