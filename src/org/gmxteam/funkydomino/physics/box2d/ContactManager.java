@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.IdentityHashMap;
 
 /**
  * Permet de binder le ContactListener provenant de PhysicsWorld à plusieurs
@@ -32,16 +32,24 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ContactManager implements ContactListener {
 
-    private final ConcurrentHashMap<Body, ContactListener> mBodies = new ConcurrentHashMap<Body, ContactListener>();
+    /**
+     * On utilise un TreeMap car il permet de récupérer rapidement un item comme
+     * un HashMap, mais n'utilise pas de clés hashés, alors un body peut changer
+     * de contenu même après avoir été inséré dans le ContactManager. *
+     */
+    private final IdentityHashMap<Body, ContactListener> mBodies = new IdentityHashMap<Body, ContactListener>();
 
     /**
      *
      * @param b
      * @param pContactListener
      */
-    public void registerContactListener(Body b, ContactListener pContactListener) {
-        mBodies.put(b, pContactListener);
+    public void registerContactListener(final Body b, ContactListener pContactListener) {
+        // On protège mBodies pendant qu'il est modifié.
+        synchronized (mBodies) {
+            mBodies.put(b, pContactListener);
 
+        }
     }
 
     /**
