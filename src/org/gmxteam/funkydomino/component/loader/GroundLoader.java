@@ -37,7 +37,6 @@ public class GroundLoader extends ComponentLoader {
      * @param pba
      */
     public GroundLoader(IBaseGameActivity pba) {
-        super(pba);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), Ground.GROUND_WIDTH, Ground.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pba.getContext(), "ground/ground1.png", 0, 0);
         pba.getTextureManager().loadTexture(mBitmapTextureAtlas);

@@ -14,7 +14,7 @@ import org.andengine.util.level.LevelLoaderContentHandler;
  *
  * @author guillaume
  */
-public class FunkyDominoLoaderContentHandler extends LevelLoaderContentHandler<FunkyDominoEntityLoaderData, IEntityLoaderListener, FunkyDominoLoaderResult>{
+public class FunkyDominoLoaderContentHandler extends LevelLoaderContentHandler<FunkyDominoEntityLoaderData, IEntityLoaderListener, FunkyDominoLoaderResult> {
 
     /**
      *
@@ -27,11 +27,12 @@ public class FunkyDominoLoaderContentHandler extends LevelLoaderContentHandler<F
     }
 
     /**
+     * FunkyDominoLoaderResult est vide, pour le moment.
      *
      * @return
      */
     @Override
-    public  FunkyDominoLoaderResult getLevelLoaderResult() {
-        return new FunkyDominoLoaderResult((Scene) this.mRootEntity);
+    public FunkyDominoLoaderResult getLevelLoaderResult() {
+        return new FunkyDominoLoaderResult();
     }
 }

@@ -42,6 +42,10 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData, IBaseGame
     private final IBaseGameActivity mBaseGameActivity;
 
 
+    /**
+     *
+     * @param pBaseGameActivity
+     */
     public FunkyDominoEntityLoaderData(final IBaseGameActivity pBaseGameActivity) {
         this.mBaseGameActivity = pBaseGameActivity;
     }
@@ -59,6 +63,10 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData, IBaseGame
         return this.mBaseGameActivity.getPhysicsWorld();
     }
 
+    /**
+     *
+     * @return
+     */
     public IBaseGameActivity getBaseGameActivity() {
         return this.mBaseGameActivity;
     }

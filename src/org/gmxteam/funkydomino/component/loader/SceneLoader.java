@@ -25,13 +25,6 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class SceneLoader extends ComponentLoader {
 
-    /**
-     *
-     * @param pBaseGameActivity
-     */
-    public SceneLoader(IBaseGameActivity pBaseGameActivity) {
-        super(pBaseGameActivity);
-    }
     private final static String[] ENTITY_NAMES = {"level"};
 
     /**
@@ -39,6 +32,7 @@ public class SceneLoader extends ComponentLoader {
      * @return
      */
     public String[] getEntityNames() {
+
         return ENTITY_NAMES;
     }
 

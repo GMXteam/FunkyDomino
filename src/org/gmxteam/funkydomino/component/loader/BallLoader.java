@@ -41,8 +41,12 @@ public class BallLoader extends ComponentLoader {
 
     private final Sound mSound;
 
+    /**
+     *
+     * @param pBaseGameActivity
+     * @throws IOException
+     */
     public BallLoader(IBaseGameActivity pBaseGameActivity) throws IOException {
-        super(pBaseGameActivity);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pBaseGameActivity.getTextureManager(), Ball.BALL_RADIUS * 2, Ball.BALL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pBaseGameActivity.getContext(), "ball.png", 0, 0);
         pBaseGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);

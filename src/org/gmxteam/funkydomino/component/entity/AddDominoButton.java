@@ -45,11 +45,24 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
             DOMINO_HEIGHT = 64;
 
     ////////////////////////////////////////////////////////////////////////
+    /**
+     *
+     * @param pX
+     * @param pY
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
     public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
     }
     
-      public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
+      /**
+     *
+     * @param pComponentAttributes
+     * @param pTextureRegion
+     * @param pVertexBufferObjectManager
+     */
+    public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
     }
 

@@ -21,7 +21,6 @@ import org.andengine.entity.IEntity;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.util.level.IEntityLoader;
-import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 import org.xml.sax.Attributes;
@@ -32,12 +31,6 @@ import org.xml.sax.Attributes;
  */
 public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntityLoaderData> {
 
-    /**
-     *
-     * @param pBaseGameActivity
-     */
-    public ComponentLoader(IBaseGameActivity pBaseGameActivity) {
-    }
     /**
      *
      */
@@ -61,8 +54,6 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
      */
     public abstract IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData);
 
-
-    
     /**
      *
      * @param pEntityName
@@ -71,7 +62,6 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
      * @param pEntityLoaderData
      * @return
      */
-
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final ComponentAttributes componentAttributes = new ComponentAttributes(pAttributes);
         // Base loading...

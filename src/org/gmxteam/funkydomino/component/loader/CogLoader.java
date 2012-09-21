@@ -30,7 +30,6 @@ public class CogLoader extends ComponentLoader {
      * @param ga
      */
     public CogLoader(IBaseGameActivity ga) {
-        super(ga);
         mBitmapTextureAtlas = new BitmapTextureAtlas(ga.getTextureManager(), Cog.COG_TOTAL_RADIUS * 2, Cog.COG_TOTAL_RADIUS * 2, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, ga.getContext(), "cog.png", 0, 0);
         ga.getTextureManager().loadTexture(mBitmapTextureAtlas);

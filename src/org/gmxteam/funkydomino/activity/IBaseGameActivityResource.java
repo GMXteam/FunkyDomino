@@ -29,10 +29,13 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 
 /**
+ * Définit les ressources accessibles depuis l'implémentation d'une activité de
+ * AndEngine dans FunkyDomino.
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency
  */
 public interface IBaseGameActivityResource {
+
     /**
      *
      * @return

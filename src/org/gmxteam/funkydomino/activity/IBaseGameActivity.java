@@ -17,6 +17,7 @@
 package org.gmxteam.funkydomino.activity;
 
 import org.andengine.engine.camera.hud.HUD;
+import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.ui.IGameInterface;
 
 /**
@@ -24,6 +25,11 @@ import org.andengine.ui.IGameInterface;
  * @author guillaume
  */
 public interface IBaseGameActivity extends IGameInterface, IBaseGameActivityResource {
+    
+     /**
+     *
+     */
+    public static TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
 
     /**
      *

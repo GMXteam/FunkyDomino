@@ -26,7 +26,6 @@ public class DominoLoader extends ComponentLoader {
      * @param pGameActivity
      */
     public DominoLoader(IBaseGameActivity pGameActivity) {
-        super(pGameActivity);
         mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), Domino.DOMINO_WIDTH, Domino.DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pGameActivity.getContext(), "domino.png", 0, 0);
 

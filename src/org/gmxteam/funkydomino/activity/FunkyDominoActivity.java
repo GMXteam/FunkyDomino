@@ -191,6 +191,11 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     ////////////////////////////////////////////////////////////////////////////
     // Action diverses.
+    /**
+     *
+     * @param m
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu m) {
 
@@ -285,12 +290,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     @Override
     public final EngineOptions onCreateEngineOptions() {
 
-        mCamera = new SmoothCamera(CAMERA_LEFT, CAMERA_TOP, getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
+        mCamera = new SmoothCamera(0.0f, 0.0f, getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y, CAMERA_MAX_VELOCITY_X, CAMERA_MAX_VELOCITY_Y, CAMERA_MAX_ZOOM_FACTOR_CHANGE);
 
+        // Activation des bords de caméra, la caméra ne dépassera pas ces bords.
         mCamera.setBoundsEnabled(true);
 
 
-        EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y), mCamera);
+        final EngineOptions mEngineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED, new RatioResolutionPolicy(getDrawableSurfaceDimensions().x, getDrawableSurfaceDimensions().y), mCamera);
 
         // On récupère les settings depuis les préférences partagées.       
 
@@ -311,6 +317,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
 
         try {
+            // Récupération générique du niveau d'anticrénaléage à utiliser.
             TextureOptions.class.getField(SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
             Debug.v("Les textures sont " + SimplePreferences.getInstance(this).getString("engine.graphic.antialiasing", "DEFAULT"));
 
@@ -350,7 +357,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         final BitmapTextureAtlas mFontTexture = new BitmapTextureAtlas(getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
         pProgressListener.onProgressChanged(progress += 5);
 
-        mFont = FontFactory.create(getFontManager(), mFontTexture, WORLD_TOP);
+        mFont = FontFactory.create(getFontManager(), mFontTexture, 12);
         getTextureManager().loadTexture(mFontTexture);
         getFontManager().loadFont(mFont);
 

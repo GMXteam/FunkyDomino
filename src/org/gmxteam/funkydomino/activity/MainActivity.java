@@ -67,6 +67,9 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
     private SmoothCamera mCamera;
     private Music mBackgroundMusic;
 
+    /**
+     *
+     */
     @Override
     public void onResumeGame() {
         super.onResumeGame();
@@ -202,11 +205,19 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected int getLayoutID() {
         return R.layout.main;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     protected int getRenderSurfaceViewID() {
         return R.id.render_surface_view;

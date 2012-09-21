@@ -28,14 +28,6 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class HUDLoader extends ComponentLoader {
 
-    /**
-     *
-     * @param pGameActivity
-     */
-    public HUDLoader(IBaseGameActivity pGameActivity) {
-        super(pGameActivity);
-        
-    }
     private final static String[] ENTITY_NAMES = {"hud"};
 
     /**

@@ -4,20 +4,11 @@
  */
 package org.gmxteam.funkydomino.component.loader.util;
 
-import org.andengine.entity.scene.Scene;
-import org.andengine.util.level.simple.SimpleLevelLoaderResult;
+import org.andengine.util.level.ILevelLoaderResult;
 
 /**
  *
  * @author guillaume
  */
-public class FunkyDominoLoaderResult extends SimpleLevelLoaderResult {
-
-    /**
-     *
-     * @param pScene
-     */
-    public FunkyDominoLoaderResult(final Scene pScene) {
-        super(pScene);
-    }
+public class FunkyDominoLoaderResult implements ILevelLoaderResult {
 }
