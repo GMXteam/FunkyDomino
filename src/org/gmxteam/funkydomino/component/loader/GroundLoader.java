@@ -16,9 +16,13 @@
  */
 package org.gmxteam.funkydomino.component.loader;
 
+import com.badlogic.gdx.physics.box2d.Body;
+import java.util.HashMap;
 import org.andengine.entity.IEntity;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
@@ -32,13 +36,26 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class GroundLoader extends ComponentLoader {
 
+    private HashMap<String, TextureRegion> mParcelTextureRegion = new HashMap<String, TextureRegion>();
+    private HashMap<String, BitmapTextureAtlas> mParcelBitmapTextureAtlas = new HashMap<String, BitmapTextureAtlas>();
+    private final static String[] TEXTURE_REGION_NAMES = {"ground1", "ground2", "ground3"};
+
     /**
      *
      * @param pba
      */
     public GroundLoader(IBaseGameActivity pba) {
-        mBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), Ground.GROUND_WIDTH, Ground.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
-        mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pba.getContext(), "ground/ground1.png", 0, 0);
+
+        mBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), GroundParcel.GROUND_WIDTH, GroundParcel.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+
+        for (String name : TEXTURE_REGION_NAMES) {
+            final BitmapTextureAtlas aBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), GroundParcel.GROUND_WIDTH, GroundParcel.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+            final TextureRegion aTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(aBitmapTextureAtlas, pba.getContext(), "ground/" + name + ".png", 0, 0);
+            mParcelBitmapTextureAtlas.put(name, aBitmapTextureAtlas);
+            mParcelTextureRegion.put(name, aTextureRegion);
+            pba.getTextureManager().loadTexture(aBitmapTextureAtlas);
+        }
+
         pba.getTextureManager().loadTexture(mBitmapTextureAtlas);
     }
 
@@ -55,12 +72,15 @@ public class GroundLoader extends ComponentLoader {
         final IEntity e;
 
         if (pEntityName.equals("ground")) {
-            e = new Ground(pAttributes, mBitmapTextureAtlas, 16, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
+            e = new Ground(pAttributes);
 
         } else {
             // Must be a parcel
-            e = new GroundParcel(pAttributes, mTextureRegion, pEntityLoaderData.getVertexBufferObjectManager());
-
+            // Parent must be a ground entity
+            assert pParent instanceof Ground;
+            e = new GroundParcel(pAttributes, mParcelTextureRegion.get(pAttributes.getString("type", "ground1")), pEntityLoaderData.getVertexBufferObjectManager());
+            final Body body = ((GroundParcel) e).onCreateBody(pEntityLoaderData.getPhysicsWorld(), mFixtureDef);
+            pEntityLoaderData.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(e, body));
         }
 
 
@@ -74,6 +94,7 @@ public class GroundLoader extends ComponentLoader {
      */
     public String[] getEntityNames() {
         final String[] names = {"ground", "parcel"};
+
         return names;
     }
 }

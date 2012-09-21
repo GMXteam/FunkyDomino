@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import org.andengine.entity.sprite.batch.SpriteBatch;
+import org.andengine.entity.Entity;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -37,18 +37,7 @@ import org.gmxteam.funkydomino.component.IComponent;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Ground extends SpriteBatch implements IComponent {
-    
-    
-
-    /**
-     *
-     */
-    public static final int GROUND_WIDTH = 128,
-    /**
-     *
-     */
-    GROUND_HEIGHT = 128;
+public class Ground extends Entity implements IComponent {
 
     /**
      *
@@ -58,19 +47,16 @@ public class Ground extends SpriteBatch implements IComponent {
      * @param pCapacity
      * @param pVertexBufferObjectManager
      */
-    public Ground(final float pX, final float pY, final ITexture pTexture, final int pCapacity, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pX, pY, pTexture, pCapacity, pVertexBufferObjectManager);
+    public Ground(final float pX, final float pY) {
+        super(pX, pY);
     }
 
     /**
      *
      * @param pAttributes
-     * @param pTexture
-     * @param pCapacity
-     * @param pVertexBufferObjectManager
      */
-    public Ground(ComponentAttributes pAttributes, BitmapTextureAtlas pTexture, int pCapacity, VertexBufferObjectManager pVertexBufferObjectManager) {
-        this(pAttributes.getX(), pAttributes.getY(), pTexture, pCapacity, pVertexBufferObjectManager);
+    public Ground(ComponentAttributes pAttributes) {
+        this(0.0f, 0.0f);
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
