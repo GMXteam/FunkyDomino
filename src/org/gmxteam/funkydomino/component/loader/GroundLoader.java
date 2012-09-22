@@ -26,6 +26,7 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.entity.Ground;
 import org.gmxteam.funkydomino.component.entity.GroundParcel;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
@@ -68,8 +69,8 @@ public class GroundLoader extends ComponentLoader {
      * @return
      */
     @Override
-    public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
-        final IEntity e;
+    public IComponent onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+        final IComponent e;
 
         if (pEntityName.equals("ground")) {
             e = new Ground(pAttributes);
@@ -79,8 +80,7 @@ public class GroundLoader extends ComponentLoader {
             // Parent must be a ground entity
             assert pParent instanceof Ground;
             e = new GroundParcel(pAttributes, mParcelTextureRegion.get(pAttributes.getString("type", "ground1")), pEntityLoaderData.getVertexBufferObjectManager());
-            final Body body = ((GroundParcel) e).onCreateBody(pEntityLoaderData.getPhysicsWorld(), mFixtureDef);
-            pEntityLoaderData.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(e, body));
+
         }
 
 

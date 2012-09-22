@@ -29,6 +29,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.entity.Ball;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 
@@ -37,7 +38,6 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  * @author guillaume
  */
 public class BallLoader extends ComponentLoader {
-
 
     private final Sound mSound;
 
@@ -62,13 +62,11 @@ public class BallLoader extends ComponentLoader {
      * @return
      */
     @Override
-    public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+    public IComponent onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
 
-        final Ball ball = new Ball(pAttributes, mTextureRegion, pEntityLoaderData.getVertexBufferObjectManager(), mSound);
-        final Body body = PhysicsFactory.createCircleBody(pEntityLoaderData.getBaseGameActivity().getPhysicsWorld(), ball, BodyType.DynamicBody, mFixtureDef);
-        pEntityLoaderData.getBaseGameActivity().getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(ball, body));
-        pEntityLoaderData.getContactManager().registerContactListener(body, ball);
-        return ball;
+
+
+        return new Ball(pAttributes, mTextureRegion, pEntityLoaderData.getVertexBufferObjectManager(), mSound);
     }
 
     /**

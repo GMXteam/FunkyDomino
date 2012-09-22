@@ -33,7 +33,7 @@ import org.andengine.extension.physics.box2d.PhysicsWorld;
  *
  * @author Guillaume Poirier-Morency
  */
-public interface IComponent extends  IEntity {
+public interface IComponent extends  IEntity, ContactListener {
 
     
     /**
@@ -72,6 +72,8 @@ public interface IComponent extends  IEntity {
      * @return  
      */
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef);
+    
+    
 
     
     

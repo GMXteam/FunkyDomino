@@ -25,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import com.badlogic.gdx.math.Vector2;
 import java.io.IOException;
-
 import org.andengine.audio.music.Music;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.SoundFactory;
@@ -153,7 +152,7 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
         } catch (IOException ex) {
             Debug.e(ex);
         }
-        
+
         try {
             mLevelLoader = new FunkyDominoLevelLoader(this);
         } catch (Exception ex) {
@@ -258,7 +257,12 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
 
 
         mEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
-        Debug.v("La musique est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+        Debug.v("La musique est " + (mEngineOptions.getAudioOptions().needsMusic() ? "activé" : "désactivé"));
+
+        // On active quand même le son et la musique pour ne pas faire planter le programme.
+        mEngineOptions.getAudioOptions().setNeedsMusic(true);
+        mEngineOptions.getAudioOptions().setNeedsSound(true);
+        Debug.v("Le son et la musique sont quand même activé.");
 
         mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));
@@ -324,17 +328,6 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
      */
     public SmoothCamera getCamera() {
         return mCamera;
-    }
-
-    /**
-     *
-     * @param sd
-     * @param i
-     * @param f
-     * @param f1
-     */
-    public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**

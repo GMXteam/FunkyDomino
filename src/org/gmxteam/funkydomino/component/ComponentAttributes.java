@@ -240,6 +240,12 @@ public class ComponentAttributes extends HashMap<String, String> {
         return o != null ? parseVector2Array((String) o) : defaultValue;
     }
 
+    /**
+     *
+     * @param key
+     * @param defaultValue
+     * @return
+     */
     public float[] getBufferData(String key, float[] defaultValue) {
         Object o = get(key);
         final Vector2[] defaultV2 = {};

@@ -16,12 +16,16 @@
  */
 package org.gmxteam.funkydomino.component.loader;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.andengine.entity.IEntity;
+import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.util.debug.Debug;
 import org.andengine.util.level.IEntityLoader;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 import org.xml.sax.Attributes;
 
@@ -52,7 +56,7 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
      * @param pEntityLoaderData
      * @return
      */
-    public abstract IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData);
+    public abstract IComponent onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData);
 
     /**
      *
@@ -68,7 +72,28 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
         mFixtureDef.density = componentAttributes.getDensity();
         mFixtureDef.friction = componentAttributes.getFriction();
 
-        return onLoadEntity(pEntityName, pParent, componentAttributes, pEntityLoaderData);
+        final IComponent entity = onLoadEntity(pEntityName, pParent, componentAttributes, pEntityLoaderData);
+
+        final Body body = entity.onCreateBody(pEntityLoaderData.getPhysicsWorld(), mFixtureDef);
+
+        if (body != null) {
+            // Ajout du connecteur physique
+            pEntityLoaderData.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(entity, body));
+
+            // Binding avec le gestionnaire de contacts
+            pEntityLoaderData.getContactManager().registerContactListener(body, entity);
+        } else {
+            Debug.v("Le body " + body + " de l'entité " + entity + " est null.");
+
+        }
+
+
+        // Binding avec le touch de la scène
+        pEntityLoaderData.getScene().registerTouchArea(entity);
+
+
+
+        return entity;
 
     }
 }

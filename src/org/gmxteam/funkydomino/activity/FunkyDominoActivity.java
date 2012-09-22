@@ -304,9 +304,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         mEngineOptions.getAudioOptions().setNeedsSound(SimplePreferences.getInstance(this).getBoolean("engine.audio.sound.enabled", true));
         Debug.v("Le son est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
 
-
         mEngineOptions.getAudioOptions().setNeedsMusic(SimplePreferences.getInstance(this).getBoolean("engine.audio.music.enabled", true));
-        Debug.v("La musique est " + (mEngineOptions.getAudioOptions().needsSound() ? "activé" : "désactivé"));
+        Debug.v("La musique est " + (mEngineOptions.getAudioOptions().needsMusic() ? "activé" : "désactivé"));
+
+        // On active quand même le son et la musique pour ne pas faire planter le programme.
+        mEngineOptions.getAudioOptions().setNeedsMusic(true);
+        mEngineOptions.getAudioOptions().setNeedsSound(true);
+        Debug.v("Le son et la musique sont quand même activé.");
 
         mEngineOptions.getRenderOptions().setDithering(SimplePreferences.getInstance(this).getBoolean("engine.graphic.dithering.enabled", true));
         Debug.v("Le dithering est " + (mEngineOptions.getRenderOptions().isDithering() ? "activé" : "désactivé"));

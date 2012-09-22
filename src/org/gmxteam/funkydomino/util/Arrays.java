@@ -10,6 +10,12 @@ package org.gmxteam.funkydomino.util;
  */
 public class Arrays {
 
+    /**
+     *
+     * @param A
+     * @param B
+     * @return
+     */
     public static Object[] concat(Object[] A, Object[] B) {
         Object[] C = new Object[A.length + B.length];
         System.arraycopy(A, 0, C, 0, A.length);
@@ -18,6 +24,12 @@ public class Arrays {
         return C;
     }
 
+    /**
+     *
+     * @param A
+     * @param B
+     * @return
+     */
     public static String[] concat(String[] A, String[] B) {
         String[] C = new String[A.length + B.length];
         System.arraycopy(A, 0, C, 0, A.length);

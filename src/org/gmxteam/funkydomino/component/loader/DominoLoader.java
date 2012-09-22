@@ -4,14 +4,13 @@
  */
 package org.gmxteam.funkydomino.component.loader;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import org.andengine.entity.IEntity;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.entity.Domino;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 
@@ -50,11 +49,9 @@ public class DominoLoader extends ComponentLoader {
      * @return
      */
     @Override
-    public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
-        final Domino domino = new Domino(pAttributes, mTextureRegion, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
-        final Body body = domino.onCreateBody(pEntityLoaderData.getBaseGameActivity().getPhysicsWorld(), mFixtureDef);
-        pEntityLoaderData.getBaseGameActivity().getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(domino, body));
-        pEntityLoaderData.getBaseGameActivity().getScene().registerTouchArea(domino);
-        return domino;
+    public IComponent onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+
+        return new Domino(pAttributes, mTextureRegion, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
+
     }
 }

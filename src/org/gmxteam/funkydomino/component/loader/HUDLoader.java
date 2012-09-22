@@ -18,15 +18,15 @@ package org.gmxteam.funkydomino.component.loader;
 
 import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.IEntity;
-import org.gmxteam.funkydomino.activity.IBaseGameActivity;
-import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.andengine.util.level.IEntityLoader;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
+import org.xml.sax.Attributes;
 
 /**
  *
  * @author guillaume
  */
-public class HUDLoader extends ComponentLoader {
+public class HUDLoader implements IEntityLoader<FunkyDominoEntityLoaderData>  {
 
     private final static String[] ENTITY_NAMES = {"hud"};
 
@@ -47,7 +47,7 @@ public class HUDLoader extends ComponentLoader {
      * @return
      */
     @Override
-    public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+    public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final HUD mHUD = new HUD();
         mHUD.setCamera(pEntityLoaderData.getBaseGameActivity().getCamera());
         pEntityLoaderData.getBaseGameActivity().setHUD(mHUD);

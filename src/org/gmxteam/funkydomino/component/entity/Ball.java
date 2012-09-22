@@ -43,13 +43,17 @@ public final class Ball extends Sprite implements IComponent, ContactListener {
 
 
     /**
-     *
+     * Rayon d'une balle.
      */
     public static final int BALL_RADIUS = 32;
+    /**
+     * Son lors de la collision.
+     */
     private final Sound mCollisionSound;
 
     /**
-     *
+     * 
+     * Constructeur pour une balle.
      * @param pAttributes
      * @param mTextureRegion
      * @param vertexBufferObjectManager
@@ -68,7 +72,7 @@ public final class Ball extends Sprite implements IComponent, ContactListener {
      * @param pCollisionSound
      */
     public Ball(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, Sound pCollisionSound) {
-        super(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
+        super(pX, pY, pTextureRegion, pVertexBufferObjectManager);
         mCollisionSound = pCollisionSound;
     }
 

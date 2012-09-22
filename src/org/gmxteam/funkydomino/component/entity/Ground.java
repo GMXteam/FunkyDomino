@@ -43,9 +43,6 @@ public class Ground extends Entity implements IComponent {
      *
      * @param pX
      * @param pY
-     * @param pTexture
-     * @param pCapacity
-     * @param pVertexBufferObjectManager
      */
     public Ground(final float pX, final float pY) {
         super(pX, pY);
@@ -60,7 +57,7 @@ public class Ground extends Entity implements IComponent {
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
 
     }
 
@@ -69,7 +66,6 @@ public class Ground extends Entity implements IComponent {
      * @param contact
      */
     public void beginContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -77,7 +73,6 @@ public class Ground extends Entity implements IComponent {
      * @param contact
      */
     public void endContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -86,7 +81,6 @@ public class Ground extends Entity implements IComponent {
      * @param oldManifold
      */
     public void preSolve(Contact contact, Manifold oldManifold) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -95,6 +89,5 @@ public class Ground extends Entity implements IComponent {
      * @param impulse
      */
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

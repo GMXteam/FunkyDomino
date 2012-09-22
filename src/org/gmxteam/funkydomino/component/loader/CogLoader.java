@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.gmxteam.funkydomino.component.loader;
 
@@ -15,6 +27,7 @@ import org.andengine.util.math.MathUtils;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.entity.Cog;
 import org.gmxteam.funkydomino.component.entity.CogTeeth;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
@@ -44,13 +57,11 @@ public class CogLoader extends ComponentLoader {
      * @return
      */
     @Override
-    public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+    public IComponent onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         final Cog d = new Cog(pAttributes, mTextureRegion, Cog.COG_TEETH_COUNT + 1, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
 
-        final Body b = d.onCreateBody(pEntityLoaderData.getBaseGameActivity().getPhysicsWorld(), mFixtureDef);
 
 
-        pEntityLoaderData.getBaseGameActivity().getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(d, b));
 
 
         for (int i = 0; i < Cog.COG_TEETH_COUNT; i++) {
@@ -62,7 +73,7 @@ public class CogLoader extends ComponentLoader {
             final float toothY = (hypothenuse * FloatMath.sin(MathUtils.degToRad(theta))) + Cog.COG_TOTAL_RADIUS;
 
             Debug.v("Teeth position : [" + toothX + ",", +toothY + "] with initial rotation " + theta + " rad.");
-            final CogTeeth cogTeeth = new CogTeeth(toothX, toothY, pEntityLoaderData.getBaseGameActivity().getVertexBufferObjectManager());
+            final CogTeeth cogTeeth = new CogTeeth(toothX, toothY, pEntityLoaderData.getVertexBufferObjectManager());
 
 
             cogTeeth.setRotation(theta + (i % 2 == 0 ? 90.0f : 0.0f));

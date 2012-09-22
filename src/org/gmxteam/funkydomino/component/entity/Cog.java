@@ -88,7 +88,6 @@ public final class Cog extends Sprite implements IComponent {
      * @param contact
      */
     public void beginContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -96,7 +95,6 @@ public final class Cog extends Sprite implements IComponent {
      * @param contact
      */
     public void endContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -105,7 +103,6 @@ public final class Cog extends Sprite implements IComponent {
      * @param oldManifold
      */
     public void preSolve(Contact contact, Manifold oldManifold) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -114,6 +111,5 @@ public final class Cog extends Sprite implements IComponent {
      * @param impulse
      */
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

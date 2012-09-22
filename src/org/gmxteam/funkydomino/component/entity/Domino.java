@@ -30,21 +30,15 @@ import org.andengine.extension.physics.box2d.util.constants.PhysicsConstants;
 import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.input.touch.detector.ScrollDetector.IScrollDetectorListener;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
-
-
-
-
-
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Domino extends Sprite implements IComponent,  IScrollDetectorListener {
-    private Body mDominoBody;
+public final class Domino extends Sprite implements IComponent, IScrollDetectorListener {
+    private Body mBody;
 
     /**
      *
@@ -53,8 +47,8 @@ public final class Domino extends Sprite implements IComponent,  IScrollDetector
      * @param pVertexBufferObjectManager
      */
     public Domino(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pComponentAttributes.getFloat("x", 0.0f), pComponentAttributes.getFloat("y", 0.0f), pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
-        
+        super(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pVertexBufferObjectManager);
+
     }
     /**
      *
@@ -64,23 +58,20 @@ public final class Domino extends Sprite implements IComponent,  IScrollDetector
              *
              */
             DOMINO_WIDTH = 32;
-    
+
     @Override
-    public Body onCreateBody(PhysicsWorld pw, FixtureDef pFixtureDef) {        
-        mDominoBody = PhysicsFactory.createBoxBody(pw, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
-        return mDominoBody;
-    }   
+    public Body onCreateBody(PhysicsWorld pw, FixtureDef pFixtureDef) {
+        return mBody = PhysicsFactory.createBoxBody(pw, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
+    }
 
     ////////////////////////////////////
     // Collisions
-    
-
     /**
      *
      * @param cntct
      */
     public void beginContact(Contact cntct) {
-        // mCollisionSound.play();
+        //mCollisionSound.play();
     }
 
     /**
@@ -127,7 +118,7 @@ public final class Domino extends Sprite implements IComponent,  IScrollDetector
         // Make the domino follows the finger.
         f = f / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
         f1 = f1 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-        mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
+        mBody.setTransform(mBody.getPosition().x + f, mBody.getPosition().y + f1, mBody.getAngle());
     }
 
     /**
@@ -140,8 +131,6 @@ public final class Domino extends Sprite implements IComponent,  IScrollDetector
     public void onScrollFinished(ScrollDetector sd, int i, float f, float f1) {
         f = f / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
         f1 = f1 / PhysicsConstants.PIXEL_TO_METER_RATIO_DEFAULT;
-        mDominoBody.setTransform(mDominoBody.getPosition().x + f, mDominoBody.getPosition().y + f1, mDominoBody.getAngle());
+        mBody.setTransform(mBody.getPosition().x + f, mBody.getPosition().y + f1, mBody.getAngle());
     }
-
-   
 }

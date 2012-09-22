@@ -1,13 +1,24 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ *   This file is part of Funky Domino.
+ *
+ *   Funky Domino is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   Funky Domino is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with Funky Domino.  If not, see <http://www.gnu.org/licenses/>.
  */
 package org.gmxteam.funkydomino.component.loader;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import org.gmxteam.funkydomino.activity.FunkyDominoActivity;
-import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.primitive.Line;
 import org.andengine.entity.scene.background.RepeatingSpriteBackground;
@@ -15,17 +26,24 @@ import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.util.debug.Debug;
-import org.gmxteam.funkydomino.activity.IBaseGameActivity;
+import org.andengine.util.level.IEntityLoader;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
+import org.xml.sax.Attributes;
 
 /**
  *
  * @author guillaume
  */
-public class SceneLoader extends ComponentLoader {
+public class SceneLoader implements IEntityLoader<FunkyDominoEntityLoaderData> {
 
     private final static String[] ENTITY_NAMES = {"level"};
+    private BitmapTextureAtlas mBitmapTextureAtlas;
+    private TextureRegion mTextureRegion;
+    
+   
 
     /**
      *
@@ -45,12 +63,13 @@ public class SceneLoader extends ComponentLoader {
      * @return
      */
     @Override
-    public IEntity onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+    public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
+        final ComponentAttributes pComponentAttributes = new ComponentAttributes(pAttributes);
         Debug.v("La scène est de dimension "
-                + pAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
+                + pComponentAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
                 .getDrawableSurfaceDimensions().x)
                 + " de largeur par "
-                + pAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
+                + pComponentAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
                 .getDrawableSurfaceDimensions().y)
                 + " de hauteur.");
 
@@ -59,13 +78,13 @@ public class SceneLoader extends ComponentLoader {
 
 
         mBitmapTextureAtlas = new BitmapTextureAtlas(pEntityLoaderData.getBaseGameActivity()
-                .getTextureManager(), pAttributes.getInteger("background_width", 32), pAttributes.getInteger("background_height", 32), FunkyDominoActivity.TEXTURE_OPTION);
+                .getTextureManager(), pComponentAttributes.getInteger("background_width", 32), pComponentAttributes.getInteger("background_height", 32), FunkyDominoActivity.TEXTURE_OPTION);
 
         pEntityLoaderData.getBaseGameActivity()
                 .getTextureManager().loadTexture(mBitmapTextureAtlas);
 
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pEntityLoaderData.getBaseGameActivity()
-                .getContext(), pAttributes.getString("background", "background.png"), 0, 0);
+                .getContext(), pComponentAttributes.getString("background", "background.png"), 0, 0);
 
 
 
@@ -83,9 +102,9 @@ public class SceneLoader extends ComponentLoader {
         final FixtureDef limitsFixtureDef = PhysicsFactory.createFixtureDef(1.0f, 1.0f, 1.0f);
 
 
-        final float HEIGHT = pAttributes.getFloat("height", pEntityLoaderData.getBaseGameActivity()
+        final float HEIGHT = pComponentAttributes.getFloat("height", pEntityLoaderData.getBaseGameActivity()
                 .getDrawableSurfaceDimensions().y),
-                WIDTH = pAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
+                WIDTH = pComponentAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
                 .getDrawableSurfaceDimensions().x);
 
 
@@ -113,8 +132,8 @@ public class SceneLoader extends ComponentLoader {
 
         // Refresh camera bounds
         pEntityLoaderData.getBaseGameActivity()
-                .getCamera().setBounds(0.0f, 0.0f, pAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
-                .getDrawableSurfaceDimensions().x), pAttributes.getFloat("height", pEntityLoaderData.getBaseGameActivity()
+                .getCamera().setBounds(0.0f, 0.0f, pComponentAttributes.getFloat("width", pEntityLoaderData.getBaseGameActivity()
+                .getDrawableSurfaceDimensions().x), pComponentAttributes.getFloat("height", pEntityLoaderData.getBaseGameActivity()
                 .getDrawableSurfaceDimensions().y));
 
 

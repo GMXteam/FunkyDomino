@@ -55,8 +55,8 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
     public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
     }
-    
-      /**
+
+    /**
      *
      * @param pComponentAttributes
      * @param pTextureRegion
@@ -67,7 +67,7 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return null;
     }
 
     /**
@@ -75,7 +75,6 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param contact
      */
     public void beginContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -83,7 +82,6 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param contact
      */
     public void endContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -92,7 +90,6 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param oldManifold
      */
     public void preSolve(Contact contact, Manifold oldManifold) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -101,7 +98,6 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param impulse
      */
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -111,6 +107,5 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param pTouchAreaLocalY
      */
     public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
