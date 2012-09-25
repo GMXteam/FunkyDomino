@@ -65,6 +65,22 @@ public class ComponentAttributes extends HashMap<String, String> {
      *
      * @return
      */
+    public float getWidth() {
+        return getFloat("width", 0.0f);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getHeight() {
+        return getFloat("height", 0.0f);
+    }
+
+    /**
+     *
+     * @return
+     */
     public float getAngle() {
         return getFloat("angle", 0.0f);
     }

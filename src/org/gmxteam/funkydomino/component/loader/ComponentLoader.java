@@ -30,8 +30,13 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
 import org.xml.sax.Attributes;
 
 /**
+ * Chargeur de composant.
  *
- * @author guillaume
+ * Sert de base aux chargeurs de composants spécifiques. Permet de connecter le
+ * composant avec le monde physique, le gestionnaire de contacts et le touch
+ * area de la scène.
+ *
+ * @author Guillaume Poirier-Morency <guillaumepoiriermorency@gmail.com>
  */
 public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntityLoaderData> {
 
@@ -40,7 +45,7 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
      */
     protected BitmapTextureAtlas mBitmapTextureAtlas;
     /**
-     *
+     * @see org.andengine.opengl.texture.region.TextureRegion
      */
     protected TextureRegion mTextureRegion;
     /**

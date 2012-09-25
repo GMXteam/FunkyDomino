@@ -127,6 +127,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
                 }
             }).show();
+
         } else {
             FunkyDominoActivity.super.onResumeGame();
             mTimeCounterHandler.resume();
@@ -137,8 +138,8 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     * Cette méthode est appelée quand le moteur AndEngine ce met en pause.
-     * Quand cela arrive, le compteur de temps est mit en pause.
+     * Cette méthode est appelée quand le moteur AndEngine se met en pause.
+     * Quand cela arrive, le compteur de temps est mis en pause.
      */
     @Override
     public void onPauseGame() {
@@ -170,13 +171,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     * Cette méthode appelle la méthode onPauseGame quand l'item du menu est
-     * cliqué.
+     * Cette méthode appelle la méthode onPause quand l'item du menu est cliqué.
      *
-     * @param v
+     * @see android.view.MenuItem
+     * @param v es le MenuItem qui a été cliqué
      */
     public void onPauseGameMenuItemClick(MenuItem v) {
-        onPauseGame();
+        onPause();
     }
 
     /**
@@ -236,16 +237,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         return super.onKeyUp(i, ke);
     }
-
-    /**
-     *
-     * @param m
-     */
-    @Override
-    public void onOptionsMenuClosed(Menu m) {
-        showResumeDialog = false;
-        onResumeGame();
-    }
     ////////////////////////////////////////////////////////////////////////////
     // Paramètres et variables.
     /**
@@ -284,7 +275,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     ////////////////////////////////////////////////////////////////////////////
     // Événements de AndEngine   
     /**
-     *
+     * Créé les options du moteur AndEngine.
      * @return
      */
     @Override
@@ -337,7 +328,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *
+     * Créé les ressources du jeu.
      * @param pProgressListener
      * @throws Exception
      */
@@ -371,7 +362,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *
+     * Créé la scène et les autres instances nécéssaire pour le jeu.
      * @param pProgressListener
      * @return
      * @throws Exception
@@ -406,7 +397,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
 
     /**
-     *
+     * Charge les entités définies dans le fichier XML dans la scène.
      * @param pScene
      * @param pProgressListener
      * @throws Exception
