@@ -37,6 +37,10 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class AddBallButtonLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param pGameActivity
+     */
     public AddBallButtonLoader(IBaseGameActivity pGameActivity) {
         mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), 2 * 2 * AddBallButton.BALL_RADIUS, 2 * AddBallButton.BALL_RADIUS, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pGameActivity.getContext(), "ball.png", 0, 0);
@@ -53,6 +57,10 @@ public class AddBallButtonLoader extends ComponentLoader {
         return new AddBallButton(pAttributes, mTextureRegion, mTextureRegionClicked, pEntityLoaderData.getVertexBufferObjectManager());
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getEntityNames() {
         final String[] names = {"add_ball_button"};
         return names;

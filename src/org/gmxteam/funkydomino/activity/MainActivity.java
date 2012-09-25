@@ -37,11 +37,11 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
-import org.andengine.input.touch.detector.ScrollDetector;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.LayoutGameActivity;
 import org.andengine.util.debug.Debug;
+import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
@@ -53,7 +53,7 @@ import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.Gra
  * Activité principale de FunkyDomino. Permet d'accéder à : FunkyDominoActivity
  * pour jouer la dernière partie sauvegardée LoadGameActivity pour charger une
  * partie NewGameActivity pour créer une nouvelle partie PreferencesActivity
- * pour changer les préférences de FunkyDomino
+ * pour changer les préférences de FunkyDomino.
  *
  * @author Guillaume Poirier-Morency
  */
@@ -290,51 +290,31 @@ public final class MainActivity extends LayoutGameActivity implements IBaseGameA
         return mEngineOptions;
     }
 
-    /**
-     *
-     * @return
-     */
     public Context getContext() {
         return this;
     }
 
-    /**
-     *
-     * @return
-     */
     public PhysicsWorld getPhysicsWorld() {
         return mPhysicsWorld;
     }
 
-    /**
-     *
-     * @return
-     */
     public Scene getScene() {
         return mScene;
     }
 
-    /**
-     *
-     * @return
-     */
     public ContactManager getContactManager() {
         return mContactManager;
     }
 
-    /**
-     *
-     * @return
-     */
     public SmoothCamera getCamera() {
         return mCamera;
     }
 
-    /**
-     *
-     * @param pHUD
-     */
-    public void setHUD(HUD pHUD) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public HUD getHUD() {
+        return getCamera().getHUD();
+    }
+
+    public LevelLoader getLevelLoader() {
+        return mLevelLoader;
     }
 }

@@ -55,15 +55,7 @@ public interface IFunkyDominoActivity extends IBaseGameActivity {
              */
             CAMERA_Z_FAR = 20.0f;
 
-    /**
-     *
-     * @param pHUD
-     */
-    public void setHUD(HUD pHUD);
+   
 
-    /**
-     *
-     * @return
-     */
-    public HUD getHUD();
+
 }

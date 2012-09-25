@@ -36,6 +36,10 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
  */
 public class AddDominoButtonLoader extends ComponentLoader {
 
+    /**
+     *
+     * @param pGameActivity
+     */
     public AddDominoButtonLoader(IBaseGameActivity pGameActivity) {
         mBitmapTextureAtlas = new BitmapTextureAtlas(pGameActivity.getTextureManager(), 2 * AddDominoButton.DOMINO_WIDTH, AddDominoButton.DOMINO_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
         mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pGameActivity.getContext(), "domino.png", 0, 0);
@@ -49,9 +53,13 @@ public class AddDominoButtonLoader extends ComponentLoader {
     @Override
     public IComponent onLoadEntity(String pEntityName, IEntity pParent, ComponentAttributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
         assert pParent instanceof HUD;
-        return new AddDominoButton(pAttributes, mTextureRegion, mTextureRegionClicked, pEntityLoaderData.getVertexBufferObjectManager());
+        return new AddDominoButton(pAttributes, mTextureRegion, mTextureRegionClicked, pEntityLoaderData.getBaseGameActivity(), pEntityLoaderData.getVertexBufferObjectManager());
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getEntityNames() {
         final String[] names = {"add_domino_button"};
         return names;

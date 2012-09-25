@@ -22,10 +22,15 @@ import android.graphics.Point;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.SoundManager;
 import org.andengine.engine.camera.SmoothCamera;
+import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.scene.Scene;
+import org.andengine.entity.text.Text;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
+import org.andengine.opengl.font.Font;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.level.LevelLoader;
+import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 
 /**
@@ -35,6 +40,18 @@ import org.gmxteam.funkydomino.physics.box2d.ContactManager;
  * @author Guillaume Poirier-Morency
  */
 public interface IBaseGameActivityResource {
+
+    /**
+     *
+     * @return
+     */
+    public HUD getHUD();
+
+    /**
+     * Chargeur de niveau.
+     * @return 
+     */
+    public LevelLoader getLevelLoader();
 
     /**
      *
@@ -67,20 +84,20 @@ public interface IBaseGameActivityResource {
     public Context getContext();
 
     /**
-     *
-     * @return
+     * Monde physique.
+     * @return 
      */
     public PhysicsWorld getPhysicsWorld();
 
     /**
-     *
-     * @return
+     * Scène contenant les entités.
+     * @return 
      */
     public Scene getScene();
 
     /**
-     *
-     * @return
+     * Gestionnaire de contact.
+     * @return 
      */
     public ContactManager getContactManager();
 

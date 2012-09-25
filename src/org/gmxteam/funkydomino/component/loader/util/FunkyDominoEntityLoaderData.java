@@ -22,11 +22,13 @@ import android.graphics.Point;
 import org.andengine.audio.music.MusicManager;
 import org.andengine.audio.sound.SoundManager;
 import org.andengine.engine.camera.SmoothCamera;
+import org.andengine.engine.camera.hud.HUD;
 import org.andengine.entity.scene.Scene;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.util.level.IEntityLoaderData;
+import org.andengine.util.level.LevelLoader;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.activity.IBaseGameActivityResource;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
@@ -41,7 +43,6 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData, IBaseGame
 
     private final IBaseGameActivity mBaseGameActivity;
 
-
     /**
      *
      * @param pBaseGameActivity
@@ -49,7 +50,6 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData, IBaseGame
     public FunkyDominoEntityLoaderData(final IBaseGameActivity pBaseGameActivity) {
         this.mBaseGameActivity = pBaseGameActivity;
     }
-
 
     public VertexBufferObjectManager getVertexBufferObjectManager() {
         return this.mBaseGameActivity.getVertexBufferObjectManager();
@@ -104,5 +104,13 @@ public class FunkyDominoEntityLoaderData implements IEntityLoaderData, IBaseGame
 
     public Point getDrawableSurfaceDimensions() {
         return this.mBaseGameActivity.getDrawableSurfaceDimensions();
+    }
+
+    public HUD getHUD() {
+        return this.mBaseGameActivity.getHUD();
+    }
+
+    public LevelLoader getLevelLoader() {
+        return this.mBaseGameActivity.getLevelLoader();
     }
 }

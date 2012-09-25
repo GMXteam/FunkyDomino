@@ -16,7 +16,7 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
 
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency <guillaumepoiriermorency@gmail.com>
  */
 public class DominoLoader extends ComponentLoader {
 

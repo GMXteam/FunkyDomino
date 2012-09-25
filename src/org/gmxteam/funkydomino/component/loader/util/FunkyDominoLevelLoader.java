@@ -42,6 +42,34 @@ import org.gmxteam.funkydomino.component.loader.SceneLoader;
 public class FunkyDominoLevelLoader extends LevelLoader<FunkyDominoEntityLoaderData, IEntityLoaderListener, FunkyDominoLoaderResult> {
 
     private final IBaseGameActivity mBaseGameActivity;
+    /**
+     *
+     */
+    public final DominoLoader mDominoLoader;
+    /**
+     *
+     */
+    public final BallLoader mBallLoader;
+    /**
+     *
+     */
+    public final GroundLoader mGroundLoader;
+    /**
+     *
+     */
+    public final SceneLoader mSceneLoader;
+    /**
+     *
+     */
+    public final HUDLoader mHUDLoader;
+    /**
+     *
+     */
+    public final CogLoader mCogLoader;
+    /**
+     *
+     */
+    public final AddDominoButtonLoader mAddDominoButtonLoader;
 
     /**
      * Constructeur du loader.
@@ -61,19 +89,19 @@ public class FunkyDominoLevelLoader extends LevelLoader<FunkyDominoEntityLoaderD
         // Chargement des loaders par défaut, ces loaders chargent aussi des
         // ressources de base pour les entités.
 
-        registerEntityLoader(new DominoLoader(pBaseGameActivity));
+        registerEntityLoader(mDominoLoader = new DominoLoader(pBaseGameActivity));
 
-        registerEntityLoader(new BallLoader(pBaseGameActivity));
+        registerEntityLoader(mBallLoader = new BallLoader(pBaseGameActivity));
 
-        registerEntityLoader(new GroundLoader(pBaseGameActivity));
+        registerEntityLoader(mGroundLoader = new GroundLoader(pBaseGameActivity));
 
-        registerEntityLoader(new SceneLoader());
+        registerEntityLoader(mSceneLoader = new SceneLoader());
 
-        registerEntityLoader(new HUDLoader());
+        registerEntityLoader(mHUDLoader = new HUDLoader());
 
-        registerEntityLoader(new CogLoader(pBaseGameActivity));
+        registerEntityLoader(mCogLoader = new CogLoader(pBaseGameActivity));
 
-        registerEntityLoader(new AddDominoButtonLoader(pBaseGameActivity));
+        registerEntityLoader(mAddDominoButtonLoader = new AddDominoButtonLoader(pBaseGameActivity));
 
 
     }

@@ -26,7 +26,7 @@ import org.xml.sax.Attributes;
  *
  * @author Guillaume Poirier-Morency
  */
-public class HUDLoader implements IEntityLoader<FunkyDominoEntityLoaderData>  {
+public class HUDLoader implements IEntityLoader<FunkyDominoEntityLoaderData> {
 
     private final static String[] ENTITY_NAMES = {"hud"};
 
@@ -37,7 +37,7 @@ public class HUDLoader implements IEntityLoader<FunkyDominoEntityLoaderData>  {
     public String[] getEntityNames() {
         return ENTITY_NAMES;
     }
-    
+
     /**
      *
      * @param pEntityName
@@ -48,9 +48,7 @@ public class HUDLoader implements IEntityLoader<FunkyDominoEntityLoaderData>  {
      */
     @Override
     public IEntity onLoadEntity(String pEntityName, IEntity pParent, Attributes pAttributes, FunkyDominoEntityLoaderData pEntityLoaderData) {
-        final HUD mHUD = new HUD();
-        mHUD.setCamera(pEntityLoaderData.getBaseGameActivity().getCamera());
-        pEntityLoaderData.getBaseGameActivity().setHUD(mHUD);
-        return mHUD;
+
+        return new HUD();
     }
 }

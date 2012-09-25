@@ -35,6 +35,7 @@ import org.andengine.engine.camera.hud.HUD;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
 import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
+import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.util.FPSLogger;
@@ -48,8 +49,11 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.ui.activity.SimpleAsyncGameActivity;
 import org.andengine.util.debug.Debug;
 import org.andengine.util.debug.Debug.DebugLevel;
+import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
+import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
@@ -66,16 +70,12 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     private Levels mGameToLoad;
     private TimeCounterHandler mTimeCounterHandler;
-    private HUD mHUD;
 
     ////////////////////////////////////////////////////////////////////////////
     // Événements Android
     /**
-     * <p>
      *
-     * @param pBundle is an Bundle containing datas. Here are the possible
-     * values : bundle.level Name of the game to load ;
-     *
+     * @param pBundle
      */
     @Override
     public void onCreate(Bundle pBundle) {
@@ -239,30 +239,15 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     }
     ////////////////////////////////////////////////////////////////////////////
     // Paramètres et variables.
+    private Scene mScene;
+    private SmoothCamera mCamera;
+    private PhysicsWorld mPhysicsWorld;
+    private FunkyDominoLevelLoader mLevelLoader;
+    private ContactManager mContactManager;
     /**
      * Détermine si le resume dialog doit apparaître.
      */
     private boolean showResumeDialog = false;
-    /**
-     * Scène contenant les entités.
-     */
-    private Scene mScene;
-    /**
-     * Caméra.
-     */
-    private SmoothCamera mCamera;
-    /**
-     * Monde physique.
-     */
-    private PhysicsWorld mPhysicsWorld;
-    /**
-     * Chargeur de niveau.
-     */
-    private FunkyDominoLevelLoader mLevelLoader;
-    /**
-     * Gestionnaire de contact.
-     */
-    private ContactManager mContactManager;
     /**
      * Entité contenant le temps écoulé depuis le début de la partie.
      */
@@ -276,6 +261,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     // Événements de AndEngine   
     /**
      * Créé les options du moteur AndEngine.
+     *
      * @return
      */
     @Override
@@ -329,6 +315,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     /**
      * Créé les ressources du jeu.
+     *
      * @param pProgressListener
      * @throws Exception
      */
@@ -363,6 +350,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     /**
      * Créé la scène et les autres instances nécéssaire pour le jeu.
+     *
      * @param pProgressListener
      * @return
      * @throws Exception
@@ -370,6 +358,10 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     @Override
     public Scene onCreateSceneAsync(IProgressListener pProgressListener) throws Exception {
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
+
+
+        getCamera().setHUD(new HUD());
+
 
         mScene = new Scene();
 
@@ -398,6 +390,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
     /**
      * Charge les entités définies dans le fichier XML dans la scène.
+     *
      * @param pScene
      * @param pProgressListener
      * @throws Exception
@@ -405,6 +398,16 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     @Override
     public void onPopulateSceneAsync(Scene pScene, IProgressListener pProgressListener) throws Exception {
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
+
+
+        ComponentAttributes pAttributes = new ComponentAttributes();
+        pAttributes.putFloat("x", 50.0f);
+        pAttributes.putFloat("y", 50.0f);
+        IEntity ie = mLevelLoader.mAddDominoButtonLoader.onLoadEntity("add_domino_button", pScene, pAttributes, new FunkyDominoEntityLoaderData(this));
+
+        getHUD().attachChild(ie);
+
+
 
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même ainsi que le HUD.
@@ -432,18 +435,10 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     // Getters et setters
     /**
      *
-     * @param pHUD
-     */
-    public void setHUD(HUD pHUD) {
-        mHUD = pHUD;
-    }
-
-    /**
-     *
      * @return
      */
     public HUD getHUD() {
-        return mHUD;
+        return getCamera().getHUD();
     }
 
     /**
@@ -496,5 +491,9 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         getWindowManager().getDefaultDisplay().getSize(p);
 
         return p;
+    }
+
+    public LevelLoader getLevelLoader() {
+        return mLevelLoader;
     }
 }

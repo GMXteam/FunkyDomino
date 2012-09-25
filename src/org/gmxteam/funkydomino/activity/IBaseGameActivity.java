@@ -31,11 +31,6 @@ public interface IBaseGameActivity extends IGameInterface, IBaseGameActivityReso
      */
     public static TextureOptions TEXTURE_OPTION = TextureOptions.REPEATING_BILINEAR_PREMULTIPLYALPHA;
 
-    /**
-     *
-     * @param pHUD
-     */
-    public void setHUD(HUD pHUD);
     
     
 }

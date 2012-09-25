@@ -21,17 +21,21 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.ButtonSprite;
 import org.andengine.entity.sprite.ButtonSprite.OnClickListener;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.gmxteam.funkydomino.activity.IBaseGameActivity;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.IComponent;
+import org.gmxteam.funkydomino.component.loader.DominoLoader;
+import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 
 /**
  *
- * @author Usager
+ * @author Guillaume Poirier-Morency <guillaumepoiriermorency@gmail.com>
  */
 public class AddDominoButton extends ButtonSprite implements IComponent, OnClickListener {
 
@@ -43,6 +47,9 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
              *
              */
             DOMINO_HEIGHT = 64;
+    final Scene mScene;
+    final DominoLoader mDominoLoader;
+    final FunkyDominoEntityLoaderData mFunkyDominoEntityLoaderData;
 
     ////////////////////////////////////////////////////////////////////////
     /**
@@ -50,20 +57,28 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param pX
      * @param pY
      * @param pTextureRegion
+     * @param pTextureRegionClicked 
      * @param pVertexBufferObjectManager
+     * @param pScene  
      */
-    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final VertexBufferObjectManager pVertexBufferObjectManager) {
+    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final IBaseGameActivity pScene, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pX, pY, pTextureRegion, pTextureRegion, pTextureRegionClicked, pVertexBufferObjectManager);
+        mDominoLoader = new DominoLoader(pScene);
+        mScene = pScene.getScene();
+        mFunkyDominoEntityLoaderData = new FunkyDominoEntityLoaderData(pScene);
     }
 
     /**
      *
      * @param pComponentAttributes
      * @param pTextureRegion
+     * @param pTextureRegionClicked 
      * @param pVertexBufferObjectManager
+     * @param pScene  
      */
-    public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        this(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pTextureRegionClicked, pVertexBufferObjectManager);
+    public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final IBaseGameActivity pScene, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        this(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pTextureRegionClicked, pScene, pVertexBufferObjectManager);
+
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
@@ -107,5 +122,9 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param pTouchAreaLocalY
      */
     public void onClick(ButtonSprite pButtonSprite, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+        final ComponentAttributes catt = new ComponentAttributes();
+        catt.putFloat("x", pTouchAreaLocalX);
+        catt.putFloat("y", pTouchAreaLocalY);
+        mScene.attachChild(mDominoLoader.onLoadEntity("domino", mScene, catt, mFunkyDominoEntityLoaderData));
     }
 }

@@ -30,12 +30,33 @@ import org.xml.sax.Attributes;
  */
 public class ComponentAttributes extends HashMap<String, String> {
 
+    /**
+     *
+     */
     public static final float DEFAULT_FRICTON = 1.0f,
+            /**
+             *
+             */
             DEFAULT_DENSITY = 5.0f,
+            /**
+             *
+             */
             DEFAULT_ANGLE = 0.0f,
+            /**
+             *
+             */
             DEFAULT_HEIGHT = 0.0f,
+            /**
+             *
+             */
             DEFAULT_WIDTH = 0.0f,
+            /**
+             *
+             */
             DEFAULT_X = 0.0f,
+            /**
+             *
+             */
             DEFAULT_Y = 0.0f;
 
     /**
@@ -132,12 +153,26 @@ public class ComponentAttributes extends HashMap<String, String> {
         return vectors;
     }
 
+    /**
+     *
+     * @param key
+     * @param parentValue
+     * @param defaultValue
+     * @return
+     */
     public float getRelativeFloat(String key, float parentValue, float defaultValue) {
         final String o = get(key).replaceAll("%", "");
 
         return o != null ? parentValue * (Float.parseFloat(o) / 100.0f) : defaultValue;
     }
 
+    /**
+     *
+     * @param key
+     * @param parentValue
+     * @param defaultValue
+     * @return
+     */
     public int getRelativeInteger(String key, int parentValue, int defaultValue) {
         final String o = get(key).replaceAll("%", "");
         return o != null ? (int) (parentValue * (Float.parseFloat(o) / 100.0f)) : defaultValue;
@@ -279,6 +314,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getFriction(float defaultValue) {
@@ -287,6 +323,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getDensity(float defaultValue) {
@@ -295,6 +332,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getX(float defaultValue) {
@@ -303,6 +341,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getY(float defaultValue) {
@@ -311,6 +350,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getWidth(float defaultValue) {
@@ -319,6 +359,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getHeight(float defaultValue) {
@@ -327,6 +368,7 @@ public class ComponentAttributes extends HashMap<String, String> {
 
     /**
      *
+     * @param defaultValue 
      * @return
      */
     public float getAngle(float defaultValue) {

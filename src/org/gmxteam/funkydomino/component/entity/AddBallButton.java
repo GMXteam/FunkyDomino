@@ -43,6 +43,9 @@ public class AddBallButton extends ButtonSprite implements IComponent, OnClickLi
              *
              */
             DOMINO_HEIGHT = 64;
+    /**
+     *
+     */
     public static final int BALL_RADIUS = 32;
 
     ////////////////////////////////////////////////////////////////////////
@@ -51,6 +54,7 @@ public class AddBallButton extends ButtonSprite implements IComponent, OnClickLi
      * @param pX
      * @param pY
      * @param pTextureRegion
+     * @param pTextureRegionClicked 
      * @param pVertexBufferObjectManager
      */
     public AddBallButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final VertexBufferObjectManager pVertexBufferObjectManager) {
@@ -61,6 +65,7 @@ public class AddBallButton extends ButtonSprite implements IComponent, OnClickLi
      *
      * @param pComponentAttributes
      * @param pTextureRegion
+     * @param pTextureRegionClicked 
      * @param pVertexBufferObjectManager
      */
     public AddBallButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final VertexBufferObjectManager pVertexBufferObjectManager) {

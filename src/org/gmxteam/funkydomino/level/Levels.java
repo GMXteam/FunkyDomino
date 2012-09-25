@@ -18,6 +18,7 @@ package org.gmxteam.funkydomino.level;
 
 /**
  * Énumération des niveaux de jeu.
+ *
  * @author guillaume
  */
 public enum Levels {
@@ -71,8 +72,23 @@ public enum Levels {
         this(name, name, "");
     }
 
+    /**
+     * 
+     * @return 
+     * @deprecated use getPath instead.
+     */
     @Override
+    @Deprecated
     public String toString() {
         return "level/" + mFileName + "." + EXT;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getPath() {
+        return "level/" + mFileName + "." + EXT;
+
     }
 }
