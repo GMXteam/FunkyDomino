@@ -22,6 +22,7 @@ import org.andengine.util.level.IEntityLoader;
 import org.andengine.util.level.IEntityLoaderListener;
 import org.andengine.util.level.LevelLoader;
 import org.gmxteam.funkydomino.activity.IBaseGameActivity;
+import org.gmxteam.funkydomino.component.loader.AddDominoButtonLoader;
 import org.gmxteam.funkydomino.component.loader.BallLoader;
 import org.gmxteam.funkydomino.component.loader.CogLoader;
 import org.gmxteam.funkydomino.component.loader.DominoLoader;
@@ -63,7 +64,7 @@ public class FunkyDominoLevelLoader extends LevelLoader<FunkyDominoEntityLoaderD
         registerEntityLoader(new DominoLoader(pBaseGameActivity));
 
         registerEntityLoader(new BallLoader(pBaseGameActivity));
-        
+
         registerEntityLoader(new GroundLoader(pBaseGameActivity));
 
         registerEntityLoader(new SceneLoader());
@@ -71,6 +72,9 @@ public class FunkyDominoLevelLoader extends LevelLoader<FunkyDominoEntityLoaderD
         registerEntityLoader(new HUDLoader());
 
         registerEntityLoader(new CogLoader(pBaseGameActivity));
+
+        registerEntityLoader(new AddDominoButtonLoader(pBaseGameActivity));
+
 
     }
 

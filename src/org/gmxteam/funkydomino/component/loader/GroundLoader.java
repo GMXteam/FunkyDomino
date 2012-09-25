@@ -16,10 +16,8 @@
  */
 package org.gmxteam.funkydomino.component.loader;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import java.util.HashMap;
 import org.andengine.entity.IEntity;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
@@ -38,26 +36,28 @@ import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData
 public class GroundLoader extends ComponentLoader {
 
     private HashMap<String, TextureRegion> mParcelTextureRegion = new HashMap<String, TextureRegion>();
-    private HashMap<String, BitmapTextureAtlas> mParcelBitmapTextureAtlas = new HashMap<String, BitmapTextureAtlas>();
     private final static String[] TEXTURE_REGION_NAMES = {"ground1", "ground2", "ground3"};
 
     /**
+     * Chargeur du sol.
      *
-     * @param pba
+     * Les sols sont tous chargés sur le même texture atlas.
+     *
+     * @param pBaseGameActivity
      */
-    public GroundLoader(IBaseGameActivity pba) {
+    public GroundLoader(final IBaseGameActivity pBaseGameActivity) {
 
-        mBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), GroundParcel.GROUND_WIDTH, GroundParcel.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
-
+        mBitmapTextureAtlas = new BitmapTextureAtlas(pBaseGameActivity.getTextureManager(), GroundParcel.GROUND_WIDTH * TEXTURE_REGION_NAMES.length, GroundParcel.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
+        int textureCounter = 0;
         for (String name : TEXTURE_REGION_NAMES) {
-            final BitmapTextureAtlas aBitmapTextureAtlas = new BitmapTextureAtlas(pba.getTextureManager(), GroundParcel.GROUND_WIDTH, GroundParcel.GROUND_HEIGHT, FunkyDominoActivity.TEXTURE_OPTION);
-            final TextureRegion aTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(aBitmapTextureAtlas, pba.getContext(), "ground/" + name + ".png", 0, 0);
-            mParcelBitmapTextureAtlas.put(name, aBitmapTextureAtlas);
+            final TextureRegion aTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mBitmapTextureAtlas, pBaseGameActivity.getContext(), "ground/" + name + ".png", GroundParcel.GROUND_WIDTH * textureCounter, 0);
             mParcelTextureRegion.put(name, aTextureRegion);
-            pba.getTextureManager().loadTexture(aBitmapTextureAtlas);
+            textureCounter++;
         }
 
-        pba.getTextureManager().loadTexture(mBitmapTextureAtlas);
+
+
+        pBaseGameActivity.getTextureManager().loadTexture(mBitmapTextureAtlas);
     }
 
     /**

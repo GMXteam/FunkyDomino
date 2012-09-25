@@ -19,6 +19,7 @@ package org.gmxteam.funkydomino.component;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Arrays;
 import java.util.HashMap;
+import org.andengine.entity.IEntity;
 import org.andengine.entity.primitive.Mesh;
 import org.andengine.util.debug.Debug;
 import org.xml.sax.Attributes;
@@ -29,61 +30,13 @@ import org.xml.sax.Attributes;
  */
 public class ComponentAttributes extends HashMap<String, String> {
 
-    /**
-     *
-     * @return
-     */
-    public float getFriction() {
-        return getFloat("friction", 1.0f);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getDensity() {
-        return getFloat("density", 5.0f);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getX() {
-        return getFloat("x", 0.0f);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getY() {
-        return getFloat("y", 0.0f);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getWidth() {
-        return getFloat("width", 0.0f);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getHeight() {
-        return getFloat("height", 0.0f);
-    }
-
-    /**
-     *
-     * @return
-     */
-    public float getAngle() {
-        return getFloat("angle", 0.0f);
-    }
+    public static final float DEFAULT_FRICTON = 1.0f,
+            DEFAULT_DENSITY = 5.0f,
+            DEFAULT_ANGLE = 0.0f,
+            DEFAULT_HEIGHT = 0.0f,
+            DEFAULT_WIDTH = 0.0f,
+            DEFAULT_X = 0.0f,
+            DEFAULT_Y = 0.0f;
 
     /**
      *
@@ -109,62 +62,19 @@ public class ComponentAttributes extends HashMap<String, String> {
     }
 
     /**
-     *
-     * @param s
-     * @return
-     */
-    public static boolean isFloat(String s) {
-        try {
-            Float.parseFloat(s);
-            return true;
-        } catch (NumberFormatException ffe) {
-            Debug.e(ffe);
-            return false;
-        }
-    }
-
-    /**
-     *
-     * @param s
-     * @return
-     */
-    public static boolean isBoolean(String s) {
-        try {
-            Boolean.parseBoolean(s);
-            return true;
-        } catch (Exception ffe) {
-            Debug.e(ffe);
-            return false;
-        }
-    }
-
-    /**
-     *
-     * @param s
-     * @return
-     */
-    public static boolean isInteger(String s) {
-        try {
-            Integer.parseInt(s);
-            return true;
-        } catch (NumberFormatException ffe) {
-            Debug.e(ffe);
-            return false;
-        }
-    }
-
-    /**
      * Constructeur utilisé par ComponentFactory pour les tests.
      */
     public ComponentAttributes() {
     }
 
     /**
-     * Constructeur avec copie des attributs.
+     * Constructeur avec copie des attributs XML dans le dictionnaire interne.
      *
      * @param atts
      */
     public ComponentAttributes(Attributes atts) {
+        // Copie des attributs dans le dictionnaire
+
         for (int i = 0; i < atts.getLength(); i++) {
 
 
@@ -174,7 +84,6 @@ public class ComponentAttributes extends HashMap<String, String> {
 
         }
 
-        // Copie des attributs dans le dictionnaire
     }
 
     /**
@@ -223,6 +132,17 @@ public class ComponentAttributes extends HashMap<String, String> {
         return vectors;
     }
 
+    public float getRelativeFloat(String key, float parentValue, float defaultValue) {
+        final String o = get(key).replaceAll("%", "");
+
+        return o != null ? parentValue * (Float.parseFloat(o) / 100.0f) : defaultValue;
+    }
+
+    public int getRelativeInteger(String key, int parentValue, int defaultValue) {
+        final String o = get(key).replaceAll("%", "");
+        return o != null ? (int) (parentValue * (Float.parseFloat(o) / 100.0f)) : defaultValue;
+    }
+
     /**
      *
      * @param key
@@ -231,7 +151,7 @@ public class ComponentAttributes extends HashMap<String, String> {
      */
     public float getFloat(String key, float defaultValue) {
         final String o = get(key);
-        return o != null && isFloat(o) ? Float.parseFloat(o) : defaultValue;
+        return o != null ? Float.parseFloat(o) : defaultValue;
     }
 
     /**
@@ -242,7 +162,7 @@ public class ComponentAttributes extends HashMap<String, String> {
      */
     public int getInteger(String key, int defaultValue) {
         final String o = get(key);
-        return o != null && isInteger(o) ? Integer.parseInt(o) : defaultValue;
+        return o != null ? Integer.parseInt(o) : defaultValue;
     }
 
     /**
@@ -287,7 +207,7 @@ public class ComponentAttributes extends HashMap<String, String> {
      */
     public boolean getBoolean(String key, boolean defaultValue) {
         final String o = get(key);
-        return o != null && isBoolean(o) ? Boolean.parseBoolean(o) : defaultValue;
+        return o != null ? Boolean.parseBoolean(o) : defaultValue;
     }
 
     /**
@@ -297,5 +217,119 @@ public class ComponentAttributes extends HashMap<String, String> {
      */
     public void putFloat(String friction, float f) {
         put(friction, String.valueOf(f));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Specific grabbers
+    /**
+     *
+     * @return
+     */
+    public float getFriction() {
+        return getFloat("friction", DEFAULT_FRICTON);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getDensity() {
+        return getFloat("density", DEFAULT_DENSITY);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getX() {
+        return getFloat("x", DEFAULT_X);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getY() {
+        return getFloat("y", DEFAULT_Y);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getWidth() {
+        return getFloat("width", DEFAULT_WIDTH);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getHeight() {
+        return getFloat("height", DEFAULT_HEIGHT);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getAngle() {
+        return getFloat("angle", DEFAULT_ANGLE);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getFriction(float defaultValue) {
+        return getFloat("friction", defaultValue);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getDensity(float defaultValue) {
+        return getFloat("density", defaultValue);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getX(float defaultValue) {
+        return getFloat("x", defaultValue);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getY(float defaultValue) {
+        return getFloat("y", defaultValue);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getWidth(float defaultValue) {
+        return getFloat("width", defaultValue);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getHeight(float defaultValue) {
+        return getFloat("height", defaultValue);
+    }
+
+    /**
+     *
+     * @return
+     */
+    public float getAngle(float defaultValue) {
+        return getFloat("angle", defaultValue);
     }
 }

@@ -17,9 +17,7 @@
 package org.gmxteam.funkydomino.component.loader;
 
 import android.util.FloatMath;
-import com.badlogic.gdx.physics.box2d.Body;
 import org.andengine.entity.IEntity;
-import org.andengine.extension.physics.box2d.PhysicsConnector;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.util.debug.Debug;

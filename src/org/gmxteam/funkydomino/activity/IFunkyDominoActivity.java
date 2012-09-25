@@ -17,7 +17,6 @@
 package org.gmxteam.funkydomino.activity;
 
 import org.andengine.engine.camera.hud.HUD;
-import org.andengine.opengl.texture.TextureOptions;
 
 /**
  *
@@ -28,12 +27,11 @@ public interface IFunkyDominoActivity extends IBaseGameActivity {
     ////////////////////////////////////////////////////////////////////////////
     // Constantes publiques. Elles sont disponibles dans tout le projet.
     /**
-     *
+     * Tag pour la sortie de déboguage d'Android.
      */
     public static final String LOG_TAG = "FunkyDomino";
     ////////////////////////////////////////////////////////////////////////////
     // Constantes spécifiques aux activités
-    
     /**
      * Vélocité maximale de la caméra en x.
      */
@@ -43,7 +41,7 @@ public interface IFunkyDominoActivity extends IBaseGameActivity {
      */
     public static final float CAMERA_MAX_VELOCITY_Y = CAMERA_MAX_VELOCITY_X;
     /**
-     *
+     * Facteur maximal de changement pour le zoom.
      */
     public static final float CAMERA_MAX_ZOOM_FACTOR_CHANGE = 2.0f;
     /**
@@ -56,8 +54,6 @@ public interface IFunkyDominoActivity extends IBaseGameActivity {
              * considéré comme far, ou lointaine.
              */
             CAMERA_Z_FAR = 20.0f;
-  
-   
 
     /**
      *

@@ -24,7 +24,7 @@ import org.xml.sax.Attributes;
 
 /**
  *
- * @author guillaume
+ * @author Guillaume Poirier-Morency
  */
 public class HUDLoader implements IEntityLoader<FunkyDominoEntityLoaderData>  {
 

@@ -52,8 +52,8 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param pTextureRegion
      * @param pVertexBufferObjectManager
      */
-    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pX, pY, pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
+    public AddDominoButton(final float pX, final float pY, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        super(pX, pY, pTextureRegion, pTextureRegion, pTextureRegionClicked, pVertexBufferObjectManager);
     }
 
     /**
@@ -62,8 +62,8 @@ public class AddDominoButton extends ButtonSprite implements IComponent, OnClick
      * @param pTextureRegion
      * @param pVertexBufferObjectManager
      */
-    public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
-        super(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pTextureRegion, pVertexBufferObjectManager);
+    public AddDominoButton(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final ITextureRegion pTextureRegionClicked, final VertexBufferObjectManager pVertexBufferObjectManager) {
+        this(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pTextureRegionClicked, pVertexBufferObjectManager);
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
