@@ -18,6 +18,7 @@ package org.gmxteam.funkydomino.component.loader;
 
 import java.util.HashMap;
 import org.andengine.entity.IEntity;
+import org.andengine.entity.scene.Scene;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
@@ -73,6 +74,7 @@ public class GroundLoader extends ComponentLoader {
         final IComponent e;
 
         if (pEntityName.equals("ground")) {
+            assert pParent instanceof Scene;
             e = new Ground(pAttributes);
 
         } else {
