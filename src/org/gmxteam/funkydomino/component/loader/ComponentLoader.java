@@ -93,7 +93,7 @@ public abstract class ComponentLoader implements IEntityLoader<FunkyDominoEntity
         }
 
 
-        // Binding avec le touch de la scène
+        // Binding avec le touch de la scène        
         pEntityLoaderData.getScene().registerTouchArea(entity);
 
 

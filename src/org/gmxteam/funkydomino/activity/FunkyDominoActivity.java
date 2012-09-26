@@ -38,6 +38,7 @@ import org.andengine.engine.options.resolutionpolicy.RatioResolutionPolicy;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
 import org.andengine.entity.util.FPSLogger;
 import org.andengine.extension.physics.box2d.FixedStepPhysicsWorld;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -53,10 +54,12 @@ import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
+import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
+import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
 import org.gmxteam.funkydomino.util.PinchZoomAndScrollOnSceneTouchListener;
 import org.gmxteam.funkydomino.util.TimeCounterHandler;
 import org.gmxteam.funkydomino.util.TimeCounterHandler.IOnTimeChangeListener;
@@ -94,7 +97,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         PreferenceManager.setDefaultValues(this,
                 R.layout.preference_about, false);
-
 
 
         mGameToLoad = Levels.valueOf(pBundle.getString("bundle.level", Levels.LEVEL_1.name()));
@@ -335,7 +337,6 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         pProgressListener.onProgressChanged(progress += 5);
 
-
         final BitmapTextureAtlas mFontTexture = new BitmapTextureAtlas(getTextureManager(), 256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
         pProgressListener.onProgressChanged(progress += 5);
 
@@ -343,6 +344,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
         getTextureManager().loadTexture(mFontTexture);
         getFontManager().loadFont(mFont);
 
+        mElapsedTimeText = new Text(this.getDrawableSurfaceDimensions().x - 48.0f, 12.0f, mFont, "Funky Domino", new TextOptions(), getVertexBufferObjectManager());
 
 
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MAX);
@@ -359,20 +361,19 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     public Scene onCreateSceneAsync(IProgressListener pProgressListener) throws Exception {
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
 
-
         getCamera().setHUD(new HUD());
 
 
+
+
         mScene = new Scene();
-
-
 
         mScene.setOnSceneTouchListener(new PinchZoomAndScrollOnSceneTouchListener(mCamera));
 
 
         mPhysicsWorld = new FixedStepPhysicsWorld(FixedStepPhysicsWorld.STEPSPERSECOND_DEFAULT, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
 
-        //mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
+        mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
 
         mContactManager = new ContactManager();
 
@@ -407,12 +408,13 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         getHUD().attachChild(ie);
 
+        getCamera().getHUD().attachChild(mElapsedTimeText);
 
 
         /* Le levelloader va charger les éléments dans la scène et la scène
          * elle même ainsi que le HUD.
          */
-        mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.toString());
+        mLevelLoader.loadLevelFromAsset(getAssets(), mGameToLoad.getPath());
 
 
         // HUD should have been created, let's populate it

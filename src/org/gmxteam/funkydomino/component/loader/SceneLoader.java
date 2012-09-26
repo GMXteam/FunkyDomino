@@ -121,7 +121,7 @@ public class SceneLoader implements IEntityLoader<FunkyDominoEntityLoaderData> {
             final Body lineBody = PhysicsFactory.createLineBody(pEntityLoaderData.getPhysicsWorld(), lineShape, limitsFixtureDef);
 
             pEntityLoaderData.getPhysicsWorld().registerPhysicsConnector(new PhysicsConnector(lineShape, lineBody));
-            pScene.attachChild(lineShape);
+            // pScene.attachChild(lineShape);
 
         }
 

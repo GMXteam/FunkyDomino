@@ -93,7 +93,6 @@ public class PinchZoomAndScrollOnSceneTouchListener implements IOnSceneTouchList
      * @param f1
      */
     public void onScrollStarted(ScrollDetector sd, int i, float f, float f1) {
-        
     }
 
     /**
@@ -103,7 +102,7 @@ public class PinchZoomAndScrollOnSceneTouchListener implements IOnSceneTouchList
      * @param f
      * @param f1
      */
-    public void onScroll(ScrollDetector sd, int i, float f, float f1) {        
+    public void onScroll(ScrollDetector sd, int i, float f, float f1) {
         mCamera.setCenter(mCamera.getCenterX() - f, mCamera.getCenterY() - f1);
     }
 
