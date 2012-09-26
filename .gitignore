@@ -3,6 +3,7 @@ target/**
 bin/**
 doc/**
 gen/**
+private/**
 .DS_Store
 Thumbs.db
 gdb.setup
