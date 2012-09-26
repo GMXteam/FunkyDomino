@@ -16,12 +16,14 @@
  */
 package org.gmxteam.funkydomino.component.entity;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import java.util.Arrays;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.extension.physics.box2d.PhysicsFactory;
 import org.andengine.extension.physics.box2d.PhysicsWorld;
@@ -31,6 +33,8 @@ import org.gmxteam.funkydomino.component.ComponentAttributes;
 import org.gmxteam.funkydomino.component.IComponent;
 
 /**
+ * Chaque GroundParcel est un Sprite backé avec un polygon de Box2D.
+ *
  *
  * @author guillaume
  */
@@ -44,7 +48,38 @@ public class GroundParcel extends Sprite implements IComponent {
              *
              */
             GROUND_HEIGHT = 128;
-    private final String mType;
+    private final Vector2[] mVectors;
+
+    public static float average(float... floats) {
+        float sum = 0.0f;
+        for (float f : floats) {
+            sum += f;
+        }
+        return sum / (float) floats.length;
+
+
+    }
+
+    public static boolean isValidPolygon(Vector2[] array) {
+
+        // Calcul des angle extérieurs v[k], v[k+1], v[k+2] doit toujours > 180 
+
+        for (int i = 0; i < array.length - 3; i++) {
+            final Vector2 v1 = array[i],
+                    v2 = array[i + 1],
+                    v3 = array[i + 2];
+
+            // Convex is len(v2) > moy(len(v1), len(v3))
+
+            if (v2.len() < average(v1.len(), v3.len())) {
+                return false;
+            }
+        }
+
+        // Tous les vecteurs sont corrects
+
+        return true;
+    }
 
     /**
      *
@@ -54,18 +89,18 @@ public class GroundParcel extends Sprite implements IComponent {
      */
     public GroundParcel(final ComponentAttributes pComponentAttributes, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pComponentAttributes.getX(), pComponentAttributes.getY(), pTextureRegion, pVertexBufferObjectManager);
-        mType = pComponentAttributes.getString("type", null);
+        mVectors = pComponentAttributes.getVector2Array("vector", DEFAULT_VECTORS);
 
     }
 
     public Body onCreateBody(PhysicsWorld pPhysicsWorld, FixtureDef pFixtureDef) {
         // TODO : Les grounds triangulaires
+        if (isValidPolygon(mVectors)) {
+            return PhysicsFactory.createPolygonBody(pPhysicsWorld, this, mVectors, BodyDef.BodyType.DynamicBody, pFixtureDef);
 
-
-        return PhysicsFactory.createBoxBody(pPhysicsWorld, this, BodyDef.BodyType.DynamicBody, pFixtureDef);
-
-
-
+        } else {
+            throw new IllegalArgumentException("Not a valid polygon array " + Arrays.deepToString(mVectors));
+        }
     }
 
     /**
