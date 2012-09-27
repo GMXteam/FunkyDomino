@@ -87,6 +87,7 @@ public final class Domino extends Sprite implements IComponent, IScrollDetectorL
      * @param mnfld
      */
     public void preSolve(Contact cntct, Manifold mnfld) {
+        
     }
 
     /**

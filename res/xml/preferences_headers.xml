@@ -2,17 +2,17 @@
 <preference-headers
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <header android:fragment="com.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoGraphicsPreferenceFragment"
+    <header android:fragment="org.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoGraphicsPreferenceFragment"
             android:title="Graphics"
             android:summary="Set up the graphical parameters."
              />
     
-    <header android:fragment="com.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoAudioPreferenceFragment"
+    <header android:fragment="org.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoAudioPreferenceFragment"
             android:title="Audio"
             android:summary="Change the audio configuration."
              />
     
-    <header android:fragment="com.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoAboutPreferenceFragment"
+    <header android:fragment="org.gmxteam.funkydomino.activity.PreferencesActivity$FunkyDominoAboutPreferenceFragment"
             android:title="About"
             android:summary="The development team and license information."
              />

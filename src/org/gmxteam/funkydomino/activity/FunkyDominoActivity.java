@@ -54,12 +54,12 @@ import org.andengine.util.level.LevelLoader;
 import org.andengine.util.preferences.SimplePreferences;
 import org.andengine.util.progress.IProgressListener;
 import org.gmxteam.funkydomino.component.ComponentAttributes;
-import org.gmxteam.funkydomino.component.IComponent;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoEntityLoaderData;
 import org.gmxteam.funkydomino.component.loader.util.FunkyDominoLevelLoader;
 import org.gmxteam.funkydomino.level.Levels;
 import org.gmxteam.funkydomino.physics.box2d.ContactManager;
 import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener;
+import org.gmxteam.funkydomino.physics.box2d.GravityBasedOrientationListener.GravityUpdateMode;
 import org.gmxteam.funkydomino.util.PinchZoomAndScrollOnSceneTouchListener;
 import org.gmxteam.funkydomino.util.TimeCounterHandler;
 import org.gmxteam.funkydomino.util.TimeCounterHandler.IOnTimeChangeListener;
@@ -373,7 +373,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
 
         mPhysicsWorld = new FixedStepPhysicsWorld(FixedStepPhysicsWorld.STEPSPERSECOND_DEFAULT, new Vector2(0, -SensorManager.GRAVITY_EARTH), true);
 
-        mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld));
+        mEngine.enableOrientationSensor(this, new GravityBasedOrientationListener(mPhysicsWorld, GravityUpdateMode.SCREEN_IS_VERTICAL));
 
         mContactManager = new ContactManager();
 
@@ -400,7 +400,7 @@ public class FunkyDominoActivity extends SimpleAsyncGameActivity implements IFun
     public void onPopulateSceneAsync(Scene pScene, IProgressListener pProgressListener) throws Exception {
         pProgressListener.onProgressChanged(IProgressListener.PROGRESS_MIN);
 
-
+        
         ComponentAttributes pAttributes = new ComponentAttributes();
         pAttributes.putFloat("x", 50.0f);
         pAttributes.putFloat("y", 50.0f);
